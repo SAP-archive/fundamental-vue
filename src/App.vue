@@ -29,7 +29,7 @@ export default {
       routes: [
         // { path: '/actionBar', name: 'Action Bar' },
         // { path: '/alert', name: 'Alert' },
-        { path: "/badge", name: "Badge and Label" },
+        { path: "/badge", name: "Badge, Label and Status" },
         // { path: '/breadcrumb', name: 'Breadcrumb' },
         { path: "/button", name: "Button" },
         // { path: '/dropdown', name: 'Dropdown' },
