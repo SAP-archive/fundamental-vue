@@ -5,6 +5,7 @@
         <tbody>
             <tr class="property-row" v-for="property in desc" :key="property.name">
                 <th class="property-header">{{property.name}}</th>
+                <td v-if="property.dataType">{{property.dataType}} - </td>
                 <td>{{property.description}}</td>
             </tr>
         </tbody>
