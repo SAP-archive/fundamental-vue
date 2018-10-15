@@ -142,7 +142,8 @@ const statusIndicatorAnyIconCode = `<Status>Default</Status>
 <Status icon="history">History</Status>
 <Status icon="alert">Alert</Status>
 <Status icon="accept">Accept</Status>
-<Status icon="action">Action</Status>`
+<Status icon="action">Action</Status>
+NOTE: The type property takes precedence over the icon property`
 
 const statusIndicatorSemanticColorCode = `<Status>Default</Status>
 <Status type="success">Success</Status>
