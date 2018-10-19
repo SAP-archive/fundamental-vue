@@ -1,48 +1,51 @@
 {
-  "name": "fundamental-vue",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "vue": "^2.5.16",
-    "vue-router": "^3.0.1"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-beta.15",
-    "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
-    "@vue/cli-service": "^3.0.0-beta.15",
-    "fundamental-ui": "^1.2.2",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^7.0.3",
-    "vue-template-compiler": "^2.5.16",
-    "webpack": "^4.12.1"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "fundamental-vue",
+    "homepage": "https://github.wdf.sap.corp/hybris-pd/fundamental-vue",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "deploy": "node ./node_modules/vue-gh-pages/index.js"
     },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+    "dependencies": {
+        "vue": "^2.5.17",
+        "vue-router": "^3.0.1"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^3.0.5",
+        "@vue/cli-plugin-eslint": "^3.0.5",
+        "@vue/cli-service": "^3.0.5",
+        "fundamental-ui": "^1.2.2",
+        "node-sass": "^4.9.4",
+        "sass-loader": "^7.1.0",
+        "vue-gh-pages": "^1.19.0",
+        "vue-template-compiler": "^2.5.17",
+        "webpack": "^4.21.0"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "rules": {},
+        "parserOptions": {
+            "parser": "babel-eslint"
+        }
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not ie <= 8"
+    ]
 }
