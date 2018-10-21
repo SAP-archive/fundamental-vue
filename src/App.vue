@@ -43,7 +43,7 @@ export default {
         // { path: '/sideNavigation', name: 'Side Navigation' },
         // { path: '/table', name: 'Table' },
         // { path: '/tabs', name: 'Tabs' },
-        // { path: '/tag', name: 'Tag' },
+        { path: '/tag', name: 'Tag' },
         // { path: '/tile', name: 'Tile' },
         // { path: '/toggle', name: 'Toggle' }
         ]
