@@ -7,6 +7,7 @@ import BadgeComponent from "./components/Badge/Badge.Component.vue";
 import IconComponent from "./components/Icon/Icon.Component.vue";
 import ImageComponent from "./components/Image/Image.Component.vue";
 import IdentifierComponent from "./components/Identifier/Identifier.Component.vue";
+import TagComponent from "./components/Tag/Tag.Component.vue";
 
 Vue.use(Router)
 
@@ -29,7 +30,7 @@ export default new Router ({
         // { path: '/sideNavigation', name: 'Side Navigation', component: SideNavigationComponent },
         // { path: '/table', name: 'Table', component: TableComponent },
         // { path: '/tabs', name: 'Tabs', component: TabsComponent },
-        // { path: '/tag', name: 'Tag', component: TagComponent },
+        { path: '/tag', name: 'Tag', component: TagComponent },
         // { path: '/tile', name: 'Tile', component: TileComponent },
         // { path: '/toggle', name: 'Toggle', component: ToggleComponent }
     ]
