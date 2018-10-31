@@ -46,6 +46,7 @@ export default {
         { path: '/tag', name: 'Tag' },
         // { path: '/tile', name: 'Tile' },
         // { path: '/toggle', name: 'Toggle' }
+        { path: "/modal", name: "Modal" },
         ]
     }
   }

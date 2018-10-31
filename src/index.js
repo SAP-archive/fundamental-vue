@@ -12,6 +12,8 @@ import Badge from "./components/Badge/Badge.Component.vue";
 import Icon from "./components/Icon/Icon.Component.vue";
 import Img from "./components/Image/Image.Component.vue";
 import Identifier from "./components/Identifier/Identifier.Component.vue";
+import Modal from "./components/Button/Modal.Component.vue";
+
 
 export {
     Header,
@@ -26,6 +28,7 @@ export {
     Badge,
     Icon,
     Img,
-    Identifier
+    Identifier,
+    Modal
     
 }

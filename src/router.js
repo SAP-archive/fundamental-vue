@@ -7,6 +7,7 @@ import BadgeComponent from "./components/Badge/Badge.Component.vue";
 import IconComponent from "./components/Icon/Icon.Component.vue";
 import ImageComponent from "./components/Image/Image.Component.vue";
 import IdentifierComponent from "./components/Identifier/Identifier.Component.vue";
+import ModalComponent from "./components/Modal/Modal.Component.vue";
 import TagComponent from "./components/Tag/Tag.Component.vue";
 
 Vue.use(Router)
@@ -33,6 +34,7 @@ export default new Router ({
         { path: '/tag', name: 'Tag', component: TagComponent },
         // { path: '/tile', name: 'Tile', component: TileComponent },
         // { path: '/toggle', name: 'Toggle', component: ToggleComponent }
+        { path: "/modal", name: "Modal", component: ModalComponent }
     ]
 
 })
