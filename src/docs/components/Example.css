@@ -1,0 +1,11 @@
+.example__show_code {
+  color: #aaaaaa;
+}
+
+.example__show_code a {
+  color: #aaaaaa;
+  outline: 0;
+}
+.example__show_code:hover a {
+  color: blue;
+}
