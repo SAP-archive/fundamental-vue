@@ -1,21 +1,21 @@
 <template>
 <div>
-  <vf-section>
-    <vf-container>
-      <vf-panel>Panel 1</vf-panel>
-    </vf-container>
-  </vf-section>
+  <FdSection>
+    <FdContainer>
+      <FdPanel>Panel 1</FdPanel>
+    </FdContainer>
+  </FdSection>
 
-  <vf-section>
-    <vf-container>
-      <vf-col :span=6>
-        <vf-panel>Panel 2 with col span 6</vf-panel>
-      </vf-col>
-      <vf-col :span=6>
-        <vf-panel>Panel 3 with col span 6</vf-panel>
-      </vf-col>
-    </vf-container>
-  </vf-section>
+  <FdSection>
+    <FdContainer>
+      <FdCol :span=6>
+        <FdPanel>Panel 2 with col span 6</FdPanel>
+      </FdCol>
+      <FdCol :span=6>
+        <FdPanel>Panel 3 with col span 6</FdPanel>
+      </FdCol>
+    </FdContainer>
+  </FdSection>
 
 </div>
 </template>

@@ -1,12 +1,12 @@
 <template>
-  <vf-panel-grid :col=4>
-    <vf-panel>Panel Body 1</vf-panel>
-    <vf-panel>Panel Body 2</vf-panel>
-    <vf-panel>Panel Body 3</vf-panel>
-    <vf-panel>Panel Body 4</vf-panel>
-    <vf-panel>Panel Body 5</vf-panel>
-    <vf-panel>Panel Body 6</vf-panel>
-    <vf-panel>Panel Body 7</vf-panel>
-    <vf-panel>Panel Body 8</vf-panel>
-  </vf-panel-grid>
+  <FdPanelGrid :col=4>
+    <FdPanel>Panel Body 1</FdPanel>
+    <FdPanel>Panel Body 2</FdPanel>
+    <FdPanel>Panel Body 3</FdPanel>
+    <FdPanel>Panel Body 4</FdPanel>
+    <FdPanel>Panel Body 5</FdPanel>
+    <FdPanel>Panel Body 6</FdPanel>
+    <FdPanel>Panel Body 7</FdPanel>
+    <FdPanel>Panel Body 8</FdPanel>
+  </FdPanelGrid>
 </template>

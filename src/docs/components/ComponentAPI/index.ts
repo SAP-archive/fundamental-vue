@@ -1,3 +1,3 @@
-export { ComponentAPI } from './ComponentAPI';
-export { APIEvents } from './APIEvents';
-export { APIProps } from './APIProps';
+export { ComponentApi } from './ComponentApi';
+export { ApiEvents } from './ApiEvents';
+export { ApiProps } from './ApiProps';

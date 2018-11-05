@@ -1,17 +1,21 @@
-import { Component, Watch, Prop } from 'vue-property-decorator';
+import { Component, Watch, Prop, Vue } from 'vue-property-decorator';
 import { Menu, MenuList, MenuItem } from '@/components';
 import { mixins } from 'vue-class-component';
 import { Uid } from '@/mixins';
 import { componentName } from '@/util';
 import { API } from '@/api';
-import '@/components/fade-animation.css';
 import { clickawayDirective } from '@/mixins';
-import Vue from 'vue';
+
+interface Props {
+  visible?: boolean;
+  uid?: string; // Uid mixin
+}
+
 @Component({
   directives: {
     onClickaway: clickawayDirective,
   },
-  name: componentName('popover-content'),
+  name: componentName('PopoverContent'),
   components: { Menu, MenuList, MenuItem },
 })
 @API.Component('Popover Content', comp => {
@@ -21,9 +25,11 @@ import Vue from 'vue';
     });
 })
 export class PopoverContent extends mixins(Uid) {
+  @API.Prop('whether visible', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
-  @API.Prop('if visible', prop => prop.type(Boolean))
   public visible!: boolean;
+
+  public $tsxProps!: Readonly<{}> & Readonly<Props>;
 
   public currentVisible: boolean = this.visible;
   private setCurrentVisible(visible: boolean) {
@@ -50,11 +56,11 @@ export class PopoverContent extends mixins(Uid) {
         id={this.uid}
         v-on-clickaway={this.clickOutside}
       >
-        <vf-menu>
-          <vf-menu-list on-select={val => this.handleItemClick(val)}>
+        <Menu>
+          <MenuList on-select={val => this.handleItemClick(val)}>
             {items}
-          </vf-menu-list>
-        </vf-menu>
+          </MenuList>
+        </Menu>
       </div>
     );
   }

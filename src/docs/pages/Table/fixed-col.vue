@@ -1,15 +1,15 @@
 <template><div>
-  <vf-table firstColumnFixed :data="tableData">
-    <vf-table-column sortable prop="rating" label="Rating" />
-    <vf-table-column prop="firstName" label="First Name" />
-    <vf-table-column prop="lastName" label="Last Name" />
-    <vf-table-column prop="lastName" label="Last Name 2" />
-    <vf-table-column prop="lastName" label="Last Name 3" />
-    <vf-table-column prop="lastName" label="Last Name 4" />
-    <vf-table-column prop="lastName" label="Last Name 5" />
-    <vf-table-column prop="lastName" label="Last Name 6" />
-    <vf-table-column prop="lastName" label="Last Name 7" />
-  </vf-table>
+  <FdTable firstColumnFixed :data="tableData">
+    <FdTableColumn sortable prop="rating" label="Rating" />
+    <FdTableColumn prop="firstName" label="First Name" />
+    <FdTableColumn prop="lastName" label="Last Name" />
+    <FdTableColumn prop="lastName" label="Last Name 2" />
+    <FdTableColumn prop="lastName" label="Last Name 3" />
+    <FdTableColumn prop="lastName" label="Last Name 4" />
+    <FdTableColumn prop="lastName" label="Last Name 5" />
+    <FdTableColumn prop="lastName" label="Last Name 6" />
+    <FdTableColumn prop="lastName" label="Last Name 7" />
+  </FdTable>
 </div></template>
 
 <script>

@@ -1,5 +1,5 @@
 import { UIComponentConfig } from './types/UIComponentConfig';
-import { ButtonGroup, Token, Image, Tabs, TabItem, Toggle, Spinner, Breadcrumb, BreadcrumbItem, Alert, Icon, SideNav, SideNavItem, SideNavList, ActionBar, Button, FormSet, FormGroup, FormItem, FormLabel, FormMessage, FieldSet, Input, Legend, TextArea, Select, Menu, MenuList, MenuItem, Panel, PanelGrid, Section, InputGroup, Combobox, ComboboxItem, Table, TableColumn, Badge, Link, Modal, Identifier, PopoverContent, ListGroup, InlineHelp } from '@/components';
+import { ButtonGroup, Token, Image, Tabs, TabItem, Toggle, Spinner, Breadcrumb, BreadcrumbItem, Alert, Icon, SideNav, SideNavItem, SideNavList, SideNavSubmenu, ActionBar, Button, FormSet, FormGroup, FormItem, FormLabel, FormMessage, FieldSet, Input, Legend, TextArea, Select, Menu, MenuList, MenuItem, Panel, PanelGrid, Section, InputGroup, Combobox, Table, TableColumn, Badge, Link, Modal, Identifier, PopoverContent, ListGroup, InlineHelp } from '@/components';
 
 // Used to build the side nav on the main docs page.
 // The exported array will be further prepared (sorted, slugifies, ...) by someone else.
@@ -132,7 +132,7 @@ export const UIComponentsConfig: UIComponentConfig[] = [
       { id: 'group', title: 'Grouped Side Navigation' },
       { id: 'submenu', title: 'Nested' },
     ],
-    relatedComponents: [SideNav, SideNavList, SideNavItem],
+    relatedComponents: [SideNav, SideNavList, SideNavItem, SideNavSubmenu],
   },
   {
     id: 'ActionBar',
@@ -210,7 +210,7 @@ export const UIComponentsConfig: UIComponentConfig[] = [
     examples: [
       { id: 'default', title: 'Default Combobox' },
     ],
-    relatedComponents: [Combobox, ComboboxItem, MenuItem],
+    relatedComponents: [Combobox, MenuItem],
   },
   {
     id: 'Table',

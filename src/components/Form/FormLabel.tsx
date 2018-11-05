@@ -1,23 +1,27 @@
 import {
   Component,
   Prop,
-  Vue,
   Inject,
 } from 'vue-property-decorator';
-
 import { componentName } from '@/util';
 import { API } from '@/api';
 import { ItemIdentification } from './Types/ItemIdentification';
+import TsxComponent from '@/vue-tsx';
 
-@Component({ name: componentName('form-label') })
+interface Props {
+  for?: string | null;
+  required?: boolean;
+}
+
+@Component({ name: componentName('FormLabel') })
 @API.Component('Form Label')
-export class FormLabel extends Vue {
-  @Prop({ type: String, required: false, default: null })
+export class FormLabel extends TsxComponent<Props> {
   @API.Prop('id of the corresponding input', prop => prop.type(String))
+  @Prop({ type: String, required: false, default: null })
   public for!: string | null;
 
-  @Prop({ required: false, default: false, type: Boolean })
   @API.Prop('whether a value is required (adds a *)', prop => prop.type(Boolean))
+  @Prop({ required: false, default: false, type: Boolean })
   public required!: boolean;
 
   @Inject({ default: null }) public itemIdentificationProvider!: ItemIdentification | null;
@@ -34,9 +38,7 @@ export class FormLabel extends Vue {
 
   public render() {
     const textOrItem = this.$slots.default;
-    return (
-      <label class={this.classes} for={this.labelId}>{textOrItem}</label>
-    );
+    return (<label class={this.classes} for={this.labelId}>{textOrItem}</label>);
   }
 
   private get classes() {

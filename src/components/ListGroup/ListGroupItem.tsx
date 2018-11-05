@@ -8,7 +8,6 @@ import Vue from 'vue';
 @Component({ name: componentName('list-group-item') })
 @API.Component('List Group Item')
 export class ListGroupItem extends Vue {
-
   public render() {
     const action = this.$slots.action;
     return (

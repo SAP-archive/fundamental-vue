@@ -1,19 +1,24 @@
 import {
   Component,
-  Vue,
   Prop,
 } from 'vue-property-decorator';
-
 import { TypeToken } from './TypeToken';
 import { PropType } from '@/api';
+import TsxComponent from '@/vue-tsx';
+
+interface Props {
+  propTypes: PropType[];
+}
+
 @Component({
-  name: 'type-tokens',
+  name: 'TypeTokens',
   components: { TypeToken },
 })
-export class TypeTokens extends Vue {
+export class TypeTokens extends TsxComponent<Props> {
   @Prop({ type: Array, required: true })
   public propTypes!: PropType[];
+
   public render() {
-    return <span>{this.propTypes.map(propType => (<type-token propType={propType} />))}</span>;
+    return <span>{this.propTypes.map(propType => (<TypeToken propType={propType} />))}</span>;
   }
 }

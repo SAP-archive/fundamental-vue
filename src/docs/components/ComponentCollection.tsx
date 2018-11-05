@@ -3,18 +3,18 @@ import {
   Vue,
   Prop,
 } from 'vue-property-decorator';
-import { ComponentAPI } from './ComponentAPI';
+import { ComponentApi } from './ComponentApi';
 import { DocsExample } from './DocsExample';
 import DynamicComponent from './DynamicComponent.vue';
 import { VueConstructor } from 'vue';
 import { uiComponents, uiComponentForSlug, UIComponentExample } from '@/docs/config';
 
 @Component({
-  name: 'component-collection',
+  name: 'ComponentCollection',
   components: {
     DocsExample,
     DynamicComponent,
-    ComponentAPI,
+    ComponentApi,
   },
 })
 export class ComponentCollection extends Vue {
@@ -67,8 +67,8 @@ export class ComponentCollection extends Vue {
     const examples = this.examples;
     return (
       <div>
-        {examples.map(example => (<docs-example description={example.description} component={example.component} sourcecode={example.code} title={example.title} />))}
-        {relatedComponents.map(comp => (<component-api style={'margin-bottom:20px;'} component={comp} />))}
+        {examples.map(example => (<DocsExample description={example.description} component={example.component} sourcecode={example.code} title={example.title} />))}
+        {relatedComponents.map(comp => (<ComponentApi component={comp} />))}
       </div>
     );
   }

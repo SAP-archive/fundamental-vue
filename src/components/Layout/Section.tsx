@@ -1,13 +1,15 @@
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import { componentName } from '@/util';
-import { Container } from './Container';
+import TsxComponent from '@/vue-tsx';
 
-@Component({
-  components: { Container },
-  name: componentName('section'),
-})
-export class Section extends Vue {
-  @Prop({ type: String, default: null, required: false }) public title!: string | null;
+interface Props {
+  title?: string | null;
+}
+
+@Component({ name: componentName('Section') })
+export class Section extends TsxComponent<Props> {
+  @Prop({ type: String, default: null, required: false })
+  public title!: string | null;
 
   public render() {
     const body = this.$slots.default;
@@ -36,9 +38,5 @@ export class Section extends Vue {
     );
   }
 
-  get classes() {
-    return {
-      'fd-section': true,
-    };
-  }
+  private get classes() { return ['fd-section']; }
 }

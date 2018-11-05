@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { API, APIProp } from './api';
+import { API } from './api';
 
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {

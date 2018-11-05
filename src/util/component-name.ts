@@ -1,1 +1,1 @@
-export const componentName = (plain: string) => `vf-${plain}`;
+export const componentName = (plain: string) => `Fd${plain}`;

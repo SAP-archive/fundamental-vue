@@ -1,16 +1,12 @@
 import { Component, Watch, Prop } from 'vue-property-decorator';
 import { Menu, MenuList, MenuItem } from './../Menu';
-import {
-  Button,
-} from './../Button';
+import { Button } from './../Button';
 import { PopoverContent } from './PopoverContent';
-
 import Vue from 'vue';
 import { mixins } from 'vue-class-component';
 import { Uid } from '@/mixins';
 import { componentName } from '@/util';
 import { API } from '@/api';
-import '@/components/fade-animation.css';
 import { clickawayDirective } from '@/mixins';
 
 @Component({
@@ -33,16 +29,16 @@ import { clickawayDirective } from '@/mixins';
     });
 })
 export class Popover extends mixins(Uid) {
-  @Prop({ type: String, default: 'Popover', required: false })
   @API.Prop('ARIA label', prop => prop.type(String))
+  @Prop({ type: String, default: 'Popover', required: false })
   public ariaLabel!: string;
 
-  @Prop({ type: String, default: 'Show', required: false })
   @API.Prop('Title displayed when no custom trigger element is used', prop => prop.type(String))
+  @Prop({ type: String, default: 'Show', required: false })
   public title!: string;
 
-  @Prop({ type: Boolean, default: false, required: false })
   @API.Prop('if popover is visible', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, default: false, required: false })
   public popoverVisible!: boolean;
 
   public currentPopoverVisible: boolean = this.popoverVisible;
@@ -74,21 +70,21 @@ export class Popover extends mixins(Uid) {
     return (
       <div class='fd-popover'>
         <div class='fd-popover__control'>
-          <vf-button
+          <Button
             aria-controls={this.uid}
             styling='light'
             on-click={() => this.togglePopoverVisible()}
           >
             {this.title}
-          </vf-button>
+          </Button>
         </div>
-        <vf-popover-content
+        <PopoverContent
           aria-controls={this.uid}
           visible={this.currentPopoverVisible}
           {...popoverContentHandler}
         >
           {dropdown}
-        </vf-popover-content>
+        </PopoverContent>
       </div>
     );
   }

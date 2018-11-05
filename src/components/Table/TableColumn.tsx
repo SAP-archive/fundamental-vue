@@ -1,7 +1,6 @@
 import {
   Component,
   Prop,
-  Vue,
   Inject,
 } from 'vue-property-decorator';
 import {
@@ -14,30 +13,37 @@ import { shortUuid } from '@/lib/uuid';
 import { componentName } from '@/util';
 import { API } from '@/api';
 import { ColumnContainer, ColumnContainerIdentifier } from './ColumnContainer';
+import TsxComponent from '@/vue-tsx';
 
-@Component({
-  name: componentName('table-column'),
-})
+interface Props<D> {
+  label?: string | null;
+  alignment?: ColumnAlignment;
+  prop?: (keyof D) | null;
+  sortable?: boolean;
+  width?: number | null;
+}
+
+@Component({ name: componentName('TableColumn') })
 @API.Component('Table Column')
-export class TableColumn<D> extends Vue {
-  @Prop({ type: String, required: false, default: null })
+export class TableColumn<D> extends TsxComponent<Props<D>> {
   @API.Prop('header label', prop => prop.type(String))
+  @Prop({ type: String, required: false, default: null })
   public label!: string | null;
 
-  @Prop({ type: String, required: false, default: 'default' })
   @API.Prop('alignment', prop => prop.type(String))
+  @Prop({ type: String, required: false, default: 'default' })
   public alignment!: ColumnAlignment;
 
-  @Prop({ type: String, required: false, default: null })
   @API.Prop('field name (key must be present in the data array objects)', prop => prop.type(String))
+  @Prop({ type: String, required: false, default: null })
   public prop!: (keyof D) | null;
 
-  @Prop({ type: Boolean, required: false, default: false })
   @API.Prop('whether the column is sortable', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, required: false, default: false })
   public sortable!: boolean;
 
-  @Prop({ type: Number, required: false, default: null })
   @API.Prop('column width - must be set then isFixed is true (experimental)', prop => prop.type(Boolean))
+  @Prop({ type: Number, required: false, default: null })
   public width!: number | null;
 
   @Inject(ColumnContainerIdentifier) public table!: ColumnContainer<D> | null;

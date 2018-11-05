@@ -1,10 +1,14 @@
 import {
   Component,
   Prop,
-  Vue,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
 import { API } from '@/api';
+import TsxComponent from '@/vue-tsx';
+
+interface Props {
+  type?: MessageType | null;
+}
 
 const typeMapping = {
   error: 'error',
@@ -14,11 +18,11 @@ const typeMapping = {
 type MessageType = keyof (typeof typeMapping);
 const MessageTypes = Object.keys(typeMapping) as MessageType[];
 
-@Component({ name: componentName('form-message') })
+@Component({ name: componentName('FormMessage') })
 @API.Component('Form Message')
-export class FormMessage extends Vue {
-  @Prop({ required: false, default: null, type: String })
+export class FormMessage extends TsxComponent<Props> {
   @API.Prop('type', prop => prop.type(String).acceptValues(...MessageTypes))
+  @Prop({ required: false, default: null, type: String })
   public type!: MessageType | null;
 
   public render() {

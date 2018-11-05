@@ -1,5 +1,5 @@
 <template>
-  <vf-alert dismissible>
+  <FdAlert dismissible>
     Default dismissable alert. Click on the close button.
-  </vf-alert>
+  </FdAlert>
 </template>

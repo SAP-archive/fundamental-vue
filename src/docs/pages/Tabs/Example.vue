@@ -1,11 +1,11 @@
 <template>
   <div>
-    <vf-tabs v-model="activeTab">
-      <vf-tab-item label="Tab A" name="a">A tab item can contain anything…</vf-tab-item>
-      <vf-tab-item label="Tab B" name="b">…you dream about. There are no limitations.</vf-tab-item>
-      <vf-tab-item label="Tab C (disabled)" name="c" disabled>I am tab item C.</vf-tab-item>
-      <vf-tab-item label="Tab D" name="d">I am tab item D.</vf-tab-item>
-    </vf-tabs>
+    <FdTabs v-model="activeTab">
+      <FdTabItem label="Tab A" name="a">A tab item can contain anything…</FdTabItem>
+      <FdTabItem label="Tab B" name="b">…you dream about. There are no limitations.</FdTabItem>
+      <FdTabItem label="Tab C (disabled)" name="c" disabled>I am tab item C.</FdTabItem>
+      <FdTabItem label="Tab D" name="d">I am tab item D.</FdTabItem>
+    </FdTabs>
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     Active Tab: <b>{{activeTab}}</b>
   </div>

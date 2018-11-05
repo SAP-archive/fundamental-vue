@@ -13,24 +13,30 @@ const typeMapping = {
   warning: 'Warning Alert',
   error: 'Error Alert',
 };
-
 export type AlertType = keyof (typeof typeMapping);
 export const AlertTypes = Object.keys(typeMapping) as AlertType[];
 
-@Component({ name: componentName('alert') })
+interface Props {
+  dismissible?: boolean;
+  type?: AlertType;
+  uid?: string; // Uid mixin
+}
+
+@Component({ name: componentName('Alert') })
 @API.Component('Alert', comp => {
   comp.addEvent('dismiss', 'Sent when the dismiss button is clicked');
 })
 export class Alert extends mixins(Uid) {
-  @Prop({ type: Boolean, required: false, default: true })
   @API.Prop('whether alert is dismissible', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, required: false, default: true })
   public dismissible!: boolean;
 
-  @Prop({ type: String, required: false, default: 'default' })
   @API.Prop('alert type', prop => prop.type(String).acceptValues(...AlertTypes))
+  @Prop({ type: String, required: false, default: 'default' })
   public type!: AlertType;
 
   private visible: boolean = true;
+  public $tsxProps!: Readonly<{}> & Readonly<Props>;
 
   public render() {
     const content = this.$slots.default;

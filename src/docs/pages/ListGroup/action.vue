@@ -1,20 +1,20 @@
 <template>
-  <vf-list-group>
-    <vf-list-group-item>
+  <FdListGroup>
+    <FdListGroupItem>
       List item 1
-      <vf-button slot="action" styling="light" icon="edit" />
-    </vf-list-group-item>
-    <vf-list-group-item>
+      <FdButton slot="action" styling="light" icon="edit" />
+    </FdListGroupItem>
+    <FdListGroupItem>
       List item 2
-      <vf-button slot="action" styling="light" icon="edit" />
-    </vf-list-group-item>
-    <vf-list-group-item>
+      <FdButton slot="action" styling="light" icon="edit" />
+    </FdListGroupItem>
+    <FdListGroupItem>
       List item 3 — Lorem ipsum dolor sit amet, consectetur sed do
-      <vf-button slot="action" styling="light" icon="edit" />
-      </vf-list-group-item>
-    <vf-list-group-item>
+      <FdButton slot="action" styling="light" icon="edit" />
+      </FdListGroupItem>
+    <FdListGroupItem>
       List item 4 — Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-      <vf-button slot="action" styling="light" icon="edit" />
-      </vf-list-group-item>
-  </vf-list-group>
+      <FdButton slot="action" styling="light" icon="edit" />
+      </FdListGroupItem>
+  </FdListGroup>
 </template>

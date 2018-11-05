@@ -1,14 +1,14 @@
 <template>
-  <vf-side-nav>
-    <vf-side-nav-list :value="activeId" @select="handleSelect" header="Group Title">
-      <vf-side-nav-item itemId="1">Link Item 3</vf-side-nav-item>
-      <vf-side-nav-submenu itemId="2" title="Link Item Submenu">
-          <vf-side-nav-subitem itemId="2-1">Link Item 3</vf-side-nav-subitem>
-          <vf-side-nav-subitem itemId="2-2">Link Item 3</vf-side-nav-subitem>
-      </vf-side-nav-submenu>
-    </vf-side-nav-list>
+  <FdSideNav>
+    <FdSideNavList :value="activeId" @select="handleSelect" header="Group Title">
+      <FdSideNavItem itemId="1">Link Item 3</FdSideNavItem>
+      <FdSideNavSubmenu itemId="2" title="Link Item Submenu">
+          <FdSideNav-subitem itemId="2-1">Link Item 3</FdSideNav-subitem>
+          <FdSideNav-subitem itemId="2-2">Link Item 3</FdSideNav-subitem>
+      </FdSideNavSubmenu>
+    </FdSideNavList>
 
-  </vf-side-nav>
+  </FdSideNav>
 </template>
 
 <script>

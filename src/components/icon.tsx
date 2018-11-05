@@ -1,11 +1,10 @@
 import {
   Component,
   Prop,
-  Vue,
 } from 'vue-property-decorator';
-
 import { componentName } from '@/util';
 import { API } from '@/api';
+import TsxComponent from '@/vue-tsx';
 
 const sizeMapping = {
   s: 'Small',
@@ -13,19 +12,23 @@ const sizeMapping = {
   l: 'Large',
   xl: 'Extra Large',
 };
-
 type IconSize = keyof (typeof sizeMapping);
 export const IconSizes = Object.keys(sizeMapping) as IconSize[];
 
-@Component({ name: componentName('icon') })
+interface Props {
+  name?: string;
+  size?: IconSize | null;
+}
+
+@Component({ name: componentName('Icon') })
 @API.Component('Icon')
-export class Icon extends Vue {
-  @Prop({ type: String, required: true })
+export class Icon extends TsxComponent<Props> {
   @API.Prop('icon name', prop => prop.type(String))
+  @Prop({ type: String, required: true })
   public name!: string;
 
-  @Prop({ type: String, required: false, default: null })
   @API.Prop('icon size', prop => prop.type(String).acceptValues(...IconSizes))
+  @Prop({ type: String, required: false, default: null })
   public size!: IconSize | null;
 
   public render() {

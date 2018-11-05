@@ -1,14 +1,17 @@
 import { componentName } from '@/util';
-import { Component, Inject, Vue, Prop } from 'vue-property-decorator';
+import { Component, Inject, Prop } from 'vue-property-decorator';
 import { MenuItem } from './MenuItem';
 import { Menu } from './Menu';
 import { API } from '@/api';
 import { MENU, MENU_LIST } from './types';
+import TsxComponent from '@/vue-tsx';
 
-const name = componentName('menu-item-list');
+interface Props {
+  header?: string | null;
+}
 
 @Component({
-  name,
+  name: componentName('MenuList'),
   provide() {
     return {
       [MENU_LIST]: this,
@@ -21,13 +24,13 @@ const name = componentName('menu-item-list');
       event.string('value');
     });
 })
-export class MenuList extends Vue {
-  @Prop({ type: String, required: false, default: null })
+export class MenuList extends TsxComponent<Props> {
   @API.Prop('header', build => {
     build
       .describe('text displayed in the menu list (group) header')
       .type(Boolean);
   })
+  @Prop({ type: String, required: false, default: null })
   public header!: string | null;
 
   @Inject({ from: MENU, default: null }) public menu!: Menu | null;

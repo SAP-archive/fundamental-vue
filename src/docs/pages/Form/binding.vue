@@ -1,12 +1,12 @@
 <template>
   <div>
-    <vf-form-set>
-      <vf-form-item>
-        <vf-form-label>First Name</vf-form-label>
-        <vf-input v-model="firstName" placeholder="First Name"/>
-      </vf-form-item>
-    </vf-form-set>
-    <vf-button @click="changeName">Set first name to 'Chris'</vf-button>
+    <FdFormSet>
+      <FdFormItem>
+        <FdFormLabel>First Name</FdFormLabel>
+        <FdInput v-model="firstName" placeholder="First Name"/>
+      </FdFormItem>
+    </FdFormSet>
+    <FdButton @click="changeName">Set first name to 'Chris'</FdButton>
     <br /><br /><br /><br /><br />
     <p>Current First Name: <strong>{{firstName}}</strong></p>
   </div>

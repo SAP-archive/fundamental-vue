@@ -1,20 +1,25 @@
 import {
   Component,
   Prop,
-  Vue,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
 import { API } from '@/api';
+import TsxComponent from '@/vue-tsx';
 
-@Component({ name: componentName('action-bar') })
+interface Props {
+  title: string;
+  description?: string | null;
+}
+
+@Component({ name: componentName('ActionBar') })
 @API.Component('Action Bar')
-export class ActionBar extends Vue {
-  @Prop({ required: true, type: String })
+export class ActionBar extends TsxComponent<Props> {
   @API.Prop('title', prop => prop.type(String))
+  @Prop({ required: true, type: String })
   public title!: string;
 
-  @Prop({ required: false, default: null, type: String })
   @API.Prop('description', prop => prop.type(String))
+  @Prop({ required: false, default: null, type: String })
   public description!: string | null;
 
   public render() {

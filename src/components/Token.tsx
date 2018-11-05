@@ -1,13 +1,14 @@
-import {
-  Component,
-  Vue,
-} from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import { API } from '@/api';
 import { componentName } from '@/util';
+import TsxComponent from '@/vue-tsx';
 
-@Component({ name: componentName('token') })
+// tslint:disable-next-line:no-empty-interface
+interface Props {}
+
+@Component({ name: componentName('Token') })
 @API.Component('Token', comp => comp.addEvent('click', 'triggers when clicked'))
-export class Token extends Vue {
+export class Token extends TsxComponent<Props> {
   public render() {
     return (
       <span

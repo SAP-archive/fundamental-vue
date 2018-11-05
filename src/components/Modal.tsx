@@ -1,16 +1,24 @@
 import {
   Component,
-  Vue,
   Prop,
   Watch,
 } from 'vue-property-decorator';
 import { API } from '@/api';
 import { componentName } from '@/util';
 import { clickawayDirective } from '@/mixins';
+import TsxComponent from '@/vue-tsx';
+import { Button } from './Button';
+
+interface Props {
+  active: boolean;
+  title: string | null;
+}
 
 const HANDLER = '_vue_vf-clickaway_handler';
+
 @Component({
-  name: componentName('modal'),
+  name: componentName('Modal'),
+  components: { Button },
   directives: {
     onClickaway: clickawayDirective,
   },
@@ -20,13 +28,13 @@ const HANDLER = '_vue_vf-clickaway_handler';
     .addEvent('close', 'Sent when modal was closed')
     .addEvent('update:active', 'Sent when active changes', event => event.boolean(name));
 })
-export class Modal extends Vue {
-  @Prop({ type: Boolean, required: false, default: false })
+export class Modal extends TsxComponent<Props> {
   @API.Prop('whether modal is active', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, required: false, default: false })
   public active!: boolean;
 
-  @Prop({ type: String, required: false, default: null })
   @API.Prop('title', prop => prop.type(String))
+  @Prop({ type: String, required: false, default: null })
   public title!: string | null;
 
   private isActive = this.active;
@@ -43,6 +51,7 @@ export class Modal extends Vue {
     if (documentElement == null) {
       return;
     }
+    // TODO: Refactor
     const el = this.$el;
     if (active) {
       if (this.listening === false) {
@@ -102,10 +111,17 @@ export class Modal extends Vue {
 
   public render() {
     const renderHeader = () => {
+      // We have to do two things here:
+      // 1. Disable object-literal-key-quotes: The key 'class' will cause a warning. If we remove the quotes
+      //    then tsc complains and does not compile at all.
+      // 2. Extract the button render logic in a function because otherwise we cannot disable the rule.
+      //    It is not possible asaik. to disable rules within a tsx scope.
+      // tslint:disable-next-line:object-literal-key-quotes
+      const renderButton = () => <Button {...{ 'class': 'fd-modal__close' }} styling='light' on-click={() => this.close()} aria-label='close' />;
       return (
         <div class='fd-modal__header'>
           <h1 class='fd-modal__title'>{this.title}</h1>
-          <vf-button type='secondary' on-click={() => this.close()} class='fd-modal__close' aria-label='close' />
+          {renderButton()}
         </div>
       );
     };

@@ -2,11 +2,18 @@ import {
   Component,
   Prop,
   Inject,
-  Vue,
 } from 'vue-property-decorator';
 import { API } from '@/api';
 import { componentName } from '@/util';
 import { ItemIdentification } from './../Types/ItemIdentification';
+import TsxComponent from '@/vue-tsx';
+
+interface Props {
+  id?: string | null;
+  size?: ToggleSize | null;
+  label?: string | null;
+  value?: boolean;
+}
 
 const sizeMapping = {
   xs: 'Extra Small',
@@ -16,27 +23,27 @@ const sizeMapping = {
 type ToggleSize = keyof (typeof sizeMapping);
 const ToggleSizes = Object.keys(sizeMapping) as ToggleSize[];
 
-@Component({ name: componentName('toggle') })
+@Component({ name: componentName('Toggle') })
 @API.Component('Toggle')
-export class Toggle extends Vue {
-  @Prop({ required: false, default: null, type: String })
+export class Toggle extends TsxComponent<Props> {
   @API.Prop('id', prop => prop.type(String))
+  @Prop({ required: false, default: null, type: String })
   public id!: string | null;
 
-  @Prop({ type: String, default: null, required: false })
   @API.Prop('size class', prop => prop.type(String).acceptValues(...ToggleSizes))
+  @Prop({ type: String, default: null, required: false })
   public size!: ToggleSize | null;
 
-  @Prop({ type: String, default: null, required: false })
   @API.Prop('label', prop => prop.type(String))
+  @Prop({ type: String, default: null, required: false })
   public label!: string | null;
 
-  @Prop({ type: Boolean, default: false, required: false })
   @API.Prop('whether toggle is disabled', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, default: false, required: false })
   public disabled!: boolean;
 
-  @Prop({ required: false, default: false, type: Boolean })
   @API.Prop('whether toggle is checked', prop => prop.type(Boolean))
+  @Prop({ required: false, default: false, type: Boolean })
   public value!: boolean;
 
   @Inject({ default: null }) public itemIdentificationProvider!: ItemIdentification | null;

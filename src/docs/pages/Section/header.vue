@@ -1,5 +1,5 @@
 <template>
-  <vf-section title="Section title">
-    <vf-panel>Panel</vf-panel>
-  </vf-section>
+  <FdSection title="Section title">
+    <FdPanel>Panel</FdPanel>
+  </FdSection>
 </template>

@@ -1,8 +1,8 @@
 <template>
-   <vf-panel-grid :col=2>
-    <vf-panel>Panel Body 1</vf-panel>
-    <vf-panel>Panel Body 2</vf-panel>
-    <vf-panel>Panel Body 3</vf-panel>
-    <vf-panel>Panel Body 4</vf-panel>
-  </vf-panel-grid>
+   <FdPanelGrid :col=2>
+    <FdPanel>Panel Body 1</FdPanel>
+    <FdPanel>Panel Body 2</FdPanel>
+    <FdPanel>Panel Body 3</FdPanel>
+    <FdPanel>Panel Body 4</FdPanel>
+  </FdPanelGrid>
 </template>

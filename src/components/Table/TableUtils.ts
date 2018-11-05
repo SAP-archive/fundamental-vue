@@ -1,4 +1,3 @@
-
 // tslint:disable-next-line:no-empty-interface
 export interface TableData { }
 export type SortOrder = 'ascending' | 'descending';

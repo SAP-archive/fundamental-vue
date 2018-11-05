@@ -1,3 +1,3 @@
 <template>
-  <vf-spinner />
+  <div><FdSpinner /></div>
 </template>

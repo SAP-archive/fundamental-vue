@@ -2,11 +2,18 @@ import { componentName } from '@/util';
 import {
   Component,
   Prop,
-  Vue,
   Inject,
 } from 'vue-property-decorator';
 import { API } from '@/api';
 import { ButtonContainer } from './ButtonContainer';
+import TsxComponent from '@/vue-tsx';
+interface Props {
+  styling: ButtonStyling;
+  type?: ButtonType;
+  icon?: string | null;
+  compact?: boolean;
+  state?: ButtonState;
+}
 
 // Styles
 const stylingMapping = {
@@ -35,29 +42,29 @@ const stateMapping = {
 export type ButtonState = keyof (typeof stateMapping);
 export const ButtonStates = Object.keys(stateMapping) as ButtonState[];
 
-@Component({ name: componentName('button') })
+@Component({ name: componentName('Button') })
 @API.Component('Button', comp => {
   comp.addEvent('click', 'Sent when button is clicked');
 })
-export class Button extends Vue {
-  @Prop({ type: String, default: 'regular', required: false })
+export class Button extends TsxComponent<Props> {
   @API.Prop('button styling', prop => prop.type(String).acceptValues(...ButtonStylings))
+  @Prop({ type: String, default: 'regular', required: false })
   public styling!: ButtonStyling;
 
-  @Prop({ type: String, default: 'primary', required: false })
   @API.Prop('button type', prop => prop.type(String).acceptValues(...ButtonTypes))
+  @Prop({ type: String, default: 'primary', required: false })
   public type!: ButtonType;
 
-  @Prop({ type: String, default: null, required: false })
   @API.Prop('icon displayed in the button', prop => prop.type(String))
+  @Prop({ type: String, default: null, required: false })
   public icon!: string | null;
 
-  @Prop({ type: Boolean, default: false, required: false })
   @API.Prop('whether button is compact', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, default: false, required: false })
   public compact!: boolean;
 
-  @Prop({ type: String, default: 'normal', required: false })
   @API.Prop('button state', prop => prop.type(String).acceptValues(...ButtonStates))
+  @Prop({ type: String, default: 'normal', required: false })
   public state!: ButtonState;
 
   private get grouped(): boolean {

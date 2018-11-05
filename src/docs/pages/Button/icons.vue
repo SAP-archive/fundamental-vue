@@ -1,18 +1,18 @@
 <template>
   <div>
-    <vf-button styling="emphasized" icon="cart">Add to Cart</vf-button>
-    <vf-button icon="cart">Add to Cart</vf-button>
-    <vf-button styling="light" icon="cart">Add to Cart</vf-button>
+    <FdButton styling="emphasized" icon="cart">Add to Cart</FdButton>
+    <FdButton icon="cart">Add to Cart</FdButton>
+    <FdButton styling="light" icon="cart">Add to Cart</FdButton>
     <br/><br/>
-    <vf-button type="positive" styling="emphasized" icon="accept">Approve</vf-button>
-    <vf-button type="negative" styling="emphasized" icon="decline">Reject</vf-button>
+    <FdButton type="positive" styling="emphasized" icon="accept">Approve</FdButton>
+    <FdButton type="negative" styling="emphasized" icon="decline">Reject</FdButton>
     <br/><br/>
-    <vf-button type="standard" icon="filter" />
-    <vf-button icon="cart" />
-    <vf-button styling="light" icon="cart" />
+    <FdButton type="standard" icon="filter" />
+    <FdButton icon="cart" />
+    <FdButton styling="light" icon="cart" />
     <br/><br/>
-    <vf-button styling="emphasized" type="positive" icon="accept" />
-    <vf-button styling="emphasized" type="negative" icon="decline" />
+    <FdButton styling="emphasized" type="positive" icon="accept" />
+    <FdButton styling="emphasized" type="negative" icon="decline" />
   </div>
 </template>
 

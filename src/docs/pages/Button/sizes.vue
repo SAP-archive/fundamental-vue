@@ -1,7 +1,7 @@
 <template>
   <div>
-    <vf-button>default or none</vf-button>
-    <vf-button compact>compact</vf-button>
+    <FdButton>default or none</FdButton>
+    <FdButton compact>compact</FdButton>
   </div>
 </template>
 

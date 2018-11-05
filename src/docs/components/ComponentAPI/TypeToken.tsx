@@ -1,14 +1,15 @@
 import {
   Component,
-  Vue,
   Prop,
 } from 'vue-property-decorator';
-
 import { PropType } from '@/api';
 import './TypeToken.css';
-
-@Component({ name: 'type-token' })
-export class TypeToken extends Vue {
+import TsxComponent from '@/vue-tsx';
+interface Props {
+  propType: PropType;
+}
+@Component({ name: 'TypeToken' })
+export class TypeToken extends TsxComponent<Props> {
   @Prop({ required: true })
   public propType!: PropType;
 

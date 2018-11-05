@@ -3,7 +3,7 @@ import { Route, RawLocation } from 'vue-router';
 import { uiComponents, UIComponent } from '@/docs/config';
 import { APICollection, API } from '@/api';
 import { slugify } from './util';
-import { all } from '@/components';
+import { all, SideNavSubitem, Ui, SideNav, SideNavItem, SideNavSubmenu, SideNavList } from '@/components';
 
 const collection = new APICollection();
 for (const component of Object.values(all)) {
@@ -56,45 +56,48 @@ export class DocsPage extends Vue {
       const renderAPIItem = (api: API) => {
         const itemId = 'api-' + slugify(api.humanName || '');
         return (
-          <vf-side-nav-subitem
+          <SideNavSubitem
             on-click={() => this.onAPIItemClick(api)}
             itemId={itemId}
           >
             {api.humanName}
-          </vf-side-nav-subitem>);
+          </SideNavSubitem>);
       };
       return apis.map(apiItem => renderAPIItem(apiItem));
     };
 
     const apiDocs = collection.apis;
     return (
-      <vf-ui>
-        <vf-side-nav slot='sidebar'>
-          <vf-side-nav-list value={this.activeMenuItemId} header='Fundamental-vue'>
-            <vf-side-nav-item itemId='000' on-click={this.showStartPage}>Start</vf-side-nav-item>
-            <vf-side-nav-submenu title='API Documentation' itemId='100'>
+      <Ui>
+        <div slot='header'>
+          <img src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
+        </div>
+        <SideNav slot='sidebar'>
+          <SideNavList value={this.activeMenuItemId} header='Vue Fundamentals'>
+            <SideNavItem itemId='000' on-click={this.showStartPage}>Start</SideNavItem>
+            <SideNavSubmenu title='API Documentation' itemId='100'>
               {renderAPIItems(apiDocs)}
-            </vf-side-nav-submenu>
+            </SideNavSubmenu>
 
-          </vf-side-nav-list>
-          <vf-side-nav-list
+          </SideNavList>
+          <SideNavList
             header={'Components'}
             value={this.activeMenuItemId}
           >
             {uiComponents.map(item => (
-              <vf-side-nav-item
+              <SideNavItem
                 itemId={item.slug}
                 on-click={() => this.onComponentCollectionClick(item)}
               >
                 {item.title}
-              </vf-side-nav-item>
+              </SideNavItem>
             ),
             )}
-            <vf-side-nav-item itemId='99' route-name='app-layout-with-sidebar'>Layout with Sidebar</vf-side-nav-item>
-          </vf-side-nav-list>
-        </vf-side-nav>
+            <SideNavItem itemId='99' route-name='app-layout-with-sidebar'>Layout with Sidebar</SideNavItem>
+          </SideNavList>
+        </SideNav>
         <div style='height: 100%;'><router-view /></div>
-      </vf-ui>
+      </Ui>
     );
   }
 }

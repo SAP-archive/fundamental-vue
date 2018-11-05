@@ -1,29 +1,38 @@
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import './Panel.css';
 import { componentName } from '@/util';
 import { API } from '@/api';
+import TsxComponent from '@/vue-tsx';
 
-@Component({ name: componentName('panel') })
+interface Props {
+  title?: string | null;
+  description?: string | null;
+  span?: number | null;
+  condensed?: boolean;
+  condensedFooter?: boolean;
+}
+
+@Component({ name: componentName('Panel') })
 @API.Component('Panel')
-export class Panel extends Vue {
-  @Prop({ type: String, default: null, required: false })
+export class Panel extends TsxComponent<Props> {
   @API.Prop('title', prop => prop.type(String))
+  @Prop({ type: String, default: null, required: false })
   public title!: string | null;
 
-  @Prop({ type: String, default: null, required: false })
   @API.Prop('description', prop => prop.type(String))
+  @Prop({ type: String, default: null, required: false })
   public description!: string | null;
 
-  @Prop({ type: Number, default: null, required: false })
   @API.Prop('span', prop => prop.type(Number))
+  @Prop({ type: Number, default: null, required: false })
   public span!: number | null;
 
-  @Prop({ type: Boolean, default: false, required: false })
   @API.Prop('whether the panel body is condensed (has no padding)', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, default: false, required: false })
   public condensed!: boolean;
 
-  @Prop({ type: Boolean, default: false, required: false })
   @API.Prop('whether the panel footer is condensed (has no padding)', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, default: false, required: false })
   public condensedFooter!: boolean;
 
   public render() {

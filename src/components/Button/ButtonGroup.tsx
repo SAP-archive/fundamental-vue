@@ -2,15 +2,20 @@ import { componentName } from '@/util';
 import {
   Component,
   Prop,
-  Vue,
   Watch,
 } from 'vue-property-decorator';
 import { API } from '@/api';
 import { ButtonContainer } from './ButtonContainer';
-import { Button } from './button';
+import { Button } from './Button';
+import TsxComponent from '@/vue-tsx';
+
+interface Props {
+  compact?: boolean;
+  value?: number | null;
+}
 
 @Component({
-  name: componentName('button-group'),
+  name: componentName('ButtonGroup'),
   provide() {
     return {
       buttonContainer: this,
@@ -22,12 +27,13 @@ import { Button } from './button';
     event.number('activeButtonIndex');
   });
 })
-export class ButtonGroup extends Vue implements ButtonContainer {
+export class ButtonGroup extends TsxComponent<Props> implements ButtonContainer {
+  @API.Prop('whether button group is compact', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
   public compact!: boolean;
 
-  @Prop({ type: Number, default: null, required: false })
   @API.Prop('index of active button', prop => prop.type(Number))
+  @Prop({ type: Number, default: null, required: false })
   public value!: number | null;
 
   public activeButtonIndex: number | null = this.value || null;

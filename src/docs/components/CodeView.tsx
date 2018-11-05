@@ -1,15 +1,21 @@
 import 'highlight.js/styles/docco.css';
-import { Component, Vue, Prop } from 'vue-property-decorator';
-import { highlight } from '../directives/highlight';
 import './CodeView.css';
+import { Component, Prop } from 'vue-property-decorator';
+import { highlight } from '../directives/highlight';
+import TsxComponent from '@/vue-tsx';
+
+interface Props {
+  backgroundColor?: string;
+  sourcecode?: string;
+}
 
 @Component({
-  name: 'code-view',
+  name: 'CodeView',
   directives: {
     highlight,
   },
 })
-export class CodeView extends Vue {
+export class CodeView extends TsxComponent<Props> {
   @Prop({ type: String, required: false, default: 'rgb(250, 250, 250)' })
   public backgroundColor!: string;
 

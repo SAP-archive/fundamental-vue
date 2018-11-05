@@ -1,21 +1,31 @@
 import {
   Component,
   Prop,
-  Vue,
 } from 'vue-property-decorator';
-import DynamicComponent from './DynamicComponent.vue';
 import './Example.css';
-import { ExpandTransition } from '@/components';
+import DynamicComponent from './DynamicComponent.vue';
+import { Panel, Section, ExpandTransition } from '@/components';
+import { CodeView } from '@/docs/components';
+import TsxComponent from '@/vue-tsx';
+
+interface Props {
+  description?: string | null;
+  sourcecode?: string;
+  title?: string;
+  component?: object;
+}
+
 @Component({
-  name: 'docs-example',
+  name: 'DocsExample',
   components: {
     DynamicComponent,
     ExpandTransition,
   },
 })
-export class DocsExample extends Vue {
+export class DocsExample extends TsxComponent<Props> {
   @Prop({ type: String, required: false, default: null })
   public description!: string | null;
+
   @Prop({ type: String, default: '', required: false })
   public sourcecode!: string;
 
@@ -38,19 +48,19 @@ export class DocsExample extends Vue {
         'padding': '10px',
       };
       return (
-        <vf-expand-transition>
+        <ExpandTransition>
           <div v-show={this.codeShown} style={style}>
             {/* Needs to be wrapped again for the transition to look nice. */}
-            <div><code-view key={this.title} backgroundColor={backgroundColor} sourcecode={this.currentCode} /></div>
+            <div><CodeView key={this.title} backgroundColor={backgroundColor} sourcecode={this.currentCode} /></div>
           </div>
-        </vf-expand-transition>
+        </ExpandTransition>
       );
 
     };
     const description = this.description;
     return (
-      <vf-section title={this.title}>
-        <vf-panel
+      <Section title={this.title}>
+        <Panel
           condensed={true}
           condensedFooter={true}
           style={'margin-bottom: 20px;'}
@@ -58,14 +68,14 @@ export class DocsExample extends Vue {
           {!!description &&
             <div
               style='background-color: rgb(245,245,245); padding: 16px 24px;'
-              domProps-innerHTML={description}
+              domPropsInnerHTML={description}
             />
           }
           {!!description && <div style='height: 1px; backgroundColor: #ebebeb;' />}
           <dynamic-component component={this.component} />
           <div slot='footer' style='width:100%; display:block;'>
             <div
-              style='cursor: pointer; text-align: center;'
+              style='cursor: pointer; text-align: center; background-color: rgb(250, 250, 250);'
               class='example__show_code'
               role='button'
               on-click={event => this.toggleCode(event)}
@@ -77,8 +87,8 @@ export class DocsExample extends Vue {
             </div>
             {renderCodeIfNeeded()}
           </div>
-        </vf-panel>
-      </vf-section>
+        </Panel>
+      </Section>
     );
   }
 

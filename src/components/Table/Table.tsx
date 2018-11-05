@@ -11,6 +11,13 @@ import { componentName } from '@/util';
 import { SortOrder, TableData, compareValues, TableColumnConfig, RenderCellRequest } from './TableUtils';
 import { API } from '@/api';
 import { ColumnContainer, ColumnContainerIdentifier } from './ColumnContainer';
+import TsxComponent from '@/vue-tsx';
+
+interface Props<D> {
+  firstColumnFixed?: boolean;
+  data?: D[];
+  selectionMode?: SelectionMode | null;
+}
 
 type Row<D> = RenderCellRequest<D>;
 
@@ -32,7 +39,7 @@ type SortDescriptor<D extends TableData> = {
 type Selection = number[];
 
 @Component({
-  name: componentName('table'),
+  name: componentName('Table'),
   provide() {
     return {
       [ColumnContainerIdentifier]: this,
@@ -44,17 +51,17 @@ type Selection = number[];
     event.raw('rows', 'Array<number>');
   });
 })
-export class Table<D extends TableData> extends Vue implements ColumnContainer<D> {
-  @Prop({ type: Boolean, required: false, default: false })
+export class Table<D extends TableData> extends TsxComponent<Props<D>> implements ColumnContainer<D> {
   @API.Prop('whether the column is fixed (experimental)', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, required: false, default: false })
   public firstColumnFixed!: boolean;
 
-  @Prop({ type: Array, required: false, default: () => [] })
   @API.Prop('displayed data', prop => prop.type('Array<Object>'))
+  @Prop({ type: Array, required: false, default: () => [] })
   public data!: D[];
 
-  @Prop({ type: String, required: false, default: null })
   @API.Prop('selection mode', prop => prop.type(String).acceptValues(...SelectionModes))
+  @Prop({ type: String, required: false, default: null })
   public selectionMode!: SelectionMode | null;
 
   public sortDescriptor: SortDescriptor<D> | null = null;

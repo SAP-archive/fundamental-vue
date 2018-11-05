@@ -1,21 +1,30 @@
 import {
   Component,
-  Vue,
   Prop,
 } from 'vue-property-decorator';
-
 import { API } from '@/api';
-import { APIProps } from './APIProps';
-import { APIEvents } from './APIEvents';
+import { ApiProps } from './ApiProps';
+import { ApiEvents } from './ApiEvents';
+import TsxComponent from '@/vue-tsx';
+import { VueConstructor } from 'vue';
+import { Tabs, TabItem, Panel } from '@/components';
+
+interface Props {
+  component: VueConstructor | null;
+  api?: API | null;
+}
 
 @Component({
-  components: { APIProps, APIEvents },
-  name: 'component-api',
+  components: { ApiProps, ApiEvents },
+  name: 'ComponentApi',
 })
-export class ComponentAPI extends Vue {
+export class ComponentApi extends TsxComponent<Props> {
   // tslint:disable-next-line:ban-types
-  @Prop({ type: Function, required: false, default: null }) public component!: Function | null;
-  @Prop({ type: API, required: false, default: null }) public api!: API | null;
+  @Prop({ type: Function, required: false, default: null })
+  public component!: () => {} | null;
+
+  @Prop({ type: API, required: false, default: null })
+  public api!: API | null;
 
   private get _api(): API | null {
     const api = this.api;
@@ -51,12 +60,12 @@ export class ComponentAPI extends Vue {
     const title = `${api.humanName} API`;
     const activeTab = props.length > 0 ? 'props' : 'events';
     return (
-      <vf-panel condensed={true} title={title}>
-        <vf-tabs value={activeTab}>
-          {props.length > 0 && <vf-tab-item label='Properties' name='props'><api-props apiProps={props} /></vf-tab-item>}
-          {events.length > 0 && <vf-tab-item label='Events' name='events'><api-events events={events} /></vf-tab-item>}
-        </vf-tabs>
-      </vf-panel>
+      <Panel condensed={true} title={title}>
+        <Tabs value={activeTab}>
+          {props.length > 0 && <TabItem label='Properties' name='props'><ApiProps apiProps={props} /></TabItem>}
+          {events.length > 0 && <TabItem label='Events' name='events'><ApiEvents events={events} /></TabItem>}
+        </Tabs>
+      </Panel>
     );
   }
 }

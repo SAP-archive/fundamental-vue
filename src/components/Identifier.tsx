@@ -1,12 +1,11 @@
 import {
   Component,
-  Vue,
   Prop,
 } from 'vue-property-decorator';
 import { API } from '@/api';
 import { componentName } from '@/util';
-
 import { Color, Colors, backgroundColorClassName } from '@/lib';
+import TsxComponent from '@/vue-tsx';
 
 const sizeMapping = {
   s: 'Small',
@@ -16,27 +15,35 @@ const sizeMapping = {
 type IdentifierSize = keyof (typeof sizeMapping);
 const IdentifierSizes = Object.keys(sizeMapping) as IdentifierSize[];
 
-@Component({ name: componentName('identifier') })
+interface Props {
+  icon?: string | null;
+  size?: IdentifierSize;
+  circle?: boolean;
+  transparent?: boolean;
+  backgroundColor?: Color | null;
+}
+
+@Component({ name: componentName('Identifier') })
 @API.Component('Identifier')
-export class Identifier extends Vue {
-  @Prop({ type: String, default: null, required: false })
+export class Identifier extends TsxComponent<Props> {
   @API.Prop('icon name', prop => prop.type(String))
+  @Prop({ type: String, default: null, required: false })
   public icon!: string | null;
 
-  @Prop({ type: String, default: 'm', required: false })
   @API.Prop('size', prop => prop.type(String).acceptValues(...IdentifierSizes))
+  @Prop({ type: String, default: 'm', required: false })
   public size!: IdentifierSize;
 
-  @Prop({ required: false, default: false, type: Boolean })
   @API.Prop('is displayed as circle', prop => prop.type(Boolean))
+  @Prop({ required: false, default: false, type: Boolean })
   public circle!: boolean;
 
-  @Prop({ required: false, default: false, type: Boolean })
   @API.Prop('is displayed without background', prop => prop.type(Boolean))
+  @Prop({ required: false, default: false, type: Boolean })
   public transparent!: boolean;
 
-  @Prop({ required: false, default: null, type: String })
   @API.Prop('background color', prop => prop.type(String).acceptValues(...Colors))
+  @Prop({ required: false, default: null, type: String })
   public backgroundColor!: Color | null;
 
   public render() {

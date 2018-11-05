@@ -1,22 +1,22 @@
 <template>
   <div>
-    <vf-button-group v-model="activeButton">
-      <vf-button icon="survey" />
-      <vf-button icon="pie-chart" />
-      <vf-button icon="pool" />
-    </vf-button-group>
+    <FdButtonGroup v-model="activeButton">
+      <FdButton icon="survey" />
+      <FdButton icon="pie-chart" />
+      <FdButton icon="pool" />
+    </FdButtonGroup>
     <br /><br />
-    <vf-button-group v-model="activeButton">
-      <vf-button>Left</vf-button>
-      <vf-button>Middle</vf-button>
-      <vf-button>Right</vf-button>
-    </vf-button-group>
+    <FdButtonGroup v-model="activeButton">
+      <FdButton>Left</FdButton>
+      <FdButton>Middle</FdButton>
+      <FdButton>Right</FdButton>
+    </FdButtonGroup>
     <br /><br />
-    <vf-button-group compact v-model="activeButton">
-      <vf-button>Left</vf-button>
-      <vf-button>Middle</vf-button>
-      <vf-button>Right</vf-button>
-    </vf-button-group>
+    <FdButtonGroup compact v-model="activeButton">
+      <FdButton>Left</FdButton>
+      <FdButton>Middle</FdButton>
+      <FdButton>Right</FdButton>
+    </FdButtonGroup>
   </div>
 </template>
 <script>

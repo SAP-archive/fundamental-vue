@@ -1,13 +1,22 @@
 import {
   Component,
-  Vue,
   Prop,
 } from 'vue-property-decorator';
-
 import { APIEvent } from '@/api';
+import TsxComponent from '@/vue-tsx';
+import { Table, TableColumn } from '@/components';
 
-@Component({ name: 'api-events' })
-export class APIEvents extends Vue {
+interface Props {
+  events: APIEvent[];
+}
+
+type TableRow = {
+  name: string;
+  description: string;
+};
+
+@Component({ name: 'ApiEvents' })
+export class ApiEvents extends TsxComponent<Props> {
   @Prop({ type: Array, required: true }) public events!: APIEvent[];
 
   get tableData() {
@@ -17,10 +26,10 @@ export class APIEvents extends Vue {
   }
   public render() {
     return (
-      <vf-table data={this.tableData}>
-        <vf-table-column prop={'name'} label={'Event'} />
-        <vf-table-column prop={'description'} label={'Description'} />
-      </vf-table>
+      <Table<TableRow> data={this.tableData}>
+        <TableColumn<TableRow> prop={'name'} label={'Event'} />
+        <TableColumn<TableRow> prop={'description'} label={'Description'} />
+      </Table>
     );
   }
 }

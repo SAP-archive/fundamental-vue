@@ -2,10 +2,9 @@ import {
   Component,
   Vue,
 } from 'vue-property-decorator';
-
 import { componentName } from '@/util';
 
-@Component({ name: componentName('legend') })
+@Component({ name: componentName('Legend') })
 export class Legend extends Vue {
   public render() {
     return <legend class='fd-form__legend'>{this.$slots.default}</legend>;

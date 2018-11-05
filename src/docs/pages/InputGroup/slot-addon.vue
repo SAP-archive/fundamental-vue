@@ -1,13 +1,13 @@
 <template>
   <div>
-    <vf-input-group>
+    <FdInputGroup>
       <template slot="before">$</template>
-        <vf-input value="1234567" />
-    </vf-input-group>
+        <FdInput value="1234567" />
+    </FdInputGroup>
     <br />
-    <vf-input-group>
+    <FdInputGroup>
       <template slot="after">€</template>
-        <vf-input value="1234567" />
-    </vf-input-group>
+        <FdInput value="1234567" />
+    </FdInputGroup>
   </div>
 </template>

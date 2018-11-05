@@ -13,9 +13,7 @@ const removeClass = (element: Element, className: string) => {
 };
 
 // Grabbed from Element
-@Component({
-  name: componentName('expand-transition'),
-})
+@Component({ name: componentName('ExpandTransition') })
 export class ExpandTransition extends Vue {
   public beforeEnter(el) {
     addClass(el, 'collapse-transition');

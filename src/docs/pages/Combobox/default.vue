@@ -1,13 +1,13 @@
 <template>
   <div>
-    <vf-combobox
+    <FdCombobox
       v-model="fruit"
       placeholder="Pick your Fruit of the day"
     >
-      <vf-menu-item @click="select('Apple')">Apple</vf-menu-item>
-      <vf-menu-item  @click="select('Banana')">Banana</vf-menu-item>
-      <vf-menu-item  @click="select('Cherry')">Cherry</vf-menu-item>
-    </vf-combobox>
+      <FdMenuItem @click="select('Apple')">Apple</FdMenuItem>
+      <FdMenuItem  @click="select('Banana')">Banana</FdMenuItem>
+      <FdMenuItem  @click="select('Cherry')">Cherry</FdMenuItem>
+    </FdCombobox>
     <br /><br />
     <h1>Selected Fruit: {{fruit}}</h1>
   </div>

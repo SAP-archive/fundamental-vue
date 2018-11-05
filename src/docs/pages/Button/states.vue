@@ -1,32 +1,32 @@
 <template>
   <div>
-    <vf-button styling="emphasized" state="normal">Normal State</vf-button>
-    <vf-button styling="emphasized" state="selected">Selected State</vf-button>
-    <vf-button styling="emphasized" state="disabled">Disabled State</vf-button>
+    <FdButton styling="emphasized" state="normal">Normal State</FdButton>
+    <FdButton styling="emphasized" state="selected">Selected State</FdButton>
+    <FdButton styling="emphasized" state="disabled">Disabled State</FdButton>
     <br /><br />
-    <vf-button state="normal">Normal State</vf-button>
-    <vf-button state="selected">Selected State</vf-button>
-    <vf-button state="disabled">Disabled State</vf-button>
+    <FdButton state="normal">Normal State</FdButton>
+    <FdButton state="selected">Selected State</FdButton>
+    <FdButton state="disabled">Disabled State</FdButton>
     <br /><br />
-    <vf-button styling="light" state="normal">Normal State</vf-button>
-    <vf-button styling="light" state="selected">Selected State</vf-button>
-    <vf-button styling="light" state="disabled">Disabled State</vf-button>
+    <FdButton styling="light" state="normal">Normal State</FdButton>
+    <FdButton styling="light" state="selected">Selected State</FdButton>
+    <FdButton styling="light" state="disabled">Disabled State</FdButton>
     <br /><br />
-    <vf-button type="standard" state="normal">Normal State</vf-button>
-    <vf-button type="standard" state="selected">Selected State</vf-button>
-    <vf-button type="standard" state="disabled">Disabled State</vf-button>
+    <FdButton type="standard" state="normal">Normal State</FdButton>
+    <FdButton type="standard" state="selected">Selected State</FdButton>
+    <FdButton type="standard" state="disabled">Disabled State</FdButton>
     <br /><br />
-    <vf-button type="positive" state="normal">Normal State</vf-button>
-    <vf-button type="positive" state="selected">Selected State</vf-button>
-    <vf-button type="positive" state="disabled">Disabled State</vf-button>
+    <FdButton type="positive" state="normal">Normal State</FdButton>
+    <FdButton type="positive" state="selected">Selected State</FdButton>
+    <FdButton type="positive" state="disabled">Disabled State</FdButton>
     <br /><br />
-    <vf-button type="medium" state="normal">Normal State</vf-button>
-    <vf-button type="medium" state="selected">Selected State</vf-button>
-    <vf-button type="medium" state="disabled">Disabled State</vf-button>
+    <FdButton type="medium" state="normal">Normal State</FdButton>
+    <FdButton type="medium" state="selected">Selected State</FdButton>
+    <FdButton type="medium" state="disabled">Disabled State</FdButton>
     <br /><br />
-    <vf-button type="negative" state="normal">Normal State</vf-button>
-    <vf-button type="negative" state="selected">Selected State</vf-button>
-    <vf-button type="negative" state="disabled">Disabled State</vf-button>
+    <FdButton type="negative" state="normal">Normal State</FdButton>
+    <FdButton type="negative" state="selected">Selected State</FdButton>
+    <FdButton type="negative" state="disabled">Disabled State</FdButton>
   </div>
 </template>
 
