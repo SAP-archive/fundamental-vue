@@ -8,7 +8,7 @@ We're excited that you're interested in contributing to Fundamental-vue! Your co
 
 ## Issues and Bugs
 
-If you find a bug or some other issue with any part of the library, please [submit an issue](https://github.com/SAP/fundamental-vue/issues). Before doing so, please make sure that:
+If you find a bug or some other issue with any part of the library, please [submit an issue](https://github.wdf.sap.corp/hybris-pd/fundamental-vue/issues). Before doing so, please make sure that:
 
 -   The issue is not a duplicate issue.
 -   The issue has not been fixed in a newer release of the library.
@@ -16,7 +16,7 @@ If you find a bug or some other issue with any part of the library, please [subm
 -   Your explanation is clear and complete.
 -   You provide example code and/or screenshots (recommended).
 
-If you meet the above criteria, you can submit issues with our [GitHub issue tracker](https://github.com/SAP/fundamental-vue/issues/new). Please use [labels](#usage-of-labels) to categorize your issue.
+If you meet the above criteria, you can submit issues with our [GitHub issue tracker](https://github.wdf.sap.corp/hybris-pd/fundamental-vue/issues/new). Please use [labels](#usage-of-labels) to categorize your issue.
 
 ## Feature Requests
 
