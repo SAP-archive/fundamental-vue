@@ -30,7 +30,7 @@ Labels for issue categories:
 
 -   bug: Something isn't working / Issues in the code.
 -   documentation: Issues with the documentation (repo and website documentation).
--   enhancement: Enhancement requests.
+-   enhancement: New feature or enhancement requests.
 
 Status of open issues:
 
