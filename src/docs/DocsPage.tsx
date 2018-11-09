@@ -69,11 +69,8 @@ export class DocsPage extends Vue {
     const apiDocs = collection.apis;
     return (
       <vf-ui>
-        <div slot='header'>
-          <img src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
-        </div>
         <vf-side-nav slot='sidebar'>
-          <vf-side-nav-list value={this.activeMenuItemId} header='Vue Fundamentals'>
+          <vf-side-nav-list value={this.activeMenuItemId} header='Fundamental-vue'>
             <vf-side-nav-item itemId='000' on-click={this.showStartPage}>Start</vf-side-nav-item>
             <vf-side-nav-submenu title='API Documentation' itemId='100'>
               {renderAPIItems(apiDocs)}
