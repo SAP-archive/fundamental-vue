@@ -6,6 +6,10 @@ We're excited that you're interested in contributing to Fundamental-vue! Your co
 -   [Feature Requests](#feature-requests)
 -   [Contribute Code](#contribute-code)
 
+
+## Implementing a new Component
+If you want to contribute a new component read the [Implementing a new Component Guide](./NEW_COMPONENT/NEW_COMPONENT.md).
+
 ## Issues and Bugs
 
 If you find a bug or some other issue with any part of the library, please [submit an issue](https://github.wdf.sap.corp/hybris-pd/fundamental-vue/issues). Before doing so, please make sure that:
@@ -28,9 +32,11 @@ GitHub offers labels to categorize issues. You can use the following labels:
 
 Labels for issue categories:
 
+
 -   bug: Something isn't working / Issues in the code.
 -   documentation: Issues with the documentation (repo and website documentation).
 -   enhancement: New feature or enhancement requests.
+
 
 Status of open issues:
 
@@ -80,7 +86,9 @@ The form lists all employees who are authorized to contribute on behalf of your 
 
 ### Contribution Content Guidelines
 
-You must follow the coding style as best you can when submitting code. Take note of naming conventions, separation of concerns, and formatting rules. You can use the code formatter [Prettier](https://prettier.io/) to handle some of this for you automatically. 
+
+You must follow the coding style as best you can when submitting code. Take note of naming conventions, separation of concerns, and formatting rules. You can use the code formatter [Prettier](https://prettier.io/) to handle some of this for you automatically.
+
 
 ### How to contribute - the Process
 
@@ -94,3 +102,4 @@ You must follow the coding style as best you can when submitting code. Take note
 7.  Once the change has been approved, we inform you in a comment.
 8.  Your pull request cannot be merged directly into the branch (internal SAP processes), but is merged internally and immediately appears in the public repository as well.
 9. We close the pull request. You can then delete the now obsolete branch.
+
