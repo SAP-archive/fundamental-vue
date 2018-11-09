@@ -42,6 +42,18 @@ Vue.use(FundamentalVue);
 // ...
 ```
 
+## Known Issues
+
+Click [here](https://github.wdf.sap.corp/hybris-pd/fundamental-vue/issues) to view the current issues.
+
+## How to obtain support
+
+If you encounter an issue, you can [create a ticket](https://github.wdf.sap.corp/hybris-pd/fundamental-vue/issues/new)
+
+## Contributing
+
+If you want to contribute, please check the [CONTRIBUTING.md](./CONTRIBUTING.md) documentation for contribution guidelines. 
+
 ## License
 
 Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
