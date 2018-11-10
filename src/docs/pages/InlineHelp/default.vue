@@ -2,27 +2,27 @@
   <div class='example-container'>
     <div>
       <span class='label'>Bottom Right (Default):</span>
-      <vf-inline-help>
+      <FdInlineHelp>
         Lorem ipsum dolor sit amet, consectetur adipiscing.
-      </vf-inline-help>
+      </FdInlineHelp>
     </div>
     <div>
       <span class='label'>Bottom Left:</span>
-      <vf-inline-help position='left'>
+      <FdInlineHelp position='left'>
         Lorem ipsum dolor sit amet, consectetur adipiscing.
-      </vf-inline-help>
+      </FdInlineHelp>
     </div>
     <div>
       <span class='label'>Right:</span>
-      <vf-inline-help inline position='right'>
+      <FdInlineHelp inline position='right'>
         Lorem ipsum dolor sit amet, consectetur adipiscing.
-      </vf-inline-help>
+      </FdInlineHelp>
     </div>
     <div>
       <span class='label'>Left:</span>
-      <vf-inline-help inline position='left'>
+      <FdInlineHelp inline position='left'>
         Lorem ipsum dolor sit amet, consectetur adipiscing.
-      </vf-inline-help>
+      </FdInlineHelp>
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 import { Component, Prop } from 'vue-property-decorator';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { componentName } from '@/util';
 import TsxComponent from '@/vue-tsx';
 
@@ -19,13 +19,14 @@ interface Props {
 }
 
 @Component({ name: componentName('PanelGrid') })
-@API.Component('Panel Grid')
+@Api.Component('Panel Grid')
+@Api.defaultSlot('Panels displayed by the grid.')
 export class PanelGrid extends TsxComponent<Props> {
-  @API.Prop('number of columns', prop => prop.type(Number).acceptValues(...Cols))
+  @Api.Prop('number of columns', prop => prop.type(Number).acceptValues(...Cols))
   @Prop({ type: Number, default: null, required: false })
   public col!: Col | null;
 
-  @API.Prop('whether there is a gap between the individual panels', prop => prop.type(Boolean))
+  @Api.Prop('whether there is a gap between the individual panels', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
   public nogap!: boolean;
 

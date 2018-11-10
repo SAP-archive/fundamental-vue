@@ -4,7 +4,7 @@ import {
 } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import { Uid } from '@/mixins';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { componentName } from '@/util';
 import { clickawayDirective } from '@/mixins';
 import { PopoverContent } from './../Popover';
@@ -34,23 +34,23 @@ interface Props {
     InputGroup,
   },
 })
-@API.Component('Combobox', comp => {
+@Api.Component('Combobox', comp => {
   comp.addEvent('input', 'Sent when the selected item changes');
 })
 export class Combobox extends mixins(Uid) {
-  @API.Prop('initial value', prop => prop.type(String))
+  @Api.Prop('initial value', prop => prop.type(String))
   @Prop({ default: null, required: false, type: String })
   public value!: string | null;
 
-  @API.Prop('placeholder text (displayed when nothing is selected)', prop => prop.type(String))
+  @Api.Prop('placeholder text (displayed when nothing is selected)', prop => prop.type(String))
   @Prop({ type: String, default: '', required: false })
   public placeholder!: string;
 
-  @API.Prop('ARIA Label', prop => prop.type(String))
+  @Api.Prop('ARIA Label', prop => prop.type(String))
   @Prop({ type: String, default: 'Combobox', required: false })
   public ariaLabel!: string;
 
-  @API.Prop('whether popover is visible', prop => prop.type(Boolean))
+  @Api.Prop('whether popover is visible', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
   public popoverVisible!: boolean;
 

@@ -3,7 +3,7 @@ import {
   Prop,
   Watch,
 } from 'vue-property-decorator';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { componentName } from '@/util';
 import { TabItemContainer } from './TabItemContainer';
 import { TabItem } from './TabItem';
@@ -19,13 +19,14 @@ interface Props {
   },
   name: componentName('Tabs'),
 })
-@API.Component('Tabs', comp => {
+@Api.Component('Tabs', comp => {
   comp.addEvent('input', 'triggers when the active tab item name changes', event => {
     event.string('tabItemName');
   });
 })
+@Api.defaultSlot('Tab Items')
 export class Tabs extends TsxComponent<Props> implements TabItemContainer {
-  @API.Prop('active tab item name', prop => prop.type(String))
+  @Api.Prop('active tab item name', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
   public value!: string | null;
 

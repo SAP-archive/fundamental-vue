@@ -6,7 +6,7 @@ import Vue from 'vue';
 import { mixins } from 'vue-class-component';
 import { Uid } from '@/mixins';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { clickawayDirective } from '@/mixins';
 
 @Component({
@@ -22,22 +22,22 @@ import { clickawayDirective } from '@/mixins';
     PopoverContent,
   },
 })
-@API.Component('Popover', comp => {
+@Api.Component('Popover', comp => {
   comp
     .addEvent('item-click', 'Sent when an item in the popover was clicked', event => {
       event.raw('item', 'MenuItem');
     });
 })
 export class Popover extends mixins(Uid) {
-  @API.Prop('ARIA label', prop => prop.type(String))
+  @Api.Prop('ARIA label', prop => prop.type(String))
   @Prop({ type: String, default: 'Popover', required: false })
   public ariaLabel!: string;
 
-  @API.Prop('Title displayed when no custom trigger element is used', prop => prop.type(String))
+  @Api.Prop('Title displayed when no custom trigger element is used', prop => prop.type(String))
   @Prop({ type: String, default: 'Show', required: false })
   public title!: string;
 
-  @API.Prop('if popover is visible', prop => prop.type(Boolean))
+  @Api.Prop('if popover is visible', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
   public popoverVisible!: boolean;
 

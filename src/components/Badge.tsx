@@ -3,7 +3,7 @@ import {
   Prop,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
 const typeMapping = {
@@ -21,17 +21,18 @@ interface Props {
 }
 
 @Component({ name: componentName('Badge') })
-@API.Component('Badge')
+@Api.Component('Badge')
+@Api.defaultSlot('Text displayed inside the badge.')
 export class Badge extends TsxComponent<Props> {
-  @API.Prop('whether the badge is filled', prop => prop.type(Boolean))
+  @Api.Prop('whether the badge is filled', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
   public filled!: boolean;
 
-  @API.Prop('whether the badge is displayed as a pill', prop => prop.type(Boolean))
+  @Api.Prop('whether the badge is displayed as a pill', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
   public pill!: boolean;
 
-  @API.Prop('badge type', prop => prop.type(String).acceptValues(...BadgeTypes))
+  @Api.Prop('badge type', prop => prop.type(String).acceptValues(...BadgeTypes))
   @Prop({ type: String, required: false, default: null })
   public type!: BadgeType | null;
 

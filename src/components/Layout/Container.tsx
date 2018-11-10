@@ -4,6 +4,7 @@ import {
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
 import TsxComponent from '@/vue-tsx';
+import { Api } from '@/api';
 
 interface Props {
   flex?: boolean;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 @Component({ name: componentName('Container') })
+@Api.defaultSlot('Content displaye by the container.')
 export class Container extends TsxComponent<Props> {
   @Prop({ type: Boolean, default: false, required: false })
   public flex!: boolean;

@@ -7,7 +7,7 @@ import {
 import { componentName } from '@/util';
 import { SideNavItem } from './SideNavItem';
 import { SideNav } from './SideNav';
-import { API } from '@/api';
+import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
@@ -16,17 +16,18 @@ interface Props {
 }
 
 @Component({ name: componentName('SideNavList') })
-@API.Component('Side Nav List', comp => {
+@Api.Component('Side Nav List', comp => {
   comp
     .addEvent('select', 'Sent when a item was clicked', event => event.raw('item', 'Item'))
     .addEvent('input', 'Sent when a item was clicked', event => event.string('itemId'));
 })
+@Api.defaultSlot('Side Navigation Items or Side Navigation Submenus.')
 export class SideNavList extends TsxComponent<Props> {
-  @API.Prop('value of the selected item', prop => prop.type(String))
+  @Api.Prop('value of the selected item', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
   public value!: string | null;
 
-  @API.Prop('header', build => {
+  @Api.Prop('header', build => {
     build
       .describe('text displayed in the side nav list (group) header')
       .type(Boolean);

@@ -3,7 +3,7 @@ import { Menu, MenuList, MenuItem } from '@/components';
 import { mixins } from 'vue-class-component';
 import { Uid } from '@/mixins';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { clickawayDirective } from '@/mixins';
 
 interface Props {
@@ -18,14 +18,14 @@ interface Props {
   name: componentName('PopoverContent'),
   components: { Menu, MenuList, MenuItem },
 })
-@API.Component('Popover Content', comp => {
+@Api.Component('Popover Content', comp => {
   comp
     .addEvent('item-click', 'Sent when an item in the popover was clicked', event => {
       event.raw('item', 'MenuItem');
     });
 })
 export class PopoverContent extends mixins(Uid) {
-  @API.Prop('whether visible', prop => prop.type(Boolean))
+  @Api.Prop('whether visible', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
   public visible!: boolean;
 

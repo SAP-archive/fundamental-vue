@@ -2,7 +2,7 @@ import {
   Component,
   Prop,
 } from 'vue-property-decorator';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { componentName } from '@/util';
 import TsxComponent from '@/vue-tsx';
 
@@ -12,13 +12,14 @@ interface Props {
 }
 
 @Component({ name: componentName('Link') })
-@API.Component('Link', comp => comp.addEvent('click', 'Sent when link was clicked'))
+@Api.Component('Link', comp => comp.addEvent('click', 'Sent when link was clicked'))
+@Api.defaultSlot('Link Title')
 export class Link extends TsxComponent<Props> {
-  @API.Prop('whether link is selected', prop => prop.type(Boolean))
+  @Api.Prop('whether link is selected', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
   public selected!: boolean;
 
-  @API.Prop('whether link is disabled', prop => prop.type(Boolean))
+  @Api.Prop('whether link is disabled', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
   public disabled!: boolean;
 

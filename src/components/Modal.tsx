@@ -3,7 +3,7 @@ import {
   Prop,
   Watch,
 } from 'vue-property-decorator';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { componentName } from '@/util';
 import { clickawayDirective } from '@/mixins';
 import TsxComponent from '@/vue-tsx';
@@ -23,17 +23,20 @@ const HANDLER = '_vue_vf-clickaway_handler';
     onClickaway: clickawayDirective,
   },
 })
-@API.Component('Modal', comp => {
+@Api.Component('Modal', comp => {
   comp
     .addEvent('close', 'Sent when modal was closed')
     .addEvent('update:active', 'Sent when active changes', event => event.boolean(name));
 })
+@Api.defaultSlot('Modal Body')
+@Api.slot('footer', 'Custom Modal Footer')
+@Api.slot('actions', 'Custom Modal Actions')
 export class Modal extends TsxComponent<Props> {
-  @API.Prop('whether modal is active', prop => prop.type(Boolean))
+  @Api.Prop('whether modal is active', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
   public active!: boolean;
 
-  @API.Prop('title', prop => prop.type(String))
+  @Api.Prop('title', prop => prop.type(String))
   @Prop({ type: String, required: false, default: null })
   public title!: string | null;
 

@@ -9,7 +9,7 @@ import { CreateElement } from 'vue';
 import { TableColumn } from './TableColumn';
 import { componentName } from '@/util';
 import { SortOrder, TableData, compareValues, TableColumnConfig, RenderCellRequest } from './TableUtils';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { ColumnContainer, ColumnContainerIdentifier } from './ColumnContainer';
 import TsxComponent from '@/vue-tsx';
 
@@ -46,21 +46,22 @@ type Selection = number[];
     };
   },
 })
-@API.Component('Table', comp => {
+@Api.Component('Table', comp => {
   comp.addEvent('select', 'Sent when the selection changes', event => {
     event.raw('rows', 'Array<number>');
   });
 })
+@Api.defaultSlot('Table Columns')
 export class Table<D extends TableData> extends TsxComponent<Props<D>> implements ColumnContainer<D> {
-  @API.Prop('whether the column is fixed (experimental)', prop => prop.type(Boolean))
+  @Api.Prop('whether the column is fixed (experimental)', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
   public firstColumnFixed!: boolean;
 
-  @API.Prop('displayed data', prop => prop.type('Array<Object>'))
+  @Api.Prop('displayed data', prop => prop.type('Array<Object>'))
   @Prop({ type: Array, required: false, default: () => [] })
   public data!: D[];
 
-  @API.Prop('selection mode', prop => prop.type(String).acceptValues(...SelectionModes))
+  @Api.Prop('selection mode', prop => prop.type(String).acceptValues(...SelectionModes))
   @Prop({ type: String, required: false, default: null })
   public selectionMode!: SelectionMode | null;
 

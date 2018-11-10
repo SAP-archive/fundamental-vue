@@ -3,7 +3,7 @@ import {
   Prop,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
@@ -13,13 +13,16 @@ interface Props {
 }
 
 @Component({ name: componentName('InputGroup') })
-@API.Component('InputGroup')
+@Api.Component('InputGroup')
+@Api.slot('before', 'Content to be placed before the input component.')
+@Api.slot('after', 'Content to be placed after the input component.')
+@Api.defaultSlot('The input component placed in the input group.')
 export class InputGroup extends TsxComponent<Props> {
-  @API.Prop('text/number before the input', prop => prop.type(String, Number))
+  @Api.Prop('text/number before the input', prop => prop.type(String, Number))
   @Prop({ type: String, required: false, default: null })
   public before!: string | null;
 
-  @API.Prop('text/number after the input', prop => prop.type(String, Number))
+  @Api.Prop('text/number after the input', prop => prop.type(String, Number))
   @Prop({ type: String, required: false, default: null })
   public after!: string | null;
 

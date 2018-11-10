@@ -2,22 +2,44 @@ import {
   Component,
   Vue,
   Prop,
+  Watch,
 } from 'vue-property-decorator';
-import { ComponentApi } from './ComponentApi';
-import { DocsExample } from './DocsExample';
+import { ComponentReference } from './ComponentReference';
+import { ComponentExample } from './ComponentExample';
 import DynamicComponent from './DynamicComponent.vue';
 import { VueConstructor } from 'vue';
-import { uiComponents, uiComponentForSlug, UIComponentExample } from '@/docs/config';
+import { uiComponents, uiComponentForSlug, UiComponentExample } from '@/docs/config';
+import { Route } from 'vue-router';
 
 @Component({
   name: 'ComponentCollection',
   components: {
-    DocsExample,
+    ComponentExample,
     DynamicComponent,
-    ComponentApi,
+    ComponentReference,
   },
 })
 export class ComponentCollection extends Vue {
+  @Watch('$route', { immediate: true })
+  public handleNewRoute(newRoute: Route) {
+    const { slug } = newRoute.params;
+
+    // Reset the UI. Future work: Implement loading state.
+    this.resetUI();
+    const componentCollection = uiComponents.find(collection => collection.slug === slug);
+    if (componentCollection == null) {
+      this.resetUI();
+      this.$forceUpdate();
+      return;
+    }
+
+    componentCollection.preparedExamples().then(examples => {
+      this.examples = examples;
+      this.relatedComponents = componentCollection.relatedComponents;
+      this.$forceUpdate();
+    });
+  }
+
   public beforeRouteEnter(to, from, next) {
     const { slug } = to.params;
     const component = uiComponentForSlug(slug);
@@ -30,24 +52,29 @@ export class ComponentCollection extends Vue {
       next((vm: ComponentCollection) => {
         vm.examples = examples;
         vm.relatedComponents = component.relatedComponents;
+        vm.$forceUpdate();
       });
     });
   }
 
   public beforeRouteUpdate(to, _, next) {
+    const { slug } = to.params;
+
     // Reset the UI. Future work: Implement loading state.
     this.resetUI();
-    const { slug } = to.params;
     const componentCollection = uiComponents.find(collection => collection.slug === slug);
     if (componentCollection == null) {
       this.resetUI();
+      this.$forceUpdate();
       next();
       return;
     }
 
     componentCollection.preparedExamples().then(examples => {
+      // log(`beforeRouteUpdate: examples: ${examples.length}`);
       this.examples = examples;
       this.relatedComponents = componentCollection.relatedComponents;
+      this.$forceUpdate();
       next();
     });
   }
@@ -55,8 +82,12 @@ export class ComponentCollection extends Vue {
   @Prop({ type: String, required: false, default: null })
   public title!: string | null;
 
+  @Prop({ type: Boolean, default: false })
+  public showApiOnly!: boolean | null;
+
   private relatedComponents: VueConstructor[] = [];
-  private examples: UIComponentExample[] = [];
+  private examples: UiComponentExample[] = [];
+
   private resetUI() {
     this.examples = [];
     this.relatedComponents = [];
@@ -65,10 +96,19 @@ export class ComponentCollection extends Vue {
   public render() {
     const relatedComponents = this.relatedComponents;
     const examples = this.examples;
+    const renderExamples = () => {
+      return examples.map(example => (<ComponentExample key={`example-${example.code}-${example.id}`} description={example.description} component={example.component} sourcecode={example.code} title={example.title} />));
+    };
+    const renderRelatedComponentsReference = () => {
+      return relatedComponents.map(comp => <ComponentReference key={`api-${comp.name}`} component={comp} />);
+    };
+
     return (
       <div>
-        {examples.map(example => (<DocsExample description={example.description} component={example.component} sourcecode={example.code} title={example.title} />))}
-        {relatedComponents.map(comp => (<ComponentApi component={comp} />))}
+        {!this.showApiOnly && renderExamples()}
+        <div v-bg={'neutral-1'} style='border-top: 1px solid rgb(220, 220, 220); padding-top: 15px;'>
+        {renderRelatedComponentsReference()}
+        </div>
       </div>
     );
   }

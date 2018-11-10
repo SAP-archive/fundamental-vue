@@ -5,7 +5,7 @@ import {
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
 import { ItemIdentification } from './../Types/ItemIdentification';
-import { API } from '@/api';
+import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
@@ -33,30 +33,30 @@ type Type = keyof (typeof typeMapping);
 const Types = Object.keys(typeMapping) as Type[];
 
 @Component({ name: componentName('TextArea') })
-@API.Component('TextArea', comp => {
+@Api.Component('TextArea', comp => {
   comp.
     addEvent('input', 'Sent when the value changes', event => {
       event.raw('value', 'any'); // TODO: emit event
     });
 })
 export class TextArea extends TsxComponent<Props> {
-  @API.Prop('id of the text area element', prop => prop.type(String))
+  @Api.Prop('id of the text area element', prop => prop.type(String))
   @Prop({ required: false, default: null, type: String })
   public id!: string | null;
 
-  @API.Prop('placeholder displayed when no value is set', prop => prop.type(String))
+  @Api.Prop('placeholder displayed when no value is set', prop => prop.type(String))
   @Prop({ required: false, default: '', type: String })
   public placeholder!: string;
 
-  @API.Prop('state of the text area', prop => prop.type(String).acceptValues(...States))
+  @Api.Prop('state of the text area', prop => prop.type(String).acceptValues(...States))
   @Prop({ required: false, default: 'default', type: String })
   public state!: State;
 
-  @API.Prop('whether input is required', prop => prop.type(Boolean))
+  @Api.Prop('whether input is required', prop => prop.type(Boolean))
   @Prop({ required: false, default: false, type: Boolean })
   public required!: boolean;
 
-  @API.Prop('native element type', prop => prop.type(String).acceptValues(...Types))
+  @Api.Prop('native element type', prop => prop.type(String).acceptValues(...Types))
   @Prop({ required: false, default: 'text', type: String })
   public type!: Type;
 

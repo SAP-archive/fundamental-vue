@@ -4,12 +4,14 @@ import {
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
 import TsxComponent from '@/vue-tsx';
+import { Api } from '@/api';
 
 interface Props {
   span?: number | null;
 }
 
 @Component({ name: componentName('Col') })
+@Api.defaultSlot('Column content')
 export class Col extends TsxComponent<Props> {
   @Prop({ type: Number, required: false, default: null })
   public span!: number | null;

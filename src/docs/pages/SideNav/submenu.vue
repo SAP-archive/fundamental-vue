@@ -3,11 +3,10 @@
     <FdSideNavList :value="activeId" @select="handleSelect" header="Group Title">
       <FdSideNavItem itemId="1">Link Item 3</FdSideNavItem>
       <FdSideNavSubmenu itemId="2" title="Link Item Submenu">
-          <FdSideNav-subitem itemId="2-1">Link Item 3</FdSideNav-subitem>
-          <FdSideNav-subitem itemId="2-2">Link Item 3</FdSideNav-subitem>
+          <FdSideNavSubitem itemId="2-1">Link Item 3</FdSideNavSubitem>
+          <FdSideNavSubitem itemId="2-2">Link Item 3</FdSideNavSubitem>
       </FdSideNavSubmenu>
     </FdSideNavList>
-
   </FdSideNav>
 </template>
 

@@ -52,7 +52,7 @@ If you encounter an issue, you can [create a ticket](https://github.wdf.sap.corp
 
 ## Contributing
 
-If you want to contribute, please check the [CONTRIBUTING.md](./CONTRIBUTING.md) documentation for contribution guidelines. 
+If you want to contribute, please check the [CONTRIBUTING.md](./CONTRIBUTING.md) documentation for contribution guidelines.
 
 ## License
 

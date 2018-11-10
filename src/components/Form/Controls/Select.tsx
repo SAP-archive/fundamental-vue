@@ -5,7 +5,7 @@ import {
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
 import { ItemIdentification } from './../Types/ItemIdentification';
-import { API } from '@/api';
+import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 interface Props {
   id?: string | null;
@@ -25,25 +25,26 @@ type State = keyof (typeof stateMapping);
 const States = Object.keys(stateMapping) as State[];
 
 @Component({ name: componentName('Select') })
-@API.Component('Select')
+@Api.Component('Select')
+@Api.defaultSlot('List of native option elements.')
 export class Select extends TsxComponent<Props> {
-  @API.Prop('id of the select element', prop => prop.type(String))
+  @Api.Prop('id of the select element', prop => prop.type(String))
   @Prop({ required: false, default: null, type: String })
   public id!: string | null;
 
-  @API.Prop('select state', prop => prop.type(String).acceptValues(...States))
+  @Api.Prop('select state', prop => prop.type(String).acceptValues(...States))
   @Prop({ required: false, default: 'default', type: String })
   public state!: State;
 
-  @API.Prop('whether input is required', prop => prop.type(Boolean))
+  @Api.Prop('whether input is required', prop => prop.type(Boolean))
   @Prop({ required: false, default: false, type: Boolean })
   public required!: boolean;
 
-  @API.Prop('whether select is disabled', prop => prop.type(Boolean))
+  @Api.Prop('whether select is disabled', prop => prop.type(Boolean))
   @Prop({ required: false, default: false, type: Boolean })
   public disabled!: boolean;
 
-  @API.Prop('whether select is readonly', prop => prop.type(Boolean))
+  @Api.Prop('whether select is readonly', prop => prop.type(Boolean))
   @Prop({ required: false, default: false, type: Boolean })
   public readonly!: boolean;
 

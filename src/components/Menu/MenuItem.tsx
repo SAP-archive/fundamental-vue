@@ -2,7 +2,7 @@ import { Component, Prop, Inject } from 'vue-property-decorator';
 import { MenuList } from './MenuList';
 import { Menu } from './Menu';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { MENU, MENU_LIST } from './types';
 import TsxComponent from '@/vue-tsx';
 
@@ -11,9 +11,11 @@ interface Props {
 }
 
 @Component({ name: componentName('MenuItem') })
-@API.Component('Menu Item', comp => comp.addEvent('click', 'Sent when item was clicked'))
+@Api.Component('Menu Item', comp => comp.addEvent('click', 'Sent when item was clicked'))
+@Api.defaultSlot('Content displayed by the menu item (usually text).')
+@Api.slot('addon', 'Custom addon (displayed on the left).')
 export class MenuItem extends TsxComponent<Props> {
-  @API.Prop('value (can be used to associate a context with the item)', prop => prop.type(String, Number))
+  @Api.Prop('value (can be used to associate a context with the item)', prop => prop.type(String, Number))
   @Prop({ default: null, required: false, type: [String, Number] })
   public value!: string | number | null;
 

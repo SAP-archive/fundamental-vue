@@ -5,7 +5,7 @@ import {
 } from 'vue-property-decorator';
 import { SideNavList } from './SideNavList';
 import { SideNavSubmenu } from './SideNavSubmenu';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { componentName } from '@/util';
 import TsxComponent from '@/vue-tsx';
 
@@ -17,23 +17,24 @@ interface Props {
 }
 
 @Component({ name: componentName('SideNavItem') })
-@API.Component('Side Nav Item', comp => {
+@Api.Component('Side Nav Item', comp => {
   comp.addEvent('click', 'Sent when item is clicked');
 })
+@Api.defaultSlot('Side Nav Items displayed by the list.')
 export class SideNavItem extends TsxComponent<Props> {
-  @API.Prop('whether selected', prop => prop.type(Boolean))
+  @Api.Prop('whether selected', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
   public isSelected!: boolean;
 
-  @API.Prop('whether selected', prop => prop.type(Boolean))
+  @Api.Prop('whether selected', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
   public hasChild!: boolean;
 
-  @API.Prop('whether selected', prop => prop.type(Boolean))
+  @Api.Prop('whether selected', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
   public isSubitem!: boolean;
 
-  @API.Prop('unique item identification', prop => prop.type(String))
+  @Api.Prop('unique item identification', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
   public itemId!: string | null;
 

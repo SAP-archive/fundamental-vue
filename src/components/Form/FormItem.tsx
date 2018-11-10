@@ -6,6 +6,7 @@ import {
 import { componentName } from '@/util';
 import { Uid } from '@/mixins';
 import { mixins } from 'vue-class-component';
+import { Api } from '@/api';
 
 interface Props {
   label?: string;
@@ -22,6 +23,7 @@ interface Props {
     };
   },
 })
+@Api.defaultSlot('Content of the form item. Usually inputs and labels.')
 export class FormItem extends mixins(Uid) implements ItemIdentification {
   @Prop({ type: String, required: false, default: null })
   public label!: string;

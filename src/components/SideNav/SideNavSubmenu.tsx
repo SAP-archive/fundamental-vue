@@ -6,7 +6,7 @@ import {
 import { SideNavItem } from './SideNavItem';
 import { SideNavList } from './SideNavList';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
@@ -23,13 +23,14 @@ interface Props {
     };
   },
 })
-@API.Component('Side Nav Submenu')
+@Api.Component('Side Nav Submenu')
+@Api.defaultSlot('Side Navigation Subitems displayed by the submenu.')
 export class SideNavSubmenu extends TsxComponent<Props> {
-  @API.Prop('item title', prop => prop.type(String))
+  @Api.Prop('item title', prop => prop.type(String))
   @Prop({ type: String, required: true, default: 'Title' })
   public title!: string;
 
-  @API.Prop('unique item identification', prop => prop.type(String))
+  @Api.Prop('unique item identification', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
   public itemId!: string | null;
 

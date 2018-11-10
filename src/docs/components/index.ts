@@ -1,23 +1,21 @@
 import { VueConstructor } from 'vue';
-import { DocsExample } from './DocsExample';
-import { DemoBlock } from './DemoBlock';
+import { ComponentExample } from './ComponentExample';
 import { CodeView } from './CodeView';
 import { ComponentCollection } from './ComponentCollection';
 import DynamicComponent from './DynamicComponent.vue';
-import * as ComponentApi from './ComponentApi';
+import * as ComponentReference from './ComponentReference';
 
-export * from './DocsExample';
-export * from './DemoBlock';
+export * from './ComponentExample';
 export * from './CodeView';
-export * from './ComponentApi';
+export * from './ComponentReference';
 export * from './DynamicComponent.vue';
 export * from './ComponentCollection';
 
 export const registerComponents = (vue: VueConstructor) => {
   vue.component(DynamicComponent.name, DynamicComponent);
   console.info('Register Docs Component: %s', DynamicComponent.name);
-  const componentAPIComponents = Object.values(ComponentApi);
-  const all = [ComponentCollection, DocsExample, DemoBlock, CodeView, ...componentAPIComponents];
+  const componentReferenceComponents = Object.values(ComponentReference);
+  const all = [ComponentCollection, ComponentExample, CodeView, ...componentReferenceComponents];
   all.forEach(component => {
     // @ts-ignore
     const name = component.options.name;

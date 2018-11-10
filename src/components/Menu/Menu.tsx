@@ -2,7 +2,7 @@ import { Component, Prop } from 'vue-property-decorator';
 import { MenuItem } from './MenuItem';
 import { componentName } from '@/util';
 import { MENU } from './types';
-import { API } from '@/api';
+import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
@@ -17,14 +17,15 @@ interface Props {
     };
   },
 })
-@API.Component('Menu', comp => {
+@Api.Component('Menu', comp => {
   comp.
     addEvent('select', 'Sent when a menu item was selected', event => {
       event.string('value');
     });
 })
+@Api.defaultSlot('0 or more menu lists.')
 export class Menu extends TsxComponent<Props> {
-  @API.Prop('whether menu item can have an addon', prop => prop.type(Boolean))
+  @Api.Prop('whether menu item can have an addon', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false })
   public canHaveAddon!: boolean;
 

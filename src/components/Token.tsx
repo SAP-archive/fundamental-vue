@@ -1,5 +1,5 @@
 import { Component } from 'vue-property-decorator';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { componentName } from '@/util';
 import TsxComponent from '@/vue-tsx';
 
@@ -7,7 +7,8 @@ import TsxComponent from '@/vue-tsx';
 interface Props {}
 
 @Component({ name: componentName('Token') })
-@API.Component('Token', comp => comp.addEvent('click', 'triggers when clicked'))
+@Api.Component('Token', comp => comp.addEvent('click', 'triggers when clicked'))
+@Api.defaultSlot('Token Text')
 export class Token extends TsxComponent<Props> {
   public render() {
     return (

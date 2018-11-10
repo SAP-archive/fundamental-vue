@@ -1,10 +1,10 @@
-import { UIComponentConfig } from './types/UIComponentConfig';
+import { UiComponentConfig } from './types/UiComponentConfig';
 import { ButtonGroup, Token, Image, Tabs, TabItem, Toggle, Spinner, Breadcrumb, BreadcrumbItem, Alert, Icon, SideNav, SideNavItem, SideNavList, SideNavSubmenu, ActionBar, Button, FormSet, FormGroup, FormItem, FormLabel, FormMessage, FieldSet, Input, Legend, TextArea, Select, Menu, MenuList, MenuItem, Panel, PanelGrid, Section, InputGroup, Combobox, Table, TableColumn, Badge, Link, Modal, Identifier, PopoverContent, ListGroup, InlineHelp } from '@/components';
 
 // Used to build the side nav on the main docs page.
 // The exported array will be further prepared (sorted, slugifies, ...) by someone else.
 // So all we have to do here is to declare everything that should appear in the menu.
-export const UIComponentsConfig: UIComponentConfig[] = [
+export const UiComponentsConfig: UiComponentConfig[] = [
   {
     id: 'Section',
     title: 'Section',

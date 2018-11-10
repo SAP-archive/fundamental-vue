@@ -1,21 +1,28 @@
-import { UIComponent } from './types/UIComponent';
-import { UIComponentExample } from './types/UIComponentExample';
-import { UIComponentsConfig } from './ui-components';
-import { UIComponentExampleConfig } from './types/UIComponentExampleConfig';
+import { UiComponent } from './types/UiComponent';
+import { UiComponentConfig } from './types/UiComponentConfig';
+import { UiComponentExample } from './types/UiComponentExample';
+import { UiComponentsConfig } from './ui-components';
+import { UiComponentExampleConfig } from './types/UiComponentExampleConfig';
 import { slugify } from '@/docs/util';
 
-export { UIComponent } from './types/UIComponent';
-export { UIComponentExample } from './types/UIComponentExample';
+export { UiComponent } from './types/UiComponent';
+export { UiComponentExample } from './types/UiComponentExample';
+import { shortUuid } from '@/lib';
 
-export const uiComponents: UIComponent[] = UIComponentsConfig.map(uicomp => {
+const sortByTitle = (lhs: UiComponentConfig, rhs: UiComponentConfig): number => {
+  return lhs.title.localeCompare(rhs.title);
+};
+
+export const uiComponents: UiComponent[] = [...UiComponentsConfig].sort(sortByTitle).map(componentConfig => {
   return {
-    ...uicomp,
-    slug: slugify(uicomp.title),
-    async preparedExamples(): Promise<UIComponentExample[]> {
-      const prepare = async (example: UIComponentExampleConfig): Promise<UIComponentExample> => this._preparedExample(example);
+    ...componentConfig,
+    slug: slugify(componentConfig.title),
+    key: shortUuid(),
+    async preparedExamples(): Promise<UiComponentExample[]> {
+      const prepare = async (example: UiComponentExampleConfig): Promise<UiComponentExample> => this._preparedExample(example);
       return Promise.all(this.examples.map(prepare));
     },
-    async _preparedExample(example: UIComponentExampleConfig): Promise<UIComponentExample> {
+    async _preparedExample(example: UiComponentExampleConfig): Promise<UiComponentExample> {
       const collectionId = this.id;
       const exampleId = example.id;
       const component = await import(`./../pages/${collectionId}/${exampleId}.vue`);

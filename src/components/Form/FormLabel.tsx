@@ -4,7 +4,7 @@ import {
   Inject,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { ItemIdentification } from './Types/ItemIdentification';
 import TsxComponent from '@/vue-tsx';
 
@@ -14,13 +14,14 @@ interface Props {
 }
 
 @Component({ name: componentName('FormLabel') })
-@API.Component('Form Label')
+@Api.Component('Form Label')
+@Api.defaultSlot('Contents of the label: For non-inline elements simply use text which will become the text displayed by the label. For inline elements use text alongside with any elements that form your input control.')
 export class FormLabel extends TsxComponent<Props> {
-  @API.Prop('id of the corresponding input', prop => prop.type(String))
+  @Api.Prop('id of the corresponding input', prop => prop.type(String))
   @Prop({ type: String, required: false, default: null })
   public for!: string | null;
 
-  @API.Prop('whether a value is required (adds a *)', prop => prop.type(Boolean))
+  @Api.Prop('whether a value is required (adds a *)', prop => prop.type(Boolean))
   @Prop({ required: false, default: false, type: Boolean })
   public required!: boolean;
 

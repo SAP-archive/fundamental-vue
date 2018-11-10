@@ -3,7 +3,7 @@ import {
   Prop,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
@@ -11,13 +11,14 @@ interface Props {
 }
 
 @Component({ name: componentName('BreadcrumbItem') })
-@API.Component('Breadcrumb Item', comp => {
+@Api.Component('Breadcrumb Item', comp => {
   comp.addEvent('click', 'Sent when item was clicked', event => {
     event.raw('item', 'BreadcrumbItem');
   });
 })
+@Api.defaultSlot('Breadcrumb Item Title')
 export class BreadcrumbItem extends TsxComponent<Props> {
-  @API.Prop('target route (passed to $router.to(…))', prop => prop.type(Object))
+  @Api.Prop('target route (passed to $router.to(…))', prop => prop.type(Object))
   @Prop({ type: Object, required: false, default: null })
   public to!: object | null;
 

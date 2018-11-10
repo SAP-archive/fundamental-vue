@@ -2,7 +2,7 @@ import { componentName } from '@/util';
 import { Component, Inject, Prop } from 'vue-property-decorator';
 import { MenuItem } from './MenuItem';
 import { Menu } from './Menu';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { MENU, MENU_LIST } from './types';
 import TsxComponent from '@/vue-tsx';
 
@@ -18,14 +18,15 @@ interface Props {
     };
   },
 })
-@API.Component('Menu List', comp => {
+@Api.Component('Menu List', comp => {
   comp.
     addEvent('select', 'Sent when a menu item was selected', event => {
       event.string('value');
     });
 })
+@Api.defaultSlot('0 or more menu items.')
 export class MenuList extends TsxComponent<Props> {
-  @API.Prop('header', build => {
+  @Api.Prop('header', build => {
     build
       .describe('text displayed in the menu list (group) header')
       .type(Boolean);

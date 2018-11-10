@@ -11,7 +11,7 @@ import {
 } from './TableUtils';
 import { shortUuid } from '@/lib/uuid';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { ColumnContainer, ColumnContainerIdentifier } from './ColumnContainer';
 import TsxComponent from '@/vue-tsx';
 
@@ -24,25 +24,26 @@ interface Props<D> {
 }
 
 @Component({ name: componentName('TableColumn') })
-@API.Component('Table Column')
+@Api.Component('Table Column')
+@Api.defaultSlot('Custom Table Cell.')
 export class TableColumn<D> extends TsxComponent<Props<D>> {
-  @API.Prop('header label', prop => prop.type(String))
+  @Api.Prop('header label', prop => prop.type(String))
   @Prop({ type: String, required: false, default: null })
   public label!: string | null;
 
-  @API.Prop('alignment', prop => prop.type(String))
+  @Api.Prop('alignment', prop => prop.type(String))
   @Prop({ type: String, required: false, default: 'default' })
   public alignment!: ColumnAlignment;
 
-  @API.Prop('field name (key must be present in the data array objects)', prop => prop.type(String))
+  @Api.Prop('field name (key must be present in the data array objects)', prop => prop.type(String))
   @Prop({ type: String, required: false, default: null })
   public prop!: (keyof D) | null;
 
-  @API.Prop('whether the column is sortable', prop => prop.type(Boolean))
+  @Api.Prop('whether the column is sortable', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
   public sortable!: boolean;
 
-  @API.Prop('column width - must be set then isFixed is true (experimental)', prop => prop.type(Boolean))
+  @Api.Prop('column width - must be set then isFixed is true (experimental)', prop => prop.type(Boolean))
   @Prop({ type: Number, required: false, default: null })
   public width!: number | null;
 

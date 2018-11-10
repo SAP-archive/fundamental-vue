@@ -3,7 +3,7 @@ import {
   Prop,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
@@ -12,13 +12,15 @@ interface Props {
 }
 
 @Component({ name: componentName('ActionBar') })
-@API.Component('Action Bar')
+@Api.Component('Action Bar')
+@Api.slot('back', 'custom back button')
+@Api.defaultSlot('custom action buttons')
 export class ActionBar extends TsxComponent<Props> {
-  @API.Prop('title', prop => prop.type(String))
+  @Api.Prop('title', prop => prop.type(String))
   @Prop({ required: true, type: String })
   public title!: string;
 
-  @API.Prop('description', prop => prop.type(String))
+  @Api.Prop('description', prop => prop.type(String))
   @Prop({ required: false, default: null, type: String })
   public description!: string | null;
 

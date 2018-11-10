@@ -1,18 +1,17 @@
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import { Route, RawLocation } from 'vue-router';
-import { uiComponents, UIComponent } from '@/docs/config';
-import { APICollection, API } from '@/api';
-import { slugify } from './util';
+import { uiComponents, UiComponent } from '@/docs/config';
+import { ApiCollection, Api } from '@/api';
 import { all, SideNavSubitem, Ui, SideNav, SideNavItem, SideNavSubmenu, SideNavList } from '@/components';
 
-const collection = new APICollection();
+const collection = new ApiCollection();
 for (const component of Object.values(all)) {
   if (!Reflect.has(component, 'options')) { continue; }
   const options = Reflect.get(component, 'options');
   if (typeof options === 'object') {
     if (Reflect.has(options, '$api')) {
       const api = Reflect.get(options, '$api');
-      if (api instanceof API) {
+      if (api instanceof Api) {
         collection.add(api);
       }
     }
@@ -25,10 +24,15 @@ export class DocsPage extends Vue {
 
   @Watch('$route', { immediate: true })
   public handleNewRoute(newRoute: Route) {
-    this.activeMenuItemId = newRoute.params.slug;
+    const name = newRoute.name;
+    const slug = newRoute.params.slug;
+    if(name != null && slug != null) {
+      const itemId = `${name}-${slug}`;
+      this.activeMenuItemId = itemId;
+    }
   }
 
-  private onComponentCollectionClick(doc: UIComponent) {
+  private onComponentCollectionClick(doc: UiComponent) {
     const location: RawLocation = {
       name: 'example',
       params: { slug: doc.slug },
@@ -36,11 +40,10 @@ export class DocsPage extends Vue {
     this.$router.push(location);
   }
 
-  private onAPIItemClick(api: API) {
-    const slug = 'api-' + slugify(api.humanName || '');
+  private onAPIItemClick(api: UiComponent) {
     const location: RawLocation = {
-      path: '/docs/api/' + slug,
-      params: { slug },
+      name: 'api',
+      params: { slug: api.slug },
     };
     this.$router.push(location);
   }
@@ -52,31 +55,33 @@ export class DocsPage extends Vue {
   }
 
   public render() {
-    const renderAPIItems = (apis: API[]) => {
-      const renderAPIItem = (api: API) => {
-        const itemId = 'api-' + slugify(api.humanName || '');
+    const renderAPIItems = (apis: UiComponent[]) => {
+      const renderAPIItem = (api: UiComponent) => {
+        const itemId = 'api-'+api.slug;
         return (
           <SideNavSubitem
             on-click={() => this.onAPIItemClick(api)}
             itemId={itemId}
           >
-            {api.humanName}
+            {api.title}
           </SideNavSubitem>);
       };
       return apis.map(apiItem => renderAPIItem(apiItem));
     };
 
-    const apiDocs = collection.apis;
+    // @ts-ignore
+    const VueDevToolsEnabled = this.$$VueDevToolsEnabled || false;
     return (
       <Ui>
+        {VueDevToolsEnabled && <script src='http://localhost:8098' />}
         <div slot='header'>
           <img src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
         </div>
         <SideNav slot='sidebar'>
           <SideNavList value={this.activeMenuItemId} header='Vue Fundamentals'>
-            <SideNavItem itemId='000' on-click={this.showStartPage}>Start</SideNavItem>
-            <SideNavSubmenu title='API Documentation' itemId='100'>
-              {renderAPIItems(apiDocs)}
+            <SideNavItem itemId='start-page' on-click={this.showStartPage}>Start</SideNavItem>
+            <SideNavSubmenu title='API Documentation' itemId='api-doc'>
+              {renderAPIItems(uiComponents)}
             </SideNavSubmenu>
 
           </SideNavList>
@@ -86,7 +91,7 @@ export class DocsPage extends Vue {
           >
             {uiComponents.map(item => (
               <SideNavItem
-                itemId={item.slug}
+                itemId={`example-${item.slug}`}
                 on-click={() => this.onComponentCollectionClick(item)}
               >
                 {item.title}

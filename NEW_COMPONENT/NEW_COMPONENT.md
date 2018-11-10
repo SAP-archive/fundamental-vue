@@ -27,9 +27,7 @@ Lets further assume that you are implementing a simple component.
 **src/components/Flower.tsx**
 
 ```js
-import {
-  componentName
-} from '@/util';
+import { componentName } from '@/util';
 
 import {
   Component,
@@ -37,7 +35,7 @@ import {
   Vue,
 } from 'vue-property-decorator';
 
-@Component({ name: componentName('flower') })
+@Component({ name: componentName('Flower') })
 export class Flower extends Vue {
   @Prop public color!: string;
 
@@ -52,7 +50,7 @@ export class Flower extends Vue {
 
 Key points:
 
-- `componentName('flower')` is used to create the name for your component. By convention the string passed to `componentName` should be in kebab-case and without any prefix. `componentName` will add the prefix for you.
+- `componentName('Flower')` is used to create the name for your component. By convention the string passed to `componentName` should be in CamelCase, starting with an uppercase letter and without any prefix. `componentName` will add the prefix for you.
 - In order to improve interoperability default exports for components are avoided.
 - `@Prop` iVars are suffixed with `!` in order to silence the compiler (false positive).
 
@@ -95,7 +93,7 @@ Examples are implemented as single file components (in our case `src/docs/pages/
 
 ```xhtml
 <template>
-  <vf-flower color="red" />
+  <FdFlower color="red" />
 </template>
 ```
 
@@ -120,7 +118,7 @@ import {
 +  Flower
 } from '@/components';
 
-export const UIComponentsConfig: UIComponentConfig[] = [
+export const UiComponentsConfig: UiComponentConfig[] = [
 +  {
 +    id: 'Flower',
 +    title: 'Flower',
@@ -133,7 +131,7 @@ export const UIComponentsConfig: UIComponentConfig[] = [
 ]
 ```
 
-The `id` of the `UIComponentsConfig` must be the name of the folder in `src/docs/pages`. The `id` of the example must be the name of the `vue`-file (without the extension). The name of the markdown file must be equal to the name of the example.
+The `id` of the `UiComponentsConfig` must be the name of the folder in `src/docs/pages`. The `id` of the example must be the name of the `vue`-file (without the extension). The name of the markdown file must be equal to the name of the example.
 
 Now your component should show up in the documentation.
 
@@ -145,23 +143,23 @@ Your new component may have props or emit custom events. You can document props 
 
 ```js
 import { componentName } from '@/util';
-import { API } from '@/api'; // <-- import API-Doc Helper
+import { Api } from '@/api'; // <-- import Api-Doc Helper
 import {
   Component,
   Prop,
   Vue,
 } from 'vue-property-decorator';
 
-@Component({ name: componentName('flower') })
+@Component({ name: componentName('Flower') })
 
 // Document the Component itself
 
-@API.Component(/* human readable name */'Alert', component => {
+@Api.Component(/* human readable name */'Alert', component => {
   component.addEvent('click', 'Sent when the Flower is clicked');
 })
 export class Flower extends Vue {
   @Prop
-  @API.Prop('flower color', prop => {
+  @ApiProp('flower color', prop => {
     prop
       .types(String)
       .acceptValues('red', 'green', 'blue')
@@ -185,11 +183,63 @@ The API documentation of a component looks like this:
 
 Every annotated and exported component is automatically documented.
 
+## Enable static Component Attribute Checks
+
+By using [JSX with Typescript](https://www.typescriptlang.org/docs/handbook/jsx.html) (let's refer to this combination as TSX from now on) we can take advantage of additional type safety. TSX differentiates between two element types:
+
+1. **intrinsic elements**: These are elements that refer to something intrinsic to the environment. In our case the environment is a browser executing our Typescript/Javascript code. Prime examples of intrinsic elements are `div`, `span`, `button`, …. By convention, intrinsiv elements start with a lower case letter and accept any attribute. `<div i-am-a-non-existent-attribute="with an invalid value" />` does not cause a compiler warning. We could enable type checking even for intrinsic elements but for now this seemed like not so high on the list of things to do.
+2. **value-based elements**: In our context, every element/component we implement falls into this category: Every element that is non-intrinsic is for our purpose, value-based. By convention value-based elements are be CamelCased. TSX has the ability to perform type checks on our value-based elements. Sadly this does not come for free. In order to enable static component attribute checks you have to tell the type system about every valid attribute your custom element/component supports.
+
+We now come back to our example from earlier and enable the static attribute checks:
+
+**src/components/Flower.tsx**
+
+```js
+import { componentName } from '@/util';
+import { Api } from '@/api';
+import {
+  Component,
+  Prop,
+} from 'vue-property-decorator';
+import TsxComponent from '@/vue-tsx';  // <-- import TsxComponent
+
+// Declare our puplic props (again)
+interface Props {
+  color?: string;
+}
+
+@Component({ name: componentName('Flower') })
+
+// Document the Component itself
+
+@Api.Component(/* human readable name */'Alert', component => {
+  component.addEvent('click', 'Sent when the Flower is clicked');
+})
+export class Flower extends TsxComponent<Props> { // <-- extend the TsxComponent
+  @Prop
+  @Api.Prop('flower color', prop => {
+    prop
+      .types(String)
+      .acceptValues('red', 'green', 'blue')
+  })
+  public color!: string;
+
+  public render() {
+    const style = {
+      'background-color': color,
+    }
+    return <div style={style}>I am a Flower</div>
+  }
+}
+```
+
+Declaring our public interface id done twice (by using @Prop and by declaring the Prop-interface). There are third party projects that work around this problem but this low-tech and redundant solution seemed acceptable.
+
 # Known Issues
 
 * `@/api`-module:
   - not really documented
-  - no ability to annotate slots
-* Optional/Required prop-attributes are not displayed - yet.
+  - ~~no ability to annotate slots~~ Use `@Api.slot(name: string, description: string)` and/or `@Api.defaultSlot(description: string)`.
+* ~~Optional/Required prop-attributes are not displayed - yet.~~
 * Parameters of events can be annotated but are not displayed - yet.
 * Props and Events gained by mixins are not displayed.

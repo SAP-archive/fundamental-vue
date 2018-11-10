@@ -4,7 +4,7 @@ import {
 } from 'vue-property-decorator';
 import { SideNavItem } from './SideNavItem';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
@@ -15,9 +15,10 @@ interface Props {
   components: { SideNavItem },
   name: componentName('SideNavSubitem'),
 })
-@API.Component('Side Nav Subitem')
+@Api.Component('Side Nav Subitem')
+@Api.defaultSlot('Content displayed by the subitem (usually just text)')
 export class SideNavSubitem extends TsxComponent<Props> {
-  @API.Prop('unique item identification', prop => prop.type(String))
+  @Api.Prop('unique item identification', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
   public itemId!: string | null;
 
