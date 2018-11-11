@@ -21,6 +21,7 @@ export * from './ListGroup';
 export * from './Table';
 export * from './Menu';
 export * from './Layout';
+export * from './InlineHelp';
 
 import * as Button from './Button';
 import * as Animations from './Animations';
@@ -37,6 +38,7 @@ import { Badge } from './Badge';
 import { ActionBar } from './ActionBar';
 import { Alert } from './alert';
 import { Icon } from './icon';
+import { InlineHelp } from './InlineHelp';
 import { Plugin, PluginAPI } from '@/lib/plugin';
 import { VueConstructor } from 'vue';
 import * as Breadcrumb from './Breadcrumb';
@@ -59,6 +61,7 @@ export const all = {
   Alert,
   ActionBar,
   Icon,
+  InlineHelp,
   ...Layout,
   ...Table,
   ...Combobox,
