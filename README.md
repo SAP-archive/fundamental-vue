@@ -7,7 +7,7 @@ Fundamental-vue is a set of [Vue.js](https://vuejs.org/) components implementati
 Fundamental-vue is open for contribution as long as you follow certain [rules/guidelines](./CONTRIBUTING.md).
 
 
-## [Playground](https://dist-oxqhsgierl.now.sh/#/start)
+## [Playground](https://dist-d1s3gx6kt.now.sh/#/start)
 
 ## Serve Documentation
 ```
