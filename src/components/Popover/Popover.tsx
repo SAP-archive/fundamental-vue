@@ -7,12 +7,8 @@ import { mixins } from 'vue-class-component';
 import { Uid } from '@/mixins';
 import { componentName } from '@/util';
 import { Api } from '@/api';
-import { clickawayDirective } from '@/mixins';
 
 @Component({
-  directives: {
-    onClickaway: clickawayDirective,
-  },
   name: componentName('popover'),
   components: {
     Button,
@@ -80,7 +76,6 @@ export class Popover extends mixins(Uid) {
         </div>
         <PopoverContent
           aria-controls={this.uid}
-          visible={this.currentPopoverVisible}
           {...popoverContentHandler}
         >
           {dropdown}

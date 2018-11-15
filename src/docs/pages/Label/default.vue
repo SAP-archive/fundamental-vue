@@ -1,3 +1,4 @@
+<title>Label</title>
 <template>
   <div class="labels">
     <FdLabel>Default</FdLabel>

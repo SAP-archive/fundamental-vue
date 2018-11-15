@@ -1,9 +1,10 @@
 import Router from 'vue-router';
-import { ComponentCollection } from '@/docs/components';
-import { StartPage } from '@/docs/static-pages/Start';
+import { ExampleCollection, StaticContent } from '@/docs/components';
 import { enableLastRouteRestoration } from './LastRouteRestoration';
 
 export const DocsRouter = new Router({
+  // Scroll the main component to the top.
+  scrollBehavior() { return { x: 0, y: 0}; },
   routes: [
     {
       path: '/',
@@ -11,18 +12,26 @@ export const DocsRouter = new Router({
       redirect: { path: '/start' },
     },
     {
+      name: 'start',
       path: '/start',
-      component: StartPage,
+      component: StaticContent,
+      props: { html: require('@/docs/static-pages/start.md') },
+    },
+    {
+      name: 'guide-new-component',
+      path: '/guide/new-component',
+      component: StaticContent,
+      props: { html: require('@/../NEW_COMPONENT/NEW_COMPONENT.md') },
     },
     {
       path: '/example/:slug',
       name: 'example',
-      component: ComponentCollection,
+      component: ExampleCollection,
     },
     {
       path: '/api/:slug',
       name: 'api',
-      component: ComponentCollection,
+      component: ExampleCollection,
       props: { showApiOnly: true },
     },
   ],

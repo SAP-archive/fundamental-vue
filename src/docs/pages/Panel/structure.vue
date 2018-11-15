@@ -1,3 +1,5 @@
+<title>Panel Structure</title>
+
 <template>
   <FdPanel title="Title" description="Description">
     <p slot="actions">Actions</p>

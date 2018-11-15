@@ -1,7 +1,6 @@
 import {
   Component,
   Prop,
-  Provide,
   Inject,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
@@ -9,13 +8,19 @@ import { SideNavItem } from './SideNavItem';
 import { SideNav } from './SideNav';
 import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
+import { ITEM_LIST, SIDE_NAV } from './shared';
 
 interface Props {
   value?: string | null;
   header?: string | null;
 }
 
-@Component({ name: componentName('SideNavList') })
+@Component({
+  name: componentName('SideNavList'),
+  provide() {
+    return {[ITEM_LIST]: this};
+  },
+})
 @Api.Component('Side Nav List', comp => {
   comp
     .addEvent('select', 'Sent when a item was clicked', event => event.raw('item', 'Item'))
@@ -27,6 +32,15 @@ export class SideNavList extends TsxComponent<Props> {
   @Prop({ type: String, default: null, required: false })
   public value!: string | null;
 
+  public get activeItemId(): string | null {
+    const nav = this.sideNav;
+    if(nav != null) {
+      return nav.activeItemId;
+    }
+    return this.localActiveItemId;
+  }
+  private localActiveItemId: string | null = this.value;
+
   @Api.Prop('header', build => {
     build
       .describe('text displayed in the side nav list (group) header')
@@ -35,8 +49,8 @@ export class SideNavList extends TsxComponent<Props> {
   @Prop({ type: String, required: false, default: null })
   public header!: string | null;
 
-  @Inject() private sideNav!: SideNav | null;
-  @Provide() public navList = this;
+  @Inject({ from: SIDE_NAV, default: null })
+  private sideNav!: SideNav | null;
 
   public render() {
     const itemsOrSubmenus = this.$slots.default;
@@ -59,6 +73,7 @@ export class SideNavList extends TsxComponent<Props> {
   public didClickSideNavItem(item: SideNavItem) {
     this.$emit('select', item);
     this.$emit('input', item.itemId);
+    this.localActiveItemId = item.itemId;
     const nav = this.sideNav;
     if (nav != null) { nav.didClickSideNavItem(item); }
   }

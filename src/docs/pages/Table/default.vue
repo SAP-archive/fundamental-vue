@@ -1,3 +1,5 @@
+<title>Default Table</title>
+
 <template>
   <div>
     <FdTable selectionMode="single" :data="tableData">

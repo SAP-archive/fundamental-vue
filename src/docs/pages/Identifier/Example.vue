@@ -1,3 +1,5 @@
+<title>Accent Colors</title>
+
 <template>
   <div class="identifiers">
     <FdIdentifier size="s" icon="money-bills" />

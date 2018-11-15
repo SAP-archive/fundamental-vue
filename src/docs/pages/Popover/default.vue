@@ -1,3 +1,5 @@
+<title>Popover</title>
+
 <template>
   <FdPopover title="Show Popover">
     <FdMenuItem>Option 1</FdMenuItem>

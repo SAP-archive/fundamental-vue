@@ -1,3 +1,5 @@
+<title>Table with fixed Column</title>
+
 <template><div>
   <FdTable firstColumnFixed :data="tableData">
     <FdTableColumn sortable prop="rating" label="Rating" />

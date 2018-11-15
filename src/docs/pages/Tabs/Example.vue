@@ -1,3 +1,5 @@
+<title>Default Tabs</title>
+
 <template>
   <div>
     <FdTabs v-model="activeTab">

@@ -1,3 +1,5 @@
+<title>Panel Grid (5 Colunns)</title>
+
 <template>
   <FdPanelGrid :col=5>
     <FdPanel>Panel Body 1</FdPanel>

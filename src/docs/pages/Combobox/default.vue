@@ -1,3 +1,5 @@
+<title>Default Combobox</title>
+
 <template>
   <div>
     <FdCombobox

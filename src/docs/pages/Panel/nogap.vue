@@ -1,3 +1,5 @@
+<title>Panel Grid with nogap</title>
+
 <template>
    <FdPanelGrid nogap>
     <FdPanel>Panel Body 1</FdPanel>

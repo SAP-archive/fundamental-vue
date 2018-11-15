@@ -1,3 +1,5 @@
+<title>Panel Grid with Column Span</title>
+
 <template>
   <FdPanelGrid :col=6>
     <FdPanel :span=2>Panel Body 1 - span 2</FdPanel>

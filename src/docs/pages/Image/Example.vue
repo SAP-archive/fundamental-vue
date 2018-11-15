@@ -1,3 +1,5 @@
+<title>Size and Shape</title>
+
 <template>
   <div class="images">
     <FdImage size="s" url="https://placeimg.com/400/400/nature" />

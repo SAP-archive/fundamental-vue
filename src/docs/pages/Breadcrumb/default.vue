@@ -1,3 +1,5 @@
+<title>Breadcrumb</title>
+
 <template>
   <div>
     <FdBreadcrumb>

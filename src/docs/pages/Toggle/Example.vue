@@ -1,3 +1,5 @@
+<title>Toggle</title>
+
 <template>
   <div>
     <FdToggle label="Default Toggle"></FdToggle>

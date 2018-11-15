@@ -1,3 +1,5 @@
+<title>Section with Panel Grid</title>
+
 <template>
   <FdSection>
     <FdPanelGrid>

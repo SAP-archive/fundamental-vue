@@ -1,3 +1,5 @@
+<title>Icon usage and size options</title>
+
 <template>
   <div>
     <FdIcon name="cart" size="s"/>

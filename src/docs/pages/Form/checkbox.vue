@@ -1,3 +1,5 @@
+<title>Checkboxes</title>
+
 <template>
   <div>
     <FdFieldSet>

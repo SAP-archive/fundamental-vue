@@ -4,47 +4,116 @@ import {
   Prop,
 } from 'vue-property-decorator';
 import { SideNavList } from './SideNavList';
-import { SideNavSubmenu } from './SideNavSubmenu';
 import { Api } from '@/api';
 import { componentName } from '@/util';
 import TsxComponent from '@/vue-tsx';
+import { SIDE_NAV, ITEM_LIST, ITEM_CONTAINER, ItemContainer } from './shared';
+import { VNode } from 'vue';
+import { SideNav } from './SideNav';
 
 interface Props {
   isSelected?: boolean;
-  hasChild?: boolean;
-  isSubitem?: boolean;
-  itemId?: string | null;
+  itemId: string;
+  submenuTitle?: string;
 }
 
-@Component({ name: componentName('SideNavItem') })
+// A SideNavItem can either contain:
+// - Text (used as the title)
+// - SideNavItems (used to populate a sub side nav)
+// If a SideNavItem acts as a submenu use the title prop
+// Instead of the default slot for the title.
+
+@Component({
+  name: componentName('SideNavItem'),
+  provide() {
+    return {
+      [ITEM_CONTAINER]: this,
+    };
+  },
+})
 @Api.Component('Side Nav Item', comp => {
   comp.addEvent('click', 'Sent when item is clicked');
 })
 @Api.defaultSlot('Side Nav Items displayed by the list.')
-export class SideNavItem extends TsxComponent<Props> {
+export class SideNavItem extends TsxComponent<Props> implements ItemContainer {
   @Api.Prop('whether selected', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
   public isSelected!: boolean;
 
-  @Api.Prop('whether selected', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, required: false, default: false })
-  public hasChild!: boolean;
+  // @Api.Prop('whether selected', prop => prop.type(Boolean))
+  // @Prop({ type: Boolean, required: false, default: false })
+  // public hasChild!: boolean;
 
-  @Api.Prop('whether selected', prop => prop.type(Boolean))
+  @Api.Prop('whether is subitem', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
   public isSubitem!: boolean;
 
   @Api.Prop('unique item identification', prop => prop.type(String))
-  @Prop({ type: String, default: null, required: false })
-  public itemId!: string | null;
+  @Prop({ type: String, required: true })
+  public itemId!: string;
 
-  @Inject({ default: null }) public navList!: SideNavList | null;
-  @Inject({ default: null }) private submenu!: SideNavSubmenu | null;
+  @Api.Prop('submenu title', prop => prop.type(String))
+  @Prop({ type: String, required: false, default: null })
+  public submenuTitle!: string | null;
+
+  @Inject({ from: ITEM_LIST, default: null })
+  public navList!: SideNavList | null;
+
+  @Inject({ from: SIDE_NAV, default: null })
+  public sideNav!: SideNav | null;
+
+  @Inject({ from: ITEM_CONTAINER, default: null })
+  private parentItem!: ItemContainer | null;
+
+  // Helper
+  private isExpanded = false;
+
+  private get hasChildItems(): boolean {
+    return this.childItemIds.length > 0;
+  }
+
+  private get isChildItem(): boolean {
+    return this.parentItem != null;
+  }
+
+  private get title(): string | VNode[] {
+    return this.hasChildItems ? (this.submenuTitle || '') : this.$slots.default;
+  }
+
+  // ItemContainer-Impls
+  private childItemIds: string[] = [];
+
+  public addItem(id: string) {
+    this.childItemIds = Array.from(new Set([...this.childItemIds, id]));
+  }
+  public removeItem(id: string) {
+    this.childItemIds = this.childItemIds.filter(childId => childId !== id);
+  }
+
+  // Vue-related
+  public mounted() {
+    const parentItem = this.parentItem;
+    if(parentItem != null) {
+      parentItem.addItem(this.itemId);
+    }
+  }
+
+  public beforeDestroy() {
+    const parentItem = this.parentItem;
+    if(parentItem != null) {
+      parentItem.removeItem(this.itemId);
+    }
+  }
 
   public render() {
-    const title = this.$slots.default;
-    const sublist = this.$slots.sublist;
-
+    const title = this.title;
+    const renderSubitems = () => {
+      return (
+        <ul class='fd-side-nav__sublist' aria-hidden={!this.isExpanded}>
+          {this.$slots.default}
+        </ul>
+      );
+    };
     return (
       <li class={this.classes}>
         <a
@@ -56,28 +125,27 @@ export class SideNavItem extends TsxComponent<Props> {
         >
           {title}
         </a>
-        {sublist}
+        {this.hasChildItems && renderSubitems()}
       </li>
     );
   }
 
   private get classes() {
     return {
-      'fd-side-nav__item': !this.isSubitem,
-      'fd-side-nav__subitem': this.isSubitem,
+      'fd-side-nav__item': !this.isChildItem,
+      'fd-side-nav__subitem': this.isChildItem,
     };
   }
 
   private get isActive() {
     const list = this.navList;
     if (list == null) { return false; }
-    const itemId = this.itemId;
-    const activeItemId = list.value;// || list.defaultActiveItemId;
-    if (itemId == null || activeItemId == null) {
+    const activeItemId = list.activeItemId;
+    if (activeItemId == null) {
       return false;
     }
-    const isActive = itemId === activeItemId;
-    return isActive;
+    const itemId = this.itemId;
+    return itemId === activeItemId;
   }
 
   private get ariaSelected() {
@@ -86,10 +154,11 @@ export class SideNavItem extends TsxComponent<Props> {
 
   private get linkClassObject() {
     return {
-      'fd-side-nav__link': !this.isSubitem,
-      'fd-side-nav__sublink': this.isSubitem,
+      'fd-side-nav__link': !this.isChildItem,
+      'fd-side-nav__sublink': this.isChildItem,
       'is-selected': this.isSelected,
-      'has-child': this.hasChild,
+      'is-expanded': this.isExpanded,
+      'has-child': this.hasChildItems,
     };
   }
 
@@ -100,13 +169,9 @@ export class SideNavItem extends TsxComponent<Props> {
     if (list != null) {
       list.didClickSideNavItem(this);
     }
-    const submenu = this.submenu;
 
-    // Don't inform our submenu if we are a subitem.
-    // Otherwise clicking a subitem causes the submenu to toggle.
-    const informSubmenu = this.isSubitem === false;
-    if (submenu != null && informSubmenu) {
-      submenu.didClickSideNavItem(this);
+    if(this.hasChildItems) {
+      this.isExpanded = !this.isExpanded;
     }
   }
 }

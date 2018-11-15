@@ -1,3 +1,5 @@
+<title>Link</title>
+
 <template>
   <div>
     <h3>Normal</h3>

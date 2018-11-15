@@ -4,12 +4,13 @@ import {
 } from 'vue-property-decorator';
 import './ComponentExample.css';
 import DynamicComponent from '@/docs/components/DynamicComponent.vue';
-import { Panel, Section, ExpandTransition } from '@/components';
+import { Panel, ExpandTransition } from '@/components';
 import { CodeView } from '@/docs/components';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
-  description?: string | null;
+  tip?: string | null;
+  docs?: string | null;
   sourcecode?: string;
   title?: string;
   component?: object;
@@ -24,7 +25,10 @@ interface Props {
 })
 export class ComponentExample extends TsxComponent<Props> {
   @Prop({ type: String, required: false, default: null })
-  public description!: string | null;
+  public tip!: string | null;
+
+  @Prop({ type: String, default: null })
+  public docs!: string | null;
 
   @Prop({ type: String, default: '', required: false })
   public sourcecode!: string;
@@ -57,22 +61,27 @@ export class ComponentExample extends TsxComponent<Props> {
       );
 
     };
-    const description = this.description;
+    const tip = this.tip;
     return (
-      <Section title={this.title}>
+      <div style='padding: 30px 30px 30px 30px;'>
+        <h1 style='font-size: 21px; color: #555555;'>{this.title}</h1>
+        {this.docs && <div style='font-size: 1.2em; margin-bottom: 12px;' domPropsInnerHTML={this.docs} />}
         <Panel
           condensed={true}
           condensedFooter={true}
           style={'margin-bottom: 20px;'}
         >
-          {!!description &&
+          {!!tip &&
             <div
-              style='background-color: rgb(245,245,245); padding: 16px 24px;'
-              domPropsInnerHTML={description}
-            />
+              style='border-left: 0.5rem solid #42b983; background-color: #f3f5f7; padding: 1.5rem; margin-top: 1em; border-bottom: 1px solid #ebebeb;'
+            >
+              <div style='font-weight: 600; font-size: 16px; line-height: 1.7;'>TIP</div>
+              <div style='margin-top: 1em; margin-bottom: 1em; font-size: 16px;' domPropsInnerHTML={tip} />
+            </div>
           }
-          {!!description && <div style='height: 1px; backgroundColor: #ebebeb;' />}
+          {!!tip && <div style='height: 1px; backgroundColor: #ebebeb;' />}
           <dynamic-component component={this.component} />
+          {/* <h1>{this.component.__title}</h1> */}
           <div slot='footer' style='width:100%; display:block;'>
             <div
               style='cursor: pointer; text-align: center; background-color: rgb(250, 250, 250);'
@@ -88,7 +97,7 @@ export class ComponentExample extends TsxComponent<Props> {
             {renderCodeIfNeeded()}
           </div>
         </Panel>
-      </Section>
+      </div>
     );
   }
 

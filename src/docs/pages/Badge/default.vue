@@ -1,3 +1,4 @@
+<title>Default Badge</title>
 <template>
   <div class="badges">
     <FdBadge>Default</FdBadge>

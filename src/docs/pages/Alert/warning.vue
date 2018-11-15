@@ -1,3 +1,5 @@
+<title>Warnin Alert</title>
+
 <template>
   <div>
     <FdAlert type="warning" dismissible>

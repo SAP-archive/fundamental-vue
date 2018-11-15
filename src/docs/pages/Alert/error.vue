@@ -1,3 +1,4 @@
+<title>Error Alert</title>
 <template>
   <div>
     <FdAlert type="error" dismissible>

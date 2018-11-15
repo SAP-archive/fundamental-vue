@@ -1,8 +1,23 @@
-import { Vue, Component, Watch } from 'vue-property-decorator';
-import { Route, RawLocation } from 'vue-router';
-import { uiComponents, UiComponent } from '@/docs/config';
-import { ApiCollection, Api } from '@/api';
-import { all, SideNavSubitem, Ui, SideNav, SideNavItem, SideNavSubmenu, SideNavList } from '@/components';
+import {
+  Vue,
+  Component,
+  Watch,
+ } from 'vue-property-decorator';
+import {
+  Route,
+  RawLocation,
+} from 'vue-router';
+import {
+  exampleCollections,
+  ExampleCollections,
+  ExampleCollection,
+} from './pages';
+import {
+  ApiCollection,
+  Api,
+} from '@/api';
+import { all, Ui, SideNav, SideNavItem, SideNavList } from '@/components';
+import './DocsPage.sass';
 
 const collection = new ApiCollection();
 for (const component of Object.values(all)) {
@@ -22,17 +37,29 @@ for (const component of Object.values(all)) {
 export class DocsPage extends Vue {
   private activeMenuItemId: string | null = null;
 
+  // TODO: Make this nice.
   @Watch('$route', { immediate: true })
   public handleNewRoute(newRoute: Route) {
     const name = newRoute.name;
-    const slug = newRoute.params.slug;
-    if(name != null && slug != null) {
-      const itemId = `${name}-${slug}`;
-      this.activeMenuItemId = itemId;
+    if(name != null) {
+      if(name === 'start') {
+        this.activeMenuItemId = 'start';
+      }
+      if(name === 'home') {
+        this.activeMenuItemId = null;
+      }
+      if(name === 'guide-new-component') {
+        this.activeMenuItemId = 'new-component';
+      }
+      const slug = newRoute.params.slug;
+      if(name != null && slug != null) {
+        const itemId = `${name}-${slug}`;
+        this.activeMenuItemId = itemId;
+      }
     }
   }
 
-  private onComponentCollectionClick(doc: UiComponent) {
+  private onExampleCollectionClick(doc: ExampleCollection) {
     const location: RawLocation = {
       name: 'example',
       params: { slug: doc.slug },
@@ -40,7 +67,7 @@ export class DocsPage extends Vue {
     this.$router.push(location);
   }
 
-  private onAPIItemClick(api: UiComponent) {
+  private onApiExampleCollectionClick(api: ExampleCollection) {
     const location: RawLocation = {
       name: 'api',
       params: { slug: api.slug },
@@ -54,45 +81,55 @@ export class DocsPage extends Vue {
     });
   }
 
+  private push(path: string, activeItemId: string) {
+    this.activeMenuItemId = activeItemId;
+    this.$router.push({path});
+  }
+
   public render() {
-    const renderAPIItems = (apis: UiComponent[]) => {
-      const renderAPIItem = (api: UiComponent) => {
-        const itemId = 'api-'+api.slug;
+    const renderExampleCollections = (collections: ExampleCollections) => {
+      const renderExampleCollection = (exampleCollection: ExampleCollection) => {
+        const itemId = 'api-'+exampleCollection.slug;
         return (
-          <SideNavSubitem
-            on-click={() => this.onAPIItemClick(api)}
+          <SideNavItem
+            on-click={() => this.onApiExampleCollectionClick(exampleCollection)}
             itemId={itemId}
           >
-            {api.title}
-          </SideNavSubitem>);
+            {exampleCollection.title}
+          </SideNavItem>);
       };
-      return apis.map(apiItem => renderAPIItem(apiItem));
+      return collections.map(renderExampleCollection);
     };
 
     // @ts-ignore
     const VueDevToolsEnabled = this.$$VueDevToolsEnabled || false;
     return (
-      <Ui>
+      <Ui headerClass='navbar'>
         {VueDevToolsEnabled && <script src='http://localhost:8098' />}
         <div slot='header'>
-          <img src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
+          <router-link to='/'>
+          <img class='navbar-logo' src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
+          </router-link>
         </div>
-        <SideNav slot='sidebar'>
-          <SideNavList value={this.activeMenuItemId} header='Vue Fundamentals'>
-            <SideNavItem itemId='start-page' on-click={this.showStartPage}>Start</SideNavItem>
-            <SideNavSubmenu title='API Documentation' itemId='api-doc'>
-              {renderAPIItems(uiComponents)}
-            </SideNavSubmenu>
-
+        <SideNav defaultItemId={this.activeMenuItemId} class='sidebar' slot='sidebar'>
+          <SideNavList
+            class='sidebar-list'
+            header='Vue Fundamentals'
+          >
+            <SideNavItem itemId='start' on-click={this.showStartPage}>Start</SideNavItem>
+            <SideNavItem itemId='new-component' on-click={() => this.push('/guide/new-component', 'new-component')}>New Component</SideNavItem>
+            <SideNavItem submenuTitle='API Documentation' itemId='api-doc'>
+              {renderExampleCollections(exampleCollections)}
+            </SideNavItem>
           </SideNavList>
           <SideNavList
+            class='sidebar-list fd-has-margin-bottom-large'
             header={'Components'}
-            value={this.activeMenuItemId}
           >
-            {uiComponents.map(item => (
+            {exampleCollections.map(item => (
               <SideNavItem
                 itemId={`example-${item.slug}`}
-                on-click={() => this.onComponentCollectionClick(item)}
+                on-click={() => this.onExampleCollectionClick(item)}
               >
                 {item.title}
               </SideNavItem>

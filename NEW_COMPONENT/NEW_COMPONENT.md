@@ -1,8 +1,10 @@
-# Implementing a new Component for Fundamental-vue
+# New Component Guide
 
-This is a very brief guide which describes what you have to do in order to implement a new component for Fundamental-vue. For the purpose of this guide, lets assume that you want to create a component called `Flower`.
+> This is a very brief guide which describes what you have to do in order to implement a new component for Fundamental-vue.
 
 ## Creating the files for the actual Component
+For the purpose of this guide, lets assume that you want to create a component called `Flower`.
+
 If the new component is so simple that it will fit in just a single file then you have to create just a single file:
 
 ```
@@ -84,10 +86,12 @@ In order to create a example for your new component create the necessary files:
 ```shell
 $ mkdir src/docs/pages/Flower
 $ touch src/docs/pages/Flower/default.vue
-$ touch src/docs/pages/Flower/default.md
+$ touch src/docs/pages/Flower/index.ts
 ```
 
-Examples are implemented as single file components (in our case `src/docs/pages/Flower/default.vue`) because this is what most Vue developers are using. The markdown file (which must have the same name as the corresponding example file) is optional. The content of the markdown file is displayed above the actual example (gray box in the screenshot above).
+Examples are implemented as single file components (in our case `src/docs/pages/Flower/default.vue`) because this is what most Vue developers are using. You can put anything you want in the vue-file: a `<template>`-block, a `<script>`-block and a `<style>`-block. Fundamental Vue examples may contain additional documentation specific blocks. More about that later. For now lets simply implement the most basic example possible:
+
+### Simple Example
 
 **src/docs/pages/Flower/default.vue**
 
@@ -99,41 +103,49 @@ Examples are implemented as single file components (in our case `src/docs/pages/
 
 You can include a `script` and/or `style` section if needed. If you declare custom styles make sure to make your `style`-section scoped.
 
-**src/docs/pages/Flower/default.md**
+### Improved Example
 
-```md
-**Good to know:**
+As already mentioned in the paragraph above, you can improve your example by using addional blocks. Namely:
 
-Flowers can have a background color.
+- `<title>Example Title</title>`: Specify a title for your example. The title is displayed in a big font above your example.
+- `<docs>Potentially long example description</docs>`: Describe the example in detail. This is displayed directly below the title. **Supports Markdown**
+- `<tip>Short but useful tip related to the example/component.</tip>` If there is something important, especially useful or good to know fact use the `<tip>`-block. This is displayed in a highlighted box below the `<docs>`-block. **Supports Markdown**
+
+**src/docs/pages/Flower/default.vue**
+
+```xhtml
+<title>Red Flower (Rose)</title>
+<docs>Roses are **red**, __Violets__ are ~blue~, Sugar is sweet, And so are you.</docs>
+<tip>Plant roses under trees for **best** results.</tip>
+<template>
+  <FdFlower color="red" />
+</template>
 ```
 
-In order to make the documentation visible you have to modify the docs-configuration:
+### The `index.ts`-file
+Remember: At the moment you have only a single example. However you can have multiple examples spread over multiple vue-files. It is not uncommon that your examples are related to not only a single component but make use of many different components.
 
-**src/docs/config/ui-components.ts**
+You should list all components that are relevant for your examples. This information will be used to display the corresonding component API reference below the examples.
 
-```diff
-// Add your component to the longest import statement in the world.
-import {
-  …
-+  Flower
-} from '@/components';
+You do this by modifying the `index.ts`-file in `src/docs/pages/Flower/`. The contents of this file should look like this:
 
-export const UiComponentsConfig: UiComponentConfig[] = [
-+  {
-+    id: 'Flower',
-+    title: 'Flower',
-+    examples: [
-+      { id: 'default', title: 'Default Flower' },
-+    ],
-+    relatedComponents: [Flower],
-+  },
-  // …remaining entries
-]
+```js
+import { ExampleCollectionFunction } from '../types';
+
+export const plugin: ExampleCollectionFunction = () => {
+  return { relatedComponents: [] };
+};
 ```
 
-The `id` of the `UiComponentsConfig` must be the name of the folder in `src/docs/pages`. The `id` of the example must be the name of the `vue`-file (without the extension). The name of the markdown file must be equal to the name of the example.
+By having the code above in the `index.ts`-file you basically say that your examples are not related to any component. The related components you return have to be instances of `VueConstructor`. You don't have to manually import the related components. The first argument of the `ExampleCollectionFunction` is an object which contains all components. So we can simply do this:
 
-Now your component should show up in the documentation.
+```js
+import { ExampleCollectionFunction } from '../types';
+
+export const plugin: ExampleCollectionFunction = ({ Flower }) => {
+  return { relatedComponents: [Flower] };
+};
+```
 
 ## Documenting the new Component: API Documentation
 
@@ -235,7 +247,7 @@ export class Flower extends TsxComponent<Props> { // <-- extend the TsxComponent
 
 Declaring our public interface id done twice (by using @Prop and by declaring the Prop-interface). There are third party projects that work around this problem but this low-tech and redundant solution seemed acceptable.
 
-# Known Issues
+## Known Issues
 
 * `@/api`-module:
   - not really documented

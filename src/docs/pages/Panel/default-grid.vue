@@ -1,3 +1,5 @@
+<title>Default Panel Grid (3 Columns)</title>
+
 <template>
   <FdPanelGrid>
     <FdPanel>Panel Body 1</FdPanel>

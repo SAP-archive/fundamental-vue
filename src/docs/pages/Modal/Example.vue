@@ -1,3 +1,5 @@
+<title>Information Modal</title>
+
 <template>
   <div>
     <FdButton @click="showModal">Show Modal</FdButton>

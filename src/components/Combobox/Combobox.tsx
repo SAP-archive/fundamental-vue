@@ -6,9 +6,9 @@ import { mixins } from 'vue-class-component';
 import { Uid } from '@/mixins';
 import { Api } from '@/api';
 import { componentName } from '@/util';
-import { clickawayDirective } from '@/mixins';
 import { PopoverContent } from './../Popover';
 import { Input, InputGroup } from './../Form';
+import { ClickAwayContainer } from '@/components/ClickAwayContainer';
 
 interface Props {
   value?: string | null;
@@ -19,9 +19,6 @@ interface Props {
 }
 
 @Component({
-  directives: {
-    onClickaway: clickawayDirective,
-  },
   name: componentName('Combobox'),
   provide() {
     return {
@@ -29,6 +26,7 @@ interface Props {
     };
   },
   components: {
+    ClickAwayContainer,
     PopoverContent,
     Input,
     InputGroup,
@@ -70,11 +68,23 @@ export class Combobox extends mixins(Uid) {
     this.$emit('update:value', this.currentValue);
   }
 
+  private handleSelectItem(value) {
+    this.setCurrentValue(value);
+    this.togglePopoverVisible();
+  }
+
   public render() {
     const dropdown = this.$slots.default;
 
-    // tslint:disable-next-line:object-literal-key-quotes
-    const renderPopoverContent = () => <PopoverContent {...{'class': 'fd-popover__body--no-arrow'}} visible={this.currentPopoverVisible}>{dropdown}</PopoverContent>;
+    const renderPopoverContent = () => (
+      <PopoverContent
+        // tslint:disable-next-line:object-literal-key-quotes
+        {...{'class': 'fd-popover__body--no-arrow'}}
+        on-select={value => this.handleSelectItem(value)}
+      >
+        {dropdown}
+      </PopoverContent>
+    );
 
     return (
       <div class='fd-combobox-input'>
@@ -95,7 +105,14 @@ export class Combobox extends mixins(Uid) {
               />
             </InputGroup>
           </div>
-          {renderPopoverContent()}
+          <ClickAwayContainer
+            aria-hidden={!this.currentPopoverVisible}
+            v-show={this.currentPopoverVisible}
+            active={this.currentPopoverVisible}
+            on-clickOutside={() => this.currentPopoverVisible = false}
+          >
+            {renderPopoverContent()}
+          </ClickAwayContainer>
         </div>
       </div>
     );

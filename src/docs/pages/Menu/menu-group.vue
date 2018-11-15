@@ -1,3 +1,5 @@
+<title>Menu w/ Group</title>
+
 <template>
   <FdMenu @select="sayHi">
     <FdMenuList>

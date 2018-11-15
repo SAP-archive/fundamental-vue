@@ -1,3 +1,5 @@
+<title>Menu w/ addon before</title>
+
 <template>
   <FdMenu canHaveAddon>
     <FdMenuList>

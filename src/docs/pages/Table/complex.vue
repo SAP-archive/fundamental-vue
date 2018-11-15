@@ -1,3 +1,5 @@
+<title>Complex and Dynamic Table</title>
+
 <template>
   <div>
     <FdTable selectionMode="single" :data="tableData">

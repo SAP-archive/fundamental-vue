@@ -5,23 +5,18 @@ import {
 } from 'vue-property-decorator';
 import { Api } from '@/api';
 import { componentName } from '@/util';
-import { clickawayDirective } from '@/mixins';
-import TsxComponent from '@/vue-tsx';
+import { ClickAwayContainer } from '@/components/ClickAwayContainer';
 import { Button } from './Button';
+import TsxComponent from '@/vue-tsx';
 
 interface Props {
   active: boolean;
   title: string | null;
 }
 
-const HANDLER = '_vue_vf-clickaway_handler';
-
 @Component({
   name: componentName('Modal'),
-  components: { Button },
-  directives: {
-    onClickaway: clickawayDirective,
-  },
+  components: { ClickAwayContainer, Button },
 })
 @Api.Component('Modal', comp => {
   comp
@@ -41,48 +36,10 @@ export class Modal extends TsxComponent<Props> {
   public title!: string | null;
 
   private isActive = this.active;
-  private listening = false;
 
   @Watch('active', { immediate: true })
   public didChangeActive(value) {
     this.isActive = value;
-  }
-
-  @Watch('isActive')
-  public didChangeIsActive(active) {
-    const { documentElement } = document;
-    if (documentElement == null) {
-      return;
-    }
-    // TODO: Refactor
-    const el = this.$el;
-    if (active) {
-      if (this.listening === false) {
-        el[HANDLER] = (ev: MouseEvent) => {
-          const path = ev.composedPath();
-          const { target } = ev;
-          if (target != null && target instanceof Node) {
-            const indexOfEl = path.indexOf(el);
-            const containsTarget = el.contains(target);
-            if ((indexOfEl === 0 && containsTarget)) {
-              documentElement.removeEventListener('click', el[HANDLER]);
-              this.listening = false;
-              return this.clickOutside();
-            }
-          }
-        };
-        documentElement.addEventListener('click', el[HANDLER], false);
-        this.listening = true;
-      }
-    } else {
-      if (this.listening) {
-        const handler = el[HANDLER];
-        if (handler != null) {
-          documentElement.removeEventListener('click', el[HANDLER]);
-          this.listening = false;
-        }
-      }
-    }
   }
 
   private close() {
@@ -99,14 +56,6 @@ export class Modal extends TsxComponent<Props> {
     if (el != null) {
       const parent = el.parentNode;
       if (parent != null) {
-        const handler = el[HANDLER];
-        if (handler != null) {
-          const { documentElement } = document;
-          if (documentElement != null) {
-            documentElement.removeEventListener('click', el[HANDLER]);
-            this.listening = false;
-          }
-        }
         parent.removeChild(el);
       }
     }
@@ -149,13 +98,13 @@ export class Modal extends TsxComponent<Props> {
           class='fd-ui__overlay fd-overlay fd-overlay--modal'
           aria-hidden={!this.isActive}
         >
-          <div class='fd-modal'>
+          <ClickAwayContainer on-clickOutside={this.clickOutside} class='fd-modal' active={this.isActive}>
             <div class='fd-modal__content' role='document'>
               {renderHeader()}
               {renderBody()}
               {renderFooter()}
             </div>
-          </div>
+          </ClickAwayContainer>
         </div>
       </transition>
     );

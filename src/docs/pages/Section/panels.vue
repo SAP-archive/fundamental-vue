@@ -1,3 +1,5 @@
+<title>Section with Panels</title>
+
 <template>
 <div>
   <FdSection>

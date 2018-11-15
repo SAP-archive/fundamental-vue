@@ -1,3 +1,6 @@
+<title>Binding</title>
+<tip>`FdInput` supports `v-model` and thus you can easily create bi-directional bindings.</tip>
+
 <template>
   <div>
     <FdFormSet>

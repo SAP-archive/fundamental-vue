@@ -1,3 +1,5 @@
+<title>Identifiers</title>
+
 <template>
   <div class="identifiers">
     <FdIdentifier size="m" icon="money-bills" backgroundColor="accent-1" />

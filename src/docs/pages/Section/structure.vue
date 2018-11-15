@@ -1,3 +1,5 @@
+<title>Section Structure</title>
+
 <template>
   <div>
     <FdSection>Section 1</FdSection>

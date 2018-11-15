@@ -1,3 +1,4 @@
+<title>Default Alert</title>
 <template>
   <div>
     <FdAlert dismissible>
