@@ -14,6 +14,8 @@ export * from './Button';
 export * from './SideNav';
 export * from './Form';
 export * from './Breadcrumb';
+export * from './Label';
+export * from './Status';
 export * from './Link';
 export * from './Spinner';
 export * from './Modal';
@@ -35,6 +37,8 @@ import { Image } from './Image';
 import { Spinner } from './Spinner';
 import { Link } from './Link';
 import { Badge } from './Badge';
+import { Label } from './Label';
+import { Status } from './Status';
 import { ActionBar } from './ActionBar';
 import { Alert } from './Alert';
 import { Icon } from './Icon';
@@ -51,43 +55,50 @@ import * as Table from './Table';
 import * as Layout from './Layout';
 
 export const all = {
-  Token,
-  Spinner,
-  Modal,
-  Identifier,
-  Image,
-  Link,
-  Badge,
-  Alert,
-  ActionBar,
-  Icon,
-  InlineHelp,
-  ...Layout,
-  ...Table,
-  ...Combobox,
-  ...Panel,
-  ...Menu,
-  ...Popover,
-  ...Animations,
-  ...Button,
-  ...Tabs,
-  ...SideNav,
-  ...Form,
-  ...Breadcrumb,
-  ...ListGroup,
+    Token,
+    Spinner,
+    Modal,
+    Identifier,
+    Image,
+    Link,
+    Badge,
+    Label,
+    Status,
+    Alert,
+    ActionBar,
+    Icon,
+    InlineHelp,
+    ...Layout,
+    ...Table,
+    ...Combobox,
+    ...Panel,
+    ...Menu,
+    ...Popover,
+    ...Animations,
+    ...Button,
+    ...Tabs,
+    ...SideNav,
+    ...Form,
+    ...Breadcrumb,
+    ...ListGroup,
 };
 
 const $plugin: Plugin = () => {
-  return {
-    install: (vue: VueConstructor, api: PluginAPI): void => {
-      for (const name of Object.keys(all)) {
-        const comp = all[name];
-        api.registerComponent(vue, comp, name);
-      }
-      const version = '0.0.1';
-      console.log(`%c Welcome to fundamental-vue %c Detected v${version} %c`, 'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff', 'background:#1661be ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff', 'background:transparent');
-    },
-  };
+    return {
+        install: (vue: VueConstructor, api: PluginAPI): void => {
+            for (const name of Object.keys(all)) {
+                const comp = all[name];
+                api.registerComponent(vue, comp, name);
+            }
+            const version = '0.0.1';
+            console.log(
+                `%c Welcome to fundamental-vue %c Detected v${version} %c`,
+                'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+                'background:#1661be ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+                'background:transparent',
+            );
+        },
+    };
 };
 
 export const plugin = $plugin;

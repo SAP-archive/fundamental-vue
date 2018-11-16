@@ -1,5 +1,5 @@
 import { UiComponentConfig } from './types/UiComponentConfig';
-import { ButtonGroup, Token, Image, Tabs, TabItem, Toggle, Spinner, Breadcrumb, BreadcrumbItem, Alert, Icon, SideNav, SideNavItem, SideNavList, SideNavSubmenu, ActionBar, Button, FormSet, FormGroup, FormItem, FormLabel, FormMessage, FieldSet, Input, Legend, TextArea, Select, Menu, MenuList, MenuItem, Panel, PanelGrid, Section, InputGroup, Combobox, Table, TableColumn, Badge, Link, Modal, Identifier, PopoverContent, ListGroup, InlineHelp } from '@/components';
+import { ButtonGroup, Token, Image, Tabs, TabItem, Toggle, Spinner, Breadcrumb, BreadcrumbItem, Alert, Icon, SideNav, SideNavItem, SideNavList, SideNavSubmenu, ActionBar, Button, FormSet, FormGroup, FormItem, FormLabel, FormMessage, FieldSet, Input, Legend, TextArea, Select, Menu, MenuList, MenuItem, Panel, PanelGrid, Section, InputGroup, Combobox, Table, TableColumn, Badge, Label, Status, Link, Modal, Identifier, PopoverContent, ListGroup, InlineHelp } from '@/components';
 
 // Used to build the side nav on the main docs page.
 // The exported array will be further prepared (sorted, slugifies, ...) by someone else.
@@ -229,6 +229,24 @@ export const UiComponentsConfig: UiComponentConfig[] = [
       { id: 'default', title: 'Default Badge' },
     ],
     relatedComponents: [Badge],
+  },
+  {
+    id: 'Label',
+    title: 'Label',
+    examples: [
+      { id: 'default', title: 'Label' },
+    ],
+    relatedComponents: [Label],
+  },
+  {
+    id: 'Status',
+    title: 'Status',
+    examples: [
+      { id: 'statusIcon', title: 'Status Indicator Label with build in status icons' },
+      { id: 'anyIcon', title: 'Status Indicator Label with any icons' },
+      { id: 'default', title: 'Status Indicator Label with symentic colors' },
+    ],
+    relatedComponents: [Status],
   },
   {
     id: 'Link',
