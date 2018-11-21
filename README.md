@@ -48,7 +48,7 @@ Click [here](https://github.wdf.sap.corp/hybris-pd/fundamental-vue/issues) to vi
 
 ## How to obtain support
 
-If you encounter an issue, you can [create a ticket](https://github.wdf.sap.corp/hybris-pd/fundamental-vue/issues/new)
+If you encounter an issue, you can [create a ticket](./issues/new)
 
 ## Contributing
 
