@@ -44,11 +44,11 @@ Vue.use(FundamentalVue);
 
 ## Known Issues
 
-Click [here](https://github.wdf.sap.corp/hybris-pd/fundamental-vue/issues) to view the current issues.
+Click [here](https://github.com/SAP/fundamental-vue/issues) to view the current issues.
 
 ## How to obtain support
 
-If you encounter an issue, you can [create a ticket](issues/new)
+If you encounter an issue, you can [create a ticket](https://github.com/SAP/fundamental-vue/issues)
 
 ## Contributing
 
