@@ -108,7 +108,7 @@ export class DocsPage extends Vue {
         {VueDevToolsEnabled && <script src='http://localhost:8098' />}
         <div slot='header'>
           <router-link to='/'>
-          <img class='navbar-logo' src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
+          <img style='margin-left: 10px;' class='navbar-logo' src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
           </router-link>
         </div>
         <SideNav defaultItemId={this.activeMenuItemId} class='sidebar' slot='sidebar'>

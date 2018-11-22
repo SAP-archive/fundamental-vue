@@ -247,11 +247,62 @@ export class Flower extends TsxComponent<Props> { // <-- extend the TsxComponent
 
 Declaring our public interface id done twice (by using @Prop and by declaring the Prop-interface). There are third party projects that work around this problem but this low-tech and redundant solution seemed acceptable.
 
-## Known Issues
+## @Api-Decorators
 
-* `@/api`-module:
-  - not really documented
-  - ~~no ability to annotate slots~~ Use `@Api.slot(name: string, description: string)` and/or `@Api.defaultSlot(description: string)`.
-* ~~Optional/Required prop-attributes are not displayed - yet.~~
+### @Api.component(humanReadableName, builder?)
+
+Annotate your component with this decorator to give it a human readable name. The optional builder allows you to document events emitted by this component.
+
+* **Arguments:**
+  * `humanReadableName: string` human readable component name
+  * `builder?: (builder: Api) → void` (optional) builder to further document the component. **deprecated - no replacement available, yet**
+
+> **Important**
+>
+> You have to use `@Api.component` **after** using the `@Component`-decorator. Otherwise it won't work properly.
+
+### @Api.slot(name, description?)
+
+Annotate your component with this decorator to specify available slots.
+
+* **Arguments:**
+  * `name: string` name of the slot (must not be human readable)
+  * `description?: string` brief description of the slot
+
+### @Api.defaultSlot(description)
+
+Annotate your component with this decorator to describe the default slot (if available).
+
+* **Arguments:**
+  * `description: string` brief description of the slot
+
+### @Api.prop(description, builder?)
+
+You can use this decorator in order to document your props.
+
+* **Arguments:**
+  * `description: string` brief description of the slot
+  * `builder: (builder: ApiProp) → void` optional builder to further customize the prop documentation.
+
+### ApiProp
+
+* **Methods:**
+  * `acceptValues(...values: (number | string)[]): ApiProp` defines valid prop values
+  * `type(...types: PropType[]): ApiProp` defines prop types
+
+> **Good to know**
+>
+> Both methods return `this` so you can easily chain them. For example:
+> ```js
+> @Api.Prop('first name', prop => {
+>   prop
+>     .type(String, Number)
+>     .acceptValues('chris', 123)
+> )
+> @Prop({ type: [String, Number], default: null })
+> public firstName!: string | null;
+> ```
+
+## Known Issues
 * Parameters of events can be annotated but are not displayed - yet.
 * Props and Events gained by mixins are not displayed.
