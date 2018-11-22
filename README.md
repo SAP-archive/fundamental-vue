@@ -7,7 +7,9 @@ Fundamental-vue is a set of [Vue.js](https://vuejs.org/) components implementati
 Fundamental-vue is open for contribution as long as you follow certain [rules/guidelines](./CONTRIBUTING.md).
 
 
+
 ## [Playground](https://dist-4d2gqwr8y.now.sh)
+
 
 ## Serve Documentation
 ```
@@ -61,6 +63,7 @@ Click [here](https://github.com/SAP/fundamental-vue/issues) to view the current 
 ## How to obtain support
 
 If you encounter an issue, you can [create a ticket](https://github.com/SAP/fundamental-vue/issues/new)
+
 
 ## Contributing
 
