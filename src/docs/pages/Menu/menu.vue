@@ -1,12 +1,14 @@
+<title>Menu</title>
+
 <template>
-  <vf-menu @select="sayHi">
-    <vf-menu-list>
-      <vf-menu-item>Option 1</vf-menu-item>
-      <vf-menu-item>Option 2</vf-menu-item>
-      <vf-menu-item>Option 3</vf-menu-item>
-      <vf-menu-item>Option 4</vf-menu-item>
-    </vf-menu-list>
-  </vf-menu>
+  <FdMenu @select="sayHi">
+    <FdMenuList>
+      <FdMenuItem>Option 1</FdMenuItem>
+      <FdMenuItem>Option 2</FdMenuItem>
+      <FdMenuItem>Option 3</FdMenuItem>
+      <FdMenuItem>Option 4</FdMenuItem>
+    </FdMenuList>
+  </FdMenu>
 </template>
 
 <script>

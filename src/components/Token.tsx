@@ -1,13 +1,15 @@
-import {
-  Component,
-  Vue,
-} from 'vue-property-decorator';
-import { API } from '@/api';
+import { Component } from 'vue-property-decorator';
+import { Api } from '@/api';
 import { componentName } from '@/util';
+import TsxComponent from '@/vue-tsx';
 
-@Component({ name: componentName('token') })
-@API.Component('Token', comp => comp.addEvent('click', 'triggers when clicked'))
-export class Token extends Vue {
+// tslint:disable-next-line:no-empty-interface
+interface Props {}
+
+@Component({ name: componentName('Token') })
+@Api.Component('Token', comp => comp.addEvent('click', 'triggers when clicked'))
+@Api.defaultSlot('Token Text')
+export class Token extends TsxComponent<Props> {
   public render() {
     return (
       <span

@@ -1,13 +1,15 @@
+<title>Information Modal</title>
+
 <template>
   <div>
-    <vf-button @click="showModal">Show Modal</vf-button>
-    <vf-modal title="Modal Title" :active.sync="isModalActive">
+    <FdButton @click="showModal">Show Modal</FdButton>
+    <FdModal title="Modal Title" :active.sync="isModalActive">
       <p>Do you want to invite your friends to join the party?</p>
       <template slot="actions">
-        <vf-button @click="closeModal" styling="light">Cancel</vf-button>
-        <vf-button @click="closeModal" styling="emphasized">Invite Friends</vf-button>
+        <FdButton @click="closeModal" styling="light">Cancel</FdButton>
+        <FdButton @click="closeModal" styling="emphasized">Invite Friends</FdButton>
       </template>
-    </vf-modal>
+    </FdModal>
   </div>
 </template>
 

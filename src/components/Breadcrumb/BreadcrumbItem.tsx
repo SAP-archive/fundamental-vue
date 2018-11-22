@@ -1,20 +1,25 @@
 import {
   Component,
   Prop,
-  Vue,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
+import TsxComponent from '@/vue-tsx';
 
-@Component({ name: componentName('breadcrumb-item') })
-@API.Component('Breadcrumb Item', comp => {
+interface Props {
+  to?: object | null;
+}
+
+@Component({ name: componentName('BreadcrumbItem') })
+@Api.Component('Breadcrumb Item', comp => {
   comp.addEvent('click', 'Sent when item was clicked', event => {
     event.raw('item', 'BreadcrumbItem');
   });
 })
-export class BreadcrumbItem extends Vue {
+@Api.defaultSlot('Breadcrumb Item Title')
+export class BreadcrumbItem extends TsxComponent<Props> {
+  @Api.Prop('target route (passed to $router.to(…))', prop => prop.type(Object))
   @Prop({ type: Object, required: false, default: null })
-  @API.Prop('target route (passed to $router.to(…))', prop => prop.type(Object))
   public to!: object | null;
 
   private onClick(event: MouseEvent) {
@@ -26,6 +31,7 @@ export class BreadcrumbItem extends Vue {
     }
     this.$emit('click', this);
   }
+
   public render() {
     const title = this.$slots.default;
     return (

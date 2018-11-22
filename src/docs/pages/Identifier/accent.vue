@@ -1,14 +1,16 @@
+<title>Identifiers</title>
+
 <template>
   <div class="identifiers">
-    <vf-identifier size="m" icon="money-bills" backgroundColor="accent-1" />
-    <vf-identifier size="m" icon="money-bills" backgroundColor="accent-2" />
-    <vf-identifier size="m" icon="money-bills" backgroundColor="accent-3" />
-    <vf-identifier size="m" icon="money-bills" backgroundColor="accent-4" />
-    <vf-identifier size="m" icon="money-bills" backgroundColor="accent-5" />
-    <vf-identifier size="m" icon="money-bills" backgroundColor="accent-6" />
-    <vf-identifier size="m" icon="money-bills" backgroundColor="accent-7" />
-    <vf-identifier size="m" icon="money-bills" backgroundColor="accent-8" />
-    <vf-identifier size="m" icon="money-bills" backgroundColor="accent-9" />
+    <FdIdentifier size="m" icon="money-bills" backgroundColor="accent-1" />
+    <FdIdentifier size="m" icon="money-bills" backgroundColor="accent-2" />
+    <FdIdentifier size="m" icon="money-bills" backgroundColor="accent-3" />
+    <FdIdentifier size="m" icon="money-bills" backgroundColor="accent-4" />
+    <FdIdentifier size="m" icon="money-bills" backgroundColor="accent-5" />
+    <FdIdentifier size="m" icon="money-bills" backgroundColor="accent-6" />
+    <FdIdentifier size="m" icon="money-bills" backgroundColor="accent-7" />
+    <FdIdentifier size="m" icon="money-bills" backgroundColor="accent-8" />
+    <FdIdentifier size="m" icon="money-bills" backgroundColor="accent-9" />
   </div>
 </template>
 

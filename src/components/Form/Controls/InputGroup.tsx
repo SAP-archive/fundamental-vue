@@ -1,16 +1,33 @@
 import {
   Component,
   Prop,
-  Vue,
 } from 'vue-property-decorator';
-
 import { componentName } from '@/util';
+import { Api } from '@/api';
+import TsxComponent from '@/vue-tsx';
 
-@Component({ name: componentName('input-group') })
-export class InputGroup extends Vue {
-  @Prop({ type: String, required: false, default: null }) public before!: string | null;
-  @Prop({ type: String, required: false, default: null }) public after!: string | null;
-  @Prop({ type: String, required: false, default: null }) public afterClass!: string | null;
+interface Props {
+  before?: string | null;
+  after?: string | null;
+  afterClass?: string | null;
+}
+
+@Component({ name: componentName('InputGroup') })
+@Api.Component('InputGroup')
+@Api.slot('before', 'Content to be placed before the input component.')
+@Api.slot('after', 'Content to be placed after the input component.')
+@Api.defaultSlot('The input component placed in the input group.')
+export class InputGroup extends TsxComponent<Props> {
+  @Api.Prop('text/number before the input', prop => prop.type(String, Number))
+  @Prop({ type: String, required: false, default: null })
+  public before!: string | null;
+
+  @Api.Prop('text/number after the input', prop => prop.type(String, Number))
+  @Prop({ type: String, required: false, default: null })
+  public after!: string | null;
+
+  @Prop({ type: String, required: false, default: null })
+  public afterClass!: string | null;
 
   public render() {
     const beforeAddon = this.before || this.$slots.before;

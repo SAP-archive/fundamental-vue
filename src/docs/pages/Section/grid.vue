@@ -1,11 +1,13 @@
+<title>Section with Panel Grid</title>
+
 <template>
-  <vf-section>
-    <vf-panel-grid>
-      <vf-panel :span=2>Panel 1</vf-panel>
-      <vf-panel>Panel 2</vf-panel>
-      <vf-panel>Panel 3</vf-panel>
-      <vf-panel>Panel 4</vf-panel>
-      <vf-panel>Panel 5</vf-panel>
-    </vf-panel-grid>
-  </vf-section>
+  <FdSection>
+    <FdPanelGrid>
+      <FdPanel :span=2>Panel 1</FdPanel>
+      <FdPanel>Panel 2</FdPanel>
+      <FdPanel>Panel 3</FdPanel>
+      <FdPanel>Panel 4</FdPanel>
+      <FdPanel>Panel 5</FdPanel>
+    </FdPanelGrid>
+  </FdSection>
 </template>

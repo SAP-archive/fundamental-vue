@@ -1,9 +1,11 @@
+<title>Default Token</title>
+
 <template>
   <div class="tokens">
-    <vf-token @click="click">Click Me</vf-token>
-    <vf-token>Lorem</vf-token>
-    <vf-token>Dolor</vf-token>
-    <vf-token>Filter</vf-token>
+    <FdToken @click="click">Click Me</FdToken>
+    <FdToken>Lorem</FdToken>
+    <FdToken>Dolor</FdToken>
+    <FdToken>Filter</FdToken>
   </div>
 </template>
 

@@ -1,23 +1,24 @@
+<title>Default Badge</title>
 <template>
   <div class="badges">
-    <vf-badge>Default</vf-badge>
-    <vf-badge type="success">Success</vf-badge>
-    <vf-badge type="warning">Warning</vf-badge>
-    <vf-badge type="error">Error</vf-badge>
+    <FdBadge>Default</FdBadge>
+    <FdBadge type="success">Success</FdBadge>
+    <FdBadge type="warning">Warning</FdBadge>
+    <FdBadge type="error">Error</FdBadge>
 
     <br /><br />
 
-    <vf-badge filled>Default</vf-badge>
-    <vf-badge filled type="success">Success</vf-badge>
-    <vf-badge filled type="warning">Warning</vf-badge>
-    <vf-badge filled type="error">Error</vf-badge>
+    <FdBadge filled>Default</FdBadge>
+    <FdBadge filled type="success">Success</FdBadge>
+    <FdBadge filled type="warning">Warning</FdBadge>
+    <FdBadge filled type="error">Error</FdBadge>
 
     <br /><br />
 
-    <vf-badge pill>Default</vf-badge>
-    <vf-badge pill type="success">Success</vf-badge>
-    <vf-badge pill type="warning">Warning</vf-badge>
-    <vf-badge pill type="error">Error</vf-badge>
+    <FdBadge pill>Default</FdBadge>
+    <FdBadge pill type="success">Success</FdBadge>
+    <FdBadge pill type="warning">Warning</FdBadge>
+    <FdBadge pill type="error">Error</FdBadge>
   </div>
 </template>
 

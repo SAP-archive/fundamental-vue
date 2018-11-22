@@ -1,24 +1,26 @@
+<title>Accent Colors</title>
+
 <template>
   <div class="identifiers">
-    <vf-identifier size="s" icon="money-bills"></vf-identifier>
-    <vf-identifier size="m" icon="money-bills"></vf-identifier>
-    <vf-identifier size="l" icon="money-bills"></vf-identifier>
+    <FdIdentifier size="s" icon="money-bills" />
+    <FdIdentifier size="m" icon="money-bills" />
+    <FdIdentifier size="l" icon="money-bills" />
     <br /><br />
-    <vf-identifier size="s" icon="money-bills" circle></vf-identifier>
-    <vf-identifier size="m" icon="money-bills" circle></vf-identifier>
-    <vf-identifier size="l" icon="money-bills" circle></vf-identifier>
+    <FdIdentifier size="s" icon="money-bills" circle />
+    <FdIdentifier size="m" icon="money-bills" circle />
+    <FdIdentifier size="l" icon="money-bills" circle />
     <br /><br >
-    <vf-identifier size="s" circle>WW</vf-identifier>
-    <vf-identifier size="m" circle>WW</vf-identifier>
-    <vf-identifier size="l" circle>WW</vf-identifier>
+    <FdIdentifier size="s" circle>WW</FdIdentifier>
+    <FdIdentifier size="m" circle>WW</FdIdentifier>
+    <FdIdentifier size="l" circle>WW</FdIdentifier>
     <br /><br />
-    <vf-identifier transparent size="s" icon="money-bills"></vf-identifier>
-    <vf-identifier transparent size="m" icon="money-bills"></vf-identifier>
-    <vf-identifier transparent size="l" icon="money-bills"></vf-identifier>
+    <FdIdentifier transparent size="s" icon="money-bills" />
+    <FdIdentifier transparent size="m" icon="money-bills" />
+    <FdIdentifier transparent size="l" icon="money-bills" />
     <br /><br />
-    <vf-identifier transparent size="s">WW</vf-identifier>
-    <vf-identifier transparent size="m">WW</vf-identifier>
-    <vf-identifier transparent size="l">WW</vf-identifier>
+    <FdIdentifier transparent size="s">WW</FdIdentifier>
+    <FdIdentifier transparent size="m">WW</FdIdentifier>
+    <FdIdentifier transparent size="l">WW</FdIdentifier>
   </div>
 </template>
 

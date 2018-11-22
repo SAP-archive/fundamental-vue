@@ -1,14 +1,24 @@
 import {
   Component,
   Prop,
-  Vue,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
+import TsxComponent from '@/vue-tsx';
+import { Api } from '@/api';
 
-@Component({ name: componentName('container') })
-export class Container extends Vue {
-  @Prop({ type: Boolean, default: false, required: false }) public flex!: boolean;
-  @Prop({ type: Boolean, default: false, required: false }) public fluid!: boolean;
+interface Props {
+  flex?: boolean;
+  fluid?: boolean;
+}
+
+@Component({ name: componentName('Container') })
+@Api.defaultSlot('Content displaye by the container.')
+export class Container extends TsxComponent<Props> {
+  @Prop({ type: Boolean, default: false, required: false })
+  public flex!: boolean;
+
+  @Prop({ type: Boolean, default: false, required: false })
+  public fluid!: boolean;
 
   public render() {
     const body = this.$slots.default;

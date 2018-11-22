@@ -1,16 +1,18 @@
+<title>Panel Grid (6 Columns)</title>
+
 <template>
-  <vf-panel-grid :col=6>
-    <vf-panel>Panel Body 1</vf-panel>
-    <vf-panel>Panel Body 2</vf-panel>
-    <vf-panel>Panel Body 3</vf-panel>
-    <vf-panel>Panel Body 4</vf-panel>
-    <vf-panel>Panel Body 5</vf-panel>
-    <vf-panel>Panel Body 6</vf-panel>
-    <vf-panel>Panel Body 7</vf-panel>
-    <vf-panel>Panel Body 8</vf-panel>
-    <vf-panel>Panel Body 9</vf-panel>
-    <vf-panel>Panel Body 10</vf-panel>
-    <vf-panel>Panel Body 11</vf-panel>
-    <vf-panel>Panel Body 12</vf-panel>
-  </vf-panel-grid>
+  <FdPanelGrid :col=6>
+    <FdPanel>Panel Body 1</FdPanel>
+    <FdPanel>Panel Body 2</FdPanel>
+    <FdPanel>Panel Body 3</FdPanel>
+    <FdPanel>Panel Body 4</FdPanel>
+    <FdPanel>Panel Body 5</FdPanel>
+    <FdPanel>Panel Body 6</FdPanel>
+    <FdPanel>Panel Body 7</FdPanel>
+    <FdPanel>Panel Body 8</FdPanel>
+    <FdPanel>Panel Body 9</FdPanel>
+    <FdPanel>Panel Body 10</FdPanel>
+    <FdPanel>Panel Body 11</FdPanel>
+    <FdPanel>Panel Body 12</FdPanel>
+  </FdPanelGrid>
 </template>

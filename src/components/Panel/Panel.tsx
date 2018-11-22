@@ -1,29 +1,42 @@
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 import './Panel.css';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
+import TsxComponent from '@/vue-tsx';
 
-@Component({ name: componentName('panel') })
-@API.Component('Panel')
-export class Panel extends Vue {
+interface Props {
+  title?: string | null;
+  description?: string | null;
+  span?: number | null;
+  condensed?: boolean;
+  condensedFooter?: boolean;
+}
+
+@Component({ name: componentName('Panel') })
+@Api.Component('Panel')
+@Api.defaultSlot('Panel Body')
+@Api.slot('actions', 'Panel Actions')
+@Api.slot('filters', 'Custom Panel Filters')
+@Api.slot('footer', 'Custom Panel Footer')
+export class Panel extends TsxComponent<Props> {
+  @Api.Prop('title', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
-  @API.Prop('title', prop => prop.type(String))
   public title!: string | null;
 
+  @Api.Prop('description', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
-  @API.Prop('description', prop => prop.type(String))
   public description!: string | null;
 
+  @Api.Prop('span', prop => prop.type(Number))
   @Prop({ type: Number, default: null, required: false })
-  @API.Prop('span', prop => prop.type(Number))
   public span!: number | null;
 
+  @Api.Prop('whether the panel body is condensed (has no padding)', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
-  @API.Prop('whether the panel body is condensed (has no padding)', prop => prop.type(Boolean))
   public condensed!: boolean;
 
+  @Api.Prop('whether the panel footer is condensed (has no padding)', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
-  @API.Prop('whether the panel footer is condensed (has no padding)', prop => prop.type(Boolean))
   public condensedFooter!: boolean;
 
   public render() {

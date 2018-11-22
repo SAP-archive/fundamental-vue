@@ -1,9 +1,11 @@
+<title>Panel Grid with nogap</title>
+
 <template>
-   <vf-panel-grid nogap>
-    <vf-panel>Panel Body 1</vf-panel>
-    <vf-panel>Panel Body 2</vf-panel>
-    <vf-panel>Panel Body 3</vf-panel>
-    <vf-panel>Panel Body 4</vf-panel>
-    <vf-panel>Panel Body 5</vf-panel>
-  </vf-panel-grid>
+   <FdPanelGrid nogap>
+    <FdPanel>Panel Body 1</FdPanel>
+    <FdPanel>Panel Body 2</FdPanel>
+    <FdPanel>Panel Body 3</FdPanel>
+    <FdPanel>Panel Body 4</FdPanel>
+    <FdPanel>Panel Body 5</FdPanel>
+  </FdPanelGrid>
 </template>

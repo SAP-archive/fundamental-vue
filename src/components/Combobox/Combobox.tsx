@@ -4,54 +4,57 @@ import {
 } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import { Uid } from '@/mixins';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { componentName } from '@/util';
-import { ComboboxItem } from './ComboboxItem';
-import { clickawayDirective } from '@/mixins';
 import { PopoverContent } from './../Popover';
+import { Input, InputGroup } from './../Form';
+import { ClickAwayContainer } from '@/components/ClickAwayContainer';
 
-interface Suggestion {
-  value: unknown;
+interface Props {
+  value?: string | null;
+  placeholder?: string;
+  ariaLabel?: string;
+  popoverVisible?: boolean;
+  uid?: string; // Uid mixin
 }
 
 @Component({
-  directives: {
-    onClickaway: clickawayDirective,
-  },
-  name: componentName('combobox'),
+  name: componentName('Combobox'),
   provide() {
     return {
       combobox: this,
     };
   },
   components: {
-    ComboboxItem,
+    ClickAwayContainer,
     PopoverContent,
+    Input,
+    InputGroup,
   },
 })
-@API.Component('Combobox', comp => {
+@Api.Component('Combobox', comp => {
   comp.addEvent('input', 'Sent when the selected item changes');
 })
 export class Combobox extends mixins(Uid) {
-  @Prop({ default: () => [], required: false, type: Array })
-  public suggestions!: Suggestion[];
-
+  @Api.Prop('initial value', prop => prop.type(String))
   @Prop({ default: null, required: false, type: String })
   public value!: string | null;
 
+  @Api.Prop('placeholder text (displayed when nothing is selected)', prop => prop.type(String))
   @Prop({ type: String, default: '', required: false })
-  @API.Prop('placeholder text (displayed when nothing is selected)', prop => prop.type(String))
   public placeholder!: string;
 
+  @Api.Prop('ARIA Label', prop => prop.type(String))
   @Prop({ type: String, default: 'Combobox', required: false })
-  @API.Prop('ARIA Label', prop => prop.type(String))
   public ariaLabel!: string;
 
+  @Api.Prop('whether popover is visible', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
-  @API.Prop('Popover Visible', prop => prop.type(Boolean))
   public popoverVisible!: boolean;
-  private currentPopoverVisible: boolean = this.popoverVisible;
 
+  public $tsxProps!: Readonly<{}> & Readonly<Props>;
+
+  private currentPopoverVisible: boolean = this.popoverVisible;
   private currentValue: string | null = this.value;
 
   public togglePopoverVisible() {
@@ -65,16 +68,32 @@ export class Combobox extends mixins(Uid) {
     this.$emit('update:value', this.currentValue);
   }
 
+  private handleSelectItem(value) {
+    this.setCurrentValue(value);
+    this.togglePopoverVisible();
+  }
+
   public render() {
     const dropdown = this.$slots.default;
+
+    const renderPopoverContent = () => (
+      <PopoverContent
+        // tslint:disable-next-line:object-literal-key-quotes
+        {...{'class': 'fd-popover__body--no-arrow'}}
+        on-select={value => this.handleSelectItem(value)}
+      >
+        {dropdown}
+      </PopoverContent>
+    );
+
     return (
       <div class='fd-combobox-input'>
         <div class='fd-popover'>
           <div class='fd-popover__control'>
-            <vf-input-group afterClass={'fd-input-group__addon--button'}>
-              <vf-input
+            <InputGroup afterClass={'fd-input-group__addon--button'}>
+              <Input
                 id={this.uid}
-                nativeOnClick={() => this.currentPopoverVisible = true}
+                nativeOn-click={() => this.currentPopoverVisible = true}
                 value={this.value}
                 on-input={val => this.setCurrentValue(val)}
                 placeholder={this.placeholder}
@@ -84,9 +103,16 @@ export class Combobox extends mixins(Uid) {
                 on-click={() => this.togglePopoverVisible()}
                 class='fd-button--icon fd-button--secondary sap-icon--navigation-down-arrow'
               />
-            </vf-input-group>
+            </InputGroup>
           </div>
-          <vf-popover-content class='fd-popover__body--no-arrow' visible={this.currentPopoverVisible}>{dropdown}</vf-popover-content>
+          <ClickAwayContainer
+            aria-hidden={!this.currentPopoverVisible}
+            v-show={this.currentPopoverVisible}
+            active={this.currentPopoverVisible}
+            on-clickOutside={() => this.currentPopoverVisible = false}
+          >
+            {renderPopoverContent()}
+          </ClickAwayContainer>
         </div>
       </div>
     );

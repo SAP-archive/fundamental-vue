@@ -1,3 +1,5 @@
+<title>Loader Element</title>
+
 <template>
-  <vf-spinner />
+  <div><FdSpinner /></div>
 </template>

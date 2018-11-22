@@ -1,14 +1,16 @@
+<title>Default Table</title>
+
 <template>
   <div>
-    <vf-table selectionMode="single" :data="tableData">
-      <vf-table-column prop="firstName" label="First Name"></vf-table-column>
-      <vf-table-column prop="lastName" label="Last Name"></vf-table-column>
-      <vf-table-column label="Initials">
+    <FdTable selectionMode="single" :data="tableData">
+      <FdTableColumn prop="firstName" label="First Name" />
+      <FdTableColumn prop="lastName" label="Last Name" />
+      <FdTableColumn label="Initials">
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{ scope.row.firstName }}_{{ scope.row.lastName }}</span>
         </template>
-      </vf-table-column>
-    </vf-table>
+      </FdTableColumn>
+    </FdTable>
   </div>
 </template>
 

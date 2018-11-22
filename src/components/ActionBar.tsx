@@ -1,20 +1,27 @@
 import {
   Component,
   Prop,
-  Vue,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
+import TsxComponent from '@/vue-tsx';
 
-@Component({ name: componentName('action-bar') })
-@API.Component('Action Bar')
-export class ActionBar extends Vue {
+interface Props {
+  title: string;
+  description?: string | null;
+}
+
+@Component({ name: componentName('ActionBar') })
+@Api.Component('Action Bar')
+@Api.slot('back', 'custom back button')
+@Api.defaultSlot('custom action buttons')
+export class ActionBar extends TsxComponent<Props> {
+  @Api.Prop('title', prop => prop.type(String))
   @Prop({ required: true, type: String })
-  @API.Prop('title', prop => prop.type(String))
   public title!: string;
 
+  @Api.Prop('description', prop => prop.type(String))
   @Prop({ required: false, default: null, type: String })
-  @API.Prop('description', prop => prop.type(String))
   public description!: string | null;
 
   public render() {

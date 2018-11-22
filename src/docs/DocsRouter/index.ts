@@ -1,0 +1,1 @@
+export { DocsRouter } from './DocsRouter';

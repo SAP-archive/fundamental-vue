@@ -1,10 +1,10 @@
 import {
   Component,
-  Vue,
   Prop,
 } from 'vue-property-decorator';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { componentName } from '@/util';
+import TsxComponent from '@/vue-tsx';
 
 const sizeMapping = {
   s: 'Small',
@@ -14,19 +14,25 @@ const sizeMapping = {
 type IdentifierSize = keyof (typeof sizeMapping);
 const IdentifierSizes = Object.keys(sizeMapping) as IdentifierSize[];
 
-@Component({ name: componentName('image') })
-@API.Component('Image')
-export class Image extends Vue {
+interface Props {
+  url?: string | null;
+  size?: IdentifierSize;
+  circle?: boolean;
+}
+
+@Component({ name: componentName('Image') })
+@Api.Component('Image')
+export class Image extends TsxComponent<Props> {
+  @Api.Prop('image url', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
-  @API.Prop('image url', prop => prop.type(String))
   public url!: string | null;
 
+  @Api.Prop('size', prop => prop.type(String).acceptValues(...IdentifierSizes))
   @Prop({ type: String, default: 'm', required: false })
-  @API.Prop('size', prop => prop.type(String).acceptValues(...IdentifierSizes))
   public size!: IdentifierSize;
 
+  @Api.Prop('is displayed as circle', prop => prop.type(Boolean))
   @Prop({ required: false, default: false, type: Boolean })
-  @API.Prop('is displayed as circle', prop => prop.type(Boolean))
   public circle!: boolean;
 
   public render() {

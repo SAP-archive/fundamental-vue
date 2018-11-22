@@ -1,36 +1,38 @@
+<title>Complex and Dynamic Table</title>
+
 <template>
   <div>
-    <vf-table selectionMode="single" :data="tableData">
-      <vf-table-column sortable prop="rating" label="Rating"></vf-table-column>
-      <vf-table-column sortable prop="firstName" label="First Name"></vf-table-column>
-      <vf-table-column sortable prop="lastName" label="Last Name"></vf-table-column>
-      <vf-table-column label="Initials">
+    <FdTable selectionMode="single" :data="tableData">
+      <FdTableColumn sortable prop="rating" label="Rating" />
+      <FdTableColumn sortable prop="firstName" label="First Name" />
+      <FdTableColumn sortable prop="lastName" label="Last Name" />
+      <FdTableColumn label="Initials">
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{ scope.row.firstName }}_{{ scope.row.lastName }}</span>
         </template>
-      </vf-table-column>
-    </vf-table>
-    <vf-form-set>
-      <vf-form-item>
-        <vf-form-label>First Name</vf-form-label>
-        <vf-input v-model="newEntry.firstName" placeholder="Enter something nice"/>
-      </vf-form-item>
-      <vf-form-item>
-        <vf-form-label>Last Name</vf-form-label>
-        <vf-input v-model="newEntry.lastName" placeholder="Enter something nice"/>
-      </vf-form-item>
-      <vf-form-item>
-        <vf-form-label>Rating</vf-form-label>
-        <vf-combobox v-model="newEntry.rating">
-          <vf-menu-item value="1" title="1">1</vf-menu-item>
-          <vf-menu-item value="2" title="2">2</vf-menu-item>
-          <vf-menu-item value="3" title="3">3</vf-menu-item>
-          <vf-menu-item value="4" title="4">4</vf-menu-item>
-          <vf-menu-item value="4" title="5">5</vf-menu-item>
-        </vf-combobox>
-      </vf-form-item>
-    </vf-form-set>
-    <vf-button @click="addCurrentEntry">Add Entry</vf-button>
+      </FdTableColumn>
+    </FdTable>
+    <FdFormSet>
+      <FdFormItem>
+        <FdFormLabel>First Name</FdFormLabel>
+        <FdInput v-model="newEntry.firstName" placeholder="Enter something nice"/>
+      </FdFormItem>
+      <FdFormItem>
+        <FdFormLabel>Last Name</FdFormLabel>
+        <FdInput v-model="newEntry.lastName" placeholder="Enter something nice"/>
+      </FdFormItem>
+      <FdFormItem>
+        <FdFormLabel>Rating</FdFormLabel>
+        <FdCombobox v-model="newEntry.rating">
+          <FdMenuItem value="1" title="1">1</FdMenuItem>
+          <FdMenuItem value="2" title="2">2</FdMenuItem>
+          <FdMenuItem value="3" title="3">3</FdMenuItem>
+          <FdMenuItem value="4" title="4">4</FdMenuItem>
+          <FdMenuItem value="4" title="5">5</FdMenuItem>
+        </FdCombobox>
+      </FdFormItem>
+    </FdFormSet>
+    <FdButton @click="addCurrentEntry">Add Entry</FdButton>
   </div>
 </template>
 

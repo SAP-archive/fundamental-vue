@@ -1,12 +1,11 @@
 import {
   Component,
-  Vue,
   Prop,
 } from 'vue-property-decorator';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { componentName } from '@/util';
-
 import { Color, Colors, backgroundColorClassName } from '@/lib';
+import TsxComponent from '@/vue-tsx';
 
 const sizeMapping = {
   s: 'Small',
@@ -16,27 +15,36 @@ const sizeMapping = {
 type IdentifierSize = keyof (typeof sizeMapping);
 const IdentifierSizes = Object.keys(sizeMapping) as IdentifierSize[];
 
-@Component({ name: componentName('identifier') })
-@API.Component('Identifier')
-export class Identifier extends Vue {
+interface Props {
+  icon?: string | null;
+  size?: IdentifierSize;
+  circle?: boolean;
+  transparent?: boolean;
+  backgroundColor?: Color | null;
+}
+
+@Component({ name: componentName('Identifier') })
+@Api.Component('Identifier')
+@Api.defaultSlot('Text displayed by the Identifier.')
+export class Identifier extends TsxComponent<Props> {
+  @Api.Prop('icon name', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
-  @API.Prop('icon name', prop => prop.type(String))
   public icon!: string | null;
 
+  @Api.Prop('size', prop => prop.type(String).acceptValues(...IdentifierSizes))
   @Prop({ type: String, default: 'm', required: false })
-  @API.Prop('size', prop => prop.type(String).acceptValues(...IdentifierSizes))
   public size!: IdentifierSize;
 
+  @Api.Prop('is displayed as circle', prop => prop.type(Boolean))
   @Prop({ required: false, default: false, type: Boolean })
-  @API.Prop('is displayed as circle', prop => prop.type(Boolean))
   public circle!: boolean;
 
+  @Api.Prop('is displayed without background', prop => prop.type(Boolean))
   @Prop({ required: false, default: false, type: Boolean })
-  @API.Prop('is displayed without background', prop => prop.type(Boolean))
   public transparent!: boolean;
 
+  @Api.Prop('background color', prop => prop.type(String).acceptValues(...Colors))
   @Prop({ required: false, default: null, type: String })
-  @API.Prop('background color', prop => prop.type(String).acceptValues(...Colors))
   public backgroundColor!: Color | null;
 
   public render() {

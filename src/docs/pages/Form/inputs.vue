@@ -1,28 +1,31 @@
+<title>Inputs</title>
+<tip>If you ommit <code>id</code>- and <code>for</code>-attributes of a <code>vf-input</code> and/or a <code>vf-label</code> then automatically generated ids will be used. As soon a  <code>vf-input</code> or <code>vf-label</code> is a descendant of an <code>vf-input-item</code> this *magic* happens. <code>vf-input-item</code> generates the unique id and injects it in it's descendants.</tip>
+
 <template>
   <div>
-    <vf-form-set>
-      <vf-form-item>
-        <vf-form-label>Default Input</vf-form-label>
-        <vf-input placeholder="Field placeholder text"/>
-      </vf-form-item>
-    </vf-form-set>
-    <vf-form-set>
-      <vf-form-item>
-        <vf-form-label required>Required Input</vf-form-label>
-        <vf-input required placeholder="Field placeholder text"/>
-      </vf-form-item>
-    </vf-form-set>
-    <vf-form-set>
-      <vf-form-item>
-        <vf-form-label required>Password Input</vf-form-label>
-        <vf-input required type="password" placeholder="Field placeholder text" />
-      </vf-form-item>
-    </vf-form-set>
-    <vf-form-set>
-      <vf-form-item>
-        <vf-form-label required>Text Input</vf-form-label>
-        <vf-text-area required placeholder="Text placeholder"/>
-      </vf-form-item>
-    </vf-form-set>
+    <FdFormSet>
+      <FdFormItem>
+        <FdFormLabel>Default Input</FdFormLabel>
+        <FdInput placeholder="Field placeholder text"/>
+      </FdFormItem>
+    </FdFormSet>
+    <FdFormSet>
+      <FdFormItem>
+        <FdFormLabel required>Required Input</FdFormLabel>
+        <FdInput required placeholder="Field placeholder text"/>
+      </FdFormItem>
+    </FdFormSet>
+    <FdFormSet>
+      <FdFormItem>
+        <FdFormLabel required>Password Input</FdFormLabel>
+        <FdInput required type="password" placeholder="Field placeholder text" />
+      </FdFormItem>
+    </FdFormSet>
+    <FdFormSet>
+      <FdFormItem>
+        <FdFormLabel required>Text Input</FdFormLabel>
+        <FdTextArea required placeholder="Text placeholder"/>
+      </FdFormItem>
+    </FdFormSet>
   </div>
 </template>

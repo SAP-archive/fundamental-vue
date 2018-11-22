@@ -1,17 +1,22 @@
-import { Component, Prop, Inject, Vue } from 'vue-property-decorator';
+import { Component, Prop, Inject } from 'vue-property-decorator';
 import { MenuList } from './MenuList';
 import { Menu } from './Menu';
 import { componentName } from '@/util';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { MENU, MENU_LIST } from './types';
+import TsxComponent from '@/vue-tsx';
 
-const name = componentName('menu-item');
+interface Props {
+  value?: string | number | null;
+}
 
-@Component({ name })
-@API.Component('Menu Item', comp => comp.addEvent('click', 'Sent when item was clicked'))
-export class MenuItem extends Vue {
+@Component({ name: componentName('MenuItem') })
+@Api.Component('Menu Item', comp => comp.addEvent('click', 'Sent when item was clicked'))
+@Api.defaultSlot('Content displayed by the menu item (usually text).')
+@Api.slot('addon', 'Custom addon (displayed on the left).')
+export class MenuItem extends TsxComponent<Props> {
+  @Api.Prop('value (can be used to associate a context with the item)', prop => prop.type(String, Number))
   @Prop({ default: null, required: false, type: [String, Number] })
-  @API.Prop('value (can be used to associate a context with the item)', prop => prop.type(String, Number))
   public value!: string | number | null;
 
   @Inject({ from: MENU_LIST, default: null }) public menuList!: MenuList | null;
@@ -36,7 +41,6 @@ export class MenuItem extends Vue {
     const title = this.$slots.default;
     const addon = this.$slots.addon;
     const canHaveAddon = this.canHaveAddon;
-    // debugger;
     return (
       <li>
         {canHaveAddon && <div class='fd-menu__addon-before'>{addon}</div>}

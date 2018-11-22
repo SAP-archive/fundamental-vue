@@ -1,22 +1,14 @@
 import { Component, Watch, Prop } from 'vue-property-decorator';
 import { Menu, MenuList, MenuItem } from './../Menu';
-import {
-  Button,
-} from './../Button';
+import { Button } from './../Button';
 import { PopoverContent } from './PopoverContent';
-
 import Vue from 'vue';
 import { mixins } from 'vue-class-component';
 import { Uid } from '@/mixins';
 import { componentName } from '@/util';
-import { API } from '@/api';
-import '@/components/fade-animation.css';
-import { clickawayDirective } from '@/mixins';
+import { Api } from '@/api';
 
 @Component({
-  directives: {
-    onClickaway: clickawayDirective,
-  },
   name: componentName('popover'),
   components: {
     Button,
@@ -26,23 +18,23 @@ import { clickawayDirective } from '@/mixins';
     PopoverContent,
   },
 })
-@API.Component('Popover', comp => {
+@Api.Component('Popover', comp => {
   comp
     .addEvent('item-click', 'Sent when an item in the popover was clicked', event => {
       event.raw('item', 'MenuItem');
     });
 })
 export class Popover extends mixins(Uid) {
+  @Api.Prop('ARIA label', prop => prop.type(String))
   @Prop({ type: String, default: 'Popover', required: false })
-  @API.Prop('ARIA label', prop => prop.type(String))
   public ariaLabel!: string;
 
+  @Api.Prop('Title displayed when no custom trigger element is used', prop => prop.type(String))
   @Prop({ type: String, default: 'Show', required: false })
-  @API.Prop('Title displayed when no custom trigger element is used', prop => prop.type(String))
   public title!: string;
 
+  @Api.Prop('if popover is visible', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
-  @API.Prop('if popover is visible', prop => prop.type(Boolean))
   public popoverVisible!: boolean;
 
   public currentPopoverVisible: boolean = this.popoverVisible;
@@ -74,21 +66,20 @@ export class Popover extends mixins(Uid) {
     return (
       <div class='fd-popover'>
         <div class='fd-popover__control'>
-          <vf-button
+          <Button
             aria-controls={this.uid}
             styling='light'
             on-click={() => this.togglePopoverVisible()}
           >
             {this.title}
-          </vf-button>
+          </Button>
         </div>
-        <vf-popover-content
+        <PopoverContent
           aria-controls={this.uid}
-          visible={this.currentPopoverVisible}
           {...popoverContentHandler}
         >
           {dropdown}
-        </vf-popover-content>
+        </PopoverContent>
       </div>
     );
   }

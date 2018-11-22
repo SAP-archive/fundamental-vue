@@ -1,3 +1,5 @@
+<title>Colors</title>
+
 <template>
   <div class="grid">
     <div v-bg:action-1 />

@@ -1,13 +1,15 @@
+<title>Menu w/ addon before</title>
+
 <template>
-  <vf-menu canHaveAddon>
-    <vf-menu-list>
-      <vf-menu-item>Option 1</vf-menu-item>
-      <vf-menu-item>
+  <FdMenu canHaveAddon>
+    <FdMenuList>
+      <FdMenuItem>Option 1</FdMenuItem>
+      <FdMenuItem>
         <span slot="addon" class="sap-icon--accept"/>
         Option 2
-      </vf-menu-item>
-      <vf-menu-item>Option 3</vf-menu-item>
-      <vf-menu-item>Option 4</vf-menu-item>
-    </vf-menu-list>
-  </vf-menu>
+      </FdMenuItem>
+      <FdMenuItem>Option 3</FdMenuItem>
+      <FdMenuItem>Option 4</FdMenuItem>
+    </FdMenuList>
+  </FdMenu>
 </template>

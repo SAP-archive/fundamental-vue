@@ -1,51 +1,53 @@
+<title>Radio Buttons</title>
+
 <template>
   <div>
-    <vf-field-set>
-      <vf-legend>Radio Buttons</vf-legend>
-      <vf-form-group>
-        <vf-form-item check>
-          <vf-form-label for="radio-1">
-            <vf-input value="1" checked={true} name="radio-1" id="radio-1" type="radio" />
+    <FdFieldSet>
+      <FdLegend>Radio Buttons</FdLegend>
+      <FdFormGroup>
+        <FdFormItem check>
+          <FdFormLabel for="radio-1">
+            <FdInput value="1" checked={true} name="radio-1" id="radio-1" type="radio" />
             Option One
-          </vf-form-label>
-        </vf-form-item>
-        <vf-form-item check>
-          <vf-form-label for="radio-2">
-            <vf-input value="2" name="radio-1" id="radio-2" type="radio" />
+          </FdFormLabel>
+        </FdFormItem>
+        <FdFormItem check>
+          <FdFormLabel for="radio-2">
+            <FdInput value="2" name="radio-1" id="radio-2" type="radio" />
             Option Two
-          </vf-form-label>
-        </vf-form-item>
-        <vf-form-item check>
-          <vf-form-label for="radio-3">
-            <vf-input value="3" name="radio-1" id="radio-3" type="radio" />
+          </FdFormLabel>
+        </FdFormItem>
+        <FdFormItem check>
+          <FdFormLabel for="radio-3">
+            <FdInput value="3" name="radio-1" id="radio-3" type="radio" />
             Option Three
-          </vf-form-label>
-        </vf-form-item>
-      </vf-form-group>
-    </vf-field-set>
+          </FdFormLabel>
+        </FdFormItem>
+      </FdFormGroup>
+    </FdFieldSet>
 
-    <vf-field-set>
-      <vf-legend>Inline Radio Buttons</vf-legend>
-      <vf-form-group>
-        <vf-form-item check inline>
-          <vf-form-label for="inline-radio-1">
-            <vf-input checked={true} name="inline-radio-1" id="inline-radio-1" type="radio" />
+    <FdFieldSet>
+      <FdLegend>Inline Radio Buttons</FdLegend>
+      <FdFormGroup>
+        <FdFormItem check inline>
+          <FdFormLabel for="inline-radio-1">
+            <FdInput checked={true} name="inline-radio-1" id="inline-radio-1" type="radio" />
             Option One
-          </vf-form-label>
-        </vf-form-item>
-        <vf-form-item check inline>
-          <vf-form-label for="inline-radio-2">
-            <vf-input name="inline-radio-1" id="inline-radio-2" type="radio" />
+          </FdFormLabel>
+        </FdFormItem>
+        <FdFormItem check inline>
+          <FdFormLabel for="inline-radio-2">
+            <FdInput name="inline-radio-1" id="inline-radio-2" type="radio" />
             Option Two
-          </vf-form-label>
-        </vf-form-item>
-        <vf-form-item check inline>
-          <vf-form-label for="inline-radio-3">
-            <vf-input name="inline-radio-1" id="inline-radio-3" type="radio" />
+          </FdFormLabel>
+        </FdFormItem>
+        <FdFormItem check inline>
+          <FdFormLabel for="inline-radio-3">
+            <FdInput name="inline-radio-1" id="inline-radio-3" type="radio" />
             Option Three
-          </vf-form-label>
-        </vf-form-item>
-      </vf-form-group>
-    </vf-field-set>
+          </FdFormLabel>
+        </FdFormItem>
+      </FdFormGroup>
+    </FdFieldSet>
   </div>
 </template>

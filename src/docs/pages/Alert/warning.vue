@@ -1,5 +1,9 @@
+<title>Warnin Alert</title>
+
 <template>
-  <vf-alert type="warning" dismissible>
-    Default warning alert. Click on the close button.
-  </vf-alert>
+  <div>
+    <FdAlert type="warning" dismissible>
+      Default warning alert. Click on the close button.
+    </FdAlert>
+  </div>
 </template>

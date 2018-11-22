@@ -4,29 +4,38 @@ import {
   Inject,
 } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import { API } from '@/api';
+import { Api } from '@/api';
 import { componentName } from '@/util';
 import { TabItemContainer } from './TabItemContainer';
 import { Uid } from '@/mixins';
 
-@Component({ name: componentName('tab-item') })
-@API.Component('Tab Item')
-export class TabItem extends mixins(Uid) {
+interface Props {
+  label?: string | null;
+  name?: string | null;
+  disabled?: boolean;
+  uid?: string; // Uid mixin
+}
 
+@Component({ name: componentName('TabItem') })
+@Api.Component('Tab Item')
+@Api.defaultSlot('Content to be displayed in the tab body when this item is active.')
+export class TabItem extends mixins(Uid) {
+  @Api.Prop('tab item label', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
-  @API.Prop('label', prop => prop.type(String))
   public label!: string | null;
 
+  @Api.Prop('name, used to determine whether item is active', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
-  @API.Prop('name', prop => prop.type(String))
   public name!: string | null;
 
+  @Api.Prop('whether item is disabled', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false, required: false })
-  @API.Prop('disabled', prop => prop.type(Boolean))
   public disabled!: boolean;
 
   @Inject('tabItemContainer')
   public tabItemContainer!: TabItemContainer | null;
+
+  public $tsxProps!: Readonly<{}> & Readonly<Props>;
 
   public mounted() {
     const { tabItemContainer } = this;
@@ -53,7 +62,6 @@ export class TabItem extends mixins(Uid) {
 
   public render() {
     const expanded = this.active ? 'true' : 'false';
-
     return (
       <div
         id={this.uid}
