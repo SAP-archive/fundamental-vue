@@ -105,7 +105,7 @@ export class DocsPage extends Vue {
     const VueDevToolsEnabled = this.$$VueDevToolsEnabled || false;
     return (
       <Ui headerClass='navbar'>
-        {VueDevToolsEnabled && <script src='http://localhost:8098' />}
+        {VueDevToolsEnabled && <script src='http://localhost:8098'/>}
         <div slot='header'>
           <router-link to='/'>
           <img style='margin-left: 10px;' class='navbar-logo' src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
