@@ -24,6 +24,8 @@ export * from './Table';
 export * from './Menu';
 export * from './Layout';
 export * from './InlineHelp';
+export * from './Tile';
+export * from './TileGrid';
 
 import * as Button from './Button';
 import * as Animations from './Animations';
@@ -53,6 +55,8 @@ import * as Menu from './Menu';
 import * as Panel from './Panel';
 import * as Table from './Table';
 import * as Layout from './Layout';
+import * as Tile from './Tile';
+import * as TileGrid from './TileGrid';
 
 export const all = {
     Token,
@@ -81,6 +85,8 @@ export const all = {
     ...Form,
     ...Breadcrumb,
     ...ListGroup,
+    ...Tile,
+    ...TileGrid,
 };
 
 const $plugin: Plugin = () => {
