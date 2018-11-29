@@ -58,12 +58,12 @@ export class Tile extends TsxComponent<Props> {
 
         return (
             <div class={this.classObject} role={isButton ? 'button' : null} aria-disabled={disabled}>
-                {media && <div class="fd-tile__media">{media}</div>}
-                <div class="fd-tile__content">
-                    {title && <h2 class="fd-tile__title">{title}</h2>}
+                {media && <div class='fd-tile__media'>{media}</div>}
+                <div class='fd-tile__content'>
+                    {title && <h2 class='fd-tile__title'>{title}</h2>}
                     {description && <p>{description}</p>}
                 </div>
-                {actions && <div class="fd-tile__actions">{actions}</div>}
+                {actions && <div class='fd-tile__actions'>{actions}</div>}
             </div>
         );
     }
