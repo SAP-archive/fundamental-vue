@@ -11,6 +11,8 @@ Fundamental-vue is a set of [Vue.js](https://vuejs.org/) components implementati
 SAP Fiori Fundamentals library is a Design System and HTML/CSS Component Library used to build modern Product User Experiences with the SAP look and feel. This will allow you to stay/use Vue.js for your application and get SAP look and feel.
 Fundamental-vue is open for contribution as long as you follow certain [rules/guidelines](./CONTRIBUTING.md).
 
+The library is currently in a Beta version.
+
 ## Requirements
 
 To download and use Fundamental-react library, you first need to install the node package manager.
