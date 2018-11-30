@@ -1,38 +1,29 @@
 # fundamental-vue
 Vue.JS components for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental)
 
+- [Playground](https://dist-4d2gqwr8y.now.sh)
+- [GitHub repo of Angular implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-ngx)
+- [GitHub repo of React implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-react)
+
 
 ## Description
-Fundamental-vue is a set of [Vue.js](https://vuejs.org/) components implementation of [SAP Fiori Fundamentals library](https://sap.github.io/fundamental/). SAP Fiori Fundamentals library is a Design System and HTML/CSS Component Library used to build modern Product User Experiences with the SAP look and feel. This will allow you to stay/use Vue.js for your application and get SAP look and feel.
+Fundamental-vue is a set of [Vue.js](https://vuejs.org/) components implementation of [SAP Fiori Fundamentals library](https://sap.github.io/fundamental/). 
+SAP Fiori Fundamentals library is a Design System and HTML/CSS Component Library used to build modern Product User Experiences with the SAP look and feel. This will allow you to stay/use Vue.js for your application and get SAP look and feel.
 Fundamental-vue is open for contribution as long as you follow certain [rules/guidelines](./CONTRIBUTING.md).
 
+The library is currently in a Beta version.
 
+## Requirements
 
-## [Playground](https://dist-4d2gqwr8y.now.sh)
+To download and use Fundamental-react library, you first need to install the node package manager.
+https://www.npmjs.com/get-npm
 
+Some prior knowledge of Vue is required for using this library.
 
-## Serve Documentation
-```
-$ npm run serve:docs
-```
-
-## Build Documentation
-```
-$ ./scripts/build
-$ npm run build -- src/docs/DocsMain.ts
-```
-
-## Build
+## Build the library
 ```
 $ ./scripts/build
 $ npm pack
-```
-
-## Deploy Documentation
-The `deploy-docs`-script currently deploys the documentation app to [now.sh](https://now.sh). It assumes that you have a [now.sh](https://now.sh)-account and that you are logged in.
-
-```
-$ ./scripts/deploy-docs
 ```
 
 ## Install
@@ -43,7 +34,7 @@ $ ./scripts/deploy-docs
 $ npm i --save fundamentalvue
 ```
 
-fundamentalvue does not include Fiorie Elements. You have to make sure to include the css/scss files yourself.
+fundamentalvue does not include Fiori Elements. You have to make sure to include the css/scss files yourself.
 
 ## Use
 
