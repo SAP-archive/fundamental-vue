@@ -1,5 +1,3 @@
-// Our awesome click away directive comes with a few nice enhancements.
-
 import {
   Component,
   Prop,
@@ -9,17 +7,37 @@ import TsxComponent from '@/vue-tsx';
 import { VNode } from 'vue';
 import { componentName } from '@/util';
 
+type IgnoredElements = () => Element[];
+
 interface Props {
   tag?: string;
   active?: boolean;
+  ignoredElements?: IgnoredElements;
 }
 
 const CLICK_OUTSIDE_EVENT = 'clickOutside';
 
+// Our awesome click away component comes with a few nice enhancements.
+// You use this component in order to detect clicks outside of a component/element.
+// For example:
+//
+// <ClickAwayContainer @clickOutside="handleClickOutside">
+//   hello world
+// </ClickAwayContainer>
+//
+// This detects all clicks outside of ClickAwayContainer.
+// By default ClickAwayContainer is rendering itself as a div-element.
+// You can change that by setting the tag-prop.
 @Component({ name: componentName('ClickAwayContainer') })
 export class ClickAwayContainer extends TsxComponent<Props> {
-  @Prop({ type: String, default: 'div' }) public tag!: string;
-  @Prop({ type: Boolean, default: false }) public active!: boolean;
+  @Prop({ type: String, default: 'div' })
+  public tag!: string;
+
+  @Prop({ type: Boolean, default: false })
+  public active!: boolean;
+
+  @Prop({ type: Function, default: () => () => [] })
+  public ignoredElements!: IgnoredElements;
 
   public render(createElement): VNode {
     return createElement(this.tag, this.$slots.default);
@@ -36,10 +54,18 @@ export class ClickAwayContainer extends TsxComponent<Props> {
 
   private handleClick(event: MouseEvent) {
     const path = event.composedPath();
-    const isClickOutside = !path.includes(this.$el);
-    if(isClickOutside) {
-      this.$emit(CLICK_OUTSIDE_EVENT);
+    const isClickOutsideSelf = !path.includes(this.$el);
+    if(isClickOutsideSelf === false) {
+      return;
     }
+    // We now have to check the ignored elements
+    const ignoredElements = this.ignoredElements();
+    for(const ignoredElement of ignoredElements) {
+      if(path.includes(ignoredElement)) {
+        return;
+      }
+    }
+    this.$emit(CLICK_OUTSIDE_EVENT, event);
   }
 
   @Watch('active', { immediate: true })

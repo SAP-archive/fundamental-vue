@@ -4,7 +4,9 @@ other way to render a component dynamically. dynamic-component is used to displa
 actual example (see src/docs/pages/**.vue) component.
 -->
 <template>
-  <component style="padding: 16px 24px;" :is="component" />
+  <div style="padding: 16px 24px;">
+    <component :is="component" />
+  </div>
 </template>
 
 <script>

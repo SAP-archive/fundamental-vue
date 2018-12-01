@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ PopoverContent }) => {
-  return { relatedComponents: [PopoverContent] };
+export const plugin: ExampleCollectionFunction = ({ Popover }) => {
+  return { relatedComponents: [Popover] };
 };
