@@ -17,12 +17,8 @@ interface Props {
     };
   },
 })
-@Api.Component('Menu', comp => {
-  comp.
-    addEvent('select', 'Sent when a menu item was selected', event => {
-      event.string('value');
-    });
-})
+@Api.Component('Menu')
+@Api.Event('select', 'Sent when a menu item was selected', ['value', String])
 @Api.defaultSlot('0 or more menu lists.')
 export class Menu extends TsxComponent<Props> {
   @Api.Prop('whether menu item can have an addon', prop => prop.type(Boolean))
@@ -42,6 +38,6 @@ export class Menu extends TsxComponent<Props> {
   }
 
   public menuItemDidClick(item: MenuItem) {
-    this.$emit('select', item.value);
+    this.$emit('select', item);
   }
 }

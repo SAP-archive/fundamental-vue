@@ -1,6 +1,6 @@
 import {
-  Component,
   Vue,
+  Component,
   Prop,
 } from 'vue-property-decorator';
 
@@ -13,8 +13,8 @@ const makeId = () => {
   return text;
 };
 
-@Component
-export class Uid extends Vue {
+@Component({ name: 'Uid' })
+export class Uid extends Vue  {
   @Prop({
     type: String,
     required: false,

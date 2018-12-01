@@ -23,9 +23,8 @@ interface Props {
 }
 
 @Component({ name: componentName('Alert') })
-@Api.Component('Alert', comp => {
-  comp.addEvent('dismiss', 'Sent when the dismiss button is clicked');
-})
+@Api.Component('Alert')
+@Api.Event('dismiss', 'Sent when the dismiss button is clicked')
 @Api.defaultSlot('alert content')
 export class Alert extends mixins(Uid) {
   @Api.Prop('whether alert is dismissible', prop => prop.type(Boolean))

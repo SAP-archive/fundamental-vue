@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "noImplicitAny": false,
     "target": "esnext",
     "module": "esnext",
     "strict": true,
@@ -11,8 +10,9 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "noUnusedLocals": true,
     "baseUrl": ".",
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
     "types": [
       "webpack-env",
       "jest",

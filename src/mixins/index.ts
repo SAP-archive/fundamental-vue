@@ -1,1 +1,2 @@
-export * from './Uid';
+export { Uid } from './Uid';
+export * from './Icon';

@@ -22,11 +22,8 @@ interface Props {
     };
   },
 })
-@Api.Component('Button Group', comp => {
-  comp.addEvent('input', 'triggers when index of active button changes', event => {
-    event.number('activeButtonIndex');
-  });
-})
+@Api.Component('Button Group')
+@Api.Event('input', 'triggers when index of active button changes', ['activeButtonIndex', Number])
 @Api.defaultSlot('Buttons to be displayed in a group')
 export class ButtonGroup extends TsxComponent<Props> implements ButtonContainer {
   @Api.Prop('whether button group is compact', prop => prop.type(Boolean))

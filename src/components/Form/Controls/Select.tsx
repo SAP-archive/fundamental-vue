@@ -2,11 +2,14 @@ import {
   Component,
   Prop,
   Inject,
+  Model,
+  Watch,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
 import { ItemIdentification } from './../Types/ItemIdentification';
 import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
+
 interface Props {
   id?: string | null;
   state?: State;
@@ -14,6 +17,7 @@ interface Props {
   disabled?: boolean;
   readonly?: boolean;
 }
+
 const stateMapping = {
   default: 'Default State',
   valid: 'Valid State (green border)',
@@ -23,6 +27,8 @@ const stateMapping = {
 
 type State = keyof (typeof stateMapping);
 const States = Object.keys(stateMapping) as State[];
+
+type Value = string | number | object | null;
 
 @Component({ name: componentName('Select') })
 @Api.Component('Select')
@@ -48,7 +54,22 @@ export class Select extends TsxComponent<Props> {
   @Prop({ required: false, default: false, type: Boolean })
   public readonly!: boolean;
 
-  @Inject({ default: null }) public itemIdentificationProvider!: ItemIdentification | null;
+  @Model('change', { type: [String, Number, Object] })
+  public value!: Value;
+  private currentValue = this.value;
+
+  @Watch('value', { immediate: true })
+  public handleNewValue(newValue: Value) {
+    this.currentValue = newValue;
+  }
+
+  private updateInput(event) {
+    this.currentValue = event.target.value;
+    this.$emit('change', event.target.value);
+  }
+
+  @Inject({ default: null })
+  public itemIdentificationProvider!: ItemIdentification | null;
 
   private get inputId(): string | null {
     const id = this.id;
@@ -62,7 +83,18 @@ export class Select extends TsxComponent<Props> {
 
   public render() {
     const options = this.$slots.default;
-    return <select id={this.inputId} readonly={this.readonly} disabled={this.disabled} class={this.classes}>{options}</select>;
+    return (
+      <select
+        id={this.inputId}
+        class={this.classes}
+        value={this.currentValue}
+        readonly={this.readonly}
+        disabled={this.disabled}
+        on-input={event => this.updateInput(event)}
+      >
+        {options}
+      </select>
+    );
   }
 
   private get classes() {

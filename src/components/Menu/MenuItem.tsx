@@ -11,7 +11,8 @@ interface Props {
 }
 
 @Component({ name: componentName('MenuItem') })
-@Api.Component('Menu Item', comp => comp.addEvent('click', 'Sent when item was clicked'))
+@Api.Component('Menu Item')
+@Api.Event('click', 'Sent when the itme was clicked')
 @Api.defaultSlot('Content displayed by the menu item (usually text).')
 @Api.slot('addon', 'Custom addon (displayed on the left).')
 export class MenuItem extends TsxComponent<Props> {

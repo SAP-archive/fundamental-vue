@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
 export const plugin: ExampleCollectionFunction = ({ Token }) => {
-  return { relatedComponents: [Token] };
+  return { icon: 'tags', relatedComponents: [Token] };
 };

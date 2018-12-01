@@ -1,4 +1,5 @@
 <title>List with Action</title>
+<condensed />
 
 <template>
   <FdListGroup>

@@ -1,8 +1,9 @@
 <title>Side Navigation with one Level</title>
+<condensed />
 
 <template>
-  <FdSideNav :defaultItemId="activeId">
-    <FdSideNavList @select="handleSelect">
+  <FdSideNav :v-model="activeId" indexPath="2">
+    <FdSideNavList>
       <FdSideNavItem itemId="1">Link Item 1</FdSideNavItem>
       <FdSideNavItem itemId="2">Link Item 2</FdSideNavItem>
       <FdSideNavItem itemId="3">Link Item 3</FdSideNavItem>
@@ -17,13 +18,8 @@
 export default {
   data() {
     return {
-      activeId: '3',
+      activeId: '2',
     };
-  },
-  methods: {
-    handleSelect(item) {
-      this.activeId = item.itemId;
-    },
-  },
+  }
 };
 </script>

@@ -39,7 +39,6 @@
     ],
     "interface-over-type-literal": false,
     "jsx-alignment": true,
-    "promise-function-async": true,
     "prefer-for-of": true,
     "no-parameter-reassignment": true,
     "import-spacing": true,

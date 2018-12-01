@@ -46,7 +46,7 @@ import { ActionBar } from './ActionBar';
 import { Alert } from './Alert';
 import { Icon } from './Icon';
 import { InlineHelp } from './InlineHelp';
-import { Plugin, PluginAPI } from '@/lib/plugin';
+import { Plugin, PluginAPI } from '@/lib';
 import { VueConstructor } from 'vue';
 import * as Breadcrumb from './Breadcrumb';
 import * as Combobox from './Combobox';

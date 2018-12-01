@@ -4,7 +4,7 @@
     "private": true,
     "homepage": "https://github.wdf.sap.corp/hybris-pd/fundamental-vue",
     "scripts": {
-        "serve:docs": "vue-cli-service serve src/docs/DocsMain.ts",
+        "serve:docs": "vue-cli-service serve src/docs/main.ts",
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint:vue": "vue-cli-service lint",

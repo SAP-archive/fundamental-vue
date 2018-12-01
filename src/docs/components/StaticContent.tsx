@@ -5,7 +5,6 @@ import {
 } from 'vue-property-decorator';
 import { ComponentReference } from './ComponentReference';
 import { ComponentExample } from './ComponentExample';
-import DynamicComponent from './DynamicComponent.vue';
 import './StaticContent.sass';
 import 'highlight.js/styles/docco.css';
 
@@ -13,7 +12,6 @@ import 'highlight.js/styles/docco.css';
   name: 'StaticContent',
   components: {
     ComponentExample,
-    DynamicComponent,
     ComponentReference,
   },
 })

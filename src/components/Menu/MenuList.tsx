@@ -18,12 +18,8 @@ interface Props {
     };
   },
 })
-@Api.Component('Menu List', comp => {
-  comp.
-    addEvent('select', 'Sent when a menu item was selected', event => {
-      event.string('value');
-    });
-})
+@Api.Component('Menu List')
+@Api.Event('select', 'Sent when a menu item was selected', ['item', 'MenuItem'])
 @Api.defaultSlot('0 or more menu items.')
 export class MenuList extends TsxComponent<Props> {
   @Api.Prop('header', build => {

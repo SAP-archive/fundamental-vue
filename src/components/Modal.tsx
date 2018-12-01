@@ -18,11 +18,9 @@ interface Props {
   name: componentName('Modal'),
   components: { ClickAwayContainer, Button },
 })
-@Api.Component('Modal', comp => {
-  comp
-    .addEvent('close', 'Sent when modal was closed')
-    .addEvent('update:active', 'Sent when active changes', event => event.boolean(name));
-})
+@Api.Component('Modal')
+@Api.Event('close', 'Sent when modal was closed')
+@Api.Event('update:active', 'Sent when active changes', ['active', Boolean])
 @Api.defaultSlot('Modal Body')
 @Api.slot('footer', 'Custom Modal Footer')
 @Api.slot('actions', 'Custom Modal Actions')

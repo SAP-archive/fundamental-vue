@@ -26,11 +26,9 @@ interface Props {
     },
 })
 
-@Api.Component('Search Input', component => {
-    component.addEvent('search', 'Triggered when the search button is clicked or enter is pressed from the keyboard.');
-    component.addEvent('autoComplete', 'Trigerred when the value in the SearchInput is changed. \n NOTE: This event will get trigerred only if there are children components in the suggestion.');
-})
-
+@Api.Component('Search Input')
+@Api.Event('search', 'Triggered when the search button is clicked or enter is pressed from the keyboard.')
+@Api.Event('autoComplete', 'Trigerred when the value in the SearchInput is changed. \n NOTE: This event will get trigerred only if there are children components in the suggestion.')
 export class SearchInput extends mixins(Uid) {
     @Api.Prop('Value set in the Search Input', prop => prop.type(String))
     @Prop({ default: '', required: false, type: String })

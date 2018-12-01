@@ -46,11 +46,8 @@ type Selection = number[];
     };
   },
 })
-@Api.Component('Table', comp => {
-  comp.addEvent('select', 'Sent when the selection changes', event => {
-    event.raw('rows', 'Array<number>');
-  });
-})
+@Api.Component('Table')
+@Api.Event('select', 'Sent when the selection changes', ['rows', 'Array<number>'])
 @Api.defaultSlot('Table Columns')
 export class Table<D extends TableData> extends TsxComponent<Props<D>> implements ColumnContainer<D> {
   @Api.Prop('whether the column is fixed (experimental)', prop => prop.type(Boolean))
