@@ -8,24 +8,17 @@ import { SideNavItem } from './SideNavItem';
 import { SideNav } from './SideNav';
 import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
-import { ITEM_LIST, SIDE_NAV } from './shared';
+import { SIDE_NAV } from './shared';
 
 interface Props {
   value?: string | null;
   header?: string | null;
 }
 
-@Component({
-  name: componentName('SideNavList'),
-  provide() {
-    return {[ITEM_LIST]: this};
-  },
-})
-@Api.Component('Side Nav List', comp => {
-  comp
-    .addEvent('select', 'Sent when a item was clicked', event => event.raw('item', 'Item'))
-    .addEvent('input', 'Sent when a item was clicked', event => event.string('itemId'));
-})
+@Component({ name: componentName('SideNavList') })
+@Api.Component('Side Nav List')
+@Api.Event('select', 'Sent when a item was clicked', ['item', 'Item'])
+@Api.Event('input', 'Sent when a item was clicked', ['itemId', String])
 @Api.defaultSlot('Side Navigation Items or Side Navigation Submenus.')
 export class SideNavList extends TsxComponent<Props> {
   @Api.Prop('value of the selected item', prop => prop.type(String))
@@ -35,7 +28,7 @@ export class SideNavList extends TsxComponent<Props> {
   public get activeItemId(): string | null {
     const nav = this.sideNav;
     if(nav != null) {
-      return nav.activeItemId;
+      return nav.activeIndexPath;
     }
     return this.localActiveItemId;
   }

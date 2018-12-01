@@ -40,12 +40,8 @@ type InputState = keyof (typeof stateMapping);
 const InputStates = Object.keys(stateMapping) as InputState[];
 
 @Component({ name: componentName('Input') })
-@Api.Component('Input', comp => {
-  comp.
-    addEvent('input', 'Sent when the value changes', event => {
-      event.raw('value', 'any');
-    });
-})
+@Api.Component('Input')
+@Api.Event('input', 'Sent when the value changes', ['value', 'any'])
 export class Input extends TsxComponent<Props> {
   @Api.Prop('id', prop => prop.type(String))
   @Prop({ default: null, type: String })

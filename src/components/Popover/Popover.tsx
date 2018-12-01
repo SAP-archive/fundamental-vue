@@ -31,12 +31,8 @@ interface Props {
     MenuItem,
   },
 })
-@Api.Component('Popover', comp => {
-  comp
-    .addEvent('click', 'Sent when an item in the popover was clicked', event => {
-      event.raw('value', 'MenuItem value');
-    });
-})
+@Api.Component('Popover')
+@Api.Event('click', 'Sent when an item in the popover was clicked', ['value', 'MenuItem value'])
 export class Popover extends mixins(Uid) {
   @Api.Prop('ARIA label', prop => prop.type(String))
   @Prop({ type: String, default: 'Popover' })

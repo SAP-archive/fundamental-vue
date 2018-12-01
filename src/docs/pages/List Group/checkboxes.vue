@@ -1,4 +1,5 @@
 <title>List with Checkboxes</title>
+<condensed />
 
 <template>
   <FdListGroup>

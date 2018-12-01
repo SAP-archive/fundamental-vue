@@ -1,7 +1,8 @@
 <title>Grouped Side Navigation</title>
+<condensed />
 
 <template>
-  <FdSideNav :defaultItemId="activeId">
+  <FdSideNav :v-model="activeId" indexPath="1-2">
     <FdSideNavList header="Group Title" @select="handleSelect">
       <FdSideNavItem itemId="1-1">Link Item 1</FdSideNavItem>
       <FdSideNavItem itemId="1-2">Link Item 2</FdSideNavItem>

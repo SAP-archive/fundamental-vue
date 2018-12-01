@@ -18,7 +18,7 @@ module.exports = {
       .end()
       .use('markdown-loader')
         .loader('markdown-loader')
-        .tap(options => {
+        .tap(() => {
           return {
             highlight: function(code) {
               return require('highlight.js').highlightAuto(code).value;
@@ -55,6 +55,14 @@ module.exports = {
             'block-loader?optionName=__tip',
             'markdown-loader',
           ],
+        },
+        {
+          resourceQuery: /blockType=condensed/,
+          use: 'block-loader?optionName=__condensed',
+        },
+        {
+          resourceQuery: /blockType=fullscreen-only/,
+          use: 'block-loader?optionName=__fullscreenOnly',
         },
       ],
     },

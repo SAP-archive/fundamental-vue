@@ -35,9 +35,8 @@ interface Props {
     Button,
   },
 })
-@Api.Component('Combobox', comp => {
-  comp.addEvent('input', 'Sent when the selected item changes');
-})
+@Api.Component('Combobox')
+@Api.Event('input', 'Sent when the selected item changes')
 export class Combobox extends mixins(Uid) {
   @Api.Prop('initial value', prop => prop.type(String))
   @Prop({ default: null, required: false, type: String })

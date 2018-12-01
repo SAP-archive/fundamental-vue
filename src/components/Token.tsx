@@ -3,13 +3,11 @@ import { Api } from '@/api';
 import { componentName } from '@/util';
 import TsxComponent from '@/vue-tsx';
 
-// tslint:disable-next-line:no-empty-interface
-interface Props {}
-
 @Component({ name: componentName('Token') })
-@Api.Component('Token', comp => comp.addEvent('click', 'triggers when clicked'))
+@Api.Component('Token')
+@Api.Event('click', 'triggers when clicked')
 @Api.defaultSlot('Token Text')
-export class Token extends TsxComponent<Props> {
+export class Token extends TsxComponent<{}> {
   public render() {
     return (
       <span

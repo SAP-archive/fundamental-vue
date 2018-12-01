@@ -1,4 +1,4 @@
-<title>Warnin Alert</title>
+<title>Warning Alert</title>
 
 <template>
   <div>

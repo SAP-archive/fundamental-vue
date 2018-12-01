@@ -11,13 +11,13 @@ import {
   exampleCollections,
   ExampleCollections,
   ExampleCollection,
-} from './pages';
+} from '@/docs/pages';
 import {
   ApiCollection,
   Api,
 } from '@/api';
-import { all, Ui, SideNav, SideNavItem, SideNavList } from '@/components';
-import './DocsPage.sass';
+import { Shell, ShellHeader, App, AppMain, AppNavigation, all, SideNav, SideNavItem, SideNavList } from '@/components';
+import './DefaultLayout.sass';
 
 const collection = new ApiCollection();
 for (const component of Object.values(all)) {
@@ -33,8 +33,8 @@ for (const component of Object.values(all)) {
   }
 }
 
-@Component({ name: 'docs-page' })
-export class DocsPage extends Vue {
+@Component({ name: 'DefaultLayout' })
+export class DefaultLayout extends Vue {
   private activeMenuItemId: string | null = null;
 
   // TODO: Make this nice.
@@ -96,50 +96,81 @@ export class DocsPage extends Vue {
             itemId={itemId}
           >
             {exampleCollection.title}
-          </SideNavItem>);
+          </SideNavItem>
+        );
       };
       return collections.map(renderExampleCollection);
     };
 
     // @ts-ignore
     const VueDevToolsEnabled = this.$$VueDevToolsEnabled || false;
-    return (
-      <Ui headerClass='navbar'>
-        {VueDevToolsEnabled && <script src='http://localhost:8098'/>}
-        <div slot='header'>
-          <router-link to='/'>
-          <img style='margin-left: 10px;' class='navbar-logo' src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
-          </router-link>
-        </div>
-        <SideNav defaultItemId={this.activeMenuItemId} class='sidebar' slot='sidebar'>
-          <SideNavList
-            class='sidebar-list'
-            header='Vue Fundamentals'
-          >
+    const renderSideNav = () => {
+      return (
+        <SideNav
+          style={{'padding-bottom': '25px'}}
+          indexPath={this.activeMenuItemId}
+        >
+          <SideNavList>
             <SideNavItem itemId='start' on-click={this.showStartPage}>Start</SideNavItem>
             <SideNavItem itemId='new-component' on-click={() => this.push('/guide/new-component', 'new-component')}>New Component</SideNavItem>
-            <SideNavItem submenuTitle='API Documentation' itemId='api-doc'>
-              {renderExampleCollections(exampleCollections)}
-            </SideNavItem>
+            <SideNavItem submenuTitle='API Documentation' itemId='api-doc'>{renderExampleCollections(exampleCollections)}</SideNavItem>
           </SideNavList>
-          <SideNavList
-            class='sidebar-list fd-has-margin-bottom-large'
-            header={'Components'}
-          >
-            {exampleCollections.map(item => (
-              <SideNavItem
-                itemId={`example-${item.slug}`}
-                on-click={() => this.onExampleCollectionClick(item)}
-              >
-                {item.title}
-              </SideNavItem>
-            ),
-            )}
-            <SideNavItem itemId='99' route-name='app-layout-with-sidebar'>Layout with Sidebar</SideNavItem>
+          <SideNavList style='margin-bottom: 60px;' header={'Components'}>
+            {
+              exampleCollections.map(item => (
+                <SideNavItem icon={item.icon} itemId={`example-${item.slug}`} on-click={() => this.onExampleCollectionClick(item)}>
+                  {item.title}
+                </SideNavItem>
+              ))
+            }
           </SideNavList>
         </SideNav>
-        <div style='height: 100%;'><router-view /></div>
-      </Ui>
+      );
+    };
+    return (
+      <Shell>
+        <ShellHeader fixed={true}>
+        <div class='fd-shellbar' style='padding-left: 20px;'>
+        <div class='fd-shellbar__group fd-shellbar__group--start'>
+            <router-link to='/' class='fd-shellbar__logo'>
+              <img src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
+            </router-link>
+            <div class='fd-shellbar__product'>
+            <div class='fd-product-menu'>
+             <div class='fd-popover fd-popover--right'>
+               <div class='fd-popover__control'>
+                 <router-link to='/' tag='button' class='fd-product-menu__control' aria-controls='9GLB2694' aria-haspopup='true' aria-expanded='false'>
+                   <span class='fd-shellbar__title fd-product-menu__title'>Fundamental-Vue</span>
+                 </router-link>
+               </div>
+               <div class='fd-popover__body fd-popover__body--right' aria-hidden='true' id='9GLB2694'>
+                 <nav class='fd-menu'>
+                   <ul class='fd-menu__list' />
+                 </nav>
+               </div>
+             </div>
+           </div>
+            </div>
+          </div>
+          <div class='fd-shellbar__group fd-shellbar__group--middle' />
+          <div class='fd-shellbar__group fd-shellbar__group--end'>
+            <div class='fd-shellbar__actions'>
+            <div class='fd-shellbar__action fd-shellbar__action--collapsible' />
+            </div>
+          </div>
+
+        </div>
+        </ShellHeader>
+        <App>
+        <AppNavigation orientation='vertical' class='sidebar'>
+          {renderSideNav()}
+        </AppNavigation>
+          <AppMain class='main-with-sidebar'>
+          <router-view />
+          </AppMain>
+
+        </App>
+      </Shell>
     );
   }
 }

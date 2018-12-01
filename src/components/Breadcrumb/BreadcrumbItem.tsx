@@ -11,11 +11,8 @@ interface Props {
 }
 
 @Component({ name: componentName('BreadcrumbItem') })
-@Api.Component('Breadcrumb Item', comp => {
-  comp.addEvent('click', 'Sent when item was clicked', event => {
-    event.raw('item', 'BreadcrumbItem');
-  });
-})
+@Api.Component('Breadcrumb Item')
+@Api.Event('click', 'Sent when item was clicked', ['item', 'BreadcrumbItem'])
 @Api.defaultSlot('Breadcrumb Item Title')
 export class BreadcrumbItem extends TsxComponent<Props> {
   @Api.Prop('target route (passed to $router.to(…))', prop => prop.type(Object))

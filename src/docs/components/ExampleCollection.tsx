@@ -6,16 +6,16 @@ import {
 } from 'vue-property-decorator';
 import { ComponentReference } from './ComponentReference';
 import { ComponentExample } from './ComponentExample';
-import DynamicComponent from './DynamicComponent.vue';
 import { VueConstructor } from 'vue';
 import { Route } from 'vue-router';
 import { exampleCollections, Example } from '@/docs/pages';
+type VMFn<T> = (vm: T) => void;
+type NextFn<T> = (fn?: VMFn<T>) => void;
 
 @Component({
   name: 'ExampleCollection',
   components: {
     ComponentExample,
-    DynamicComponent,
     ComponentReference,
   },
 })
@@ -33,31 +33,27 @@ export class ExampleCollection extends Vue {
       return;
     }
 
-    exampleCollection.examples().then(examples => {
-      this.examples = examples;
-      this.relatedComponents = exampleCollection.relatedComponents;
-      this.$forceUpdate();
-    });
+    this.examples = exampleCollection.examples();
+    this.relatedComponents = exampleCollection.relatedComponents;
+    this.$forceUpdate();
   }
 
-  public beforeRouteEnter(to, from, next) {
+  public beforeRouteEnter(to: Route, from: Route, next: NextFn<ExampleCollection>): void {
     const { slug } = to.params;
     const exampleCollection = exampleCollections.exampleCollection({ slug });
     if (exampleCollection == null) {
-      next((vm: ExampleCollection) => vm.resetUI());
+      next(vm => vm.resetUI());
       return;
     }
-
-    exampleCollection.examples().then(examples => {
-      next((vm: ExampleCollection) => {
-        vm.examples = examples;
-        vm.relatedComponents = exampleCollection.relatedComponents;
-        vm.$forceUpdate();
-      });
+    const examples = exampleCollection.examples();
+    next(vm => {
+      vm.examples = examples;
+      vm.relatedComponents = exampleCollection.relatedComponents;
+      vm.$forceUpdate();
     });
   }
 
-  public beforeRouteUpdate(to, _, next) {
+  public beforeRouteUpdate(to: Route, _: Route, next: NextFn<ExampleCollection>) {
     const { slug } = to.params;
 
     // Reset the UI. Future work: Implement loading state.
@@ -69,13 +65,11 @@ export class ExampleCollection extends Vue {
       next();
       return;
     }
-
-    exampleCollection.examples().then(examples => {
-      this.examples = examples;
-      this.relatedComponents = exampleCollection.relatedComponents;
-      this.$forceUpdate();
-      next();
-    });
+    const examples = exampleCollection.examples();
+    this.examples = examples;
+    this.relatedComponents = exampleCollection.relatedComponents;
+    this.$forceUpdate();
+    next();
   }
 
   @Prop({ type: String, required: false, default: null })
@@ -96,7 +90,19 @@ export class ExampleCollection extends Vue {
     const relatedComponents = this.relatedComponents;
     const examples = this.examples;
     const renderExamples = () => {
-      return examples.map(example => (<ComponentExample key={`example-${example.code}-${example.id}`} tip={example.tip} docs={example.docs} component={example.component} sourcecode={example.code} title={example.title} />));
+      return examples.map(example => (
+        <ComponentExample
+          exampleId={example.id}
+          key={`example-${example.code}-${example.id}`}
+          tip={example.tip}
+          docs={example.docs}
+          component={example.component}
+          sourcecode={example.code}
+          title={example.title}
+          condensed={example.condensed}
+          fullscreenOnly={example.fullscreenOnly}
+        />
+      ));
     };
     const renderRelatedComponentsReference = () => {
       return relatedComponents.map(comp => <ComponentReference key={`api-${comp.name}`} component={comp} />);

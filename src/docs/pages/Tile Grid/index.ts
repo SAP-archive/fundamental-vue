@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
 export const plugin: ExampleCollectionFunction = ({ TileGrid }) => {
-    return { relatedComponents: [TileGrid] };
+    return { icon: 'heatmap-chart', relatedComponents: [TileGrid] };
 };

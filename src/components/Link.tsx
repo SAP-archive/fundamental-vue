@@ -12,7 +12,8 @@ interface Props {
 }
 
 @Component({ name: componentName('Link') })
-@Api.Component('Link', comp => comp.addEvent('click', 'Sent when link was clicked'))
+@Api.Component('Link')
+@Api.Event('click', 'Sent when link was clicked')
 @Api.defaultSlot('Link Title')
 export class Link extends TsxComponent<Props> {
   @Api.Prop('whether link is selected', prop => prop.type(Boolean))

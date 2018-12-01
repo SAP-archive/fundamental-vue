@@ -1,11 +1,11 @@
 
 import * as components from '@/components';
 import { hasBackgroundColor } from '@/directives';
-import { PluginFunction } from 'vue';
+import { VueConstructor, PluginFunction } from 'vue';
 import { componentName } from '@/util';
 
 const api = {
-  registerComponent(vue, component, name) {
+  registerComponent(vue: VueConstructor<any>, component: VueConstructor<any>, name: string) {
     const prefixedName = componentName(name);
     console.log(`Register component ${prefixedName}`);
     vue.component(prefixedName, component);

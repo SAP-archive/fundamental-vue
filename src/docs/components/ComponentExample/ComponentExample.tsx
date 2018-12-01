@@ -2,41 +2,57 @@ import {
   Component,
   Prop,
 } from 'vue-property-decorator';
-import './ComponentExample.css';
-import DynamicComponent from '@/docs/components/DynamicComponent.vue';
-import { Panel, ExpandTransition } from '@/components';
+import './ComponentExample.sass';
+import { DynamicComponent } from '@/docs/components/DynamicComponent';
+import { Button, Panel, ExpandTransition } from '@/components';
 import { CodeView } from '@/docs/components';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
+  exampleId: string;
   tip?: string | null;
   docs?: string | null;
   sourcecode?: string;
   title?: string;
   component?: object;
+  condensed: boolean;
+  fullscreenOnly: boolean;
 }
 
 @Component({
   name: 'ComponentExample',
   components: {
+    Button,
     DynamicComponent,
     ExpandTransition,
   },
 })
 export class ComponentExample extends TsxComponent<Props> {
-  @Prop({ type: String, required: false, default: null })
+  @Prop({ type: String, required: true })
+  public exampleId!: string;
+
+  @Prop({ type: String, default: null })
   public tip!: string | null;
 
   @Prop({ type: String, default: null })
   public docs!: string | null;
 
-  @Prop({ type: String, default: '', required: false })
+  @Prop({ type: String, default: '' })
   public sourcecode!: string;
 
-  @Prop({ type: String, default: '', required: false })
+  @Prop({ type: String, default: '' })
   public title!: string;
 
-  @Prop({ type: Object, validator: val => true })
+  @Prop({ type: Boolean, default: false })
+  public condensed!: boolean;
+
+  @Prop({ type: Boolean, default: false })
+  public fullscreenOnly!: boolean;
+
+  @Prop({ type: Boolean, default: false })
+  public isFullscreenExample!: boolean;
+
+  @Prop({ type: Object })
   public component!: object;
 
   get currentCode(): string { return this.sourcecode; }
@@ -59,32 +75,58 @@ export class ComponentExample extends TsxComponent<Props> {
           </div>
         </ExpandTransition>
       );
-
     };
     const tip = this.tip;
+    const routeData = this.$router.resolve({
+      name: 'example-demo',
+      params: { id: this.exampleId },
+    });
+
     return (
-      <div style='padding: 30px 30px 30px 30px;'>
-        <h1 style='font-size: 21px; color: #555555;'>{this.title}</h1>
-        {this.docs && <div style='font-size: 1.2em; margin-bottom: 12px;' domPropsInnerHTML={this.docs} />}
-        <Panel
-          condensed={true}
-          condensedFooter={true}
-          style={'margin-bottom: 20px;'}
-        >
+      <div class='component-example'>
+        <h1 class='example-title'>
+          {this.title}
+          <Button
+            compact={true}
+            styling='light'
+            type='standard'
+            class='fullscreen-demo-button'
+            icon='popup-window'
+            on-click={() => window.open(routeData.href, '__blank')}
+          />
+        </h1>
+        {this.docs &&
+          <div class='docs' domPropsInnerHTML={this.docs} />
+        }
+        <Panel condensed={true} condensedFooter={true}>
           {!!tip &&
-            <div
-              style='border-left: 0.5rem solid #42b983; background-color: #f3f5f7; padding: 1.5rem; margin-top: 1em; border-bottom: 1px solid #ebebeb;'
-            >
-              <div style='font-weight: 600; font-size: 16px; line-height: 1.7;'>TIP</div>
-              <div style='margin-top: 1em; margin-bottom: 1em; font-size: 16px;' domPropsInnerHTML={tip} />
+            <div class='tip'>
+              <div class='tip-title'>TIP</div>
+              <div class='tip-body' domPropsInnerHTML={tip} />
             </div>
           }
-          {!!tip && <div style='height: 1px; backgroundColor: #ebebeb;' />}
-          <dynamic-component component={this.component} />
-          {/* <h1>{this.component.__title}</h1> */}
-          <div slot='footer' style='width:100%; display:block;'>
+
+          <div class='component'>
+          {this.fullscreenOnly ?
+            <div class='component__default-margin' style='display: flex; justify-content: center;'>
+              <Button
+                style='margin-left: auto; margin-right: auto;'
+                type='standard'
+                icon='popup-window'
+                on-click={() => window.open(routeData.href, '__blank')}
+              >
+                Show Demo
+              </Button>
+            </div>
+            :
+            <DynamicComponent
+              class={this.condensed ? 'component__condensed' : 'component__default-margin'}
+              component={this.component}
+            />
+          }
+          </div>
+          <div slot='footer' class='footer'>
             <div
-              style='cursor: pointer; text-align: center; background-color: rgb(250, 250, 250);'
               class='example__show_code'
               role='button'
               on-click={event => this.toggleCode(event)}
