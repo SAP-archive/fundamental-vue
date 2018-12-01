@@ -18,6 +18,7 @@ interface Props {
   disabled?: boolean;
   readonly?: boolean;
   value?: string | number | null;
+  compact?: boolean;
 }
 
 const typeMappings = {
@@ -47,36 +48,40 @@ const InputStates = Object.keys(stateMapping) as InputState[];
 })
 export class Input extends TsxComponent<Props> {
   @Api.Prop('id', prop => prop.type(String))
-  @Prop({ required: false, default: null, type: String })
+  @Prop({ default: null, type: String })
   public id!: string | null;
 
   @Api.Prop('placeholder text', prop => prop.type(String))
-  @Prop({ required: false, default: '', type: String })
+  @Prop({ default: '', type: String })
   public placeholder!: string;
 
   @Api.Prop('current state', prop => prop.type(String).acceptValues(...InputStates))
-  @Prop({ required: false, default: null, type: String })
+  @Prop({ default: null, type: String })
   public state!: InputState | null;
 
   @Api.Prop('whether a value is required (adds a *)', prop => prop.type(Boolean))
-  @Prop({ required: false, default: false, type: Boolean })
+  @Prop({ default: false, type: Boolean })
   public required!: boolean;
 
   @Api.Prop('button type', prop => prop.type(String).acceptValues(...InputTypes))
-  @Prop({ required: false, default: 'text', type: String })
+  @Prop({ default: 'text', type: String })
   public type!: InputType;
 
   @Api.Prop('whether the control is disabled', prop => prop.type(Boolean))
-  @Prop({ required: false, default: false, type: Boolean })
+  @Prop({ default: false, type: Boolean })
   public disabled!: boolean;
 
   @Api.Prop('whether the control is readonly', prop => prop.type(Boolean))
-  @Prop({ required: false, default: false, type: Boolean })
+  @Prop({ default: false, type: Boolean })
   public readonly!: boolean;
 
   @Api.Prop('current value', prop => prop.type(String, Number))
-  @Prop({ required: false, default: null, type: [String, Number] })
+  @Prop({ default: null, type: [String, Number] })
   public value!: string | number | null;
+
+  @Api.Prop('whether input is compact', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, default: false })
+  public compact!: boolean;
 
   @Inject({ default: null }) public itemIdentificationProvider!: ItemIdentification | null;
 
@@ -100,6 +105,7 @@ export class Input extends TsxComponent<Props> {
         disabled={this.disabled}
         type={this.type}
         class={this.classes}
+        staticClass='fd-form__control'
         placeholder={this.placeholder.length > 0 ? this.placeholder : false}
       />
     );
@@ -129,7 +135,7 @@ export class Input extends TsxComponent<Props> {
 
   private get classes() {
     return {
-      'fd-form__control': true,
+      'fd-input--compact': this.compact,
       'is-warning': this.state === 'warning',
       'is-invalid': this.state === 'invalid',
       'is-valid': this.state === 'valid',

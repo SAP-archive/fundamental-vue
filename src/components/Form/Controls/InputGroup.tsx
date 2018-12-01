@@ -10,6 +10,7 @@ interface Props {
   before?: string | null;
   after?: string | null;
   afterClass?: string | null;
+  compact?: boolean;
 }
 
 @Component({ name: componentName('InputGroup') })
@@ -29,6 +30,10 @@ export class InputGroup extends TsxComponent<Props> {
   @Prop({ type: String, required: false, default: null })
   public afterClass!: string | null;
 
+  @Api.Prop('whether input group is compact', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, default: false })
+  public compact!: boolean;
+
   public render() {
     const beforeAddon = this.before || this.$slots.before;
     const afterAddon = this.after || this.$slots.after;
@@ -36,7 +41,7 @@ export class InputGroup extends TsxComponent<Props> {
     const ws = this.afterClass ? ' ' : '';
     const afterAddonClassName = 'fd-input-group__addon fd-input-group__addon--after' + ws + afterClass;
     return (
-      <div class={this.classes}>
+      <div staticClass='fd-input-group' class={this.classes}>
         {beforeAddon && <span class='fd-input-group__addon fd-input-group__addon--before'>{beforeAddon}</span>}
         {this.$slots.default}
         {afterAddon && <span class={afterAddonClassName}>{afterAddon}</span>}
@@ -46,9 +51,9 @@ export class InputGroup extends TsxComponent<Props> {
 
   private get classes() {
     return {
-      'fd-input-group': true,
       'fd-input-group--before': this.before || this.$slots.before,
       'fd-input-group--after': this.after || this.$slots.after,
+      'fd-input-group--compact': this.compact,
     };
   }
 }

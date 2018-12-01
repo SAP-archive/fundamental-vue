@@ -6,16 +6,18 @@ import { mixins } from 'vue-class-component';
 import { Uid } from '@/mixins';
 import { Api } from '@/api';
 import { componentName } from '@/util';
-import { PopoverContent } from './../Popover';
-import { Input, InputGroup } from './../Form';
+import { Popover } from '@/components/Popover';
+import { Button } from '@/components/Button';
+import { Input, InputGroup } from '@/components/Form';
 import { ClickAwayContainer } from '@/components/ClickAwayContainer';
 
 interface Props {
+  uid?: string; // Uid mixin
   value?: string | null;
   placeholder?: string;
   ariaLabel?: string;
   popoverVisible?: boolean;
-  uid?: string; // Uid mixin
+  compact?: boolean;
 }
 
 @Component({
@@ -27,9 +29,10 @@ interface Props {
   },
   components: {
     ClickAwayContainer,
-    PopoverContent,
+    Popover,
     Input,
     InputGroup,
+    Button,
   },
 })
 @Api.Component('Combobox', comp => {
@@ -52,6 +55,10 @@ export class Combobox extends mixins(Uid) {
   @Prop({ type: Boolean, default: false, required: false })
   public popoverVisible!: boolean;
 
+  @Api.Prop('whether combobox is compact', prop => prop.type(Boolean))
+  @Prop({ type: Boolean, default: false })
+  public compact!: boolean;
+
   public $tsxProps!: Readonly<{}> & Readonly<Props>;
 
   private currentPopoverVisible: boolean = this.popoverVisible;
@@ -68,52 +75,41 @@ export class Combobox extends mixins(Uid) {
     this.$emit('update:value', this.currentValue);
   }
 
-  private handleSelectItem(value) {
-    this.setCurrentValue(value);
-    this.togglePopoverVisible();
+  private handleKeyup({ keyCode }: KeyboardEvent) {
+    if(keyCode !== 13) {
+      return;
+    }
+    if(this.currentPopoverVisible) {
+      this.togglePopoverVisible();
+    }
   }
 
   public render() {
     const dropdown = this.$slots.default;
-
-    const renderPopoverContent = () => (
-      <PopoverContent
-        // tslint:disable-next-line:object-literal-key-quotes
-        {...{'class': 'fd-popover__body--no-arrow'}}
-        on-select={value => this.handleSelectItem(value)}
-      >
-        {dropdown}
-      </PopoverContent>
-    );
-
     return (
       <div class='fd-combobox-input'>
-        <div class='fd-popover'>
-          <div class='fd-popover__control'>
-            <InputGroup afterClass={'fd-input-group__addon--button'}>
+        <Popover noArrow={true} popoverVisible={this.currentPopoverVisible}>
+          <div class='fd-combobox-control' slot='control'>
+            <InputGroup compact={this.compact} afterClass={'fd-input-group__addon--button'}>
               <Input
                 id={this.uid}
-                nativeOn-click={() => this.currentPopoverVisible = true}
                 value={this.value}
-                on-input={val => this.setCurrentValue(val)}
+                compact={this.compact}
+                nativeOn-click={() => this.currentPopoverVisible = true}
+                nativeOn-keyup={this.handleKeyup}
+                on-input={this.setCurrentValue}
                 placeholder={this.placeholder}
               />
-              <button
+              <Button
                 slot='after'
-                on-click={() => this.togglePopoverVisible()}
-                class='fd-button--icon fd-button--secondary sap-icon--navigation-down-arrow'
+                on-click={this.togglePopoverVisible}
+                icon='navigation-down-arrow'
+                styling='light'
               />
             </InputGroup>
           </div>
-          <ClickAwayContainer
-            aria-hidden={!this.currentPopoverVisible}
-            v-show={this.currentPopoverVisible}
-            active={this.currentPopoverVisible}
-            on-clickOutside={() => this.currentPopoverVisible = false}
-          >
-            {renderPopoverContent()}
-          </ClickAwayContainer>
-        </div>
+          {dropdown}
+        </Popover>
       </div>
     );
   }

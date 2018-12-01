@@ -9,7 +9,7 @@ import { ButtonContainer } from './ButtonContainer';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
-  styling: ButtonStyling;
+  styling?: ButtonStyling;
   type?: ButtonType;
   icon?: string | null;
   compact?: boolean;
