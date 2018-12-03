@@ -22,27 +22,23 @@ Some prior knowledge of Vue is required for using this library.
 
 ## Build the library
 ```
-$ ./scripts/build
+$ cd ./scripts/build
 $ npm pack
 ```
 
 ## Install
 
-**This does not work yet**
-
 ```
-$ npm i --save fundamentalvue
+$ npm i --save fundamental-vue
 ```
 
-fundamentalvue does not include Fiori Elements. You have to make sure to include the css/scss files yourself.
+You have to make sure to include the Fiori Fundamentals css/scss files yourself.
 
 ## Use
 
-**This does not work yet**
-
 ```
 // ...
-import FundamentalVue  from 'fundamentalvue';
+import FundamentalVue  from 'fundamental-vue';
 Vue.use(FundamentalVue);
 // ...
 ```
