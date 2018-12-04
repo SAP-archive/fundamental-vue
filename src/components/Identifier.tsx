@@ -8,18 +8,24 @@ import { Color, Colors, backgroundColorClassName } from '@/lib';
 import TsxComponent from '@/vue-tsx';
 
 const sizeMapping = {
+  xxs: 'Extra Extra Small',
+  xs: 'Extra Small',
   s: 'Small',
   m: 'Medium (default)',
   l: 'Large',
+  xl: 'Extra Large',
+  xxl: 'Extra Extra Large',
 };
 type IdentifierSize = keyof (typeof sizeMapping);
 const IdentifierSizes = Object.keys(sizeMapping) as IdentifierSize[];
 
 interface Props {
   icon?: string | null;
+  url?: string | null;
   size?: IdentifierSize;
   circle?: boolean;
   transparent?: boolean;
+  thumbnail?: boolean;
   backgroundColor?: Color | null;
 }
 
@@ -30,6 +36,10 @@ export class Identifier extends TsxComponent<Props> {
   @Api.Prop('icon name', prop => prop.type(String))
   @Prop({ type: String, default: null, required: false })
   public icon!: string | null;
+
+  @Api.Prop('image url', prop => prop.type(String))
+  @Prop({ type: String, default: null, required: false })
+  public url!: string | null;
 
   @Api.Prop('size', prop => prop.type(String).acceptValues(...IdentifierSizes))
   @Prop({ type: String, default: 'm', required: false })
@@ -43,12 +53,24 @@ export class Identifier extends TsxComponent<Props> {
   @Prop({ required: false, default: false, type: Boolean })
   public transparent!: boolean;
 
+  @Api.Prop('is displayed with background image', prop => prop.type(Boolean))
+  @Prop({ required: false, default: false, type: Boolean })
+  public thumbnail!: boolean;
+
   @Api.Prop('background color', prop => prop.type(String).acceptValues(...Colors))
   @Prop({ required: false, default: null, type: String })
   public backgroundColor!: Color | null;
 
   public render() {
-    return <span class={this.classes} role='presentation'>{this.$slots.default}</span>;
+    return <span class={this.classes} role='presentation' style={this.style}>{this.$slots.default}</span>;
+  }
+
+  private get style() {
+    const url = this.url;
+    if (url == null || !this.thumbnail) { return {}; }
+    return {
+      'background-image': `url(${this.url})`,
+    };
   }
 
   private get classes() {
@@ -57,11 +79,16 @@ export class Identifier extends TsxComponent<Props> {
     return {
       ...iconClass,
       ...backgroundColorClasses,
+      'fd-identifier--xxs': this.size === 'xxs',
+      'fd-identifier--xs': this.size === 'xs',
       'fd-identifier--s': this.size === 's',
-      'fd-identifier--l': this.size === 'l',
       'fd-identifier--m': this.size === 'm',
+      'fd-identifier--l': this.size === 'l',
+      'fd-identifier--xl': this.size === 'xl',
+      'fd-identifier--xxl': this.size === 'xxl',
       'fd-identifier--transparent': this.transparent,
       'fd-identifier--circle': this.circle,
+      'fd-identifier--thumbnail': this.thumbnail,
     };
   }
 }
