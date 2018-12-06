@@ -92,7 +92,7 @@ export class SearchInput extends mixins(Uid) {
                 {enableSuggest === true ? (<Popover noArrow={true} popoverVisible={false}>
                     <div class='fd-combobox-control' slot='control' >
                         <InputGroup afterClass={'fd-input-group__addon--button'} compact={this.compact}>
-                            <Input id={this.uid} value={this.searchValue} placeholder={this.placeholder}
+                            <Input value={this.searchValue} placeholder={this.placeholder}
                                 nativeOn-keyup={this.handleKeyboardSearch}
                                 on-input={this.setCurrentValue} compact={this.compact} />
                             <Button slot='after' class='fd-button--icon fd-button--secondary sap-icon--search'
@@ -102,7 +102,7 @@ export class SearchInput extends mixins(Uid) {
                     {suggestionList}
                 </Popover>) : <div class='fd-combobox-control' slot='control'>
                         <InputGroup afterClass={'fd-input-group__addon--button'} compact={this.compact}>
-                            <Input id={this.uid} value={this.searchValue} placeholder={this.placeholder}
+                            <Input value={this.searchValue} placeholder={this.placeholder}
                                 nativeOn-keyup={this.handleKeyboardSearch}
                                 on-input={this.setCurrentValue} compact={this.compact} />
                             <Button slot='after' class='fd-button--icon fd-button--secondary sap-icon--search'
