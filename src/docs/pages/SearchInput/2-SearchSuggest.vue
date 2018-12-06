@@ -2,6 +2,7 @@
 
 <template>
 <div>
+    <FdLabel>The search value is: {{searchvalue}}</FdLabel>
     <FdSearchInput v-model="searchvalue" placeholder="Enter Search Query" @search="onSearch" @autoComplete="onAutoComplete" v-bind:enableSuggest="true" v-bind:suggestionList="this.data"></FdSearchInput>
 </div>
 </template>
@@ -9,8 +10,9 @@
 <script>
 export default {
     methods: {
-        onSearch(e) {
+        onSearch(txt) {
             // search handler
+            this.searchvalue = txt;
         },
         onAutoComplete(e) {
             // auto complete handler

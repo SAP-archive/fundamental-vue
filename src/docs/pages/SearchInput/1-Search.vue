@@ -2,6 +2,7 @@
 
 <template>
     <div>
+        <FdLabel>The Search value is : {{searchVal}}</FdLabel>
         <FdSearchInput v-model="searchVal" placeholder='Enter Search Query' @search='onSearch'>
       </FdSearchInput>   
     </div>
@@ -10,8 +11,9 @@
 <script>
 export default {
     methods: {
-        onSearch(e){
+        onSearch(txt){
             // search handler
+            this.searchVal = txt;
         }
     },
     data(){

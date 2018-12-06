@@ -67,7 +67,7 @@ export class SearchInput extends mixins(Uid) {
         this.$emit('update:value', this.searchValue);
     }
 
-    private handleKeyboardSearch(e, { keyCode }: KeyboardEvent) {
+    private handleKeyboardSearch({ keyCode }: KeyboardEvent) {
         if (keyCode === 13) {
             this.emitSearch();
         } else if (this.suggestionList && this.suggestionList.length > 0) {
