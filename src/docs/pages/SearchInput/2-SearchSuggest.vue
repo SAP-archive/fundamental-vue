@@ -3,7 +3,7 @@
 <template>
 <div>
     <FdLabel>The search value is: {{searchvalue}}</FdLabel>
-    <FdSearchInput v-bind:value="searchvalue" placeholder="Enter Search Query" @search="onSearch" @autoComplete="onAutoComplete" v-bind:enableSuggest="true" >
+    <FdSearchInput v-model="searchvalue" placeholder="Enter Search Query" @search="onSearch" @autoComplete="onAutoComplete" v-bind:enableSuggest="true" >
       <FdMenuItem v-for="item in data" :key="item.key" @click="searchvalue = item.text">{{item.text}}</FdMenuItem>
     </FdSearchInput>
 </div>
