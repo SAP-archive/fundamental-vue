@@ -1,5 +1,5 @@
 
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import { Api } from '@/api';
 import { mixins } from 'vue-class-component';
 import { Uid } from '@/mixins';
@@ -51,6 +51,12 @@ export class SearchInput extends mixins(Uid) {
 
     public $tsxProps!: Readonly<{}> & Readonly<Props>;
     private searchValue: string = this.value;
+
+    @Watch('value')
+    handleNewValue(newValue: string) {
+        this.searchValue = newValue;
+        this.$emit('input', this.searchValue);
+    }
 
     private handleSearchClick() {
         this.emitSearch();
