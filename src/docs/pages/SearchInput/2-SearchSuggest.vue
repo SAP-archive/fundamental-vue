@@ -3,7 +3,9 @@
 <template>
 <div>
     <FdLabel>The search value is: {{searchvalue}}</FdLabel>
-    <FdSearchInput v-model="searchvalue" placeholder="Enter Search Query" @search="onSearch" @autoComplete="onAutoComplete" v-bind:enableSuggest="true" v-bind:suggestionList="this.data"></FdSearchInput>
+    <FdSearchInput v-bind:value="searchvalue" placeholder="Enter Search Query" @search="onSearch" @autoComplete="onAutoComplete" v-bind:enableSuggest="true" >
+      <FdMenuItem v-for="item in data" :key="item.key" @click="searchvalue = item.text">{{item.text}}</FdMenuItem>
+    </FdSearchInput>
 </div>
 </template>
 
@@ -30,36 +32,15 @@ export default {
                     text: "mango"
                 },
                 {
-                    key: 2,
+                    key: 3,
                     text: "grapes"
                 },
                 {
-                    key: 2,
+                    key: 4,
                     text: "banana"
                 },
                 {
-                    key: 2,
-                    text: "orange"
-                }
-            ],
-            suggestions: [{
-                    key: 1,
-                    text: "apple"
-                },
-                {
-                    key: 2,
-                    text: "mango"
-                },
-                {
-                    key: 2,
-                    text: "grapes"
-                },
-                {
-                    key: 2,
-                    text: "banana"
-                },
-                {
-                    key: 2,
+                    key: 5,
                     text: "orange"
                 }
             ]

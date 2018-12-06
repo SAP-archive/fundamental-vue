@@ -8,7 +8,6 @@ import { componentName } from '@/util';
 import { ClickAwayContainer } from '../ClickAwayContainer';
 import { Popover } from '../Popover';
 import { Button } from '../Button';
-import { MenuItem } from '../Menu';
 
 interface Props {
     uid?: string;
@@ -50,10 +49,6 @@ export class SearchInput extends mixins(Uid) {
     @Prop({ type: Boolean, default: false })
     public compact!: boolean;
 
-    @Api.Prop('Suggestion List', prop => prop.type(Array))
-    @Prop({ type: Array, default: null, required: false })
-    public suggestionList!: any;
-
     public $tsxProps!: Readonly<{}> & Readonly<Props>;
     private searchValue: string = this.value;
 
@@ -70,7 +65,7 @@ export class SearchInput extends mixins(Uid) {
     private handleKeyboardSearch({ keyCode }: KeyboardEvent) {
         if (keyCode === 13) {
             this.emitSearch();
-        } else if (this.suggestionList && this.suggestionList.length > 0) {
+        } else if (this.$slots.default && this.$slots.default.length > 0) {
             this.emitAutoComplete();
         }
     }
@@ -83,19 +78,9 @@ export class SearchInput extends mixins(Uid) {
         this.$emit('autoComplete', this.searchValue);
     }
 
-    private handleSuggestionItemClick(evt) {
-        this.searchValue = evt.srcElement.innerText;
-        this.$emit('update:value', this.searchValue);
-    }
-
     public render() {
-        let enableSuggest = this.suggestionList && this.suggestionList.length > 0;
-        const renderSuggestionList = (suggestionList) => {
-            return (
-                suggestionList.map(suggestion => <MenuItem nativeOn-click={this.handleSuggestionItemClick}>{suggestion.text}</MenuItem>)
-            );
-        }
-
+        let suggestionList = this.$slots.default;
+        let enableSuggest = suggestionList && suggestionList.length > 0;
         return (
             <div class='fd-search-input'>
                 {enableSuggest === true ? (<Popover noArrow={true} popoverVisible={false}>
@@ -108,7 +93,7 @@ export class SearchInput extends mixins(Uid) {
                                 on-click={this.handleSearchClick} />
                         </InputGroup>
                     </div>
-                    {renderSuggestionList(this.suggestionList)}
+                    {suggestionList}
                 </Popover>) : <div class='fd-combobox-control' slot='control'>
                         <InputGroup afterClass={'fd-input-group__addon--button'} compact={this.compact}>
                             <Input id={this.uid} value={this.searchValue} placeholder={this.placeholder}
