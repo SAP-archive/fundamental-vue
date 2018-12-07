@@ -26,6 +26,7 @@ export * from './Layout';
 export * from './InlineHelp';
 export * from './Tile';
 export * from './TileGrid';
+export * from './SearchInput';
 
 import * as Button from './Button';
 import * as Animations from './Animations';
@@ -57,6 +58,7 @@ import * as Table from './Table';
 import * as Layout from './Layout';
 import * as Tile from './Tile';
 import * as TileGrid from './TileGrid';
+import * as SearchInput from './SearchInput';
 
 export const all = {
     Token,
@@ -75,6 +77,7 @@ export const all = {
     ...Layout,
     ...Table,
     ...Combobox,
+    ...SearchInput,
     ...Panel,
     ...Menu,
     ...Popover,
