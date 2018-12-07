@@ -1,4 +1,3 @@
-
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import { Api } from '@/api';
 import { mixins } from 'vue-class-component';
@@ -23,8 +22,8 @@ interface Props {
     components: {
         Input,
         InputGroup,
-        ClickAwayContainer
-    }
+        ClickAwayContainer,
+    },
 })
 
 @Api.Component('Search Input', component => {
@@ -53,7 +52,7 @@ export class SearchInput extends mixins(Uid) {
     private searchValue: string = this.value;
 
     @Watch('value')
-    handleNewValue(newValue: string) {
+    public handleNewValue(newValue: string) {
         this.searchValue = newValue;
         this.$emit('input', this.searchValue);
     }
@@ -85,28 +84,39 @@ export class SearchInput extends mixins(Uid) {
     }
 
     public render() {
-        let suggestionList = this.$slots.default;
-        let enableSuggest = suggestionList && suggestionList.length > 0;
+        const suggestionList = this.$slots.default;
+        const enableSuggest = suggestionList && suggestionList.length > 0;
         return (
             <div class='fd-search-input'>
                 {enableSuggest === true ? (<Popover noArrow={true} popoverVisible={false}>
                     <div class='fd-combobox-control' slot='control' >
                         <InputGroup afterClass={'fd-input-group__addon--button'} compact={this.compact}>
-                            <Input value={this.searchValue} placeholder={this.placeholder}
+                            <Input
+                                value={this.searchValue}
+                                placeholder={this.placeholder}
                                 nativeOn-keyup={this.handleKeyboardSearch}
-                                on-input={this.setCurrentValue} compact={this.compact} />
-                            <Button slot='after' class='fd-button--icon fd-button--secondary sap-icon--search'
-                                on-click={this.handleSearchClick} />
+                                on-input={this.setCurrentValue}
+                                compact={this.compact}
+                            />
+                            <Button styling='light' slot='after' icon='search' on-click={this.handleSearchClick} />
                         </InputGroup>
                     </div>
                     {suggestionList}
                 </Popover>) : <div class='fd-combobox-control' slot='control'>
                         <InputGroup afterClass={'fd-input-group__addon--button'} compact={this.compact}>
-                            <Input value={this.searchValue} placeholder={this.placeholder}
+                            <Input
+                                value={this.searchValue}
+                                placeholder={this.placeholder}
                                 nativeOn-keyup={this.handleKeyboardSearch}
-                                on-input={this.setCurrentValue} compact={this.compact} />
-                            <Button slot='after' class='fd-button--icon fd-button--secondary sap-icon--search'
-                                on-click={this.handleSearchClick} />
+                                on-input={this.setCurrentValue}
+                                compact={this.compact}
+                            />
+                            <Button
+                                styling='light'
+                                slot='after'
+                                icon='search'
+                                on-click={this.handleSearchClick}
+                            />
                         </InputGroup>
                     </div>}
             </div>
