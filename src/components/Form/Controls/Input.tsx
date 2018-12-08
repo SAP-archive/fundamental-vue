@@ -81,7 +81,7 @@ export class Input extends TsxComponent<Props> {
 
   @Inject({ default: null }) public itemIdentificationProvider!: ItemIdentification | null;
 
-  get inputId(): string | null {
+  private get inputId(): string | null {
     const id = this.id;
     if (id != null) { return id; }
     const provider = this.itemIdentificationProvider;
@@ -96,7 +96,7 @@ export class Input extends TsxComponent<Props> {
       <input
         id={this.inputId}
         value={this.currentValue}
-        on-input={event => this.updateInput(event)}
+        on-input={this.updateInput}
         readonly={this.readonly}
         disabled={this.disabled}
         type={this.type}
@@ -110,24 +110,20 @@ export class Input extends TsxComponent<Props> {
   @Watch('value')
   public handleNewValue(newValue) {
     this.currentValue = newValue;
-    this.$emit('update:value', this.currentValue);
-    this.$emit('input', this.currentValue);
   }
 
-  @Watch('currentValue')
-  public handleNewCurrentValue(newValue) {
-    this.currentValue = newValue;
-    this.$emit('update:value', this.currentValue);
-    this.$emit('input', this.currentValue);
-
-  }
   private updateInput(event) {
-    this.currentValue = event.target.value;
-    this.$emit('input', event.target.value);
+    const { target } = event;
+    let value: null | string = null;
+    if(target != null) {
+      value = target.value;
+    }
+    this.currentValue = value;
+    this.$emit('input', this.currentValue);
     this.$emit('update:value', this.currentValue);
   }
 
-  public currentValue = this.value === undefined || this.value === null ? '' : this.value;
+  public currentValue: string | number | null = this.value === undefined || this.value === null ? '' : this.value;
 
   private get classes() {
     return {
