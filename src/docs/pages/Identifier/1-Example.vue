@@ -1,4 +1,4 @@
-<title>Accent Colors</title>
+<title>Identifiers</title>
 
 <template>
   <div class="identifiers">
