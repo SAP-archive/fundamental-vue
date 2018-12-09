@@ -19,6 +19,7 @@ interface Props {
 }
 
 @Component({ name: componentName('ShellBarGroup') })
+@Api.Component('Shell Bar Group')
 @Api.defaultSlot('Main Group Content')
 export class ShellBarGroup extends TsxComponent<Props> {
   @Api.Prop('position in the shell bar', prop => prop.type(String).acceptValues(...Positions))
@@ -26,6 +27,7 @@ export class ShellBarGroup extends TsxComponent<Props> {
   public position!: Position;
 
   public render() {
-    return <div class={`fd-shellbar__group fd-shellbar__group--${this.position}`}>{this.$slots.default}</div>;
+    const classes = `fd-shellbar__group fd-shellbar__group--${this.position}`;
+    return <div class={classes}>{this.$slots.default}</div>;
   }
 }

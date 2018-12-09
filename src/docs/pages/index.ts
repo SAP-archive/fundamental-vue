@@ -22,6 +22,7 @@ export type ExampleCollection = {
     readonly icon?: IconName;
     readonly key: string;
     readonly relatedComponents: VueConstructor[];
+    readonly experimental: boolean;
     examples(): Example[];
 };
 
@@ -114,12 +115,10 @@ const requireExampleCollections = (): ExampleCollection[] => {
         const slug = slugify(title);
         const id = key;
         const module = context(key);
-        const { relatedComponents = [], icon = null } = isDocModule(module) ? module.plugin(all) : {};
-        // const relatedComponents = isDocModule(module) ? module.plugin(all).relatedComponents : [];
-        // debugger;
-        // const icon = module.icon || undefined;
+        const { experimental = false, relatedComponents = [], icon = null } = isDocModule(module) ? module.plugin(all) : {};
         return {
             id,
+            experimental,
             slug,
             key,
             title,
