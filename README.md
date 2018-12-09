@@ -44,9 +44,9 @@ To download and use this library, you first need to install the node package man
 $ npm install --save fundamental-vue
 ```
 
-After installing, you will need to import `fundamental-vue` and make it available to your Vue application.
+After installing, you will need to import `fundamental-vue` and make it available to your Vue application. These instructions assume the usage of Vue CLI to scaffold your project.
 
-In your `main.js`:
+In your project's `main.js`:
 
 ```
 // ...
@@ -78,9 +78,9 @@ The following assumes the usage of a module bundler such as [webpack](https://we
 $ npm install sass-loader node-sass --save-dev
 ```
 
-Loading the SCSS and running your project at this point will throw some errors related to the path configuration required for icons and fonts. This is a [known issue](https://github.com/SAP/fundamental#known-issues). 
+Loading the SCSS and running your project at this point will result in errors relating to the path configuration for icons and fonts. This is a [known issue](https://github.com/SAP/fundamental#known-issues). 
 
-To rectify this, start by creating a directory ('scss') in your project's `src` directory. Within this directory, create a main SCSS file ('main.scss') from which to manage your imports, configurations and customisations. 
+To rectify this, start by creating a new directory ('scss') in your project's `src`. Within this directory, create a main SCSS file ('main.scss') from which to manage your imports, configurations and customisations. 
 
 Add the following to the main SCSS file:
 ```
@@ -91,7 +91,7 @@ $fd-scss-font-path : "../node_modules/fiori-fundamentals/scss/fonts/";
 @import "../node_modules/fiori-fundamentals/scss/all.scss";
 ```
 
-Import the main SCSS file in your `App.js` style block file to add Fiori Fundamentals styles to your project.
+Import the main SCSS file in your `App.js` style block to add Fiori Fundamentals styles to your project.
 
 ```
 <style lang='scss'>
@@ -101,9 +101,9 @@ Import the main SCSS file in your `App.js` style block file to add Fiori Fundame
 </style>
 ```
 
-You can now use the [Playground](https://dist-4d2gqwr8y.now.sh/#/start) to browse the components currently available with Fundamental Vue and use them in your project.
+You can now use the [Playground](https://dist-4d2gqwr8y.now.sh/#/start) to browse the components currently available with Fundamental Vue.
 
-To use a Fundamental Vue component, paste the desired code snippet and configure as necessarry:
+To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessarry:
 
 ```
 ...
