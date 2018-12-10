@@ -59,6 +59,7 @@ import * as Layout from './Layout';
 import * as Tile from './Tile';
 import * as TileGrid from './TileGrid';
 import * as SearchInput from './SearchInput';
+import { version, libName } from '@/config';
 
 export const all = {
     Token,
@@ -99,9 +100,8 @@ const $plugin: Plugin = () => {
                 const comp = all[name];
                 api.registerComponent(vue, comp, name);
             }
-            const version = '0.0.1';
             console.log(
-                `%c Welcome to fundamental-vue %c Detected v${version} %c`,
+                `%c Welcome to ${libName} %c Detected v${version} %c`,
                 'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
                 'background:#1661be ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
                 'background:transparent',

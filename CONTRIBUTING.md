@@ -1,4 +1,4 @@
-# Contributing to Fundamental-vue
+# Contributing to Fundamental Vue
 
 We're excited that you're interested in contributing to Fundamental-vue! Your contribution can make this library even better. Please read the guidelines regarding contributions:
 
@@ -56,7 +56,7 @@ Status of closed issues:
 
 ## Contribute Code
 
-You are welcome to contribute code to Fundamental-vue in order to fix issues or to add new features.
+You are welcome to contribute code to Fundamental Vue in order to fix issues or to add new features.
 
 There are three important things to consider:
 
@@ -93,12 +93,12 @@ You must follow the coding style as best you can when submitting code. Take note
 ### How to contribute - the Process
 
 1.  Make sure the issue you've filed in the [issue tracker] has the label "contribution welcome" - otherwise, it is not ready to be worked on.
-2.  Fork the Fundamental-vue repository to your GitHub account.
+2.  Fork the Fundamental Vue repository to your GitHub account.
 3.  Create a branch for your issue or feature, and commit or push your changes on that branch.
 4.  Create a Pull Request from your forked repository to github.com/SAP/fundamental-vue. In the subject of the pull request, briefly describe the bug fix or enhancement you're contributing. In the pull request description, please provide a link to the issue in the issue tracker.
 5.  Follow the link posted by the CLA assistant to your pull request and accept it, as described above.
 6.  Wait for our code review and approval. We may ask you for additional commits, or make changes to your pull request ourselves.
-    -   Note that the Fundamental-vue developers also have their regular duties so, depending on the required effort for reviewing, testing, and clarification, this may take a while.
+    -   Note that the Fundamental Vue developers also have their regular duties so, depending on the required effort for reviewing, testing, and clarification, this may take a while.
 7.  Once the change has been approved, we inform you in a comment.
 8.  Your pull request cannot be merged directly into the branch (internal SAP processes), but is merged internally and immediately appears in the public repository as well.
 9. We close the pull request. You can then delete the now obsolete branch.

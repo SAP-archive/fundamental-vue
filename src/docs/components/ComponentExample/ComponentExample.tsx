@@ -59,7 +59,6 @@ export class ComponentExample extends TsxComponent<Props> {
   private codeShown = false;
   public render() {
     const buttonTitle = this.codeShown ? 'Hide Code' : 'Show Code';
-    const iconClass = this.codeShown ? 'fas fa-caret-up' : 'fas fa-caret-down';
     const renderCodeIfNeeded = () => {
       const backgroundColor = 'rgb(250, 250, 250) !important';
       const style = {
@@ -141,7 +140,7 @@ export class ComponentExample extends TsxComponent<Props> {
               on-click={event => this.toggleCode(event)}
             >
               <a href='#'>
-                <i class={iconClass} />
+                <i class={`sap-icon--navigation-${this.codeShown ? 'up' : 'down'}-arrow sap-icon--s`} />
                 <span style='margin-left: 4px; line-height: 44px; font-size: 13px;'>{buttonTitle}</span>
               </a>
             </div>

@@ -21,7 +21,6 @@ export const registerComponents = (vue: VueConstructor) => {
   all.forEach(component => {
     // @ts-ignore
     const name = component.options.name;
-    console.info('Register Docs Component: %s', name);
     vue.component(name, component);
   });
 };

@@ -1,4 +1,5 @@
 import './class-component-hooks';
+import './main.scss';
 import Vue from 'vue';
 Vue.config.productionTip = false;
 import FundamentalVue from '@/index';
@@ -23,7 +24,6 @@ Vue.use(Router);
 // Create Store + misc
 const store = new Vuex.Store({});
 registerComponents(Vue);
-Vue.prototype.$$VueDevToolsEnabled = process.env.VUE_APP_FD_VUE_DEV_TOOLS === 'enabled';
 
 new Vue({
   components: { App },

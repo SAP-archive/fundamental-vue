@@ -1,4 +1,4 @@
-# fundamental-vue
+# Fundamental Vue
 Vue.JS components for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental)
 
 - [Playground](https://dist-gjxmmg5hv.now.sh)
@@ -28,7 +28,7 @@ $ npm pack
 ## Install
 
 To download and use this library, you first need to install the node package manager - [npm](https://www.npmjs.com/get-npm).
- 
+
 1. Install Fundamental Vue
 ```
 $ npm install --save fundamental-vue
@@ -45,7 +45,7 @@ Vue.use(FundamentalVue);
 // ...
 ```
 
-Fundamental Vue does not include the ['Fiori Fundamentals' library](https://github.com/SAP/fundamental) which is required for styling. 
+Fundamental Vue does not include the ['Fiori Fundamentals' library](https://github.com/SAP/fundamental) which is required for styling.
 
 
 2. Install Fiori Fundamentals
@@ -68,9 +68,9 @@ The following assumes the usage of a module bundler such as [webpack](https://we
 $ npm install sass-loader node-sass --save-dev
 ```
 
-Loading the SCSS and running your project at this point will result in errors relating to the path configuration for icons and fonts. This is a [known issue](https://github.com/SAP/fundamental#known-issues). 
+Loading the SCSS and running your project at this point will result in errors relating to the path configuration for icons and fonts. This is a [known issue](https://github.com/SAP/fundamental#known-issues).
 
-To rectify this, start by creating a new directory ('scss') in your project's `src`. Within this directory, create a main SCSS file ('main.scss') from which to manage your imports, configurations and customisations. 
+To rectify this, start by creating a new directory ('scss') in your project's `src`. Within this directory, create a main SCSS file ('main.scss') from which to manage your imports, configurations and customisations.
 
 Add the following to the main SCSS file:
 ```
@@ -114,7 +114,6 @@ If you encounter an issue, you can [create a ticket](https://github.com/SAP/fund
 
 ## Contributing
 
-If you want to contribute, please check the [CONTRIBUTING.md](./CONTRIBUTING.md) documentation for contribution guidelines.
 
 ## License
 
