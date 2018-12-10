@@ -2,7 +2,7 @@
     "name": "fundamental-vue",
     "version": "0.0.1-beta",
     "private": true,
-    "homepage": "https://github.wdf.sap.corp/hybris-pd/fundamental-vue",
+    "homepage": "https://github.com/SAP/fundamental-vue",
     "scripts": {
         "serve:docs": "vue-cli-service serve src/docs/main.ts",
         "serve": "vue-cli-service serve",
@@ -15,15 +15,13 @@
     },
     "main": "dist/fundamentalvue.umd.js",
     "dependencies": {
+        "fiori-fundamentals": "^1.4.0",
         "vue": "^2.5.17",
         "vue-class-component": "^6.3.2",
         "vue-property-decorator": "^7.2.0",
         "vue-router": "^3.0.1"
     },
     "devDependencies": {
-        "vuex": "^3.0.1",
-        "markdown-loader": "^4.0.0",
-        "highlight.js": "^9.13.1",
         "@babel/plugin-proposal-class-properties": "^7.1.0",
         "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
         "@babel/preset-env": "^7.1.6",
@@ -35,15 +33,18 @@
         "@vue/cli-service": "^3.1.4",
         "@vue/test-utils": "^1.0.0-beta.25",
         "babel-core": "7.0.0-bridge.0",
+        "highlight.js": "^9.13.1",
         "html-loader": "^1.0.0-alpha.0",
+        "markdown-loader": "^4.0.0",
         "node-sass": "^4.11.0",
         "raw-loader": "^1.0.0-beta.0",
         "sass-loader": "^7.1.0",
         "ts-jest": "^23.10.5",
         "tslint": "^5.11.0",
         "tslint-react": "^3.6.0",
-        "typescript": "^3.3.0-dev.20181122",
+        "typescript": "^3.1.0",
         "vue-gh-pages": "^1.19.0",
-        "vue-template-compiler": "^2.5.17"
+        "vue-template-compiler": "^2.5.17",
+        "vuex": "^3.0.1"
     }
 }

@@ -102,8 +102,6 @@ export class DefaultLayout extends Vue {
       return collections.map(renderExampleCollection);
     };
 
-    // @ts-ignore
-    const VueDevToolsEnabled = this.$$VueDevToolsEnabled || false;
     const renderSideNav = () => {
       return (
         <SideNav
@@ -133,7 +131,7 @@ export class DefaultLayout extends Vue {
           <ShellBar>
             <ShellBarGroup position='start'>
               <ShellBarLogo src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
-              <ShellBarProduct>Fundamental-Vue</ShellBarProduct>
+              <ShellBarProduct>Fundamental Vue</ShellBarProduct>
             </ShellBarGroup>
             <ShellBarGroup position='end'>
               <ShellBarActions>
