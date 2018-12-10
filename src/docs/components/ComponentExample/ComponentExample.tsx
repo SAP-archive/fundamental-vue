@@ -84,7 +84,16 @@ export class ComponentExample extends TsxComponent<Props> {
 
     return (
       <div class='component-example'>
-        <h1 class='example-title'>
+        <h1
+          class='example-title'
+          {
+            ...{
+              directives: [
+              {name: 'type', arg: '4'},
+              {name: 'font-weight', arg: 'light'},
+            ]}
+          }
+        >
           {this.title}
           <Button
             compact={true}

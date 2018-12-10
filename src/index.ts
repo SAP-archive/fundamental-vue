@@ -1,6 +1,5 @@
-
 import * as components from '@/components';
-import { hasBackgroundColor } from '@/directives';
+import Directives from '@/directives';
 import { VueConstructor, PluginFunction } from 'vue';
 import { componentName } from '@/util';
 
@@ -13,8 +12,7 @@ const api = {
 };
 
 const installFundamentals: PluginFunction<object> = vue /*, options */ => {
-  vue.directive('bg', hasBackgroundColor);
-  vue.directive('hasBackgroundColor', hasBackgroundColor);
+  vue.use(Directives);
   components.plugin().install(vue, api);
 };
 export default installFundamentals;
