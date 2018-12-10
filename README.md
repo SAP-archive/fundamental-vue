@@ -1,7 +1,7 @@
 # fundamental-vue
 Vue.JS components for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental)
 
-- [Playground](https://dist-5sywc49rb.now.sh)
+- [Playground](https://dist-gjxmmg5hv.now.sh)
 - [GitHub repo of Angular implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-ngx)
 - [GitHub repo of React implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-react)
 

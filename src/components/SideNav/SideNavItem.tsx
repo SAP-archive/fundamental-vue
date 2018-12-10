@@ -10,11 +10,13 @@ import { VNode } from 'vue';
 import { SideNav } from './SideNav';
 import { Icon, IconProps } from '@/mixins';
 import { mixins } from 'vue-class-component';
+import { Identifier } from '@/components/Identifier';
 
 interface Props extends IconProps {
   isSelected?: boolean;
   itemId: string;
   submenuTitle?: string;
+  accessoryIcon?: string;
 }
 
 // A SideNavItem can either contain:
@@ -54,6 +56,10 @@ export class SideNavItem extends mixins(Icon) implements ItemContainer {
   @Api.Prop('submenu title', prop => prop.type(String))
   @Prop({ type: String, required: false, default: null })
   public submenuTitle!: string | null;
+
+  @Api.Prop('accessory icon (non-standard)', prop => prop.type(String))
+  @Prop({ type: String, default: null })
+  public accessoryIcon!: string | null;
 
   @Inject({ from: SIDE_NAV, default: null })
   public sideNav!: SideNav | null;
@@ -124,6 +130,15 @@ export class SideNavItem extends mixins(Icon) implements ItemContainer {
         >
         {!!iconClass && <span class={`fd-side-nav__icon ${iconClass} sap-icon--m`} role='presentation' />}
           {title}
+        {this.accessoryIcon &&
+          <Identifier
+            circle={true}
+            backgroundColor='accent-5'
+            class='fd-has-float-right'
+            size='xxs'
+            icon={this.accessoryIcon}
+          />
+        }
         </a>
         {this.hasChildItems && renderSubitems()}
       </li>

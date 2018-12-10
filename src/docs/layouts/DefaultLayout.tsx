@@ -16,7 +16,7 @@ import {
   ApiCollection,
   Api,
 } from '@/api';
-import { Shell, ShellHeader, App, AppMain, AppNavigation, all, SideNav, SideNavItem, SideNavList } from '@/components';
+import { Shell, ShellHeader, App, AppMain, AppNavigation, all, SideNav, SideNavItem, SideNavList, ShellBar, ShellBarGroup, ShellBarLogo, ShellBarActions, ShellBarAction, ShellBarUserMenu, ShellBarProduct, MenuItem } from '@/components';
 import './DefaultLayout.sass';
 
 const collection = new ApiCollection();
@@ -111,14 +111,14 @@ export class DefaultLayout extends Vue {
           indexPath={this.activeMenuItemId}
         >
           <SideNavList>
-            <SideNavItem itemId='start' on-click={this.showStartPage}>Start</SideNavItem>
-            <SideNavItem itemId='new-component' on-click={() => this.push('/guide/new-component', 'new-component')}>New Component</SideNavItem>
-            <SideNavItem submenuTitle='API Documentation' itemId='api-doc'>{renderExampleCollections(exampleCollections)}</SideNavItem>
+            <SideNavItem icon='home' itemId='start' on-click={this.showStartPage}>Start</SideNavItem>
+            <SideNavItem icon='write-new' itemId='new-component' on-click={() => this.push('/guide/new-component', 'new-component')}>New Component</SideNavItem>
+            <SideNavItem icon='source-code' submenuTitle='API Documentation' itemId='api-doc'>{renderExampleCollections(exampleCollections)}</SideNavItem>
           </SideNavList>
           <SideNavList style='margin-bottom: 60px;' header={'Components'}>
             {
               exampleCollections.map(item => (
-                <SideNavItem icon={item.icon} itemId={`example-${item.slug}`} on-click={() => this.onExampleCollectionClick(item)}>
+                <SideNavItem accessoryIcon={item.experimental ? 'lab' : undefined} icon={item.icon} itemId={`example-${item.slug}`} on-click={() => this.onExampleCollectionClick(item)}>
                   {item.title}
                 </SideNavItem>
               ))
@@ -130,45 +130,25 @@ export class DefaultLayout extends Vue {
     return (
       <Shell>
         <ShellHeader fixed={true}>
-        <div class='fd-shellbar' style='padding-left: 20px;'>
-        <div class='fd-shellbar__group fd-shellbar__group--start'>
-            <router-link to='/' class='fd-shellbar__logo'>
-              <img src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
-            </router-link>
-            <div class='fd-shellbar__product'>
-            <div class='fd-product-menu'>
-             <div class='fd-popover fd-popover--right'>
-               <div class='fd-popover__control'>
-                 <router-link to='/' tag='button' class='fd-product-menu__control' aria-controls='9GLB2694' aria-haspopup='true' aria-expanded='false'>
-                   <span class='fd-shellbar__title fd-product-menu__title'>Fundamental-Vue</span>
-                 </router-link>
-               </div>
-               <div class='fd-popover__body fd-popover__body--right' aria-hidden='true' id='9GLB2694'>
-                 <nav class='fd-menu'>
-                   <ul class='fd-menu__list' />
-                 </nav>
-               </div>
-             </div>
-           </div>
-            </div>
-          </div>
-          <div class='fd-shellbar__group fd-shellbar__group--middle' />
-          <div class='fd-shellbar__group fd-shellbar__group--end'>
-            <div class='fd-shellbar__actions'>
-            <div class='fd-shellbar__action fd-shellbar__action--collapsible' />
-            </div>
-          </div>
-
-        </div>
+          <ShellBar>
+            <ShellBarGroup position='start'>
+              <ShellBarLogo src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
+              <ShellBarProduct>Fundamental-Vue</ShellBarProduct>
+            </ShellBarGroup>
+            <ShellBarGroup position='end'>
+              <ShellBarActions>
+                <ShellBarAction>
+                  <ShellBarUserMenu>
+                    <MenuItem><a href='https://github.com/SAP/fundamental-vue/issues/new' target='_blank'>Report an Issue</a></MenuItem>
+                  </ShellBarUserMenu>
+                </ShellBarAction>
+              </ShellBarActions>
+            </ShellBarGroup>
+          </ShellBar>
         </ShellHeader>
         <App>
-        <AppNavigation orientation='vertical' class='sidebar'>
-          {renderSideNav()}
-        </AppNavigation>
-          <AppMain class='main-with-sidebar'>
-          <router-view />
-          </AppMain>
-
+          <AppNavigation orientation='vertical' class='sidebar'>{renderSideNav()}</AppNavigation>
+          <AppMain class='main-with-sidebar'><router-view /></AppMain>
         </App>
       </Shell>
     );
