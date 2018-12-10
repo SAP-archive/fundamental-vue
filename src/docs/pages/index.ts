@@ -109,7 +109,6 @@ const requireExampleCollections = (): ExampleCollection[] => {
         return title || key;
     };
     const context = require.context('./', true, /(.*)\/(.+)\/index\.ts$/);
-
     const collectionFromKey = (key: string): ExampleCollection => {
         const title = titleFromKey(key);
         const slug = slugify(title);

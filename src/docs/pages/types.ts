@@ -4,7 +4,7 @@ import { VueConstructor } from 'vue';
 import { IconName } from '@/lib';
 
 type ExampleCollectionPlugin = {
-  relatedComponents: VueConstructor[];
+  relatedComponents?: VueConstructor[];
   icon?: IconName;
   experimental?: boolean;
 };
