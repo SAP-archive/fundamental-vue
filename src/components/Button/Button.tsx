@@ -9,7 +9,7 @@ import { ButtonContainer } from './ButtonContainer';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
-  styling: ButtonStyling;
+  styling?: ButtonStyling;
   type?: ButtonType;
   icon?: string | null;
   compact?: boolean;
@@ -44,9 +44,8 @@ export type ButtonState = keyof (typeof stateMapping);
 export const ButtonStates = Object.keys(stateMapping) as ButtonState[];
 
 @Component({ name: componentName('Button') })
-@Api.Component('Button', comp => {
-  comp.addEvent('click', 'Sent when button is clicked');
-})
+@Api.Component('Button')
+@Api.Event('click', 'Sent when button is clicked')
 @Api.defaultSlot('button content (usually just text)')
 export class Button extends TsxComponent<Props> {
   @Api.Prop('button styling', prop => prop.type(String).acceptValues(...ButtonStylings))

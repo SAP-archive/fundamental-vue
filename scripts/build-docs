@@ -7,4 +7,4 @@ npx vue-cli-service build \
   --target app \
   --report \
   --name fundamentalvue \
-  src/docs/DocsMain.ts
+  src/docs/main.ts

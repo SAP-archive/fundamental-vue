@@ -24,6 +24,9 @@ export * from './Table';
 export * from './Menu';
 export * from './Layout';
 export * from './InlineHelp';
+export * from './Tile';
+export * from './TileGrid';
+export * from './SearchInput';
 
 import * as Button from './Button';
 import * as Animations from './Animations';
@@ -43,7 +46,7 @@ import { ActionBar } from './ActionBar';
 import { Alert } from './Alert';
 import { Icon } from './Icon';
 import { InlineHelp } from './InlineHelp';
-import { Plugin, PluginAPI } from '@/lib/plugin';
+import { Plugin, PluginAPI } from '@/lib';
 import { VueConstructor } from 'vue';
 import * as Breadcrumb from './Breadcrumb';
 import * as Combobox from './Combobox';
@@ -53,6 +56,9 @@ import * as Menu from './Menu';
 import * as Panel from './Panel';
 import * as Table from './Table';
 import * as Layout from './Layout';
+import * as Tile from './Tile';
+import * as TileGrid from './TileGrid';
+import * as SearchInput from './SearchInput';
 
 export const all = {
     Token,
@@ -71,6 +77,7 @@ export const all = {
     ...Layout,
     ...Table,
     ...Combobox,
+    ...SearchInput,
     ...Panel,
     ...Menu,
     ...Popover,
@@ -81,6 +88,8 @@ export const all = {
     ...Form,
     ...Breadcrumb,
     ...ListGroup,
+    ...Tile,
+    ...TileGrid,
 };
 
 const $plugin: Plugin = () => {

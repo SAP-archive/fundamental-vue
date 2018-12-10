@@ -3,15 +3,15 @@ import {
   Inject,
   Prop,
 } from 'vue-property-decorator';
-import { SideNavList } from './SideNavList';
 import { Api } from '@/api';
 import { componentName } from '@/util';
-import TsxComponent from '@/vue-tsx';
-import { SIDE_NAV, ITEM_LIST, ITEM_CONTAINER, ItemContainer } from './shared';
+import { SIDE_NAV, ITEM_CONTAINER, ItemContainer } from './shared';
 import { VNode } from 'vue';
 import { SideNav } from './SideNav';
+import { Icon, IconProps } from '@/mixins';
+import { mixins } from 'vue-class-component';
 
-interface Props {
+interface Props extends IconProps {
   isSelected?: boolean;
   itemId: string;
   submenuTitle?: string;
@@ -31,18 +31,17 @@ interface Props {
     };
   },
 })
-@Api.Component('Side Nav Item', comp => {
-  comp.addEvent('click', 'Sent when item is clicked');
-})
+@Api.Component('Side Nav Item')
+@Api.Event('click', 'Sent when item is clicked')
 @Api.defaultSlot('Side Nav Items displayed by the list.')
-export class SideNavItem extends TsxComponent<Props> implements ItemContainer {
+export class SideNavItem extends mixins(Icon) implements ItemContainer {
+  // TSX Support
+  public $tsxProps!: Readonly<Props>;
+
+  // Props
   @Api.Prop('whether selected', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
   public isSelected!: boolean;
-
-  // @Api.Prop('whether selected', prop => prop.type(Boolean))
-  // @Prop({ type: Boolean, required: false, default: false })
-  // public hasChild!: boolean;
 
   @Api.Prop('whether is subitem', prop => prop.type(Boolean))
   @Prop({ type: Boolean, required: false, default: false })
@@ -55,9 +54,6 @@ export class SideNavItem extends TsxComponent<Props> implements ItemContainer {
   @Api.Prop('submenu title', prop => prop.type(String))
   @Prop({ type: String, required: false, default: null })
   public submenuTitle!: string | null;
-
-  @Inject({ from: ITEM_LIST, default: null })
-  public navList!: SideNavList | null;
 
   @Inject({ from: SIDE_NAV, default: null })
   public sideNav!: SideNav | null;
@@ -114,6 +110,9 @@ export class SideNavItem extends TsxComponent<Props> implements ItemContainer {
         </ul>
       );
     };
+
+    const iconClass = this.iconClassName;
+
     return (
       <li class={this.classes}>
         <a
@@ -123,6 +122,7 @@ export class SideNavItem extends TsxComponent<Props> implements ItemContainer {
           aria-selected={this.ariaSelected}
           class={this.linkClassObject}
         >
+        {!!iconClass && <span class={`fd-side-nav__icon ${iconClass} sap-icon--m`} role='presentation' />}
           {title}
         </a>
         {this.hasChildItems && renderSubitems()}
@@ -138,14 +138,13 @@ export class SideNavItem extends TsxComponent<Props> implements ItemContainer {
   }
 
   private get isActive() {
-    const list = this.navList;
+    const list = this.sideNav;
     if (list == null) { return false; }
-    const activeItemId = list.activeItemId;
+    const activeItemId = list.activeIndexPath;
     if (activeItemId == null) {
       return false;
     }
-    const itemId = this.itemId;
-    return itemId === activeItemId;
+    return this.itemId === activeItemId;
   }
 
   private get ariaSelected() {
@@ -164,8 +163,8 @@ export class SideNavItem extends TsxComponent<Props> implements ItemContainer {
 
   // Event Handler
   private handleClick() {
-    this.$emit('click');
-    const list = this.navList;
+    this.$emit('click', this);
+    const list = this.sideNav;
     if (list != null) {
       list.didClickSideNavItem(this);
     }

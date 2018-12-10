@@ -19,11 +19,8 @@ interface Props {
   },
   name: componentName('Tabs'),
 })
-@Api.Component('Tabs', comp => {
-  comp.addEvent('input', 'triggers when the active tab item name changes', event => {
-    event.string('tabItemName');
-  });
-})
+@Api.Component('Tabs')
+@Api.Event('input', 'triggers when the active tab item name changes', ['tabItemName', String])
 @Api.defaultSlot('Tab Items')
 export class Tabs extends TsxComponent<Props> implements TabItemContainer {
   @Api.Prop('active tab item name', prop => prop.type(String))

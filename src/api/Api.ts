@@ -4,8 +4,9 @@ import { ApiEvent } from './ApiEvent';
 import { ApiSlot } from './ApiSlot';
 
 type PropBuilder = (builder: ApiProp) => void;
-type EventBuilder = (builder: ApiEvent) => void;
 type ComponentBuilder = (builder: Api) => void;
+type EventParameterType = string | BooleanConstructor | NumberConstructor | StringConstructor;
+type EventType = [/* name */ string, EventParameterType];
 
 export class Api {
   public readonly props: ApiProp[] = [];
@@ -17,9 +18,7 @@ export class Api {
     this.props.push(prop);
   }
 
-  public addEvent(name: string, description: string, build: EventBuilder = () => { }): this {
-    const event = new ApiEvent(name, description);
-    build(event);
+  public addEvent(event: ApiEvent): this {
     this.events.push(event);
     return this;
   }
@@ -30,7 +29,7 @@ export class Api {
   }
 
   public static slot(name: string, description: string = '') {
-    return createDecorator((options, key) => {
+    return createDecorator(options => {
       const slot = new ApiSlot(name, description);
       const api = options.$api || new Api();
       options.$api = api.addSlot(slot);
@@ -39,6 +38,14 @@ export class Api {
 
   public static defaultSlot(description: string) {
     return this.slot('', description);
+  }
+
+  public static Event(name: string, description: string, parameter?: EventType) {
+    return createDecorator(options => {
+      const api = options.$api || new Api();
+      api.addEvent(new ApiEvent(name, description, parameter));
+      options.$api = api;
+    });
   }
 
   public static Component(humanName: string, build: ComponentBuilder = () => { }) {
