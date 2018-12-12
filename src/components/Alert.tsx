@@ -12,6 +12,8 @@ const typeMapping = {
   default: 'Default Alert',
   warning: 'Warning Alert',
   error: 'Error Alert',
+  information: 'Information Alert',
+  success: 'Success Alert',
 };
 export type AlertType = keyof (typeof typeMapping);
 export const AlertTypes = Object.keys(typeMapping) as AlertType[];
@@ -64,6 +66,8 @@ export class Alert extends mixins(Uid) {
       'fd-alert--dismissible': this.dismissible,
       'fd-alert--warning': this.type === 'warning',
       'fd-alert--error': this.type === 'error',
+      'fd-alert--information': this.type === 'information',
+      'fd-alert--success': this.type === 'success',
     };
   }
 
