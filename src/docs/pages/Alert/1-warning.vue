@@ -2,8 +2,11 @@
 
 <template>
   <div>
+    <FdAlert type="warning" dismissible>Default warning alert. Click on the close button.</FdAlert>
+    <br>
     <FdAlert type="warning" dismissible>
-      Default warning alert. Click on the close button.
+      <FdIcon name="message-warning"/>Warning Message.
+      <FdLink href="#" @click="handleClick">Learn more</FdLink>
     </FdAlert>
   </div>
 </template>

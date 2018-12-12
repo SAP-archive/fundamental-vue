@@ -1,8 +1,11 @@
 <title>Error Alert</title>
 <template>
   <div>
+    <FdAlert type="error" dismissible>Default error alert. Click on the close button.</FdAlert>
+    <br>
     <FdAlert type="error" dismissible>
-      Default error alert. Click on the close button.
+      <FdIcon name="message-error"/>Error Message.
+      <FdLink href="#" @click="handleClick">Learn more</FdLink>
     </FdAlert>
   </div>
 </template>
