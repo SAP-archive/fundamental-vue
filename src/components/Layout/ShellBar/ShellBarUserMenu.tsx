@@ -16,7 +16,7 @@ export class ShellBarUserMenu extends TsxComponent<{}> {
         <Popover placement='right'>
           <div class='fd-user-menu__control' slot='control'>
             {control}
-            {!control && <Identifier size='s' backgroundColor='status-1' circle={true} icon='person-placeholder' />}
+            {!control && <Identifier size='s' backgroundColor='accent-6' circle={true} icon='person-placeholder' />}
           </div>
           {this.$slots.default}
         </Popover>

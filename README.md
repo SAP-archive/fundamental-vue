@@ -1,7 +1,12 @@
-# Fundamental Vue
+<p align="center">
+      <a href="https://github.com/SAP/fundamental-vue" target="_blank" rel="noopener noreferrer">
+            <img width="400" src="./public/logo_big.png" alt="Fundamental Vue logo">
+      </a>
+</p>
+
 Vue.JS components for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental)
 
-- [Playground](https://dist-gjxmmg5hv.now.sh)
+- [Playground](https://dist-fdl62itm5.now.sh)
 - [GitHub repo of Angular implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-ngx)
 - [GitHub repo of React implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-react)
 
