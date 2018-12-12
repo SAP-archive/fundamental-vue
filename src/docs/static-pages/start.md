@@ -1,4 +1,9 @@
-# Introduction
+<p style="margin-top: 0;" align="center">
+      <a href="https://github.com/SAP/fundamental-vue" target="_blank" rel="noopener noreferrer">
+            <img style="border: 0; margin: 0;" srcset="./../../../logo_big.png 1x, ./../../../logo_big@2x.png 2x" src="./../../../public/logo_big.png" alt="Fundamental Vue logo">
+      </a>
+</p>
+
 
 > SAP Fundamental Vue is a UI framework based on [SAP Fiori Fundamentals](https://sap.github.io/fundamental/) and [Vue.js](htts://vuejs.org).
 

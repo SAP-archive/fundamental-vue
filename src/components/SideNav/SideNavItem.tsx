@@ -133,7 +133,7 @@ export class SideNavItem extends mixins(Icon) implements ItemContainer {
         {this.accessoryIcon &&
           <Identifier
             circle={true}
-            backgroundColor='accent-5'
+            backgroundColor='accent-6'
             class='fd-has-float-right'
             size='xxs'
             icon={this.accessoryIcon}
