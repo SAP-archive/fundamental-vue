@@ -130,7 +130,7 @@ export class DefaultLayout extends Vue {
         <ShellHeader fixed={true}>
           <ShellBar>
             <ShellBarGroup position='start'>
-              <ShellBarLogo src='/logo.png' srcset='/logo.png 1x, /logo@2x.png 2x' />
+              <ShellBarLogo src='/images/logo.png' srcset='/images/logo.png 1x, /logo@2x.png 2x' />
               <ShellBarProduct>Fundamental Vue</ShellBarProduct>
             </ShellBarGroup>
             <ShellBarGroup position='end'>

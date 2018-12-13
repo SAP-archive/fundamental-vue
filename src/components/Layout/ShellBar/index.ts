@@ -5,3 +5,5 @@ export { ShellBarProduct } from './ShellBarProduct';
 export { ShellBarActions } from './ShellBarActions';
 export { ShellBarAction } from './ShellBarAction';
 export { ShellBarUserMenu } from './ShellBarUserMenu';
+export { ShellBarProductSwitcher } from './ShellBarProductSwitcher';
+export { ShellBarProductSwitcherItem } from './ShellBarProductSwitcherItem';

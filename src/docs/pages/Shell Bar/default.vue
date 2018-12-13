@@ -7,7 +7,7 @@
     <FdShellHeader>
       <FdShellBar>
         <FdShellBarGroup position="start">
-          <FdShellBarLogo src="/logo.png" />
+          <FdShellBarLogo src="/images/logo.png" />
         <FdShellBarProduct>Product Name</FdShellBarProduct>
         </FdShellBarGroup>
         <FdShellBarGroup position="end">
@@ -15,9 +15,52 @@
             <FdShellBarAction>
               <FdShellBarUserMenu>
                 <FdMenuItem>
-                  <a href="https://github.com/SAP/fundamental-vue/issues/new" target="_blank">Report Issue</a>
+                  <a href="#" @click.prevent='' target="_blank">Settings</a>
+                </FdMenuItem>
+                <FdMenuItem>
+                  <a href="#" @click.prevent='' target="_blank">Sign out</a>
                 </FdMenuItem>
               </FdShellBarUserMenu>
+            </FdShellBarAction>
+            <FdShellBarAction>
+              <FdShellBarProductSwitcher>
+                <FdShellBarProductSwitcherItem src="/images/products/01.png">
+                  Fiori Home
+                </FdShellBarProductSwitcherItem>
+                <FdShellBarProductSwitcherItem src="/images/products/02.png">
+                  S/4 HANA Cloud
+                </FdShellBarProductSwitcherItem>
+                <FdShellBarProductSwitcherItem src="/images/products/03.png">
+                  Analytics Cloud
+                </FdShellBarProductSwitcherItem>
+                <FdShellBarProductSwitcherItem src="/images/products/04.png">
+                  Ariba
+                </FdShellBarProductSwitcherItem>
+                <FdShellBarProductSwitcherItem src="/images/products/05.png">
+                  SuccessFactors
+                </FdShellBarProductSwitcherItem>
+                <FdShellBarProductSwitcherItem src="/images/products/06.png">
+                  Commerce Cloud
+                </FdShellBarProductSwitcherItem>
+                <FdShellBarProductSwitcherItem src="/images/products/07.png">
+                  Gigya
+                </FdShellBarProductSwitcherItem>
+                <FdShellBarProductSwitcherItem src="/images/products/08.png">
+                  Callidus Cloud
+                </FdShellBarProductSwitcherItem>
+                <FdShellBarProductSwitcherItem src="/images/products/09.png">
+                  Fieldglass
+                </FdShellBarProductSwitcherItem>
+                <FdShellBarProductSwitcherItem src="/images/products/10.png">
+                  Concur
+                </FdShellBarProductSwitcherItem>
+                <FdShellBarProductSwitcherItem src="/images/products/11.png">
+                  Cloud for Customer
+                </FdShellBarProductSwitcherItem>
+                <FdShellBarProductSwitcherItem src="/images/products/12.png">
+                  Cloud Portal
+                </FdShellBarProductSwitcherItem>
+              </FdShellBarProductSwitcher>
             </FdShellBarAction>
           </FdShellBarActions>
         </FdShellBarGroup>
