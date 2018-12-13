@@ -32,12 +32,14 @@ export class ShellBarProductSwitcherItem extends TsxComponent<Props> {
         {this.$slots.default}
       </span>
     );
+    const img = (
+      <span class='fd-product-switcher__product-icon'>
+        <img src={this.src} alt=''/>
+      </span>
+    );
     return (
       <li>
-        <span class='fd-product-switcher__product-icon'>
-          <img src={this.src} alt=''/>
-        </span>
-        {this.to ? <a href={this.href}>{title}</a> : <router-link to={this.to}>{title}</router-link> }
+        {this.to ? <a href={this.href}>{img}{title}</a> : <router-link to={this.to}>{img}{title}</router-link> }
       </li>
     );
   }
