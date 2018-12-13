@@ -9,6 +9,12 @@
       </FdInlineHelp>
     </div>
     <div>
+      <span class='label'>Bottom Center:</span>
+      <FdInlineHelp position='center'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing.
+      </FdInlineHelp>
+    </div>
+    <div>
       <span class='label'>Bottom Left:</span>
       <FdInlineHelp position='left'>
         Lorem ipsum dolor sit amet, consectetur adipiscing.

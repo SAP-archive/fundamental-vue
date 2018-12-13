@@ -9,6 +9,7 @@ import {
 const positionMapping = {
   left: 'Left of icon',
   right: 'Right of icon (default)',
+  center: 'Center of icon',
 };
 
 type Position = keyof (typeof positionMapping);
@@ -46,6 +47,7 @@ export class InlineHelp extends TsxComponent<Props> {
       'fd-inline-help__content': true,
       'fd-inline-help__content--bottom-left': this.position === 'left' && this.inline === false,
       'fd-inline-help__content--bottom-right': this.position === 'right' && this.inline === false,
+      'fd-inline-help__content--bottom-center': this.position === 'center' && this.inline === false,
       'fd-inline-help__content--left': this.position === 'left' && this.inline === true,
       'fd-inline-help__content--right': this.position === 'right' && this.inline === true,
     };
