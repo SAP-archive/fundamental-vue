@@ -1,4 +1,4 @@
-import { Button } from './button';
+import { Button } from './Button';
 
 export interface ButtonContainer {
   readonly compact: boolean;
