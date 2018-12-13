@@ -1,6 +1,6 @@
 <p style="margin-top: 0;" align="center">
       <a href="https://github.com/SAP/fundamental-vue" target="_blank" rel="noopener noreferrer">
-            <img style="border: 0; margin: 0;" srcset="./../../../images/logo_big.png 1x, ./../../../logo_big@2x.png 2x" src="./../../../public/images/logo_big.png" alt="Fundamental Vue logo">
+            <img style="border: 0; margin: 0;" srcset="./../../../images/logo_big.png 1x, ./../../../images/logo_big@2x.png 2x" src="./../../../public/images/logo_big.png" alt="Fundamental Vue logo">
       </a>
 </p>
 

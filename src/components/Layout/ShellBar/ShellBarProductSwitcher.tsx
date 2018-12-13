@@ -7,7 +7,7 @@ import TsxComponent from '@/vue-tsx';
 @Component({ name: componentName('ShellBarProductSwitcher') })
 @Api.Component('Shell Bar Product Switcher')
 @Api.defaultSlot('Product Items (FdShellBarProductSwitcherItem)')
-@Api.slot('control', 'Popover Control (optional). Defaults to a specially configured FdIdentifier.')
+@Api.slot('control', 'Popover Control (optional). Defaults to a specially configured FdButton with grid icon.')
 export class ShellBarProductSwitcher extends TsxComponent<{}> {
   public render() {
     const control = this.$slots.control;
