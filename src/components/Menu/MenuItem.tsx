@@ -30,7 +30,7 @@ export class MenuItem extends TsxComponent<Props> {
   }
 
   get title(): string | undefined {
-    const nodes = this.$slots.default;
+    const nodes = this.$slots.default || [];
     if (nodes.length > 0) {
       const text = nodes[0].text;
       return text;

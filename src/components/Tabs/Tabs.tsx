@@ -70,7 +70,7 @@ export class Tabs extends TsxComponent<Props> implements TabItemContainer {
   public activeName: string | null = this.value || null;
 
   public addTabItem(item: TabItem) {
-    const index = this.$slots.default.indexOf(item.$vnode);
+    const index = (this.$slots.default || []).indexOf(item.$vnode);
     this.tabItems.splice(index, 0, item);
   }
 
