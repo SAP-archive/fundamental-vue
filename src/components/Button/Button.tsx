@@ -22,8 +22,8 @@ const stylingMapping = {
   light: 'Light',
   regular: 'Regular (default)',
 };
-type ButtonStyling = keyof (typeof stylingMapping);
-const ButtonStylings = Object.keys(stylingMapping) as ButtonStyling[];
+export type ButtonStyling = keyof (typeof stylingMapping);
+export const ButtonStylings = Object.keys(stylingMapping) as ButtonStyling[];
 
 // Button Types
 const typeMapping = {
@@ -75,6 +75,10 @@ export class Button extends TsxComponent<Props> {
   @Inject({ default: null }) private buttonContainer!: ButtonContainer | null;
 
   private click(event: Event) {
+    if(this.state === 'disabled') {
+      event.stopImmediatePropagation();
+      return;
+    }
     this.$emit('click', event);
     const container = this.buttonContainer;
     if (container != null) {
@@ -99,7 +103,7 @@ export class Button extends TsxComponent<Props> {
     return (
       <button
         {...attributes}
-        on-click={(event: Event) => this.click(event)}
+        on-click={this.click}
         class={this.classes}
       >
         {title}

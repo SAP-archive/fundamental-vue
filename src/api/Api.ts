@@ -49,10 +49,33 @@ export class Api {
   }
 
   public static Component(humanName: string, build: ComponentBuilder = () => { }) {
-    return createDecorator((options, key) => {
+    return createDecorator(options => {
       const api = options.$api || new Api(humanName);
       api.humanName = humanName;
       build(api);
+      options.$api = api;
+    });
+  }
+
+  public static prop(description: string, { defaultValue }: { defaultValue?: string } = {}) {
+    return createDecorator((options, key) => {
+      const prop = new ApiProp({ key, description });
+      const { props } = options;
+      if (props !== undefined) {
+        if (!Array.isArray(props)) {
+          if (key in props) {
+            const validator = props[key];
+            if (typeof validator === 'object') {
+              prop.updateWithPropValidator(validator);
+            }
+          }
+        }
+      }
+      const api = options.$api || new Api();
+      if(defaultValue !== undefined) {
+        prop.defaultValue = defaultValue;
+      }
+      api.addProp(prop);
       options.$api = api;
     });
   }
