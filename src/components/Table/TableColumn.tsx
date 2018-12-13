@@ -126,6 +126,10 @@ export class TableColumn<D> extends TsxComponent<Props<D>> {
       const renderCell: CellRenderer<D> = request => {
         if (prop == null) {
           const cellSlot = _this.$scopedSlots.default;
+          if(cellSlot == null) {
+            console.warn('Unable to render table cell because \'prop\' not set.');
+            return;
+          }
           const renderedCell = cellSlot(request);
           return renderedCell;
         }

@@ -79,7 +79,7 @@ export class SideNavItem extends mixins(Icon) implements ItemContainer {
   }
 
   private get title(): string | VNode[] {
-    return this.hasChildItems ? (this.submenuTitle || '') : this.$slots.default;
+    return this.hasChildItems ? (this.submenuTitle || '') : (this.$slots.default || '');
   }
 
   // ItemContainer-Impls
