@@ -18,20 +18,26 @@ export class ShellBarProductSwitcherItem extends TsxComponent<Props> {
   @Prop({type: String, required: true})
   public src!: string;
 
-  @Api.Prop('link destination', prop => prop.type(String, Object))
+  @Api.Prop('router link destination', prop => prop.type(String, Object))
   @Prop({type: [String, Object], default: '/'})
   public to!: string | Location;
 
+  @Api.Prop('external link destination', prop => prop.type(String, Object))
+  @Prop({type: [String, Object], default: '/'})
+  public href!: string;
+
   public render() {
-    const title = this.$slots.default;
+    const title = (
+      <span class='fd-product-switcher__product-title'>
+        {this.$slots.default}
+      </span>
+    );
     return (
       <li>
         <span class='fd-product-switcher__product-icon'>
           <img src={this.src} alt=''/>
         </span>
-        <span class='fd-product-switcher__product-title'>
-          {title}
-        </span>
+        {this.to ? <a href={this.href}>{title}</a> : <router-link to={this.to}>{title}</router-link> }
       </li>
     );
   }

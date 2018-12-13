@@ -24,40 +24,40 @@
             </FdShellBarAction>
             <FdShellBarAction>
               <FdShellBarProductSwitcher>
-                <FdShellBarProductSwitcherItem src="/images/products/01.png">
+                <FdShellBarProductSwitcherItem href="#" src="/images/products/01.png">
                   Fiori Home
                 </FdShellBarProductSwitcherItem>
-                <FdShellBarProductSwitcherItem src="/images/products/02.png">
+                <FdShellBarProductSwitcherItem href="#" src="/images/products/02.png">
                   S/4 HANA Cloud
                 </FdShellBarProductSwitcherItem>
-                <FdShellBarProductSwitcherItem src="/images/products/03.png">
+                <FdShellBarProductSwitcherItem href="#" src="/images/products/03.png">
                   Analytics Cloud
                 </FdShellBarProductSwitcherItem>
-                <FdShellBarProductSwitcherItem src="/images/products/04.png">
+                <FdShellBarProductSwitcherItem :to="{path:'/'}" src="/images/products/04.png">
                   Ariba
                 </FdShellBarProductSwitcherItem>
-                <FdShellBarProductSwitcherItem src="/images/products/05.png">
+                <FdShellBarProductSwitcherItem :to="{path:'/'}" src="/images/products/05.png">
                   SuccessFactors
                 </FdShellBarProductSwitcherItem>
-                <FdShellBarProductSwitcherItem src="/images/products/06.png">
+                <FdShellBarProductSwitcherItem :to="{path:'/'}" src="/images/products/06.png">
                   Commerce Cloud
                 </FdShellBarProductSwitcherItem>
-                <FdShellBarProductSwitcherItem src="/images/products/07.png">
+                <FdShellBarProductSwitcherItem :to="{path:'/'}" src="/images/products/07.png">
                   Gigya
                 </FdShellBarProductSwitcherItem>
-                <FdShellBarProductSwitcherItem src="/images/products/08.png">
+                <FdShellBarProductSwitcherItem :to="{path:'/'}" src="/images/products/08.png">
                   Callidus Cloud
                 </FdShellBarProductSwitcherItem>
-                <FdShellBarProductSwitcherItem src="/images/products/09.png">
+                <FdShellBarProductSwitcherItem :to="{path:'/'}" src="/images/products/09.png">
                   Fieldglass
                 </FdShellBarProductSwitcherItem>
-                <FdShellBarProductSwitcherItem src="/images/products/10.png">
+                <FdShellBarProductSwitcherItem :to="{path:'/'}" src="/images/products/10.png">
                   Concur
                 </FdShellBarProductSwitcherItem>
-                <FdShellBarProductSwitcherItem src="/images/products/11.png">
+                <FdShellBarProductSwitcherItem :to="{path:'/'}" src="/images/products/11.png">
                   Cloud for Customer
                 </FdShellBarProductSwitcherItem>
-                <FdShellBarProductSwitcherItem src="/images/products/12.png">
+                <FdShellBarProductSwitcherItem :to="{path:'/'}" src="/images/products/12.png">
                   Cloud Portal
                 </FdShellBarProductSwitcherItem>
               </FdShellBarProductSwitcher>
