@@ -6,7 +6,7 @@
     <br>
     <FdAlert type="warning" dismissible>
       <FdIcon name="message-warning"/>Warning Message.
-      <FdLink href="#" @click="handleClick">Learn more</FdLink>
+      <FdLink href="#">Learn more</FdLink>
     </FdAlert>
   </div>
 </template>

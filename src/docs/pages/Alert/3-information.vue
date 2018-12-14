@@ -5,7 +5,7 @@
     <br>
     <FdAlert type="information" dismissible>
       <FdIcon name="message-information"/>Information Message.
-      <FdLink href="#" @click="handleClick">Learn more</FdLink>
+      <FdLink href="#">Learn more</FdLink>
     </FdAlert>
   </div>
 </template>
