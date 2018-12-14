@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
 export const plugin: ExampleCollectionFunction = ({ Alert }) => {
-  return { icon: 'message-warning', relatedComponents: [Alert] };
+    return { componentStatus: 'stable', icon: 'message-warning', relatedComponents: [Alert] };
 };
