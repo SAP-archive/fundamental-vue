@@ -27,6 +27,7 @@ export * from './InlineHelp';
 export * from './Tile';
 export * from './TileGrid';
 export * from './SearchInput';
+export * from './Pagination';
 
 import * as Button from './Button';
 import * as Animations from './Animations';
@@ -60,6 +61,7 @@ import * as Tile from './Tile';
 import * as TileGrid from './TileGrid';
 import * as SearchInput from './SearchInput';
 import { version, libName } from '@/config';
+import { Pagination } from './Pagination';
 
 export const all = {
     Token,
@@ -91,6 +93,7 @@ export const all = {
     ...ListGroup,
     ...Tile,
     ...TileGrid,
+    Pagination,
 };
 
 const $plugin: Plugin = () => {
