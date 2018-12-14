@@ -4,6 +4,7 @@ import TsxComponent from '@/vue-tsx';
 import { Api } from '@/api';
 
 @Component({ name: componentName('FormGroup') })
+@Api.Component('Form Group')
 @Api.defaultSlot('Content of the form group. Usually form items.')
 export class FormGroup extends TsxComponent<{}> {
   public render() {

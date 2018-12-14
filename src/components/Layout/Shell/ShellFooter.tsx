@@ -11,6 +11,7 @@ interface Props {
 }
 
 @Component({ name: componentName('ShellFooter') })
+@Api.Component('Shell Footer')
 @Api.defaultSlot('Footer Content')
 export class ShellFooter extends TsxComponent<Props> {
   @Prop({type: Boolean, default: false })

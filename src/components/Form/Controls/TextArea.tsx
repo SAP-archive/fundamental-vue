@@ -33,7 +33,7 @@ type Type = keyof (typeof typeMapping);
 const Types = Object.keys(typeMapping) as Type[];
 
 @Component({ name: componentName('TextArea') })
-@Api.Component('TextArea')
+@Api.Component('Text Area')
 @Api.Event('input', 'Sent when the value changes', ['value', 'any'])
 export class TextArea extends TsxComponent<Props> {
   @Api.Prop('id of the text area element', prop => prop.type(String))
