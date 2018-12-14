@@ -4,9 +4,12 @@ import { VueConstructor } from 'vue';
 import { IconName } from '@/lib';
 
 type ExampleCollectionPlugin = {
-  relatedComponents?: VueConstructor[];
-  icon?: IconName;
-  experimental?: boolean;
+    relatedComponents?: VueConstructor[];
+    icon?: IconName;
+    experimental?: boolean;
+    componentStatus?: string;
 };
 
-export type ExampleCollectionFunction = (components: typeof all) => ExampleCollectionPlugin;
+export type ExampleCollectionFunction = (
+    components: typeof all
+) => ExampleCollectionPlugin;
