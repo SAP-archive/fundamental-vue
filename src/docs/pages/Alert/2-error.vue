@@ -5,7 +5,7 @@
     <br>
     <FdAlert type="error" dismissible>
       <FdIcon name="message-error"/>Error Message.
-      <FdLink href="#" @click="handleClick">Learn more</FdLink>
+      <FdLink href="#">Learn more</FdLink>
     </FdAlert>
   </div>
 </template>
