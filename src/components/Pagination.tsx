@@ -64,20 +64,23 @@ export class Pagination extends TsxComponent<Props> {
 
   private pageClicked(event) {
     this.selectedPage = event.target && +event.target.text || 1;
+    this.$emit('change', this.selectedPage);
   }
 
   private navigateForward() {
     if (this.selectedPage === this.numberOfPages) {
       return;
     }
-    return ++this.selectedPage;
+    ++this.selectedPage;
+    this.$emit('change', this.selectedPage);
   }
 
   private navigateBack() {
     if (this.selectedPage === 1) {
       return;
     }
-    return --this.selectedPage;
+    --this.selectedPage;
+    this.$emit('change', this.selectedPage);
   }
   public render() {
     return (
