@@ -32,6 +32,8 @@ interface Props {
   },
 })
 @Api.Component('Popover')
+@Api.defaultSlot('MenuItems or custom content via the body-slot')
+@Api.slot('body', 'Custom popover body')
 @Api.Event('click', 'Sent when an item in the popover was clicked', ['value', 'MenuItem value'])
 export class Popover extends mixins(Uid) {
   @Api.Prop('ARIA label', prop => prop.type(String))
@@ -73,9 +75,8 @@ export class Popover extends mixins(Uid) {
   private popoverTriggerControl: Element | null = null;
 
   public render() {
-    const dropdown = this.$slots.default;
+    const dropdown = this.$slots.default || [];
     const triggerControl = this.$slots.control;
-
     const ignoredElementsHandler = () => {
       const el = this.popoverTriggerControl;
       if(el == null) { return []; }
@@ -111,9 +112,11 @@ export class Popover extends mixins(Uid) {
           ignoredElements={ignoredElementsHandler}
           aria-hidden={!this.currentPopoverVisible}
         >
+        {this.$slots.body ? this.$slots.body :
           <Menu on-select={this.handleItemClick}>
             <MenuList>{dropdown}</MenuList>
           </Menu>
+        }
         </ClickAwayContainer>
       </div>
     );
