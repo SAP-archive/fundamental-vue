@@ -6,6 +6,7 @@ import { componentName } from '@/util';
 import { Api } from '@/api';
 
 @Component({ name: componentName('Legend') })
+@Api.Component('Legend')
 @Api.defaultSlot('Legend text')
 export class Legend extends Vue {
   public render() {
