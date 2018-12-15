@@ -28,9 +28,9 @@ interface Props extends IconProps {
     name: componentName('SideNavItem'),
     provide() {
         return {
-            [ITEM_CONTAINER]: this
+            [ITEM_CONTAINER]: this,
         };
-    }
+    },
 })
 @Api.Component('Side Nav Item')
 @Api.Event('click', 'Sent when item is clicked')
@@ -118,7 +118,7 @@ export class SideNavItem extends mixins(Icon) implements ItemContainer {
         const title = this.title;
         const renderSubitems = () => {
             return (
-                <ul class="fd-side-nav__sublist" aria-hidden={!this.isExpanded}>
+                <ul class='fd-side-nav__sublist' aria-hidden={!this.isExpanded}>
                     {this.$slots.default}
                 </ul>
             );
@@ -129,21 +129,21 @@ export class SideNavItem extends mixins(Icon) implements ItemContainer {
         return (
             <li class={this.classes}>
                 <a
-                    role="link"
-                    href="javascript:undefined"
+                    role='link'
+                    href='javascript:undefined'
                     on-click={this.handleClick}
                     aria-selected={this.ariaSelected}
                     class={this.linkClassObject}
                     title={this.componentText}
                 >
-                    {!!iconClass && <span class={`fd-side-nav__icon ${iconClass} sap-icon--m`} role="presentation" />}
+                    {!!iconClass && <span class={`fd-side-nav__icon ${iconClass} sap-icon--m`} role='presentation' />}
                     {title}
                     {this.accessoryIcon && (
                         <Identifier
                             circle={true}
                             backgroundColor={this.color ? this.color : 'accent-6'}
-                            class="fd-has-float-right"
-                            size="xxs"
+                            class='fd-has-float-right'
+                            size='xxs'
                             icon={this.accessoryIcon}
                         />
                     )}
@@ -156,7 +156,7 @@ export class SideNavItem extends mixins(Icon) implements ItemContainer {
     private get classes() {
         return {
             'fd-side-nav__item': !this.isChildItem,
-            'fd-side-nav__subitem': this.isChildItem
+            'fd-side-nav__subitem': this.isChildItem,
         };
     }
 
@@ -182,7 +182,7 @@ export class SideNavItem extends mixins(Icon) implements ItemContainer {
             'fd-side-nav__sublink': this.isChildItem,
             'is-selected': this.isSelected,
             'is-expanded': this.isExpanded,
-            'has-child': this.hasChildItems
+            'has-child': this.hasChildItems,
         };
     }
 

@@ -20,7 +20,7 @@ import {
     ShellBarAction,
     ShellBarUserMenu,
     ShellBarProduct,
-    MenuItem
+    MenuItem,
 } from '@/components';
 import './DefaultLayout.sass';
 
@@ -69,7 +69,7 @@ export class DefaultLayout extends Vue {
     private onExampleCollectionClick(doc: ExampleCollection) {
         const location: RawLocation = {
             name: 'example',
-            params: { slug: doc.slug }
+            params: { slug: doc.slug },
         };
         this.$router.push(location);
     }
@@ -77,14 +77,14 @@ export class DefaultLayout extends Vue {
     private onApiExampleCollectionClick(api: ExampleCollection) {
         const location: RawLocation = {
             name: 'api',
-            params: { slug: api.slug }
+            params: { slug: api.slug },
         };
         this.$router.push(location);
     }
 
     private showStartPage() {
         this.$router.push({
-            path: '/start'
+            path: '/start',
         });
     }
 
@@ -187,21 +187,21 @@ export class DefaultLayout extends Vue {
             return (
                 <SideNav style={{ 'padding-bottom': '25px' }} indexPath={this.activeMenuItemId}>
                     <SideNavList>
-                        <SideNavItem icon="home" itemId="start" on-click={this.showStartPage}>
+                        <SideNavItem icon='home' itemId='start' on-click={this.showStartPage}>
                             Start
                         </SideNavItem>
                         <SideNavItem
-                            icon="write-new"
-                            itemId="new-component"
+                            icon='write-new'
+                            itemId='new-component'
                             on-click={() => this.push('/guide/new-component', 'new-component')}
                         >
                             New Component
                         </SideNavItem>
-                        <SideNavItem icon="source-code" submenuTitle="API Documentation" itemId="api-doc">
+                        <SideNavItem icon='source-code' submenuTitle='API Documentation' itemId='api-doc'>
                             {renderExampleCollections(exampleCollections)}
                         </SideNavItem>
                     </SideNavList>
-                    <SideNavList style="margin-bottom: 60px;" header={'Components'}>
+                    <SideNavList style='margin-bottom: 60px;' header={'Components'}>
                         {exampleCollections.map(item => (
                             <SideNavItem
                                 componentText={this.getComponentStateTooltip(item.componentStatus)}
@@ -222,16 +222,16 @@ export class DefaultLayout extends Vue {
             <Shell>
                 <ShellHeader fixed={true}>
                     <ShellBar>
-                        <ShellBarGroup position="start">
-                            <ShellBarLogo src="/images/logo.png" srcset="/images/logo.png 1x, /images/logo@2x.png 2x" />
+                        <ShellBarGroup position='start'>
+                            <ShellBarLogo src='/images/logo.png' srcset='/images/logo.png 1x, /images/logo@2x.png 2x' />
                             <ShellBarProduct>Fundamental Vue</ShellBarProduct>
                         </ShellBarGroup>
-                        <ShellBarGroup position="end">
+                        <ShellBarGroup position='end'>
                             <ShellBarActions>
                                 <ShellBarAction>
                                     <ShellBarUserMenu>
                                         <MenuItem>
-                                            <a href="https://github.com/SAP/fundamental-vue/issues/new" target="_blank">
+                                            <a href='https://github.com/SAP/fundamental-vue/issues/new' target='_blank'>
                                                 Report an Issue
                                             </a>
                                         </MenuItem>
@@ -242,10 +242,10 @@ export class DefaultLayout extends Vue {
                     </ShellBar>
                 </ShellHeader>
                 <App>
-                    <AppNavigation orientation="vertical" class="sidebar">
+                    <AppNavigation orientation='vertical' class='sidebar'>
                         {renderSideNav()}
                     </AppNavigation>
-                    <AppMain class="main-with-sidebar">
+                    <AppMain class='main-with-sidebar'>
                         <router-view />
                     </AppMain>
                 </App>

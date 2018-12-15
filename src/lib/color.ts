@@ -25,7 +25,7 @@ const colorMapping = {
     'accent-12': 'Accent 12',
     'accent-13': 'Accent 13',
     'accent-14': 'Accent 14',
-    'accent-15': 'Accent 15'
+    'accent-15': 'Accent 15',
 };
 
 export type Color = keyof (typeof colorMapping);
