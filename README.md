@@ -4,15 +4,21 @@
       </a>
 </p>
 
-Vue.JS components for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental)
+Fundamental-Vue is a light-weight Vue.JS component library for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental).
 
 -   [Playground](https://dist-fdl62itm5.now.sh)
 -   [GitHub repo of Angular implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-ngx)
 -   [GitHub repo of React implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-react)
 
+## Current Version
+
+```
+0.0.5-beta
+```
+
 ## Description
 
-Fundamental Vue is a set of [Vue.js](https://vuejs.org/) components implementation of [SAP Fiori Fundamentals library](https://sap.github.io/fundamental/). SAP Fiori Fundamentals library is a Design System and HTML/CSS Component Library used to build modern Product User Experiences with the SAP look and feel. This will allow you to stay/use Vue.js for your application and get SAP look and feel.
+Fundamental Vue is a light-weight set of [Vue.JS](https://vuejs.org/) components implementation of [SAP Fiori Fundamentals library](https://sap.github.io/fundamental/). SAP Fiori Fundamentals library is a Design System and HTML/CSS Component Library used to build modern Product User Experiences with the SAP look and feel. This will allow you to stay/use Vue.js for your application and get SAP look and feel.
 Fundamental Vue is open for contribution as long as you follow certain [rules/guidelines](./CONTRIBUTING.md).
 
 The library is currently in a Beta version and it is under development. The progress can be seen [here](https://github.com/SAP/fundamental-vue/projects/1)
@@ -24,24 +30,15 @@ https://www.npmjs.com/get-npm
 
 Some prior knowledge of Vue is required for using this library.
 
-## Build the library
-
-```
-$ ./scripts/build
-$ npm pack
-```
-
-## Run locally the library with the playground
-
-```
-npm run serve:docs
-```
+# Getting started
 
 ## Install
 
 To download and use this library, you first need to install the node package manager - [npm](https://www.npmjs.com/get-npm).
 
 1. Install Fundamental Vue
+
+<b>NPM</b>
 
 ```
 $ npm install --save fundamental-vue
@@ -118,15 +115,33 @@ To use a Fundamental Vue component, paste the desired code snippet from the Play
 ...
 ```
 
+## Build the library
+
+```
+$ ./scripts/build
+$ npm pack
+```
+
+## Run locally the library with the playground
+
+```
+npm run serve:docs
+```
+
 ## Known Issues
 
 Click [here](https://github.com/SAP/fundamental-vue/issues) to view the current issues.
+If there are issues that are not reported, feel free to log an issue.
 
 ## How to obtain support
 
 If you encounter an issue, you can [create a ticket](https://github.com/SAP/fundamental-vue/issues/new)
 
 ## Contributing
+
+If you want to contribute, please check the [CONTRIBUTING.md](./CONTRIBUTING.md) documentation for contribution guidelines.
+
+Check out the [NEW_COMPONENT.md](./NEW_COMPONENT/NEW_COMPONENT.md) guide on building a new component for the library and creating the necessary documentation for your new component.
 
 ## License
 
