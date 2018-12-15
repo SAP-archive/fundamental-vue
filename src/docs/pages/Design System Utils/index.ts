@@ -1,3 +1,6 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = () => ({ experimental: true, icon: 'action' });
+export const plugin: ExampleCollectionFunction = () => ({
+    componentStatus: 'stable',
+    icon: 'action',
+});

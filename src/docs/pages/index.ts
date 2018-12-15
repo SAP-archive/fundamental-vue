@@ -22,7 +22,6 @@ export type ExampleCollection = {
     readonly icon?: IconName;
     readonly key: string;
     readonly relatedComponents: VueConstructor[];
-    readonly experimental: boolean;
     readonly componentStatus: string;
     examples(): Example[];
 };
@@ -99,7 +98,7 @@ const getExamples = (collectionName: string): Example[] => {
             code,
             docs,
             condensed,
-            fullscreenOnly
+            fullscreenOnly,
         };
     });
     result.sort((lhs, rhs) => lhs.id.localeCompare(rhs.id, 'en', { numeric: true }));
@@ -117,15 +116,11 @@ const requireExampleCollections = (): ExampleCollection[] => {
         const slug = slugify(title);
         const id = key;
         const module = context(key);
-        const {
-            experimental = false,
-            componentStatus = 'inprogress',
-            relatedComponents = [],
-            icon = null
-        } = isDocModule(module) ? module.plugin(all) : {};
+        const { componentStatus = 'inprogress', relatedComponents = [], icon = null } = isDocModule(module)
+            ? module.plugin(all)
+            : {};
         return {
             id,
-            experimental,
             componentStatus,
             slug,
             key,
@@ -134,7 +129,7 @@ const requireExampleCollections = (): ExampleCollection[] => {
             icon: icon || undefined,
             examples() {
                 return getExamples(title);
-            }
+            },
         };
     };
 

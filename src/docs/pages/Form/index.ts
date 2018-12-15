@@ -11,7 +11,7 @@ export const plugin: ExampleCollectionFunction = ({
     InputGroup,
     Legend,
     TextArea,
-    Select
+    Select,
 }) => {
     return {
         componentStatus: 'stable',
@@ -27,7 +27,7 @@ export const plugin: ExampleCollectionFunction = ({
             InputGroup,
             Legend,
             TextArea,
-            Select
-        ]
+            Select,
+        ],
     };
 };

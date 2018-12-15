@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
 export const plugin: ExampleCollectionFunction = ({ Modal }) => {
-  return { icon: 'popup-window', relatedComponents: [Modal] };
+    return { componentStatus: 'inprogress', icon: 'popup-window', relatedComponents: [Modal] };
 };
