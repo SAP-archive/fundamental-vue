@@ -1,7 +1,7 @@
 {
     "name": "fundamental-vue",
-    "version": "0.0.1-beta",
-    "private": true,
+    "version": "0.0.6-beta",
+    "private": false,
     "homepage": "https://github.com/SAP/fundamental-vue",
     "scripts": {
         "typecheck": "tsc --noEmit",

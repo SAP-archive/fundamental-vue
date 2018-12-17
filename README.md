@@ -11,7 +11,7 @@ Fundamental-Vue is a light-weight Vue.JS component library for [SAP Fiori Fundam
 ## Current Version
 
 ```
-0.0.5-beta
+0.0.6-beta
 ```
 
 ## Description
