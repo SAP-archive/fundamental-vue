@@ -4,6 +4,7 @@ import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
 @Component({ name: componentName('Shell') })
+@Api.Component('Shell')
 @Api.defaultSlot('Main Content')
 export class Shell extends TsxComponent<{}> {
   public render() {

@@ -1,6 +1,8 @@
 import {
   Component,
   Prop,
+  Model,
+  Watch,
 } from 'vue-property-decorator';
 import { Api } from '@/api';
 import { componentName } from '@/util';
@@ -30,21 +32,32 @@ interface Props {
 @Api.defaultSlot('alert content')
 export class Alert extends mixins(Uid) {
   @Api.Prop('whether alert is dismissible', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, required: false, default: true })
+  @Prop({ type: Boolean, default: true })
   public dismissible!: boolean;
 
+  @Model('visible', { default: true, type: Boolean })
+  @Api.Prop('whether alert is visible', prop => prop.type(Boolean))
+  public visible!: boolean;
+
+  @Watch('visible', { immediate: true})
+  public didChangeVisible(visible: boolean) {
+    this.currentVisible = visible;
+    this.$emit('visible', this.currentVisible);
+  }
+
+  private currentVisible = this.visible;
+
   @Api.Prop('alert type', prop => prop.type(String).acceptValues(...AlertTypes))
-  @Prop({ type: String, required: false, default: 'default' })
+  @Prop({ type: String, default: 'default' })
   public type!: AlertType;
 
-  private visible: boolean = true;
-  public $tsxProps!: Readonly<{}> & Readonly<Props>;
+  public $tsxProps!: Readonly<Props>;
 
   public render() {
     const content = this.$slots.default;
     return (
       <transition name='fade'>
-        <div v-show={this.visible} class={this.classes} role='alert' id={this.uid}>
+        <div id={this.uid} v-show={this.currentVisible} class={this.classes} role='alert'>
           {this.dismissible &&
             <button
               class='fd-alert__close'
@@ -55,7 +68,6 @@ export class Alert extends mixins(Uid) {
           }
           {content}
         </div>
-
       </transition>
     );
   }
@@ -72,7 +84,7 @@ export class Alert extends mixins(Uid) {
   }
 
   private dismiss() {
-    this.visible = false;
+    this.currentVisible = false;
     this.$emit('dismiss');
   }
 }

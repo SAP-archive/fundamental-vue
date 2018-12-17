@@ -15,7 +15,8 @@
     "noUnusedLocals": true,
     "types": [
       "webpack-env",
-      "jest",
+      "mocha",
+      "chai"
     ],
     "paths": {
       "@/*": [

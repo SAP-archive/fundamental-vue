@@ -23,6 +23,7 @@ interface Props {
     };
   },
 })
+@Api.Component('Form Item')
 @Api.defaultSlot('Content of the form item. Usually inputs and labels.')
 export class FormItem extends mixins(Uid) implements ItemIdentification {
   @Prop({ type: String, required: false, default: null })

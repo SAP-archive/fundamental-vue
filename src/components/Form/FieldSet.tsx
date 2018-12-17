@@ -4,6 +4,7 @@ import TsxComponent from '@/vue-tsx';
 import { Api } from '@/api';
 
 @Component({ name: componentName('FieldSet') })
+@Api.Component('Field Set')
 @Api.defaultSlot('Content of the field set. Usually a legend with a form group.')
 export class FieldSet extends TsxComponent<{}> {
   public render() {

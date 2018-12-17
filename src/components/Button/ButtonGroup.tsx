@@ -57,7 +57,7 @@ export class ButtonGroup extends TsxComponent<Props> implements ButtonContainer 
   }
 
   private indexOfButton(button: Button): number | null {
-    const index = this.$slots.default.indexOf(button.$vnode);
+    const index = (this.$slots.default || []).indexOf(button.$vnode);
     return index > -1 ? index : null;
   }
 

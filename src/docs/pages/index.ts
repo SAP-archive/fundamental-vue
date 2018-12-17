@@ -22,15 +22,17 @@ export type ExampleCollection = {
     readonly icon?: IconName;
     readonly key: string;
     readonly relatedComponents: VueConstructor[];
-    readonly experimental: boolean;
+    readonly componentStatus: string;
     examples(): Example[];
 };
 
-type DocModule = { plugin: ExampleCollectionFunction; };
+type DocModule = { plugin: ExampleCollectionFunction };
 
 const isDocModule = (module: any): module is DocModule => {
-    if(module == null) { return false; }
-    if('plugin' in module) {
+    if (module == null) {
+        return false;
+    }
+    if ('plugin' in module) {
         return true;
     }
     return false;
@@ -45,7 +47,7 @@ export class ExampleCollections implements Iterable<ExampleCollection> {
         return this.collections.map(mapper);
     }
 
-    public exampleCollection({ slug }: {slug: string}): ExampleCollection | undefined {
+    public exampleCollection({ slug }: { slug: string }): ExampleCollection | undefined {
         return this.collections.find(collection => slug === collection.slug);
     }
 
@@ -53,9 +55,9 @@ export class ExampleCollections implements Iterable<ExampleCollection> {
         const exampleInCollection = (collection: ExampleCollection, exampleId: string): Example | undefined => {
             return collection.examples().find(example => example.id === exampleId);
         };
-        for(const collection of this.collections) {
+        for (const collection of this.collections) {
             const example = exampleInCollection(collection, id);
-            if(example != null) {
+            if (example != null) {
                 return example;
             }
         }
@@ -114,10 +116,12 @@ const requireExampleCollections = (): ExampleCollection[] => {
         const slug = slugify(title);
         const id = key;
         const module = context(key);
-        const { experimental = false, relatedComponents = [], icon = null } = isDocModule(module) ? module.plugin(all) : {};
+        const { componentStatus = 'inprogress', relatedComponents = [], icon = null } = isDocModule(module)
+            ? module.plugin(all)
+            : {};
         return {
             id,
-            experimental,
+            componentStatus,
             slug,
             key,
             title,

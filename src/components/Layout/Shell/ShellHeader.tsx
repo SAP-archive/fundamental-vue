@@ -11,6 +11,7 @@ interface Props {
 }
 
 @Component({ name: componentName('ShellHeader') })
+@Api.Component('Shell Header')
 @Api.defaultSlot('Header Content')
 export class ShellHeader extends TsxComponent<Props> {
   @Prop({type: Boolean, default: false })

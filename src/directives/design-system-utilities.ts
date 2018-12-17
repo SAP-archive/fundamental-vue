@@ -46,14 +46,14 @@ export const padding = Vue.directive(directiveName('padding'), ({ classList }, b
   const { arg, modifiers } = binding;
   if(!isSize(arg)) { return; }
   const size = arg;
-  classList.add(...paddingClasses(size, modifiers));
+  classList.add(...paddingClasses(size || 'none', modifiers));
 });
 
 export const margin = Vue.directive(directiveName('margin'), ({ classList }, binding) => {
   const { arg, modifiers } = binding;
   if(!isSize(arg)) { return; }
   const size = arg;
-  classList.add(...marginClasses(size, modifiers));
+  classList.add(...marginClasses(size || 'none', modifiers));
 });
 
 type FontWeight = 'light' | 'bold' | 'normal';

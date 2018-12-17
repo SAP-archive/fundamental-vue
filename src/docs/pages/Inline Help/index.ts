@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
 export const plugin: ExampleCollectionFunction = ({ InlineHelp }) => {
-  return { icon: 'sys-help', relatedComponents: [InlineHelp] };
+    return { componentStatus: 'stable', icon: 'sys-help', relatedComponents: [InlineHelp] };
 };
