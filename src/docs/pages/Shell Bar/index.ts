@@ -2,9 +2,9 @@ import { ExampleCollectionFunction } from '../types';
 import { ShellBarProduct, ShellBarGroup, ShellBarLogo, ShellBarActions, ShellBarAction, ShellBarUserMenu, ShellBarProductSwitcher, ShellBar, ShellBarProductSwitcherItem, ShellBarProductSwitcherItemImg, ShellBarProductSwitcherItemTitle } from '@/components';
 
 export const plugin: ExampleCollectionFunction = ({ Shell }) => {
-  return { 
-    experimental: true, 
-    icon: 'header', 
+  return {
+    experimental: true,
+    icon: 'header',
     relatedComponents: [
       ShellBar,
       ShellBarGroup,
@@ -17,6 +17,6 @@ export const plugin: ExampleCollectionFunction = ({ Shell }) => {
       ShellBarProductSwitcherItem,
       ShellBarProductSwitcherItemImg,
       ShellBarProductSwitcherItemTitle,
-   ]
+   ],
   };
 };
