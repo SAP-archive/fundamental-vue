@@ -16,7 +16,8 @@ interface Props {
 
 @Component({ name: componentName('Pagination') })
 @Api.Component('Pagination')
-@Api.defaultSlot('Text displayed inside the pagination.')
+@Api.Event('click', 'Sent when button is clicked')
+@Api.defaultSlot('pagination content (usually just total number of items and page numbers)')
 export class Pagination extends TsxComponent<Props> {
   @Api.Prop('items per page', prop => prop.type(Number))
   @Prop({ type: Number, required: false, default: 10 })
@@ -44,7 +45,7 @@ export class Pagination extends TsxComponent<Props> {
 
   private selectedPage: number = this.initialPage ? this.initialPage : 1;
 
-  private createPaginationLinks(numberOfPages) {
+  private createPaginationLinks(numberOfPages: number) {
     // create an array with number of pages and fill it with links
     const aPages = Array(numberOfPages)
       .fill(0)
@@ -54,7 +55,7 @@ export class Pagination extends TsxComponent<Props> {
           href='#'
           class='fd-pagination__link'
           aria-selected={this.selectedPage === index + 1}
-          onClick={event => this.pageClicked(event)}
+          onClick={(event: Event) => this.pageClicked(event)}
         >
           {index + 1}
         </a>
@@ -62,9 +63,10 @@ export class Pagination extends TsxComponent<Props> {
     return aPages;
   }
 
-  private pageClicked(event) {
-    this.selectedPage = event.target && +event.target.text || 1;
-    this.$emit('change', this.selectedPage);
+  private pageClicked(event: Event) {
+    const element = event.target as HTMLAnchorElement;
+    this.selectedPage = element && +element.text || 1;
+    this.$emit('page-change', this.selectedPage);
   }
 
   private navigateForward() {
@@ -72,7 +74,7 @@ export class Pagination extends TsxComponent<Props> {
       return;
     }
     ++this.selectedPage;
-    this.$emit('change', this.selectedPage);
+    this.$emit('page-change', this.selectedPage);
   }
 
   private navigateBack() {
@@ -80,8 +82,9 @@ export class Pagination extends TsxComponent<Props> {
       return;
     }
     --this.selectedPage;
-    this.$emit('change', this.selectedPage);
+    this.$emit('page-change', this.selectedPage);
   }
+
   public render() {
     return (
       <div class='fd-pagination'>
