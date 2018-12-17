@@ -1,4 +1,4 @@
-import { Component, Watch, Prop } from 'vue-property-decorator';
+import { Model, Component, Watch, Prop } from 'vue-property-decorator';
 import { Menu, MenuList, MenuItem } from './../Menu';
 import { Button } from './../Button';
 import { mixins } from 'vue-class-component';
@@ -49,7 +49,7 @@ export class Popover extends mixins(Uid) {
   public placement!: PopoverPlacement;
 
   @Api.Prop('whether popover is visible', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false })
+  @Model('visible', { type: Boolean, default: false })
   public popoverVisible!: boolean;
 
   @Api.Prop('whether popover has an arrow', prop => prop.type(Boolean))
@@ -62,14 +62,17 @@ export class Popover extends mixins(Uid) {
   @Watch('popoverVisible', { immediate: true })
   public handlePopoverVisible(newVal) {
     this.currentPopoverVisible = newVal;
+    this.$emit('visible', this.currentPopoverVisible);
   }
 
   private hidePopover() {
     this.currentPopoverVisible = false;
+    this.$emit('visible', this.currentPopoverVisible);
   }
 
   private toggle() {
     this.currentPopoverVisible = !this.currentPopoverVisible;
+    this.$emit('visible', this.currentPopoverVisible);
   }
 
   private popoverTriggerControl: Element | null = null;
