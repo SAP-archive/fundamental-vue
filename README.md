@@ -6,9 +6,7 @@
 
 Fundamental-Vue is a light-weight Vue.JS component library for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental).
 
--   [Playground](https://dist-fdl62itm5.now.sh)
--   [GitHub repo of Angular implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-ngx)
--   [GitHub repo of React implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-react)
+**[Component Documentation](https://dist-fdl62itm5.now.sh)**
 
 ## Current Version
 
@@ -25,7 +23,7 @@ The library is currently in a Beta version and it is under development. The prog
 
 ## Requirements
 
-To download and use Fundamental-react library, you first need to install the node package manager.
+To download and use Fundamental Vue library, you first need to install the node package manager.
 https://www.npmjs.com/get-npm
 
 Some prior knowledge of Vue is required for using this library.
@@ -113,19 +111,6 @@ To use a Fundamental Vue component, paste the desired code snippet from the Play
       Happy building! 🚀
 </FdAlert>
 ...
-```
-
-## Build the library
-
-```
-$ ./scripts/build
-$ npm pack
-```
-
-## Run locally the library with the playground
-
-```
-npm run serve:docs
 ```
 
 ## Known Issues
