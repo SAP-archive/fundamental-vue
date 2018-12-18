@@ -1,5 +1,19 @@
 import { ExampleCollectionFunction } from '../types';
-import { ShellBarProduct, ShellBarGroup, ShellBarLogo, ShellBarActions, ShellBarAction, ShellBarUserMenu, ShellBarProductSwitcher, ShellBar, ShellBarProductSwitcherItem, ShellBarProductSwitcherItemImg, ShellBarProductSwitcherItemTitle } from '@/components';
+import {
+    ShellBarProduct,
+    ShellBarProductTitle,
+    ShellBarProductMenu,
+    ShellBarGroup,
+    ShellBarLogo,
+    ShellBarActions,
+    ShellBarAction,
+    ShellBarUserMenu,
+    ShellBarProductSwitcher,
+    ShellBar,
+    ShellBarProductSwitcherItem,
+    ShellBarProductSwitcherItemImg,
+    ShellBarProductSwitcherItemTitle,
+} from '@/components';
 
 export const plugin: ExampleCollectionFunction = ({ Shell }) => {
   return {
@@ -9,6 +23,8 @@ export const plugin: ExampleCollectionFunction = ({ Shell }) => {
       ShellBar,
       ShellBarGroup,
       ShellBarProduct,
+      ShellBarProductMenu,
+      ShellBarProductTitle,
       ShellBarLogo,
       ShellBarActions,
       ShellBarAction,
@@ -17,6 +33,6 @@ export const plugin: ExampleCollectionFunction = ({ Shell }) => {
       ShellBarProductSwitcherItem,
       ShellBarProductSwitcherItemImg,
       ShellBarProductSwitcherItemTitle,
-   ],
+    ],
   };
 };
