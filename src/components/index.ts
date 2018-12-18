@@ -27,6 +27,7 @@ export * from './InlineHelp';
 export * from './Tile';
 export * from './TileGrid';
 export * from './SearchInput';
+export * from './ContextualMenu';
 
 import * as Button from './Button';
 import * as Animations from './Animations';
@@ -59,6 +60,8 @@ import * as Layout from './Layout';
 import * as Tile from './Tile';
 import * as TileGrid from './TileGrid';
 import * as SearchInput from './SearchInput';
+import * as ContextualMenu from './ContextualMenu';
+
 import { version, libName } from '@/config';
 
 export const all = {
@@ -91,6 +94,7 @@ export const all = {
     ...ListGroup,
     ...Tile,
     ...TileGrid,
+    ...ContextualMenu,
 };
 
 const $plugin: Plugin = () => {
