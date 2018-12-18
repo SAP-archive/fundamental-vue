@@ -28,6 +28,7 @@ export * from './Tile';
 export * from './TileGrid';
 export * from './SearchInput';
 export * from './ContextualMenu';
+export * from './Pagination';
 
 import * as Button from './Button';
 import * as Animations from './Animations';
@@ -61,6 +62,7 @@ import * as Tile from './Tile';
 import * as TileGrid from './TileGrid';
 import * as SearchInput from './SearchInput';
 import * as ContextualMenu from './ContextualMenu';
+import { Pagination } from './Pagination';
 
 import { version, libName } from '@/config';
 
@@ -95,6 +97,7 @@ export const all = {
     ...Tile,
     ...TileGrid,
     ...ContextualMenu,
+    Pagination,
 };
 
 const $plugin: Plugin = () => {

@@ -6,14 +6,12 @@
 
 Fundamental-Vue is a light-weight Vue.JS component library for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental).
 
--   [Playground](https://dist-fdl62itm5.now.sh)
--   [GitHub repo of Angular implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-ngx)
--   [GitHub repo of React implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-react)
+**[Component Documentation](https://dist-fdl62itm5.now.sh)**
 
 ## Current Version
 
 ```
-0.0.5-beta
+0.0.6-beta
 ```
 
 ## Description
@@ -25,7 +23,7 @@ The library is currently in a Beta version and it is under development. The prog
 
 ## Requirements
 
-To download and use Fundamental-react library, you first need to install the node package manager.
+To download and use Fundamental Vue library, you first need to install the node package manager.
 https://www.npmjs.com/get-npm
 
 Some prior knowledge of Vue is required for using this library.
@@ -38,100 +36,86 @@ To download and use this library, you first need to install the node package man
 
 1. Install Fundamental Vue
 
-<b>NPM</b>
+    NPM
 
-```
-$ npm install --save fundamental-vue
-```
+    ```
+    $ npm install --save fundamental-vue
+    ```
 
-After installing, you will need to import `fundamental-vue` and make it available to your Vue application. These instructions assume the usage of Vue CLI to scaffold your project.
+    After installing, you will need to import `fundamental-vue` and make it available to your Vue application. These instructions assume the usage of Vue CLI to scaffold your project.
 
-In your project's `main.js`:
+    In your project's `main.js`:
 
-```
-// ...
-import FundamentalVue from 'fundamental-vue';
-Vue.use(FundamentalVue);
-// ...
-```
+    ```
+    // ...
+    import FundamentalVue from 'fundamental-vue';
+    Vue.use(FundamentalVue);
+    // ...
+    ```
 
-Fundamental Vue does not include the ['Fiori Fundamentals' library](https://github.com/SAP/fundamental) which is required for styling.
+    Fundamental Vue does not include the ['Fiori Fundamentals' library](https://github.com/SAP/fundamental) which is required for styling.
 
 2. Install Fiori Fundamentals
 
-The quickest way to get Fiori Fundamentals styling for your components is to include the compiled and minified Fiori Fundamentals CSS library with the following CDN link in your public `index.html` file:
+    The quickest way to get Fiori Fundamentals styling for your components is to include the compiled and minified Fiori Fundamentals CSS library with the following CDN link in your public `index.html` file:
 
-```
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.3.3/dist/fiori-fundamentals.min.css">
-```
+    ```
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.3.3/dist/fiori-fundamentals.min.css">
+    ```
 
-However, installing the Fiori Fundamentals library with npm (recommended) will give you the flexibility to use individual components and enable [advanced customisation options](https://github.com/SAP/fundamental/wiki/Advanced-Customization). In this case, you do not need the CDN link as this method uses the SASS/SCSS source.
+    However, installing the Fiori Fundamentals library with npm (recommended) will give you the flexibility to use individual components and enable [advanced customisation options](https://github.com/SAP/fundamental/wiki/Advanced-Customization). In this case, you do not need the CDN link as this method uses the SASS/SCSS source.
 
-To install the Fiori Fundamentals SASS/SCSS source:
+    To install the Fiori Fundamentals SASS/SCSS source:
 
-```
-$ npm install --save fiori-fundamentals
-```
+    ```
+    $ npm install --save fiori-fundamentals
+    ```
 
-The following assumes the usage of a module bundler such as [webpack](https://webpack.js.org/). To compile Fiori Fundamentals SASS/SCSS to CSS, two additional packages are required for your bundling process - [sass-loader](https://github.com/webpack-contrib/sass-loader) and [node-sass](https://github.com/sass/node-sass). To install these packages as development dependencies:
+    The following assumes the usage of a module bundler such as [webpack](https://webpack.js.org/). To compile Fiori Fundamentals SASS/SCSS to CSS, two additional packages are required for your bundling process - [sass-loader](https://github.com/webpack-contrib/sass-loader) and [node-sass](https://github.com/sass/node-sass). To install these packages as development dependencies:
 
-```
-$ npm install sass-loader node-sass --save-dev
-```
+    ```
+    $ npm install sass-loader node-sass --save-dev
+    ```
 
-Loading the SCSS and running your project at this point will result in errors relating to the path configuration for icons and fonts. This is a [known issue](https://github.com/SAP/fundamental#known-issues).
+    Loading the SCSS and running your project at this point will result in errors relating to the path configuration for icons and fonts. This is a [known issue](https://github.com/SAP/fundamental#known-issues).
 
-To rectify this, start by creating a new directory ('scss') in your project's `src`. Within this directory, create a main SCSS file ('main.scss') from which to manage your imports, configurations and customisations.
+    To rectify this, start by creating a new directory ('scss') in your project's `src`. Within this directory, create a main SCSS file ('main.scss') from which to manage your imports, configurations and customisations.
 
-Add the following to the main SCSS file:
+    Add the following to the main SCSS file:
 
-```
-$fd-icons-path : "../node_modules/fiori-fundamentals/scss/icons/"; // should be declared before the scss import
+    ```
+    $fd-icons-path : "../node_modules/fiori-fundamentals/scss/icons/"; // should be declared before the scss import
 
-$fd-scss-font-path : "../node_modules/fiori-fundamentals/scss/fonts/";
+    $fd-scss-font-path : "../node_modules/fiori-fundamentals/scss/fonts/";
 
-@import "../node_modules/fiori-fundamentals/scss/all.scss";
-```
+    @import "../node_modules/fiori-fundamentals/scss/all.scss";
+    ```
 
-Import the main SCSS file in your `App.js` style block to add Fiori Fundamentals styles to your project.
+    Import the main SCSS file in your `App.js` style block to add Fiori Fundamentals styles to your project.
 
-```
-<style lang='scss'>
-...
-@import "./scss/main.scss";
-...
-</style>
-```
+    ```
+    <style lang='scss'>
+    ...
+    @import "./scss/main.scss";
+    ...
+    </style>
+    ```
 
-You can now use the [Playground](https://dist-4d2gqwr8y.now.sh/#/start) to browse the components currently available with Fundamental Vue.
+    You can now use the [Playground](https://dist-4d2gqwr8y.now.sh/#/start) to browse the components currently available with Fundamental Vue.
 
-To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessarry:
+    To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessarry:
 
-```
-...
-<FdAlert dismissible>
-      Happy building! 🚀
-</FdAlert>
-...
-```
-
-## Build the library
-
-```
-$ ./scripts/build
-$ npm pack
-```
-
-## Run locally the library with the playground
-
-```
-npm run serve:docs
-```
+    ```
+    ...
+    <FdAlert dismissible>
+          Happy building! 🚀
+    </FdAlert>
+    ...
+    ```
 
 ## Known Issues
 
-Click [here](https://github.com/SAP/fundamental-vue/issues) to view the current issues.
-If there are issues that are not reported, feel free to log an issue.
+There are no known major issues.
 
 ## How to obtain support
 

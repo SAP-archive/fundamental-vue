@@ -7,3 +7,5 @@ export { ShellBarAction } from './ShellBarAction';
 export { ShellBarUserMenu } from './ShellBarUserMenu';
 export { ShellBarProductSwitcher } from './ShellBarProductSwitcher';
 export { ShellBarProductSwitcherItem } from './ShellBarProductSwitcherItem';
+export { ShellBarProductSwitcherItemImg } from './ShellBarProductSwitcherItemImg';
+export { ShellBarProductSwitcherItemTitle } from './ShellBarProductSwitcherItemTitle';

@@ -18,7 +18,7 @@ export class ShellBarProductSwitcher extends TsxComponent<{}> {
             {control}
             {!control && <Button styling='light' class='fd-button--shell' icon='grid'/>}
           </div>
-          <div class='fd-product-switcher__body'>
+          <div slot='body' class='fd-product-switcher__body'>
             <nav>
               <ul>
                 {this.$slots.default}
