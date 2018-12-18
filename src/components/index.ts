@@ -28,6 +28,7 @@ export * from './Tile';
 export * from './TileGrid';
 export * from './SearchInput';
 export * from './Pagination';
+export * from './Counter';
 
 import * as Button from './Button';
 import * as Animations from './Animations';
@@ -43,6 +44,7 @@ import { Link } from './Link';
 import { Badge } from './Badge';
 import { Label } from './Label';
 import { Status } from './Status';
+import { Counter } from './Counter';
 import { ActionBar } from './ActionBar';
 import { Alert } from './Alert';
 import { Icon } from './Icon';
@@ -94,6 +96,7 @@ export const all = {
     ...Tile,
     ...TileGrid,
     Pagination,
+    Counter,
 };
 
 const $plugin: Plugin = () => {
