@@ -79,6 +79,7 @@ export class ContextualMenu extends mixins(Uid) {
         <Popover noArrow={false} popoverVisible={this.currentPopoverVisible}>
           <div class='fd-popover__control' slot='control'>
             <Button
+                aria-controls={this.uid}
                 slot='after'
                 on-click={this.togglePopoverVisible}
                 icon={this.icon}
