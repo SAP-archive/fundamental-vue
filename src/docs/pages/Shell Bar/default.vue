@@ -23,6 +23,9 @@
             </template>
           </FdShellBarProductMenu>
         </FdShellBarProduct>
+        <FdShellBarSubtitle>
+          Subtitle
+        </FdShellBarSubtitle>
         </FdShellBarGroup>
         <FdShellBarGroup position="end">
           <FdShellBarActions>
