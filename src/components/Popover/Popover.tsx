@@ -92,7 +92,7 @@ export class Popover extends mixins(Uid) {
           {triggerControl && <div role='button' on-click={this.toggle}>{triggerControl}</div>}
           {!triggerControl &&
             <Button
-              class={'fd-popover__control'}
+              class='fd-popover__control'
               aria-controls={this.uid}
               aria-expanded={this.currentPopoverVisible}
               aria-haspopup='true'

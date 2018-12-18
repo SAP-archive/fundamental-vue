@@ -1,7 +1,7 @@
 {
     "name": "fundamental-vue",
-    "version": "0.0.1-beta",
-    "private": true,
+    "version": "0.0.6-beta",
+    "private": false,
     "homepage": "https://github.com/SAP/fundamental-vue",
     "scripts": {
         "typecheck": "tsc --noEmit",
@@ -9,7 +9,7 @@
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint:vue": "vue-cli-service lint",
-        "test": "vue-cli-service test:unit 'src/**/__tests__/*.{tsx,ts,js,vue}'",
+        "test": "vue-cli-service test:unit 'src/**/__tests__/*.test.{tsx,ts,js,vue}'",
         "test:watch": "npm test -- --watch",
         "lint": "npx tslint --project tsconfig.json --config tslint.json",
         "lint:fix": "npm run lint -- --fix",
