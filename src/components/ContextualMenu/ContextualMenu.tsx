@@ -1,5 +1,6 @@
 import {
     Component,
+    Watch,
     Prop,
 } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
@@ -7,7 +8,6 @@ import { Uid } from '@/mixins';
 import { Api } from '@/api';
 import { componentName } from '@/util';
 import { Button } from '@/components/Button';
-import { ClickAwayContainer } from '@/components/ClickAwayContainer';
 import { Menu, MenuList, MenuItem } from '@/components/Menu';
 import { Popover } from '@/components/Popover';
 interface Props {
@@ -36,15 +36,13 @@ const ButtonStylings = Object.keys(stylingMapping) as ButtonStyling[];
     },
     components: {
       Button,
-      ClickAwayContainer,
       Menu,
       MenuList,
       MenuItem,
       Popover,
     },
 })
-@Api.Component('Contextual Menu')
-@Api.Event('input', 'Sent when the selected item changes')
+@Api.Component('ContextualMenu')
 export class ContextualMenu extends mixins(Uid) {
   @Api.Prop('icon displayed in the button', prop => prop.type(String))
   @Prop({ default: null, required: false, type: String })
@@ -63,33 +61,35 @@ export class ContextualMenu extends mixins(Uid) {
   public popoverVisible!: boolean;
 
   public $tsxProps!: Readonly<{}> & Readonly<Props>;
-
   private currentPopoverVisible: boolean = this.popoverVisible;
-//  private currentValue: string | null = this.value;
 
+  @Watch('currentPopoverVisible', { immediate: true})
+  public didChangeVisible( currentPopoverVisible: boolean) {
+    this.currentPopoverVisible = false;
+    this.$emit('update:currentPopoverVisible', this.currentPopoverVisible);
+  }
   public togglePopoverVisible() {
     this.currentPopoverVisible = !this.currentPopoverVisible;
     this.$emit('update:currentPopoverVisible', this.currentPopoverVisible);
   }
-
-    public render() {
-      const dropdown = this.$slots.default;
-      return (
-        <div class='fd-popover'>
-          <Popover noArrow={false} popoverVisible={this.currentPopoverVisible}>
-            <div class='fd-popover__control' slot='control'>
-              <Button
-                  slot='after'
-                  on-click={this.togglePopoverVisible}
-                  icon={this.icon}
-                  styling={this.styling}
-              >
-                 {this.text}
-              </Button>
-            </div>
-            {dropdown}
-          </Popover>
-        </div>
-      );
-    }
+  public render() {
+    const dropdown = this.$slots.default;
+    return (
+      <div class='fd-popover'>
+        <Popover noArrow={false} popoverVisible={this.currentPopoverVisible}>
+          <div class='fd-popover__control' slot='control'>
+            <Button
+                slot='after'
+                on-click={this.togglePopoverVisible}
+                icon={this.icon}
+                styling={this.styling}
+            >
+                {this.text}
+            </Button>
+          </div>
+          {dropdown}
+        </Popover>
+      </div>
+    );
   }
+}
