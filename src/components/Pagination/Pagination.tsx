@@ -6,7 +6,7 @@ import { componentName } from '@/util';
 import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
-interface Props {
+export interface Props {
   itemsPerPage?: number;
   itemsTotal: number;
   initialPage?: number;
