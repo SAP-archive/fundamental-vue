@@ -1,14 +1,23 @@
 <title>Default MultiInput</title>
-
-<template>
-  <FdPagination :itemsTotal=101 :initialPage=1 totalText="Dalmations" v-on:page-change="onChange"/>
-</template>
+  <template>
+    <div>
+      <h2>{{selectedPage}}</h2>
+      <FdPagination :itemsTotal=101 :initialPage=initialPage totalText="Dalmations" v-on:page-change="onChange"/>
+    </div>
+  </template>
 
 <script>
 export default {
+  data() {
+    const init =1;
+    return {
+      initialPage: init,
+      selectedPage: init,
+    }
+  },
   methods: {
     onChange(page) {
-      console.log('Switch to page '+page+'!');
+      this.selectedPage = page;
     },
   },
 };

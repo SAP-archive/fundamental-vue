@@ -104,7 +104,7 @@ export class ComponentExample extends TsxComponent<Props> {
           />
         </h1>
         {this.docs &&
-          <div class='docs' domPropsInnerHTML={this.docs} />
+          <div class='docs rendered-markdown' domPropsInnerHTML={this.docs} />
         }
         <Panel condensed={true} condensedFooter={true}>
           {!!tip &&
