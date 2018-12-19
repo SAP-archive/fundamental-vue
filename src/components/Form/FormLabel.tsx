@@ -1,31 +1,23 @@
-import {
-  Component,
-  Prop,
-  Inject,
-} from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
+import { Inject } from 'vue-property-decorator';
 import { ItemIdentification } from './Types/ItemIdentification';
-import TsxComponent from '@/vue-tsx';
+import { Component, DefaultSlot, Prop, Base } from '@/core';
 
 interface Props {
   for?: string | null;
   required?: boolean;
 }
 
-@Component({ name: componentName('FormLabel') })
-@Api.Component('Form Label')
-@Api.defaultSlot('Contents of the label: For non-inline elements simply use text which will become the text displayed by the label. For inline elements use text alongside with any elements that form your input control.')
-export class FormLabel extends TsxComponent<Props> {
-  @Api.Prop('id of the corresponding input', prop => prop.type(String))
-  @Prop({ type: String, required: false, default: null })
+@Component('FormLabel')
+@DefaultSlot('Contents of the label: For non-inline elements simply use text which will become the text displayed by the label. For inline elements use text alongside with any elements that form your input control.')
+export class FormLabel extends Base<Props> {
+  @Prop('id of the corresponding input', { type: String, default: null })
   public for!: string | null;
 
-  @Api.Prop('whether a value is required (adds a *)', prop => prop.type(Boolean))
-  @Prop({ required: false, default: false, type: Boolean })
+  @Prop('whether a value is required (adds a *)', { default: false, type: Boolean })
   public required!: boolean;
 
-  @Inject({ default: null }) public itemIdentificationProvider!: ItemIdentification | null;
+  @Inject({ default: null })
+  public itemIdentificationProvider!: ItemIdentification | null;
 
   private get labelId(): string | null {
     const forId = this.for;

@@ -1,12 +1,8 @@
-import { Component } from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Component, DefaultSlot, Base } from '@/core';
 
-@Component({ name: componentName('Shell') })
-@Api.Component('Shell')
-@Api.defaultSlot('Main Content')
-export class Shell extends TsxComponent<{}> {
+@Component('Shell')
+@DefaultSlot('Main Content')
+export class Shell extends Base<{}> {
   public render() {
     return <div class='fd-shell fd-shell--fixed fd-shell--fundamentals'>{this.$slots.default}</div>;
   }

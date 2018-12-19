@@ -1,9 +1,6 @@
-import { Component, Prop } from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
 import { Location } from 'vue-router';
 import { ShellBarProductSwitcherItemTitle, ShellBarProductSwitcherItemImg } from '@/components';
+import { Component, DefaultSlot, Prop, Base } from '@/core';
 
 interface Props {
   src: string;
@@ -12,24 +9,19 @@ interface Props {
   title: string;
 }
 
-@Component({ name: componentName('ShellBarProductSwitcherItem') })
-@Api.Component('Shell Bar Product Switcher Item')
-@Api.defaultSlot('Product Switcher Item Title')
-export class ShellBarProductSwitcherItem extends TsxComponent<Props> {
-  @Api.Prop('image source', prop => prop.type(String))
-  @Prop({type: String, required: false, default: ''})
+@Component('ShellBarProductSwitcherItem')
+@DefaultSlot('Product Switcher Item Title')
+export class ShellBarProductSwitcherItem extends Base<Props> {
+  @Prop('image source', {type: String, required: false, default: ''})
   public src!: string;
 
-  @Api.Prop('title', prop => prop.type(String))
   @Prop({type: String, required: false, default: ''})
   public title!: string;
 
-  @Api.Prop('router link destination', prop => prop.type(String, Object))
-  @Prop({type: [String, Object], required: false, default: ''})
+  @Prop('router link destination', {type: [String, Object], required: false, default: ''})
   public to!: string | Location;
 
-  @Api.Prop('external link destination', prop => prop.type(String, Object))
-  @Prop({type: [String, Object], required: false, default: ''})
+  @Prop('external link destination', {type: [String, Object], required: false, default: ''})
   public href!: string;
 
   public render() {

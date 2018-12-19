@@ -1,10 +1,5 @@
-import { componentName } from '@/util';
-import {
-  Component,
-  Prop,
-} from 'vue-property-decorator';
 import { CreateElement } from 'vue';
-import TsxComponent from '@/vue-tsx';
+import { Component, Prop, Base } from '@/core';
 
 // Map modifier to CSS class name
 const calendarItemModifierMapping = {
@@ -46,8 +41,8 @@ interface Props {
   tag?: string;
 }
 
-@Component({ name: componentName('CalendarItem') })
-export class CalendarItem extends TsxComponent<Props> {
+@Component('CalendarItem')
+export class CalendarItem extends Base<Props> {
   // This is the HTML-tag used when rendering the item.
   // We need this flexibility because sometimes a calendar item is rendered
   // as a table column (<td>…</td>) and sometimes it is rendered as a list

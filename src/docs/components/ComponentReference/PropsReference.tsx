@@ -1,43 +1,37 @@
 import {
-  Component,
   Prop,
+  Component,
 } from 'vue-property-decorator';
 import './PropsReference.css';
-import { ApiProp } from '@/api';
+import { PropDocumentation } from '@/api';
 import { Table, TableColumn } from '@/components';
-import { TypeTokens } from './TypeTokens';
 import { ValueToken } from './ValueToken';
+import { TypeTokens } from './TypeTokens';
+import { Prop as PropType } from 'vue/types/options';
 import TsxComponent from '@/vue-tsx';
-import { PropType } from '@/api';
 
 interface Props {
-  apiProps: ApiProp[];
+  apiProps: PropDocumentation[];
 }
 
 type TableRow = {
   name: string;
   description: string;
   acceptedValues: string; // formatted
-  types: PropType[],
+  types: PropType<any> | Array<PropType<any>>;
   defaultValue: any | undefined;
   required: boolean;
 };
 
-@Component({
-  name: 'PropsReference',
-  components: {
-    TypeTokens,
-    ValueToken,
-  },
-})
+@Component({ name: 'PropsReference' })
 export class PropsReference extends TsxComponent<Props> {
   @Prop({ type: Array, required: true })
-  public apiProps!: ApiProp[];
+  public apiProps!: PropDocumentation[];
 
   get tableData(): TableRow[] {
     return this.apiProps.map(prop => {
-      const types = prop.types;
       const acceptedValues = prop.formattedAcceptedValues;
+      const types = prop.vueTypes || [];
       return {
         name: prop.key,
         description: prop.description,
@@ -52,7 +46,7 @@ export class PropsReference extends TsxComponent<Props> {
   public render() {
     const typeColAttr = {
       scopedSlots: {
-        default: scope => [<type-tokens key={scope.row.name} propTypes={scope.row.types} />],
+        default: scope => [<TypeTokens key={scope.row.name} propTypes={scope.row.types} />],
       },
     };
     const nameColAttr = {
@@ -72,12 +66,12 @@ export class PropsReference extends TsxComponent<Props> {
     };
 
     return (
-      <Table style={'margin-bottom: 0;'} data={this.tableData}>
-        <TableColumn {...nameColAttr} label={'Property'} />
-        <TableColumn<TableRow> prop={'description'} label={'Description'} />
-        <TableColumn {...defaultValueColAttr} label={'Default Value'} />
-        <TableColumn {...typeColAttr} alignment={'center'} label={'Type'} />
-        <TableColumn<TableRow> prop={'acceptedValues'} label={'Accepted Values'} />
+      <Table style='margin-bottom: 0;' data={this.tableData}>
+        <TableColumn {...nameColAttr} label='Property' />
+        <TableColumn<TableRow> prop='description' label='Description' />
+        <TableColumn {...defaultValueColAttr} label='Default Value' />
+        <TableColumn {...typeColAttr} alignment='center' label='Type' />
+        <TableColumn<TableRow> prop='acceptedValues' label='Accepted Values' />
       </Table>
     );
   }

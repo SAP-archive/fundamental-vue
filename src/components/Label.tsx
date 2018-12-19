@@ -1,7 +1,4 @@
-import { Component, Prop } from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Component, DefaultSlot, Prop, Base } from '@/core';
 
 const typeMapping = {
     warning: 'Warning',
@@ -15,12 +12,10 @@ interface Props {
     type?: LabelType | null;
 }
 
-@Component({ name: componentName('Label') })
-@Api.Component('Label')
-@Api.defaultSlot('Text displayed inside the label.')
-export class Label extends TsxComponent<Props> {
-    @Api.Prop('label type', prop => prop.type(String).acceptValues(...LabelTypes))
-    @Prop({ type: String, required: false, default: null })
+@Component('Label')
+@DefaultSlot('Text displayed inside the label.')
+export class Label extends Base<Props> {
+    @Prop('label type', { acceptableValues: LabelTypes, type: String, default: null })
     public type!: LabelType | null;
 
     public render() {

@@ -1,6 +1,4 @@
-import { componentName } from '@/util';
-import { Component, Prop } from 'vue-property-decorator';
-import TsxComponent from '@/vue-tsx';
+import { Component, Prop, Base } from '@/core';
 import { Button, ButtonType } from '@/components/Button';
 
 interface Props {
@@ -10,8 +8,8 @@ interface Props {
   disabled?: boolean;
 }
 
-@Component({ name: componentName('CalendarAction') })
-export class CalendarAction extends TsxComponent<Props> {
+@Component('CalendarAction')
+export class CalendarAction extends Base<Props> {
   @Prop(String) public title!: string | null;
   @Prop(String) public icon!: string | null;
   @Prop({type: Boolean, default: false}) public disabled!: boolean;

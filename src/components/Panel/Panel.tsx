@@ -1,8 +1,5 @@
-import { Component, Prop } from 'vue-property-decorator';
 import './Panel.css';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Slot, Component, DefaultSlot, Prop, Base } from '@/core';
 
 interface Props {
   title?: string | null;
@@ -12,31 +9,25 @@ interface Props {
   condensedFooter?: boolean;
 }
 
-@Component({ name: componentName('Panel') })
-@Api.Component('Panel')
-@Api.defaultSlot('Panel Body')
-@Api.slot('actions', 'Panel Actions')
-@Api.slot('filters', 'Custom Panel Filters')
-@Api.slot('footer', 'Custom Panel Footer')
-export class Panel extends TsxComponent<Props> {
-  @Api.Prop('title', prop => prop.type(String))
-  @Prop({ type: String, default: null, required: false })
+@Component('Panel')
+@DefaultSlot('Panel Body')
+@Slot('actions', 'Panel Actions')
+@Slot('filters', 'Custom Panel Filters')
+@Slot('footer', 'Custom Panel Footer')
+export class Panel extends Base<Props> {
+  @Prop({ type: String, default: null })
   public title!: string | null;
 
-  @Api.Prop('description', prop => prop.type(String))
-  @Prop({ type: String, default: null, required: false })
+  @Prop({ type: String, default: null })
   public description!: string | null;
 
-  @Api.Prop('span', prop => prop.type(Number))
-  @Prop({ type: Number, default: null, required: false })
+  @Prop({ type: Number, default: null })
   public span!: number | null;
 
-  @Api.Prop('whether the panel body is condensed (has no padding)', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false, required: false })
+  @Prop('whether the panel body is condensed (has no padding)', { type: Boolean, default: false })
   public condensed!: boolean;
 
-  @Api.Prop('whether the panel footer is condensed (has no padding)', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false, required: false })
+  @Prop('whether the panel footer is condensed (has no padding)', { type: Boolean, default: false })
   public condensedFooter!: boolean;
 
   public render() {

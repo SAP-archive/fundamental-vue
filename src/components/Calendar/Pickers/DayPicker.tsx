@@ -1,8 +1,6 @@
-import { componentName } from '@/util';
-import { Component, Prop } from 'vue-property-decorator';
-import TsxComponent from '@/vue-tsx';
 import { Month, Week, sameDay } from './../util';
 import { CalendarItem, CalendarItemState } from './../CalendarItem';
+import { Component, Prop, Base } from '@/core';
 
 interface Props {
   dayNames: string[];
@@ -16,32 +14,33 @@ interface Props {
   selectionContainsDate: (date: Date) => boolean;
 }
 
-@Component({ name: componentName('DayPicker') })
-export class DayPicker extends TsxComponent<Props> {
-  @Prop(Array) public dayNames!: string[];
+@Component('DayPicker')
+export class DayPicker extends Base<Props> {
+  @Prop('dayNames', { type: Array })
+  public dayNames!: string[];
 
-  @Prop({ type: Array, default: () => [] })
+  @Prop('month', { type: Array, default: () => [] })
   public month!: Month;
 
-  @Prop({ type: Function, default: () => false })
+  @Prop('isPresent', { type: Function, default: () => false })
   public isPresent!: (date: Date) => boolean;
 
-  @Prop({ type: Date, default: null })
+  @Prop('selectionEnd', { type: Date, default: null })
   public selectionEnd!: Date | null;
 
-  @Prop({ type: Date, default: null })
+  @Prop('selectionStart', { type: Date, default: null })
   public selectionStart!: Date | null;
 
-  @Prop({ type: Number, default: 1 })
+  @Prop('displayedMonth', { type: Number, default: 1 })
   public displayedMonth!: number;
 
-  @Prop({ type: Function, default: () => false })
+  @Prop('disabledDate', { type: Function, default: () => false })
   public disabledDate!: (date: Date) => boolean;
 
-  @Prop({ type: Function, default: () => false })
+  @Prop('blockedDate', { type: Function, default: () => false })
   public blockedDate!: (date: Date) => boolean;
 
-  @Prop({ type: Function, default: () => false })
+  @Prop('selectionContainsDate', { type: Function, default: () => false })
   public selectionContainsDate!: (date: Date) => boolean;
 
   private renderWeek(week: Week) {

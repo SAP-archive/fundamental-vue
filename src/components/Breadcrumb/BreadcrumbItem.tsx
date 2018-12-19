@@ -1,22 +1,14 @@
-import {
-  Component,
-  Prop,
-} from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
 
 interface Props {
   to?: object | null;
 }
 
-@Component({ name: componentName('BreadcrumbItem') })
-@Api.Component('Breadcrumb Item')
-@Api.Event('click', 'Sent when item was clicked', ['item', 'BreadcrumbItem'])
-@Api.defaultSlot('Breadcrumb Item Title')
-export class BreadcrumbItem extends TsxComponent<Props> {
-  @Api.Prop('target route (passed to $router.to(…))', prop => prop.type(Object))
-  @Prop({ type: Object, required: false, default: null })
+@Component('BreadcrumbItem')
+@Event('click', 'Sent when item was clicked', ['item', 'BreadcrumbItem'])
+@DefaultSlot('Breadcrumb Item Title')
+export class BreadcrumbItem extends Base<Props> {
+  @Prop('target route (passed to $router.to(…))', { type: Object, default: null })
   public to!: object | null;
 
   private onClick(event: MouseEvent) {

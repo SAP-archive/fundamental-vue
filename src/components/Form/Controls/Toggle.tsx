@@ -1,14 +1,9 @@
 import {
-  Component,
-  Prop,
   Inject,
-  Model,
   Watch,
 } from 'vue-property-decorator';
-import { Api } from '@/api';
-import { componentName } from '@/util';
 import { ItemIdentification } from './../Types/ItemIdentification';
-import TsxComponent from '@/vue-tsx';
+import { Model, Component, Prop, Base } from '@/core';
 
 interface Props {
   id?: string | null;
@@ -25,34 +20,29 @@ const sizeMapping = {
 type ToggleSize = keyof (typeof sizeMapping);
 const ToggleSizes = Object.keys(sizeMapping) as ToggleSize[];
 
-@Component({ name: componentName('Toggle') })
-@Api.Component('Toggle')
-export class Toggle extends TsxComponent<Props> {
-  @Api.Prop('id', prop => prop.type(String))
-  @Prop({ required: false, default: null, type: String })
+@Component('Toggle')
+export class Toggle extends Base<Props> {
+  @Prop({ default: null, type: String })
   public id!: string | null;
 
-  @Api.Prop('size class', prop => prop.type(String).acceptValues(...ToggleSizes))
-  @Prop({ type: String, default: null, required: false })
+  @Prop('size class', { acceptableValues: ToggleSizes,  type: String, default: null })
   public size!: ToggleSize | null;
 
-  @Api.Prop('label', prop => prop.type(String))
-  @Prop({ type: String, default: null, required: false })
+  @Prop({ type: String, default: null })
   public label!: string | null;
 
-  @Api.Prop('whether toggle is disabled', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false, required: false })
+  @Prop('whether toggle is disabled', { type: Boolean, default: false })
   public disabled!: boolean;
 
-  @Api.Prop('whether toggle is checked', prop => prop.type(Boolean))
-  @Model('input', { default: false, type: Boolean })
+  @Model('whether toggle is checked', { event: 'input', default: false, type: Boolean })
   public on!: boolean;
 
-  private currentOn = this.on || false;
+  private currentOn = this.on;
 
-  @Inject({ default: null }) public itemIdentificationProvider!: ItemIdentification | null;
+  @Inject({ default: null })
+  public itemIdentificationProvider!: ItemIdentification | null;
 
-  get inputId(): string | null {
+  private get inputId(): string | null {
     const id = this.id;
     if (id != null) { return id; }
     const provider = this.itemIdentificationProvider;

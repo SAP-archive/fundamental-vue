@@ -1,10 +1,4 @@
-import {
-  Component,
-  Prop,
-} from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Component, DefaultSlot, Prop, Base } from '@/core';
 
 const typeMapping = {
   warning: 'Warning',
@@ -20,20 +14,16 @@ interface Props {
   type?: BadgeType | null;
 }
 
-@Component({ name: componentName('Badge') })
-@Api.Component('Badge')
-@Api.defaultSlot('Text displayed inside the badge.')
-export class Badge extends TsxComponent<Props> {
-  @Api.Prop('whether the badge is filled', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, required: false, default: false })
+@Component('Badge')
+@DefaultSlot('Text displayed inside the badge.')
+export class Badge extends Base<Props> {
+  @Prop('whether the badge is filled', { type: Boolean, default: false })
   public filled!: boolean;
 
-  @Api.Prop('whether the badge is displayed as a pill', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, required: false, default: false })
+  @Prop('whether the badge is displayed as a pill', { type: Boolean, default: false })
   public pill!: boolean;
 
-  @Api.Prop('badge type', prop => prop.type(String).acceptValues(...BadgeTypes))
-  @Prop({ type: String, required: false, default: null })
+  @Prop('badge type', { acceptableValues: BadgeTypes, type: String, default: null })
   public type!: BadgeType | null;
 
   public render() {

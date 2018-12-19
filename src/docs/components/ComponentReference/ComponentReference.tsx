@@ -1,56 +1,29 @@
-import {
-  Component,
-  Prop,
-} from 'vue-property-decorator';
-import { Api } from '@/api';
+import { Prop, Component } from 'vue-property-decorator';
+import { ComponentDocumentation } from '@/api';
 import { PropsReference } from './PropsReference';
 import { EventsReference } from './EventsReference';
 import { SlotsReference } from './SlotsReference';
-import TsxComponent from '@/vue-tsx';
 import { VueConstructor } from 'vue';
 import { Tabs, TabItem, Section } from '@/components';
+import TsxComponent from '@/vue-tsx';
 
 interface Props {
   component: VueConstructor | null;
-  api?: Api | null;
+  api: ComponentDocumentation | null;
 }
 
-@Component({
-  components: { PropsReference, EventsReference, SlotsReference },
+@Component( {
   name: 'ComponentReference',
 })
 export class ComponentReference extends TsxComponent<Props> {
-  // tslint:disable-next-line:ban-types
-  @Prop({ type: Function, required: false, default: null })
+  @Prop({ type: Function, default: null })
   public component!: () => {} | null;
 
-  @Prop({ type: Api, required: false, default: null })
-  public api!: Api | null;
-
-  private get _api(): Api | null {
-    const api = this.api;
-    if (api != null) { return api; }
-    const component = this.component;
-    if (component == null) {
-      return null;
-    }
-
-    if (!Reflect.has(component, 'options')) {
-      return null;
-    }
-    const options = Reflect.get(component, 'options');
-    if (typeof options !== 'object') {
-      return null;
-    }
-    const apiFromOptions = options.$api;
-    if (!(apiFromOptions instanceof Api)) {
-      return null;
-    }
-    return apiFromOptions;
-  }
+  @Prop({ type: ComponentDocumentation, default: null })
+  public api!: ComponentDocumentation | null;
 
   public render() {
-    const api = this._api;
+    const api = this.api;
     if (api == null) {
       return null;
     }

@@ -1,14 +1,8 @@
-import {
-  Component,
-  Vue,
-} from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
+import { DefaultSlot, Component, Base } from '@/core';
 
-@Component({ name: componentName('Breadcrumb') })
-@Api.Component('Breadcrumb')
-@Api.defaultSlot('Breadcrumb Items')
-export class Breadcrumb extends Vue {
+@Component('Breadcrumb')
+@DefaultSlot('Breadcrumb Items')
+export class Breadcrumb extends Base {
   public render() {
     return <ul class='fd-breadcrumb'>{this.$slots.default}</ul>;
   }

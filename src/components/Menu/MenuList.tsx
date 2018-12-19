@@ -1,36 +1,28 @@
-import { componentName } from '@/util';
-import { Component, Inject, Prop } from 'vue-property-decorator';
+import { Inject } from 'vue-property-decorator';
 import { MenuItem } from './MenuItem';
 import { Menu } from './Menu';
-import { Api } from '@/api';
 import { MENU, MENU_LIST } from './types';
-import TsxComponent from '@/vue-tsx';
+import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
 
 interface Props {
   header?: string | null;
 }
 
-@Component({
-  name: componentName('MenuList'),
+@Component('MenuList', {
   provide() {
     return {
       [MENU_LIST]: this,
     };
   },
 })
-@Api.Component('Menu List')
-@Api.Event('select', 'Sent when a menu item was selected', ['item', 'MenuItem'])
-@Api.defaultSlot('0 or more menu items.')
-export class MenuList extends TsxComponent<Props> {
-  @Api.Prop('header', build => {
-    build
-      .describe('text displayed in the menu list (group) header')
-      .type(Boolean);
-  })
-  @Prop({ type: String, required: false, default: null })
+@Event('select', 'Sent when a menu item was selected', ['item', 'MenuItem'])
+@DefaultSlot('0 or more menu items.')
+export class MenuList extends Base<Props> {
+  @Prop('text displayed in the menu list (group) header',{ type: String, default: null })
   public header!: string | null;
 
-  @Inject({ from: MENU, default: null }) public menu!: Menu | null;
+  @Inject({ from: MENU, default: null })
+  public menu!: Menu | null;
 
   public render() {
     const items = this.$slots.default;

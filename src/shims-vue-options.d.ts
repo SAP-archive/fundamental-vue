@@ -1,8 +1,9 @@
 import Vue from 'vue';
-import { Api } from './api';
+import { ComponentDocumentation } from './api';
 
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
-    $api?: Api;
+    $componentDocumentation?: ComponentDocumentation;
+    componentName?: string;
   }
 }

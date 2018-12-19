@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 IFS=$'\n\t'
 
-./scripts/build-docs && cp ./now.json ./dist && now --public --local-config=./now.json deploy ./dist
+env VUE_APP_API_DOCS_ENABLED=true \
+  ./scripts/build-docs && \
+  cp ./now.json ./dist && \
+  now --public --local-config=./now.json deploy ./dist

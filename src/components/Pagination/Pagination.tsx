@@ -1,10 +1,4 @@
-import {
-  Component,
-  Prop,
-} from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
 
 export interface Props {
   itemsPerPage?: number;
@@ -14,29 +8,23 @@ export interface Props {
   totalText: string;
 }
 
-@Component({ name: componentName('Pagination') })
-@Api.Component('Pagination')
-@Api.Event('click', 'Sent when button is clicked')
-@Api.defaultSlot('pagination content (usually just total number of items and page numbers)')
-export class Pagination extends TsxComponent<Props> {
-  @Api.Prop('items per page', prop => prop.type(Number))
-  @Prop({ type: Number, required: false, default: 10 })
+@Component('Pagination')
+@Event('click', 'Sent when button is clicked')
+@DefaultSlot('pagination content (usually just total number of items and page numbers)')
+export class Pagination extends Base<Props> {
+  @Prop('items per page', { type: Number, default: 10 })
   public itemsPerPage!: number;
 
-  @Api.Prop('total number of items', prop => prop.type(Number))
-  @Prop({ type: Number, required: true })
+  @Prop('total number of items', { type: Number, required: true })
   public itemsTotal!: number;
 
-  @Api.Prop('initial page', prop => prop.type(Number))
-  @Prop({ type: Number, required: false, default: 1 })
+  @Prop('initial page', { type: Number, default: 1 })
   public initialPage!: number;
 
-  @Api.Prop('whether to dispaly total', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, required: false, default: true })
+  @Prop('whether to dispaly total', { type: Boolean, default: true })
   public displayTotal!: boolean;
 
-  @Api.Prop('total text', prop => prop.type(String))
-  @Prop({ type: String, required: false, default: '' })
+  @Prop('total text', { type: String, default: '' })
   public totalText!: string;
 
   private numberOfPages = Math.ceil(
