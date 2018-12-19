@@ -64,7 +64,7 @@ import * as Tile from './Tile';
 import * as TileGrid from './TileGrid';
 import * as SearchInput from './SearchInput';
 import { version, libName } from '@/config';
-import { Pagination } from './Pagination';
+import * as Pagination from './Pagination';
 import { env } from '@/config';
 
 export const all = {
@@ -98,7 +98,7 @@ export const all = {
     ...ListGroup,
     ...Tile,
     ...TileGrid,
-    Pagination,
+    ...Pagination,
 };
 
 const $plugin: Plugin = () => {
