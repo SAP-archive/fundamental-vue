@@ -72,8 +72,8 @@ export class Input extends TsxComponent<Props> {
   public readonly!: boolean;
 
   @Api.Prop('current value', prop => prop.type(String, Number))
-  @Prop({ default: null, type: [String, Number] })
-  public value!: string | number | null;
+  @Prop({ default: null, type: [Boolean, String, Number] })
+  public value!: boolean | string | number | null;
 
   @Api.Prop('whether input is compact', prop => prop.type(Boolean))
   @Prop({ type: Boolean, default: false })
@@ -107,7 +107,7 @@ export class Input extends TsxComponent<Props> {
     );
   }
 
-  @Watch('value')
+  @Watch('value', { immediate: true })
   public handleNewValue(newValue) {
     this.currentValue = newValue;
   }
@@ -123,7 +123,7 @@ export class Input extends TsxComponent<Props> {
     this.$emit('update:value', this.currentValue);
   }
 
-  public currentValue: string | number | null = this.value === undefined || this.value === null ? '' : this.value;
+  public currentValue: boolean | string | number | null = this.value === undefined || this.value === null ? '' : this.value;
 
   private get classes() {
     return {

@@ -2,6 +2,8 @@ import {
   Component,
   Prop,
   Inject,
+  Model,
+  Watch,
 } from 'vue-property-decorator';
 import { Api } from '@/api';
 import { componentName } from '@/util';
@@ -12,7 +14,7 @@ interface Props {
   id?: string | null;
   size?: ToggleSize | null;
   label?: string | null;
-  value?: boolean;
+  on?: boolean;
 }
 
 const sizeMapping = {
@@ -43,8 +45,10 @@ export class Toggle extends TsxComponent<Props> {
   public disabled!: boolean;
 
   @Api.Prop('whether toggle is checked', prop => prop.type(Boolean))
-  @Prop({ required: false, default: false, type: Boolean })
-  public value!: boolean;
+  @Model('input', { default: false, type: Boolean })
+  public on!: boolean;
+
+  private currentOn = this.on || false;
 
   @Inject({ default: null }) public itemIdentificationProvider!: ItemIdentification | null;
 
@@ -58,20 +62,39 @@ export class Toggle extends TsxComponent<Props> {
     return null;
   }
 
+  @Watch('on', { immediate: true})
+  public onChanged(value) {
+    this.currentOn = value;
+  }
+
+  private onChange(event) {
+    const checked = event.target.checked;
+    this.currentOn = checked;
+    this.$emit('input', this.currentOn);
+  }
+
+  private get classes() {
+    return {
+      'fd-toggle': true,
+      'fd-toggle--s': this.size === 's',
+      'fd-toggle--xs': this.size === 'xs',
+      'fd-toggle--l': this.size === 'l',
+      'fd-form__control': true,
+    };
+  }
+
   public render() {
     const disabled = this.disabled ? true : null;
     return (
       <div class='fd-form__item fd-form__item--check'>
         <label class='fd-form__label' for={this.inputId}>
-          <span class='fd-toggle fd-toggle--s fd-form__control'>
+          <span class={this.classes}>
             <input
               type='checkbox'
-              on-input={event => this.$emit('input', event.target.value)}
+              on-change={this.onChange}
               disabled={disabled}
-              name=''
-              value={this.value}
               id={this.inputId}
-              checked={this.value}
+              checked={this.currentOn}
             />
             <span class='fd-toggle__switch' role='presentation' />
           </span>

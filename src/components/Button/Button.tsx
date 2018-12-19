@@ -22,8 +22,8 @@ const stylingMapping = {
   light: 'Light',
   regular: 'Regular (default)',
 };
-type ButtonStyling = keyof (typeof stylingMapping);
-const ButtonStylings = Object.keys(stylingMapping) as ButtonStyling[];
+export type ButtonStyling = keyof (typeof stylingMapping);
+export const ButtonStylings = Object.keys(stylingMapping) as ButtonStyling[];
 
 // Button Types
 const typeMapping = {
@@ -68,13 +68,17 @@ export class Button extends TsxComponent<Props> {
   @Prop({ type: String, default: 'normal', required: false })
   public state!: ButtonState;
 
-  private get grouped(): boolean {
+  public get isGrouped(): boolean {
     return this.buttonContainer != null;
   }
 
   @Inject({ default: null }) private buttonContainer!: ButtonContainer | null;
 
   private click(event: Event) {
+    if(this.state === 'disabled') {
+      event.stopImmediatePropagation();
+      return;
+    }
     this.$emit('click', event);
     const container = this.buttonContainer;
     if (container != null) {
@@ -99,7 +103,7 @@ export class Button extends TsxComponent<Props> {
     return (
       <button
         {...attributes}
-        on-click={(event: Event) => this.click(event)}
+        on-click={this.click}
         class={this.classes}
       >
         {title}
@@ -133,7 +137,7 @@ export class Button extends TsxComponent<Props> {
       'fd-button--light': this.styling === 'light',
 
       // Button Groups
-      'fd-button--grouped': this.grouped,
+      'fd-button--grouped': this.isGrouped,
 
       // Type
       'fd-button--standard': this.type === 'standard',
