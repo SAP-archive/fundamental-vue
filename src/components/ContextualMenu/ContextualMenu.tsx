@@ -3,19 +3,19 @@ import {
     Watch,
     Prop,
 } from 'vue-property-decorator';
-import { mixins } from 'vue-class-component';
-import { Uid } from '@/mixins';
 import { Api } from '@/api';
 import { componentName } from '@/util';
 import { Button } from '@/components/Button';
 import { Menu, MenuList, MenuItem } from '@/components/Menu';
 import { Popover } from '@/components/Popover';
+import TsxComponent from '@/vue-tsx';
+
 interface Props {
-    uid?: string; // Uid mixin
-    popoverVisible?: boolean;
-    icon?: string | null;
-    text?: string | null;
-    styling?: ButtonStyling;
+  popoverVisible?: boolean;
+  icon?: string | null;
+  text?: string | null;
+  styling?: ButtonStyling;
+  ariaLabel?: string | null;
 }
 
 // Styles
@@ -43,7 +43,7 @@ const ButtonStylings = Object.keys(stylingMapping) as ButtonStyling[];
     },
 })
 @Api.Component('ContextualMenu')
-export class ContextualMenu extends mixins(Uid) {
+export class ContextualMenu extends TsxComponent<Props> {
   @Api.Prop('icon displayed in the button', prop => prop.type(String))
   @Prop({ default: null, required: false, type: String })
   public icon!: string | null;
@@ -60,7 +60,10 @@ export class ContextualMenu extends mixins(Uid) {
   @Prop({ type: Boolean, default: false, required: false })
   public popoverVisible!: boolean;
 
-  public $tsxProps!: Readonly<{}> & Readonly<Props>;
+  @Api.Prop('Aria label', prop => prop.type(String))
+  @Prop({ type: String, default: '', required: false })
+  public ariaLabel!: string;
+
   private currentPopoverVisible: boolean = this.popoverVisible;
 
   @Watch('currentPopoverVisible', { immediate: true})
@@ -79,7 +82,7 @@ export class ContextualMenu extends mixins(Uid) {
         <Popover noArrow={false} popoverVisible={this.currentPopoverVisible}>
           <div class='fd-popover__control' slot='control'>
             <Button
-                aria-controls={this.uid}
+                aria-label={this.ariaLabel}
                 slot='after'
                 on-click={this.togglePopoverVisible}
                 icon={this.icon}

@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <FdContextualMenu icon="menu">
+    <FdContextualMenu icon="vertical-grip">
       <FdMenuList>
         <FdMenuItem>Options 1</FdMenuItem>
         <FdMenuItem>Options 2</FdMenuItem>
