@@ -45,7 +45,7 @@ export class Pagination extends TsxComponent<Props> {
 
   private selectedPage: number = this.initialPage ? this.initialPage : 1;
   // when selectedPage = 27, render like [1,...26,27,28,...100]
-  private neighbourToShow: number = 1;
+  private numberOfNeighbour: number = 1;
 
   private createPaginationLinks(numberOfPages: number) {
     // create an array with number of pages and fill it with links
@@ -55,7 +55,7 @@ export class Pagination extends TsxComponent<Props> {
     aPages = Array(numberOfPages)
     .fill(0)
     .reduce((links, link, index) => {
-      if (index === 0 || index === this.numberOfPages - 1 || (index >= this.selectedPage - this.neighbourToShow -1 && index <= this.selectedPage + this.neighbourToShow -1)) {
+      if (index === 0 || index === this.numberOfPages - 1 || (index >= this.selectedPage - this.numberOfNeighbour -1 && index <= this.selectedPage + this.numberOfNeighbour -1)) {
         links.push(
           <a
             key={index}
