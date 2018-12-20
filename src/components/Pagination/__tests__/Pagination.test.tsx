@@ -14,11 +14,13 @@ describe('Pagination', () => {
   const vm = pagination.vm;
   const links = pagination.findAll('a');
   const leftArrow = links.at(0);
-  const rightArrow = links.at(12);
+  const rightArrow = links.at(4);
+  const pageOne = links.at(1);
+  const lastPage = links.at(3);
 
-  it('have total 13 hyperlinks rendered', () => {
-    // 11 pages + 2 arrows
-    assert.lengthOf(links, 13);
+  it('have total 5 hyperlinks rendered', () => {
+    // 4 pages [1,2,11] + 2 arrows
+    assert.lengthOf(links, 5);
   });
 
   it('the initial state', () => {
@@ -37,7 +39,6 @@ describe('Pagination', () => {
 
   it('toggle between page 1 and 2 using arrows', () => {
     // pageOne is at index 1 because there is left arrow at index 0
-    const pageOne = links.at(1);
     const pageTwo = links.at(2);
     expect(pageOne.attributes('aria-selected')).to.equal('true');
     assert.isUndefined(pageTwo.attributes('aria-selected'));
@@ -50,11 +51,20 @@ describe('Pagination', () => {
   });
 
   it('move to last page by clicking on it and right arrow is disabled', () => {
-    // pageOne is at index 1 because there is left arrow at index 0
-    const lastPage = links.at(11);
     assert.isUndefined(lastPage.attributes('aria-selected'));
     lastPage.trigger('click');
     expect(lastPage.attributes('aria-selected')).to.equal('true');
     expect(rightArrow.attributes('aria-disabled')).to.equal('true');
   });
+
+  it('click right arrow twice and ... appears at the correct place', () => {
+    // reset to pageOne
+    pageOne.trigger('click');
+    rightArrow.trigger('click');
+    rightArrow.trigger('click');
+    const newLinks = pagination.findAll('a');
+    // [1,2,3,4,...,11] + 2 arrows
+    assert.lengthOf(newLinks, 7);
+  });
+
 });
