@@ -5,13 +5,12 @@ import TsxComponent from '@/vue-tsx';
 
 @Component({ name: componentName('ShellBarProduct') })
 @Api.Component('Shell Bar Product')
-@Api.defaultSlot('Product Title')
+@Api.defaultSlot('Product')
 export class ShellBarProduct extends TsxComponent<{}> {
   public render() {
-    const title = this.$slots.default;
     return (
       <div class='fd-shellbar__product'>
-        <span class='fd-shellbar__title'>{title}</span>
+          {this.$slots.default}
       </div>
     );
   }
