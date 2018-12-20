@@ -1,20 +1,24 @@
 import { expect } from 'chai';
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { ContextualMenu } from '../ContextualMenu';
 import { MenuItem } from '../../Menu';
 
-describe('ContextualMenu', () => {
+describe('Contextual Menu', () => {
   it('renders menu item when passed to the default slots', () => {
-    const wrapper = shallowMount(ContextualMenu, {
-      render: h => <MenuItem>M1</MenuItem>,
+    const wrapper = mount(ContextualMenu, {
+      render: h => <MenuItem>Menu1</MenuItem>,
     });
-    expect(wrapper.find(MenuItem).text()).to.include('M1');
+    expect(wrapper.find(MenuItem).text()).to.include('Menu1');
   });
-
-  it('renders custom body', () => {
-    const wrapper = shallowMount(ContextualMenu, {
-      render: h => <div slot='body'>hell world</div>,
-    });
-    expect(wrapper.find('div').text()).to.include('hell world');
+  it('displays popover when button is clicked', () => {
+    const props =  {
+        propsData: {
+            popoverVisible: false,
+        },
+    };
+    const wrapper = mount(ContextualMenu, props );
+    expect(wrapper.hasProp('popoverVisible', false));
+    wrapper.find('button').trigger('click');
+    expect(wrapper.hasProp('popoverVisible', true));
   });
 });
