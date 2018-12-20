@@ -18,9 +18,3 @@
     </FdContextualMenu>
   </div>
 </template>
-
-<style scoped>
-button {
-  margin-right: 10px;
-}
-</style>

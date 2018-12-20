@@ -1,6 +1,5 @@
 import {
     Component,
-    Watch,
     Prop,
 } from 'vue-property-decorator';
 import { Api } from '@/api';
@@ -66,14 +65,8 @@ export class ContextualMenu extends TsxComponent<Props> {
 
   private currentPopoverVisible: boolean = this.popoverVisible;
 
-  @Watch('currentPopoverVisible', { immediate: true})
-  public didChangeVisible( currentPopoverVisible: boolean) {
-    this.currentPopoverVisible = false;
-    this.$emit('update:currentPopoverVisible', this.currentPopoverVisible);
-  }
   public togglePopoverVisible() {
     this.currentPopoverVisible = !this.currentPopoverVisible;
-    this.$emit('update:currentPopoverVisible', this.currentPopoverVisible);
   }
   public render() {
     const dropdown = this.$slots.default;

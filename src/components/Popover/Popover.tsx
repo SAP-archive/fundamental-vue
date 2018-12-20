@@ -67,6 +67,7 @@ export class Popover extends mixins(Uid) {
 
   private hidePopover() {
     this.currentPopoverVisible = false;
+    this.popoverVisible = false;
     this.$emit('visible', this.currentPopoverVisible);
   }
 
