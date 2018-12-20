@@ -44,22 +44,45 @@ export class Pagination extends TsxComponent<Props> {
   );
 
   private selectedPage: number = this.initialPage ? this.initialPage : 1;
+  // when selectedPage = 27, render like [1,...26,27,28,...100]
+  private numberOfNeighbour: number = 1;
 
   private createPaginationLinks(numberOfPages: number) {
     // create an array with number of pages and fill it with links
-    const aPages = Array(numberOfPages)
-      .fill(0)
-      .map((link, index) => (
-        <a
-          key={index}
-          href='#'
-          class='fd-pagination__link'
-          aria-selected={this.selectedPage === index + 1}
-          onClick={(event: Event) => this.pageClicked(event)}
-        >
-          {index + 1}
-        </a>
-      ));
+    let aPages: any[] = [];
+    // flag to mark if ... need to be generated
+    let notSuppressed = true;
+    aPages = Array(numberOfPages)
+    .fill(0)
+    .reduce((links, link, index) => {
+      if (index === 0 || index === this.numberOfPages - 1 || (index >= this.selectedPage - this.numberOfNeighbour -1 && index <= this.selectedPage + this.numberOfNeighbour -1)) {
+        links.push(
+          <a
+            key={index}
+            href='#'
+            class='fd-pagination__link'
+            aria-selected={this.selectedPage === index + 1}
+            onClick={(event: Event) => this.pageClicked(event)}
+          >
+            {index + 1}
+          </a>,
+        );
+        notSuppressed = true;
+      } else if (notSuppressed === true) {
+        links.push(
+          // tslint:disable-next-line:jsx-self-close
+          <span
+            class='fd-pagination__link fd-pagination__link--more'
+            aria-hidden='true'
+            aria-label='...'
+            role='presentation'
+          >
+          </span>,
+        );
+        notSuppressed = false;
+      }
+      return links;
+    }, []);
     return aPages;
   }
 
