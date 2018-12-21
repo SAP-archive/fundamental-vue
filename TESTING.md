@@ -10,17 +10,17 @@ Tests are executed by running:
 $ npm test
 ```
 
-By running 
+By running
 
 ```shell
 npm run test:watch
 ```
 
-you make [Mocha](https://mochajs.org/) continuously execute tests. This is great when you prefer test driven development. 
+you make [Mocha](https://mochajs.org/) continuously execute tests. This is great when you prefer test driven development.
 
 ## Writing a new Test
 
-`npm test` will execute tests matching the pattern: `src/**/__tests__/*.{tsx,ts,js,vue}`. In order to create a test make sure that your test is in a directory called `__tests__` and has a matching extension.
+`npm test` will execute tests matching the pattern: `src/**/__tests__/*.test.{tsx,ts,js,vue}`. In order to create a test make sure that your test is in a directory called `__tests__` and has a matching extension.
 
 A simple component test might look something like this:
 
@@ -55,9 +55,9 @@ Consider the following guidelines when writing new tests:
 
 There are not a lot of tests at the time of writing. Fundamental Vue started as a *hobby project* and thus  testing wasn't on the top of the list early on.
 
-Pretty soon new code will require a certain test coverage. We will also add tests for existing components/code over the next couple of weeks. The *Boy Scout Rule* 
+Pretty soon new code will require a certain test coverage. We will also add tests for existing components/code over the next couple of weeks. The *Boy Scout Rule*
 
 > Leave your code better than you found it.
 
 will be *enforced* at some point in the near future.
- 
+

@@ -29,12 +29,15 @@ export * from './TileGrid';
 export * from './SearchInput';
 export * from './Pagination';
 export * from './Counter';
+export * from './Calendar';
 
+import * as Calendar from './Calendar';
 import * as Button from './Button';
 import * as Animations from './Animations';
 import * as Form from './Form';
 import * as SideNav from './SideNav';
 import * as Tabs from './Tabs';
+
 import { Identifier } from './Identifier';
 import { Modal } from './Modal';
 import { Token } from './Token';
@@ -63,7 +66,8 @@ import * as Tile from './Tile';
 import * as TileGrid from './TileGrid';
 import * as SearchInput from './SearchInput';
 import { version, libName } from '@/config';
-import { Pagination } from './Pagination';
+import * as Pagination from './Pagination';
+import { env } from '@/config';
 
 export const all = {
     Token,
@@ -79,6 +83,7 @@ export const all = {
     ActionBar,
     Icon,
     InlineHelp,
+    ...Calendar,
     ...Layout,
     ...Table,
     ...Combobox,
@@ -97,6 +102,7 @@ export const all = {
     ...TileGrid,
     Pagination,
     Counter,
+    ...Pagination,
 };
 
 const $plugin: Plugin = () => {
@@ -106,12 +112,14 @@ const $plugin: Plugin = () => {
                 const comp = all[name];
                 api.registerComponent(vue, comp, name);
             }
-            console.log(
-                `%c Welcome to ${libName} %c Detected v${version} %c`,
-                'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
-                'background:#1661be ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
-                'background:transparent',
-            );
+            if(env !== 'production') {
+                console.log(
+                    `%c Welcome to ${libName} %c Detected v${version} %c`,
+                    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+                    'background:#1661be ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+                    'background:transparent',
+                );
+            }
         },
     };
 };

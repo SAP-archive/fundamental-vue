@@ -14,8 +14,10 @@ type KnownAttrs = Pick<VNodeData, KnownAttributeName> & {
   domPropsInnerHTML?: string;
 };
 
+export type ComponentProps<P> = Readonly<{}> & Readonly<P> & Readonly<KnownAttrs>;
+
 export default abstract class TsxComponent<P> extends Vue {
-  public $tsxProps!: Readonly<{}> & Readonly<P> & Readonly<KnownAttrs>;
+  public $tsxProps!: ComponentProps<P>;
 }
 
 declare global {

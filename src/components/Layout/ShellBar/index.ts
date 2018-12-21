@@ -1,7 +1,10 @@
 export { ShellBar } from './ShellBar';
 export { ShellBarGroup } from './ShellBarGroup';
 export { ShellBarLogo } from './ShellBarLogo';
+export { ShellBarSubtitle } from './ShellBarSubtitle';
 export { ShellBarProduct } from './ShellBarProduct';
+export { ShellBarProductTitle } from './ShellBarProductTitle';
+export { ShellBarProductMenu } from './ShellBarProductMenu';
 export { ShellBarActions } from './ShellBarActions';
 export { ShellBarAction } from './ShellBarAction';
 export { ShellBarUserMenu } from './ShellBarUserMenu';
