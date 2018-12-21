@@ -1,24 +1,28 @@
 import {
-  Component,
   Prop,
+  Component,
 } from 'vue-property-decorator';
 import { TypeToken } from './TypeToken';
-import { PropType } from '@/api';
+import { Prop as PropType } from 'vue/types/options';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
-  propTypes: PropType[];
+  propTypes: Array<PropType<any>>;
 }
 
-@Component({
-  name: 'TypeTokens',
-  components: { TypeToken },
-})
+@Component({ name: 'TypeTokens' })
 export class TypeTokens extends TsxComponent<Props> {
-  @Prop({ type: Array, required: true })
-  public propTypes!: PropType[];
+  @Prop({ type: [Function, Array], required: true })
+  public propTypes!: PropType<any> | Array<PropType<any>>;
 
   public render() {
-    return <span>{this.propTypes.map(propType => (<TypeToken propType={propType} />))}</span>;
+    const propTypes = this.propTypes;
+    const types: Array<PropType<any>> = [];
+    if(Array.isArray(propTypes)) {
+      types.push(...propTypes);
+    } else {
+      types.push(propTypes);
+    }
+    return <span>{types.map(propType => (<TypeToken propType={propType} />))}</span>;
   }
 }

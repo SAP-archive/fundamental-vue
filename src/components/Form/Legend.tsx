@@ -1,14 +1,8 @@
-import {
-  Component,
-  Vue,
-} from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
+import { Component, DefaultSlot, Base } from '@/core';
 
-@Component({ name: componentName('Legend') })
-@Api.Component('Legend')
-@Api.defaultSlot('Legend text')
-export class Legend extends Vue {
+@Component('Legend')
+@DefaultSlot('Legend text')
+export class Legend extends Base<{}> {
   public render() {
     return <legend class='fd-form__legend'>{this.$slots.default}</legend>;
   }

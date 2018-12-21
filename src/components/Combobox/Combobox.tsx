@@ -1,15 +1,9 @@
-import {
-  Component,
-  Prop,
-} from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import { Uid } from '@/mixins';
-import { Api } from '@/api';
-import { componentName } from '@/util';
+import { UidMixin } from '@/mixins';
 import { Popover } from '@/components/Popover';
 import { Button } from '@/components/Button';
 import { Input, InputGroup } from '@/components/Form';
-import { ClickAwayContainer } from '@/components/ClickAwayContainer';
+import { Component, Event, Prop } from '@/core';
 
 interface Props {
   uid?: string; // Uid mixin
@@ -20,42 +14,28 @@ interface Props {
   compact?: boolean;
 }
 
-@Component({
-  name: componentName('Combobox'),
+@Component('Combobox', {
   provide() {
     return {
       combobox: this,
     };
   },
-  components: {
-    ClickAwayContainer,
-    Popover,
-    Input,
-    InputGroup,
-    Button,
-  },
 })
-@Api.Component('Combobox')
-@Api.Event('input', 'Sent when the selected item changes')
-export class Combobox extends mixins(Uid) {
-  @Api.Prop('initial value', prop => prop.type(String))
-  @Prop({ default: null, required: false, type: String })
+@Event('input', 'Sent when the selected item changes')
+export class Combobox extends mixins(UidMixin) {
+  @Prop('initial value', { default: null, type: String })
   public value!: string | null;
 
-  @Api.Prop('placeholder text (displayed when nothing is selected)', prop => prop.type(String))
-  @Prop({ type: String, default: '', required: false })
+  @Prop('placeholder text (displayed when nothing is selected)', { type: String, default: '' })
   public placeholder!: string;
 
-  @Api.Prop('ARIA Label', prop => prop.type(String))
-  @Prop({ type: String, default: 'Combobox', required: false })
+  @Prop('ARIA Label', { type: String, default: 'Combobox' })
   public ariaLabel!: string;
 
-  @Api.Prop('whether popover is visible', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false, required: false })
+  @Prop('whether popover is visible', { type: Boolean, default: false })
   public popoverVisible!: boolean;
 
-  @Api.Prop('whether combobox is compact', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false })
+  @Prop('whether combobox is compact', { type: Boolean, default: false })
   public compact!: boolean;
 
   public $tsxProps!: Readonly<{}> & Readonly<Props>;

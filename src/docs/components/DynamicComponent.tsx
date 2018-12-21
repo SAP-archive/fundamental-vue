@@ -3,6 +3,7 @@
 // We could simply wrap <component> with a .vue file to save us a
 // couple lines of code. However we still would have no type checking.
 
+import TsxComponent from '@/vue-tsx';
 import {
   Component,
   Prop,
@@ -12,7 +13,6 @@ import Vue, {
   CreateElement,
   ComponentOptions,
 } from 'vue';
-import TsxComponent from '@/vue-tsx';
 
 // Convenience type that represents a component
 type AnyComponent =

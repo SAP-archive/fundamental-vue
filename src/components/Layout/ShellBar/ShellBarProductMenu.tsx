@@ -1,14 +1,10 @@
-import { Component } from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
+import { Slot, Component, DefaultSlot, Base } from '@/core';
 import { Button, ShellBarProductTitle, Popover } from '@/components';
-import TsxComponent from '@/vue-tsx';
 
-@Component({ name: componentName('ShellBarProductMenu') })
-@Api.Component('Shell Bar Product Menu')
-@Api.defaultSlot('Product Items (FdShellBarProductSwitcherItem)')
-@Api.slot('control', 'Popover Control (optional). Defaults to a specially configured FdButton with grid icon.')
-export class ShellBarProductMenu extends TsxComponent<{}> {
+@Component('ShellBarProductMenu')
+@DefaultSlot('Product Items (FdShellBarProductSwitcherItem)')
+@Slot('control', 'Popover Control (optional). Defaults to a specially configured FdButton with grid icon.')
+export class ShellBarProductMenu extends Base<{}> {
   public render() {
     const title = this.$slots.title;
     const menu = this.$slots.menu;

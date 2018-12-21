@@ -2,12 +2,12 @@ import {
   Component,
   Prop,
 } from 'vue-property-decorator';
-import { ApiSlot } from '@/api';
+import { SlotDocumentation } from '@/api';
 import { Table, TableColumn } from '@/components';
 import TsxComponent from '@/vue-tsx';
 
 interface Props {
-  apiSlots: ApiSlot[];
+  apiSlots: SlotDocumentation[];
 }
 
 type TableRow = {
@@ -18,7 +18,7 @@ type TableRow = {
 @Component({ name: 'SlotsReference' })
 export class SlotsReference extends TsxComponent<Props> {
   @Prop({ type: Array, required: true })
-  public apiSlots!: ApiSlot[];
+  public apiSlots!: SlotDocumentation[];
 
   get tableData(): TableRow[] {
     return this.apiSlots.map(slot => {

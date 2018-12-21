@@ -2,6 +2,7 @@
 IFS=$'\n\t'
 
 rm -rf ./dist/
+env VUE_APP_API_DOCS_ENABLED=true \
 npx vue-cli-service build \
   --mode production \
   --target app \

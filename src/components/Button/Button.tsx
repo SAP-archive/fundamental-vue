@@ -1,12 +1,6 @@
-import { componentName } from '@/util';
-import {
-  Component,
-  Prop,
-  Inject,
-} from 'vue-property-decorator';
-import { Api } from '@/api';
+import { Inject } from 'vue-property-decorator';
+import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
 import { ButtonContainer } from './ButtonContainer';
-import TsxComponent from '@/vue-tsx';
 
 interface Props {
   styling?: ButtonStyling;
@@ -43,29 +37,35 @@ const stateMapping = {
 export type ButtonState = keyof (typeof stateMapping);
 export const ButtonStates = Object.keys(stateMapping) as ButtonState[];
 
-@Component({ name: componentName('Button') })
-@Api.Component('Button')
-@Api.Event('click', 'Sent when button is clicked')
-@Api.defaultSlot('button content (usually just text)')
-export class Button extends TsxComponent<Props> {
-  @Api.Prop('button styling', prop => prop.type(String).acceptValues(...ButtonStylings))
-  @Prop({ type: String, default: 'regular', required: false })
+@Component('Button')
+@Event('click', 'Sent when button is clicked')
+@DefaultSlot('button content (usually just text)')
+export class Button extends Base<Props> {
+  @Prop('button styling', {
+    type: String,
+    default: 'regular',
+    acceptableValues: ButtonStylings,
+  })
   public styling!: ButtonStyling;
 
-  @Api.Prop('button type', prop => prop.type(String).acceptValues(...ButtonTypes))
-  @Prop({ type: String, default: 'primary', required: false })
+  @Prop('button type', {
+    type: String,
+    default: 'primary',
+    acceptableValues: ButtonTypes,
+  })
   public type!: ButtonType;
 
-  @Api.Prop('icon displayed in the button', prop => prop.type(String))
-  @Prop({ type: String, default: null, required: false })
+  @Prop('icon displayed in the button', { type: String, default: null })
   public icon!: string | null;
 
-  @Api.Prop('whether button is compact', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false, required: false })
+  @Prop('whether button is compact', { type: Boolean, default: false })
   public compact!: boolean;
 
-  @Api.Prop('button state', prop => prop.type(String).acceptValues(...ButtonStates))
-  @Prop({ type: String, default: 'normal', required: false })
+  @Prop('button state', {
+    acceptableValues: ButtonStates,
+    default: 'normal',
+    type: String,
+  })
   public state!: ButtonState;
 
   public get isGrouped(): boolean {

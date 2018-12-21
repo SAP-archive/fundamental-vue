@@ -1,8 +1,6 @@
-import {
-  Vue,
-  Component,
- } from 'vue-property-decorator';
+import Vue from 'vue';
 import { DynamicComponent } from '@/docs/components/DynamicComponent';
+import { Component } from 'vue-property-decorator';
 
 const DEFAULT_LAYOUT = 'Default';
 

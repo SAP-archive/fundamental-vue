@@ -2,14 +2,12 @@ import { Vue, Component, Watch } from 'vue-property-decorator';
 import { Route, RawLocation } from 'vue-router';
 import { Color } from '@/lib';
 import { exampleCollections, ExampleCollections, ExampleCollection } from '@/docs/pages';
-import { ApiCollection, Api } from '@/api';
 import {
     Shell,
     ShellHeader,
     App,
     AppMain,
     AppNavigation,
-    all,
     SideNav,
     SideNavItem,
     SideNavList,
@@ -23,22 +21,6 @@ import {
     MenuItem,
 } from '@/components';
 import './DefaultLayout.sass';
-
-const collection = new ApiCollection();
-for (const component of Object.values(all)) {
-    if (!Reflect.has(component, 'options')) {
-        continue;
-    }
-    const options = Reflect.get(component, 'options');
-    if (typeof options === 'object') {
-        if (Reflect.has(options, '$api')) {
-            const api = Reflect.get(options, '$api');
-            if (api instanceof Api) {
-                collection.add(api);
-            }
-        }
-    }
-}
 
 @Component({ name: 'DefaultLayout' })
 export class DefaultLayout extends Vue {

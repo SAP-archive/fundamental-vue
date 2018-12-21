@@ -1,10 +1,4 @@
-import {
-  Component,
-  Prop,
-} from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Component, DefaultSlot, Prop, Base } from '@/core';
 
 interface Props {
   type?: MessageType | null;
@@ -18,12 +12,10 @@ const typeMapping = {
 type MessageType = keyof (typeof typeMapping);
 const MessageTypes = Object.keys(typeMapping) as MessageType[];
 
-@Component({ name: componentName('FormMessage') })
-@Api.Component('Form Message')
-@Api.defaultSlot('Message to be displayed (usually just text).')
-export class FormMessage extends TsxComponent<Props> {
-  @Api.Prop('type', prop => prop.type(String).acceptValues(...MessageTypes))
-  @Prop({ required: false, default: null, type: String })
+@Component('FormMessage')
+@DefaultSlot('Message to be displayed (usually just text).')
+export class FormMessage extends Base<Props> {
+  @Prop({ acceptableValues: MessageTypes, default: null, type: String })
   public type!: MessageType | null;
 
   public render() {
