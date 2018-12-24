@@ -12,13 +12,7 @@ interface Props {
   compact?: boolean;
 }
 
-@Component('Combobox', {
-  provide() {
-    return {
-      combobox: this,
-    };
-  },
-})
+@Component('Combobox')
 @Event('input', 'Sent when the selected item changes')
 export class Combobox extends mixins(UidMixin) {
   @Prop('initial value', { default: null, type: String })
@@ -29,9 +23,6 @@ export class Combobox extends mixins(UidMixin) {
 
   @Prop('ARIA Label', { type: String, default: 'Combobox' })
   public ariaLabel!: string;
-
-  @Prop('whether popover is visible', { type: Boolean, default: false })
-  public popoverVisible!: boolean;
 
   @Prop('whether combobox is compact', { type: Boolean, default: false })
   public compact!: boolean;
@@ -65,7 +56,7 @@ export class Combobox extends mixins(UidMixin) {
   }
 
   public render() {
-    const dropdown = this.$slots.default;
+    const menu = this.$slots.default;
     return (
       <div class='fd-combobox-input'>
         <Popover

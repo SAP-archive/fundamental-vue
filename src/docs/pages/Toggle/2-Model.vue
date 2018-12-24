@@ -6,7 +6,7 @@
     <FdToggle v-model="isOn" :label="String(isOn)" />
     <FdButton @click="isOn = !isOn">Toggle the Toggles</FdButton>
     <FdPopover v-model="isOn">
-      <div slot="body" v-padding:large><h1>hi</h1></div>
+      <div v-padding:large><h1>hi</h1></div>
     </FdPopover>
   </div>
 </template>

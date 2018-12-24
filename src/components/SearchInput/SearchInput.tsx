@@ -2,8 +2,7 @@ import { Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import { UidMixin } from '@/mixins';
 import { Input, InputGroup } from '../Form';
-import { Popover } from '../Popover';
-import { Button } from '../Button';
+import { Popover, Button, Menu, MenuList } from '@/components';
 import { Component, Event, Prop } from '@/core';
 
 interface Props {
@@ -33,6 +32,11 @@ export class SearchInput extends mixins(UidMixin) {
 
     public $tsxProps!: Readonly<{}> & Readonly<Props>;
     private searchValue: string = this.value;
+
+    @Prop('whether search input is compact', { type: Boolean, default: false })
+    public popoverVisible!: boolean;
+
+    private currentPopoverVisible = this.popoverVisible;
 
     @Watch('value')
     public handleNewValue(newValue: string) {
@@ -66,14 +70,23 @@ export class SearchInput extends mixins(UidMixin) {
         this.$emit('autoComplete', this.searchValue);
     }
 
+    private didSelectMenuItem() {
+        this.currentPopoverVisible = false;
+    }
+
     public render() {
         const suggestionList = this.$slots.default;
         const enableSuggest = suggestionList && suggestionList.length > 0;
         return (
             <div class='fd-search-input'>
-                {enableSuggest === true ? (<Popover noArrow={true} popoverVisible={false}>
+                {enableSuggest === true ? (
+                <Popover
+                    noArrow={true}
+                    on-visible={(value: boolean) => this.currentPopoverVisible = value}
+                    popoverVisible={this.currentPopoverVisible}
+                >
                     <div class='fd-combobox-control' slot='control' >
-                        <InputGroup afterClass={'fd-input-group__addon--button'} compact={this.compact}>
+                        <InputGroup afterClass='fd-input-group__addon--button' compact={this.compact}>
                             <Input
                                 value={this.searchValue}
                                 placeholder={this.placeholder}
@@ -84,9 +97,11 @@ export class SearchInput extends mixins(UidMixin) {
                             <Button styling='light' slot='after' icon='search' on-click={this.handleSearchClick} />
                         </InputGroup>
                     </div>
-                    {suggestionList}
+                    <Menu>
+                        <MenuList on-select={this.didSelectMenuItem}>{suggestionList}</MenuList>
+                    </Menu>
                 </Popover>) : <div class='fd-combobox-control' slot='control'>
-                        <InputGroup afterClass={'fd-input-group__addon--button'} compact={this.compact}>
+                        <InputGroup afterClass='fd-input-group__addon--button' compact={this.compact}>
                             <Input
                                 value={this.searchValue}
                                 placeholder={this.placeholder}

@@ -1,5 +1,4 @@
 import { Watch } from 'vue-property-decorator';
-import { Menu, MenuList } from './../Menu';
 import { Button } from './../Button';
 import { mixins } from 'vue-class-component';
 import { UidMixin } from '@/mixins';
@@ -22,9 +21,9 @@ interface Props {
 }
 
 @Component('Popover')
-@DefaultSlot('MenuItems or custom content via the body-slot')
-@Slot('body', 'Custom popover body')
-@Event('click', 'Sent when an item in the popover was clicked', ['value', 'MenuItem value'])
+@DefaultSlot('Custom popover body')
+@Slot('control', 'Custom trigger control')
+@Event('visible', 'Sent when the visibility changes')
 export class Popover extends mixins(UidMixin) {
   @Prop('ARIA label', { type: String, default: 'Popover' })
   public ariaLabel!: string;
@@ -110,12 +109,17 @@ export class Popover extends mixins(UidMixin) {
   }
 
   public render() {
-    const dropdown = this.$slots.default || [];
     const ignoredElementsHandler = () => {
       const el = this.popoverTriggerControl;
       if(el == null) { return []; }
       return [el];
     };
+
+    const slots = this.$slots;
+    const {
+      control: triggerControl,
+      default: body = [],
+    } = slots;
 
     return (
       <div class='fd-popover'>
@@ -135,18 +139,9 @@ export class Popover extends mixins(UidMixin) {
           ignoredElements={ignoredElementsHandler}
           aria-hidden={!this.currentPopoverVisible}
         >
-        {this.$slots.body ? this.$slots.body :
-          <Menu on-select={this.handleItemClick}>
-            <MenuList>{dropdown}</MenuList>
-          </Menu>
-        }
+          {body}
         </ClickAwayContainer>
       </div>
     );
-  }
-
-  public handleItemClick(value: string | null) {
-    this.$emit('click', value);
-    this.toggle();
   }
 }

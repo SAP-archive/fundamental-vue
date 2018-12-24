@@ -3,7 +3,7 @@
 <template>
   <div v-padding:large>
     <FdPopover>
-      <FdCalendar slot="body" />
+      <FdCalendar />
     </FdPopover>
   </div>
 </template>

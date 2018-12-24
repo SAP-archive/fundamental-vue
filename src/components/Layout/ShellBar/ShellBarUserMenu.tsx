@@ -1,5 +1,5 @@
 import { Slot, Component, DefaultSlot, Base } from '@/core';
-import { Identifier, Popover } from '@/components';
+import { Identifier, Popover, MenuList, Menu } from '@/components';
 
 @Component('ShellBarUserMenu')
 @DefaultSlot('Menu Items (FdMenuItem)')
@@ -16,7 +16,11 @@ export class ShellBarUserMenu extends Base<{}> {
                             <Identifier size='s' backgroundColor='accent-6' circle={true} icon='person-placeholder' />
                         )}
                     </div>
-                    {this.$slots.default}
+                    <Menu>
+                        <MenuList>
+                            {this.$slots.default}
+                        </MenuList>
+                    </Menu>
                 </Popover>
             </div>
         );

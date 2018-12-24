@@ -1,5 +1,5 @@
 import { Slot, Component, DefaultSlot, Base } from '@/core';
-import { Button, ShellBarProductTitle, Popover } from '@/components';
+import { Button, ShellBarProductTitle, Popover, Menu, MenuList } from '@/components';
 
 @Component('ShellBarProductMenu')
 @DefaultSlot('Product Items (FdShellBarProductSwitcherItem)')
@@ -11,12 +11,16 @@ export class ShellBarProductMenu extends Base<{}> {
     return (
       <div class='fd-product-menu'>
           <Popover placement='right'>
-              <div slot='control'>
-                <Button styling='light' class='fd-product-menu__control'>
-                  <ShellBarProductTitle class='fd-product-menu__title'>{title}</ShellBarProductTitle>
-                </Button>
-              </div>
-              {menu}
+          <div slot='control'>
+            <Button styling='light' class='fd-product-menu__control'>
+              <ShellBarProductTitle class='fd-product-menu__title'>{title}</ShellBarProductTitle>
+            </Button>
+          </div>
+            <Menu>
+              <MenuList>
+                {menu}
+              </MenuList>
+            </Menu>
           </Popover>
       </div>
     );
