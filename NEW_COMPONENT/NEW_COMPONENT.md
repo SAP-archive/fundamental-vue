@@ -242,6 +242,14 @@ export class Flower extends Base<Props> { // <-- specify the Props-type
 
 Declaring our public interface is done twice (by using @Prop and by extending from `Base<Props>`). There are third party projects that work around this problem but this low-tech and redundant solution seemed acceptable.
 
+## Localization
+A good component should either be localized or localizable.
+
+* A **localizable component** may display non-localized text/icons but the displayed text should be configurable by the application developer.
+* A **localized component** is fully localized out of the box.
+
+Since there is no Fundamental Vue-wide localisation and internationalization concept (localized icons, right-to-left-support, …) you should at least create an issue for the component you implemented.
+
 ## Decorators
 
 ### @Component(componentName, options?)
