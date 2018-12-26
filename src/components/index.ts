@@ -29,6 +29,7 @@ export * from './TileGrid';
 export * from './SearchInput';
 export * from './Pagination';
 export * from './Calendar';
+export * from './Tree';
 
 import * as Calendar from './Calendar';
 import * as Button from './Button';
@@ -66,6 +67,7 @@ import * as SearchInput from './SearchInput';
 import { version, libName } from '@/config';
 import * as Pagination from './Pagination';
 import { env } from '@/config';
+import * as Tree from './Tree';
 
 export const all = {
     Token,
@@ -99,6 +101,7 @@ export const all = {
     ...Tile,
     ...TileGrid,
     ...Pagination,
+    ...Tree,
 };
 
 const $plugin: Plugin = () => {
