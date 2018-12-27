@@ -11,7 +11,7 @@ const typeMapping = {
 type counterTypes = keyof (typeof typeMapping);
 const counterTypeValues = Object.keys(typeMapping) as counterTypes[];
 
-interface Props {
+export interface Props {
     type?: counterTypes;
     ariaLabel?: string;
     value?: number;
