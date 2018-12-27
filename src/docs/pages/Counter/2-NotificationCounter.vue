@@ -7,6 +7,15 @@
     </div>
     <br/>
     <br/>
-    <FdCounter type="notification">999+</FdCounter>
+    <FdCounter type="notification" :value="counter1"></FdCounter>
   </div>
 </template>
+<script>
+export default {
+    data(){
+        return {
+            counter1 : 23
+        };
+    }
+}
+</script>

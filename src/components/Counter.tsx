@@ -13,6 +13,8 @@ const counterTypeValues = Object.keys(typeMapping) as counterTypes[];
 
 interface Props {
     type?: counterTypes;
+    ariaLabel?: string;
+    value?: number;
 }
 
 @Component({ name: componentName('Counter') })
@@ -24,14 +26,22 @@ export class Counter extends TsxComponent<Props> {
     @Prop({ type: String, required: false, default: 'info' })
     public type!: counterTypes;
 
+    @Api.Prop('Aria Label', prop => prop.type(String))
+    @Prop({ type: String, default: 'Counter Value', required: false })
+    public ariaLabel!: string;
+
+    @Api.Prop('Counter Value', prop => prop.type(Number))
+    @Prop({ type: Number, default: 1, required: true })
+    public value!: number;
+
     public render() {
+        let counterType = 'fd-counter';
+        counterType += this.type === 'notification' ? ' fd-counter--notification' : '';
+        const counterValue = !isNaN(Number(this.value)) ? Number(this.value) <= 999 ? this.value : '999+' : 1;
+
         return (
-            this.type === 'info' ? <span class='fd-counter'>{this.$slots.default}</span> :
-                (
-                    <button class='fd-button--light sap-icon--bell'>
-                        <span class='fd-counter fd-counter--notification'>{this.$slots.default}</span>
-                    </button>
-                )
+            <span class={counterType} aria-label={this.ariaLabel}>{counterValue}</span>
         );
+
     }
 }
