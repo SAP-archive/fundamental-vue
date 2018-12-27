@@ -1,6 +1,7 @@
 import {
   Component,
   Prop,
+  Watch,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
 import { Api } from '@/api';
@@ -15,7 +16,7 @@ export type Node = {
 
 interface Props {
   headers: string[];
-  treeData: Node[] | [];
+  treeData: Node[];
 }
 
 @Component({ name: componentName('Tree') })
@@ -32,20 +33,20 @@ export class Tree extends TsxComponent<Props> {
   private expandAllClicked: boolean = false;
   private numberOfElements: number = 0;
   private openAllList(treeData: Node[], numberOfElements: number) {
-    const modifiedStates = this.iStates;
-
+    const modifiedStates = this.iStates.slice();
+    let copyOfNumberOfElements: number = numberOfElements;
     if (this.numberOfElements === 0) {
       treeData.map(row => {
         row.columns.forEach(element => {
-          ++this.numberOfElements;
+          ++copyOfNumberOfElements;
         });
         if (row.children && row.hasChildren) {
-          this.openAllList(row.children, numberOfElements);
+          this.openAllList(row.children, copyOfNumberOfElements);
         }
-        return;
+        // return;
       });
-
-      for (let i = 0; i <= numberOfElements; i++) {
+      console.log('number of Elements is '+ numberOfElements);
+      for (let i = 0; i <= copyOfNumberOfElements; i++) {
         if (!this.expandAllClicked) {
           modifiedStates[i] = true;
         } else {
@@ -62,19 +63,24 @@ export class Tree extends TsxComponent<Props> {
       }
     }
     this.iStates = modifiedStates;
+    console.log(this.iStates);
     this.expandAllClicked = !this.expandAllClicked;
-    this.numberOfElements = this.numberOfElements;
+    this.numberOfElements = copyOfNumberOfElements;
+  }
+  @Watch('iStates', {immediate: true})
+  public handleUpdate(newValue) {
+    console.log('UPDATED');
+    console.log(this.iStates);
   }
   private updateVisibility(selected: string) {
-    return () => {
-      const modifiedStates = this.iStates;
-      if (modifiedStates[selected]) {
-        modifiedStates[selected] = false;
-      } else {
-        modifiedStates[selected] = true;
-      }
-      this.iStates = modifiedStates;
-    };
+    const modifiedStates = this.iStates.slice();
+    console.log('selected is '+ selected + ' '+ modifiedStates[selected]);
+    if (modifiedStates[selected]) {
+      modifiedStates[selected] = false;
+    } else {
+      modifiedStates[selected] = true;
+    }
+    this.iStates = modifiedStates;
   }
   private createTreeList(treeData: Node[], isChild: boolean, depthLevel: number) {
     let currentDepthLevel = depthLevel;
@@ -88,7 +94,7 @@ export class Tree extends TsxComponent<Props> {
                         class='fd-tree__control'
                         aria-label='expand'
                         aria-controls='inYUX852'
-                        onClick={this.updateVisibility(row.id)}
+                        onClick={() => this.updateVisibility(row.id)}
                         aria-pressed={this.iStates[row.id]}
                     />
                     <a href={element.linkUrl} class='fd-has-font-weight-semi'>
@@ -103,7 +109,7 @@ export class Tree extends TsxComponent<Props> {
                       class='fd-tree__control'
                       aria-label='expand'
                       aria-controls='inYUX852'
-                      onClick={this.updateVisibility(row.id)}
+                      onClick={() => this.updateVisibility(row.id)}
                       aria-pressed={this.iStates[row.id]}
                   />
                   {element}
@@ -143,7 +149,7 @@ export class Tree extends TsxComponent<Props> {
         'fd-tree__group fd-tree__group--sublevel-' + currentDepthLevel;
 
       if (row.children && row.hasChildren && this.iStates[row.id]) {
-        tree = this.createTreeList(row.children, true, currentDepthLevel++);
+        tree = this.createTreeList(row.children, true, ++currentDepthLevel);
       }
       if (isChild) {
         return (
@@ -202,7 +208,7 @@ export class Tree extends TsxComponent<Props> {
                                 class='fd-tree__control '
                                 aria-label='expand'
                                 aria-pressed={this.expandAllClicked}
-                                onClick={e => this.openAllList(this.treeData, 0)}
+                                onClick={() => this.openAllList(this.treeData, 0)}
                             />
                             {header}
                         </div>

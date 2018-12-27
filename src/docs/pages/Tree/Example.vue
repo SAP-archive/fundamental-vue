@@ -54,7 +54,7 @@ export default {
             ]
         },
         {
-            id: '9', hasChild: true,
+            id: '9', hasChild: false,
             columns: ['Row 3', 'Data Col 2', 'Data Col 3', 'INACTIVE']
         },
         {
@@ -64,7 +64,7 @@ export default {
                 {
                     id: '11', hasChildren: false,
                     columns: ['Child 1', 'Data Col 2', 'Data Col 3', 'INACTIVE'],
-                }
+                },
             ]
         }
     ]
