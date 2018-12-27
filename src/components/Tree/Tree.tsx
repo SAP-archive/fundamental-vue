@@ -1,7 +1,6 @@
 import {
   Component,
   Prop,
-  Watch,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
 import { Api } from '@/api';
@@ -32,49 +31,35 @@ export class Tree extends TsxComponent<Props> {
   private iStates: boolean[] = [];
   private expandAllClicked: boolean = false;
   private numberOfElements: number = 0;
-  private openAllList(treeData: Node[], numberOfElements: number) {
-    const modifiedStates = this.iStates.slice();
-    let copyOfNumberOfElements: number = numberOfElements;
-    if (this.numberOfElements === 0) {
-      treeData.map(row => {
-        row.columns.forEach(element => {
-          ++copyOfNumberOfElements;
-        });
-        if (row.children && row.hasChildren) {
-          this.openAllList(row.children, copyOfNumberOfElements);
-        }
-        // return;
-      });
-      console.log('number of Elements is '+ numberOfElements);
-      for (let i = 0; i <= copyOfNumberOfElements; i++) {
-        if (!this.expandAllClicked) {
-          modifiedStates[i] = true;
-        } else {
-          modifiedStates[i] = false;
-        }
+  // method to assign ids to element in example order
+  private assignIds(treeData: Node[]) {
+    treeData.forEach(n => {
+      if (n.children && n.children.length) {
+        this.numberOfElements++;
+        this.assignIds(n.children);
+      } else {
+        this.numberOfElements++;
       }
-    } else {
-      for (let i = 0; i <= this.numberOfElements; i++) {
-        if (!this.expandAllClicked) {
-          modifiedStates[i] = true;
-        } else {
-          modifiedStates[i] = false;
-        }
+    });
+  }
+  private openAllList(treeData: Node[]) {
+    const modifiedStates = this.iStates.slice();
+    if (this.numberOfElements === 0) {
+      this.assignIds(this.treeData);
+    }
+    for (let i = 0; i <= this.numberOfElements; i++) {
+      if (!this.expandAllClicked) {
+        modifiedStates[i] = true;
+      } else {
+        modifiedStates[i] = false;
       }
     }
     this.iStates = modifiedStates;
-    console.log(this.iStates);
     this.expandAllClicked = !this.expandAllClicked;
-    this.numberOfElements = copyOfNumberOfElements;
   }
-  @Watch('iStates', {immediate: true})
-  public handleUpdate(newValue) {
-    console.log('UPDATED');
-    console.log(this.iStates);
-  }
+
   private updateVisibility(selected: string) {
     const modifiedStates = this.iStates.slice();
-    console.log('selected is '+ selected + ' '+ modifiedStates[selected]);
     if (modifiedStates[selected]) {
       modifiedStates[selected] = false;
     } else {
@@ -208,7 +193,7 @@ export class Tree extends TsxComponent<Props> {
                                 class='fd-tree__control '
                                 aria-label='expand'
                                 aria-pressed={this.expandAllClicked}
-                                onClick={() => this.openAllList(this.treeData, 0)}
+                                onClick={() => this.openAllList(this.treeData)}
                             />
                             {header}
                         </div>
