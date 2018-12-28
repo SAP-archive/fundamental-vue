@@ -28,6 +28,7 @@ export * from './Tile';
 export * from './TileGrid';
 export * from './SearchInput';
 export * from './Pagination';
+export * from './Counter';
 export * from './Calendar';
 
 import * as Calendar from './Calendar';
@@ -46,6 +47,7 @@ import { Link } from './Link';
 import { Badge } from './Badge';
 import { Label } from './Label';
 import { Status } from './Status';
+import { Counter } from './Counter';
 import { ActionBar } from './ActionBar';
 import { Alert } from './Alert';
 import { Icon } from './Icon';
@@ -98,6 +100,8 @@ export const all = {
     ...ListGroup,
     ...Tile,
     ...TileGrid,
+    Pagination,
+    Counter,
     ...Pagination,
 };
 
