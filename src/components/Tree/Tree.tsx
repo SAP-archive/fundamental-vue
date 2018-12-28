@@ -9,7 +9,6 @@ import TsxComponent from '@/vue-tsx';
 export type Node = {
   id: string;
   columns: any[];
-  hasChildren: boolean;
   children?: Node[] | [];
 };
 
@@ -71,7 +70,7 @@ export class Tree extends TsxComponent<Props> {
     let currentDepthLevel = depthLevel;
     const trees = treeData.map(row => {
       const parent = row.columns.map((element, index) => {
-        if (row.hasChildren && (row.columns.indexOf(element) === 0)) {
+        if (row.children && row.children.length && (row.columns.indexOf(element) === 0)) {
           if (typeof element === 'object') {
             return (
                 <div key={index} class='fd-tree__col fd-tree__col--control'>
@@ -133,7 +132,7 @@ export class Tree extends TsxComponent<Props> {
       const displayLevel =
         'fd-tree__group fd-tree__group--sublevel-' + currentDepthLevel;
 
-      if (row.children && row.hasChildren && this.iStates[row.id]) {
+      if (row.children && row.children.length && this.iStates[row.id]) {
         tree = this.createTreeList(row.children, true, ++currentDepthLevel);
       }
       if (isChild) {

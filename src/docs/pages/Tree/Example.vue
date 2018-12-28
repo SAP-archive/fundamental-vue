@@ -14,19 +14,19 @@ export default {
       headers: ['Column Header', 'Column Header 1 ', 'Column Header 2', 'Status'],
       treeData: [
         {
-            id: '1', hasChildren: true,
+            id: '1',
             columns: ['First Level', 'Data Col 2', 'Data Col 3', 'INACTIVE'],
             children: [
                 {
-                    id: '2', hasChildren: true,
+                    id: '2',
                     columns: ['Child 1', 'Data Col 2', 'Data Col 3', 'INACTIVE'],
                     children: [
                         {
-                            id: '3', hasChildren: true,
+                            id: '3',
                             columns: ['Grandchild 1', 'Data Col 2', 'Data Col 3', 'INACTIVE'],
                             children: [
                                 {
-                                    id: '4', hasChildren: false,
+                                    id: '4',
                                     columns: ['GreatGrandchild 1', 'Data Col 2', 'Data Col 3', 'INACTIVE']
                                 }
                             ]
@@ -34,35 +34,35 @@ export default {
                     ]
                 },
                 {
-                    id: '5', hasChildren: false,
+                    id: '5',
                     columns: ['Child 2', 'Data Col 2', 'Data Col 3', 'INACTIVE']
                 }
             ]
         },
         {
-            id: '6', hasChildren: true,
+            id: '6',
             columns: ['Row 2', 'Data Col 2', 'Data Col 3', 'DEFAULT'],
             children: [
                 {
-                    id: '7', hasChildren: false,
+                    id: '7',
                     columns: ['Child 1', 'Data Col 2', 'Data Col 3', 'INACTIVE'],
                 },
                 {
-                    id: '8', hasChildren: false,
+                    id: '8',
                     columns: ['Child 2', 'Data Col 2', 'Data Col 3', 'INACTIVE']
                 }
             ]
         },
         {
-            id: '9', hasChild: false,
+            id: '9',
             columns: ['Row 3', 'Data Col 2', 'Data Col 3', 'INACTIVE']
         },
         {
-            id: '10', hasChildren: true,
+            id: '10',
             columns: ['Row 4', 'Data Col 2', 'Data Col 3', 'INACTIVE'],
             children: [
                 {
-                    id: '11', hasChildren: false,
+                    id: '11',
                     columns: ['Child 1', 'Data Col 2', 'Data Col 3', 'INACTIVE'],
                 },
             ]
