@@ -33,11 +33,10 @@ export class Tree extends TsxComponent<Props> {
   // method to assign ids to element in example order
   private assignIds(treeData: Node[]) {
     treeData.forEach(n => {
+      const id = this.numberOfElements++;
+      n.id = String(id);
       if (n.children && n.children.length) {
-        this.numberOfElements++;
         this.assignIds(n.children);
-      } else {
-        this.numberOfElements++;
       }
     });
   }
@@ -177,6 +176,9 @@ export class Tree extends TsxComponent<Props> {
     return trees;
   }
   public render() {
+    if (this.numberOfElements === 0) {
+      this.assignIds(this.treeData);
+    }
     return (
       <div>
         <div class='fd-tree fd-tree--header'>
