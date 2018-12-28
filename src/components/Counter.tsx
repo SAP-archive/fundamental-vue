@@ -1,47 +1,46 @@
-import { Component, Prop } from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Base, Prop, DefaultSlot, Component } from '@/core';
 
 const typeMapping = {
-    info: 'info',
-    notification: 'notification',
+  info: 'info',
+  notification: 'notification',
 };
 
 type counterTypes = keyof (typeof typeMapping);
 const counterTypeValues = Object.keys(typeMapping) as counterTypes[];
 
 export interface Props {
-    type?: counterTypes;
-    ariaLabel?: string;
-    value?: number;
+  type?: counterTypes;
+  ariaLabel?: string;
+  value?: number;
 }
 
-@Component({ name: componentName('Counter') })
-@Api.Component('Counter')
-@Api.defaultSlot('Text displayed inside the counter.')
-export class Counter extends TsxComponent<Props> {
+@Component('Counter')
+@DefaultSlot('Text displayed inside the counter.')
+export class Counter extends Base<Props> {
+  @Prop('built-in counter type', {
+    type: String,
+    default: 'info',
+    acceptableValues: counterTypeValues,
+    validator: counterTypeValues.includes,
+  })
+  public type!: counterTypes;
 
-    @Api.Prop('built-in counter type', prop => prop.type(String).acceptValues(...counterTypeValues))
-    @Prop({ type: String, required: false, default: 'info' })
-    public type!: counterTypes;
+  @Prop('Aria Label', { type: String })
+  public ariaLabel!: string;
 
-    @Api.Prop('Aria Label', prop => prop.type(String))
-    @Prop({ type: String, default: 'Counter Value', required: false })
-    public ariaLabel!: string;
+  @Prop('Counter Value', { type: Number, default: 'Counter Value' })
+  public value!: number;
 
-    @Api.Prop('Counter Value', prop => prop.type(Number))
-    @Prop({ type: Number, default: 1, required: true })
-    public value!: number;
-
-    public render() {
-        let counterType = 'fd-counter';
-        counterType += this.type === 'notification' ? ' fd-counter--notification' : '';
-        const counterValue = !isNaN(Number(this.value)) ? Number(this.value) <= 999 ? this.value : '999+' : 1;
-
-        return (
-            <span class={counterType} aria-label={this.ariaLabel}>{counterValue}</span>
-        );
-
+  private get classes() {
+    return {
+      'fd-counter--notification': this.type === 'notification',
     }
+  }
+
+  public render() {
+    const counterValue = !isNaN(Number(this.value)) ? Number(this.value) <= 999 ? this.value : '999+' : 1;
+    return (
+      <span staticClass='fd-counter' class={this.classes} aria-label={this.ariaLabel}>{counterValue}</span>
+    );
+  }
 }
