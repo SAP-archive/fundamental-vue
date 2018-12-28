@@ -5,9 +5,8 @@ import { MenuItem } from './..';
 describe('MenuItem', () => {
   // There was a bug that causes '<MenuItem><a href='#'>Item 1</a></MenuItem>'
   // to render an a-element into another a-element.
-  it.only('does render embeddded link only once', () => {
+  it('does render embeddded link only once', () => {
     const item = mount({ render: h => <MenuItem><a href='#'>Item 1</a></MenuItem> });
-    debugger;
     assert.strictEqual(item.findAll('a').length, 1);
   });
 

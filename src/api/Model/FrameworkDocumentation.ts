@@ -2,7 +2,6 @@ import { ComponentDocumentation } from './ComponentDocumentation';
 
 export class FrameworkDocumentation {
   private apiByName: {[name: string]: ComponentDocumentation} = {};
-  constructor() { }
 
   public add(api: ComponentDocumentation) {
     this.apiByName[api.componentName] = api;

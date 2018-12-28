@@ -1,21 +1,21 @@
 import * as components from '@/components';
 import Directives from '@/directives';
-import { VueConstructor, PluginFunction } from 'vue';
-import { componentName } from '@/util';
-import { env } from '@/config';
+import { PluginFunction } from 'vue';
+import { PluginAPIOptions, PluginAPI } from '@/lib/plugin';
+import VueRouter from 'vue-router';
 
-const api = {
-  registerComponent(vue: VueConstructor<any>, component: VueConstructor<any>, name: string) {
-    const prefixedName = componentName(name);
-    if(env !== 'production') {
-      console.log(`Register component ${prefixedName}`);
-    }
-    vue.component(prefixedName, component);
-  },
-};
+type Options = {
+  log: {
+    registerComponent: boolean;
+    welcome: boolean;
+  };
+} & object;
 
-const installFundamentals: PluginFunction<object> = vue /*, options */ => {
+const installFundamentals: PluginFunction<Options> = (vue, options?: PluginAPIOptions) => {
+  vue.use(VueRouter);
   vue.use(Directives);
+  const api = new PluginAPI(options);
   components.plugin().install(vue, api);
 };
+
 export default installFundamentals;

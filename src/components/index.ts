@@ -67,7 +67,6 @@ import * as TileGrid from './TileGrid';
 import * as SearchInput from './SearchInput';
 import { version, libName } from '@/config';
 import * as Pagination from './Pagination';
-import { env } from '@/config';
 
 export const all = {
     Token,
@@ -105,6 +104,8 @@ export const all = {
     ...Pagination,
 };
 
+import { log } from '@/core';
+
 const $plugin: Plugin = () => {
     return {
         install: (vue: VueConstructor, api: PluginAPI): void => {
@@ -112,8 +113,8 @@ const $plugin: Plugin = () => {
                 const comp = all[name];
                 api.registerComponent(vue, comp, name);
             }
-            if(env !== 'production') {
-                console.log(
+            if(api.options.log.welcome) {
+                log(
                     `%c Welcome to ${libName} %c Detected v${version} %c`,
                     'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
                     'background:#1661be ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',

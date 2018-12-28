@@ -6,7 +6,7 @@
 
 Fundamental-Vue is a light-weight Vue.JS component library for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental).
 
-**[Component Documentation](https://dist-c0r2ga7zn.now.sh)**
+**[Component Documentation](https://dist-lg4xtfik7.now.sh)**
 
 ## Current Version
 
@@ -101,7 +101,7 @@ To download and use this library, you first need to install the node package man
     </style>
     ```
 
-    You can now use the [Documentation](https://dist-c0r2ga7zn.now.sh) to browse the components currently available with Fundamental Vue.
+    You can now use the [Documentation](https://dist-lg4xtfik7.now.sh) to browse the components currently available with Fundamental Vue.
 
     To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessarry:
 

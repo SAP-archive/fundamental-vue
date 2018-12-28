@@ -30,6 +30,7 @@ export class PropsReference extends TsxComponent<Props> {
 
   get tableData(): TableRow[] {
     return this.apiProps.map(prop => {
+      const defaultValue = prop.readableDefaultValue || prop.defaultValue || undefined;
       const acceptedValues = prop.formattedAcceptedValues;
       const types = prop.vue.type || [];
       return {
@@ -38,7 +39,7 @@ export class PropsReference extends TsxComponent<Props> {
         types,
         acceptedValues,
         required: prop.required,
-        defaultValue: prop.readableDefaultValue || prop.defaultValue,
+        defaultValue,
       };
     });
   }

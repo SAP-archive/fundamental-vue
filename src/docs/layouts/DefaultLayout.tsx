@@ -1,7 +1,7 @@
-import { Vue, Component, Watch } from 'vue-property-decorator';
-import { Route, RawLocation } from 'vue-router';
+import './DefaultLayout.sass';
+import { Vue, Component } from 'vue-property-decorator';
 import { Color } from '@/lib';
-import { exampleCollections, ExampleCollections, ExampleCollection } from '@/docs/pages';
+import { exampleCollections } from '@/docs/pages';
 import {
     Shell,
     ShellHeader,
@@ -9,8 +9,9 @@ import {
     AppMain,
     AppNavigation,
     SideNav,
-    SideNavItem,
     SideNavList,
+    SideNavGroup,
+    SideNavGroupTitle,
     ShellBar,
     ShellBarGroup,
     ShellBarLogo,
@@ -19,184 +20,106 @@ import {
     ShellBarUserMenu,
     ShellBarProduct,
     MenuItem,
+    Identifier,
+    SideNavListItem,
 } from '@/components';
-import './DefaultLayout.sass';
+
+type ComponentState = {
+    title: string | null;
+    icon: string | null;
+    color: Color | null;
+};
+
+interface ExampleItem extends SideNavListItem {
+    componentState: ComponentState;
+}
+
+const componentStateMapping: {[state: string]: ComponentState} = {
+    stable: {
+        title: 'Safe to use, no major updates planned.',
+        color: 'accent-8',
+        icon: 'thumb-up',
+    },
+    experimental: {
+        title: 'Work-In-Progres that may be used but be prepared for changes in the future.',
+        color: 'accent-1',
+        icon: 'lab',
+    },
+    deprecated: {
+        title: 'This component should not be used and will be removed in the future.',
+        color: 'accent-3',
+        icon: 'cancel',
+    },
+    inprogress: {
+        title: 'This component is under development. Or it is being actively reviewed to be refactored, safe to use but talk to us.',
+        color: 'accent-13',
+        icon: 'edit',
+    },
+};
+
+const componentStateFrom = (raw: string): ComponentState => componentStateMapping[raw];
 
 @Component({ name: 'DefaultLayout' })
 export class DefaultLayout extends Vue {
-    private activeMenuItemId: string | null = null;
-
-    // TODO: Make this nice.
-    @Watch('$route', { immediate: true })
-    public handleNewRoute(newRoute: Route) {
-        const name = newRoute.name;
-        if (name != null) {
-            if (name === 'start') {
-                this.activeMenuItemId = 'start';
-            }
-            if (name === 'home') {
-                this.activeMenuItemId = null;
-            }
-            if (name === 'guide-new-component') {
-                this.activeMenuItemId = 'new-component';
-            }
-            const slug = newRoute.params.slug;
-            if (name != null && slug != null) {
-                const itemId = `${name}-${slug}`;
-                this.activeMenuItemId = itemId;
-            }
-        }
-    }
-
-    private onExampleCollectionClick(doc: ExampleCollection) {
-        const location: RawLocation = {
-            name: 'example',
-            params: { slug: doc.slug },
-        };
-        this.$router.push(location);
-    }
-
-    private onApiExampleCollectionClick(api: ExampleCollection) {
-        const location: RawLocation = {
-            name: 'api',
-            params: { slug: api.slug },
-        };
-        this.$router.push(location);
-    }
-
-    private showStartPage() {
-        this.$router.push({
-            path: '/start',
-        });
-    }
-
-    private getComponentStateTooltip(componentStatus: string) {
-        let text: string | undefined;
-        switch (componentStatus) {
-            case 'stable': {
-                text = 'Safe to use, no major updates planned.';
-                break;
-            }
-            case 'experimental': {
-                text = 'Work-In-Progres that may be used but be prepared for changes in the future.';
-                break;
-            }
-            case 'deprecated': {
-                text = 'This component should not be used and will be removed in the future.';
-                break;
-            }
-            case 'inprogress': {
-                text =
-                    'This component is under development. Or it is being actively reviewed to be refactored, safe to use but talk to us.';
-                break;
-            }
-        }
-
-        return text;
-    }
-
-    private getComponentIcon(componentStatus: string) {
-        let icon: string | undefined;
-        switch (componentStatus) {
-            case 'stable': {
-                icon = 'thumb-up';
-                break;
-            }
-            case 'experimental': {
-                icon = 'lab';
-                break;
-            }
-            case 'deprecated': {
-                icon = 'cancel';
-                break;
-            }
-            case 'inprogress': {
-                icon = 'edit';
-                break;
-            }
-        }
-        return icon;
-    }
-
-    private getIconColor(componentStatus: string): Color | undefined {
-        let color: Color | undefined;
-
-        switch (componentStatus) {
-            case 'stable': {
-                color = 'accent-8';
-                break;
-            }
-            case 'experimental': {
-                color = 'accent-1';
-                break;
-            }
-            case 'deprecated': {
-                color = 'accent-3';
-                break;
-            }
-            case 'inprogress': {
-                color = 'accent-13';
-                break;
-            }
-        }
-
-        return color;
-    }
-    // stable - thumb-up
-    // experimental - lab
-    // deprecated - cancel
-    // in dev - edit/activity
-
-    private push(path: string, activeItemId: string) {
-        this.activeMenuItemId = activeItemId;
-        this.$router.push({ path });
-    }
+    private activeNavItemId: string | null = './Action Bar/index.ts';
 
     public render() {
-        const renderExampleCollections = (collections: ExampleCollections) => {
-            const renderExampleCollection = (exampleCollection: ExampleCollection) => {
-                const itemId = 'api-' + exampleCollection.slug;
-                return (
-                    <SideNavItem on-click={() => this.onApiExampleCollectionClick(exampleCollection)} itemId={itemId}>
-                        {exampleCollection.title}
-                    </SideNavItem>
-                );
-            };
-            return collections.map(renderExampleCollection);
-        };
-
         const renderSideNav = () => {
+            const staticItems: SideNavListItem[] = [
+                { id: 'start', name: 'Start', icon: 'home', to: '/start' },
+                { id: 'new-component', name: 'New Component Guide', icon: 'write-new', to: '/guide/new-component' },
+            ];
+            const exampleItems: ExampleItem[] = exampleCollections.map(({ title, slug, icon, componentStatus }) => {
+                return {
+                    id: slug,
+                    icon,
+                    name: title,
+                    to: {
+                        name: 'example',
+                        params: { slug },
+                    },
+                    componentState: componentStateFrom(componentStatus),
+                };
+            });
             return (
-                <SideNav style={{ 'padding-bottom': '25px' }} indexPath={this.activeMenuItemId}>
-                    <SideNavList>
-                        <SideNavItem icon='home' itemId='start' on-click={this.showStartPage}>
-                            Start
-                        </SideNavItem>
-                        <SideNavItem
-                            icon='write-new'
-                            itemId='new-component'
-                            on-click={() => this.push('/guide/new-component', 'new-component')}
-                        >
-                            New Component
-                        </SideNavItem>
-                        <SideNavItem icon='source-code' submenuTitle='API Documentation' itemId='api-doc'>
-                            {renderExampleCollections(exampleCollections)}
-                        </SideNavItem>
-                    </SideNavList>
-                    <SideNavList style='margin-bottom: 60px;' header={'Components'}>
-                        {exampleCollections.map(item => (
-                            <SideNavItem
-                                componentText={this.getComponentStateTooltip(item.componentStatus)}
-                                accessoryIcon={this.getComponentIcon(item.componentStatus)}
-                                icon={item.icon}
-                                color={this.getIconColor(item.componentStatus)}
-                                itemId={`example-${item.slug}`}
-                                on-click={() => this.onExampleCollectionClick(item)}
-                            >
-                                {item.title}
-                            </SideNavItem>
-                        ))}
-                    </SideNavList>
+                <SideNav
+                    mode='router'
+                    style={{ 'padding-bottom': '25px' }}
+                    selectedId={this.activeNavItemId}
+                    {...
+                        { on:
+                            {
+                                'update:selectedId': (newId: string | null) => {
+                                    this.activeNavItemId = newId;
+                                },
+                            },
+                        }
+                    }
+                >
+                    <SideNavList items={staticItems} />
+                    <SideNavGroup>
+                        <SideNavGroupTitle>Examples</SideNavGroupTitle>
+                        <SideNavList
+                            items={exampleItems}
+                            style='margin-bottom: 60px;'
+                            {...{
+                                scopedSlots: {
+                                    afterLinkText: (scope: ExampleItem) => {
+                                        return (
+                                            <Identifier
+                                                domProps-title={scope.componentState.title}
+                                                circle={true}
+                                                backgroundColor={scope.componentState.color || 'accent-6'}
+                                                class='fd-has-float-right'
+                                                size='xxs'
+                                                icon={scope.componentState.icon}
+                                            />
+                                        );
+                                    },
+                                },
+                            }}
+                        />
+                    </SideNavGroup>
                 </SideNav>
             );
         };
