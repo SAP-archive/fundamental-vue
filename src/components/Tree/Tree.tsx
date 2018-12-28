@@ -12,6 +12,11 @@ export type Node = {
   children?: Node[] | [];
 };
 
+export type LinkNode = {
+  displayText?: string;
+  linkUrl: string;
+};
+
 interface Props {
   headers: string[];
   treeData: Node[];
@@ -30,7 +35,9 @@ export class Tree extends TsxComponent<Props> {
   private iStates: boolean[] = [];
   private expandAllClicked: boolean = false;
   private numberOfElements: number = 0;
-  // method to assign ids to element in example order
+  // method to assign ids to element in order of
+  // from parent to innermost children
+  // then go to the next parent
   private assignIds(treeData: Node[]) {
     treeData.forEach(n => {
       const id = this.numberOfElements++;
@@ -42,9 +49,6 @@ export class Tree extends TsxComponent<Props> {
   }
   private openAllList(treeData: Node[]) {
     const modifiedStates = this.iStates.slice();
-    if (this.numberOfElements === 0) {
-      this.assignIds(this.treeData);
-    }
     for (let i = 0; i <= this.numberOfElements; i++) {
       if (!this.expandAllClicked) {
         modifiedStates[i] = true;
@@ -65,9 +69,17 @@ export class Tree extends TsxComponent<Props> {
     }
     this.iStates = modifiedStates;
   }
+  private renderLink(element: LinkNode) {
+    return (
+      <a href={element.linkUrl} class='fd-has-font-weight-semi'>
+        {element.displayText ? element.displayText : element.linkUrl}
+      </a>
+    );
+  }
   private createTreeList(treeData: Node[], isChild: boolean, depthLevel: number) {
     let currentDepthLevel = depthLevel;
     const trees = treeData.map(row => {
+      // prepare the parent html
       const parent = row.columns.map((element, index) => {
         if (row.children && row.children.length && (row.columns.indexOf(element) === 0)) {
           if (typeof element === 'object') {
@@ -80,9 +92,7 @@ export class Tree extends TsxComponent<Props> {
                         onClick={() => this.updateVisibility(row.id)}
                         aria-pressed={this.iStates[row.id]}
                     />
-                    <a href={element.linkUrl} class='fd-has-font-weight-semi'>
-                        {element.displayText ? element.displayText : element.linkUrl}
-                    </a>
+                    {this.renderLink(element)}
                 </div>
             );
           }
@@ -104,9 +114,7 @@ export class Tree extends TsxComponent<Props> {
           return (
               <div key={index} class='fd-tree__col fd-tree__col--control'>
                   {typeof element === 'object' ? (
-                      <a href={element.linkUrl} class='fd-has-font-weight-semi'>
-                          {element.displayText ? element.displayText : element.linkUrl}
-                      </a>
+                    this.renderLink(element)
               ) : (
                 element
               )}
@@ -116,16 +124,14 @@ export class Tree extends TsxComponent<Props> {
         return (
             <div key={index} class='fd-tree__col'>
                 {typeof element === 'object' ? (
-                    <a href={element.linkUrl} class='fd-has-font-weight-semi'>
-                        {element.displayText ? element.displayText : element.linkUrl}
-                    </a>
+                  this.renderLink(element)
             ) : (
               element
             )}
             </div>
         );
       });
-
+      // prepare the tree html
       let tree: any;
 
       const displayLevel =
@@ -134,6 +140,7 @@ export class Tree extends TsxComponent<Props> {
       if (row.children && row.children.length && this.iStates[row.id]) {
         tree = this.createTreeList(row.children, true, ++currentDepthLevel);
       }
+      // compose parent and tree for one node
       if (isChild) {
         return (
             <ul
@@ -157,7 +164,6 @@ export class Tree extends TsxComponent<Props> {
             </ul>
         );
       }
-      currentDepthLevel = 0;
       return (
           <li
               class='fd-tree__item'
@@ -172,7 +178,7 @@ export class Tree extends TsxComponent<Props> {
           </li>
       );
     });
-
+    // return the whole
     return trees;
   }
   public render() {

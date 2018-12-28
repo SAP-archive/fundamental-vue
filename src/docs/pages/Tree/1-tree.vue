@@ -1,4 +1,4 @@
-<title>Default Token</title>
+<title>Tree with multiple levels</title>
 
 <template>
   <div>
