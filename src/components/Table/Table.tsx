@@ -5,7 +5,7 @@ import {
 import { CreateElement } from 'vue';
 import { TableColumn } from './TableColumn';
 import { SortOrder, TableData, compareValues, TableColumnConfig, RenderCellRequest } from './TableUtils';
-import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
+import { warn, Component, Event, DefaultSlot, Prop, Base } from '@/core';
 import { ColumnContainer, ColumnContainerIdentifier } from './ColumnContainer';
 
 interface Props<D> {
@@ -109,7 +109,7 @@ export class Table<D extends TableData> extends Base<Props<D>> implements Column
     }
     const { prop } = tableColumn;
     if (prop == null) {
-      console.warn('Tried to sort a table but clicked table column has no prop.');
+      warn('Tried to sort a table but clicked table column has no prop.');
       return;
     }
     const current = this.sortDescriptor;
@@ -144,7 +144,7 @@ export class Table<D extends TableData> extends Base<Props<D>> implements Column
       return columnId === column.columnId;
     });
     if (index < 0) {
-      console.warn('Tried to remove table column with id %s but its parent table did not contain a table column that matched.', columnId);
+      warn('Tried to remove table column with id %s but its parent table did not contain a table column that matched.', columnId);
       return;
     }
     const newColumns = [...this.columns];

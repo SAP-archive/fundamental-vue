@@ -7,7 +7,7 @@ import {
 } from './TableUtils';
 import { shortUuid } from '@/lib/uuid';
 import { ColumnContainer, ColumnContainerIdentifier } from './ColumnContainer';
-import { Component, DefaultSlot, Prop, Base } from '@/core';
+import { warn, Component, DefaultSlot, Prop, Base } from '@/core';
 
 interface Props<D> {
   label?: string | null;
@@ -115,7 +115,7 @@ export class TableColumn<D> extends Base<Props<D>> {
         if (prop == null) {
           const cellSlot = _this.$scopedSlots.default;
           if(cellSlot == null) {
-            console.warn('Unable to render table cell because \'prop\' not set.');
+            warn('Unable to render table cell because \'prop\' not set.');
             return;
           }
           const renderedCell = cellSlot(request);

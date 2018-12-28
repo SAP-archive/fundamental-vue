@@ -26,5 +26,4 @@ const vm = new Vue({
   router: DocsRouter,
   render: h => h(App),
 });
-
 vm.$mount('#app');

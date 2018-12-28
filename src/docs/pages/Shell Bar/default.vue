@@ -8,50 +8,28 @@
       <FdShellBar>
         <FdShellBarGroup position="start">
           <FdShellBarLogo src="/images/logo.png" />
-        <FdShellBarProduct>
-          <FdShellBarProductMenu>
-            <template slot="title">
-              Product Name
-            </template>
-            <template slot="menu">
-              <FdMenuItem>
-                <a href="#" @click.prevent=''>Application A</a>
-              </FdMenuItem>
-              <FdMenuItem>
-                <a href="#" @click.prevent=''>Application B</a>
-              </FdMenuItem>
-            </template>
-          </FdShellBarProductMenu>
-        </FdShellBarProduct>
-        <FdShellBarSubtitle>
-          Subtitle
-        </FdShellBarSubtitle>
+          <FdShellBarProduct>
+            <FdShellBarProductMenu>
+              <template slot="title">Product Name</template>
+               <template slot="menu">
+                 <FdMenuItem>Application A</FdMenuItem>
+                <FdMenuItem>Application B</FdMenuItem>
+              </template> -->
+            </FdShellBarProductMenu>
+          </FdShellBarProduct>
+          <FdShellBarSubtitle>Subtitle</FdShellBarSubtitle>
         </FdShellBarGroup>
         <FdShellBarGroup position="end">
           <FdShellBarActions>
             <FdShellBarAction>
-              <FdShellBarUserMenu>
-                <FdMenuItem>
-                  <a href="#" @click.prevent=''>App Finder</a>
-                </FdMenuItem>
-                <FdMenuItem>
-                  <a href="#" @click.prevent=''>Settings</a>
-                </FdMenuItem>
-                <FdMenuItem>
-                  <a href="#" @click.prevent=''>App Settings</a>
-                </FdMenuItem>
-                <FdMenuItem>
-                  <a href="#" @click.prevent=''>Help</a>
-                </FdMenuItem>
-                <FdMenuItem>
-                  <a href="#" @click.prevent=''>Give Feedback</a>
-                </FdMenuItem>
-                <FdMenuItem>
-                  <a href="#" @click.prevent=''>About</a>
-                </FdMenuItem>
-                <FdMenuItem>
-                  <a href="#" @click.prevent=''>Sign out</a>
-                </FdMenuItem>
+            <FdShellBarUserMenu>
+                <FdMenuItem>App Finder</FdMenuItem>
+                <FdMenuItem>Settings</FdMenuItem>
+                <FdMenuItem>App Settings</FdMenuItem>
+                <FdMenuItem>Help</FdMenuItem>
+                <FdMenuItem>Give Feedback</FdMenuItem>
+                <FdMenuItem>About</FdMenuItem>
+                <FdMenuItem>Sign out</FdMenuItem>
               </FdShellBarUserMenu>
             </FdShellBarAction>
             <FdShellBarAction>

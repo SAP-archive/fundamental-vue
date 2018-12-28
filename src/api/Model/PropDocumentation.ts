@@ -16,7 +16,7 @@ export type PropType =
 export type PropValue = string | number;
 export type DefaultValue = string | number | null;
 
-const __unspecifiedValue = Symbol();
+const unspecifiedValue = Symbol();
 
 type Options = PropOptions<any> & {
   readableDefaultValue?: string | number;
@@ -50,7 +50,7 @@ export type AcceptableValues = AcceptableValue[];
 export class PropDocumentation<T = any> {
   public readonly vue = new VuePropOptions();
   public readonly key: string;
-  public static unspecifiedValue(): symbol { return __unspecifiedValue; }
+  public static unspecifiedValue(): symbol { return unspecifiedValue; }
   public description = '';
   public get required() { return this.vue.required || false; }
   public set required(newValue) { this.vue.required = newValue; }
