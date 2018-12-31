@@ -6,18 +6,23 @@ import { componentName } from '@/util';
 import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
 
-export type Node = {
-  id: string;
+type Node = {
   columns: any[];
   children?: Node[] | [];
 };
 
-export type LinkNode = {
+type NodeWithId = {
+  id: string;
+  columns: any[];
+  children?: NodeWithId[] | [];
+};
+
+type LinkNode = {
   displayText?: string;
   linkUrl: string;
 };
 
-interface Props {
+export interface Props {
   headers: string[];
   treeData: Node[];
 }
@@ -32,24 +37,41 @@ export class Tree extends TsxComponent<Props> {
   @Api.Prop('data of the tree', prop => prop.type('Array<Node>'))
   @Prop({ type: Array, required: true })
   public treeData!: Node[];
-  private iStates: boolean[] = [];
+  public iStates: boolean[] = [];
   private expandAllClicked: boolean = false;
-  private numberOfElements: number = 0;
+  public numberOfElements: number = 0;
+  public treeDataWithIds: NodeWithId[] = [];
+  // to change each Node to NodeWithId with id=0
+  // TODO: change id from string to number
+  private initializeTreeDataWithIds(treeData: Node[]) {
+    const treeDataWithIds = treeData.map(n => {
+      let children = n.children || [];
+      if (children && children.length) {
+        children = this.initializeTreeDataWithIds(children);
+      }
+      if (children && children.length) {
+        return {id:String(0), children, columns: n.columns} as NodeWithId;
+      } else {
+        return {id:String(0), columns: n.columns} as NodeWithId;
+      }
+    });
+    return treeDataWithIds;
+  }
   // method to assign ids to element in order of
   // from parent to innermost children
   // then go to the next parent
-  private assignIds(treeData: Node[]) {
+  private assignIds(treeData: NodeWithId[]) {
     treeData.forEach(n => {
-      const id = this.numberOfElements++;
-      n.id = String(id);
+      const id = String(this.numberOfElements++);
+      n.id = id;
       if (n.children && n.children.length) {
         this.assignIds(n.children);
       }
     });
   }
-  private openAllList(treeData: Node[]) {
+  private openAllList(treeData: NodeWithId[]) {
     const modifiedStates = this.iStates.slice();
-    for (let i = 0; i <= this.numberOfElements; i++) {
+    for (let i = 0; i < this.numberOfElements; i++) {
       if (!this.expandAllClicked) {
         modifiedStates[i] = true;
       } else {
@@ -76,7 +98,7 @@ export class Tree extends TsxComponent<Props> {
       </a>
     );
   }
-  private createTreeList(treeData: Node[], isChild: boolean, depthLevel: number) {
+  private createTreeList(treeData: NodeWithId[], isChild: boolean, depthLevel: number) {
     let currentDepthLevel = depthLevel;
     const trees = treeData.map(row => {
       // prepare the parent html
@@ -181,10 +203,25 @@ export class Tree extends TsxComponent<Props> {
     // return the whole
     return trees;
   }
+  public created() {
+    // to assign arbitrary ids
+    this.treeDataWithIds = this.initializeTreeDataWithIds(this.treeData);
+    // to assign correct ids
+    this.assignIds(this.treeDataWithIds);
+    this.iStates = [...Array(this.numberOfElements).keys()].map(() => false);
+  }
   public render() {
-    if (this.numberOfElements === 0) {
-      this.assignIds(this.treeData);
-    }
+    // if (this.numberOfElements === 0 && this.hasInitialized === false) {
+    //   console.log('initialize');
+    //   // to assign arbitrary ids
+    //   this.treeDataWithIds = this.initializeTreeDataWithIds(this.treeData);
+    //   console.log(this.treeDataWithIds);
+    //   // to assign correct ids
+    //   this.assignIds(this.treeDataWithIds);
+    //   this.iStates = [...Array(this.numberOfElements).keys()].map(() => false);
+    //   console.log(this.iStates);
+    //   this.hasInitialized = true;
+    // }
     return (
       <div>
         <div class='fd-tree fd-tree--header'>
@@ -200,7 +237,7 @@ export class Tree extends TsxComponent<Props> {
                                 class='fd-tree__control '
                                 aria-label='expand'
                                 aria-pressed={this.expandAllClicked}
-                                onClick={() => this.openAllList(this.treeData)}
+                                onClick={() => this.openAllList(this.treeDataWithIds)}
                             />
                             {header}
                         </div>
@@ -215,7 +252,7 @@ export class Tree extends TsxComponent<Props> {
             </div>
         </div>
         <ul class='fd-tree' id='tWsod582' role='tree'>
-          {this.createTreeList(this.treeData, false, 0)}
+          {this.createTreeList(this.treeDataWithIds, false, 0)}
         </ul>
       </div>
     );
