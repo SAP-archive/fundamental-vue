@@ -70,14 +70,12 @@ export class Pagination extends TsxComponent<Props> {
         notSuppressed = true;
       } else if (notSuppressed === true) {
         links.push(
-          // tslint:disable-next-line:jsx-self-close
           <span
             class='fd-pagination__link fd-pagination__link--more'
             aria-hidden='true'
             aria-label='...'
             role='presentation'
-          >
-          </span>,
+          />,
         );
         notSuppressed = false;
       }
@@ -89,6 +87,16 @@ export class Pagination extends TsxComponent<Props> {
   private pageClicked(event: Event) {
     const element = event.target as HTMLAnchorElement;
     this.selectedPage = element && +element.text || 1;
+    this.$emit('page-change', this.selectedPage);
+  }
+
+  private navigateToFirst() {
+    this.selectedPage = 1;
+    this.$emit('page-change', this.selectedPage);
+  }
+
+  private navigateToLast() {
+    this.selectedPage = this.numberOfPages;
     this.$emit('page-change', this.selectedPage);
   }
 
@@ -108,9 +116,36 @@ export class Pagination extends TsxComponent<Props> {
     this.$emit('page-change', this.selectedPage);
   }
 
+  private keyHandler(e: KeyboardEvent) {
+    const key = e.code;
+    if (key === 'Home') {
+      this.navigateToFirst();
+    } else if (key === 'End') {
+      this.navigateToLast();
+    } else if (key === 'ArrowLeft' || key === 'ArrowUp' || key === 'PageUp') {
+      this.navigateBack();
+    } else if (key === 'ArrowRight' || key === 'ArrowDown' || key === 'PageDown') {
+      this.navigateForward();
+    }
+  }
+
+  public mounted() {
+    const pagination = document.getElementById('fd-pagination');
+    if (pagination) {
+      pagination.addEventListener('keydown', this.keyHandler);
+    }
+  }
+
+  public destroyed() {
+    const pagination = document.getElementById('fd-pagination');
+    if (pagination) {
+      pagination.removeEventListener('keydown', this.keyHandler);
+    }
+  }
+
   public render() {
     return (
-      <div class='fd-pagination'>
+      <div class='fd-pagination' id='fd-pagination'>
       {this.displayTotal ? (
         <span class='fd-pagination__total'>
           {this.itemsTotal} {this.totalText || 'items'}
