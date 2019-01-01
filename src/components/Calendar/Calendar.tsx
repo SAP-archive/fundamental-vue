@@ -1,10 +1,9 @@
-import { ComponentProps } from '@/vue-tsx';
 import { CalendarHeader } from './CalendarHeader';
 import { PresentDateMixin, DisplayedDateMixin, DateSelectionMixin } from './mixins';
 import { mixins } from 'vue-class-component';
 import { MonthPicker, YearPicker, DayPicker } from './Pickers';
 import { Props as DateSelectionProps } from './mixins/DateSelection';
-import { Component, Mixins, Prop } from '@/core';
+import { ComponentProps, Component, Mixins, Prop } from '@/core';
 const pickerMapping = { year: 'year', month: 'month' };
 type PickerType = keyof typeof pickerMapping;
 

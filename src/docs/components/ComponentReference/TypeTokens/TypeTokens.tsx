@@ -4,7 +4,7 @@ import {
 } from 'vue-property-decorator';
 import { TypeToken } from './TypeToken';
 import { Prop as PropType } from 'vue/types/options';
-import TsxComponent from '@/vue-tsx';
+import { TsxComponent } from '@/vue-tsx';
 
 interface Props {
   propTypes: Array<PropType<any>>;

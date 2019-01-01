@@ -25,7 +25,7 @@ export class BreadcrumbItem extends Base<Props> {
     const title = this.$slots.default;
     return (
       <li class='fd-breadcrumb__item'>
-        <a class='fd-breadcrumb__link' href='#' on-click={event => this.onClick(event)}>{title}</a>
+        <a class='fd-breadcrumb__link' href='#' on-click={this.onClick}>{title}</a>
       </li>
     );
   }

@@ -3,7 +3,7 @@
 // We could simply wrap <component> with a .vue file to save us a
 // couple lines of code. However we still would have no type checking.
 
-import TsxComponent from '@/vue-tsx';
+import { TsxComponent } from '@/vue-tsx';
 import {
   Component,
   Prop,

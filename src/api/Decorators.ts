@@ -3,7 +3,7 @@ import { apiDocsEnabled } from '@/config';
 import { ComponentDocumentation } from './ComponentDocumentation';
 import { SlotDocumentation } from './SlotDocumentation';
 import { EventDocumentation } from './EventDocumentation';
-import TsxComponent from '@/vue-tsx';
+import { TsxComponent } from '@/vue-tsx';
 import { ComponentOptions, PropOptions, Constructor } from 'vue/types/options';
 import { Prop } from 'vue/types/options';
 import Vue from 'vue';
