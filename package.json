@@ -5,8 +5,8 @@
     "homepage": "https://github.com/SAP/fundamental-vue",
     "scripts": {
         "typecheck": "tsc --noEmit",
-        "serve:docs": "env VUE_APP_API_DOCS_ENABLED=true vue-cli-service serve src/docs/main.ts",
-        "serve": "vue-cli-service serve",
+        "serve:docs": "echo '\n\n⚠️⚠️⚠️ WARNING ⚠️⚠️⚠️\n\nThe serve:docs script will soon be removed.\nUse npm run serve instead.\nI will now go to sleep for 30 seconds to make you stop using this script.\n\n\n………zzzZZZZzzz………' && sleep 30 && echo 'Ok, lets go…' && npm run serve",
+        "serve": "vue-cli-service serve src/docs/main.ts",
         "build": "vue-cli-service build",
         "lint:vue": "vue-cli-service lint",
         "test": "vue-cli-service test:unit 'src/**/__tests__/*.test.{tsx,ts,js,vue}'",
