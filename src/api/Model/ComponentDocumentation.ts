@@ -3,11 +3,8 @@ import { EventDocumentation } from './EventDocumentation';
 import { SlotDocumentation } from './SlotDocumentation';
 
 export class ComponentDocumentation {
-  // Init
-  constructor(public componentName: string) {
-  }
+  constructor(public componentName: string) {}
 
-  // Props
   public readonly propsByName: { [name: string]: PropDocumentation; } = {};
   public readonly events: EventDocumentation[] = [];
   public readonly slots: SlotDocumentation[] = [];
@@ -41,8 +38,12 @@ export class ComponentDocumentation {
   }
 
   public getProp(key: string): PropDocumentation {
-    const prop = this.propsByName[key] || new PropDocumentation({ key, description: '' });
+    const prop = this.propsByName[key] || new PropDocumentation(key);
     this.propsByName[key] = prop;
     return prop;
+  }
+
+  public hasProp(key: string): boolean {
+    return this.propsByName[key] != null;
   }
 }

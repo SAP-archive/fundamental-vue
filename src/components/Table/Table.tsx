@@ -46,7 +46,7 @@ export class Table<D extends TableData> extends Base<Props<D>> implements Column
   @Prop('whether the column is fixed (experimental)', { type: Boolean, default: false })
   public firstColumnFixed!: boolean;
 
-  @Prop('displayed data', { type: Array, default: () => [] })
+  @Prop('displayed data', { type: Array, default: () => [], readableDefault: 'object[]' })
   public data!: D[];
 
   @Prop('selection mode', { acceptableValues: SelectionModes, type: String, default: null })

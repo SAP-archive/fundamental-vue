@@ -33,28 +33,28 @@ export class Calendar extends CalendarBase {
   @Prop('whether header is shown', { type: Boolean, default: true })
   public headerVisible!: boolean;
 
-  @Prop('maximum date', { readableDefaultValue: 'now + 10 years', type: Date, default: () => dateWithYearsFromNow(10)})
+  @Prop('maximum date', {  readableDefault: 'now + 10 years', type: Date, default: () => dateWithYearsFromNow(10)})
   public maxDate!: Date;
 
-  @Prop('minimum date', { readableDefaultValue: 'now - 10 years', type: Date, default: () => dateWithYearsFromNow(-10)})
+  @Prop('minimum date', { readableDefault: 'now - 10 years', type: Date, default: () => dateWithYearsFromNow(-10)})
   public minDate!: Date;
 
   @Prop(
     'Called with a date to be displayed by the calendar. Return false to disable the date.',
-    { readableDefaultValue: '() => false',  type: Function, default: () => false },
+    { readableDefault: '() => false',  type: Function, default: () => false },
   )
   public disabledDate!: (date: Date) => boolean;
 
   @Prop(
     'Called with a date to be displayed by the calendar. Return false to block the date.',
-    { readableDefaultValue: '() => false', type: Function, default: () => false },
+    { readableDefault: '() => false', type: Function, default: () => false },
   )
   public blockedDate!: (date: Date) => boolean;
 
   @Prop(
     'Called with a date range object ({ min: Date, max: Date }). Return false to disable the previous button in the header.',
     {
-      readableDefaultValue: '() => true',
+      readableDefault: '() => true',
       type: Function,
       default: () => true,
     },
@@ -63,7 +63,7 @@ export class Calendar extends CalendarBase {
 
   @Prop(
     'Called with a date range object ({ min: Date, max: Date }). Return false to disable the next button in the header.',
-    { readableDefaultValue: '() => true', type: Function, default: () => true },
+    { readableDefault: '() => true', type: Function, default: () => true },
   )
   public hasNext!: (range: {min: Date, max: Date}) => boolean;
 
