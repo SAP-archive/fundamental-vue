@@ -3,14 +3,13 @@ import { Counter, Props } from '../components/Counter';
 import { mount } from '@vue/test-utils';
 
 describe('Counter', () => {
-    
     let propsData: Props = {
         type: 'info',
         value: 23,
     };
-    let counter = mount(Counter, {propsData});
+    let counter = mount(Counter, { propsData });
     it('info type counter rendered if type is info', () => {
-       assert(counter.hasClass('fd-counter'));
+        assert(counter.hasClass('fd-counter'));
     });
 
 
@@ -18,9 +17,9 @@ describe('Counter', () => {
         type: 'notification',
         value: 23,
     };
-    counter = mount(Counter, {propsData});
+    counter = mount(Counter, { propsData });
     it('info type counter rendered if type is notification', () => {
         assert(counter.hasClass('fd-counter--notification'));
-     });
- 
+    });
+
 });

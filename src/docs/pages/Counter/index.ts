@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
 export const plugin: ExampleCollectionFunction = ({ Counter }) => {
-    return {componentStatus:'inprogress', icon:'number-sign', relatedComponents: [Counter]};
+    return {componentStatus:'stable', icon:'number-sign', relatedComponents: [Counter]};
 };

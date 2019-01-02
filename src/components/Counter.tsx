@@ -1,7 +1,4 @@
-import { Component, Prop } from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Base, Component, Prop } from '@/core';
 
 const typeMapping = {
     info: 'info',
@@ -17,21 +14,29 @@ export interface Props {
     value?: number;
 }
 
-@Component({ name: componentName('Counter') })
-@Api.Component('Counter')
-@Api.defaultSlot('Text displayed inside the counter.')
-export class Counter extends TsxComponent<Props> {
+@Component('Counter')
+export class Counter extends Base {
 
-    @Api.Prop('built-in counter type', prop => prop.type(String).acceptValues(...counterTypeValues))
-    @Prop({ type: String, required: false, default: 'info' })
+    @Prop('built-in counter type', {
+        type: String,
+        default: 'info',
+        required: false,
+        acceptableValues: counterTypeValues,
+    })
     public type!: counterTypes;
 
-    @Api.Prop('Aria Label', prop => prop.type(String))
-    @Prop({ type: String, default: 'Counter Value', required: false })
+    @Prop('Aria Label', {
+        type: String,
+        default: 'Counter Value',
+        required: false,
+    })
     public ariaLabel!: string;
 
-    @Api.Prop('Counter Value', prop => prop.type(Number))
-    @Prop({ type: Number, default: 1, required: true })
+    @Prop('Counter Value', {
+        type: Number,
+        default: 1,
+        required: true,
+    })
     public value!: number;
 
     public render() {
