@@ -87,17 +87,17 @@ export class Pagination extends TsxComponent<Props> {
   private pageClicked(event: Event) {
     const element = event.target as HTMLAnchorElement;
     this.selectedPage = element && +element.text || 1;
-    this.$emit('page-change', this.selectedPage);
+    this.$emit('update:initialPage', this.selectedPage);
   }
 
   private navigateToFirst() {
     this.selectedPage = 1;
-    this.$emit('page-change', this.selectedPage);
+    this.$emit('update:initialPage', this.selectedPage);
   }
 
   private navigateToLast() {
     this.selectedPage = this.numberOfPages;
-    this.$emit('page-change', this.selectedPage);
+    this.$emit('update:initialPage', this.selectedPage);
   }
 
   private navigateForward() {
@@ -105,7 +105,7 @@ export class Pagination extends TsxComponent<Props> {
       return;
     }
     ++this.selectedPage;
-    this.$emit('page-change', this.selectedPage);
+    this.$emit('update:initialPage', this.selectedPage);
   }
 
   private navigateBack() {
@@ -113,7 +113,7 @@ export class Pagination extends TsxComponent<Props> {
       return;
     }
     --this.selectedPage;
-    this.$emit('page-change', this.selectedPage);
+    this.$emit('update:initialPage', this.selectedPage);
   }
 
   private keyHandler(e: KeyboardEvent) {
