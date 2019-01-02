@@ -4,34 +4,26 @@
 <template>
   <FdListGroup>
     <FdListGroupItem>
-      <FdFormItem check>
-        <FdFormLabel>
-          <FdInput checked type="checkbox" />List item 1
-        </FdFormLabel>
+      <FdFormItem label="List item 1">
+        <FdCheckbox />
       </FdFormItem>
     </FdListGroupItem>
 
     <FdListGroupItem>
-      <FdFormItem check>
-        <FdFormLabel>
-          <FdInput checked type="checkbox" />List item 2
-        </FdFormLabel>
+      <FdFormItem label="List item 2">
+        <FdCheckbox />
       </FdFormItem>
     </FdListGroupItem>
 
      <FdListGroupItem>
-      <FdFormItem check>
-        <FdFormLabel>
-          <FdInput checked type="checkbox" />List item 3 — Lorem ipsum dolor sit amet, consectetur sed do
-        </FdFormLabel>
+      <FdFormItem label="List item 3 — Lorem ipsum dolor sit amet, consectetur sed do">
+        <FdCheckbox />
       </FdFormItem>
     </FdListGroupItem>
 
      <FdListGroupItem>
-      <FdFormItem check>
-        <FdFormLabel>
-          <FdInput checked type="checkbox" />List item 4 — Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        </FdFormLabel>
+      <FdFormItem label="List item 4 — Lorem ipsum dolor sit amet, consectetur adipisicing elit.">
+        <FdCheckbox />
       </FdFormItem>
     </FdListGroupItem>
   </FdListGroup>

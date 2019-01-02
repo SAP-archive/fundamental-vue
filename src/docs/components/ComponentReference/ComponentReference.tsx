@@ -5,7 +5,7 @@ import { EventsReference } from './EventsReference';
 import { SlotsReference } from './SlotsReference';
 import { VueConstructor } from 'vue';
 import { Tabs, TabItem, Section } from '@/components';
-import TsxComponent from '@/vue-tsx';
+import { TsxComponent } from '@/vue-tsx';
 
 interface Props {
   component: VueConstructor | null;

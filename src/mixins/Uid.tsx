@@ -1,20 +1,16 @@
 import { Component, Prop, Base } from '@/core';
+import { shortUuid } from '@/lib';
 
-const makeId = () => {
-  let text = '';
-  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for (let i = 0; i < 5; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-};
+export interface UidProps {
+  uid?: string;
+}
 
 @Component('UidMixin')
-export class UidMixin extends Base  {
+export class UidMixin extends Base<UidProps> {
   @Prop({
     type: String,
     required: false,
-    default: () => makeId(),
+    default: shortUuid,
   })
   public uid!: string;
 }
