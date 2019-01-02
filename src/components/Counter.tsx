@@ -34,7 +34,7 @@ export class Counter extends Base<Props> {
   private get classes() {
     return {
       'fd-counter--notification': this.type === 'notification',
-    }
+    };
   }
 
   public render() {
