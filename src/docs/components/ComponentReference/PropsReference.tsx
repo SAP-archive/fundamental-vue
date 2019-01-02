@@ -8,7 +8,7 @@ import { Table, TableColumn } from '@/components';
 import { ValueToken } from './ValueToken';
 import { TypeTokens } from './TypeTokens';
 import { Prop as PropType } from 'vue/types/options';
-import TsxComponent from '@/vue-tsx';
+import { TsxComponent } from '@/vue-tsx';
 
 interface Props {
   apiProps: PropDocumentation[];

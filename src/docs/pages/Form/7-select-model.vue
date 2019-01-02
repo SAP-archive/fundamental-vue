@@ -3,8 +3,7 @@
 <template>
   <div>
     <FdFormSet>
-      <FdFormItem>
-        <FdFormLabel>Favorite Color</FdFormLabel>
+      <FdFormItem label="Favorite Color">
         <FdSelect v-model="color">
           <option value="red">Red</option>
           <option value="green">Green</option>
@@ -12,7 +11,6 @@
         </FdSelect>
       </FdFormItem>
     </FdFormSet>
-
     <div style="margin-bottom: 20px;">
       <p>Selected Color: <code class="fd-has-font-weight-bold">{{color}}</code></p>
     </div>

@@ -2,7 +2,7 @@ import 'highlight.js/styles/docco.css';
 import './CodeView.css';
 import { Component, Prop } from 'vue-property-decorator';
 import { highlight } from '@/docs/directives/highlight';
-import TsxComponent from '@/vue-tsx';
+import { TsxComponent } from '@/vue-tsx';
 
 interface Props {
   backgroundColor?: string;

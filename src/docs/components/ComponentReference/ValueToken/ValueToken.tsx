@@ -4,7 +4,7 @@ import {
 } from 'vue-property-decorator';
 import './ValueToken.css';
 import { PropDocumentation } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { TsxComponent } from '@/vue-tsx';
 
 interface Props {
   representedValue: ValueType;

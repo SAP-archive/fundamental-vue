@@ -1,7 +1,7 @@
 import { Component } from 'vue-property-decorator';
 import { exampleCollections } from '@/docs/pages';
 import { DynamicComponent } from '@/docs/components';
-import TsxComponent from '@/vue-tsx';
+import { TsxComponent } from '@/vue-tsx';
 
 @Component({ name: 'FullscreenDemo' })
 export class FullscreenDemo extends TsxComponent {

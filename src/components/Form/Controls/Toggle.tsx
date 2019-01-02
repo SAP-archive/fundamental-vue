@@ -4,6 +4,7 @@ import {
 } from 'vue-property-decorator';
 import { ItemIdentification } from './../Types/ItemIdentification';
 import { Model, Component, Prop, Base } from '@/core';
+import { FormItem, FORM_ITEM_KEY } from './../FormItem';
 
 interface Props {
   id?: string | null;
@@ -22,14 +23,21 @@ const ToggleSizes = Object.keys(sizeMapping) as ToggleSize[];
 
 @Component('Toggle')
 export class Toggle extends Base<Props> {
-  @Prop({ default: null, type: String })
-  public id!: string | null;
+  public mounted() {
+    const item = this.formItem;
+    if(item == null) { return; }
+    item.setCheck(true);
+  }
+
+  @Inject({ from: FORM_ITEM_KEY, default: null}) public formItem!: FormItem | null;
+  private get uid(): string {
+    const item = this.formItem;
+    if(item == null) { return ''; }
+    return item.uid;
+  }
 
   @Prop('size class', { acceptableValues: ToggleSizes,  type: String, default: null })
   public size!: ToggleSize | null;
-
-  @Prop({ type: String, default: null })
-  public label!: string | null;
 
   @Prop('whether toggle is disabled', { type: Boolean, default: false })
   public disabled!: boolean;
@@ -43,7 +51,7 @@ export class Toggle extends Base<Props> {
   public itemIdentificationProvider!: ItemIdentification | null;
 
   private get inputId(): string | null {
-    const id = this.id;
+    const id = this.uid;
     if (id != null) { return id; }
     const provider = this.itemIdentificationProvider;
     if (provider != null) {
@@ -76,8 +84,6 @@ export class Toggle extends Base<Props> {
   public render() {
     const disabled = this.disabled ? true : null;
     return (
-      <div class='fd-form__item fd-form__item--check'>
-        <label class='fd-form__label' for={this.inputId}>
           <span class={this.classes}>
             <input
               type='checkbox'
@@ -88,9 +94,6 @@ export class Toggle extends Base<Props> {
             />
             <span class='fd-toggle__switch' role='presentation' />
           </span>
-          {this.label}
-        </label>
-      </div>
     );
   }
 }

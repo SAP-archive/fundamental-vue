@@ -4,7 +4,7 @@ import {
 } from 'vue-property-decorator';
 import { EventDocumentation } from '@/api';
 import { Table, TableColumn } from '@/components';
-import TsxComponent from '@/vue-tsx';
+import { TsxComponent } from '@/vue-tsx';
 
 interface Props {
   events: EventDocumentation[];

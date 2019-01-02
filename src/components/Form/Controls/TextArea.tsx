@@ -1,6 +1,7 @@
-import { Inject } from 'vue-property-decorator';
-import { ItemIdentification } from './../Types/ItemIdentification';
+import { Watch, Inject } from 'vue-property-decorator';
 import { Component, Event, Prop, Base } from '@/core';
+import { FormItem, FORM_ITEM_KEY } from './../FormItem';
+import { isTextAreaElement } from './Helper';
 
 interface Props {
   id?: string | null;
@@ -29,9 +30,6 @@ const Types = Object.keys(typeMapping) as Type[];
 @Component('TextArea')
 @Event('input', 'Sent when the value changes', ['value', 'any'])
 export class TextArea extends Base<Props> {
-  @Prop('id of the text area element', { default: null, type: String })
-  public id!: string | null;
-
   @Prop('placeholder displayed when no value is set', { default: '', type: String })
   public placeholder!: string;
 
@@ -41,24 +39,45 @@ export class TextArea extends Base<Props> {
   @Prop('whether input is required', { default: false, type: Boolean })
   public required!: boolean;
 
+  @Prop('current value', { default: '', type: String })
+  public value!: string | null;
+
+  @Watch('value', { immediate: true })
+  public handleNewValue(newValue) {
+    this.currentValue = newValue;
+  }
+
   @Prop('native element type', { acceptableValues: Types, default: 'text', type: String })
   public type!: Type;
 
-  @Inject({ default: null })
-  public itemIdentificationProvider!: ItemIdentification | null;
+  @Inject({ from: FORM_ITEM_KEY, default: null}) public formItem!: FormItem | null;
 
-  get inputId(): string | null {
-    const id = this.id;
-    if (id != null) { return id; }
-    const provider = this.itemIdentificationProvider;
-    if (provider != null) {
-      return provider.itemIdentifier;
-    }
-    return null;
+  private get uid(): string {
+    const item = this.formItem;
+    if(item == null) { return ''; }
+    return item.uid;
   }
 
+  private currentValue: string | null = '';
+
   public render() {
-    return <textarea type={this.type} class={this.classes} id={this.inputId} placeholder={this.placeholder} />;
+    return (
+      <textarea
+        on-input={this.handleInput}
+        id={this.uid}
+        type={this.type}
+        class={this.classes}
+        value={this.currentValue}
+        placeholder={this.placeholder}
+      />
+    );
+  }
+
+  private handleInput({ target }: Event) {
+    if(target == null) { return; }
+    if(!isTextAreaElement(target)) { return; }
+    const { value } = target;
+    this.$emit('input', value);
   }
 
   private get classes() {

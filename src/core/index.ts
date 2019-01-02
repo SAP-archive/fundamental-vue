@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import TsxComponent from '@/vue-tsx';
+import { TsxComponent } from '@/vue-tsx';
 import { Doc } from '@/api';
 
 export const Component = Doc.component;
@@ -12,4 +12,5 @@ export const Model = Doc.model;
 
 // Re-exporting for convenience
 export { Vue };
-export { TsxComponent as Base };
+export { ComponentProps } from '@/vue-tsx-types';
+export { TsxComponent as Base };// from '@/vue-tsx';
