@@ -1,7 +1,4 @@
-import { Component, Prop } from 'vue-property-decorator';
-import { Api } from '@/api';
-import { componentName } from '@/util';
-import TsxComponent from '@/vue-tsx';
+import { Component, DefaultSlot, Prop, Base } from '@/core';
 
 const colMapping = {
   2: '2-Column Grid',
@@ -18,16 +15,13 @@ interface Props {
   nogap?: boolean;
 }
 
-@Component({ name: componentName('PanelGrid') })
-@Api.Component('Panel Grid')
-@Api.defaultSlot('Panels displayed by the grid.')
-export class PanelGrid extends TsxComponent<Props> {
-  @Api.Prop('number of columns', prop => prop.type(Number).acceptValues(...Cols))
-  @Prop({ type: Number, default: null, required: false })
+@Component('PanelGrid')
+@DefaultSlot('Panels displayed by the grid.')
+export class PanelGrid extends Base<Props> {
+  @Prop('number of columns', {acceptableValues: Cols, type: Number, default: null })
   public col!: Col | null;
 
-  @Api.Prop('whether there is a gap between the individual panels', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false, required: false })
+  @Prop('whether there is a gap between the individual panels', { type: Boolean, default: false })
   public nogap!: boolean;
 
   public render() {

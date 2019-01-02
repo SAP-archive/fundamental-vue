@@ -1,36 +1,24 @@
-import {
-  Component,
-  Prop,
-  Watch,
-} from 'vue-property-decorator';
-import { Api } from '@/api';
-import { componentName } from '@/util';
+import { Watch } from 'vue-property-decorator';
 import { ClickAwayContainer } from '@/components/ClickAwayContainer';
 import { Button } from './Button';
-import TsxComponent from '@/vue-tsx';
+import { Slot, Component, Event, DefaultSlot, Prop, Base } from '@/core';
 
 interface Props {
   active: boolean;
   title: string | null;
 }
 
-@Component({
-  name: componentName('Modal'),
-  components: { ClickAwayContainer, Button },
-})
-@Api.Component('Modal')
-@Api.Event('close', 'Sent when modal was closed')
-@Api.Event('update:active', 'Sent when active changes', ['active', Boolean])
-@Api.defaultSlot('Modal Body')
-@Api.slot('footer', 'Custom Modal Footer')
-@Api.slot('actions', 'Custom Modal Actions')
-export class Modal extends TsxComponent<Props> {
-  @Api.Prop('whether modal is active', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, required: false, default: false })
+@Component('Modal')
+@Event('close', 'Sent when modal was closed')
+@Event('update:active', 'Sent when active changes', ['active', Boolean])
+@DefaultSlot('Modal Body')
+@Slot('footer', 'Custom Modal Footer')
+@Slot('actions', 'Custom Modal Actions')
+export class Modal extends Base<Props> {
+  @Prop('whether modal is active', { type: Boolean, default: false })
   public active!: boolean;
 
-  @Api.Prop('title', prop => prop.type(String))
-  @Prop({ type: String, required: false, default: null })
+  @Prop({ type: String, default: null })
   public title!: string | null;
 
   private isActive = this.active;

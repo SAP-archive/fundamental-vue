@@ -1,21 +1,16 @@
-import {
-  Component,
-  Prop,
-} from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Slot, Component, DefaultSlot, Prop, Base } from '@/core';
+
 interface Props {
   headerClass?: string;
 }
 
-@Component({ name: componentName('Ui') })
-@Api.defaultSlot('Main Content')
-@Api.slot('sidebar', 'Sidebar Content')
-@Api.slot('header', 'Header Content')
-@Api.slot('footer', 'Footer Content')
-export class Ui extends TsxComponent<Props> {
-  @Prop({type: String, default: null })
+@Component('Ui')
+@DefaultSlot('Main Content')
+@Slot('sidebar', 'Sidebar Content')
+@Slot('header', 'Header Content')
+@Slot('footer', 'Footer Content')
+export class Ui extends Base<Props> {
+  @Prop('header class', {type: String, default: null })
   public headerClass!: string | null;
 
   public render() {

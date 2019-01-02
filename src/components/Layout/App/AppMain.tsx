@@ -1,11 +1,8 @@
-import { Component } from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Component, DefaultSlot, Base } from '@/core';
 
-@Component({ name: componentName('App') })
-@Api.defaultSlot('Main App Content')
-export class AppMain extends TsxComponent<{}> {
+@Component('AppMain')
+@DefaultSlot('Main App Content')
+export class AppMain extends Base<{}> {
   public render() {
     return <main class='fd-app__main'>{this.$slots.default}</main>;
   }

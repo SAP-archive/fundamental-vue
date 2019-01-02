@@ -7,9 +7,15 @@ describe('Counter', () => {
         type: 'info',
         value: 23,
     };
+
     let counter = mount(Counter, { propsData });
     it('info type counter rendered if type is info', () => {
         assert(counter.hasClass('fd-counter'));
+
+    let counter = mount(Counter, {propsData});
+    it('info type counter rendered if type is info', () => {
+       assert(counter.hasClass('fd-counter'));
+
     });
 
 
@@ -17,9 +23,16 @@ describe('Counter', () => {
         type: 'notification',
         value: 23,
     };
+
     counter = mount(Counter, { propsData });
     it('info type counter rendered if type is notification', () => {
         assert(counter.hasClass('fd-counter--notification'));
     });
 
+
+    counter = mount(Counter, {propsData});
+    it('info type counter rendered if type is notification', () => {
+        assert(counter.hasClass('fd-counter--notification'));
+     });
+ 
 });

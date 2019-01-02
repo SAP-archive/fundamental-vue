@@ -1,8 +1,5 @@
-import { Component, Prop } from 'vue-property-decorator';
-import { Api } from '@/api';
-import { componentName } from '@/util';
 import { Color, Colors, backgroundColorClassName } from '@/lib';
-import TsxComponent from '@/vue-tsx';
+import { Component, DefaultSlot, Prop, Base } from '@/core';
 
 const sizeMapping = {
     xxs: 'Extra Extra Small',
@@ -26,36 +23,28 @@ interface Props {
     backgroundColor?: Color | null;
 }
 
-@Component({ name: componentName('Identifier') })
-@Api.Component('Identifier')
-@Api.defaultSlot('Text displayed by the Identifier.')
-export class Identifier extends TsxComponent<Props> {
-    @Api.Prop('icon name', prop => prop.type(String))
-    @Prop({ type: String, default: null, required: false })
+@Component('Identifier')
+@DefaultSlot('Text displayed by the Identifier.')
+export class Identifier extends Base<Props> {
+    @Prop('icon name', { type: String, default: null })
     public icon!: string | null;
 
-    @Api.Prop('image url', prop => prop.type(String))
-    @Prop({ type: String, default: null, required: false })
+    @Prop('image url', { type: String, default: null })
     public url!: string | null;
 
-    @Api.Prop('size', prop => prop.type(String).acceptValues(...IdentifierSizes))
-    @Prop({ type: String, default: 'm', required: false })
+    @Prop({ acceptableValues: IdentifierSizes, type: String, default: 'm' })
     public size!: IdentifierSize;
 
-    @Api.Prop('is displayed as circle', prop => prop.type(Boolean))
-    @Prop({ required: false, default: false, type: Boolean })
+    @Prop('is displayed as circle', { default: false, type: Boolean })
     public circle!: boolean;
 
-    @Api.Prop('is displayed without background', prop => prop.type(Boolean))
-    @Prop({ required: false, default: false, type: Boolean })
+    @Prop('is displayed without background', { default: false, type: Boolean })
     public transparent!: boolean;
 
-    @Api.Prop('is displayed with background image', prop => prop.type(Boolean))
-    @Prop({ required: false, default: false, type: Boolean })
+    @Prop('is displayed with background image', { default: false, type: Boolean })
     public thumbnail!: boolean;
 
-    @Api.Prop('background color', prop => prop.type(String).acceptValues(...Colors))
-    @Prop({ required: false, default: null, type: String })
+    @Prop('background color', { acceptableValues: Colors, default: null, type: String })
     public backgroundColor!: Color | null;
 
     public render() {

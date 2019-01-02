@@ -1,20 +1,12 @@
-import {
-  Component,
-  Prop,
-} from 'vue-property-decorator';
-import { Api } from '@/api';
-import { componentName } from '@/util';
-import TsxComponent from '@/vue-tsx';
+import { Component, Prop, Base } from '@/core';
 
 interface Props {
   ariaLabel?: string;
 }
 
-@Component({ name: componentName('Spinner') })
-@Api.Component('Spinner')
-export class Spinner extends TsxComponent<Props> {
-  @Api.Prop('ARIA label', prop => prop.type(String))
-  @Prop({ type: String, default: 'Loading', required: false })
+@Component('Spinner')
+export class Spinner extends Base<Props> {
+  @Prop('ARIA label', { type: String, default: 'Loading' })
   public ariaLabel!: string;
 
   public render() {

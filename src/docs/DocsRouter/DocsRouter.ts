@@ -5,7 +5,9 @@ import { FullscreenDemo } from '@/docs/components';
 
 export const DocsRouter = new Router({
   // Scroll the main component to the top.
-  scrollBehavior() { return { x: 0, y: 0}; },
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  },
   routes: [
     {
       path: '/',

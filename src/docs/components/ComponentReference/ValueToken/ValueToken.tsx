@@ -3,19 +3,26 @@ import {
   Prop,
 } from 'vue-property-decorator';
 import './ValueToken.css';
-import { ApiProp } from '@/api';
+import { PropDocumentation } from '@/api';
 import TsxComponent from '@/vue-tsx';
-import { componentName } from '@/util';
 
 interface Props {
   representedValue: ValueType;
 }
 
-const unspecifiedValue = ApiProp.unspecifiedValue();
-// tslint:disable-next-line:ban-types
-type ValueType = string | number | object | Function | null | boolean | ArrayLike<any> | typeof unspecifiedValue;
+const unspecifiedValue = PropDocumentation.unspecifiedValue();
+type ValueType =
+  | string
+  | number
+  | object
+  | Function // tslint:disable-line:ban-types
+  | null
+  | boolean
+  | ArrayLike<any>
+  | typeof unspecifiedValue
+  ;
 
-@Component({ name: componentName('ValueToken') })
+@Component({ name: 'ValueToken' })
 export class ValueToken extends TsxComponent<Props> {
   @Prop({ required: true, default: unspecifiedValue })
   public representedValue!: ValueType;

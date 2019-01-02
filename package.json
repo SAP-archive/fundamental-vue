@@ -5,7 +5,7 @@
     "homepage": "https://github.com/SAP/fundamental-vue",
     "scripts": {
         "typecheck": "tsc --noEmit",
-        "serve:docs": "vue-cli-service serve src/docs/main.ts",
+        "serve:docs": "env VUE_APP_API_DOCS_ENABLED=true vue-cli-service serve src/docs/main.ts",
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint:vue": "vue-cli-service lint",
@@ -48,7 +48,6 @@
         "tslint-react": "^3.6.0",
         "typescript": "^3.1.0",
         "vue-gh-pages": "^1.19.0",
-        "vue-template-compiler": "^2.5.17",
-        "vuex": "^3.0.1"
+        "vue-template-compiler": "^2.5.17"
     }
 }

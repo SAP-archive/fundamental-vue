@@ -1,6 +1,4 @@
-import { componentName } from '@/util';
-import { Component, Prop } from 'vue-property-decorator';
-import TsxComponent from '@/vue-tsx';
+import { Component, Prop, Base } from '@/core';
 import { CalendarItem, CalendarItemState } from './../CalendarItem';
 
 interface Props {
@@ -11,8 +9,8 @@ interface Props {
   selectionContainsYear: (year: number) => boolean;
 }
 
-@Component({ name: componentName('YearPicker') })
-export class YearPicker extends TsxComponent<Props> {
+@Component('YearPicker')
+export class YearPicker extends Base<Props> {
   @Prop(Date)
   public maxDate!: Date;
 

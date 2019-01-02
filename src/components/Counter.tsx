@@ -1,4 +1,6 @@
+
 import { Base, Component, Prop } from '@/core';
+
 
 const typeMapping = {
     info: 'info',
@@ -13,6 +15,7 @@ export interface Props {
     ariaLabel?: string;
     value?: number;
 }
+
 
 @Component('Counter')
 export class Counter extends Base {
