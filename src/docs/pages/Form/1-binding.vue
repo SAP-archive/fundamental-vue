@@ -4,9 +4,14 @@
 <template>
   <div>
     <FdFormSet>
-      <FdFormItem>
-        <FdFormLabel>First Name</FdFormLabel>
+      <FdFormItem label="First Name">
         <FdInput v-model="firstName" placeholder="First Name"/>
+      </FdFormItem>
+      <FdFormItem label="First Name">
+        <FdInput v-model="firstName" placeholder="First Name"/>
+      </FdFormItem>
+      <FdFormItem label="First Name">
+        <FdTextArea v-model="firstName" placeholder="First Name"/>
       </FdFormItem>
     </FdFormSet>
     <FdButton @click="changeName">Set first name to 'Chris'</FdButton>
@@ -19,7 +24,7 @@
 export default {
   data() {
     return {
-      firstName: 'Chris',
+      firstName: "Chris",
     };
   },
   methods: {

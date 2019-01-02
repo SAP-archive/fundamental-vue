@@ -1,5 +1,5 @@
 import { Watch } from 'vue-property-decorator';
-import { VNode } from 'vue';
+import { CreateElement, VNode } from 'vue';
 import { Component, Prop, Base } from '@/core';
 
 type IgnoredElements = () => Element[];
@@ -34,8 +34,8 @@ export class ClickAwayContainer extends Base<Props> {
   @Prop({ type: Function, default: () => () => [] })
   public ignoredElements!: IgnoredElements;
 
-  public render(createElement): VNode {
-    return createElement(this.tag, this.$slots.default);
+  public render(h: CreateElement): VNode {
+    return h(this.tag, this.$slots.default);
   }
 
   public beforeDestroy() {

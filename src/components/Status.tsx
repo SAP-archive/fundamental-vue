@@ -54,14 +54,13 @@ export class Status extends Base<Props> {
     private get classes() {
         return {
             'fd-status-label': true,
-            'fd-status-label fd-status-label--success': this.type === 'success',
-            'fd-status-label fd-status-label--warning': this.type === 'warning',
-            'fd-status-label fd-status-label--error': this.type === 'error',
-
-            'fd-status-label fd-status-label--available': this.statusIcon === 'available',
-            'fd-status-label fd-status-label--away': this.statusIcon === 'away',
-            'fd-status-label fd-status-label--busy': this.statusIcon === 'busy',
-            'fd-status-label fd-status-label--offline': this.statusIcon === 'offline',
+            'fd-status-label--success': this.type === 'success',
+            'fd-status-label--warning': this.type === 'warning',
+            'fd-status-label--error': this.type === 'error',
+            'fd-status-label--available': this.statusIcon === 'available',
+            'fd-status-label--away': this.statusIcon === 'away',
+            'fd-status-label--busy': this.statusIcon === 'busy',
+            'fd-status-label--offline': this.statusIcon === 'offline',
             ...this.iconClasses,
         };
     }
