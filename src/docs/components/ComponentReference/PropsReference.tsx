@@ -31,14 +31,14 @@ export class PropsReference extends TsxComponent<Props> {
   get tableData(): TableRow[] {
     return this.apiProps.map(prop => {
       const acceptedValues = prop.formattedAcceptedValues;
-      const types = prop.vueTypes || [];
+      const types = prop.vue.type || [];
       return {
         name: prop.key,
         description: prop.description,
         types,
         acceptedValues,
         required: prop.required,
-        defaultValue: prop.defaultValue === undefined ? undefined : prop.defaultValue,
+        defaultValue: prop.readableDefaultValue || prop.defaultValue,
       };
     });
   }
