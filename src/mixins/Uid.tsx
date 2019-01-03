@@ -1,23 +1,16 @@
-import {
-  Vue,
-  Component,
-  Prop,
-} from 'vue-property-decorator';
+import { Component, Prop, Base } from '@/core';
+import { shortUuid } from '@/lib';
 
-const makeId = () => {
-  let text = '';
-  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for (let i = 0; i < 5; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-};
+export interface UidProps {
+  uid?: string;
+}
 
-@Component({ name: 'Uid' })
-export class Uid extends Vue  {
+@Component('UidMixin')
+export class UidMixin extends Base<UidProps> {
   @Prop({
     type: String,
     required: false,
-    default: () => makeId(),
-  }) public uid!: string;
+    default: shortUuid,
+  })
+  public uid!: string;
 }

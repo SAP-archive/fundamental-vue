@@ -1,6 +1,6 @@
+import Vue from 'vue';
 import './class-component-hooks';
 import './main.scss';
-import Vue from 'vue';
 Vue.config.productionTip = false;
 import FundamentalVue from '@/index';
 import Router from 'vue-router';
@@ -19,11 +19,12 @@ Vue.component('FullscreenLayout', FullscreenLayout);
 Vue.use(FundamentalVue);
 Vue.use(Router);
 
-// Create Store + misc
 registerComponents(Vue);
 
-new Vue({
+const vm = new Vue({
   components: { App },
   router: DocsRouter,
   render: h => h(App),
-}).$mount('#app');
+});
+
+vm.$mount('#app');

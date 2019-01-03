@@ -1,12 +1,7 @@
-import {
-  Component,
-  Prop,
-  Inject,
-} from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { ItemIdentification } from './../Types/ItemIdentification';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Watch, Inject } from 'vue-property-decorator';
+import { Component, Event, Prop, Base } from '@/core';
+import { FormItem, FORM_ITEM_KEY } from './../FormItem';
+import { isTextAreaElement } from './Helper';
 
 interface Props {
   id?: string | null;
@@ -32,45 +27,57 @@ const typeMapping = {
 type Type = keyof (typeof typeMapping);
 const Types = Object.keys(typeMapping) as Type[];
 
-@Component({ name: componentName('TextArea') })
-@Api.Component('Text Area')
-@Api.Event('input', 'Sent when the value changes', ['value', 'any'])
-export class TextArea extends TsxComponent<Props> {
-  @Api.Prop('id of the text area element', prop => prop.type(String))
-  @Prop({ required: false, default: null, type: String })
-  public id!: string | null;
-
-  @Api.Prop('placeholder displayed when no value is set', prop => prop.type(String))
-  @Prop({ required: false, default: '', type: String })
+@Component('TextArea')
+@Event('input', 'Sent when the value changes', ['value', 'any'])
+export class TextArea extends Base<Props> {
+  @Prop('placeholder displayed when no value is set', { default: '', type: String })
   public placeholder!: string;
 
-  @Api.Prop('state of the text area', prop => prop.type(String).acceptValues(...States))
-  @Prop({ required: false, default: 'default', type: String })
+  @Prop('state of the text area', { acceptableValues: States,  default: 'default', type: String })
   public state!: State;
 
-  @Api.Prop('whether input is required', prop => prop.type(Boolean))
-  @Prop({ required: false, default: false, type: Boolean })
+  @Prop('whether input is required', { default: false, type: Boolean })
   public required!: boolean;
 
-  @Api.Prop('native element type', prop => prop.type(String).acceptValues(...Types))
-  @Prop({ required: false, default: 'text', type: String })
-  public type!: Type;
+  @Prop('current value', { default: '', type: String })
+  public value!: string | null;
 
-  @Inject({ default: null })
-  public itemIdentificationProvider!: ItemIdentification | null;
-
-  get inputId(): string | null {
-    const id = this.id;
-    if (id != null) { return id; }
-    const provider = this.itemIdentificationProvider;
-    if (provider != null) {
-      return provider.itemIdentifier;
-    }
-    return null;
+  @Watch('value', { immediate: true })
+  public handleNewValue(newValue) {
+    this.currentValue = newValue;
   }
 
+  @Prop('native element type', { acceptableValues: Types, default: 'text', type: String })
+  public type!: Type;
+
+  @Inject({ from: FORM_ITEM_KEY, default: null}) public formItem!: FormItem | null;
+
+  private get uid(): string {
+    const item = this.formItem;
+    if(item == null) { return ''; }
+    return item.uid;
+  }
+
+  private currentValue: string | null = '';
+
   public render() {
-    return <textarea type={this.type} class={this.classes} id={this.inputId} placeholder={this.placeholder} />;
+    return (
+      <textarea
+        on-input={this.handleInput}
+        id={this.uid}
+        type={this.type}
+        class={this.classes}
+        value={this.currentValue}
+        placeholder={this.placeholder}
+      />
+    );
+  }
+
+  private handleInput({ target }: Event) {
+    if(target == null) { return; }
+    if(!isTextAreaElement(target)) { return; }
+    const { value } = target;
+    this.$emit('input', value);
   }
 
   private get classes() {

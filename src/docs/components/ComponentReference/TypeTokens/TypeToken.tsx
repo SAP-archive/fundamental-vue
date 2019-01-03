@@ -1,17 +1,19 @@
 import {
-  Component,
   Prop,
+  Component,
 } from 'vue-property-decorator';
-import { PropType } from '@/api';
 import './TypeToken.css';
-import TsxComponent from '@/vue-tsx';
+import { Prop as PropType } from 'vue/types/options';
+import { TsxComponent } from '@/vue-tsx';
+
 interface Props {
-  propType: PropType;
+  propType: PropType<any>;
 }
+
 @Component({ name: 'TypeToken' })
 export class TypeToken extends TsxComponent<Props> {
   @Prop({ required: true })
-  public propType!: PropType;
+  public propType!: PropType<any>;
 
   private get classes() {
     const propType = this.propType;
@@ -31,6 +33,7 @@ export class TypeToken extends TsxComponent<Props> {
     if (typeof propType === 'string') { return propType; }
     return propType.name;
   }
+
   public render() {
     return (
       <span class={this.classes}>{this.typeName}</span>

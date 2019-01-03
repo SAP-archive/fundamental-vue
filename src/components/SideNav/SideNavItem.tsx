@@ -1,13 +1,12 @@
-import { Component, Inject, Prop } from 'vue-property-decorator';
-import { Api } from '@/api';
-import { componentName } from '@/util';
+import { Inject } from 'vue-property-decorator';
 import { SIDE_NAV, ITEM_CONTAINER, ItemContainer } from './shared';
 import { VNode } from 'vue';
 import { SideNav } from './SideNav';
-import { Icon, IconProps } from '@/mixins';
+import { IconMixin, IconProps } from '@/mixins';
 import { mixins } from 'vue-class-component';
 import { Identifier } from '@/components/Identifier';
 import { Color } from '@/lib';
+import { Component, Event, DefaultSlot, Prop } from '@/core';
 
 interface Props extends IconProps {
     isSelected?: boolean;
@@ -24,48 +23,39 @@ interface Props extends IconProps {
 // If a SideNavItem acts as a submenu use the title prop
 // Instead of the default slot for the title.
 
-@Component({
-    name: componentName('SideNavItem'),
+@Component('SideNavItem', {
     provide() {
         return {
             [ITEM_CONTAINER]: this,
         };
     },
 })
-@Api.Component('Side Nav Item')
-@Api.Event('click', 'Sent when item is clicked')
-@Api.defaultSlot('Side Nav Items displayed by the list.')
-export class SideNavItem extends mixins(Icon) implements ItemContainer {
+@Event('click', 'Sent when item is clicked')
+@DefaultSlot('Side Nav Items displayed by the list.')
+export class SideNavItem extends mixins(IconMixin) implements ItemContainer {
     // TSX Support
     public $tsxProps!: Readonly<Props>;
 
     // Props
-    @Api.Prop('whether selected', prop => prop.type(Boolean))
-    @Prop({ type: Boolean, required: false, default: false })
+    @Prop('whether selected', { type: Boolean, default: false })
     public isSelected!: boolean;
 
-    @Api.Prop('whether is subitem', prop => prop.type(Boolean))
-    @Prop({ type: Boolean, required: false, default: false })
+    @Prop('whether is subitem', { type: Boolean, default: false })
     public isSubitem!: boolean;
 
-    @Api.Prop('unique item identification', prop => prop.type(String))
-    @Prop({ type: String, required: true })
+    @Prop('unique item identification', { type: String, required: true })
     public itemId!: string;
 
-    @Api.Prop('submenu title', prop => prop.type(String))
-    @Prop({ type: String, required: false, default: null })
+    @Prop('submenu title', { type: String, default: null })
     public submenuTitle!: string | null;
 
-    @Api.Prop('accessory icon (non-standard)', prop => prop.type(String))
-    @Prop({ type: String, default: null })
+    @Prop('accessory icon (non-standard)', { type: String, default: null })
     public accessoryIcon!: string | null;
 
-    @Api.Prop('accessory icon color(non-standard)', prop => prop.type(String))
-    @Prop({ type: String, default: 'accent-6' })
+    @Prop('accessory icon color(non-standard)', { type: String, default: 'accent-6' })
     public color!: Color | null;
 
-    @Api.Prop('tooltip text(non-standard)', prop => prop.type(String))
-    @Prop({ type: String })
+    @Prop('tooltip text(non-standard)', { type: String })
     public componentText!: string | null;
 
     @Inject({ from: SIDE_NAV, default: null })

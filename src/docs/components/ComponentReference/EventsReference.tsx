@@ -2,12 +2,12 @@ import {
   Component,
   Prop,
 } from 'vue-property-decorator';
-import { ApiEvent } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { EventDocumentation } from '@/api';
 import { Table, TableColumn } from '@/components';
+import { TsxComponent } from '@/vue-tsx';
 
 interface Props {
-  events: ApiEvent[];
+  events: EventDocumentation[];
 }
 
 type TableRow = {
@@ -17,7 +17,8 @@ type TableRow = {
 
 @Component({ name: 'EventsReference' })
 export class EventsReference extends TsxComponent<Props> {
-  @Prop({ type: Array, required: true }) public events!: ApiEvent[];
+  @Prop({ type: Array, required: true })
+  public events!: EventDocumentation[];
 
   get tableData() {
     return this.events.map(({ name, description }) => {

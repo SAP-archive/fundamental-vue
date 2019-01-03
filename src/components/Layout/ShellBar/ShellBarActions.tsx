@@ -1,12 +1,8 @@
-import { Component } from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Component, DefaultSlot, Base } from '@/core';
 
-@Component({ name: componentName('ShellBarActions') })
-@Api.Component('Shell Bar Actions')
-@Api.defaultSlot('Shell Bar Action Instances')
-export class ShellBarActions extends TsxComponent<{}> {
+@Component('ShellBarActions')
+@DefaultSlot('Shell Bar Action Instances')
+export class ShellBarActions extends Base<{}> {
   public render() {
     return <div class='fd-shellbar__actions'>{this.$slots.default}</div>;
   }

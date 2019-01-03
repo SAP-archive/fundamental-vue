@@ -1,36 +1,77 @@
 import { assert } from 'chai';
-import { ApiProp } from '../ApiProp';
+import { PropDocumentation } from '../PropDocumentation';
 
 describe('a prop', () => {
-  let prop = new ApiProp({ key: 'firstName', description: 'first name' });
+  let prop!: PropDocumentation;
 
   beforeEach(() => {
-    prop = new ApiProp({ key: 'firstName', description: 'first name' });
+    prop = new PropDocumentation({ key: 'firstName' });
+  });
+
+  describe('can be converted to vue options', () => {
+    it('string type', () => {
+      const p = new PropDocumentation({ key: 'firstName' });
+      p.vueTypes = String;
+      assert.deepStrictEqual(p.vuePropOptions, {
+        required: false,
+        default: undefined,
+        type: String,
+      });
+    });
+
+    it('required any', () => {
+      const p = new PropDocumentation({ key: 'firstName' });
+      p.required = true;
+      assert.deepStrictEqual(p.vuePropOptions, {
+        required: true,
+        default: undefined,
+        type: undefined,
+      });
+    });
+
+    it('function type', () => {
+      const p = new PropDocumentation({ key: 'firstName' });
+      p.updateWithOptions({ type: Function });
+      assert.deepStrictEqual(p.vuePropOptions, {
+        required: false,
+        default: undefined,
+        type: Function,
+      });
+    });
   });
 
   it('can be updated with prop options', () => {
-    prop.updateWithPropValidator({
+    prop.updateWithOptions({
       type: String,
     });
-    assert(prop.types[0] === String);
+    const types = prop.vueTypes;
+    assert.strictEqual(types, String);
   });
+
   it('can be updated with prop options containing array types', () => {
-    prop.updateWithPropValidator({
+    prop.updateWithOptions({
       type: [Number, String],
     });
-    assert.lengthOf(prop.types, 2);
-    assert.deepStrictEqual(prop.types, [Number, String]);
+    const types = prop.vueTypes;
+    assert.isArray(types);
+    if(Array.isArray(types)) {
+      assert.lengthOf(types, 2);
+    }
+    assert.deepStrictEqual(types, [Number, String]);
   });
 
   it('can be updated with default value', () => {
-    prop.updateWithPropValidator({
+    prop.updateWithOptions({
       type: String,
       default: 'hi mom',
+      readableDefaultValue: 'hi mom',
     });
-    assert.deepStrictEqual(prop.defaultValue, 'hi mom');
+    assert.strictEqual(prop.defaultValue, 'hi mom');
+    assert.strictEqual(prop.readableDefaultValue, 'hi mom');
   });
+
   it('can be updated with required flag', () => {
-    prop.updateWithPropValidator({
+    prop.updateWithOptions({
       type: String,
       required: true,
     });

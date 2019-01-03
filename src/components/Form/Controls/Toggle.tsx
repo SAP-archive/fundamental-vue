@@ -1,14 +1,10 @@
 import {
-  Component,
-  Prop,
   Inject,
-  Model,
   Watch,
 } from 'vue-property-decorator';
-import { Api } from '@/api';
-import { componentName } from '@/util';
 import { ItemIdentification } from './../Types/ItemIdentification';
-import TsxComponent from '@/vue-tsx';
+import { Model, Component, Prop, Base } from '@/core';
+import { FormItem, FORM_ITEM_KEY } from './../FormItem';
 
 interface Props {
   id?: string | null;
@@ -25,35 +21,37 @@ const sizeMapping = {
 type ToggleSize = keyof (typeof sizeMapping);
 const ToggleSizes = Object.keys(sizeMapping) as ToggleSize[];
 
-@Component({ name: componentName('Toggle') })
-@Api.Component('Toggle')
-export class Toggle extends TsxComponent<Props> {
-  @Api.Prop('id', prop => prop.type(String))
-  @Prop({ required: false, default: null, type: String })
-  public id!: string | null;
+@Component('Toggle')
+export class Toggle extends Base<Props> {
+  public mounted() {
+    const item = this.formItem;
+    if(item == null) { return; }
+    item.setCheck(true);
+  }
 
-  @Api.Prop('size class', prop => prop.type(String).acceptValues(...ToggleSizes))
-  @Prop({ type: String, default: null, required: false })
+  @Inject({ from: FORM_ITEM_KEY, default: null}) public formItem!: FormItem | null;
+  private get uid(): string {
+    const item = this.formItem;
+    if(item == null) { return ''; }
+    return item.uid;
+  }
+
+  @Prop('size class', { acceptableValues: ToggleSizes,  type: String, default: null })
   public size!: ToggleSize | null;
 
-  @Api.Prop('label', prop => prop.type(String))
-  @Prop({ type: String, default: null, required: false })
-  public label!: string | null;
-
-  @Api.Prop('whether toggle is disabled', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false, required: false })
+  @Prop('whether toggle is disabled', { type: Boolean, default: false })
   public disabled!: boolean;
 
-  @Api.Prop('whether toggle is checked', prop => prop.type(Boolean))
-  @Model('input', { default: false, type: Boolean })
+  @Model('whether toggle is checked', { event: 'input', default: false, type: Boolean })
   public on!: boolean;
 
-  private currentOn = this.on || false;
+  private currentOn = this.on;
 
-  @Inject({ default: null }) public itemIdentificationProvider!: ItemIdentification | null;
+  @Inject({ default: null })
+  public itemIdentificationProvider!: ItemIdentification | null;
 
-  get inputId(): string | null {
-    const id = this.id;
+  private get inputId(): string | null {
+    const id = this.uid;
     if (id != null) { return id; }
     const provider = this.itemIdentificationProvider;
     if (provider != null) {
@@ -86,8 +84,6 @@ export class Toggle extends TsxComponent<Props> {
   public render() {
     const disabled = this.disabled ? true : null;
     return (
-      <div class='fd-form__item fd-form__item--check'>
-        <label class='fd-form__label' for={this.inputId}>
           <span class={this.classes}>
             <input
               type='checkbox'
@@ -98,9 +94,6 @@ export class Toggle extends TsxComponent<Props> {
             />
             <span class='fd-toggle__switch' role='presentation' />
           </span>
-          {this.label}
-        </label>
-      </div>
     );
   }
 }

@@ -1,7 +1,7 @@
-import { ApiCollection } from './api';
+import { FrameworkDocumentation } from './api';
 
 declare module 'vue/types/vue' {
   interface VueConstructor {
-    $apiCollection?: ApiCollection;
+    $apiCollection?: FrameworkDocumentation;
   }
 }

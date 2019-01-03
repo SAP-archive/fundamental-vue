@@ -1,12 +1,10 @@
-import { Component, Prop, Watch } from 'vue-property-decorator';
-import { Api } from '@/api';
+import { Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
-import { Uid } from '@/mixins';
+import { UidMixin } from '@/mixins';
 import { Input, InputGroup } from '../Form';
-import { componentName } from '@/util';
-import { ClickAwayContainer } from '../ClickAwayContainer';
 import { Popover } from '../Popover';
 import { Button } from '../Button';
+import { Component, Event, Prop } from '@/core';
 
 interface Props {
     uid?: string;
@@ -17,33 +15,20 @@ interface Props {
     compact?: boolean;
 }
 
-@Component({
-    name: componentName('SearchInput'),
-    components: {
-        Input,
-        InputGroup,
-        ClickAwayContainer,
-    },
-})
-
-@Api.Component('Search Input')
-@Api.Event('search', 'Triggered when the search button is clicked or enter is pressed from the keyboard.')
-@Api.Event('autoComplete', 'Trigerred when the value in the SearchInput is changed. \n NOTE: This event will get trigerred only if there are children components in the suggestion.')
-export class SearchInput extends mixins(Uid) {
-    @Api.Prop('Value set in the Search Input', prop => prop.type(String))
-    @Prop({ default: '', required: false, type: String })
+@Component('SearchInput')
+@Event('search', 'Triggered when the search button is clicked or enter is pressed from the keyboard.')
+@Event('autoComplete', 'Trigerred when the value in the SearchInput is changed. \n NOTE: This event will get trigerred only if there are children components in the suggestion.')
+export class SearchInput extends mixins(UidMixin) {
+    @Prop('Value set in the Search Input', { default: '', type: String })
     public value!: string;
 
-    @Api.Prop('Placeholder in case the SearchInput is empty', prop => prop.type(String))
-    @Prop({ type: String, default: '', required: false })
+    @Prop('Placeholder in case the SearchInput is empty', { type: String, default: '' })
     public placeholder!: string;
 
-    @Api.Prop('Aria Label', prop => prop.type(String))
-    @Prop({ type: String, default: 'Search Input', required: false })
+    @Prop('Aria Label', { type: String, default: 'Search Input' })
     public ariaLabel!: string;
 
-    @Api.Prop('whether search input is compact', prop => prop.type(Boolean))
-    @Prop({ type: Boolean, default: false })
+    @Prop('whether search input is compact', { type: Boolean, default: false })
     public compact!: boolean;
 
     public $tsxProps!: Readonly<{}> & Readonly<Props>;

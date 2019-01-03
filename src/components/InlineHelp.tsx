@@ -1,10 +1,4 @@
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
-import {
-  Component,
-  Prop,
-} from 'vue-property-decorator';
+import { Component, DefaultSlot, Prop, Base } from '@/core';
 
 const positionMapping = {
   left: 'Left of icon',
@@ -20,16 +14,13 @@ interface Props {
   position?: Position;
 }
 
-@Component({ name: componentName('InlineHelp') })
-@Api.Component('Inline Help')
-@Api.defaultSlot('Helpful Text')
-export class InlineHelp extends TsxComponent<Props> {
-  @Prop({ type: String, required: false, default: 'right' })
-  @Api.Prop('location of inline help relative to icon', prop => prop.type(String).acceptValues(...Positions))
+@Component('InlineHelp')
+@DefaultSlot('Helpful Text')
+export class InlineHelp extends Base<Props> {
+  @Prop('location of inline help relative to icon', { acceptableValues: Positions, type: String, default: 'right' })
   public position!: Position;
 
-  @Prop({ type: Boolean, required: false, default: false })
-  @Api.Prop('whether the inline help is displayed adjacent to the icon', prop => prop.type(Boolean))
+  @Prop('whether the inline help is displayed adjacent to the icon', { type: Boolean, default: false })
   public inline!: boolean;
 
   public render() {
