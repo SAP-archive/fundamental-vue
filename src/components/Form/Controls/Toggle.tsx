@@ -36,7 +36,7 @@ export class Toggle extends Base<Props> {
   @Model('whether toggle is checked', { event: 'input', default: false, type: Boolean })
   public on!: boolean;
 
-  private currentOn: boolean = false;
+  private currentOn: boolean = this.on;
 
   @Watch('on', {immediate: true})
   public onChanged(newValue: boolean) {
