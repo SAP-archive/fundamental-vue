@@ -1,8 +1,6 @@
 import { mixins } from 'vue-class-component';
 import { UidMixin } from '@/mixins';
-import { Popover } from '@/components/Popover';
-import { Button } from '@/components/Button';
-import { Input, InputGroup } from '@/components/Form';
+import { MenuItem, Button, Popover, Input, InputGroup } from '@/components';
 import { Component, Event, Prop } from '@/core';
 
 interface Props {
@@ -41,14 +39,14 @@ export class Combobox extends mixins(UidMixin) {
   public $tsxProps!: Readonly<{}> & Readonly<Props>;
 
   private currentPopoverVisible: boolean = this.popoverVisible;
-  private currentValue: string | null = this.value;
+  private currentValue: string | number | null = this.value;
 
   public togglePopoverVisible() {
     this.currentPopoverVisible = !this.currentPopoverVisible;
     this.$emit('update:currentPopoverVisible', this.currentPopoverVisible);
   }
 
-  private setCurrentValue(newValue: string | null) {
+  private setCurrentValue(newValue: string | number | null) {
     this.currentValue = newValue;
     this.$emit('input', this.currentValue);
     this.$emit('update:value', this.currentValue);
@@ -63,13 +61,24 @@ export class Combobox extends mixins(UidMixin) {
     }
   }
 
+  private handleMenuItemClick(item: MenuItem) {
+    this.setCurrentValue(item.value);
+  }
+
   public render() {
     const dropdown = this.$slots.default;
     return (
       <div class='fd-combobox-input'>
-        <Popover noArrow={true} popoverVisible={this.currentPopoverVisible}>
+        <Popover
+          on-click={this.handleMenuItemClick}
+          noArrow={true}
+          popoverVisible={this.currentPopoverVisible}
+        >
           <div class='fd-combobox-control' slot='control'>
-            <InputGroup compact={this.compact} afterClass={'fd-input-group__addon--button'}>
+            <InputGroup
+              compact={this.compact}
+              afterClass='fd-input-group__addon--button'
+            >
               <Input
                 id={this.uid}
                 value={this.value}
