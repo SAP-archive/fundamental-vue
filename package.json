@@ -1,6 +1,22 @@
 {
     "name": "fundamental-vue",
     "version": "0.0.6-beta",
+    "description": "Fundamental Vue is a light-weight Vue.js component library for SAP Fiori Fundamentals.",
+    "keywords": [
+        "vue",
+        "sap",
+        "fiori",
+        "typescript",
+        "javascript"
+    ],
+    "bugs": {
+        "url": "https://github.com/SAP/fundamental-vue/issues"
+    },
+    "author": "SAP SE",
+    "repository": {
+        "type": "git",
+        "url": "git+git@github.com:SAP/fundamental-vue.git"
+    },
     "private": false,
     "homepage": "https://github.com/SAP/fundamental-vue",
     "scripts": {
@@ -15,6 +31,7 @@
         "lint:fix": "npm run lint -- --fix",
         "deploy": "node ./node_modules/vue-gh-pages/index.js"
     },
+    "license": "Apache-2.0",
     "main": "dist/fundamentalvue.umd.js",
     "dependencies": {
         "fiori-fundamentals": "^1.4.1",
