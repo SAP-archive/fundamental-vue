@@ -129,23 +129,9 @@ export class Pagination extends TsxComponent<Props> {
     }
   }
 
-  public mounted() {
-    const pagination = document.getElementById('fd-pagination');
-    if (pagination) {
-      pagination.addEventListener('keydown', this.keyHandler);
-    }
-  }
-
-  public destroyed() {
-    const pagination = document.getElementById('fd-pagination');
-    if (pagination) {
-      pagination.removeEventListener('keydown', this.keyHandler);
-    }
-  }
-
   public render() {
     return (
-      <div class='fd-pagination' id='fd-pagination'>
+      <div class='fd-pagination' on-keydown={this.keyHandler}>
       {this.displayTotal ? (
         <span class='fd-pagination__total'>
           {this.itemsTotal} {this.totalText || 'items'}
