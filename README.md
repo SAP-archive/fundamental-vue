@@ -4,9 +4,19 @@
       </a>
 </p>
 
+<p align="center">
+      <a href="https://travis-ci.org/SAP/fundamental-vue">
+            <img src="https://travis-ci.org/SAP/fundamental-vue.svg?branch=develop" alt="Build Status">
+      </a>
+</p>
+
 Fundamental-Vue is a light-weight Vue.JS component library for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental).
 
-**[Component Documentation](https://dist-lg4xtfik7.now.sh)**
+<p align="center">
+:open_book:
+<strong><a href="https://dist-lg4xtfik7.now.sh">Component Documentation</a></strong>
+:open_book:
+</p>
 
 ## Current Version
 
@@ -16,7 +26,7 @@ Fundamental-Vue is a light-weight Vue.JS component library for [SAP Fiori Fundam
 
 ## Description
 
-Fundamental Vue is a light-weight set of [Vue.JS](https://vuejs.org/) components implementation of [SAP Fiori Fundamentals library](https://sap.github.io/fundamental/). SAP Fiori Fundamentals library is a Design System and HTML/CSS Component Library used to build modern Product User Experiences with the SAP look and feel. This will allow you to stay/use Vue.js for your application and get SAP look and feel.
+Fundamental Vue is a light-weight set of [Vue.js](https://vuejs.org/) components implementation of [SAP Fiori Fundamentals library](https://sap.github.io/fundamental/). SAP Fiori Fundamentals library is a Design System and HTML/CSS Component Library used to build modern Product User Experiences with the SAP look and feel. This will allow you to stay/use Vue.js for your application and get SAP look and feel.
 Fundamental Vue is open for contribution as long as you follow certain [rules/guidelines](./CONTRIBUTING.md).
 
 The library is currently in a Beta version and it is under development. The progress can be seen [here](https://github.com/SAP/fundamental-vue/projects/1)
