@@ -24,6 +24,16 @@ export class Tabs extends Base<Props> implements TabItemContainer {
   }
   private tabItems: TabItem[] = [];
 
+  private keyHandlers(event: any, item: TabItem) {
+    if (event) {
+      const e = event as KeyboardEvent;
+      const key = e.key;
+      if (key === 'Enter') {
+        this.tabItemClicked(item);
+      }
+    }
+  }
+
   public render() {
     const tabItems = this.tabItems;
     return (
@@ -38,6 +48,8 @@ export class Tabs extends Base<Props> implements TabItemContainer {
                 aria-disabled={tabItem.disabled}
                 role='tab'
                 on-click={() => this.tabItemClicked(tabItem)}
+                tabIndex={0}
+                on-keydown={()=>this.keyHandlers(event, tabItem)}
               >
                 {tabItem.label}
               </a>
