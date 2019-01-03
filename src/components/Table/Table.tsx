@@ -79,7 +79,7 @@ export class Table<D extends TableData> extends Base<Props<D>> implements Column
   }
 
   @Watch('columns', { immediate: true, deep: true })
-  public onColumnsChanged(newColumns) {
+  public onColumnsChanged() {
     this.$forceUpdate();
   }
 

@@ -39,8 +39,9 @@ export class SideNavLink extends Base<Props> {
   }
 
   public render() {
+    const attrs: { [key: string]: any } = {};
     const attributes = {
-      attrs: {},
+      attrs,
     };
     if(this.mode === 'router') {
       attributes.attrs['exact-active-class'] = 'is-selected';

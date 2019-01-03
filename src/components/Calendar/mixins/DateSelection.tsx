@@ -20,9 +20,9 @@ export class DateSelectionMixin extends Base<Props> {
   public selection!: Date[];
   private currentDateSelection = this.selection;
 
-  @Watch('selection', { immediate: true})
-  public handleNewSelection(newVal) {
-    this.currentDateSelection = newVal;
+  @Watch('selection', { immediate: true })
+  public handleNewSelection(newSelection: Date[]) {
+    this.currentDateSelection = newSelection;
   }
 
   public resetSelection() {

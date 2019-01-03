@@ -24,7 +24,7 @@ export class Modal extends Base<Props> {
   private isActive = this.active;
 
   @Watch('active', { immediate: true })
-  public didChangeActive(value) {
+  public didChangeActive(value: boolean) {
     this.isActive = value;
   }
 

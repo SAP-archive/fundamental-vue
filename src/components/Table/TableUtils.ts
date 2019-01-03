@@ -22,7 +22,7 @@ export type RenderCellRequest<D> = {
   isSelected: boolean;
 };
 export const compareValues = <D extends TableData>(key: keyof D, order: SortOrder) => {
-  return (a, b): number => {
+  return (a: D, b: D): number => {
     if (!(key in a) || !(key in b)) {
       // Property [key] does not exist on a and/or b.
       return 0;

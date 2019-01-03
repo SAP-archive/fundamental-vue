@@ -109,7 +109,11 @@ export const Prop = (
       prop.vue.required = propRequired(nameOrDefinition, definition);
       prop.acceptableValues = acceptableValues(nameOrDefinition, definition);
       prop.readableDefaultValue = readableDefaultValue(nameOrDefinition, definition);
-      (componentOptions.props || (componentOptions.props = {}))[ivarName] = prop.vuePropOptions;
+      const props = componentOptions.props || {};
+      componentOptions.props = {
+        [ivarName]: prop.vuePropOptions,
+        ...props,
+      };
     });
   });
 };

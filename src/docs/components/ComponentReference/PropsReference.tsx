@@ -3,11 +3,10 @@ import {
   Component,
 } from 'vue-property-decorator';
 import './PropsReference.css';
-import { PropDocumentation } from '@/api';
+import { PropDocumentation, PropType } from '@/api/Model/PropDocumentation';
 import { Table, TableColumn } from '@/components';
 import { ValueToken } from './ValueToken';
 import { TypeTokens } from './TypeTokens';
-import { Prop as PropType } from 'vue/types/options';
 import { TsxComponent } from '@/vue-tsx';
 
 interface Props {
@@ -18,10 +17,12 @@ type TableRow = {
   name: string;
   description: string;
   acceptedValues: string; // formatted
-  types: PropType<any> | Array<PropType<any>>;
+  types: PropType[];
   defaultValue: any | undefined;
   required: boolean;
 };
+
+type TableRowScope = { row: TableRow; };
 
 @Component({ name: 'PropsReference' })
 export class PropsReference extends TsxComponent<Props> {
@@ -32,7 +33,7 @@ export class PropsReference extends TsxComponent<Props> {
     return this.apiProps.map(prop => {
       const defaultValue = prop.readableDefaultValue || prop.defaultValue || undefined;
       const acceptedValues = prop.formattedAcceptedValues;
-      const types = prop.vue.type || [];
+      const types = prop.types;
       return {
         name: prop.key,
         description: prop.description,
@@ -47,12 +48,12 @@ export class PropsReference extends TsxComponent<Props> {
   public render() {
     const typeColAttr = {
       scopedSlots: {
-        default: scope => [<TypeTokens key={scope.row.name} propTypes={scope.row.types} />],
+        default: (scope: TableRowScope) => [<TypeTokens key={scope.row.name} propTypes={scope.row.types} />],
       },
     };
     const nameColAttr = {
       scopedSlots: {
-        default: scope => ([(
+        default: (scope: TableRowScope) => ([(
           <div key={scope.row.name}>
             {scope.row.name}
             {scope.row.required && <span class='api-props__required'>required</span>}
@@ -62,7 +63,7 @@ export class PropsReference extends TsxComponent<Props> {
     };
     const defaultValueColAttr = {
       scopedSlots: {
-        default: scope => [<ValueToken key={scope.row.name} representedValue={scope.row.defaultValue} />],
+        default: (scope: TableRowScope) => [<ValueToken key={scope.row.name} representedValue={scope.row.defaultValue} />],
       },
     };
 

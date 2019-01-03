@@ -19,7 +19,7 @@ export class Tabs extends Base<Props> implements TabItemContainer {
   public value!: string | null;
 
   @Watch('value', { immediate: true })
-  public handleNewValue(newValue) {
+  public handleNewValue(newValue: string | null) {
     this.activeName = newValue;
   }
   private tabItems: TabItem[] = [];
