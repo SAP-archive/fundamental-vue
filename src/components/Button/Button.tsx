@@ -8,6 +8,7 @@ interface Props {
   icon?: string | null;
   compact?: boolean;
   state?: ButtonState;
+  size?: ButtonSize;
 }
 
 // Styles
@@ -36,6 +37,14 @@ const stateMapping = {
 };
 export type ButtonState = keyof (typeof stateMapping);
 export const ButtonStates = Object.keys(stateMapping) as ButtonState[];
+
+// Button Sizes
+const sizeMapping = {
+  xs: 'XS Sized Button',
+  standard: 'Standard Button Size',
+};
+export type ButtonSize = keyof (typeof sizeMapping);
+export const ButtonSizes = Object.keys(sizeMapping) as ButtonSize[];
 
 @Component('Button')
 @Event('click', 'Sent when button is clicked')
@@ -68,6 +77,13 @@ export class Button extends Base<Props> {
   })
   public state!: ButtonState;
 
+  @Prop('button size', {
+    acceptableValues: ButtonSizes,
+    default: 'standard',
+    type: String,
+  })
+  public size!: ButtonSize;
+
   public get isGrouped(): boolean {
     return this.buttonContainer != null;
   }
@@ -75,7 +91,7 @@ export class Button extends Base<Props> {
   @Inject({ default: null }) private buttonContainer!: ButtonContainer | null;
 
   private click(event: Event) {
-    if(this.state === 'disabled') {
+    if (this.state === 'disabled') {
       event.stopImmediatePropagation();
       return;
     }
@@ -148,6 +164,10 @@ export class Button extends Base<Props> {
       // State
       'is-selected': this.state === 'selected',
       'is-disabled': this.state === 'disabled',
+
+      // Size
+      'fd-button--xs': this.size === 'xs',
+
     };
   }
 }
