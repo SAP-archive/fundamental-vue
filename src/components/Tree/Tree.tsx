@@ -24,10 +24,10 @@ export interface Props {
 @Component('Tree')
 @DefaultSlot('Tree Content')
 export class Tree extends Base<Props> {
-  @Prop('headers of the tree', { type: Array, required: true })
+  @Prop('headers of the tree', Array)
   public headers!: string[];
 
-  @Prop('data of the tree', { type: Array, required: true })
+  @Prop('data of the tree', Array)
   public treeData!: Node[];
 
   public iStates: boolean[] = [];
