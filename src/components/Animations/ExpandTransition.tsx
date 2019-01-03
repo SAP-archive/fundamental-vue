@@ -77,12 +77,12 @@ export class ExpandTransition extends Vue {
     return (
       <transition
         name={'expand'}
-        on-after-leave={element => this.afterLeave(element)}
-        on-leave={element => this.leave(element)}
-        on-before-leave={element => this.beforeLeave(element)}
-        on-after-enter={element => this.afterEnter(element)}
-        on-enter={element => this.enter(element)}
-        on-before-enter={element => this.beforeEnter(element)}
+        on-after-leave={(element: HTMLElement) => this.afterLeave(element)}
+        on-leave={(element: HTMLElement) => this.leave(element)}
+        on-before-leave={(element: HTMLElement) => this.beforeLeave(element)}
+        on-after-enter={(element: HTMLElement) => this.afterEnter(element)}
+        on-enter={(element: HTMLElement) => this.enter(element)}
+        on-before-enter={(element: HTMLElement) => this.beforeEnter(element)}
       >
         {this.$slots.default}
       </transition>

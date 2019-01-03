@@ -5,6 +5,7 @@ import {
 import { ItemIdentification } from './../Types/ItemIdentification';
 import { Model, Component, Prop, Base } from '@/core';
 import { FormItem, FORM_ITEM_KEY } from './../FormItem';
+import { isInputElement } from './Helper';
 
 interface Props {
   id?: string | null;
@@ -61,14 +62,19 @@ export class Toggle extends Base<Props> {
   }
 
   @Watch('on', { immediate: true})
-  public onChanged(value) {
-    this.currentOn = value;
+  public onChanged(on: boolean) {
+    this.currentOn = on;
   }
 
-  private onChange(event) {
-    const checked = event.target.checked;
-    this.currentOn = checked;
-    this.$emit('input', this.currentOn);
+  private onChange({ target }: Event) {
+    if(target == null) {
+      return;
+    }
+    if(isInputElement(target)) {
+      const checked = target.checked;
+      this.currentOn = checked;
+      this.$emit('input', this.currentOn);
+    }
   }
 
   private get classes() {

@@ -14,9 +14,10 @@ type EventType = [/* name */ string, EventParameterType];
 
 export const Slot = (slotName: string, description: string = '') => {
   return createDecorator(options => {
-    withComponentDocumentation(options, documentation => {
+    const documentation = componentDocumentationFromOptions(options);
+    if(documentation != null) {
       documentation.addSlot(new SlotDocumentation(slotName, description));
-    });
+    }
   });
 };
 
@@ -27,13 +28,18 @@ type DocModelOptions = PropOptions & {
 
 export const Model = (propDescription: string, options: DocModelOptions) => {
   return createDecorator((componentOptions, propKey) => {
-    (componentOptions.props || (componentOptions.props = {}))[propKey] = options;
-    withComponentDocumentation(componentOptions, documentation => {
+    const documentation = componentDocumentationFromOptions(componentOptions);
+    if(documentation != null) {
+      const props = componentOptions.props || {};
       const prop = documentation.getProp(propKey);
       prop.updateWithOptions(options);
       prop.description = propDescription;
+      componentOptions.props = {
+        [propKey]: prop.vuePropOptions,
+        ...props,
+      };
       componentOptions.model = { prop: propKey, event: options.event };
-    });
+    }
   });
 };
 
@@ -43,41 +49,43 @@ export const DefaultSlot = (description: string) => {
 
 export const Mixins = (...mixins: TsxComponentType[]) => {
   return createDecorator(options => {
-    withComponentDocumentation(options, documentation => {
+    const documentation = componentDocumentationFromOptions(options);
+    if(documentation != null) {
       mixins.forEach(mixin => {
         documentation.addMixin(mixin.name);
       });
-    });
+    }
   });
 };
 
 export const Event = (eventName: string, description: string, parameter?: EventType) => {
   return createDecorator(options => {
-    withComponentDocumentation(options, documentation => {
+    const documentation = componentDocumentationFromOptions(options);
+    if(documentation != null) {
       documentation.addEvent(new EventDocumentation(eventName, description, parameter));
-    });
+    }
   });
 };
 
-type ComponentDocumentationCB = (documentation: ComponentDocumentation) => (void);
-const withComponentDocumentation = (options: ComponentOptions<any>, cb: ComponentDocumentationCB) => {
+const componentDocumentationFromOptions = (options: ComponentOptions<any>, componentName?: string): ComponentDocumentation | undefined => {
   if(!apiDocsEnabled) {
-    return;
+    return undefined;
   }
 
-  const componentName = options.componentName || options.name;
-  if(componentName == null) {
-    return;
+  const resultingName = componentName || options.componentName || options.name;
+  if(resultingName == null) {
+    return undefined;
   }
-  const documentation = options.$componentDocumentation || new ComponentDocumentation(componentName);
+  const documentation = options.$componentDocumentation || new ComponentDocumentation(resultingName);
   options.$componentDocumentation = documentation;
-  cb(documentation);
+  return documentation;
 };
 
 type Diff<T, U> = T extends U ? never : T;
 type OptionsWithoutName<V extends Vue> = Diff<ComponentOptions<V>, { componentName: string; name: string}>;
 
-export const Component = <V extends Vue>(name: string, options: OptionsWithoutName<V> = { componentName: name}) => {
+export const Component = <V extends Vue>(name: string, options: OptionsWithoutName<V> = { componentName: name }) => {
   const prefixedName = `Fd${name}`;
+  componentDocumentationFromOptions(options, name); // we need this because as a side effect this call generates the component documentation
   return VueComponent({ ...options, name: prefixedName, componentName: prefixedName});
 };

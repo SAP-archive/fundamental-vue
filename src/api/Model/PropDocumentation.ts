@@ -9,7 +9,7 @@ export type PropType =
   | BooleanConstructor
   | ArrayConstructor
   | DateConstructor
-  | { new (...args: any[]): any & object }
+  | (new (...args: any[]) => any & object)
   | (() => any)
   ;
 

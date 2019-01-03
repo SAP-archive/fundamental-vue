@@ -15,6 +15,8 @@ type TableRow = {
   description: string;
 };
 
+type TableRowScope = { row: TableRow; };
+
 @Component({ name: 'SlotsReference' })
 export class SlotsReference extends TsxComponent<Props> {
   @Prop({ type: Array, required: true })
@@ -32,7 +34,7 @@ export class SlotsReference extends TsxComponent<Props> {
   public render() {
     const nameColAttr = {
       scopedSlots: {
-        default: scope => {
+        default: (scope: TableRowScope) => {
           const name = scope.row.name;
           if(name === '') {
             return [(<span style='color: rgb(200, 200, 200);'>default</span>)];
