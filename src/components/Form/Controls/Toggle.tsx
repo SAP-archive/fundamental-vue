@@ -1,6 +1,5 @@
 import {
   Inject,
-  Watch,
 } from 'vue-property-decorator';
 import { ItemIdentification } from './../Types/ItemIdentification';
 import { Model, Component, Prop, Base } from '@/core';
@@ -52,15 +51,18 @@ export class Toggle extends Base<Props> {
     return null;
   }
 
-  @Watch('on', { immediate: true})
-  public onChanged(value) {
-    this.currentOn = value;
-  }
-
-  private onChange(event) {
+  private onChange(event: any) {
     const checked = event.target.checked;
     this.currentOn = checked;
     this.$emit('input', this.currentOn);
+  }
+
+  private keyHandlers(key: KeyboardEvent) {
+    const code = key.code;
+    if (code === 'Enter') {
+      this.currentOn = !this.currentOn;
+      this.$emit('input', this.currentOn);
+    }
   }
 
   private get classes() {
@@ -82,6 +84,7 @@ export class Toggle extends Base<Props> {
             <input
               type='checkbox'
               on-change={this.onChange}
+              on-keydown={this.keyHandlers}
               disabled={disabled}
               id={this.inputId}
               checked={this.currentOn}
