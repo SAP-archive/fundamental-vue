@@ -1,5 +1,5 @@
 import {
-  Inject,
+  Inject, Watch,
 } from 'vue-property-decorator';
 import { ItemIdentification } from './../Types/ItemIdentification';
 import { Model, Component, Prop, Base } from '@/core';
@@ -36,7 +36,12 @@ export class Toggle extends Base<Props> {
   @Model('whether toggle is checked', { event: 'input', default: false, type: Boolean })
   public on!: boolean;
 
-  private currentOn = this.on;
+  private currentOn: boolean = false;
+
+  @Watch('on', {immediate: true})
+  public onChanged(newValue: boolean) {
+    this.currentOn = this.on;
+  }
 
   @Inject({ default: null })
   public itemIdentificationProvider!: ItemIdentification | null;
