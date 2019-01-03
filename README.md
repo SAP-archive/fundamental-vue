@@ -5,7 +5,10 @@
 </p>
 
 <p align="center">
-      <p>Fundamental-Vue is a light-weight Vue.JS component library for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental).</p>
+      Fundamental Vue is a light-weight Vue.js component library for <a href="https://github.com/SAP/fundamental">SAP Fiori Fundamentals</a>.
+</p>
+
+<p align="center">
       <a href="https://travis-ci.org/SAP/fundamental-vue">
             <img src="https://travis-ci.org/SAP/fundamental-vue.svg?branch=develop" alt="Build Status">
       </a>
