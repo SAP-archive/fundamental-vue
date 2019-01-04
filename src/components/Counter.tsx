@@ -1,4 +1,4 @@
-import { Base, Prop, DefaultSlot, Component } from '@/core';
+import { Base, Prop, Component } from '@/core';
 
 const typeMapping = {
   info: 'info',
@@ -15,7 +15,6 @@ export interface Props {
 }
 
 @Component('Counter')
-@DefaultSlot('Text displayed inside the counter.')
 export class Counter extends Base<Props> {
   @Prop('built-in counter type', {
     type: String,
