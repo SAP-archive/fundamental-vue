@@ -1,20 +1,22 @@
 import {
   Component,
   Prop,
+  Watch,
 } from 'vue-property-decorator';
 import { componentName } from '@/util';
 import { Api } from '@/api';
 import TsxComponent from '@/vue-tsx';
+import { shortUuid } from '@/lib/uuid';
 
 type Node = {
   columns: any[];
-  children?: Node[] | [];
+  children?: Node[];
 };
 
 type NodeWithId = {
   id: string;
   columns: any[];
-  children?: NodeWithId[] | [];
+  children?: NodeWithId[];
 };
 
 type LinkNode = {
@@ -37,22 +39,24 @@ export class Tree extends TsxComponent<Props> {
   @Api.Prop('data of the tree', prop => prop.type('Array<Node>'))
   @Prop({ type: Array, required: true })
   public treeData!: Node[];
-  public iStates: boolean[] = [];
+  private iStates: boolean[] = [];
   private expandAllClicked: boolean = false;
-  public numberOfElements: number = 0;
-  public treeDataWithIds: NodeWithId[] = [];
+  private numberOfElements: number = 0;
+  private treeDataWithIds: NodeWithId[] = [];
+  public controlId = shortUuid();
+  public treeId = shortUuid();
   // to change each Node to NodeWithId with id=0
   // TODO: change id from string to number
-  private initializeTreeDataWithIds(treeData: Node[]) {
+  private initializeTreeDataWithIds(treeData: Node[]): NodeWithId[] {
     const treeDataWithIds = treeData.map(n => {
-      let children = n.children || [];
-      if (children && children.length) {
-        children = this.initializeTreeDataWithIds(children);
+      let children: NodeWithId[] = [];
+      if (n.children && n.children.length) {
+        children = this.initializeTreeDataWithIds(n.children);
       }
       if (children && children.length) {
-        return {id:String(0), children, columns: n.columns} as NodeWithId;
+        return {id:String(0), children, columns: n.columns};
       } else {
-        return {id:String(0), columns: n.columns} as NodeWithId;
+        return {id:String(0), columns: n.columns};
       }
     });
     return treeDataWithIds;
@@ -110,7 +114,7 @@ export class Tree extends TsxComponent<Props> {
                     <button
                         class='fd-tree__control'
                         aria-label='expand'
-                        aria-controls='inYUX852'
+                        aria-controls={this.controlId}
                         onClick={() => this.updateVisibility(row.id)}
                         aria-pressed={this.iStates[row.id]}
                     />
@@ -123,7 +127,7 @@ export class Tree extends TsxComponent<Props> {
                   <button
                       class='fd-tree__control'
                       aria-label='expand'
-                      aria-controls='inYUX852'
+                      aria-controls={this.controlId}
                       onClick={() => this.updateVisibility(row.id)}
                       aria-pressed={this.iStates[row.id]}
                   />
@@ -203,25 +207,17 @@ export class Tree extends TsxComponent<Props> {
     // return the whole
     return trees;
   }
-  public created() {
-    // to assign arbitrary ids
-    this.treeDataWithIds = this.initializeTreeDataWithIds(this.treeData);
-    // to assign correct ids
-    this.assignIds(this.treeDataWithIds);
-    this.iStates = [...Array(this.numberOfElements).keys()].map(() => false);
+
+  @Watch('treeData', {immediate: true})
+  public onchanged() {
+      // to assign arbitrary ids
+      this.treeDataWithIds = this.initializeTreeDataWithIds(this.treeData);
+      // to assign correct ids
+      this.assignIds(this.treeDataWithIds);
+      this.iStates = Array.from({length: this.numberOfElements}).map(() => false);
   }
+
   public render() {
-    // if (this.numberOfElements === 0 && this.hasInitialized === false) {
-    //   console.log('initialize');
-    //   // to assign arbitrary ids
-    //   this.treeDataWithIds = this.initializeTreeDataWithIds(this.treeData);
-    //   console.log(this.treeDataWithIds);
-    //   // to assign correct ids
-    //   this.assignIds(this.treeDataWithIds);
-    //   this.iStates = [...Array(this.numberOfElements).keys()].map(() => false);
-    //   console.log(this.iStates);
-    //   this.hasInitialized = true;
-    // }
     return (
       <div>
         <div class='fd-tree fd-tree--header'>
@@ -251,7 +247,7 @@ export class Tree extends TsxComponent<Props> {
                 })}
             </div>
         </div>
-        <ul class='fd-tree' id='tWsod582' role='tree'>
+        <ul class='fd-tree' id={this.treeId} role='tree'>
           {this.createTreeList(this.treeDataWithIds, false, 0)}
         </ul>
       </div>

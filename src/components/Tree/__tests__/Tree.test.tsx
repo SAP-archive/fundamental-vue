@@ -53,33 +53,33 @@ describe('Tree', () => {
   };
 
   const tree = mount(Tree, { propsData });
-  const vm = tree.vm;
   const buttons = tree.findAll('button');
+  let nodes = tree.findAll('li');
   const buttonToExpandAll = buttons.at(0);
 
   it('the initial state', () => {
-    // have 4 elements in headers
-    assert.lengthOf(vm.headers, 4);
-    // have 4 direct children in treeData
-    assert.lengthOf(vm.treeData, 4);
-    // total 11 tree nodes are rendered
-    assert.equal(vm.numberOfElements, 11);
-    assert.lengthOf(vm.iStates, 11);
+    // have 4 nodes in the tree without any one is expanded
+    assert.lengthOf(nodes, 4);
   });
 
   it('expand all children nodes', () => {
     assert.lengthOf(buttons, 4);
     buttonToExpandAll.trigger('click');
-    assert(vm.iStates.every(w => true), 'Every node is collapsed');
+    nodes = tree.findAll('li');
+    assert.lengthOf(nodes, 11);
     buttonToExpandAll.trigger('click');
+    nodes = tree.findAll('li');
+    assert.lengthOf(nodes, 4);
   });
 
-  it('collapse and close the first direct child', () => {
+  it('expand and collapse  the first direct child', () => {
     const buttonToExpandFirstChild = buttons.at(1);
     buttonToExpandFirstChild.trigger('click');
-    assert.equal(vm.iStates[0], true);
+    nodes = tree.findAll('li');
+    assert.lengthOf(nodes, 6);
     buttonToExpandFirstChild.trigger('click');
-    assert.equal(vm.iStates[0], false);
+    nodes = tree.findAll('li');
+    assert.lengthOf(nodes, 4);
   });
 
 });
