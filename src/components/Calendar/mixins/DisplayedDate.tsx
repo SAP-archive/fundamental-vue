@@ -1,8 +1,5 @@
-import { componentName } from '@/util';
-import { Component, Prop } from 'vue-property-decorator';
-import TsxComponent from '@/vue-tsx';
 import { monthFromDate, Month } from './../util';
-import { Api } from '@/api';
+import { Component, Prop, Base } from '@/core';
 
 const defaultDayNames = ['Su', 'M', 'Tu', 'W', 'Th', 'F', 'S'];
 const defaultMonthNames = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
@@ -13,10 +10,9 @@ interface Props {
   monthNames?: string[];
 }
 
-@Component({ name: componentName('DisplayedDate') })
-export class DisplayedDate extends TsxComponent<Props> {
-  @Api.prop('date displayed when calendar is shown and no other date has been selected.')
-  @Prop({ type: [Date, String, Number], default: Date.now() })
+@Component('DisplayedDateMixin')
+export class DisplayedDateMixin extends Base<Props> {
+  @Prop('date displayed when calendar is shown and no other date has been selected.', { type: [Date, String, Number], default: Date.now() })
   public defaultValue!: Date | string | number;
 
   public get defaultDate(): Date {
@@ -27,13 +23,13 @@ export class DisplayedDate extends TsxComponent<Props> {
     return value;
   }
 
-  @Prop({ type: Number, default:0 })
+  @Prop('first Day of Week', { type: Number, default:0 })
   public firstDayOfWeek!: number;
 
-  @Prop({ type: Array, default: () => defaultDayNames })
+  @Prop('day names', { type: Array, default: () => defaultDayNames })
   public dayNames!: string[];
 
-  @Prop({ type: Array, default: () => defaultMonthNames })
+  @Prop('month names', { type: Array, default: () => defaultMonthNames })
   public monthNames!: string[];
 
   public get adjustedDayNames(): string[] {

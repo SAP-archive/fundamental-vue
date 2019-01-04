@@ -71,7 +71,7 @@ Import the main SCSS file in your `App.js` style block to add Fiori Fundamentals
 </style>
 ```
 
-You can now use the [Playground](https://dist-4d2gqwr8y.now.sh/#/start) to browse the components currently available with Fundamental Vue.
+You can now use the [Playground](https://dist-c0r2ga7zn.now.sh) to browse the components currently available with Fundamental Vue.
 
 To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessarry:
 

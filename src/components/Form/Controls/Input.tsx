@@ -1,31 +1,26 @@
 import {
-  Component,
-  Prop,
   Watch,
   Inject,
 } from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import { ItemIdentification } from './../Types/ItemIdentification';
-import TsxComponent from '@/vue-tsx';
+import { Component, Event, Prop, Base } from '@/core';
+import { FORM_ITEM_ID_KEY } from './../FormItem';
 
 interface Props {
   id?: string | null;
   placeholder?: string;
-  state?: InputState | null;
   required?: boolean;
-  type?: InputType;
   disabled?: boolean;
+  state?: InputState | null;
+  type?: InputType;
   readonly?: boolean;
   value?: string | number | null;
   compact?: boolean;
 }
+import { isInputElement } from './Helper';
 
 const typeMappings = {
   text: 'Text Field',
   password: 'Password Field',
-  radio: 'Radio Button',
-  checkbox: 'Checkbox',
   search: 'Search Field',
 };
 type InputType = keyof (typeof typeMappings);
@@ -39,91 +34,74 @@ const stateMapping = {
 type InputState = keyof (typeof stateMapping);
 const InputStates = Object.keys(stateMapping) as InputState[];
 
-@Component({ name: componentName('Input') })
-@Api.Component('Input')
-@Api.Event('input', 'Sent when the value changes', ['value', 'any'])
-export class Input extends TsxComponent<Props> {
-  @Api.Prop('id', prop => prop.type(String))
-  @Prop({ default: null, type: String })
-  public id!: string | null;
+@Component('Input')
+@Event('input', 'Sent when the value changes', ['value', 'any'])
+export class Input extends Base<Props> {
 
-  @Api.Prop('placeholder text', prop => prop.type(String))
-  @Prop({ default: '', type: String })
+  @Inject({from: FORM_ITEM_ID_KEY, default: null})
+  public formItemId!: string | null;
+
+  @Prop('placeholder text', { default: '', type: String })
   public placeholder!: string;
 
-  @Api.Prop('current state', prop => prop.type(String).acceptValues(...InputStates))
-  @Prop({ default: null, type: String })
+  @Prop('current state', { acceptableValues: InputStates, default: null, type: String })
   public state!: InputState | null;
 
-  @Api.Prop('whether a value is required (adds a *)', prop => prop.type(Boolean))
-  @Prop({ default: false, type: Boolean })
+  @Prop('whether a value is required (adds a *)', { default: false, type: Boolean })
   public required!: boolean;
 
-  @Api.Prop('button type', prop => prop.type(String).acceptValues(...InputTypes))
-  @Prop({ default: 'text', type: String })
+  @Prop('button type', { acceptableValues: InputTypes,  default: 'text', type: String })
   public type!: InputType;
 
-  @Api.Prop('whether the control is disabled', prop => prop.type(Boolean))
-  @Prop({ default: false, type: Boolean })
+  @Prop('whether the control is disabled', { default: false, type: Boolean })
   public disabled!: boolean;
 
-  @Api.Prop('whether the control is readonly', prop => prop.type(Boolean))
-  @Prop({ default: false, type: Boolean })
+  @Prop('whether the control is readonly', { default: false, type: Boolean })
   public readonly!: boolean;
 
-  @Api.Prop('current value', prop => prop.type(String, Number))
-  @Prop({ default: null, type: [Boolean, String, Number] })
-  public value!: boolean | string | number | null;
+  @Prop('current value', { default: '', type: String })
+  public value!: string | null;
 
-  @Api.Prop('whether input is compact', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false })
+  @Prop('whether input is compact', { type: Boolean, default: false })
   public compact!: boolean;
 
-  @Inject({ default: null }) public itemIdentificationProvider!: ItemIdentification | null;
-
   private get inputId(): string | null {
-    const id = this.id;
-    if (id != null) { return id; }
-    const provider = this.itemIdentificationProvider;
-    if (provider != null) {
-      return provider.itemIdentifier;
-    }
-    return null;
+    return this.formItemId;
   }
 
   public render() {
     return (
-      <input
-        id={this.inputId}
-        value={this.currentValue}
-        on-input={this.updateInput}
-        readonly={this.readonly}
-        disabled={this.disabled}
-        type={this.type}
-        class={this.classes}
-        staticClass='fd-form__control'
-        placeholder={this.placeholder.length > 0 ? this.placeholder : false}
-      />
+        <input
+          id={this.inputId}
+          value={this.currentValue}
+          on-input={this.updateInput}
+          readonly={this.readonly}
+          disabled={this.disabled}
+          type={this.type}
+          class={this.classes}
+          staticClass='fd-form__control'
+          placeholder={this.placeholder.length > 0 ? this.placeholder : false}
+        />
     );
   }
 
   @Watch('value', { immediate: true })
-  public handleNewValue(newValue) {
+  public handleNewValue(newValue: string | null) {
     this.currentValue = newValue;
   }
 
-  private updateInput(event) {
-    const { target } = event;
-    let value: null | string = null;
-    if(target != null) {
-      value = target.value;
+  private updateInput({ target }: Event) {
+    if(target == null) {
+      return;
     }
-    this.currentValue = value;
-    this.$emit('input', this.currentValue);
-    this.$emit('update:value', this.currentValue);
+    if(!isInputElement(target)) {
+      return;
+    }
+    const { value } = target;
+    this.$emit('input', value);
   }
 
-  public currentValue: boolean | string | number | null = this.value === undefined || this.value === null ? '' : this.value;
+  public currentValue: string | null = (this.value === undefined || this.value === null) ? '' : this.value;
 
   private get classes() {
     return {

@@ -6,5 +6,3 @@
     <FdCalendar :firstDayOfWeek=1 />
   </div>
 </template>
-
-<script>

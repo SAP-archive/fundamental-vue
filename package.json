@@ -5,8 +5,8 @@
     "homepage": "https://github.com/SAP/fundamental-vue",
     "scripts": {
         "typecheck": "tsc --noEmit",
-        "serve:docs": "vue-cli-service serve src/docs/main.ts",
-        "serve": "vue-cli-service serve",
+        "serve:docs": "echo '\n\n⚠️⚠️⚠️ WARNING ⚠️⚠️⚠️\n\nThe serve:docs script will soon be removed.\nUse npm run serve instead.\nI will now go to sleep for 30 seconds to make you stop using this script.\n\n\n………zzzZZZZzzz………' && sleep 30 && echo 'Ok, lets go…' && npm run serve",
+        "serve": "vue-cli-service serve src/docs/main.ts",
         "build": "vue-cli-service build",
         "lint:vue": "vue-cli-service lint",
         "test": "vue-cli-service test:unit 'src/**/__tests__/*.test.{tsx,ts,js,vue}'",
@@ -48,7 +48,6 @@
         "tslint-react": "^3.6.0",
         "typescript": "^3.1.0",
         "vue-gh-pages": "^1.19.0",
-        "vue-template-compiler": "^2.5.17",
-        "vuex": "^3.0.1"
+        "vue-template-compiler": "^2.5.17"
     }
 }

@@ -1,18 +1,12 @@
-import { Component, Prop } from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Component, DefaultSlot, Prop, Base } from '@/core';
 
-@Component({ name: componentName('ShellBarAction') })
-@Api.Component('Shell Bar Action')
-@Api.defaultSlot('The actual action. The only supported element is FdShellBarUserMenu.')
-export class ShellBarAction extends TsxComponent<{}> {
-  @Api.Prop('whether the action is always shown', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: true })
+@Component('ShellBarAction')
+@DefaultSlot('The actual action. The only supported element is FdShellBarUserMenu.')
+export class ShellBarAction extends Base<{}> {
+  @Prop('whether the action is always shown', { type: Boolean, default: true })
   public showAlways!: boolean;
 
-  @Api.Prop('whether the action is collapsible', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false })
+  @Prop('whether the action is collapsible', { type: Boolean, default: false })
   public collapsible!: boolean;
 
   public render() {

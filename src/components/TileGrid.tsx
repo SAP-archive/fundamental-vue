@@ -1,7 +1,4 @@
-import { Component, Prop } from 'vue-property-decorator';
-import { Api } from '@/api';
-import { componentName } from '@/util';
-import TsxComponent from '@/vue-tsx';
+import { Component, DefaultSlot, Prop, Base } from '@/core';
 
 const colMapping = {
     2: '2-Column Grid',
@@ -17,12 +14,10 @@ interface Props {
     col?: number | null;
 }
 
-@Component({ name: componentName('TileGrid') })
-@Api.Component('Tile Grid')
-@Api.defaultSlot('Tiles displayed by the grid.')
-export class TileGrid extends TsxComponent<Props> {
-    @Api.Prop('number of columns', prop => prop.type(Number).acceptValues(...Cols))
-    @Prop({ type: Number, default: null, required: false })
+@Component('TileGrid')
+@DefaultSlot('Tiles displayed by the grid.')
+export class TileGrid extends Base<Props> {
+    @Prop('number of columns', { acceptableValues: Cols, type: Number, default: null })
     public col!: Col | null;
 
     public render() {

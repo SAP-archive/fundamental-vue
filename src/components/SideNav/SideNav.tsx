@@ -1,32 +1,23 @@
-import {
-  Component,
-  Watch,
-  Model,
-} from 'vue-property-decorator';
-import { Api } from '@/api';
-import { componentName } from '@/util';
+import { Watch } from 'vue-property-decorator';
 import { SideNavItem } from './SideNavItem';
-import TsxComponent from '@/vue-tsx';
 import { SIDE_NAV } from './shared';
+import { Model, Component, Event, DefaultSlot, Base } from '@/core';
 
 interface Props {
   indexPath?: string | null;
 }
 
-@Component({
-  name: componentName('SideNav'),
+@Component('SideNav', {
   provide() {
     return {
       [SIDE_NAV]: this,
     };
   },
 })
-@Api.Component('Side Nav')
-@Api.Event('select', 'Sent when a item was clicked', ['item', 'SideNavItem'])
-@Api.defaultSlot('Side Navigation-Lists/-Items displayed by the Side Navigation.')
-export class SideNav extends TsxComponent<Props> {
-  @Model('change', { type: String, default: null })
-  @Api.Prop('default index path', prop => prop.type(String))
+@Event('select', 'Sent when a item was clicked', ['item', 'SideNavItem'])
+@DefaultSlot('Side Navigation-Lists/-Items displayed by the Side Navigation.')
+export class SideNav extends Base<Props> {
+  @Model('default index path', { event: 'change', type: String, default: null })
   public indexPath!: string | null;
 
   public activeIndexPath: string | null = this.indexPath;

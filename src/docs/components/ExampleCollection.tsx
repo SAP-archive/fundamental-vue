@@ -4,14 +4,47 @@ import {
   Prop,
   Watch,
 } from 'vue-property-decorator';
+import { all } from '@/components';
 import { ComponentReference } from './ComponentReference';
 import { ComponentExample } from './ComponentExample';
-import { VueConstructor } from 'vue';
+import { FrameworkDocumentation, ComponentDocumentation } from '@/api';
+import { VueConstructor } from 'vue/types/vue';
 import { Route } from 'vue-router';
 import { exampleCollections, Example } from '@/docs/pages';
+
+const __collection = new FrameworkDocumentation();
+for (const component of Object.values(all)) {
+    if (!Reflect.has(component, 'options')) {
+        continue;
+    }
+    const options = Reflect.get(component, 'options');
+    if (typeof options === 'object') {
+        if ('$componentDocumentation' in options) {
+            const api = Reflect.get(options, '$componentDocumentation');
+            if (api instanceof ComponentDocumentation) {
+              __collection.add(api);
+            }
+        }
+    }
+}
+
+const componentName = (component: any) => {
+  if('options' in component) {
+    const { options } = component;
+    let name: string | undefined;
+    if('componentName' in options) {
+      name = options.componentName;
+    }
+    if(name == null && 'name' in options) {
+      name = options.name || component.name;
+    }
+    return name;
+  }
+};
+
 type VMFn<T> = (vm: T) => void;
 type NextFn<T> = (fn?: VMFn<T>) => void;
-
+type DocumentedComponent = { api: ComponentDocumentation; component: VueConstructor<any>; };
 @Component({
   name: 'ExampleCollection',
   components: {
@@ -20,10 +53,24 @@ type NextFn<T> = (fn?: VMFn<T>) => void;
   },
 })
 export class ExampleCollection extends Vue {
+  private get documentedComponents(): DocumentedComponent[] {
+    const documentedRelatedComponents = this.relatedComponents.filter(component => {
+      const name = componentName(component);
+      if(name == null) { return false; }
+      return __collection.has(name);
+    });
+    return documentedRelatedComponents.map(component => {
+      const name = componentName(component) || '';
+      return {
+        component,
+        api: __collection.get(name),
+      };
+    });
+  }
+
   @Watch('$route', { immediate: true })
   public handleNewRoute(newRoute: Route) {
     const { slug } = newRoute.params;
-
     // Reset the UI. Future work: Implement loading state.
     this.resetUI();
     const exampleCollection = exampleCollections.exampleCollection({ slug });
@@ -38,7 +85,7 @@ export class ExampleCollection extends Vue {
     this.$forceUpdate();
   }
 
-  public beforeRouteEnter(to: Route, from: Route, next: NextFn<ExampleCollection>): void {
+  public beforeRouteEnter(to: Route, _: Route, next: NextFn<ExampleCollection>): void {
     const { slug } = to.params;
     const exampleCollection = exampleCollections.exampleCollection({ slug });
     if (exampleCollection == null) {
@@ -78,7 +125,7 @@ export class ExampleCollection extends Vue {
   @Prop({ type: Boolean, default: false })
   public showApiOnly!: boolean | null;
 
-  private relatedComponents: VueConstructor[] = [];
+  private relatedComponents: Array<VueConstructor<any>> = [];
   private examples: Example[] = [];
 
   private resetUI() {
@@ -87,7 +134,7 @@ export class ExampleCollection extends Vue {
   }
 
   public render() {
-    const relatedComponents = this.relatedComponents;
+    const documentedComponents = this.documentedComponents;
     const examples = this.examples;
     const renderExamples = () => {
       return examples.map(example => (
@@ -104,14 +151,15 @@ export class ExampleCollection extends Vue {
         />
       ));
     };
+
     const renderRelatedComponentsReference = () => {
-      return relatedComponents.map(comp => <ComponentReference key={`api-${comp.name}`} component={comp} />);
+      return documentedComponents.map(({component, api}) => <ComponentReference key={`api-${component.name}`} api={api} component={component} />);
     };
 
     return (
       <div>
         {!this.showApiOnly && renderExamples()}
-        <div v-bg={'neutral-1'} style='padding-top: 15px;'>
+        <div v-bg='neutral-1' style='padding-top: 15px;'>
         {renderRelatedComponentsReference()}
         </div>
       </div>

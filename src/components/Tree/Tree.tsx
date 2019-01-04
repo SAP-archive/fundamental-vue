@@ -1,13 +1,6 @@
-import {
-  Component,
-  Prop,
-  Watch,
-} from 'vue-property-decorator';
-import { componentName } from '@/util';
-import { Api } from '@/api';
-import TsxComponent from '@/vue-tsx';
+import { Base, DefaultSlot, Component, Prop } from '@/core';
+import { Watch } from 'vue-property-decorator';
 import { shortUuid } from '@/lib/uuid';
-
 type Node = {
   columns: any[];
   children?: Node[];
@@ -29,15 +22,13 @@ export interface Props {
   treeData: Node[];
 }
 
-@Component({ name: componentName('Tree') })
-@Api.Component('Tree')
-@Api.defaultSlot('Tree Content')
-export class Tree extends TsxComponent<Props> {
-  @Api.Prop('headers of the tree', prop => prop.type('Array<String>'))
-  @Prop({ type: Array, required: true })
+@Component('Tree')
+@DefaultSlot('Tree Content')
+export class Tree extends Base<Props> {
+  @Prop('headers of the tree', { type: Array, required: true })
   public headers!: string[];
-  @Api.Prop('data of the tree', prop => prop.type('Array<Node>'))
-  @Prop({ type: Array, required: true })
+
+  @Prop('data of the tree', { type: Array, required: true })
   public treeData!: Node[];
   private iStates: boolean[] = [];
   private expandAllClicked: boolean = false;

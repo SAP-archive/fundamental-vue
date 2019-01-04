@@ -11,6 +11,7 @@
     ]
   },
   "rules": {
+    "no-unused-variable": true,
     "no-debugger": false,
     "max-classes-per-file": false,
     "variable-name": false,

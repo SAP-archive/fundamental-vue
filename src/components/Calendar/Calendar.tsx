@@ -1,16 +1,13 @@
-import { componentName } from '@/util';
-import { Component, Prop } from 'vue-property-decorator';
-import { ComponentProps } from '@/vue-tsx';
 import { CalendarHeader } from './CalendarHeader';
-import { PresentDate, DisplayedDate, DateSelection } from './mixins';
+import { PresentDateMixin, DisplayedDateMixin, DateSelectionMixin } from './mixins';
 import { mixins } from 'vue-class-component';
 import { MonthPicker, YearPicker, DayPicker } from './Pickers';
-import { Api } from '@/api';
-
+import { Props as DateSelectionProps } from './mixins/DateSelection';
+import { ComponentProps, Component, Mixins, Prop } from '@/core';
 const pickerMapping = { year: 'year', month: 'month' };
 type PickerType = keyof typeof pickerMapping;
 
-interface Props {
+interface Props extends DateSelectionProps {
   maxDate?: Date;
   minDate?: Date;
   disabledDate?: (date: Date) => boolean;
@@ -27,49 +24,47 @@ const dateWithYearsFromNow = (numberOfYears: number) => {
 
 type ValidationRequest = { min: Date, max: Date };
 
-@Component({ name: componentName('Calendar') })
-@Api.Component('Calendar')
-export class Calendar extends mixins(PresentDate, DisplayedDate, DateSelection) {
+const CalendarBase = mixins(PresentDateMixin, DisplayedDateMixin, DateSelectionMixin);
+@Component('Calendar')
+@Mixins(PresentDateMixin, DisplayedDateMixin, DateSelectionMixin)
+export class Calendar extends CalendarBase {
   public $tsxProps!: ComponentProps<Props>;
 
-  @Api.prop('whether header is shown')
-  @Prop({ type: Boolean, default: true })
+  @Prop('whether header is shown', { type: Boolean, default: true })
   public headerVisible!: boolean;
 
-  @Api.prop('maximum date', { defaultValue: 'now + 10 years'})
-  @Prop({ type: Date, default: () => dateWithYearsFromNow(10)})
+  @Prop('maximum date', { readableDefaultValue: 'now + 10 years', type: Date, default: () => dateWithYearsFromNow(10)})
   public maxDate!: Date;
 
-  @Api.prop('minimum date', { defaultValue: 'now - 10 years'})
-  @Prop({ type: Date, default: () => dateWithYearsFromNow(-10)})
+  @Prop('minimum date', { readableDefaultValue: 'now - 10 years', type: Date, default: () => dateWithYearsFromNow(-10)})
   public minDate!: Date;
 
-  @Api.prop(
+  @Prop(
     'Called with a date to be displayed by the calendar. Return false to disable the date.',
-    { defaultValue: '() => false' },
+    { readableDefaultValue: '() => false',  type: Function, default: () => false },
   )
-  @Prop({ type: Function, default: () => false })
   public disabledDate!: (date: Date) => boolean;
 
-  @Api.prop(
+  @Prop(
     'Called with a date to be displayed by the calendar. Return false to block the date.',
-    { defaultValue: '() => false' },
+    { readableDefaultValue: '() => false', type: Function, default: () => false },
   )
-  @Prop({ type: Function, default: () => false })
   public blockedDate!: (date: Date) => boolean;
 
-  @Api.prop(
+  @Prop(
     'Called with a date range object ({ min: Date, max: Date }). Return false to disable the previous button in the header.',
-    { defaultValue: '() => true' },
+    {
+      readableDefaultValue: '() => true',
+      type: Function,
+      default: () => true,
+    },
   )
-  @Prop({ type: Function, default: () => true })
   public hasPrevious!: (range: {min: Date, max: Date}) => boolean;
 
-  @Api.prop(
+  @Prop(
     'Called with a date range object ({ min: Date, max: Date }). Return false to disable the next button in the header.',
-    { defaultValue: '() => true' },
+    { readableDefaultValue: '() => true', type: Function, default: () => true },
   )
-  @Prop({ type: Function, default: () => true })
   public hasNext!: (range: {min: Date, max: Date}) => boolean;
 
   // Switching between Pickers

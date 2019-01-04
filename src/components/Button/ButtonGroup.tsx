@@ -1,37 +1,27 @@
-import { componentName } from '@/util';
-import {
-  Component,
-  Prop,
-  Watch,
-} from 'vue-property-decorator';
-import { Api } from '@/api';
+import { Watch } from 'vue-property-decorator';
 import { ButtonContainer } from './ButtonContainer';
 import { Button } from './Button';
-import TsxComponent from '@/vue-tsx';
+import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
 
 interface Props {
   compact?: boolean;
   value?: number | null;
 }
 
-@Component({
-  name: componentName('ButtonGroup'),
+@Component('ButtonGroup', {
   provide() {
     return {
       buttonContainer: this,
     };
   },
 })
-@Api.Component('Button Group')
-@Api.Event('input', 'triggers when index of active button changes', ['activeButtonIndex', Number])
-@Api.defaultSlot('Buttons to be displayed in a group')
-export class ButtonGroup extends TsxComponent<Props> implements ButtonContainer {
-  @Api.Prop('whether button group is compact', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false, required: false })
+@Event('input', 'triggers when index of active button changes', ['activeButtonIndex', Number])
+@DefaultSlot('Buttons to be displayed in a group')
+export class ButtonGroup extends Base<Props> implements ButtonContainer {
+  @Prop('whether button group is compact', { type: Boolean, default: false })
   public compact!: boolean;
 
-  @Api.Prop('index of active button', prop => prop.type(Number))
-  @Prop({ type: Number, default: null, required: false })
+  @Prop('index of active button', { type: Number, default: null })
   public value!: number | null;
 
   public activeButtonIndex: number | null = this.value || null;

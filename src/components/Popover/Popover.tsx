@@ -1,11 +1,10 @@
-import { Model, Component, Watch, Prop } from 'vue-property-decorator';
-import { Menu, MenuList, MenuItem } from './../Menu';
+import { Watch } from 'vue-property-decorator';
+import { Menu, MenuList } from './../Menu';
 import { Button } from './../Button';
 import { mixins } from 'vue-class-component';
-import { Uid } from '@/mixins';
-import { componentName } from '@/util';
-import { Api } from '@/api';
+import { UidMixin } from '@/mixins';
 import { ClickAwayContainer } from '@/components/ClickAwayContainer';
+import { Slot, Model, Component, Event, DefaultSlot, Prop } from '@/core';
 
 const popoverPlacementMapping = {
   left: 'Popover Body is placed on the left (default)',
@@ -22,38 +21,24 @@ interface Props {
   placement?: PopoverPlacement;
 }
 
-@Component({
-  name: componentName('Popover'),
-  components: {
-    Button,
-    Menu,
-    MenuList,
-    MenuItem,
-  },
-})
-@Api.Component('Popover')
-@Api.defaultSlot('MenuItems or custom content via the body-slot')
-@Api.slot('body', 'Custom popover body')
-@Api.Event('click', 'Sent when an item in the popover was clicked', ['value', 'MenuItem value'])
-export class Popover extends mixins(Uid) {
-  @Api.Prop('ARIA label', prop => prop.type(String))
-  @Prop({ type: String, default: 'Popover' })
+@Component('Popover')
+@DefaultSlot('MenuItems or custom content via the body-slot')
+@Slot('body', 'Custom popover body')
+@Event('click', 'Sent when an item in the popover was clicked', ['value', 'MenuItem value'])
+export class Popover extends mixins(UidMixin) {
+  @Prop('ARIA label', { type: String, default: 'Popover' })
   public ariaLabel!: string;
 
-  @Api.Prop('title displayed when no custom trigger element is used', prop => prop.type(String))
-  @Prop({ type: String, default: 'Show' })
+  @Prop('title displayed when no custom trigger element is used', { type: String, default: 'Show' })
   public title!: string;
 
-  @Api.Prop('popover placement', prop => prop.type(String))
-  @Prop({ type: String, default: 'left', validator: value => PopoverPlacements.includes(value) })
+  @Prop('popover placement', { type: String, default: 'left', validator: value => PopoverPlacements.includes(value) })
   public placement!: PopoverPlacement;
 
-  @Api.Prop('whether popover is visible', prop => prop.type(Boolean))
-  @Model('visible', { type: Boolean, default: false })
+  @Model('whether popover is visible', { event: 'visible', type: Boolean, default: false })
   public popoverVisible!: boolean;
 
-  @Api.Prop('whether popover has an arrow', prop => prop.type(Boolean))
-  @Prop({ type: Boolean, default: false })
+  @Prop('whether popover has an arrow', { type: Boolean, default: false })
   public noArrow!: boolean;
 
   public currentPopoverVisible: boolean = this.popoverVisible;

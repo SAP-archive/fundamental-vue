@@ -1,3 +1,3 @@
-export { DateSelection } from './DateSelection';
-export { DisplayedDate } from './DisplayedDate';
-export { PresentDate } from './PresentDate';
+export { DateSelectionMixin } from './DateSelection';
+export { DisplayedDateMixin } from './DisplayedDate';
+export { PresentDateMixin } from './PresentDate';

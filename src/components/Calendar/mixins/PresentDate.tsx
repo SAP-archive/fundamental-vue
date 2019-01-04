@@ -1,9 +1,7 @@
-import { Component } from 'vue-property-decorator';
-import TsxComponent from '@/vue-tsx';
-import { componentName } from '@/util';
+import { Component, Base } from '@/core';
 
-@Component({ name: componentName('PresentDate') })
-export class PresentDate extends TsxComponent<{}> {
+@Component('PresentDateMixin')
+export class PresentDateMixin extends Base<{}> {
   public presentYear = new Date(Date.now()).getFullYear();
   public presentMonth = new Date(Date.now()).getMonth();
   public presentDay = new Date(Date.now()).getDate();
