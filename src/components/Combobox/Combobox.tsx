@@ -43,7 +43,6 @@ export class Combobox extends mixins(UidMixin) {
 
   public togglePopoverVisible() {
     this.currentPopoverVisible = !this.currentPopoverVisible;
-    this.$emit('update:currentPopoverVisible', this.currentPopoverVisible);
   }
 
   private setCurrentValue(newValue: string | number | null) {
@@ -73,29 +72,38 @@ export class Combobox extends mixins(UidMixin) {
           on-click={this.handleMenuItemClick}
           noArrow={true}
           popoverVisible={this.currentPopoverVisible}
+          on-visible={(visible: boolean) => this.currentPopoverVisible = visible }
+            {...
+              {
+                scopedSlots: {
+                  control: (scope: { toggle: () => (void) }) => {
+                    return (<div staticClass='fd-combobox-control'>
+                    <InputGroup
+                      compact={this.compact}
+                      afterClass='fd-input-group__addon--button'
+                    >
+                      <Input
+                        id={this.uid}
+                        value={this.value}
+                        compact={this.compact}
+                        nativeOn-click={scope.toggle}
+                        nativeOn-keyup={this.handleKeyup}
+                        on-input={this.setCurrentValue}
+                        placeholder={this.placeholder}
+                      />
+                    <Button
+                      slot='after'
+                      on-click={scope.toggle}
+                      icon='navigation-down-arrow'
+                      styling='light'
+                    />
+                    </InputGroup></div>
+                  );
+                  },
+                },
+              }
+            }
         >
-          <div class='fd-combobox-control' slot='control'>
-            <InputGroup
-              compact={this.compact}
-              afterClass='fd-input-group__addon--button'
-            >
-              <Input
-                id={this.uid}
-                value={this.value}
-                compact={this.compact}
-                nativeOn-click={() => this.currentPopoverVisible = true}
-                nativeOn-keyup={this.handleKeyup}
-                on-input={this.setCurrentValue}
-                placeholder={this.placeholder}
-              />
-              <Button
-                slot='after'
-                on-click={this.togglePopoverVisible}
-                icon='navigation-down-arrow'
-                styling='light'
-              />
-            </InputGroup>
-          </div>
           {dropdown}
         </Popover>
       </div>
