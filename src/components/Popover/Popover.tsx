@@ -62,9 +62,55 @@ export class Popover extends mixins(UidMixin) {
 
   private popoverTriggerControl: Element | null = null;
 
+  // There are three different ways a trigger control can be rendered.
+  // 1. $slots.control:
+  //    If there is a slot called 'control' we simply render that and assume that
+  //    the control rendered emits 'click'-events.
+  // 2. $scopedSlots.control:
+  //    If there is a scoped slot 'control' we assume that the popover consumer
+  //    has some kind of special needs. Thus, when rendering the scoped slot,
+  //    we pass a little bit of context to the consumer. Shape of the scope/context
+  //    passed to the consumer:
+  //      {
+  //         // Calling this will toggle the popover.
+  //         toggle: () => (void);
+  //         // whether the popover is currently visible.
+  //         visible: bool;
+  //      }
+  //    Because of the fact that we assume that the consumer has special needs,
+  //    we do not show the popover automatically. The consumer has to call `toggle`
+  //    for example by binding it to @click/@click.native of some kind of control
+  //    or by using v-model.
+  // 3. If there is no (scoped) control-slot we simply render a standard button
+  //    on behalf of the consumer.
+  private renderTriggerControl() {
+    const control = this.$slots.control;
+    if(control != null) {
+      return <div on-click={this.toggle} role='button'>{control}</div>;
+    }
+    const renderControl = this.$scopedSlots.control;
+    if(renderControl != null) {
+      const context = {
+        toggle: this.toggle,
+        visible: this.currentPopoverVisible,
+      };
+      return renderControl(context);
+    }
+    return  (
+      <Button
+        staticClass='fd-popover__control'
+        aria-controls={this.uid}
+        aria-expanded={this.currentPopoverVisible}
+        aria-haspopup='true'
+        on-click={this.toggle}
+      >
+        {this.title}
+      </Button>
+    );
+  }
+
   public render() {
     const dropdown = this.$slots.default || [];
-    const triggerControl = this.$slots.control;
     const ignoredElementsHandler = () => {
       const el = this.popoverTriggerControl;
       if(el == null) { return []; }
@@ -74,18 +120,7 @@ export class Popover extends mixins(UidMixin) {
     return (
       <div class='fd-popover'>
         <div class='fd-popover__control' ref={(el: Element) => this.popoverTriggerControl = el}>
-          {triggerControl && <div role='button' on-click={this.toggle}>{triggerControl}</div>}
-          {!triggerControl &&
-            <Button
-              class='fd-popover__control'
-              aria-controls={this.uid}
-              aria-expanded={this.currentPopoverVisible}
-              aria-haspopup='true'
-              on-click={this.toggle}
-            >
-              {this.title}
-            </Button>
-          }
+          {this.renderTriggerControl()}
         </div>
 
         <ClickAwayContainer
