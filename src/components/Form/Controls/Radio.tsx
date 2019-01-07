@@ -1,6 +1,6 @@
 import { Base, Model, Component, Event, Prop } from '@/core';
 import { UidProps } from '@/mixins';
-import { FormItem, FORM_ITEM_KEY } from './../FormItem';
+import { FormItem, FORM_ITEM_ID_KEY, FORM_ITEM_KEY } from './../FormItem';
 import { Inject } from 'vue-property-decorator';
 import { isInputElement } from './Helper';
 
@@ -30,14 +30,21 @@ interface Props extends UidProps {
 @Component('Radio')
 @Event('change', 'Sent when the checkbox has been checked/unchecked.')
 export class Radio extends Base<Props> {
-  @Inject(FORM_ITEM_KEY) public formItem!: FormItem;
+  @Inject({from: FORM_ITEM_KEY, default: null})
+  public formItem!: FormItem | null;
 
-  private get uid(): string {
-    return this.formItem.uid;
+  @Inject({from: FORM_ITEM_ID_KEY, default: null})
+  public formItemId!: string | null;
+
+  private get uid(): string | null {
+    return this.formItemId;
   }
 
   public mounted() {
-    this.formItem.setCheck(true);
+    const formItem = this.formItem;
+    if(formItem) {
+      formItem.setCheck(true);
+    }
   }
 
   @Prop('Payload of the change-event when the user checks the checkbox', {
@@ -113,6 +120,7 @@ export class Radio extends Base<Props> {
       <input
         id={this.uid}
         type='radio'
+        disabled={this.disabled ? '' : null}
         staticClass='fd-form__control'
         class={this.classes}
         checked={this.shouldBeChecked}

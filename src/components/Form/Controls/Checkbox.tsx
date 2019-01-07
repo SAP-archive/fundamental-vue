@@ -137,6 +137,7 @@ export class Checkbox extends Base<Props> {
         id={this.uid}
         class={this.classes}
         checked={this.shouldBeChecked}
+        disabled={this.disabled ? '' : null}
         value={this.value}
         on-change={this.updateInput}
         type='checkbox'
