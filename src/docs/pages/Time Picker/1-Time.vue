@@ -1,7 +1,7 @@
 <title>Time</title>
 <template>
     <div>
-        <FdTime type='hour12' :value="value"></FdTime>
+        <FdTime type='hour24' :value="value"></FdTime>
     </div>
 </template>
 
@@ -9,7 +9,7 @@
 export default {
     data() {
         return {
-            value : 12
+            value : 17
         };
     }
 }

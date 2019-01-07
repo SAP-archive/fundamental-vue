@@ -59,7 +59,7 @@ export class Input extends Base<Props> {
   @Prop('whether the control is readonly', { default: false, type: Boolean })
   public readonly!: boolean;
 
-  @Prop('current value', { default: '', type: String })
+  @Prop('current value', { default: '', type: [String, Number] })
   public value!: string | null;
 
   @Prop('whether input is compact', { type: Boolean, default: false })
