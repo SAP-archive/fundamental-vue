@@ -1,4 +1,4 @@
-<title>Time</title>
+<title>Time Item as a set of Time</title>
 <template>
     <div>
         <p>The time component is used for a single time value. Multiple components can be used in the time-picker to assemble a clock time. A max of four will account for hours, minutes, seconds and period of the day.</p>

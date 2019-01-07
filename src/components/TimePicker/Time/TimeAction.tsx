@@ -1,4 +1,4 @@
-import { Component, Base, Prop } from "@/core";
+import { Component, Base, Prop } from '@/core';
 import { ButtonType, Button } from '@/components/Button';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
     disabled?: boolean;
     ariaLabel?: string;
     ariaControls?: string;
-};
+}
 
 @Component('TimeAction')
 export class TimeAction extends Base<Props> {

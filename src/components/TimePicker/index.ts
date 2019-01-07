@@ -1,1 +1,1 @@
-export { Time } from './Time/Time'; 
+export { Time } from './Time/Time';

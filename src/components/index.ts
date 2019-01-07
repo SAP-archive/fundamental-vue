@@ -71,7 +71,7 @@ import * as Pagination from './Pagination';
 import { log } from '@/core';
 import { Time } from './TimePicker/Time';
 
-export const all = {
+export const all: { [key: string]: any } = {
     Token,
     Spinner,
     Modal,

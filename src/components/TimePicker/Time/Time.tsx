@@ -1,4 +1,4 @@
-import { Component, Base, Prop } from "@/core";
+import { Component, Base, Prop } from '@/core';
 import { TimeAction } from './TimeAction';
 import { TimeInput } from './TimeInput';
 import { Watch } from 'vue-property-decorator';
@@ -7,7 +7,7 @@ interface Props {
     type?: TimeType;
     value?: string | number;
     ariaLabel?: string | null;
-};
+}
 
 // Time type
 const typeMapping = {
@@ -15,13 +15,13 @@ const typeMapping = {
     hour12: '12 Hour range',
     minute: 'Minute range',
     second: 'Second range',
-    period: 'AM/PM period range'
+    period: 'AM/PM period range',
 };
 export type TimeType = keyof (typeof typeMapping);
 export const TimeTypeList = Object.keys(typeMapping) as TimeType[];
 
 @Component('Time')
-export class Time extends Base<Props>{
+export class Time extends Base<Props> {
 
     @Prop('Time Item Type', {
         type: String,
@@ -39,7 +39,7 @@ export class Time extends Base<Props>{
 
     @Prop('Aria Label', {
         type: String,
-        default: 'Time Item'
+        default: 'Time Item',
     })
     public ariaLabel!: string | null;
 
@@ -50,39 +50,39 @@ export class Time extends Base<Props>{
         return {
             hour24: {
                 min: '00',
-                max: '23'
+                max: '23',
             },
             hour12: {
                 min: '00',
-                max: '12'
+                max: '12',
             },
             minute: {
                 min: '00',
-                max: '59'
+                max: '59',
             },
             second: {
                 min: '00',
-                max: '60'
+                max: '60',
             },
             period: {
                 min: 'AM',
-                max: 'PM'
-            }
+                max: 'PM',
+            },
         };
     }
 
     private getPreviousValue() {
-        let previousValue = Number(this.inputValue) > Number(this.getRange()[this.type].min) ? Number(this.inputValue) - 1 : this.getRange()[this.type].max;
+        const previousValue = Number(this.inputValue) > Number(this.getRange()[this.type].min) ? Number(this.inputValue) - 1 : this.getRange()[this.type].max;
         return previousValue.toString().padStart(2, '0');
     }
 
 
     private getNextValue() {
-        let nextValue = Number(this.inputValue) < Number(this.getRange()[this.type].max) ? Number(this.inputValue) + 1 : this.getRange()[this.type].min;
+        const nextValue = Number(this.inputValue) < Number(this.getRange()[this.type].max) ? Number(this.inputValue) + 1 : this.getRange()[this.type].min;
         return nextValue.toString().padStart(2, '0');
     }
 
-    private checkValueRange(timeValue) {
+    private checkValueRange(timeValue: string | number) {
         return !isNaN(Number(timeValue)) && (Number(timeValue) >= Number(this.getRange()[this.type].min) && Number(timeValue) <= Number(this.getRange()[this.type].max));
     }
 
@@ -95,8 +95,7 @@ export class Time extends Base<Props>{
             value = isValInRange ? value : this.getRange()[this.type].min;
         } else if (this.type === 'period') {
             value = this.inputValue.toString().toUpperCase() === this.getRange()[this.type].min ? this.getRange()[this.type].max : this.getRange()[this.type].min;
-        }
-        else {
+        } else {
             value = '--';
         }
         this.inputValue = value;
