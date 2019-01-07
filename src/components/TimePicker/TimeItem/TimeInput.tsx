@@ -18,7 +18,8 @@ export class TimeInput extends Base<Props> {
     public render(){
         return (
             <div class='fd-time__input'>
-                <Input id={this.id} type='text' aria-label={this.ariaLabel} value={this.value} placeholder={this.placeholder}></Input>
+                <Input id={this.id} type='text' aria-label={this.ariaLabel} value={this.value} placeholder={this.placeholder}
+                on-input={(newValue:string) => this.$emit('input', newValue)}></Input>
             </div>
         );
     }
