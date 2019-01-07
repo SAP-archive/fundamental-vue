@@ -6,9 +6,7 @@ describe('CalendarItem', () => {
   it('emits click', () => {
     const wrapper = shallowMount(CalendarItem, {
       listeners: {
-        click() {
-          console.log('click');
-        },
+        click() { /* empty */ },
       },
     });
     wrapper.trigger('click');
@@ -22,9 +20,7 @@ describe('CalendarItem', () => {
     const wrapper = shallowMount(CalendarItem, {
       propsData: { state: 'disabled'},
       listeners: {
-        click() {
-          console.log('click');
-        },
+        click() { /* empty */ },
       },
     });
     wrapper.trigger('click');

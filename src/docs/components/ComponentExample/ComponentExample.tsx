@@ -137,7 +137,7 @@ export class ComponentExample extends TsxComponent<Props> {
             <div
               class='example__show_code'
               role='button'
-              on-click={event => this.toggleCode(event)}
+              on-click={this.toggleCode}
             >
               <a href='#'>
                 <i class={`sap-icon--navigation-${this.codeShown ? 'up' : 'down'}-arrow sap-icon--s`} />

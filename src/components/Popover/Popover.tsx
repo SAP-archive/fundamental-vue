@@ -45,8 +45,8 @@ export class Popover extends mixins(UidMixin) {
   public $tsxProps!: Readonly<{}> & Readonly<Props>;
 
   @Watch('popoverVisible', { immediate: true })
-  public handlePopoverVisible(newVal) {
-    this.currentPopoverVisible = newVal;
+  public handlePopoverVisible(visible: boolean) {
+    this.currentPopoverVisible = visible;
     this.$emit('visible', this.currentPopoverVisible);
   }
 

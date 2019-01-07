@@ -58,14 +58,12 @@ export class Pagination extends Base<Props> {
         notSuppressed = true;
       } else if (notSuppressed === true) {
         links.push(
-          // tslint:disable-next-line:jsx-self-close
           <span
             class='fd-pagination__link fd-pagination__link--more'
             aria-hidden='true'
             aria-label='...'
             role='presentation'
-          >
-          </span>,
+          />,
         );
         notSuppressed = false;
       }
@@ -77,7 +75,17 @@ export class Pagination extends Base<Props> {
   private pageClicked(event: Event) {
     const element = event.target as HTMLAnchorElement;
     this.selectedPage = element && +element.text || 1;
-    this.$emit('page-change', this.selectedPage);
+    this.$emit('update:initialPage', this.selectedPage);
+  }
+
+  private navigateToFirst() {
+    this.selectedPage = 1;
+    this.$emit('update:initialPage', this.selectedPage);
+  }
+
+  private navigateToLast() {
+    this.selectedPage = this.numberOfPages;
+    this.$emit('update:initialPage', this.selectedPage);
   }
 
   private navigateForward() {
@@ -85,7 +93,7 @@ export class Pagination extends Base<Props> {
       return;
     }
     ++this.selectedPage;
-    this.$emit('page-change', this.selectedPage);
+    this.$emit('update:initialPage', this.selectedPage);
   }
 
   private navigateBack() {
@@ -93,12 +101,25 @@ export class Pagination extends Base<Props> {
       return;
     }
     --this.selectedPage;
-    this.$emit('page-change', this.selectedPage);
+    this.$emit('update:initialPage', this.selectedPage);
+  }
+
+  private keyHandler(e: KeyboardEvent) {
+    const key = e.code;
+    if (key === 'Home') {
+      this.navigateToFirst();
+    } else if (key === 'End') {
+      this.navigateToLast();
+    } else if (key === 'ArrowLeft' || key === 'ArrowUp' || key === 'PageUp') {
+      this.navigateBack();
+    } else if (key === 'ArrowRight' || key === 'ArrowDown' || key === 'PageDown') {
+      this.navigateForward();
+    }
   }
 
   public render() {
     return (
-      <div class='fd-pagination'>
+      <div class='fd-pagination' on-keydown={this.keyHandler}>
       {this.displayTotal ? (
         <span class='fd-pagination__total'>
           {this.itemsTotal} {this.totalText || 'items'}

@@ -1,6 +1,6 @@
 <title>Menu Item with Link</title>
 <condensed />
-<tip>You can embed a link inside an `FdMenuItem`. A `FdMenuItem` which contains a link has a slightly different appearance. By embedding a link inside an `FdMenuItem` you are also able to further customize the menu item (`href`, `target`, …) and omit a `@click`-handler.</tip>
+<tip>You can embed a link inside an `FdMenuItem`. By embedding a link inside an `FdMenuItem` you are also able to further customize the menu item (`href`, `target`, …) and omit a `@click`-handler.</tip>
 <template>
   <FdMenu>
     <FdMenuList>

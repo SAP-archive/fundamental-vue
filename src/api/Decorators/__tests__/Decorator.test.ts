@@ -4,9 +4,7 @@ import { Component, Prop, Base } from '@/core';
 describe('Documentation of', () => {
   describe('TestComponent', () => {
 
-    class Person {
-
-    }
+    class Person {}
 
     @Component('TestComponent')
     class TestComponent extends Base {
@@ -31,8 +29,8 @@ describe('Documentation of', () => {
         return;
       }
       it('props are correct', () => {
-        assert.strictEqual(String, doc.getProp('firstName').vueTypes);
-        assert.strictEqual(null, doc.getProp('anyProp').vueTypes);
+        assert.strictEqual(String, doc.getProp('firstName').vue.type);
+        assert.isUndefined(doc.getProp('anyProp').vue.type);
       });
 
       it('person prop', () => {
@@ -40,15 +38,16 @@ describe('Documentation of', () => {
           required: false,
           type: Person,
           default: undefined,
+          validator: undefined,
          }, doc.getProp('person').vuePropOptions);
       });
 
       it('label prop correct', () => {
-        assert.deepStrictEqual({
-          required: false,
-          type: String,
-          default: null,
-         }, doc.getProp('label').vuePropOptions);
+        const opts = doc.getProp('label').vuePropOptions;
+        assert.isFalse(opts.required);
+        assert.strictEqual(opts.type, String);
+        assert.isNull(opts.default);
+        assert.isUndefined(opts.validator);
       });
     });
   });

@@ -1,9 +1,15 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "alwaysStrict": true,
     "target": "esnext",
     "module": "esnext",
     "strict": true,
+    "preserveConstEnums": true,
     "jsx": "preserve",
+    "strictNullChecks": true,
     "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
@@ -11,7 +17,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noUnusedLocals": true,
     "types": [
       "webpack-env",

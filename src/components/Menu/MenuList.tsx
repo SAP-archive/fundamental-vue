@@ -6,6 +6,7 @@ import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
 
 interface Props {
   header?: string | null;
+  separated?: boolean;
 }
 
 @Component('MenuList', {
@@ -18,15 +19,18 @@ interface Props {
 @Event('select', 'Sent when a menu item was selected', ['item', 'MenuItem'])
 @DefaultSlot('0 or more menu items.')
 export class MenuList extends Base<Props> {
-  @Prop('text displayed in the menu list (group) header',{ type: String, default: null })
+  @Prop('text displayed in the menu list (group) header', { type: String, default: null })
   public header!: string | null;
+
+  @Prop('whether a separator is placed between menu items', { type: Boolean, default: false })
+  public separated!: boolean;
 
   @Inject({ from: MENU, default: null })
   public menu!: Menu | null;
 
   public render() {
     const items = this.$slots.default;
-    const renderList = () => <ul class='fd-menu__list'>{items}</ul>;
+    const renderList = () => <ul staticClass='fd-menu__list' class={this.menuListClasses}>{items}</ul>;
     const header = this.header;
     if (header == null) {
       return renderList();
@@ -37,6 +41,12 @@ export class MenuList extends Base<Props> {
         {renderList()}
       </div>
     );
+  }
+
+  private get menuListClasses() {
+    return {
+      'fd-menu__list--separated': this.separated,
+    };
   }
 
   public menuItemDidClick(item: MenuItem) {

@@ -1,3 +1,6 @@
+import {
+  version as packageVersion,
+} from '@/../package.json';
 const {
   VUE_APP_FD_VUE_DEV_TOOLS,
   VUE_APP_FD_NAME,
@@ -8,6 +11,6 @@ const {
 
 export const devToolsEnabled = VUE_APP_FD_VUE_DEV_TOOLS === 'enabled';
 export const libName = (VUE_APP_FD_NAME as string) || '<name not set>';
-export const version = VUE_APP_VERSION as string;
+export const version = (VUE_APP_VERSION || packageVersion) as string;
 export const env = (NODE_ENV as string) || 'production';
 export const apiDocsEnabled = VUE_APP_API_DOCS_ENABLED === 'true';

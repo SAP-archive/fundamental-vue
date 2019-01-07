@@ -5,37 +5,40 @@ describe('a prop', () => {
   let prop!: PropDocumentation;
 
   beforeEach(() => {
-    prop = new PropDocumentation({ key: 'firstName' });
+    prop = new PropDocumentation('firstName');
   });
 
   describe('can be converted to vue options', () => {
     it('string type', () => {
-      const p = new PropDocumentation({ key: 'firstName' });
-      p.vueTypes = String;
+      const p = new PropDocumentation('firstName');
+      p.vue.type = String;
       assert.deepStrictEqual(p.vuePropOptions, {
         required: false,
         default: undefined,
         type: String,
+        validator: undefined,
       });
     });
 
     it('required any', () => {
-      const p = new PropDocumentation({ key: 'firstName' });
+      const p = new PropDocumentation('firstName');
       p.required = true;
       assert.deepStrictEqual(p.vuePropOptions, {
         required: true,
         default: undefined,
         type: undefined,
+        validator: undefined,
       });
     });
 
     it('function type', () => {
-      const p = new PropDocumentation({ key: 'firstName' });
+      const p = new PropDocumentation('firstName');
       p.updateWithOptions({ type: Function });
       assert.deepStrictEqual(p.vuePropOptions, {
         required: false,
         default: undefined,
         type: Function,
+        validator: undefined,
       });
     });
   });
@@ -44,7 +47,7 @@ describe('a prop', () => {
     prop.updateWithOptions({
       type: String,
     });
-    const types = prop.vueTypes;
+    const types = prop.vue.type;
     assert.strictEqual(types, String);
   });
 
@@ -52,7 +55,7 @@ describe('a prop', () => {
     prop.updateWithOptions({
       type: [Number, String],
     });
-    const types = prop.vueTypes;
+    const types = prop.vue.type;
     assert.isArray(types);
     if(Array.isArray(types)) {
       assert.lengthOf(types, 2);

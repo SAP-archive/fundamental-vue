@@ -1,0 +1,25 @@
+language: node_js
+os:
+- linux
+# somehow building for osx does not work correctly either... - osx
+# there is currently an issue with window not finding our tests.- windows
+node_js:
+- "10.15.0"
+dist: trusty
+git:
+  depth: false
+branches:
+  only:
+  - develop
+  - "/^feature\\/.*$/"
+matrix:
+jobs:
+  include:
+    - script: "npm run lint"
+    - script: "npm run lint:vue"
+    - script: "npm run typecheck"
+    - script: "npm test"
+notifications:
+  email:
+    on_failure: always
+    on_success: change
