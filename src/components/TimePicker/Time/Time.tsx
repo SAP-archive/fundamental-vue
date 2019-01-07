@@ -4,12 +4,12 @@ import { TimeInput } from './TimeInput';
 import { Watch } from 'vue-property-decorator';
 
 interface Props {
-    type?: TimeItemType;
+    type?: TimeType;
     value?: string | number;
     ariaLabel?: string | null;
 };
 
-// TimeItem type
+// Time type
 const typeMapping = {
     hour24: '24 Hour range',
     hour12: '12 Hour range',
@@ -17,21 +17,21 @@ const typeMapping = {
     second: 'Second range',
     period: 'AM/PM period range'
 };
-export type TimeItemType = keyof (typeof typeMapping);
-export const TimeItemTypeList = Object.keys(typeMapping) as TimeItemType[];
+export type TimeType = keyof (typeof typeMapping);
+export const TimeTypeList = Object.keys(typeMapping) as TimeType[];
 
-@Component('TimeItem')
-export class TimeItem extends Base<Props>{
+@Component('Time')
+export class Time extends Base<Props>{
 
     @Prop('Time Item Type', {
         type: String,
         required: true,
-        acceptableValues: TimeItemTypeList,
-        validator: TimeItemTypeList.includes,
+        acceptableValues: TimeTypeList,
+        validator: TimeTypeList.includes,
     })
-    public type!: TimeItemType;
+    public type!: TimeType;
 
-    @Prop('Value in the TimeItem input field', {
+    @Prop('Value in the Time input field', {
         type: [String, Number],
         default: '--',
     })
@@ -122,7 +122,24 @@ export class TimeItem extends Base<Props>{
         this.$emit('input', this.inputValue);
     }
 
+    private sanitizeValue() {
+        let value: string | number;
+        let isValInRange: boolean;
+        if (this.type === 'hour24' || this.type === 'hour12' || this.type === 'minute' || this.type === 'second') {
+            isValInRange = this.checkValueRange(this.inputValue);
+            value = isValInRange ? this.inputValue : this.getRange()[this.type].min;
+        } else if (this.type === 'period') {
+            const period = this.inputValue.toString().toUpperCase();
+            value = (period === this.getRange()[this.type].min || period === this.getRange()[this.type].max) ? period : this.getRange()[this.type].min;
+        } else {
+            value = '--';
+        }
+        this.inputValue = value;
+        this.$emit('update:value', this.inputValue);
+    }
+
     public render() {
+        this.sanitizeValue();
         return (
             <div class='fd-time__item' aria-label={this.ariaLabel}>
                 <TimeAction

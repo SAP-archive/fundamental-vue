@@ -69,7 +69,7 @@ import * as SearchInput from './SearchInput';
 import { version, libName } from '@/config';
 import * as Pagination from './Pagination';
 import { env } from '@/config';
-import { TimeItem } from './TimePicker/TimeItem';
+import { Time } from './TimePicker/Time';
 
 export const all = {
     Token,
@@ -105,7 +105,7 @@ export const all = {
     Pagination,
     Counter,
     ...Pagination,
-    TimeItem,
+    Time,
 };
 
 const $plugin: Plugin = () => {

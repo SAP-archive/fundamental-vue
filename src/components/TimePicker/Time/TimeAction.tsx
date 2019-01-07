@@ -29,7 +29,9 @@ export class TimeAction extends Base<Props> {
                     type={this.type || undefined}
                     aria-label={this.ariaLabel}
                     aria-controls={this.ariaControls}
-                    on-click={() => this.$emit('click')}>{this.title}</Button>
+                    on-click={() => this.$emit('click')}
+                >{this.title}
+                </Button>
             </div>
         );
     }
