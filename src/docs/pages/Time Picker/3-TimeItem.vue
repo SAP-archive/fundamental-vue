@@ -1,7 +1,7 @@
 <title>TimeItem</title>
 <template>
     <div>
-        <FdTime type='hour24'></FdTime>
+        <FdTimeItem type='hour24'></FdTimeItem>
     </div>
 </template>
 

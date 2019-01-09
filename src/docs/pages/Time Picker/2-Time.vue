@@ -1,9 +1,9 @@
 <title>Time Item as a set of Time</title>
+<docs>
+    This shows a composition of four `FdTime` components to create a TimeItem. If this is the plan, it is suggested to use the TimeItem component instead. 
+</docs>
 <template>
     <div>
-        <p>The time component is used for a single time value. Multiple components can be used in the time-picker to assemble a clock time. A max of four will account for hours, minutes, seconds and period of the day.</p>
-        <strong>It will be rare to see this component used outside of it being composed in the time-picker component.</strong>
-        <br/>
         <FdTime v-for="item in timeitems" :key="item.type" :type="item.type" :value="item.value"></FdTime>
     </div>
 </template>

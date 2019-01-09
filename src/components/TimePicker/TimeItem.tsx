@@ -37,7 +37,7 @@ export class TimeItem extends Base<Props>{
     public type!: TimeItemType;
 
     public $tsxProps!: Readonly<{}> & Readonly<Props>;
-    private timeValue: string | number = this.value;
+    // private timeValue: string | number = this.value;
     // private time: object | null = {
     //     hour : '--',
     //     minute : '--',
