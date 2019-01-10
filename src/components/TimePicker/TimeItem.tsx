@@ -46,7 +46,7 @@ export class TimeItem extends Base<Props>{
 
     private splitTime() {
         if (this.timeValue) {
-            const time = this.timeValue.split(" ");
+            const time = this.timeValue.toString().split(" ");
             const timeValue = time[0].split(":");
             [this.hour, this.minute, this.second, this.period] = [timeValue[0], timeValue[1], timeValue[2], time[1]];
         }
@@ -85,7 +85,7 @@ export class TimeItem extends Base<Props>{
     public render() {
         this.splitTime();
         return (
-            <div>
+            <div id={this.id}>
                 <Time type={this.type} value={this.hour} on-timeUpdate={this.updateHour}></Time>
                 <Time type='minute' value={this.minute} on-timeUpdate={this.updateMinute}></Time>
                 {this.second ? (<Time type='second' value={this.second} on-timeUpdate={this.updateSecond}></Time>) : ''}

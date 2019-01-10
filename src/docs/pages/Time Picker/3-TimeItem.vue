@@ -1,7 +1,7 @@
 <title>TimeItem</title>
 <template>
     <div>
-        <FdTimeItem type='hour12' :value="value" @timeItemUpdate='onTimeItemUpdate'></FdTimeItem>
+        <FdTimeItem type='hour24' :value="value" @timeItemUpdate='onTimeItemUpdate'></FdTimeItem>
     </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
     },
     data() {
         return {
-            value : '06:26 PM'
+            value : '18:26'
         };
     }
 }
