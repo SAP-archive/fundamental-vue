@@ -17,15 +17,15 @@ const TimeItemTypeList = Object.keys(typeMapping) as TimeItemType[];
 
 @Component('TimeItem')
 @Event('timeItemUpdate', 'Event triggered whenever the time value is updated.')
-export class TimeItem extends Base<Props>{
+export class TimeItem extends Base<Props> {
     @Prop('Aria Label for TimeItem', {
         type: String,
-        default: 'Time Item'
+        default: 'Time Item',
     })
     public ariaLabel!: string | null;
 
     @Prop('Value of Time to be set in the time Item. This has to be in the format "hh:mm:ss" / "hh:mm" for the 24 hour clock or "hh:mm:ss a" / "hh:mm a" for the 12 hour clock', {
-        type: String
+        type: String,
         // validator needs to be added.
     })
     public value!: string | null;
@@ -33,7 +33,7 @@ export class TimeItem extends Base<Props>{
     @Prop('Type of TimeItem i.e., 24 hour clock or 12 hour clock', {
         acceptableValues: TimeItemTypeList,
         type: String,
-        required: true
+        required: true,
     })
     public type!: TimeItemType;
 
@@ -46,8 +46,8 @@ export class TimeItem extends Base<Props>{
 
     private splitTime() {
         if (this.timeValue) {
-            const time = this.timeValue.toString().split(" ");
-            const timeValue = time[0].split(":");
+            const time = this.timeValue.toString().split(' ');
+            const timeValue = time[0].split(':');
             [this.hour, this.minute, this.second, this.period] = [timeValue[0], timeValue[1], timeValue[2], time[1]];
         }
     }
@@ -75,9 +75,9 @@ export class TimeItem extends Base<Props>{
 
     private updateTime() {
         const timeValue = [this.hour, this.minute, this.second].join(':');
-        const time = [timeValue, this.period].join(" ");
+        const time = [timeValue, this.period].join(' ');
         this.timeValue = time;
-        this.$emit('timeItemUpdate',this.timeValue);
+        this.$emit('timeItemUpdate', this.timeValue);
     }
 
 
@@ -85,7 +85,7 @@ export class TimeItem extends Base<Props>{
     public render() {
         this.splitTime();
         return (
-            <div id={this.id}>
+            <div>
                 <Time type={this.type} value={this.hour} on-timeUpdate={this.updateHour}></Time>
                 <Time type='minute' value={this.minute} on-timeUpdate={this.updateMinute}></Time>
                 {this.second ? (<Time type='second' value={this.second} on-timeUpdate={this.updateSecond}></Time>) : ''}

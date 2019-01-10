@@ -21,7 +21,7 @@ export type TimeType = keyof (typeof typeMapping);
 export const TimeTypeList = Object.keys(typeMapping) as TimeType[];
 
 @Component('Time')
-@Event('timeUpdate','Event triggered whenever the time value is updated.')
+@Event('timeUpdate', 'Event triggered whenever the time value is updated.')
 export class Time extends Base<Props> {
 
     @Prop('Time Item Type', {
@@ -140,11 +140,11 @@ export class Time extends Base<Props> {
         this.$emit('update:value', this.inputValue);
     }
 
-    private emitTimeUpdate(){
+    private emitTimeUpdate() {
         this.$emit('timeUpdate', this.inputValue);
     }
 
-    private timeUpdate(newValue : string){
+    private timeUpdate(newValue: string) {
         this.inputValue = newValue;
         this.emitTimeUpdate();
     }

@@ -69,7 +69,7 @@ import * as SearchInput from './SearchInput';
 import { version, libName } from '@/config';
 import * as Pagination from './Pagination';
 import { log } from '@/core';
-import *  as TimePicker from './TimePicker';
+import * as TimePicker from './TimePicker';
 
 export const all: { [key: string]: any } = {
   Token,
