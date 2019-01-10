@@ -1,15 +1,20 @@
 <title>TimeItem</title>
 <template>
     <div>
-        <FdTimeItem type='hour24'></FdTimeItem>
+        <FdTimeItem type='hour12' :value="value" @timeItemUpdate='onTimeItemUpdate'></FdTimeItem>
     </div>
 </template>
 
 <script>
 export default {
+    methods: {
+        onTimeItemUpdate(time){
+            // handle timeItemUpdate.
+        }
+    },
     data() {
         return {
-            value : 17
+            value : '06:26 PM'
         };
     }
 }

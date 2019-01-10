@@ -1,11 +1,11 @@
-import { Component, Base, Prop } from '@/core';
+import { Component, Base, Prop, Event } from '@/core';
 import { TimeAction } from './TimeAction';
 import { TimeInput } from './TimeInput';
 import { Watch } from 'vue-property-decorator';
 
 interface Props {
     type?: TimeType;
-    value?: string | number;
+    value?: string | number | null;
     ariaLabel?: string | null;
 }
 
@@ -21,6 +21,7 @@ export type TimeType = keyof (typeof typeMapping);
 export const TimeTypeList = Object.keys(typeMapping) as TimeType[];
 
 @Component('Time')
+@Event('timeUpdate','Event triggered whenever the time value is updated.')
 export class Time extends Base<Props> {
 
     @Prop('Time Item Type', {
@@ -100,6 +101,7 @@ export class Time extends Base<Props> {
         }
         this.inputValue = value;
         this.$emit('update:value', this.inputValue);
+        this.emitTimeUpdate();
     }
 
     private moveDown() {
@@ -113,6 +115,7 @@ export class Time extends Base<Props> {
         }
         this.inputValue = value;
         this.$emit('update:value', this.inputValue);
+        this.emitTimeUpdate();
     }
 
     @Watch('value')
@@ -137,6 +140,15 @@ export class Time extends Base<Props> {
         this.$emit('update:value', this.inputValue);
     }
 
+    private emitTimeUpdate(){
+        this.$emit('timeUpdate', this.inputValue);
+    }
+
+    private timeUpdate(newValue : string){
+        this.inputValue = newValue;
+        this.emitTimeUpdate();
+    }
+
     public render() {
         this.sanitizeValue();
         return (
@@ -145,7 +157,7 @@ export class Time extends Base<Props> {
                     icon='navigation-up-arrow'
                     type={'standard'}
                     on-click={this.moveUp}></TimeAction>
-                <TimeInput value={this.inputValue} on-input={(newValue: string) => this.inputValue = newValue}></TimeInput>
+                <TimeInput value={this.inputValue} on-input={this.timeUpdate}></TimeInput>
                 <TimeAction
                     icon='navigation-down-arrow'
                     type={'standard'}

@@ -1,4 +1,4 @@
-import { Component, Base, Prop } from '@/core';
+import { Component, Base, Prop, Event } from '@/core';
 import { Time } from './Time/Time';
 
 interface Props {
@@ -16,6 +16,7 @@ export type TimeItemType = keyof (typeof typeMapping);
 const TimeItemTypeList = Object.keys(typeMapping) as TimeItemType[];
 
 @Component('TimeItem')
+@Event('timeItemUpdate', 'Event triggered whenever the time value is updated.')
 export class TimeItem extends Base<Props>{
     @Prop('Aria Label for TimeItem', {
         type: String,
@@ -37,18 +38,60 @@ export class TimeItem extends Base<Props>{
     public type!: TimeItemType;
 
     public $tsxProps!: Readonly<{}> & Readonly<Props>;
-    // private timeValue: string | number = this.value;
-    // private time: object | null = {
-    //     hour : '--',
-    //     minute : '--',
-    //     second : '--',
-    //     period : '--'
-    // };
+    private timeValue: string | number | null = this.value;
+    private hour: string | number | null = '--';
+    private minute: string | number = '--';
+    private second: string | number = '--';
+    private period: string | number = '--';
+
+    private splitTime() {
+        if (this.timeValue) {
+            const time = this.timeValue.split(" ");
+            const timeValue = time[0].split(":");
+            [this.hour, this.minute, this.second, this.period] = [timeValue[0], timeValue[1], timeValue[2], time[1]];
+        }
+    }
+
+    private updateHour(hour: string) {
+        this.hour = hour;
+        this.updateTime();
+    }
+
+    private updateMinute(minute: string) {
+        this.minute = minute;
+        this.updateTime();
+    }
+
+    private updateSecond(second: string) {
+        this.second = second;
+        this.updateTime();
+    }
+
+    private updatePeriod(period: string) {
+        this.period = period;
+        this.updateTime();
+    }
+
+
+    private updateTime() {
+        const timeValue = [this.hour, this.minute, this.second].join(':');
+        const time = [timeValue, this.period].join(" ");
+        this.timeValue = time;
+        this.$emit('timeItemUpdate',this.timeValue);
+    }
+
+
 
     public render() {
+        this.splitTime();
         return (
             <div>
-                <Time type={this.type}></Time>
+                <Time type={this.type} value={this.hour} on-timeUpdate={this.updateHour}></Time>
+                <Time type='minute' value={this.minute} on-timeUpdate={this.updateMinute}></Time>
+                {this.second ? (<Time type='second' value={this.second} on-timeUpdate={this.updateSecond}></Time>) : ''}
+                {this.type === 'hour12' ? (
+                    <Time type='period' value={this.period} on-timeUpdate={this.updatePeriod}></Time>
+                ) : ''}
             </div>
         );
     }
