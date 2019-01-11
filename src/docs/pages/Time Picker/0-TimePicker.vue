@@ -6,17 +6,25 @@
 ```
 </docs>
 <template>
-    <div>
-        <FdTimePicker :value="value"></FdTimePicker>
-    </div>
+  <div>
+    <FdTimePicker :showMeridian="meridianTime.showMeridian" :value="meridianTime.value"></FdTimePicker>
+    <br>
+    <FdTimePicker :value="millitaryTime.value"></FdTimePicker>
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            value : '23:23:23'
-        };
-    }
-}
+  data() {
+    return {
+      meridianTime: {
+        showMeridian: true,
+        value: "10:30:23 am"
+      },
+      millitaryTime: {
+        value: "22:30:23"
+      }
+    };
+  }
+};
 </script>

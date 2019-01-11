@@ -26,7 +26,7 @@ export default {
                     value : '00'
                 },
                 {
-                    type : 'period',
+                    type : 'meridian',
                     value : 'am'
                 }
             ]
