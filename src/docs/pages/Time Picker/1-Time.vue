@@ -7,7 +7,7 @@ It will be rare to see this component used outside of it being composed in the t
 </docs>
 <template>
     <div>
-        <FdTime type='hour24' :value="value" @timeUpdate='onTimeUpdate'></FdTime>
+        <FdTime :value="value" @timeUpdate='onTimeUpdate'></FdTime>
     </div>
 </template>
 
