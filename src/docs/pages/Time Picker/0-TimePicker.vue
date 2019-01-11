@@ -7,7 +7,7 @@
 </docs>
 <template>
     <div>
-        <FdTime type='hour24' :value="value"></FdTime>
+        <FdTimePicker :value="value"></FdTimePicker>
     </div>
 </template>
 
@@ -15,7 +15,7 @@
 export default {
     data() {
         return {
-            value : 18
+            value : '23:23:23'
         };
     }
 }

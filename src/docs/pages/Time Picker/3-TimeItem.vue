@@ -1,7 +1,13 @@
 <title>TimeItem</title>
+<docs>
+The `FdTimeItem` is used in the popover to pick time that is associated with the `FdTimePicker` component. 
+```
+<FdTimeItem />
+```
+</docs>
 <template>
     <div>
-        <FdTimeItem type='hour24' :value="value" @timeItemUpdate='onTimeItemUpdate'></FdTimeItem>
+        <FdTimeItem :showMeridian="showMeridian" :value="value" @timeItemUpdate='onTimeItemUpdate'></FdTimeItem>
     </div>
 </template>
 
@@ -14,7 +20,8 @@ export default {
     },
     data() {
         return {
-            value : '18:26'
+            showMeridian : true,
+            value : '12:00:00 pm'
         };
     }
 }

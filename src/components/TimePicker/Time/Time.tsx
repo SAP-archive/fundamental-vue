@@ -1,7 +1,9 @@
-import { Component, Base, Prop, Event } from '@/core';
+import { Component, Prop, Event } from '@/core';
 import { TimeAction } from './TimeAction';
 import { TimeInput } from './TimeInput';
 import { Watch } from 'vue-property-decorator';
+import { DateRangeMixin } from '../mixins/DateRange';
+import { mixins } from 'vue-class-component';
 
 interface Props {
     type?: TimeType;
@@ -15,14 +17,16 @@ const typeMapping = {
     hour12: '12 Hour range',
     minute: 'Minute range',
     second: 'Second range',
-    period: 'AM/PM period range',
+    meridian: 'am/pm meridian range',
 };
 export type TimeType = keyof (typeof typeMapping);
 export const TimeTypeList = Object.keys(typeMapping) as TimeType[];
 
+const TimeBase = mixins(DateRangeMixin);
+
 @Component('Time')
 @Event('timeUpdate', 'Event triggered whenever the time value is updated.')
-export class Time extends Base<Props> {
+export class Time extends TimeBase<Props> {
 
     @Prop('Time Item Type', {
         type: String,
@@ -47,31 +51,6 @@ export class Time extends Base<Props> {
     public $tsxProps!: Readonly<{}> & Readonly<Props>;
     private inputValue: string | number = this.value;
 
-    private getRange() {
-        return {
-            hour24: {
-                min: '00',
-                max: '23',
-            },
-            hour12: {
-                min: '00',
-                max: '12',
-            },
-            minute: {
-                min: '00',
-                max: '59',
-            },
-            second: {
-                min: '00',
-                max: '60',
-            },
-            period: {
-                min: 'AM',
-                max: 'PM',
-            },
-        };
-    }
-
     private getPreviousValue() {
         const previousValue = Number(this.inputValue) > Number(this.getRange()[this.type].min) ? Number(this.inputValue) - 1 : this.getRange()[this.type].max;
         return previousValue.toString().padStart(2, '0');
@@ -94,8 +73,8 @@ export class Time extends Base<Props> {
             value = !isNaN(Number(this.inputValue)) ? this.getPreviousValue() : this.getRange()[this.type].min;
             isValInRange = this.checkValueRange(value);
             value = isValInRange ? value : this.getRange()[this.type].min;
-        } else if (this.type === 'period') {
-            value = this.inputValue.toString().toUpperCase() === this.getRange()[this.type].min ? this.getRange()[this.type].max : this.getRange()[this.type].min;
+        } else if (this.type === 'meridian') {
+            value = this.inputValue.toString().toLowerCase() === this.getRange()[this.type].min ? this.getRange()[this.type].max : this.getRange()[this.type].min;
         } else {
             value = '--';
         }
@@ -108,8 +87,8 @@ export class Time extends Base<Props> {
         let value: string;
         if (this.type === 'hour24' || this.type === 'hour12' || this.type === 'minute' || this.type === 'second') {
             value = !isNaN(Number(this.inputValue)) ? this.getNextValue() : this.getRange()[this.type].min;
-        } else if (this.type === 'period') {
-            value = this.inputValue.toString().toUpperCase() === this.getRange()[this.type].min ? this.getRange()[this.type].max : this.getRange()[this.type].min;
+        } else if (this.type === 'meridian') {
+            value = this.inputValue.toString().toLowerCase() === this.getRange()[this.type].min ? this.getRange()[this.type].max : this.getRange()[this.type].min;
         } else {
             value = '--';
         }
@@ -130,9 +109,9 @@ export class Time extends Base<Props> {
         if (this.type === 'hour24' || this.type === 'hour12' || this.type === 'minute' || this.type === 'second') {
             isValInRange = this.checkValueRange(this.inputValue);
             value = isValInRange ? this.inputValue : this.getRange()[this.type].min;
-        } else if (this.type === 'period') {
-            const period = this.inputValue.toString().toUpperCase();
-            value = (period === this.getRange()[this.type].min || period === this.getRange()[this.type].max) ? period : this.getRange()[this.type].min;
+        } else if (this.type === 'meridian') {
+            const meridian = this.inputValue.toString().toLowerCase();
+            value = (meridian === this.getRange()[this.type].min || meridian === this.getRange()[this.type].max) ? meridian : this.getRange()[this.type].min;
         } else {
             value = '--';
         }
