@@ -7,7 +7,7 @@ type Node = {
 };
 
 type NodeWithId = {
-  id: string;
+  id: number;
   columns: any[];
   children?: NodeWithId[];
 };
@@ -45,9 +45,9 @@ export class Tree extends Base<Props> {
         children = this.initializeTreeDataWithIds(n.children);
       }
       if (children && children.length) {
-        return {id:String(0), children, columns: n.columns};
+        return {id: 0, children, columns: n.columns};
       } else {
-        return {id:String(0), columns: n.columns};
+        return {id: 0, columns: n.columns};
       }
     });
     return treeDataWithIds;
@@ -57,7 +57,7 @@ export class Tree extends Base<Props> {
   // then go to the next parent
   private assignIds(treeData: NodeWithId[]) {
     treeData.forEach(n => {
-      const id = String(this.numberOfElements++);
+      const id = this.numberOfElements++;
       n.id = id;
       if (n.children && n.children.length) {
         this.assignIds(n.children);
@@ -77,7 +77,7 @@ export class Tree extends Base<Props> {
     this.expandAllClicked = !this.expandAllClicked;
   }
 
-  private updateVisibility(selected: string) {
+  private updateVisibility(selected: number) {
     const modifiedStates = this.iStates.slice();
     if (modifiedStates[selected]) {
       modifiedStates[selected] = false;
