@@ -25,6 +25,7 @@ interface Props extends UidProps {
   trueValue?: ValueType;
   compact?: boolean;
   state?: InputState | null;
+  modelValue?: ValueType | ValueType[];
 }
 
 @Component('Checkbox')
@@ -95,13 +96,13 @@ export class Checkbox extends Base<Props> {
   })
   public modelValue!: ValueType | ValueType[];
 
-  private get shouldBeChecked(): boolean {
+  public get checked(): boolean {
     const modelValue = this.modelValue;
-    const value = this.value;
-    if(value == null) {
-      throw Error('value cannot be null');
-    }
     if (Array.isArray(modelValue)) {
+      const value = this.value;
+      if(value == null) {
+        throw Error('value cannot be null');
+      }
       return modelValue.includes(value);
     }
     return this.modelValue === this.trueValue;
@@ -124,19 +125,26 @@ export class Checkbox extends Base<Props> {
       const set = new Set(modelValue);
       checked ? set.add(value) : set.delete(value);
       const newValue = Array.from(set);
-      this.$emit('change', newValue);
+      this.$emit('change', newValue, event);
     } else {
       const newValue = checked ? this.trueValue : this.falseValue;
-      this.$emit('change', newValue);
+      this.$emit('change', newValue, event);
     }
+  }
+
+  private get listeners() {
+    const { ...listeners } = this.$listeners;
+    return listeners;
   }
 
   public render() {
     return (
       <input
+        {... { listeners: this.listeners }}
         id={this.uid}
         class={this.classes}
-        checked={this.shouldBeChecked}
+        checked={this.checked}
+        disabled={this.disabled ? '' : null}
         value={this.value}
         on-change={this.updateInput}
         type='checkbox'

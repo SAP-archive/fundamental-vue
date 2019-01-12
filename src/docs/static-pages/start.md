@@ -32,7 +32,7 @@ Fundamental Vue does not include the ['Fiori Fundamentals' library](https://gith
 ## Install Fiori Fundamentals
 The quickest way to get Fiori Fundamentals styling for your components is  to include the compiled and minified Fiori Fundamentals CSS library with the following CDN link in your public `index.html` file:
 ```
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.3.3/dist/fiori-fundamentals.min.css">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.4.1/dist/fiori-fundamentals.min.css">
 ```
 
 However, installing the Fiori Fundamentals library with npm (recommended) will give you the flexibility to use individual components and enable [advanced customisation options](https://github.com/SAP/fundamental/wiki/Advanced-Customization). In this case, you do not need the CDN link as this method uses the SASS/SCSS source.
@@ -71,14 +71,12 @@ Import the main SCSS file in your `App.js` style block to add Fiori Fundamentals
 </style>
 ```
 
-You can now use the [Playground](https://dist-lg4xtfik7.now.sh) to browse the components currently available with Fundamental Vue.
+To learn more about currently available components please go to the official [component documentation](https://dist-lkl4ej2tj.now.sh).
 
-To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessarry:
+To use a Fundamental Vue component, paste the desired code snippet from the [component documentation](https://dist-lkl4ej2tj.now.sh) and configure it as necessarry:
 
 ```
-...
 <FdAlert dismissible>
       Happy building! 🚀
 </FdAlert>
-...
 ```

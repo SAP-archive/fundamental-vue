@@ -8,6 +8,27 @@ describe('Default Value Documentation', () => {
 
   class Person {}
 
+  // This test exists because at some point a boolean default value in the second param
+  // was displayed as 'no specified' in the docs.
+  describe('default boolean value in second arg', () => {
+    @Component('DefaultBooleanInSecondArg') class DefaultBooleanInSecondArg extends Base {
+      @Prop('i am a bool', { default: true, type: Boolean }) flagProp!: boolean;
+    }
+
+    const instance = new DefaultBooleanInSecondArg();
+    const { $componentDocumentation: doc }  = instance.$options;
+
+    it('should generate correct prop documentation', () => {
+      if(doc == null) {
+        throw Error(`Expected ${instance} to have a component documentation.`);
+      }
+      assert(doc.hasProp('flagProp'), 'flagProp should exist');
+      const prop = doc.getProp('flagProp');
+      assert.isTrue(prop.defaultValue, 'flagProps default value should be true');
+      assert.isUndefined(prop.readableDefaultValue, 'flagProps readable default value should be undefined');
+    });
+  });
+
   describe('DefaultsOfSimpleProps', () => {
     const defaultFunctionValue = () => 'hi mom';
     @Component('DefaultsOfSimpleProps') class DefaultsOfSimpleProps extends Base {

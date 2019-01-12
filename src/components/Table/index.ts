@@ -1,2 +1,2 @@
-export { Table } from './Table';
-export { TableColumn } from './TableColumn';
+export * from './Table';
+export * from './Components';
