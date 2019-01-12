@@ -86,6 +86,6 @@ type OptionsWithoutName<V extends Vue> = Diff<ComponentOptions<V>, { componentNa
 
 export const Component = <V extends Vue>(name: string, options: OptionsWithoutName<V> = { componentName: name }) => {
   const prefixedName = `Fd${name}`;
-  componentDocumentationFromOptions(options, name); // we need this because as a side effect this call generates the component documentation
+  componentDocumentationFromOptions(options, prefixedName); // we need this because as a side effect this call generates the component documentation
   return VueComponent({ ...options, name: prefixedName, componentName: prefixedName});
 };

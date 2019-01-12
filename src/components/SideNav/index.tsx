@@ -38,4 +38,3 @@ export class SideNavIcon extends mixins(IconMixin) {
     );
   }
 }
-

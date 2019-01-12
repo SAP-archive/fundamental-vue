@@ -17,7 +17,7 @@
 
 <p align="center">
 :open_book:
-<strong><a href="https://dist-lg4xtfik7.now.sh">Component Documentation</a></strong>
+<strong><a href="https://dist-lkl4ej2tj.now.sh">Component Documentation</a></strong>
 :open_book:
 </p>
 
@@ -73,7 +73,7 @@ To download and use this library, you first need to install the node package man
     The quickest way to get Fiori Fundamentals styling for your components is to include the compiled and minified Fiori Fundamentals CSS library with the following CDN link in your public `index.html` file:
 
     ```
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.3.3/dist/fiori-fundamentals.min.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.4.1/dist/fiori-fundamentals.min.css">
     ```
 
     However, installing the Fiori Fundamentals library with npm (recommended) will give you the flexibility to use individual components and enable [advanced customisation options](https://github.com/SAP/fundamental/wiki/Advanced-Customization). In this case, you do not need the CDN link as this method uses the SASS/SCSS source.
@@ -114,7 +114,7 @@ To download and use this library, you first need to install the node package man
     </style>
     ```
 
-    You can now use the [Documentation](https://dist-lg4xtfik7.now.sh) to browse the components currently available with Fundamental Vue.
+    You can now use the [Documentation](https://dist-lkl4ej2tj.now.sh) to browse the components currently available with Fundamental Vue.
 
     To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessarry:
 

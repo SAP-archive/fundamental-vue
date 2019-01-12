@@ -4,16 +4,17 @@ import {
 } from 'vue-property-decorator';
 import './PropsReference.css';
 import { PropDocumentation, PropType } from '@/api/Model/PropDocumentation';
-import { Table, TableColumn } from '@/components';
 import { ValueToken } from './ValueToken';
 import { TypeTokens } from './TypeTokens';
 import { TsxComponent } from '@/vue-tsx';
+import { Table, TableHeader, TableHeaderCell, TableRow, TableCell, ScopedRowSlot } from '@/components';
 
 interface Props {
   apiProps: PropDocumentation[];
 }
 
-type TableRow = {
+type PropEntry = {
+  id: string;
   name: string;
   description: string;
   acceptedValues: string; // formatted
@@ -22,58 +23,71 @@ type TableRow = {
   required: boolean;
 };
 
-type TableRowScope = { row: TableRow; };
+const defaultValueFromProp = ({ readableDefaultValue, defaultValue }: PropDocumentation) => readableDefaultValue != null ? readableDefaultValue : defaultValue;
 
 @Component({ name: 'PropsReference' })
 export class PropsReference extends TsxComponent<Props> {
   @Prop({ type: Array, required: true })
   public apiProps!: PropDocumentation[];
 
-  get tableData(): TableRow[] {
+  get tableData(): PropEntry[] {
     return this.apiProps.map(prop => {
-      const defaultValue = prop.readableDefaultValue || prop.defaultValue || undefined;
+      const defaultValue = defaultValueFromProp(prop);
       const acceptedValues = prop.formattedAcceptedValues;
       const types = prop.types;
       return {
+        defaultValue,
+        types,
+        id: prop.key,
         name: prop.key,
         description: prop.description,
-        types,
         acceptedValues,
         required: prop.required,
-        defaultValue,
       };
     });
   }
 
   public render() {
-    const typeColAttr = {
-      scopedSlots: {
-        default: (scope: TableRowScope) => [<TypeTokens key={scope.row.name} propTypes={scope.row.types} />],
-      },
+    const rowSlot: ScopedRowSlot<PropEntry> = ({item}) => {
+      return (
+        <TableRow slot='row'>
+          <TableCell>{item.id}</TableCell>
+          <TableCell>{item.description}</TableCell>
+          <TableCell>
+            <ValueToken
+              key={item.name}
+              representedValue={item.defaultValue}
+            />
+          </TableCell>
+          <TableCell>
+            <TypeTokens
+              key={item.name}
+              propTypes={item.types}
+            />
+          </TableCell>
+          <TableCell>{item.acceptedValues}</TableCell>
+        </TableRow>
+      );
     };
-    const nameColAttr = {
-      scopedSlots: {
-        default: (scope: TableRowScope) => ([(
-          <div key={scope.row.name}>
-            {scope.row.name}
-            {scope.row.required && <span class='api-props__required'>required</span>}
-          </div>
-        )]),
-      },
-    };
-    const defaultValueColAttr = {
-      scopedSlots: {
-        default: (scope: TableRowScope) => [<ValueToken key={scope.row.name} representedValue={scope.row.defaultValue} />],
-      },
-    };
-
     return (
-      <Table style='margin-bottom: 0;' data={this.tableData}>
-        <TableColumn {...nameColAttr} label='Property' />
-        <TableColumn<TableRow> prop='description' label='Description' />
-        <TableColumn {...defaultValueColAttr} label='Default Value' />
-        <TableColumn {...typeColAttr} alignment='center' label='Type' />
-        <TableColumn<TableRow> prop='acceptedValues' label='Accepted Values' />
+      <Table
+        {...
+          {
+            scopedSlots: {
+              row: rowSlot,
+            },
+          }
+        }
+        style='margin-bottom: 0;'
+        items={this.tableData}
+      >
+        <TableHeader>
+          <TableHeaderCell label='Property' />
+          <TableHeaderCell label='Description' />
+          <TableHeaderCell label='Default Value' />
+          <TableHeaderCell label='Type' />
+          <TableHeaderCell label='Accepted Values' />
+        </TableHeader>
       </Table>
     );
   }

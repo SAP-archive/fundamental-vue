@@ -40,6 +40,6 @@ export class DynamicComponent extends TsxComponent<Props> {
   }
 
   public render(h: CreateElement) {
-    return h(this.renderableComponent);
+    return h('div', {}, [h(this.renderableComponent)]);
   }
 }
