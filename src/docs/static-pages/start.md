@@ -8,7 +8,52 @@
 > SAP Fundamental Vue is a UI framework based on [SAP Fiori Fundamentals](https://sap.github.io/fundamental/) and [Vue.js](htts://vuejs.org).
 
 ## Installation
-Install Fundamental Vue via **NPM**:
+You can install Fundamental Vue via **NPM** or by simply including it by using the `<script>`- and `<link>`-tags.
+
+### Installation via **\<script\>** and **\<link\>**
+
+In order to use Fundamental Vue you have to include three things in your `index.html` file:
+
+1. Fundamental CSS styles
+2. Vue
+3. Fundamental Vue
+
+Paste the following snippet in your `<head>`-tag:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/fiori-fundamentals@1.4.1/dist/fiori-fundamentals.min.css">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/fundamental-vue@0.0.7-beta/dist/FundamentalVue.umd.js"></script>
+```
+
+Then you can use Fundamental Vue like this:
+
+````xhtml
+<body>
+  <div id="app" />
+  <script>
+    Vue.use(FundamentalVue);
+    new Vue({
+      name: 'App',
+      el: '#app',
+      data: { message: 'Hello Fundamental Vue!' },
+      template: \`
+      <FdPopover v-margin:large>
+      <h1 style="margin: 50px;" slot="body">{{ message }}</h1>
+      </FdPopover>\`,
+    });
+  </script>
+</body>
+````
+
+You should then see something like this:
+
+![Hello Fundamental Vue in Action](./start-hello-fundamental-vue.png)
+
+
+### Install Fundamental Vue via **NPM**:
+
+Fundamental Vue can also be installed via NPM which requires a few more steps but is also a bit more flexible.
 
 ```bash
 npm install --save fundamental-vue

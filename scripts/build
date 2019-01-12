@@ -6,5 +6,5 @@ npx vue-cli-service build \
   --mode production \
   --target lib \
   --report \
-  --name fundamentalvue \
+  --name FundamentalVue \
   src/index.ts
