@@ -6,6 +6,7 @@ import { DynamicComponent } from './DynamicComponent';
 import { FullscreenDemo } from './FullscreenDemo';
 import * as ComponentReference from './ComponentReference';
 import { StaticContent } from './StaticContent';
+import { ExpandTransition } from './Animations';
 
 export { FullscreenDemo } from './FullscreenDemo';
 export { DynamicComponent } from './DynamicComponent';
@@ -14,10 +15,11 @@ export { CodeView } from './CodeView';
 export { ComponentReference } from './ComponentReference';
 export { ExampleCollection } from './ExampleCollection';
 export { StaticContent } from './StaticContent';
+export { ExpandTransition } from './Animations';
 
 export const registerComponents = (vue: VueConstructor) => {
   const componentReferenceComponents = Object.values(ComponentReference);
-  const all = [FullscreenDemo, DynamicComponent, StaticContent, ExampleCollection, ComponentExample, CodeView, ...componentReferenceComponents];
+  const all = [ExpandTransition, FullscreenDemo, DynamicComponent, StaticContent, ExampleCollection, ComponentExample, CodeView, ...componentReferenceComponents];
   all.forEach(component => {
     // @ts-ignore
     const name = component.options.name;

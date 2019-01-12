@@ -1,6 +1,6 @@
 {
     "name": "fundamental-vue",
-    "version": "0.0.6-beta",
+    "version": "0.0.7-beta",
     "description": "Fundamental Vue is a light-weight Vue.js component library for SAP Fiori Fundamentals.",
     "keywords": [
         "vue",
@@ -32,7 +32,7 @@
         "deploy": "node ./node_modules/vue-gh-pages/index.js"
     },
     "license": "Apache-2.0",
-    "main": "dist/fundamentalvue.umd.js",
+    "main": "dist/FundamentalVue.umd.js",
     "dependencies": {
         "fiori-fundamentals": "^1.4.1",
         "vue": "^2.5.21",

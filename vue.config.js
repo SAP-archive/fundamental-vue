@@ -28,6 +28,9 @@ module.exports = {
       .end()
   },
   configureWebpack: {
+    output: {
+      libraryExport: 'default'
+    },
     resolveLoader: {
       modules: [
         'node_modules',
