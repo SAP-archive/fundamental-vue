@@ -11,11 +11,11 @@ type Options = {
   };
 } & object;
 
-const installFundamentals: PluginFunction<Options> = (vue, options?: PluginAPIOptions) => {
+const Plugin: PluginFunction<Options> = (vue, options?: PluginAPIOptions) => {
   vue.use(VueRouter);
   vue.use(Directives);
   const api = new PluginAPI(options);
   components.plugin().install(vue, api);
 };
 
-export default installFundamentals;
+export default Plugin;

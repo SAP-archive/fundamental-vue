@@ -2,7 +2,7 @@ import Vue from 'vue';
 import './class-component-hooks';
 import './main.scss';
 Vue.config.productionTip = false;
-import FundamentalVue from '@/index';
+import FundamentalVue from './../';
 import Router from 'vue-router';
 import { DocsRouter } from './DocsRouter';
 import { registerComponents } from './components';

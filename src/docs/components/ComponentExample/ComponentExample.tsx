@@ -3,9 +3,8 @@ import {
   Prop,
 } from 'vue-property-decorator';
 import './ComponentExample.sass';
-import { DynamicComponent } from '@/docs/components/DynamicComponent';
-import { Button, Panel, ExpandTransition } from '@/components';
-import { CodeView } from '@/docs/components';
+import { Button, Panel } from '@/components';
+import { DynamicComponent, ExpandTransition, CodeView } from '@/docs/components';
 import { TsxComponent } from '@/vue-tsx';
 
 interface Props {

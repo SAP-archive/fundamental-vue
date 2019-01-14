@@ -1,7 +1,6 @@
 export * from './ActionBar';
 export * from './Alert';
 export * from './Icon';
-export * from './Animations';
 export * from './Panel';
 export * from './Popover';
 export * from './Badge';
@@ -34,7 +33,6 @@ export * from './TimePicker';
 
 import * as Calendar from './Calendar';
 import * as Button from './Button';
-import * as Animations from './Animations';
 import * as Form from './Form';
 import * as SideNav from './SideNav';
 import * as Tabs from './Tabs';
@@ -96,7 +94,6 @@ export const all: { [key: string]: any } = {
   ...Panel,
   ...Menu,
   ...Popover,
-  ...Animations,
   ...Button,
   ...Tabs,
   ...SideNav,

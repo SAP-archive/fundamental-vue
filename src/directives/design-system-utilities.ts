@@ -32,7 +32,7 @@ const designClasses = (prefix: DesignClass, size: Size, modifiers: PaddingModifi
   if(right === true) { classes.push(designClass(prefix, size, 'right')); }
   return classes;
 };
-const paddingClasses = (size: Size, modifiers: PaddingModifiers = {}): string[] => designClasses('padding', size, modifiers);
+export const paddingClasses = (size: Size, modifiers: PaddingModifiers = {}): string[] => designClasses('padding', size, modifiers);
 const marginClasses = (size: Size, modifiers: PaddingModifiers = {}): string[] => designClasses('margin', size, modifiers);
 
 /*

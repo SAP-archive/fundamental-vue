@@ -23,3 +23,4 @@ yarn-error.log*
 
 # npm pack results
 fundamentalvue-*.tgz
+fundamental-vue-*.tgz

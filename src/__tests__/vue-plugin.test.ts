@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import { createLocalVue } from '@vue/test-utils';
-import FundamentalVue from './../';
+import FundamentalVue from './..';
 
 describe('Fundamental Vue', () => {
   it('can be installed', () => {
