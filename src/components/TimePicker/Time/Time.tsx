@@ -7,7 +7,7 @@ import { mixins } from 'vue-class-component';
 
 interface Props {
   type?: TimeType;
-  value?: string | number | null;
+  value?: string | number;
   ariaLabel?: string | null;
 }
 
@@ -25,7 +25,7 @@ export const TimeTypeList = Object.keys(typeMapping) as TimeType[];
 const TimeBase = mixins(DateRangeMixin);
 
 @Component('Time')
-@Event('timeUpdate', 'Event triggered whenever the time value is updated.')
+@Event('timeUpdate','Event triggered when the time value is updated')
 export class Time extends TimeBase<Props> {
   @Prop('Time Item Type', {
     type: String,
@@ -50,29 +50,41 @@ export class Time extends TimeBase<Props> {
   public $tsxProps!: Readonly<{}> & Readonly<Props>;
   private inputValue: string | number = this.value;
 
-  private getPreviousValue() {
-    const previousValue = Number(this.inputValue) > Number(this.getRange()[this.type].min) ? Number(this.inputValue) - 1 : this.getRange()[this.type].max;
+  private get previousValue() {
+    const previousValue = Number(this.inputValue) > Number(this.range[this.type].min) ? Number(this.inputValue) - 1 : this.range[this.type].max;
     return previousValue.toString().padStart(2, '0');
   }
 
-  private getNextValue() {
-    const nextValue = Number(this.inputValue) < Number(this.getRange()[this.type].max) ? Number(this.inputValue) + 1 : this.getRange()[this.type].min;
+  private get nextValue() {
+    const nextValue = Number(this.inputValue) < Number(this.range[this.type].max) ? Number(this.inputValue) + 1 : this.range[this.type].min;
     return nextValue.toString().padStart(2, '0');
   }
 
   private checkValueRange(timeValue: string | number) {
-    return !isNaN(Number(timeValue)) && (Number(timeValue) >= Number(this.getRange()[this.type].min) && Number(timeValue) <= Number(this.getRange()[this.type].max));
+    return !isNaN(Number(timeValue)) && (Number(timeValue) >= Number(this.range[this.type].min) && Number(timeValue) <= Number(this.range[this.type].max));
   }
 
-  private moveUp() {
+  private decreaseValue() {
     let value: string;
     let isValInRange: boolean;
     if (this.type === 'hour24' || this.type === 'hour12' || this.type === 'minute' || this.type === 'second') {
-      value = !isNaN(Number(this.inputValue)) ? this.getPreviousValue() : this.getRange()[this.type].min;
+      value = !isNaN(Number(this.inputValue)) ? this.previousValue : this.range[this.type].min;
       isValInRange = this.checkValueRange(value);
-      value = isValInRange ? value : this.getRange()[this.type].min;
+      value = isValInRange ? value : this.range[this.type].min;
     } else if (this.type === 'meridian') {
-      value = this.inputValue.toString().toLowerCase() === this.getRange()[this.type].min ? this.getRange()[this.type].max : this.getRange()[this.type].min;
+      value = this.inputValue.toString().toLowerCase() === this.range[this.type].min ? this.range[this.type].max : this.range[this.type].min;
+    } else {
+      value = '--';
+    }
+    this.inputValue = value;
+  }
+
+  private increaseValue() {
+    let value: string;
+    if (this.type === 'hour24' || this.type === 'hour12' || this.type === 'minute' || this.type === 'second') {
+      value = !isNaN(Number(this.inputValue)) ? this.nextValue : this.range[this.type].min;
+    } else if (this.type === 'meridian') {
+      value = this.inputValue.toString().toLowerCase() === this.range[this.type].min ? this.range[this.type].max : this.range[this.type].min;
     } else {
       value = '--';
     }
@@ -81,18 +93,8 @@ export class Time extends TimeBase<Props> {
     this.emitTimeUpdate();
   }
 
-  private moveDown() {
-    let value: string;
-    if (this.type === 'hour24' || this.type === 'hour12' || this.type === 'minute' || this.type === 'second') {
-      value = !isNaN(Number(this.inputValue)) ? this.getNextValue() : this.getRange()[this.type].min;
-    } else if (this.type === 'meridian') {
-      value = this.inputValue.toString().toLowerCase() === this.getRange()[this.type].min ? this.getRange()[this.type].max : this.getRange()[this.type].min;
-    } else {
-      value = '--';
-    }
-    this.inputValue = value;
-    this.$emit('update:value', this.inputValue);
-    this.emitTimeUpdate();
+  private emitTimeUpdate() {
+    this.$emit('timeUpdate', this.inputValue);
   }
 
   @Watch('value')
@@ -106,19 +108,15 @@ export class Time extends TimeBase<Props> {
     let isValInRange: boolean;
     if (this.type === 'hour24' || this.type === 'hour12' || this.type === 'minute' || this.type === 'second') {
       isValInRange = this.checkValueRange(this.inputValue);
-      value = isValInRange ? this.inputValue : this.getRange()[this.type].min;
+      value = isValInRange ? this.inputValue : this.range[this.type].min;
     } else if (this.type === 'meridian') {
       const meridian = this.inputValue.toString().toLowerCase();
-      value = (meridian === this.getRange()[this.type].min || meridian === this.getRange()[this.type].max) ? meridian : this.getRange()[this.type].min;
+      value = (meridian === this.range[this.type].min || meridian === this.range[this.type].max) ? meridian : this.range[this.type].min;
     } else {
       value = '--';
     }
     this.inputValue = value;
     this.$emit('update:value', this.inputValue);
-  }
-
-  private emitTimeUpdate() {
-    this.$emit('timeUpdate', this.inputValue);
   }
 
   private timeUpdate(newValue: string) {
@@ -132,13 +130,13 @@ export class Time extends TimeBase<Props> {
       <div class='fd-time__item' aria-label={this.ariaLabel}>
         <TimeAction
           icon='navigation-up-arrow'
-          type={'standard'}
-          on-click={this.moveUp}></TimeAction>
+          type='standard'
+          on-click={this.increaseValue}></TimeAction>
         <TimeInput value={this.inputValue} on-input={this.timeUpdate}></TimeInput>
         <TimeAction
           icon='navigation-down-arrow'
-          type={'standard'}
-          on-click={this.moveDown}></TimeAction>
+          type='standard'
+          on-click={this.decreaseValue}></TimeAction>
       </div>
     );
   }

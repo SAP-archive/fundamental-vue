@@ -2,7 +2,6 @@ import { Component, Prop, Event } from '@/core';
 import { Time } from './Time/Time';
 import { mixins } from 'vue-class-component';
 import { DateRangeMixin } from './mixins/DateRange';
-
 interface Props {
   value?: string | null;
   ariaLabel?: string | null;
@@ -11,7 +10,7 @@ interface Props {
 
 const TimeItemBase = mixins(DateRangeMixin);
 @Component('TimeItem')
-@Event('timeItemUpdate', 'Event triggered whenever the time value is updated.')
+@Event('timeUpdate', 'Event triggered whenever the time value is updated.')
 export class TimeItem extends TimeItemBase<Props> {
   @Prop('Aria Label for TimeItem', {
     type: String,
@@ -33,7 +32,7 @@ export class TimeItem extends TimeItemBase<Props> {
 
   public $tsxProps!: Readonly<{}> & Readonly<Props>;
   private timeValue: string | number | null = this.value;
-  private hour: string | number | null = '--';
+  private hour: string | number = '--';
   private minute: string | number = '--';
   private second: string | number = '--';
   private meridian: string | number = '--';
@@ -48,25 +47,25 @@ export class TimeItem extends TimeItemBase<Props> {
 
   private updateHour(hour: string) {
     this.hour = hour;
-    this.updateTime();
+    this.updateTimeItem();
   }
 
   private updateMinute(minute: string) {
     this.minute = minute;
-    this.updateTime();
+    this.updateTimeItem();
   }
 
   private updateSecond(second: string) {
     this.second = second;
-    this.updateTime();
+    this.updateTimeItem();
   }
 
   private updateMeridian(meridian: string) {
     this.meridian = meridian;
-    this.updateTime();
+    this.updateTimeItem();
   }
 
-  private updateTime() {
+  private updateTimeItem() {
     const timeValue = [this.hour, this.minute, this.second].join(':');
     const time = [timeValue, this.meridian].join(' ');
     this.timeValue = time;
@@ -77,7 +76,7 @@ export class TimeItem extends TimeItemBase<Props> {
     this.splitTime();
     return (
       <div class='fd-time'>
-        <Time type={this.showMeridian ? 'hour12' : 'hour24'} value={this.hour} on-timeUpdate={this.updateHour}></Time>
+        <Time  type={this.showMeridian ? 'hour12' : 'hour24'} value={this.hour} on-timeUpdate={this.updateHour}></Time>
         <Time type='minute' value={this.minute} on-timeUpdate={this.updateMinute}></Time>
         {this.second ? (<Time type='second' value={this.second} on-timeUpdate={this.updateSecond}></Time>) : ''}
         {this.showMeridian ? (

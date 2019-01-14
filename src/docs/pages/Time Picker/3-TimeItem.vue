@@ -7,7 +7,7 @@ The `FdTimeItem` is used in the popover to pick time that is associated with the
 </docs>
 <template>
     <div>
-        <FdTimeItem :showMeridian="showMeridian" :value="value" @timeItemUpdate='onTimeItemUpdate'></FdTimeItem>
+        <FdTimeItem :showMeridian="showMeridian" :value="value" @update:value="onTimeItemUpdate"></FdTimeItem>
     </div>
 </template>
 

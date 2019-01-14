@@ -1,8 +1,8 @@
 import { Component, Base } from '@/core';
 
 @Component('DateRangeMixin')
-export class DateRangeMixin extends Base<{}> {
-  public getRange() {
+export class DateRangeMixin extends Base {
+  public get range() {
     return ({
       hour24: {
         min: '00',

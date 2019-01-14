@@ -16,7 +16,7 @@ export class TimeInput extends Base<Props> {
     type: [String, Number],
     default: '--',
   })
-  public value!: string | number;
+  public value!: string | number | null;
   @Prop(String) public ariaLabel!: string | null;
 
   public render() {
