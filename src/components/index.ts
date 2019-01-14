@@ -68,8 +68,9 @@ import * as TileGrid from './TileGrid';
 import * as SearchInput from './SearchInput';
 import { version, libName } from '@/config';
 import * as Pagination from './Pagination';
-import { log } from '@/core';
 import * as TimePicker from './TimePicker';
+
+import { log } from '@/core';
 
 export const all: { [key: string]: any } = {
   Token,
@@ -85,6 +86,8 @@ export const all: { [key: string]: any } = {
   ActionBar,
   Icon,
   InlineHelp,
+  Pagination,
+  Counter,
   ...Calendar,
   ...Layout,
   ...Table,
@@ -102,8 +105,6 @@ export const all: { [key: string]: any } = {
   ...ListGroup,
   ...Tile,
   ...TileGrid,
-  Pagination,
-  Counter,
   ...Pagination,
   ...TimePicker,
 };

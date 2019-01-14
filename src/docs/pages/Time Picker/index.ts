@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ Time }) => {
-    return { componentStatus: 'inprogress', icon:'fob-watch', relatedComponents: [Time]};
+export const plugin: ExampleCollectionFunction = ({ Time, TimeItem, TimePicker }) => {
+    return { componentStatus: 'inprogress', icon:'fob-watch', relatedComponents: [Time, TimeItem, TimePicker]};
 };
