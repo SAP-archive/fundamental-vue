@@ -4,9 +4,22 @@
       </a>
 </p>
 
-Fundamental-Vue is a light-weight Vue.JS component library for [SAP Fiori Fundamentals](https://github.com/SAP/fundamental).
+<p align="center">
+      Fundamental Vue is a light-weight Vue.js component library for <a href="https://github.com/SAP/fundamental">SAP Fiori Fundamentals</a>.
+</p>
 
-**[Component Documentation](https://dist-c0r2ga7zn.now.sh)**
+<p align="center">
+      <a href="https://travis-ci.org/SAP/fundamental-vue">
+            <img src="https://travis-ci.org/SAP/fundamental-vue.svg?branch=develop" alt="Build Status">
+      </a>
+</p>
+
+
+<p align="center">
+:open_book:
+<strong><a href="https://dist-lkl4ej2tj.now.sh">Component Documentation</a></strong>
+:open_book:
+</p>
 
 ## Current Version
 
@@ -16,7 +29,7 @@ Fundamental-Vue is a light-weight Vue.JS component library for [SAP Fiori Fundam
 
 ## Description
 
-Fundamental Vue is a light-weight set of [Vue.JS](https://vuejs.org/) components implementation of [SAP Fiori Fundamentals library](https://sap.github.io/fundamental/). SAP Fiori Fundamentals library is a Design System and HTML/CSS Component Library used to build modern Product User Experiences with the SAP look and feel. This will allow you to stay/use Vue.js for your application and get SAP look and feel.
+Fundamental Vue is a light-weight set of [Vue.js](https://vuejs.org/) components implementation of [SAP Fiori Fundamentals library](https://sap.github.io/fundamental/). SAP Fiori Fundamentals library is a Design System and HTML/CSS Component Library used to build modern Product User Experiences with the SAP look and feel. This will allow you to stay/use Vue.js for your application and get SAP look and feel.
 Fundamental Vue is open for contribution as long as you follow certain [rules/guidelines](./CONTRIBUTING.md).
 
 The library is currently in a Beta version and it is under development. The progress can be seen [here](https://github.com/SAP/fundamental-vue/projects/1)
@@ -60,7 +73,7 @@ To download and use this library, you first need to install the node package man
     The quickest way to get Fiori Fundamentals styling for your components is to include the compiled and minified Fiori Fundamentals CSS library with the following CDN link in your public `index.html` file:
 
     ```
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.3.3/dist/fiori-fundamentals.min.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.4.1/dist/fiori-fundamentals.min.css">
     ```
 
     However, installing the Fiori Fundamentals library with npm (recommended) will give you the flexibility to use individual components and enable [advanced customisation options](https://github.com/SAP/fundamental/wiki/Advanced-Customization). In this case, you do not need the CDN link as this method uses the SASS/SCSS source.
@@ -101,7 +114,7 @@ To download and use this library, you first need to install the node package man
     </style>
     ```
 
-    You can now use the [Documentation](https://dist-c0r2ga7zn.now.sh) to browse the components currently available with Fundamental Vue.
+    You can now use the [Documentation](https://dist-lkl4ej2tj.now.sh) to browse the components currently available with Fundamental Vue.
 
     To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessarry:
 

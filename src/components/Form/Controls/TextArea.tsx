@@ -43,7 +43,7 @@ export class TextArea extends Base<Props> {
   public value!: string | null;
 
   @Watch('value', { immediate: true })
-  public handleNewValue(newValue) {
+  public handleNewValue(newValue: string | null) {
     this.currentValue = newValue;
   }
 

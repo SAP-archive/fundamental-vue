@@ -1,6 +1,6 @@
 import { Watch } from 'vue-property-decorator';
 import { CreateElement, VNode } from 'vue';
-import { Component, Prop, Base } from '@/core';
+import { warn, Component, Prop, Base } from '@/core';
 
 type IgnoredElements = () => Element[];
 
@@ -67,7 +67,7 @@ export class ClickAwayContainer extends Base<Props> {
   public handleActiveDidChange(isActive: boolean, wasActive: boolean) {
     const { documentElement } = document;
     if(documentElement == null) {
-      console.warn(`v-${this}: Cannot do anything without a document element.`);
+      warn(`v-${this}: Cannot do anything without a document element.`);
       return;
     }
     if(isActive && !wasActive) {

@@ -1,40 +1,50 @@
-import { Watch } from 'vue-property-decorator';
-import { SideNavItem } from './SideNavItem';
-import { SIDE_NAV } from './shared';
-import { Model, Component, Event, DefaultSlot, Base } from '@/core';
+import { Event, Prop, Base, Component } from '@/core';
+import { Watch, Provide } from 'vue-property-decorator';
+import { Item, Config, Store, Modes, Mode, ModeType } from './Model';
 
 interface Props {
-  indexPath?: string | null;
+  selectedId?: string | null;
+  mode?: ModeType;
+  items?: Item[];
 }
 
-@Component('SideNav', {
-  provide() {
-    return {
-      [SIDE_NAV]: this,
-    };
-  },
-})
-@Event('select', 'Sent when a item was clicked', ['item', 'SideNavItem'])
-@DefaultSlot('Side Navigation-Lists/-Items displayed by the Side Navigation.')
+@Component('SideNav')
+@Event('update:selectedId', 'Emitted when selectedId changes.')
 export class SideNav extends Base<Props> {
-  @Model('default index path', { event: 'change', type: String, default: null })
-  public indexPath!: string | null;
+  @Prop('id of the selected item. Supports the sync-modifier.', { type: String, default: null })
+  public selectedId!: string | null;
 
-  public activeIndexPath: string | null = this.indexPath;
+  @Prop(String, {
+    default: Mode.manual,
+    validator: Modes.includes,
+    acceptableValues: Modes,
+  })
+  public mode!: ModeType;
 
-  @Watch('indexPath', { immediate: true})
-  public handleNewIndexPath(newIndexPath: string | null) {
-    this.activeIndexPath = newIndexPath;
-  }
+  @Provide(Store.KEY)
+  public store = new Store({
+    selectedId: this.selectedId,
+    expandedIds: [],
+    items: {},
+  });
+
+  @Provide(Config.KEY)
+  public config = new Config(this.mode);
 
   public render() {
-    const itemsOrLists = this.$slots.default;
-    return <nav class='fd-side-nav'>{itemsOrLists}</nav>;
+    return <nav class='fd-side-nav'>{this.$slots.default}</nav>;
   }
 
-  public didClickSideNavItem(item: SideNavItem) {
-    this.activeIndexPath = item.itemId;
-    this.$emit('select', item);
-    this.$emit('change', this.activeIndexPath);
+  @Watch('localSelectedId', { immediate: true })
+  public localSelectedIdChanged(newId: string | null) {
+    this.store.selectedId = newId;
+    this.$emit('update:selectedId', this.store.selectedId);
+  }
+
+  get localSelectedId() { return this.store.selectedId; }
+
+  @Watch('selectedId', { immediate: true })
+  public updateSelectedId(newId: string | null) {
+    this.store.selectedId = newId;
   }
 }

@@ -1,24 +1,17 @@
 <title>Default MultiInput</title>
   <template>
     <div>
-      <h2>{{selectedPage}}</h2>
-      <FdPagination :itemsTotal=101 :initialPage=initialPage totalText="Dalmations" v-on:page-change="onChange"/>
+      <h2>{{initialPage}}</h2>
+      <FdPagination :itemsTotal=101 totalText="Dalmations" :initialPage.sync="initialPage"/>
     </div>
   </template>
 
 <script>
 export default {
   data() {
-    const init =1;
     return {
-      initialPage: init,
-      selectedPage: init,
+      initialPage: 1,
     }
-  },
-  methods: {
-    onChange(page) {
-      this.selectedPage = page;
-    },
   },
 };
 </script>

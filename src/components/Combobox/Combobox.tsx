@@ -1,8 +1,6 @@
 import { mixins } from 'vue-class-component';
 import { UidMixin } from '@/mixins';
-import { Popover } from '@/components/Popover';
-import { Button } from '@/components/Button';
-import { Input, InputGroup } from '@/components/Form';
+import { MenuItem, Button, Popover, Input, InputGroup } from '@/components';
 import { Component, Event, Prop } from '@/core';
 
 interface Props {
@@ -41,14 +39,13 @@ export class Combobox extends mixins(UidMixin) {
   public $tsxProps!: Readonly<{}> & Readonly<Props>;
 
   private currentPopoverVisible: boolean = this.popoverVisible;
-  private currentValue: string | null = this.value;
+  private currentValue: string | number | null = this.value;
 
   public togglePopoverVisible() {
     this.currentPopoverVisible = !this.currentPopoverVisible;
-    this.$emit('update:currentPopoverVisible', this.currentPopoverVisible);
   }
 
-  private setCurrentValue(newValue: string | null) {
+  private setCurrentValue(newValue: string | number | null) {
     this.currentValue = newValue;
     this.$emit('input', this.currentValue);
     this.$emit('update:value', this.currentValue);
@@ -63,30 +60,50 @@ export class Combobox extends mixins(UidMixin) {
     }
   }
 
+  private handleMenuItemClick(item: MenuItem) {
+    this.setCurrentValue(item.value);
+  }
+
   public render() {
     const dropdown = this.$slots.default;
     return (
       <div class='fd-combobox-input'>
-        <Popover noArrow={true} popoverVisible={this.currentPopoverVisible}>
-          <div class='fd-combobox-control' slot='control'>
-            <InputGroup compact={this.compact} afterClass={'fd-input-group__addon--button'}>
-              <Input
-                id={this.uid}
-                value={this.value}
-                compact={this.compact}
-                nativeOn-click={() => this.currentPopoverVisible = true}
-                nativeOn-keyup={this.handleKeyup}
-                on-input={this.setCurrentValue}
-                placeholder={this.placeholder}
-              />
-              <Button
-                slot='after'
-                on-click={this.togglePopoverVisible}
-                icon='navigation-down-arrow'
-                styling='light'
-              />
-            </InputGroup>
-          </div>
+        <Popover
+          on-click={this.handleMenuItemClick}
+          noArrow={true}
+          popoverVisible={this.currentPopoverVisible}
+          on-visible={(visible: boolean) => this.currentPopoverVisible = visible }
+            {...
+              {
+                scopedSlots: {
+                  control: (scope: { toggle: () => (void) }) => {
+                    return (<div staticClass='fd-combobox-control'>
+                    <InputGroup
+                      compact={this.compact}
+                      afterClass='fd-input-group__addon--button'
+                    >
+                      <Input
+                        id={this.uid}
+                        value={this.value}
+                        compact={this.compact}
+                        nativeOn-click={scope.toggle}
+                        nativeOn-keyup={this.handleKeyup}
+                        on-input={this.setCurrentValue}
+                        placeholder={this.placeholder}
+                      />
+                    <Button
+                      slot='after'
+                      on-click={scope.toggle}
+                      icon='navigation-down-arrow'
+                      styling='light'
+                    />
+                    </InputGroup></div>
+                  );
+                  },
+                },
+              }
+            }
+        >
           {dropdown}
         </Popover>
       </div>

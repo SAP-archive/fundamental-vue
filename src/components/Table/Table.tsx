@@ -1,270 +1,283 @@
+import { Watch, Provide } from 'vue-property-decorator';
+import { CreateElement, VNode } from 'vue';
+import { ScopedSlotChildren } from 'vue/types/vnode';
+import { TableBody } from './Components/TableBody';
 import {
-  Vue,
-  Watch,
-} from 'vue-property-decorator';
-import { CreateElement } from 'vue';
-import { TableColumn } from './TableColumn';
-import { SortOrder, TableData, compareValues, TableColumnConfig, RenderCellRequest } from './TableUtils';
-import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
-import { ColumnContainer, ColumnContainerIdentifier } from './ColumnContainer';
+  SortOrder,
+  toggleSortOrder,
+  SortBy,
+  compareValues,
+  SelectionModes,
+  SelectionMode,
+  SelectionModeValidator,
+  withoutDuplicates,
+} from './Util';
+import {
+  Component,
+  Event,
+  DefaultSlot,
+  Prop,
+  Base,
+  warn,
+} from '@/core';
 
-interface Props<D> {
+export const TABLE_KEY = Symbol();
+
+type TableItems = Array<Item & object>;
+interface Item { id: string; }
+
+interface Props {
   firstColumnFixed?: boolean;
-  data?: D[];
-  selectionMode?: SelectionMode | null;
+  items?: TableItems;
+  selectionMode?: SelectionMode;
+  borderless?: boolean;
+  striped?: boolean;
 }
 
-type Row<D> = RenderCellRequest<D>;
-
-const toggleOrder = (order: SortOrder): SortOrder => {
-  return order === 'ascending' ? 'descending' : 'ascending';
-};
-
-const selectionModeMapping = {
-  single: 'Single Selection',
-  multiple: 'Multiple Selection',
-};
-export type SelectionMode = keyof (typeof selectionModeMapping);
-const SelectionModes = Object.keys(selectionModeMapping) as SelectionMode[];
-
-type SortDescriptor<D extends TableData> = {
-  prop: keyof D;
+type SortDescriptor = {
+  prop: string;
   order: SortOrder;
-};
-type Selection = number[];
+} & object;
 
-@Component('Table', {
-  provide() {
-    return {
-      [ColumnContainerIdentifier]: this,
-    };
-  },
-})
-@Event('select', 'Sent when the selection changes', ['rows', 'Array<number>'])
+// Props passed to the row template. See ScopedRowSlot below.
+interface RowSlotProps<T = object> {
+  item: T & Item;
+  selected: boolean;
+  changeSelection(selected: boolean, event: Event): void;
+}
+
+// Typed version of Vue's ScopedSlot type.
+// This will be called row each row our table component has to render.
+export type ScopedRowSlot<T = object> = (props: RowSlotProps<T>) => ScopedSlotChildren;
+
+const enum SelectAction {
+  deselect = 'deselect',
+  select = 'select',
+}
+
+@Component('Table')
+@Event('update:selectedIds', 'Sent when the selection changes', ['ids', 'string[]'])
 @DefaultSlot('Table Columns')
-export class Table<D extends TableData> extends Base<Props<D>> implements ColumnContainer<D> {
-  @Prop('whether the column is fixed (experimental)', { type: Boolean, default: false })
+export class Table extends Base<Props> {
+  @Provide(TABLE_KEY)
+  public table = this;
+
+  @Prop('whether the column is fixed (experimental)', {
+    type: Boolean,
+    default: false,
+  })
   public firstColumnFixed!: boolean;
 
-  @Prop('displayed data', { type: Array, default: () => [] })
-  public data!: D[];
+  @Prop('CSS style for the fixed wrapper (experimental)', {
+    type: Object,
+    default: () => ({ width: '700px' }),
+  })
+  public fixedWrapperStyle!: object;
 
-  @Prop('selection mode', { acceptableValues: SelectionModes, type: String, default: null })
-  public selectionMode!: SelectionMode | null;
+  @Prop('whether no borders are drawn', {
+    type: Boolean,
+    default: false,
+  })
+  public borderless!: boolean;
 
-  public sortDescriptor: SortDescriptor<D> | null = null;
-  private columns: Array<TableColumnConfig<D>> = [];
-  private selection: Selection = [];
+  @Prop('whether table has alternating row colors', {
+    type: Boolean,
+    default: false,
+  })
+  public striped!: boolean;
 
-  @Watch('selectionMode', { immediate: true, deep: true })
-  public makeCurrentSelectionValid() {
-    switch (this.selectionMode) {
-      case null: {
-        this.selection = [];
-        break;
-      }
-      case 'multiple': {
-        // Nothing todo
-        break;
-      }
-      case 'single': {
-        if (this.selection.length === 0) {
-          break;
-        }
-        const smallestIndex = Math.min(...this.selection);
-        this.selection = [smallestIndex];
-        break;
-      }
+  @Prop('displayed items', {
+    type: Array,
+    default: () => [],
+    readableDefault: 'object[]',
+  })
+  public items!: TableItems;
+
+  @Prop('selected ids', {
+    type: Array,
+    default: () => [],
+    readableDefault: 'string[]',
+  })
+  public selectedIds!: string[];
+
+  @Prop('selection mode', {
+    validator: SelectionModeValidator,
+    acceptableValues: SelectionModes,
+    type: String,
+    default: SelectionMode.none,
+  })
+  public selectionMode!: SelectionMode;
+
+  public sortDescriptor: SortDescriptor | null = null;
+  private sortedByColumnId: string | null = null;
+  private currentSelectedIds: string[] = this.selectedIds;
+
+  public sortOrder(columnId: string): SortOrder | null {
+    if (this.sortedByColumnId !== columnId) {
+      return null;
     }
-  }
-
-  @Watch('columns', { immediate: true, deep: true })
-  public onColumnsChanged(newColumns) {
-    this.$forceUpdate();
-  }
-
-  private get sortedData(): D[] {
     const { sortDescriptor } = this;
-    const data = this.data;
     if (sortDescriptor == null) {
-      return data;
+      return null;
     }
-    const copy = [...data];
-    const { prop, order } = sortDescriptor;
-    copy.sort(compareValues<D>(prop, order));
-    return copy;
+    return sortDescriptor.order;
   }
 
-  public didClickRowAtIndex(index: number) {
-    if (this.selectionMode == null) {
-      return;
-    }
-    Vue.set(this.selection, 0, index);
-    this.$emit('select', this.selection);
+  public sortBy(sortBy: SortBy, columnId: string) {
+    const needsToggle = this.sortedByColumnId === columnId;
+    const { order = SortOrder.ascending } = this.sortDescriptor || {};
+    const newOrder = needsToggle ? toggleSortOrder(order) : order;
+    this.sortDescriptor = { prop: sortBy, order: newOrder };
+    this.sortedByColumnId = columnId;
   }
 
-  public didClickInHeaderOfColumn(tableColumn: TableColumn<D>) {
-    if (tableColumn.sortable === false) {
-      return;
-    }
-    const { prop } = tableColumn;
-    if (prop == null) {
-      console.warn('Tried to sort a table but clicked table column has no prop.');
-      return;
-    }
-    const current = this.sortDescriptor;
-    if (current == null) {
-      this.sortDescriptor = {
-        prop,
-        order: 'ascending',
-      };
-    } else {
-      const { order } = current;
-      const needsToggleOrder = tableColumn.prop === prop;
-      const newOrder = needsToggleOrder ? toggleOrder(order) : 'ascending';
-      this.sortDescriptor = {
-        prop,
-        order: newOrder,
-      };
+  // Emit the passed ids in order to support .sync
+  private updateSelectedIds(newIds: string[] | string) {
+    const ids = withoutDuplicates(Array.isArray(newIds) ? [...newIds] : [newIds]);
+    this.currentSelectedIds = ids;
+    this.$emit('update:selectedIds', ids);
+  }
+
+  @Watch('selectionMode', { immediate: true })
+  public onSelectionModeChange(newSelectionMode: SelectionMode) {
+    // Make the current selection valid.
+    switch (newSelectionMode) {
+      case SelectionMode.single: {
+        const isInvalid = this.currentSelectedIds.length > 1;
+        if (isInvalid) {
+          this.updateSelectedIds(this.currentSelectedIds[0]);
+        }
+        break;
+      }
+      case SelectionMode.none: {
+        this.updateSelectedIds([]);
+        break;
+      }
+      default: break;
     }
   }
 
-  public insertTableColumn(column: TableColumnConfig<D>, index?: number) {
-    const newColumns = [...this.columns];
-    if (index == null) {
-      newColumns.push(column);
-    } else {
-      newColumns.splice(index, 0, column);
+  private get sortedData(): TableItems {
+    const copy = [...this.items];
+    const { sortDescriptor } = this;
+    if (sortDescriptor == null) {
+      return copy;
     }
-    this.columns = newColumns;
+    return copy.sort(compareValues(sortDescriptor.prop, sortDescriptor.order));
   }
 
-  public removeTableColumn(columnId: string) {
-    const index = this.columns.findIndex(column => {
-      return columnId === column.columnId;
-    });
-    if (index < 0) {
-      console.warn('Tried to remove table column with id %s but its parent table did not contain a table column that matched.', columnId);
-      return;
-    }
-    const newColumns = [...this.columns];
-    newColumns.splice(index, 1);
-    this.columns = newColumns;
-  }
-
-  public isColumnFixed(columnId: string): boolean {
-    // Only the first column can be fixed. So we get the first column and compare it's id.
-    const [first = null] = this.columns;
-    if (first == null) { return false; }
-    return first.columnId === columnId && this.firstColumnFixed;
-  }
-
-  public isPreceededByFixedColumn(columnId: string): boolean {
-    const [first = null, second = null] = this.columns;
-    if (second == null || first == null) { return false; }
-    return second.columnId === columnId && this.isColumnFixed(first.columnId);
-  }
-
-  public get fixedColumnWidth(): number {
-    if (this.firstColumnFixed === false) { return 0; }
-    const [first = null] = this.columns;
-    if (first == null) { return 0; }
-    return first.width || 200;
+  public isSelected(id: string) {
+    return this.currentSelectedIds.includes(id);
   }
 
   public render(h: CreateElement) {
-    const tableColumns = this.columns;
-    const renderColumn = (columnConfig: TableColumnConfig<D>, row: Row<D>) => {
-      const isFixed = this.isColumnFixed(columnConfig.columnId);
-      const cellClasses = {
-        'fd-table__fixed-col': isFixed,
-      };
-
-      const makeCellStyle = () => {
-        const style = columnConfig.alignment === 'center' ? { 'text-align': 'center' } : {};
-        const left = this.isPreceededByFixedColumn(columnConfig.columnId) ? `${this.fixedColumnWidth}px` : '0';
-        if (isFixed) {
-          return {
-            ...style,
-            left,
-            width: `${columnConfig.width}px`,
-          };
-        } else {
-          return {
-            ...style,
-            left,
-          };
-        }
-      };
-
-      const cellStyle = makeCellStyle();
-      return (
-        <td class={cellClasses} style={cellStyle}>
-          {columnConfig.renderCell(row)}
-        </td>
-      );
-    };
-    const renderRow = (row: Row<D>) => {
-      const key = `row-${row.index}`;
-      return (
-        <tr
-          key={key}
-          aria-selected={row.isSelected}
-          on-click={() => this.didClickRowAtIndex(row.index)}
-        >
-          {tableColumns.map(column => renderColumn(column, row))}
-        </tr>
-      );
-    };
-
-    const renderTable = () => {
-      return (
-        <table class={this.classes}>
-          <thead>
-            <tr>
-              {this.$slots.default}
-            </tr>
-          </thead>
-          <tbody>
-            {this.sortedData.map((rowData, index) => {
-              const isSelected = this.rowAtIndexIsSelected(index);
-              const row: Row<D> = {
-                index,
-                isSelected,
-                row: rowData,
-              };
-              return renderRow(row);
-            })}
-          </tbody>
-        </table>
-      );
-    };
-
-    const [firstColumn = { width: 200 }] = this.columns;
-    const fixedColumnWidth = firstColumn.width;
     if (this.firstColumnFixed) {
-      const fixedStyle = {
-        'margin-left': `${fixedColumnWidth}px !important`,
-        'padding-left': 0,
-      };
       return (
-        <div class='fd-table--fixed-wrapper'>
-          <div class='fd-table--fixed' style={fixedStyle}>
-            {renderTable()}
-          </div >
-        </div >
+        <div staticClass='fd-table--fixed-wrapper' style={this.fixedWrapperStyle}>
+          <div
+            staticClass='fd-table--fixed'
+            style={{
+              'margin-left': '200px',
+              'padding-left': '0px',
+            }}
+          >
+            {this.renderTable(h)}
+          </div>
+        </div>
       );
     }
-    return renderTable();
+    return this.renderTable(h);
+  }
+
+  private execute(action: SelectAction, id: string) {
+    switch (this.selectionMode) {
+      case SelectionMode.none: {
+        this.updateSelectedIds([]);
+        break;
+      }
+      case SelectionMode.multiple: {
+        if (action === SelectAction.select) {
+          this.updateSelectedIds([id, ...this.currentSelectedIds]);
+        } else {
+          const newIds = [...this.currentSelectedIds].filter(selectedId => selectedId !== id);
+          this.updateSelectedIds(newIds);
+        }
+        break;
+      }
+      case SelectionMode.single: {
+        this.updateSelectedIds((action === SelectAction.deselect) ? [] : [id]);
+        break;
+      }
+    }
+  }
+
+  public toggleSelectionForItem(id: string) {
+    const isSelected = this.currentSelectedIds.includes(id);
+    if (isSelected) {
+      this.execute(SelectAction.deselect, id);
+    } else {
+      this.execute(SelectAction.select, id);
+    }
+  }
+
+  private preparedRenderedRow(
+    rowNode: ScopedSlotChildren,
+    { id: itemId }: Item,
+  ): VNode | null {
+    if (typeof rowNode !== 'object' || Array.isArray(rowNode)) {
+      warn(`Unable to prepare table row because rendered slot is not a VNode: ${rowNode}`);
+      return null;
+    }
+    const { componentOptions } = rowNode;
+    if (componentOptions == null) {
+      return null;
+    }
+    const { propsData = {} } = componentOptions;
+    const selected = this.isSelected(itemId);
+    rowNode.key = itemId;
+    componentOptions.propsData = {
+      ...propsData,
+      itemId,
+      isSelected: selected,
+    };
+    return rowNode;
+  }
+
+  private renderdRow(
+    rowTemplate: ScopedRowSlot,
+    item: Item,
+  ): VNode | null {
+    const changeSelection = (selected: boolean, event: Event) => {
+      event.stopImmediatePropagation();
+      event.preventDefault();
+      this.execute(selected ? SelectAction.select : SelectAction.deselect, item.id);
+    };
+
+    const renderedRow = rowTemplate({
+      item,
+      changeSelection,
+      selected: this.isSelected(item.id),
+    });
+
+    return this.preparedRenderedRow(renderedRow, item);
+  }
+
+  private get renderedRows(): VNode[] {
+    const isVNode = (node: VNode | null): node is VNode => node != null;
+    const rowTemplate = this.$scopedSlots.row || (() => undefined);
+    return this.sortedData.map(item => this.renderdRow(rowTemplate, item)).filter(isVNode);
+  }
+
+  private renderTable(h: CreateElement) {
+    const renderedRows = [...this.renderedRows];
+    const body = <TableBody>{renderedRows}</TableBody>;
+    return h('table', { staticClass: 'fd-table', class: this.classes }, [this.$slots.default || [], body]);
   }
 
   private get classes() {
     return {
-      'fd-table': true,
+      'fd-table--striped': this.striped,
+      'fd-table--no-borders': this.borderless,
     };
-  }
-
-  private rowAtIndexIsSelected(index: number): boolean {
-    return this.selection.includes(index);
   }
 }

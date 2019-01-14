@@ -4,6 +4,7 @@ import {
 } from 'vue-property-decorator';
 import { Model, Component, DefaultSlot, Prop, Base } from '@/core';
 import { FormItem, FORM_ITEM_KEY } from './../FormItem';
+import { isInputElement } from './Helper';
 
 interface Props {
   state?: State;
@@ -54,9 +55,12 @@ export class Select extends Base<Props> {
     this.currentValue = newValue;
   }
 
-  private updateInput(event) {
-    this.currentValue = event.target.value;
-    this.$emit('change', event.target.value);
+  private updateInput({ target }: Event) {
+    if(target == null) { return; }
+    if(isInputElement(target)) {
+      this.currentValue = target.value;
+      this.$emit('change', target.value);
+    }
   }
 
   public render() {

@@ -3,14 +3,15 @@ import {
   Prop,
 } from 'vue-property-decorator';
 import { EventDocumentation } from '@/api';
-import { Table, TableColumn } from '@/components';
+import { Table, TableHeader, TableHeaderCell, TableRow, TableCell, ScopedRowSlot } from '@/components';
 import { TsxComponent } from '@/vue-tsx';
 
 interface Props {
   events: EventDocumentation[];
 }
 
-type TableRow = {
+type EventEntry = {
+  id: string;
   name: string;
   description: string;
 };
@@ -20,17 +21,36 @@ export class EventsReference extends TsxComponent<Props> {
   @Prop({ type: Array, required: true })
   public events!: EventDocumentation[];
 
-  get tableData() {
+  get tableData(): EventEntry[] {
     return this.events.map(({ name, description }) => {
-      return { name, description };
+      return { id: name, name, description };
     });
   }
   public render() {
+    const rowSlot: ScopedRowSlot<EventEntry> = ({item}) => {
+      return (
+        <TableRow slot='row'>
+          <TableCell>{item.name}</TableCell>
+          <TableCell>{item.description}</TableCell>
+        </TableRow>
+      );
+    };
     return (
-      <Table<TableRow> data={this.tableData}>
-        <TableColumn<TableRow> prop={'name'} label={'Event'} />
-        <TableColumn<TableRow> prop={'description'} label={'Description'} />
-      </Table>
+      <Table
+        items={this.tableData}
+        {...
+          {
+            scopedSlots: {
+              row: rowSlot,
+            },
+          }
+        }
+      >
+        <TableHeader>
+          <TableHeaderCell label='Event' />
+          <TableHeaderCell label='Description' />
+        </TableHeader>
+    </Table>
     );
   }
 }

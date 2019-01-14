@@ -1,60 +1,75 @@
+import { Item, Store } from './Model';
+import { Prop, Slot, Base, Component } from '@/core';
 import { Inject } from 'vue-property-decorator';
+import { SideNavSubItem } from './SideNavSubItem';
 import { SideNavItem } from './SideNavItem';
-import { SideNav } from './SideNav';
-import { SIDE_NAV } from './shared';
-import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
+import { SideNavSubList } from './SideNavSubList';
+import { SideNavLink } from './SideNavLink';
+import { SideNavSubLink } from './SideNavSubLink';
+import { SideNavIcon } from './..';
+import { noop } from '@/util';
 
-interface Props {
-  value?: string | null;
-  header?: string | null;
-}
+interface Props { items?: Item[]; }
 
 @Component('SideNavList')
-@Event('select', 'Sent when a item was clicked', ['item', 'Item'])
-@Event('input', 'Sent when a item was clicked', ['itemId', String])
-@DefaultSlot('Side Navigation Items or Side Navigation Submenus.')
+@Slot('link', 'Render a custom Link. slot-scope gives you access to the rendered item.')
 export class SideNavList extends Base<Props> {
-  @Prop('value of the selected item', { type: String, default: null })
-  public value!: string | null;
+  @Inject(Store.KEY) public store!: Store;
 
-  public get activeItemId(): string | null {
-    const nav = this.sideNav;
-    if(nav != null) {
-      return nav.activeIndexPath;
-    }
-    return this.localActiveItemId;
-  }
-  private localActiveItemId: string | null = this.value;
-
-  @Prop('text displayed in the side nav list (group) header', { type: String, default: null })
-  public header!: string | null;
-
-  @Inject({ from: SIDE_NAV, default: null })
-  private sideNav!: SideNav | null;
+  @Prop(Array, {
+    default: () => [],
+    readableDefault: 'Array<Item>',
+  })
+  public items!: Item[];
 
   public render() {
-    const itemsOrSubmenus = this.$slots.default;
-    const renderList = () => {
-      return <ul class='fd-side-nav__list'>{itemsOrSubmenus}</ul>;
+    const store = this.store;
+    const afterLinkTextRenderer = (this.$scopedSlots.afterLinkText || noop);
+
+    const renderSubItem = ({id, to = '#', name}: Item) => {
+      return (
+        <SideNavSubItem itemId={id} key={id}>
+          <SideNavSubLink to={to}>{name}</SideNavSubLink>
+        </SideNavSubItem>
+      );
     };
-    const header = this.header;
-    if (header == null) {
-      return renderList();
-    }
+
+    const renderSubItems = (items: Item[]) => items.map(renderSubItem);
+
+    const renderLink = (item: Item) => {
+      const customLinkRenderer = this.$scopedSlots.link;
+      const {to = '#', icon, name, children = []} = item;
+      if(customLinkRenderer) {
+        return customLinkRenderer(item);
+      }
+      return (
+        <SideNavLink to={to} hasChildren={children.length > 0}>
+          {icon != null ? <SideNavIcon icon={icon} /> : null}
+          {name}
+          {afterLinkTextRenderer(item)}
+        </SideNavLink>
+      );
+    };
+
+    const renderItem = (item: Item) => {
+      const { id, children = [] } = item;
+      return (
+        <SideNavItem itemId={id}>
+          {renderLink(item)}
+          {children.length > 0 &&
+            <SideNavSubList hidden={!store.expanded(id)}>
+              {renderSubItems(children)}
+            </SideNavSubList>
+          }
+        </SideNavItem>
+      );
+    };
 
     return (
-      <div class='fd-side-nav__group'>
-        <h1 class='fd-side-nav__title'>{header}</h1>
-        {renderList()}
-      </div>
+      <ul class='fd-side-nav__list'>
+        {this.$slots.default}
+        {this.items.map(renderItem)}
+      </ul>
     );
-  }
-
-  public didClickSideNavItem(item: SideNavItem) {
-    this.$emit('select', item);
-    this.$emit('input', item.itemId);
-    this.localActiveItemId = item.itemId;
-    const nav = this.sideNav;
-    if (nav != null) { nav.didClickSideNavItem(item); }
   }
 }

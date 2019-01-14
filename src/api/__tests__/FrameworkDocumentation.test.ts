@@ -1,7 +1,9 @@
 import { assert } from 'chai';
-import { FrameworkDocumentation } from '../FrameworkDocumentation';
-import { ComponentDocumentation } from '../ComponentDocumentation';
 import { componentName } from '@/util';
+import {
+  ComponentDocumentation,
+  FrameworkDocumentation,
+} from '../Model';
 
 describe('FrameworkDocumentation', () => {
   let collection!: FrameworkDocumentation;
@@ -23,7 +25,6 @@ describe('FrameworkDocumentation', () => {
 
   it('mixin can be added and retrieved', () => {
     const compA = new ComponentDocumentation(names.componentA);
-
     const mixinA = new ComponentDocumentation(names.mixinA);
 
     compA.addMixin(names.mixinA);

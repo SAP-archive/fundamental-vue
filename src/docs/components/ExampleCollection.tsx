@@ -12,9 +12,9 @@ import { VueConstructor } from 'vue/types/vue';
 import { Route } from 'vue-router';
 import { exampleCollections, Example } from '@/docs/pages';
 
-const __collection = new FrameworkDocumentation();
+const frameworkDocumentation = new FrameworkDocumentation();
 for (const component of Object.values(all)) {
-    if (!Reflect.has(component, 'options')) {
+    if ((typeof component !== 'object' && typeof component !== 'function') || !Reflect.has(component, 'options')) {
         continue;
     }
     const options = Reflect.get(component, 'options');
@@ -22,7 +22,7 @@ for (const component of Object.values(all)) {
         if ('$componentDocumentation' in options) {
             const api = Reflect.get(options, '$componentDocumentation');
             if (api instanceof ComponentDocumentation) {
-              __collection.add(api);
+              frameworkDocumentation.add(api);
             }
         }
     }
@@ -57,13 +57,13 @@ export class ExampleCollection extends Vue {
     const documentedRelatedComponents = this.relatedComponents.filter(component => {
       const name = componentName(component);
       if(name == null) { return false; }
-      return __collection.has(name);
+      return frameworkDocumentation.has(name);
     });
     return documentedRelatedComponents.map(component => {
       const name = componentName(component) || '';
       return {
         component,
-        api: __collection.get(name),
+        api: frameworkDocumentation.get(name),
       };
     });
   }

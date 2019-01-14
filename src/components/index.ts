@@ -68,63 +68,63 @@ import * as TileGrid from './TileGrid';
 import * as SearchInput from './SearchInput';
 import { version, libName } from '@/config';
 import * as Pagination from './Pagination';
-import { env } from '@/config';
 import * as Tree from './Tree';
+import { log } from '@/core';
 
-export const all = {
-    Token,
-    Spinner,
-    Modal,
-    Identifier,
-    Image,
-    Link,
-    Badge,
-    Label,
-    Status,
-    Alert,
-    ActionBar,
-    Icon,
-    InlineHelp,
-    ...Calendar,
-    ...Layout,
-    ...Table,
-    ...Combobox,
-    ...SearchInput,
-    ...Panel,
-    ...Menu,
-    ...Popover,
-    ...Animations,
-    ...Button,
-    ...Tabs,
-    ...SideNav,
-    ...Form,
-    ...Breadcrumb,
-    ...ListGroup,
-    ...Tile,
-    ...TileGrid,
-    Pagination,
-    Counter,
-    ...Pagination,
-    ...Tree,
+export const all: { [key: string]: any } = {
+  Token,
+  Spinner,
+  Modal,
+  Identifier,
+  Image,
+  Link,
+  Badge,
+  Label,
+  Status,
+  Alert,
+  ActionBar,
+  Icon,
+  InlineHelp,
+  ...Calendar,
+  ...Layout,
+  ...Table,
+  ...Combobox,
+  ...SearchInput,
+  ...Panel,
+  ...Menu,
+  ...Popover,
+  ...Animations,
+  ...Button,
+  ...Tabs,
+  ...SideNav,
+  ...Form,
+  ...Breadcrumb,
+  ...ListGroup,
+  ...Tile,
+  ...TileGrid,
+  Pagination,
+  Counter,
+  ...Pagination,
+  ...Tree,
 };
 
 const $plugin: Plugin = () => {
-    return {
-        install: (vue: VueConstructor, api: PluginAPI): void => {
-            for (const name of Object.keys(all)) {
-                const comp = all[name];
-                api.registerComponent(vue, comp, name);
-            }
-            if(env !== 'production') {
-                console.log(
-                    `%c Welcome to ${libName} %c Detected v${version} %c`,
-                    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
-                    'background:#1661be ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
-                    'background:transparent',
-                );
-            }
-        },
-    };
+  return {
+    install: (vue: VueConstructor, api: PluginAPI): void => {
+      for (const name of Object.keys(all)) {
+        const comp = all[name];
+        api.registerComponent(vue, comp, name);
+      }
+      if (api.options.log.welcome) {
+        log(
+          `%c Welcome to ${libName} %c Detected v${version} %c`,
+          'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+          'background:#1661be ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+          'background:transparent',
+        );
+      }
+    },
+  };
 };
 
 export const plugin = $plugin;
