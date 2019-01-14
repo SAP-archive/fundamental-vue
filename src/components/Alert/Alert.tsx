@@ -30,7 +30,7 @@ export class Alert extends mixins(UidMixin) {
   @Model('whether alert is visible', { event: 'visible', default: true, type: Boolean })
   public visible!: boolean;
 
-  @Prop('alert type', { acceptableValues: AlertTypes, default: 'default' })
+  @Prop('alert type', { acceptableValues: AlertTypes, type: String, default: 'default' })
   public type!: AlertType;
 
   @Watch('visible', { immediate: true})
