@@ -1,24 +1,40 @@
-import { expect } from 'chai';
-import { mount } from '@vue/test-utils';
+import { assert } from 'chai';
+import { mount, createLocalVue } from '@vue/test-utils';
 import { ContextualMenu } from '../ContextualMenu';
 import { MenuItem } from '../../Menu';
+import { Popover } from '../../Popover';
 
 describe('Contextual Menu', () => {
   it('renders menu item when passed to the default slots', () => {
-    const wrapper = mount(ContextualMenu, {
-      render: h => <MenuItem>Menu1</MenuItem>,
+    const localVue = createLocalVue();
+    const TestComponent = localVue.extend({
+      template: `
+      <ContextualMenu>
+        <MenuItem>Menu1</MenuItem>
+      </ContextualMenu>
+      `,
+      components: { MenuItem, ContextualMenu },
     });
-    expect(wrapper.find(MenuItem).text()).to.include('Menu1');
+    const wrapper = mount(TestComponent, { localVue });
+    assert.include(wrapper.find(MenuItem).text(), 'Menu1');
   });
-  it('displays popover when button is clicked', () => {
-    const props =  {
-        propsData: {
-            popoverVisible: false,
-        },
-    };
-    const wrapper = mount(ContextualMenu, props );
-    expect(wrapper.hasProp('popoverVisible', false));
+
+  it('displays popover when button is clicked', async () => {
+    const localVue = createLocalVue();
+    const TestComponent = localVue.extend({
+      template: `
+      <ContextualMenu>
+        <MenuItem>Menu1</MenuItem>
+      </ContextualMenu>
+      `,
+      components: { MenuItem, ContextualMenu },
+    });
+    const wrapper = mount(TestComponent, { localVue });
+    await localVue.nextTick();
     wrapper.find('button').trigger('click');
-    expect(wrapper.hasProp('popoverVisible', true));
+    await localVue.nextTick();
+    const popover = wrapper.find(Popover);
+    assert.isDefined(popover, 'popover should be defined when button was clicked inside popover');
+    assert(popover.isVisible, 'popover should be visible when button was clicked inside popover');
   });
 });

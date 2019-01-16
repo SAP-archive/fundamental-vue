@@ -1,7 +1,11 @@
 import { Component, Base, Event, Prop } from '@/core';
-import { Button } from '@/components/Button';
-import { Menu } from '@/components/Menu';
-import { Popover } from '@/components/Popover';
+import { Menu, MenuItem } from './../Menu';
+import { Popover } from './../Popover';
+import {
+  Button,
+  ButtonStyling,
+  ButtonStylings,
+} from './../Button';
 
 interface Props {
   popoverVisible?: boolean;
@@ -18,22 +22,13 @@ const moreIndicatorTypeMapping = {
 type MoreIndicatorType = keyof typeof moreIndicatorTypeMapping;
 const MoreIndicatorTypes = Object.keys(moreIndicatorTypeMapping) as MoreIndicatorType[];
 
-// Styles
-const stylingMapping = {
-  emphasized: 'Emphasized',
-  light: 'Light',
-  regular: 'Regular (default)',
-};
-type ButtonStyling = keyof (typeof stylingMapping);
-const ButtonStylings = Object.keys(stylingMapping) as ButtonStyling[];
-
 @Component('ContextualMenu')
 @Event('select', 'triggers when any FdMenuItem displayed by FdContextualMenu was clicked. The argument is the instance of FdMenuItem that was clicked. You can use $event.value in order to get the value.')
 export class ContextualMenu extends Base<Props> {
-  // Props
   @Prop('more indicator type', {
     type: String,
     default: 'icon',
+    acceptableValues: MoreIndicatorTypes,
     validator: MoreIndicatorTypes.includes,
   })
   public moreIndicatorType!: MoreIndicatorType;
@@ -41,6 +36,7 @@ export class ContextualMenu extends Base<Props> {
   @Prop('button styling', {
     type: String,
     default: 'regular',
+    acceptableValues: ButtonStylings,
     validator: ButtonStylings.includes,
   })
   public styling!: ButtonStyling;
@@ -57,22 +53,17 @@ export class ContextualMenu extends Base<Props> {
     this.currentPopoverVisible = !this.currentPopoverVisible;
   }
 
-  private menuDidSelect(item) {
+  private menuDidSelect(item: MenuItem) {
     this.currentPopoverVisible = false;
     this.$emit('select', item);
   }
 
   public render() {
     const menuListsOrItems = this.$slots.default;
-
-    const attrs = {
-        icon: this.moreIndicatorType === 'icon' ? 'overflow' : null,
-    };
-
     return (
       <Popover noArrow={false} popoverVisible={this.currentPopoverVisible}>
         <Button
-          {...{attrs}}
+          icon={this.moreIndicatorType === 'icon' ? 'overflow' : null}
           slot='control'
           aria-label={this.ariaLabel}
           on-click={this.togglePopoverVisible}

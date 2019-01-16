@@ -1,10 +1,11 @@
 import { assert } from 'chai';
-import { mount } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 import { Combobox } from './../';
 import { MenuItem } from './../../Menu';
 
 describe('Combobox', () => {
-  it('supports vmodel', () => {
+  it('supports vmodel', async () => {
+    const localVue = createLocalVue();
     const wrapper = mount({
       template: `
       <Combobox v-model="value">
@@ -23,7 +24,8 @@ describe('Combobox', () => {
         Combobox,
         MenuItem,
       },
-    });
+    }, { localVue });
+    await localVue.nextTick();
     const item = wrapper.find({ ref: 'menuItem1' });
     item.find('a').trigger('click');
     assert.strictEqual(item.text(), '1'); // ensure that we have selected the correct item

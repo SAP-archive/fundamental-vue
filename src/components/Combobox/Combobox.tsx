@@ -1,4 +1,5 @@
 import { mixins } from 'vue-class-component';
+import { Provide } from 'vue-property-decorator';
 import { UidMixin } from '@/mixins';
 import { MenuItem, Button, Popover, Input, InputGroup } from '@/components';
 import { Component, Event, Prop } from '@/core';
@@ -15,6 +16,8 @@ interface Props {
 @Component('Combobox')
 @Event('input', 'Sent when the selected item changes')
 export class Combobox extends mixins(UidMixin) {
+  @Provide() public combobox = this;
+
   @Prop('initial value', { default: null, type: String })
   public value!: string | null;
 
@@ -23,6 +26,9 @@ export class Combobox extends mixins(UidMixin) {
 
   @Prop('ARIA Label', { type: String, default: 'Combobox' })
   public ariaLabel!: string;
+
+  @Prop('whether popover is visible', { type: Boolean, default: false })
+  public popoverVisible!: boolean;
 
   @Prop('whether combobox is compact', { type: Boolean, default: false })
   public compact!: boolean;
@@ -56,7 +62,7 @@ export class Combobox extends mixins(UidMixin) {
   }
 
   public render() {
-    const menu = this.$slots.default;
+    const dropdown = this.$slots.default;
     return (
       <div class='fd-combobox-input'>
         <Popover
