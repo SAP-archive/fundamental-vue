@@ -1,9 +1,10 @@
 import { assert, expect } from 'chai';
 import { mount } from '@vue/test-utils';
-import { Pagination, Props } from '../Pagination';
+import { Pagination } from '../Pagination';
+import { PaginationProps } from '../Pagination';
 
 describe('Pagination', () => {
-  const propsData: Props = {
+  const propsData: PaginationProps = {
     itemsTotal: 101,
     initialPage: 1,
     totalText: 'Dalmations',

@@ -1,6 +1,6 @@
 import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
 
-export interface Props {
+export interface PaginationProps {
   itemsPerPage?: number;
   itemsTotal: number;
   initialPage?: number;
@@ -11,7 +11,7 @@ export interface Props {
 @Component('Pagination')
 @Event('click', 'Sent when button is clicked')
 @DefaultSlot('pagination content (usually just total number of items and page numbers)')
-export class Pagination extends Base<Props> {
+export class Pagination extends Base<Pagination> {
   @Prop('items per page', { type: Number, default: 10 })
   public itemsPerPage!: number;
 

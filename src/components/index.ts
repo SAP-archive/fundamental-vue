@@ -1,72 +1,73 @@
-export * from './ActionBar';
-export * from './Alert';
-export * from './Icon';
-export * from './Panel';
-export * from './Popover';
-export * from './Badge';
-export * from './Combobox';
-export * from './Identifier';
-export * from './Image';
-export * from './Tabs';
-export * from './Token';
-export * from './Button';
-export * from './SideNav';
-export * from './Form';
-export * from './Breadcrumb';
-export * from './Label';
-export * from './Status';
-export * from './Link';
-export * from './Spinner';
-export * from './Modal';
-export * from './ListGroup';
-export * from './Table';
-export * from './Menu';
-export * from './Layout';
-export * from './InlineHelp';
-export * from './Tile';
-export * from './TileGrid';
-export * from './SearchInput';
-export * from './Pagination';
-export * from './Counter';
-export * from './Calendar';
-export * from './Tree';
-
-import * as Calendar from './Calendar';
-import * as Button from './Button';
-import * as Form from './Form';
-import * as SideNav from './SideNav';
-import * as Tabs from './Tabs';
-
-import { Identifier } from './Identifier';
-import { Modal } from './Modal';
-import { Token } from './Token';
-import { Image } from './Image';
-import { Spinner } from './Spinner';
-import { Link } from './Link';
-import { Badge } from './Badge';
-import { Label } from './Label';
-import { Status } from './Status';
-import { Counter } from './Counter';
 import { ActionBar } from './ActionBar';
 import { Alert } from './Alert';
+import { Badge } from './Badge';
+import { Counter } from './Counter';
 import { Icon } from './Icon';
+import { Identifier } from './Identifier';
+import { Image } from './Image';
 import { InlineHelp } from './InlineHelp';
+import { Label } from './Label';
+import { Link } from './Link';
+import { Modal } from './Modal';
+import { Pagination } from './Pagination';
 import { Plugin, PluginAPI } from '@/lib';
+import { Spinner } from './Spinner';
+import { Status } from './Status';
+import { Token } from './Token';
 import { VueConstructor } from 'vue';
 import * as Breadcrumb from './Breadcrumb';
+import * as Button from './Button';
+import * as Calendar from './Calendar';
 import * as Combobox from './Combobox';
-import * as Popover from './Popover';
+import * as ContextualMenu from './ContextualMenu';
+import * as Form from './Form';
+import * as Layout from './Layout';
 import * as ListGroup from './ListGroup';
 import * as Menu from './Menu';
 import * as Panel from './Panel';
+import * as Popover from './Popover';
+import * as SearchInput from './SearchInput';
+import * as SideNav from './SideNav';
 import * as Table from './Table';
-import * as Layout from './Layout';
+import * as Tabs from './Tabs';
 import * as Tile from './Tile';
 import * as TileGrid from './TileGrid';
-import * as SearchInput from './SearchInput';
-import { version, libName } from '@/config';
-import * as Pagination from './Pagination';
 import * as Tree from './Tree';
+import { version, libName } from '@/config';
+import { log } from '@/core';
+
+export * from './ActionBar';
+export * from './Alert';
+export * from './Badge';
+export * from './Breadcrumb';
+export * from './Button';
+export * from './Calendar';
+export * from './Combobox';
+export * from './Counter';
+export * from './Form';
+export * from './Icon';
+export * from './Identifier';
+export * from './Image';
+export * from './InlineHelp';
+export * from './Label';
+export * from './Layout';
+export * from './Link';
+export * from './ListGroup';
+export * from './Menu';
+export * from './Modal';
+export * from './Pagination';
+export * from './Panel';
+export * from './Popover';
+export * from './SearchInput';
+export * from './SideNav';
+export * from './Spinner';
+export * from './Status';
+export * from './Table';
+export * from './Tabs';
+export * from './Tile';
+export * from './TileGrid';
+export * from './Token';
+export * from './Tree';
 
 export const all: { [key: string]: any } = {
   ...Breadcrumb,
@@ -78,7 +79,6 @@ export const all: { [key: string]: any } = {
   ...Layout,
   ...ListGroup,
   ...Menu,
-  ...Pagination,
   ...Panel,
   ...Popover,
   ...SearchInput,
@@ -87,6 +87,7 @@ export const all: { [key: string]: any } = {
   ...Tabs,
   ...Tile,
   ...TileGrid,
+  ...Tree,
   ActionBar,
   Alert,
   Badge,
@@ -102,7 +103,6 @@ export const all: { [key: string]: any } = {
   Spinner,
   Status,
   Token,
- Tree,
 };
 
 const $plugin: Plugin = () => {
