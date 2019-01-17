@@ -13,10 +13,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      isOn: false,
-    }
-  }
+  data: () => ({ isOn: false })
 }
 </script>

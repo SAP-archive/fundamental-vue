@@ -1,15 +1,20 @@
-import { Location } from 'vue-router';
-import { Component, Prop, Base } from '@/core';
+import { warn, Component, Prop, Base } from '@/core';
 
 interface Props {
   src: string;
   srcset?: string;
-  to?: string | Location;
+  to?:
+    | string // simple path
+    | object // vue-router Location
+    ;
 }
 
 @Component('ShellBarLogo')
 export class ShellBarLogo extends Base<Props> {
-  @Prop('image source', {type: String, required: true })
+  @Prop('image source', {
+    type: String,
+    required: true,
+  })
   public src!: string;
 
   @Prop('image source set', {
@@ -26,9 +31,23 @@ export class ShellBarLogo extends Base<Props> {
 
   public render() {
     return (
-      <router-link tag='a' to={this.to} class='fd-shellbar__logo'>
+      <a class='fd-shellbar__logo' href='#' onClick={this.onClick}>
         <img src={this.src} srcset={this.srcset}/>
-      </router-link>
+      </a>
     );
+  }
+
+  private onClick(event: MouseEvent) {
+    event.preventDefault();
+    const { to, $router } = this;
+    if (to != null) {
+      if($router != null) {
+        // @ts-ignore
+        $router.push(to);
+      } else {
+        warn(`Tried to navigate to ${to} but $router not found.`);
+      }
+    }
+    this.$emit('click', this);
   }
 }
