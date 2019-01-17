@@ -1,8 +1,6 @@
-import { RawLocation } from 'vue-router';
-
 export interface Item {
   id: string;
-  to?: RawLocation;
+  to?: string | object; // correct type: VueRouter.RawLocation;
   name?: string;
   icon?: string;
   children?: Item[];

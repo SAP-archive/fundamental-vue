@@ -23,7 +23,7 @@ Paste the following snippet in your `<head>`-tag:
 ```html
 <link rel="stylesheet" href="https://unpkg.com/fiori-fundamentals@1.4.1/dist/fiori-fundamentals.min.css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/fundamental-vue@0.0.8-beta/dist/FundamentalVue.umd.js"></script>
+<script src="https://unpkg.com/fundamental-vue@0.0.9-beta/dist/FundamentalVue.umd.js"></script>
 ```
 
 Then you can use Fundamental Vue like this:

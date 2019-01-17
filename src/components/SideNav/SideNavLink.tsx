@@ -1,11 +1,10 @@
-import { Prop, Base, Component } from '@/core';
-import { RawLocation } from 'vue-router';
+import { warn, Prop, Base, Component } from '@/core';
 import { Inject } from 'vue-property-decorator';
 import { Config, Store } from './Model';
 import { SideNavItem } from './SideNavItem';
 
 interface Props {
-  to: RawLocation;
+  to: string | object; // correct type: VueRouter.RawLocation;
   hasChildren?: boolean | null;
   selected?: boolean;
 }
@@ -16,8 +15,11 @@ export class SideNavLink extends Base<Props> {
   @Inject(SideNavItem.KEY) public parentItem!: SideNavItem;
   @Inject(Config.KEY) public config!: Config;
 
-  @Prop('to', { type: [Object, String], default: '#' })
-  public to!: RawLocation;
+  @Prop('to', {
+    type: [Object, String],
+    default: '#',
+  })
+  public to!: string | object;
 
   private get mode() {
     return this.config.mode;
@@ -48,17 +50,16 @@ export class SideNavLink extends Base<Props> {
     }
 
     return (
-      <router-link
+      <a
         {...attributes}
-        nativeOnClick={this.onClick}
-        tag='a'
-        to={this.to}
+        href='#'
+        on-click={this.onClick}
         staticClass='fd-side-nav__link'
         class={this.classes}
         aria-selected={this.selected}
       >
         {this.$slots.default}
-      </router-link>
+      </a>
     );
   }
 
@@ -68,5 +69,15 @@ export class SideNavLink extends Base<Props> {
 
     this.store.selectedId = this.parentItem.itemId;
     this.store.toggleExpanded(this.parentItem.itemId);
+
+    const { to, $router } = this;
+    if (to != null) {
+      if($router != null) {
+        $router.push(to);
+      } else {
+        warn(`Tried to navigate to ${to} but $router not found.`);
+      }
+    }
+    this.$emit('click', this);
   }
 }

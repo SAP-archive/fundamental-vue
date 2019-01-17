@@ -5,6 +5,9 @@ os:
 # there is currently an issue with window not finding our tests.- windows
 node_js:
 - "10.15.0"
+before_install:
+- npm install -g typescript@3.2.2
+- cd src/docs && npm i && cd ../..
 dist: trusty
 git:
   depth: false
