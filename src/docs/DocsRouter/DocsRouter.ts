@@ -6,7 +6,15 @@ import { FullscreenDemo } from '@/docs/components';
 export const DocsRouter = new Router({
   // Scroll the main component to the top.
   scrollBehavior() {
-    return { x: 0, y: 0 };
+    return new Promise((resolve) => {
+      window.requestAnimationFrame(() => {
+        const main = window.document.querySelector('main');
+        if(main != null) {
+          main.scrollIntoView(/* alignToTop */ true);
+        }
+        resolve();
+      });
+    });
   },
   routes: [
     {
