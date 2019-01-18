@@ -1,9 +1,10 @@
-import { Prop, Component, Base } from '@/core';
+import { Prop, Component, Base, Event } from '@/core';
 import { Inject } from 'vue-property-decorator';
 import { Table, TABLE_KEY } from './../Table';
 import { CreateElement } from 'vue';
 
 @Component('TableRow')
+@Event('click', 'Triggers when row was clicked.')
 export class TableRow extends Base<{}> {
   @Inject({
     from: TABLE_KEY,
@@ -47,8 +48,13 @@ export class TableRow extends Base<{}> {
       options.propsData = { ...propsData, fixed };
     });
     return h('tr', {
-      on: { click: this.handleClick },
-      attrs: { 'aria-selected': this.isSelected },
+      on: {
+        ...this.$listeners,
+        '&click': this.handleClick, // & = passive modifier
+      },
+      attrs: {
+        'aria-selected': this.isSelected,
+      },
     }, cells);
   }
 }

@@ -1,4 +1,9 @@
-import { Prop, DefaultSlot, Component, Base } from '@/core';
+import {
+  Prop,
+  DefaultSlot,
+  Component,
+  Base,
+} from '@/core';
 
 @Component('TableCell')
 @DefaultSlot('Cell Content')
@@ -10,6 +15,7 @@ export class TableCell extends Base {
   public fixed!: boolean | null;
 
   private get classes() {
+    if(!this.fixed) { return null; }
     return {
       'fd-table__fixed-col': this.fixed,
     };

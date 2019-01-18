@@ -1,32 +1,22 @@
-import { SortBy } from './../Util';
 import { Prop, Component, Base } from '@/core';
-import { Inject } from 'vue-property-decorator';
-import { Table, TABLE_KEY } from './../Table';
-import { shortUuid } from '@/lib/uuid';
-import { SortOrder } from './../Util/SortOrder';
+import {
+  SortBy,
+  TextAlignment,
+  TextAlignments,
+  SortOrder,
+} from './../Util';
 
-type SortOrderGetter = (columnId: string) => SortOrder | null;
-
-interface TableHeaderCellProps {
+interface Props {
   label?: string | null;
-  alignment?: Alignment;
+  alignment?: TextAlignment;
   sortable?: boolean;
   sortBy?: SortBy | null;
-  sortOrder?: SortOrderGetter;
+  sortOrder: SortOrder | null;
+  columnFixed?: boolean | null;
 }
-
-enum Alignment {
-  default = 'default',
-  center = 'center',
-}
-const Alignments = Object.keys(Alignment);
 
 @Component('TableHeaderCell')
-export class TableHeaderCell extends Base<TableHeaderCellProps> {
-  @Inject(TABLE_KEY)
-  public table!: Table | null;
-  public columnId = shortUuid();
-
+export class TableHeaderCell extends Base<Props> {
   @Prop('header label', {
     type: String,
     default: null,
@@ -35,17 +25,17 @@ export class TableHeaderCell extends Base<TableHeaderCellProps> {
 
   @Prop('text alignment', {
     type: String,
-    default: Alignment.default,
-    validator: Alignments.includes,
-    acceptableValues: Alignments,
+    default: TextAlignment.default,
+    validator: TextAlignments.includes,
+    acceptableValues: TextAlignments,
   })
-  public alignment!: Alignment;
+  public alignment!: TextAlignment;
 
   @Prop('sort order', {
-    type: Function,
-    default: () => null,
+    type: String,
+    default: null,
   })
-  public sortOrder!: SortOrderGetter;
+  public sortOrder!: SortOrder;
 
   @Prop('whether the column is sortable', {
     type: Boolean,
@@ -63,38 +53,33 @@ export class TableHeaderCell extends Base<TableHeaderCellProps> {
     type: Boolean,
     default: null,
   })
-  public fixed!: boolean | null;
+  public columnFixed!: boolean | null;
 
   private get styles() {
-    return this.fixed ? { left: 0, width: '200px' } : {};
+    return this.columnFixed ? {
+      left: 0,
+      width: '200px',
+    } : {};
   }
 
   private get classes() {
-    const sortOrder = this.sortOrder(this.columnId);
+    const sortOrder = this.sortOrder;
     return {
-      'fd-has-text-align-center': this.alignment === Alignment.center,
+      'fd-has-text-align-center': this.alignment === TextAlignment.center,
       'fd-table__sort-column': this.sortable,
       'fd-table__sort-column--dsc': sortOrder === SortOrder.descending,
       'fd-table__sort-column--asc': sortOrder === SortOrder.ascending,
-      'fd-table__fixed-col': this.fixed,
+      'fd-table__fixed-col': this.columnFixed,
     };
   }
 
-  private onTableHeaderClick() {
-    const { sortBy, table } = this;
-    if(table == null) {
-      return;
-    }
-    if(!this.sortable || sortBy == null) { return; }
-    table.sortBy(sortBy, this.columnId);
-  }
-
   public render() {
+    const on = this.$listeners;
     return (
       <th
+        {...{ on }}
         class={this.classes}
         style={this.styles}
-        on-click={this.onTableHeaderClick}
       >
         {this.label}
         {this.$slots.default}
