@@ -4,7 +4,6 @@ import {
 } from 'vue-property-decorator';
 import { Model, Component, DefaultSlot, Prop, Base } from '@/core';
 import { FormItem, FORM_ITEM_KEY } from './../FormItem';
-import { isInputElement } from './Helper';
 
 interface Props {
   state?: State;
@@ -13,21 +12,32 @@ interface Props {
   readonly?: boolean;
 }
 
-const stateMapping = {
-  default: 'Default State',
-  valid: 'Valid State (green border)',
-  invalid: 'Invalid State (red border)',
-  warning: 'Warning State (orange border)',
-};
+enum State {
+  default = 'default',
+  valid = 'valid',
+  invalid = 'invalid',
+  warning = 'warning',
+}
+const States = Object.keys(State) as State[];
 
-type State = keyof (typeof stateMapping);
-const States = Object.keys(stateMapping) as State[];
 type Value = string | number | object | null;
+const isValue = (raw: unknown): raw is Value => {
+  if(raw == null) { return true; }
+  if(typeof raw === 'string') { return true; }
+  if(typeof raw === 'number') { return true; }
+  if(typeof raw === 'object') { return true; }
+  return false;
+};
 
 @Component('Select')
 @DefaultSlot('List of native option elements.')
 export class Select extends Base<Props> {
-  @Prop('select state', { acceptableValues: States, default: 'default', type: String })
+  @Prop('select state', {
+    acceptableValues: States,
+    validator: States.includes,
+    default: State.default,
+    type: String,
+  })
   public state!: State;
 
   @Prop('whether input is required', { default: false, type: Boolean })
@@ -55,11 +65,13 @@ export class Select extends Base<Props> {
     this.currentValue = newValue;
   }
 
-  private updateInput({ target }: Event) {
+  private updateInput(event: Event) {
+    const { target } = event;
     if(target == null) { return; }
-    if(isInputElement(target)) {
-      this.currentValue = target.value;
-      this.$emit('change', target.value);
+    const value = Reflect.get(target, 'value');
+    if(isValue(value)) {
+      this.currentValue = value;
+      this.$emit('change', value);
     }
   }
 

@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import { mount, createLocalVue } from '@vue/test-utils';
 import { Toggle } from '../Toggle';
-import {  ComponentOptions } from 'vue';
+import { ComponentOptions } from 'vue';
 
 describe('Toggle', () => {
   // We test this because there was a bug in the past which caused toggles to always be rendered
