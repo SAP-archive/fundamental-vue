@@ -7,7 +7,8 @@ import { PropDocumentation, PropType } from '@/api/Model/PropDocumentation';
 import { ValueToken } from './ValueToken';
 import { TypeTokens } from './TypeTokens';
 import { TsxComponent } from '@/vue-tsx';
-import { Table, TableHeader, TableHeaderCell, TableRow, TableCell, ScopedRowSlot } from '@/components';
+import { Table, TableRow, TableCell, ScopedRowSlot } from '@/components';
+import { RowTemplate } from '../RowTemplate';
 
 interface Props {
   apiProps: PropDocumentation[];
@@ -25,7 +26,7 @@ type PropEntry = {
 
 const defaultValueFromProp = ({ readableDefaultValue, defaultValue }: PropDocumentation) => readableDefaultValue != null ? readableDefaultValue : defaultValue;
 
-@Component({ name: 'PropsReference' })
+@Component({ name: 'PropsReference', components: { RowTemplate } })
 export class PropsReference extends TsxComponent<Props> {
   @Prop({ type: Array, required: true })
   public apiProps!: PropDocumentation[];
@@ -50,27 +51,36 @@ export class PropsReference extends TsxComponent<Props> {
   public render() {
     const rowSlot: ScopedRowSlot<PropEntry> = ({item}) => {
       return (
-        <TableRow slot='row'>
-          <TableCell>{item.id}</TableCell>
-          <TableCell>{item.description}</TableCell>
-          <TableCell>
-            <ValueToken
-              key={item.name}
-              representedValue={item.defaultValue}
-            />
-          </TableCell>
-          <TableCell>
-            <TypeTokens
-              key={item.name}
-              propTypes={item.types}
-            />
-          </TableCell>
-          <TableCell>{item.acceptedValues}</TableCell>
-        </TableRow>
-      );
+        <row-template slot='row'>
+          <TableRow>
+            <TableCell>{item.id}</TableCell>
+            <TableCell>{item.description}</TableCell>
+            <TableCell>
+              <ValueToken
+                key={item.name}
+                representedValue={item.defaultValue}
+              />
+            </TableCell>
+            <TableCell>
+              <TypeTokens
+                key={item.name}
+                propTypes={item.types}
+              />
+            </TableCell>
+            <TableCell>{item.acceptedValues}</TableCell>
+          </TableRow>
+        </row-template>
+        );
     };
     return (
       <Table
+        headers={[
+          {label: 'Property'},
+          {label: 'Description'},
+          {label: 'Default Value'},
+          {label: 'Type'},
+          {label: 'Accepted Value'},
+        ]}
         {...
           {
             scopedSlots: {
@@ -80,15 +90,7 @@ export class PropsReference extends TsxComponent<Props> {
         }
         style='margin-bottom: 0;'
         items={this.tableData}
-      >
-        <TableHeader>
-          <TableHeaderCell label='Property' />
-          <TableHeaderCell label='Description' />
-          <TableHeaderCell label='Default Value' />
-          <TableHeaderCell label='Type' />
-          <TableHeaderCell label='Accepted Values' />
-        </TableHeader>
-      </Table>
+      />
     );
   }
 }

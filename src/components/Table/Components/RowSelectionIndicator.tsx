@@ -1,11 +1,19 @@
 import { Event, Prop, Component, Base } from '@/core';
 import { Checkbox } from '@/components/Form';
+import { Inject } from 'vue-property-decorator';
+import { Table, TABLE_KEY } from '@/components/Table';
 
 // Simply wraps a Checkbox in order to hide the ugly truth.
 // See handleNativeClick for details. Is there a better way to do this?
 @Component('RowSelectionIndicator')
 @Event('change', 'Sent when the selection changed')
 export class RowSelectionIndicator extends Base {
+  @Inject({
+    from: TABLE_KEY,
+    default: null,
+  })
+  public table!: Table | null;
+
   @Prop('whether row is selected', {
     type: Boolean,
     default: false,
@@ -44,10 +52,16 @@ export class RowSelectionIndicator extends Base {
     this.$emit('change', selected, event);
   }
 
+  public get selectionDisabled(): boolean {
+    const { table } = this;
+    return !(table != null ? table.canSelect : false);
+  }
+
   public render() {
     return (
       <Checkbox
         value={this.value}
+        disabled={this.selectionDisabled}
         modelValue={this.selected}
         on-change={this.handleChange}
         nativeOn-click={this.handleNativeClick}
