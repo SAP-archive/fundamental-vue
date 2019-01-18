@@ -2,7 +2,6 @@ import {
   Inject,
   Watch,
 } from 'vue-property-decorator';
-import { ItemIdentification } from './../Types/ItemIdentification';
 import { Model, Component, Prop, Base } from '@/core';
 import { FormItem, FORM_ITEM_KEY } from './../FormItem';
 import { isInputElement } from './Helper';
@@ -30,10 +29,12 @@ export class Toggle extends Base<Props> {
     item.setCheck(true);
   }
 
-  @Inject({ from: FORM_ITEM_KEY, default: null}) public formItem!: FormItem | null;
-  private get uid(): string {
+  @Inject({ from: FORM_ITEM_KEY, default: null})
+  public formItem!: FormItem | null;
+
+  private get formItemId(): string | null {
     const item = this.formItem;
-    if(item == null) { return ''; }
+    if(item == null) { return null; }
     return item.uid;
   }
 
@@ -48,17 +49,14 @@ export class Toggle extends Base<Props> {
 
   private currentOn = this.on;
 
-  @Inject({ default: null })
-  public itemIdentificationProvider!: ItemIdentification | null;
+  private handleChange() {
+    this.$emit('input', this.currentOn);
+  }
 
-  private get inputId(): string | null {
-    const id = this.uid;
-    if (id != null) { return id; }
-    const provider = this.itemIdentificationProvider;
-    if (provider != null) {
-      return provider.itemIdentifier;
-    }
-    return null;
+  private toggleState() {
+    if(this.disabled) { return; }
+    this.currentOn = !this.currentOn;
+    this.handleChange();
   }
 
   @Watch('on', { immediate: true})
@@ -70,10 +68,10 @@ export class Toggle extends Base<Props> {
     if(target == null) {
       return;
     }
-    if(isInputElement(target)) {
+    if(isInputElement(target) && !this.disabled) {
       const checked = target.checked;
       this.currentOn = checked;
-      this.$emit('input', this.currentOn);
+      this.handleChange();
     }
   }
 
@@ -90,12 +88,12 @@ export class Toggle extends Base<Props> {
   public render() {
     const disabled = this.disabled ? true : null;
     return (
-          <span class={this.classes}>
+          <span on-click={this.toggleState} class={this.classes}>
             <input
+              id={this.formItemId}
               type='checkbox'
               on-change={this.onChange}
               disabled={disabled}
-              id={this.inputId}
               checked={this.currentOn}
             />
             <span class='fd-toggle__switch' role='presentation' />
