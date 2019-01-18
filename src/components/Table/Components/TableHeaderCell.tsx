@@ -19,7 +19,7 @@ enum Alignment {
   default = 'default',
   center = 'center',
 }
-const Alignments = Object.values(Alignment);
+const Alignments = Object.keys(Alignment);
 
 @Component('TableHeaderCell')
 export class TableHeaderCell extends Base<TableHeaderCellProps> {
