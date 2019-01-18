@@ -1,18 +1,24 @@
 <title>Toggle</title>
-<docs>`FdToggle` has an optional label. Use the `on`-prop to turn a toggle on (`:on=true`) or off (`:on=false`). Set `disabled`-flag to disable user interaction.</docs>
-<template>
-  <div>
-    <FdToggle v-model="isOn" />
-    <FdToggle v-model="isOnToggleOn" />
-    <FdToggle disabled></FdToggle>
-  </div>
-</template>
+<docs>
+`FdToggle` has an optional label. Use the `on`-prop to turn a toggle on (`:on=true`) or off (`:on=false`). Set `disabled`-flag to disable user interaction.
+</docs>
 
-<script>
-export default {
-  data: () => ({
-    isOn: false,
-    isOnToggleOn: false,
-  })
-}
-</script>
+<template>
+  <FdFormSet>
+    <FdFormItem label="Default Toggle: on">
+      <FdToggle on />
+    </FdFormItem>
+
+    <FdFormItem label="Default Toggle: off">
+      <FdToggle :on="false" />
+    </FdFormItem>
+
+    <FdFormItem label="Disabled Toggle: on">
+      <FdToggle disabled on />
+    </FdFormItem>
+
+    <FdFormItem label="Disabled Toggle: off">
+      <FdToggle disabled :on="false" />
+    </FdFormItem>
+  </FdFormSet>
+</template>
