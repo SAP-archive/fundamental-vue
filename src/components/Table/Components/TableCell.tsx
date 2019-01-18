@@ -1,4 +1,9 @@
-import { Prop, DefaultSlot, Component, Base } from '@/core';
+import {
+  Prop,
+  DefaultSlot,
+  Component,
+  Base,
+} from '@/core';
 
 @Component('TableCell')
 @DefaultSlot('Cell Content')
