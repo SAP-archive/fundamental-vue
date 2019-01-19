@@ -1,36 +1,42 @@
-import { Watch } from 'vue-property-decorator';
+import { Provide } from 'vue-property-decorator';
 import { TabItemContainer } from './TabItemContainer';
 import { TabItem } from './TabItem';
 import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
+import { TABS } from './Shared';
 
 interface Props {
   value?: string | null;
 }
 
-@Component('Tabs', {
-  provide() {
-    return { tabItemContainer: this };
-  },
-})
-@Event('input', 'triggers when the active tab item name changes', ['tabItemName', String])
+@Component('Tabs')
+@Event('input',
+  'triggers when the active tab item name changes',
+  ['tabItemName', String],
+)
 @DefaultSlot('Tab Items')
 export class Tabs extends Base<Props> implements TabItemContainer {
-  @Prop('active tab item name', { type: String, default: null })
+  @Provide(TABS)
+  public tabs: TabItemContainer = this;
+
+  @Prop('active tab item name', {
+    type: String,
+    default: null,
+  })
   public value!: string | null;
 
-  @Watch('value', { immediate: true })
-  public handleNewValue(newValue: string | null) {
-    this.activeName = newValue;
-  }
   private tabItems: TabItem[] = [];
 
-  private keyHandlers(event: any, item: TabItem) {
-    if (event) {
-      const e = event as KeyboardEvent;
-      const key = e.key;
-      if (key === 'Enter') {
-        this.tabItemClicked(item);
-      }
+  public onTabItemKeyup(event: KeyboardEvent, item: TabItem) {
+    if(event.defaultPrevented) {
+      return;
+    }
+
+    // key is not supported everywhere (edge) this we check both values.
+    const key = event.key || event.keyCode;
+    const isEnter = key === 'Enter' || key === /* enter */ 13;
+    if(isEnter) {
+      this.activateTabItem(item);
+      event.preventDefault();
     }
   }
 
@@ -39,28 +45,16 @@ export class Tabs extends Base<Props> implements TabItemContainer {
     return (
       <div>
         <ul class='fd-tabs' role='tablist'>
-          {tabItems.map(tabItem => (
-            <li class='fd-tabs__item'>
-              <a
-                class='fd-tabs__link'
-                aria-controls={tabItem.uid}
-                aria-selected={tabItem.active}
-                aria-disabled={tabItem.disabled}
-                role='tab'
-                on-click={() => this.tabItemClicked(tabItem)}
-                tabIndex={0}
-                on-keydown={()=>this.keyHandlers(event, tabItem)}
-              >
-                {tabItem.label}
-              </a>
-            </li>))}
+          {tabItems.map(tabItem => {
+            return tabItem.renderItem(this.activeName || '');
+          })}
         </ul>
         {this.$slots.default}
       </div>
     );
   }
 
-  private tabItemClicked(item: TabItem) {
+  public activateTabItem(item: TabItem) {
     // Ignore disabled items
     if (item.disabled) {
       return;
