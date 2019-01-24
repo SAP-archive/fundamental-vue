@@ -8,9 +8,7 @@ interface Props {
 }
 
 @Component('FormLabel')
-@DefaultSlot('Contents of the label: For non-inline elements simply use text which will become' +
-    ' the text displayed by the label. For inline elements use text alongside with an' +
-    'y elements that form your input control.')
+@DefaultSlot('Contents of the label: For non-inline elements simply use text which will become the text displayed by the label. For inline elements use text alongside with any elements that form your input control.')
 export class FormLabel extends Base < Props > {
   @Inject(FORM_ITEM_ID_KEY)public itemId !: string;
 
