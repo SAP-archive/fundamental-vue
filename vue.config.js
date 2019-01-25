@@ -1,7 +1,7 @@
 const Path = require('path');
 
 module.exports = {
-  runtimeCompiler: true,
+  runtimeCompiler: false,
   chainWebpack: config => {
     config.module
       .rule('raw-loader')
@@ -28,6 +28,7 @@ module.exports = {
       .end()
   },
   configureWebpack: {
+    entry: './src/index.ts',
     output: {
       libraryExport: 'default'
     },
