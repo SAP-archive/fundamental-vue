@@ -47,14 +47,10 @@ Use the `selectionMode`-prop to set the selection mode of your choice.
   </div>
 </template>
 
-  </FdTable>
-  </div>
-</template>
-
 <script>
 export default {
   data: () => ({
-    headers: ["First Name", "Last Name", "Building"],
+    headers: ["", "First Name", "Last Name", "Building"],
     selectionMode: "single",
     items: [
       { id: "1", firstName: "Chris", lastName: "Kienle", building: "WFD02" },

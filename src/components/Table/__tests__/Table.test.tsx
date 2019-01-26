@@ -31,15 +31,15 @@ describe('Table', () => {
       const wrapper = mount(ClassAttrWrapper, { localVue });
       await localVue.nextTick();
 
-      const cells = wrapper.findAll('td');
+      const cells = wrapper.findAll('td').wrappers;
       assert.isNotEmpty(cells);
-      for(const cell of cells.wrappers) {
+      for(const cell of cells) {
         const classAttr = cell.attributes('class');
-        assert(classAttr === undefined || classAttr !== '');
+        assert(classAttr == null || classAttr !== '');
       }
     });
   });
-  it.only('reacts to column changes', async () => {
+  it('reacts to column changes', async () => {
     const localVue = createLocalVue();
     const ChangeColumnWrapper = localVue.extend({
       name: 'ChangeColumnWrapper',
