@@ -1,12 +1,22 @@
-import { Provide } from 'vue-property-decorator';
+import { Provide, Watch } from 'vue-property-decorator';
 import { TabItemContainer } from './TabItemContainer';
 import { TabItem } from './TabItem';
-import { Component, Event, DefaultSlot, Prop, Base } from '@/core';
+import { Vue, Component, Event, DefaultSlot, Prop, Base } from '@/core';
 import { TABS } from './Shared';
 
 interface Props {
   value?: string | null;
 }
+
+const Store = Vue.extend({
+  data() {
+    return {
+      activeName: '',
+    };
+  },
+});
+
+type StoreType = InstanceType<typeof Store>;
 
 @Component('Tabs')
 @Event('input',
@@ -15,14 +25,27 @@ interface Props {
 )
 @DefaultSlot('Tab Items')
 export class Tabs extends Base<Props> implements TabItemContainer {
+  public beforeCreate() {
+    this.store = new Store();
+  }
+  private store!: StoreType;
+
   @Provide(TABS)
   public tabs: TabItemContainer = this;
+
+  @Provide('store')
+  public store_: any = this.store;
 
   @Prop('active tab item name', {
     type: String,
     default: null,
   })
   public value!: string | null;
+
+  @Watch('value', { immediate: true })
+  public handleNewValue(newValue: string | null) {
+    this.activeName = newValue;
+  }
 
   private tabItems: TabItem[] = [];
 
@@ -63,9 +86,14 @@ export class Tabs extends Base<Props> implements TabItemContainer {
     this.$emit('input', item.name);
   }
 
-  // TabItemContainer Implementation
-  public activeName: string | null = this.value || null;
+  private get activeName(): string | null {
+    return this.store.activeName;
+  }
+  private set activeName(newName: string | null) {
+    Vue.set(this.store, 'activeName', newName);
+  }
 
+  // TabItemContainer Implementation
   public addTabItem(item: TabItem) {
     const index = (this.$slots.default || []).indexOf(item.$vnode);
     this.tabItems.splice(index, 0, item);

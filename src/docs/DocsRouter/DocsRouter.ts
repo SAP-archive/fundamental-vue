@@ -1,6 +1,8 @@
 import Router from 'vue-router';
-import { ExampleCollection, StaticContent } from '@/docs/components';
-import { enableLastRouteRestoration } from './LastRouteRestoration';
+import {
+  ExampleCollection,
+  StaticContent,
+} from '@/docs/components';
 import { FullscreenDemo } from '@/docs/components';
 
 export const DocsRouter = new Router({
@@ -57,5 +59,3 @@ export const DocsRouter = new Router({
     },
   ],
 });
-
-enableLastRouteRestoration(DocsRouter, { restoreWhenReady: false });

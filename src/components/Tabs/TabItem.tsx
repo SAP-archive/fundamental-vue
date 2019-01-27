@@ -43,13 +43,18 @@ export class TabItem extends mixins(UidMixin) {
     }
   }
 
+  @Inject()
+  private store: any;
+
+  private get activeName(): string | null {
+    return this.store.activeName;
+  }
+  private set activeName(newName: string | null) {
+    this.store.activeName = newName;
+  }
+
   public get active(): boolean {
-    const { tabs } = this;
-    if (tabs != null) {
-      const { value } = tabs;
-      return value === this.name;
-    }
-    return false;
+    return this.activeName === this.name;
   }
 
   private onClick(event: Event) {
