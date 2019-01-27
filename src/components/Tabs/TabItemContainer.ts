@@ -5,6 +5,5 @@ export interface TabItemContainer {
   removeTabItem(item: TabItem): void;
   activateTabItem(item: TabItem): void;
   onTabItemKeyup(event: KeyboardEvent, item: TabItem): void;
-  readonly activeName: string | null;
   readonly value: string | null;
 }
