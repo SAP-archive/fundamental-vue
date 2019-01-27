@@ -1,3 +1,27 @@
+<template>
+  <div
+    class='rendered-markdown'
+    style='padding: 50px;'
+  >
+    <div
+      v-html="html"
+      style='font-size: 1.2em; margin-bottom: 12px;'
+    />
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+import 'highlight.js/styles/docco.css';
+
+export default Vue.extend({
+  props: {
+    html: String
+  },
+})
+</script>
+
+<style lang="sass">
 .rendered-markdown
   $headline-color: #35495e
   $text-color: #35495e
@@ -92,6 +116,4 @@
       color: $text-color
       margin-block-end: 0
       margin-block-start: 0
-
-
-
+</style>

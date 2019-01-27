@@ -1,28 +1,32 @@
 import { VueConstructor } from 'vue';
-import { ComponentExample } from './ComponentExample';
-import { CodeView } from './CodeView';
-import { ExampleCollection } from './ExampleCollection';
-import { DynamicComponent } from './DynamicComponent';
-import { FullscreenDemo } from './FullscreenDemo';
-import * as ComponentReference from './ComponentReference';
-import { StaticContent } from './StaticContent';
-import { ExpandTransition } from './Animations';
+import ComponentExample from './ComponentExample.vue';
+import CodeView from './CodeView.vue';
+import ExampleCollection from './ExampleCollection.vue';
+import FullscreenDemo from './FullscreenDemo.vue';
+import {
+  ComponentReference,
+  EventsReference,
+  PropsReference,
+  SlotsReference,
+} from './ComponentReference';
+import StaticContent from './StaticContent.vue';
+import ExpandTransition from './ExpandTransition.vue';
+export { default as FullscreenDemo } from './FullscreenDemo.vue';
 
-export { FullscreenDemo } from './FullscreenDemo';
-export { DynamicComponent } from './DynamicComponent';
-export { ComponentExample } from './ComponentExample';
-export { CodeView } from './CodeView';
 export { ComponentReference } from './ComponentReference';
-export { ExampleCollection } from './ExampleCollection';
-export { StaticContent } from './StaticContent';
-export { ExpandTransition } from './Animations';
+export { ExampleCollection };
+export { default as StaticContent } from './StaticContent.vue';
+export { default as ExpandTransition } from './ExpandTransition.vue';
 
 export const registerComponents = (vue: VueConstructor) => {
-  const componentReferenceComponents = Object.values(ComponentReference);
-  const all = [ExpandTransition, FullscreenDemo, DynamicComponent, StaticContent, ExampleCollection, ComponentExample, CodeView, ...componentReferenceComponents];
-  all.forEach(component => {
-    // @ts-ignore
-    const name = component.options.name;
-    vue.component(name, component);
-  });
+  vue.component('ExpandTransition', ExpandTransition);
+  vue.component('FullscreenDemo', FullscreenDemo);
+  vue.component('StaticContent', StaticContent);
+  vue.component('ExampleCollection', ExampleCollection);
+  vue.component('ComponentExample', ComponentExample);
+  vue.component('CodeView', CodeView);
+  vue.component('ComponentReference', ComponentReference);
+  vue.component('EventsReference', EventsReference);
+  vue.component('PropsReference', PropsReference);
+  vue.component('SlotsReference', SlotsReference);
 };

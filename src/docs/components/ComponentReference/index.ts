@@ -1,4 +1,4 @@
-export { ComponentReference } from './ComponentReference';
-export { EventsReference } from './EventsReference';
-export { PropsReference } from './PropsReference';
-export { SlotsReference } from './SlotsReference';
+export { default as ComponentReference } from './ComponentReference.vue';
+export { default as EventsReference } from './EventsReference.vue';
+export { default as PropsReference } from './PropsReference.vue';
+export { default as SlotsReference } from './SlotsReference.vue';
