@@ -30,6 +30,7 @@ export * from './Pagination';
 export * from './Counter';
 export * from './Calendar';
 export * from './TimePicker';
+export * from './Tree';
 
 import * as Calendar from './Calendar';
 import * as Button from './Button';
@@ -68,6 +69,7 @@ import { version, libName } from '@/config';
 import * as Pagination from './Pagination';
 import * as TimePicker from './TimePicker';
 
+import * as Tree from './Tree';
 import { log } from '@/core';
 
 export const all: { [key: string]: any } = {
@@ -104,6 +106,7 @@ export const all: { [key: string]: any } = {
   ...TileGrid,
   ...Pagination,
   ...TimePicker,
+  ...Tree,
 };
 
 const $plugin: Plugin = () => {

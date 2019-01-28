@@ -14,7 +14,7 @@ export class TimeInput extends Base<Props> {
   @Prop(String) public placeholder!: string;
   @Prop('Value in the Time input field', {
     type: [String, Number],
-    default: '--',
+    default: '',
   })
   public value!: string | number | null;
   @Prop(String) public ariaLabel!: string | null;
@@ -22,7 +22,7 @@ export class TimeInput extends Base<Props> {
   public render() {
     return (
       <div class='fd-time__input'>
-        <Input id={this.id} type='text' aria-label={this.ariaLabel} value={this.value} placeholder={this.placeholder} on-input={(newValue: string) => this.$emit('input', newValue)} />
+        <Input id={this.id}  maxlength='2' type='text' aria-label={this.ariaLabel} value={this.value} placeholder={this.placeholder} on-input={(newValue: string) => this.$emit('input', newValue)} />
       </div>
     );
   }

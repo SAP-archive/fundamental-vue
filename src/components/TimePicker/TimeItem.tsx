@@ -1,14 +1,31 @@
 import { Component, Prop, Event } from '@/core';
-import { Time } from './Time/Time';
+import { Time, TimeType } from './Time/Time';
 import { mixins } from 'vue-class-component';
-import { DateRangeMixin } from './mixins/DateRange';
+import { TimeRangeMixin } from './mixins/TimeRange';
 interface Props {
   value?: string | null;
   ariaLabel?: string | null;
   showMeridian?: boolean;
 }
 
-const TimeItemBase = mixins(DateRangeMixin);
+interface TimeUnitUpdateParams {
+  timeUnitType: TimeUnitType,
+  value: string,
+  timeType: TimeType,
+  upperTimeUnitType: TimeUnitType,
+  upperTimeUnitUpdateHandler: Function
+};
+
+// Time type
+const timeUnitMapping = {
+  hour: 'hour',
+  minute: 'minute',
+  second: 'second',
+  meridian: 'meridian',
+};
+type TimeUnitType = keyof (typeof timeUnitMapping);
+
+const TimeItemBase = mixins(TimeRangeMixin);
 @Component('TimeItem')
 @Event('timeUpdate', 'Event triggered whenever the time value is updated.')
 export class TimeItem extends TimeItemBase<Props> {
@@ -46,23 +63,80 @@ export class TimeItem extends TimeItemBase<Props> {
   }
 
   private updateHour(hour: string) {
-    this.hour = hour;
-    this.updateTimeItem();
+    //check how conversion to meridian works TODO
+    const hourType = this.showMeridian ? 'hour12' : 'hour24';
+    this.validateTimeUnit('hour', hour, hourType);
+
+    // work is pending
+    let meridian = this.meridian;
+    if ((Number(this['hour']) === Number(this.range[hourType].min) && Number(hour) === Number(this.range[hourType].max)) || (Number(this['hour']) === Number(this.range[hourType].max) && Number(hour) === Number(this.range[hourType].min))) {
+      meridian = this.meridian === this.range['meridian'].min ? this.range['meridian'].max : this.range['meridian'].min;
+      this.updateMeridian(meridian);
+     }
+
   }
 
   private updateMinute(minute: string) {
-    this.minute = minute;
-    this.updateTimeItem();
+    // this.validateTimeUnit('minute', minute, 'minute');
+    const updateParameters: TimeUnitUpdateParams = {
+      timeUnitType: 'minute',
+      value: minute,
+      timeType: 'minute',
+      upperTimeUnitType: 'hour',
+      upperTimeUnitUpdateHandler: this.updateHour
+    };
+    this.updateUnit(updateParameters);
   }
 
   private updateSecond(second: string) {
-    this.second = second;
-    this.updateTimeItem();
+    const updateParameters: TimeUnitUpdateParams = {
+      timeUnitType: 'second',
+      value: second,
+      timeType: 'second',
+      upperTimeUnitType: 'minute',
+      upperTimeUnitUpdateHandler: this.updateMinute
+    };
+    this.updateUnit(updateParameters);
   }
 
   private updateMeridian(meridian: string) {
-    this.meridian = meridian;
+    this.meridian = meridian ? meridian : '--';
     this.updateTimeItem();
+  }
+
+  private updateUnit(updateParameters: TimeUnitUpdateParams) {
+    let dividend = 0, remainder = 0;
+    if (Number(this[updateParameters.timeUnitType]) === Number(this.range[updateParameters.timeType].min) && Number(updateParameters.value) === Number(this.range[updateParameters.timeType].max)) {
+      dividend = -1;
+      remainder = Number(this.range[updateParameters.timeType].max);
+      this[updateParameters.timeUnitType] = updateParameters.value;
+    }
+    else if (Number(this[updateParameters.timeUnitType]) === Number(this.range[updateParameters.timeType].max) && Number(updateParameters.value) === Number(this.range[updateParameters.timeType].min)) {
+      dividend = 1;
+      remainder = Number(this.range[updateParameters.timeType].min);
+      this[updateParameters.timeUnitType] = updateParameters.value;
+    } else {
+      if (this.validateTimeUnit(updateParameters.timeUnitType, updateParameters.value, updateParameters.timeType)) {
+        remainder = Number(updateParameters.value) % (Number(this.range[updateParameters.timeType].max) + 1);
+        dividend = Math.floor((Number(updateParameters.value) / (Number(this.range[updateParameters.timeType].max) + 1)));
+        this.validateTimeUnit(updateParameters.timeUnitType, remainder.toString(), updateParameters.timeType);
+      }
+    }
+      const upperValue = (Number(this[updateParameters.upperTimeUnitType]) + dividend).toString();
+      updateParameters.upperTimeUnitUpdateHandler(upperValue);
+  }
+
+  private validateTimeUnit(unitType: TimeUnitType, value: string, type: TimeType) {
+    let valueOutOfRange = false;
+    if (this.checkValueRange(value, type)) {
+      this[unitType] = value ? value : '--';
+    } else if (!isNaN(Number(value))) {
+      valueOutOfRange = true;
+    } else {
+      this[unitType] = '--';
+    }
+    this.updateTimeItem();
+    return valueOutOfRange;
   }
 
   private updateTimeItem() {
@@ -76,11 +150,11 @@ export class TimeItem extends TimeItemBase<Props> {
     this.splitTime();
     return (
       <div class='fd-time'>
-        <Time  type={this.showMeridian ? 'hour12' : 'hour24'} value={this.hour} on-timeUpdate={this.updateHour}></Time>
-        <Time type='minute' value={this.minute} on-timeUpdate={this.updateMinute}></Time>
-        {this.second ? (<Time type='second' value={this.second} on-timeUpdate={this.updateSecond}></Time>) : ''}
+        <Time type={this.showMeridian ? 'hour12' : 'hour24'} value={this.hour} on-timeUpdate={this.updateHour} placeholder='hh'></Time>
+        <Time type='minute' value={this.minute} on-timeUpdate={this.updateMinute} placeholder='mm'></Time>
+        {(this.second !== null && this.second !== undefined) ? (<Time type='second' value={this.second} on-timeUpdate={this.updateSecond} placeholder='ss'></Time>) : ''}
         {this.showMeridian ? (
-          <Time type='meridian' value={this.meridian} on-timeUpdate={this.updateMeridian}></Time>
+          <Time type='meridian' value={this.meridian} on-timeUpdate={this.updateMeridian} placeholder='am'></Time>
         ) : ''}
       </div>
     );
