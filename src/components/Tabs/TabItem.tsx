@@ -2,7 +2,8 @@ import { Inject } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import { TabItemContainer } from './TabItemContainer';
 import { UidMixin } from '@/mixins';
-import { Component, DefaultSlot, Prop } from '@/core';
+import { ComponentProps, Component, DefaultSlot, Prop } from '@/core';
+import { TABS } from './Shared';
 
 interface Props {
   label?: string | null;
@@ -20,37 +21,64 @@ export class TabItem extends mixins(UidMixin) {
   @Prop('name, used to determine whether item is active', { type: String, default: null })
   public name!: string | null;
 
-  @Prop('whether item is disabled', { type: Boolean, default: false})
+  @Prop('whether item is disabled', { type: Boolean, default: false })
   public disabled!: boolean;
 
-  @Inject('tabItemContainer')
-  public tabItemContainer!: TabItemContainer | null;
+  @Inject({ from: TABS, default: null })
+  public tabs!: TabItemContainer | null;
 
-  public $tsxProps!: Readonly<{}> & Readonly<Props>;
+  public $tsxProps!: ComponentProps<Props>;
 
   public mounted() {
-    const { tabItemContainer } = this;
-    if (tabItemContainer != null) {
-      tabItemContainer.addTabItem(this);
+    const { tabs } = this;
+    if (tabs != null) {
+      tabs.addTabItem(this);
     }
   }
 
   public destroyed() {
-    const { tabItemContainer } = this;
-    if (tabItemContainer != null) {
-      tabItemContainer.removeTabItem(this);
+    const { tabs } = this;
+    if (tabs != null) {
+      tabs.removeTabItem(this);
     }
   }
 
   public get active(): boolean {
-    const { tabItemContainer } = this;
-    if (tabItemContainer != null) {
-      const { activeName } = tabItemContainer;
-      return activeName === this.name;
+    const { tabs } = this;
+    if (tabs != null) {
+      const { value } = tabs;
+      return value === this.name;
     }
     return false;
   }
 
+  private onClick(event: Event) {
+    event.preventDefault();
+    this.tabs != null && this.tabs.activateTabItem(this);
+  }
+
+  private onKeyup(event: KeyboardEvent) {
+    this.tabs != null && this.tabs.onTabItemKeyup(event, this);
+  }
+
+  public renderItem(current: string) {
+    const active = current === this.name;
+    return (
+      <li class='fd-tabs__item'>
+        <a
+          class='fd-tabs__link'
+          aria-controls={this.uid}
+          aria-selected={active}
+          aria-disabled={this.disabled}
+          role='tab'
+          on-click={this.onClick}
+          tabIndex={0}
+          on-keyup={this.onKeyup}
+        >
+          {this.label}
+        </a>
+      </li>);
+  }
   public render() {
     const expanded = this.active ? 'true' : 'false';
     return (

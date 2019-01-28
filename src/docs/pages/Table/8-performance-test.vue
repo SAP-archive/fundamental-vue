@@ -15,23 +15,18 @@
       </FdFormItem>
     </FdFormSet>
 
-    <FdTable :fixedWrapperStyle="{'width': '100%'}" firstColumnFixed :items="tableData">
+    <FdTable :headers="headers" :fixedWrapperStyle="{'width': '100%'}" firstColumnFixed :items="items">
+      <template slot="row" slot-scope="{item}">
 
-      <FdTableHeader>
-        <FdTableHeaderCell label="id" />
-        <FdTableHeaderCell v-for="colName in colNames" :key="colName" :label="colName" />
-      </FdTableHeader>
-
-      <FdTableRow slot="row" slot-scope="{item}">
-        <FdTableCell :key="item.id + 'id'">
-          {{item.id}}
-        </FdTableCell>
-        <FdTableCell
-          v-for="colName in colNames"
-          :key="item.id + colName">
+        <FdTableRow>
+          <FdTableCell
+            v-for="colName in colNames"
+            :key="item.id + colName"
+          >
             {{valueInItem(item, colName)}}
-        </FdTableCell>
-      </FdTableRow>
+          </FdTableCell>
+        </FdTableRow>
+      </template>
     </FdTable>
   </div>
 </template>
@@ -42,35 +37,33 @@ export default {
     valueInItem(item, col) {
       return item[col];
     },
-    colName(col) {
-      return `col${col}`;
-    }
   },
   computed: {
+    headers() {
+      return this.colNames.map(label => ({ label }));
+    },
     colNames() {
       const cols = Number(this.numberOfColumns);
-      return Array.from({length: cols}).map((_, index) => {
-        return this.colName(index);
+      return Array.from({ length: cols }).map((_, index) => {
+        return `col${index}`;
       });
     },
-    tableData() {
+    items() {
       const cols = Number(this.numberOfColumns);
       const rows = Number(this.numberOfRows);
-      return Array.from({length: rows}).map((_, rowIndex) => {
-        const colNames = Array.from({length: cols}).map((_, index) => {
-          return this.colName(index);
-        });
+      return Array.from({ length: rows }).map((_, rowIndex) => {
+        const colNames = this.colNames;
         const row = { id: String(rowIndex) };
         colNames.forEach(colName => {
           row[colName] = `Row: ${rowIndex} - Col: ${colName}`;
         });
         return row;
       });
-    },
+    }
   },
   data: () => ({
-    numberOfColumns: '5',
-    numberOfRows: '5',
+    numberOfColumns: "5",
+    numberOfRows: "5"
   })
 };
 </script>

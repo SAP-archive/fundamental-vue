@@ -5,8 +5,7 @@ The example below is a little bit more complex. It highlights three aspects:
 
 ### Sortable Columns
 
-`FdTableHeaderCell` can be made sortable by simply flagging it as such using `sortable` and setting `sortBy` to any sortable property of the objects in your `items`-array. By doing so `FdTable` displays sort indicators in the individual column headers. The currently applied sorting can be adjusted by simply clicking on the column headers.
-
+A header can be made sortable by simply flagging it as such using `sortable` and setting `sortBy` to any sortable property of the objects in your `items`-array. By doing so `FdTable` displays sort indicators in the individual column headers. The currently applied sorting can be adjusted by simply clicking on the column headers.
 
 ### Custom Cell Content
 Up until now `FdTableCell` was only used to display plain text. However, `FdTableCell` is simply rendering whatever you put in it. This can be anything from emojis (we all like emojis, right? 😀 🥰 ) to images and even custom components.
@@ -31,22 +30,15 @@ If you modify the `items`-array, make sure that the modification is done in a wa
 
 <template>
   <div>
-    <FdTable :items="tableData">
-
-      <FdTableHeader>
-        <FdTableHeaderCell sortable sortBy="rating" label="Rating" />
-        <FdTableHeaderCell sortable sortBy="firstName" label="First Name" />
-        <FdTableHeaderCell sortable sortBy="lastName" label="Last Name" />
-        <FdTableHeaderCell sortable sortBy="firstName" label="Full Name" />
-      </FdTableHeader>
-
-      <FdTableRow slot="row" slot-scope="{item}">
-        <FdTableCell>{{item.rating}}</FdTableCell>
-        <FdTableCell>{{item.firstName}}</FdTableCell>
-        <FdTableCell>{{item.lastName}}</FdTableCell>
-        <FdTableCell>{{item.firstName}} {{item.lastName}}</FdTableCell>
-      </FdTableRow>
-
+    <FdTable :headers="headers" :items="items">
+      <template slot="row" slot-scope="{item}">
+        <FdTableRow>
+          <FdTableCell>{{item.rating}}</FdTableCell>
+          <FdTableCell>{{item.firstName}}</FdTableCell>
+          <FdTableCell>{{item.lastName}}</FdTableCell>
+          <FdTableCell>{{item.firstName}} {{item.lastName}}</FdTableCell>
+        </FdTableRow>
+      </template>
     </FdTable>
 
     <h2>Creating an Entry</h2>
@@ -79,28 +71,34 @@ export default {
       const entry = {
         ...this.newEntry,
       };
-      this.tableData = [...this.tableData, entry];
+      this.items = [...this.items, entry];
       this.newEntry = {
         firstName: null,
         lastName: null,
         rating: "⭐️⭐️⭐️",
-        id: String(this.tableData.length + 1),
+        id: String(this.items.length + 1),
       };
     },
   },
   data() {
     return {
+      headers: [
+        { label: "Rating", sortable: true, sortBy: "rating", },
+        { label: "First Name", sortable: true, sortBy: "firstName", },
+        { label: "Last Name", sortable: true, sortBy: "lastName", },
+        { label: "Full Name", sortable: true, sortBy: "firstName" },
+      ],
       newEntry: {
         firstName: null,
         lastName: null,
         rating: "⭐️⭐️⭐️",
-        id: '5',
+        id: "5",
       },
-      tableData: [
-        { id: "1", rating: '⭐️⭐️⭐️', firstName: "Chris", lastName: "Kienle" },
-        { id: "2", rating: '⭐️⭐️⭐️⭐️', firstName: "Andi", lastName: "Kienle" },
-        { id: "3", rating: '⭐️⭐️⭐️⭐️⭐️', firstName: "Sven", lastName: "Bacia" },
-        { id: "4", rating: '⭐️⭐️⭐️⭐️⭐️', firstName: "Artur", lastName: "Raess" },
+      items: [
+        { id: "1", rating: "⭐️⭐️⭐️", firstName: "Chris", lastName: "Kienle" },
+        { id: "2", rating: "⭐️⭐️⭐️⭐️", firstName: "Andi", lastName: "Kienle" },
+        { id: "3", rating: "⭐️⭐️⭐️⭐️⭐️", firstName: "Sven", lastName: "Bacia" },
+        { id: "4", rating: "⭐️⭐️⭐️⭐️⭐️", firstName: "Artur", lastName: "Raess" },
       ],
     };
   },

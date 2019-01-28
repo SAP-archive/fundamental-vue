@@ -2,24 +2,38 @@
 <docs>
 Use `FdTable` in order to display data best visualized by rows and columns.
 
-The most important prop exposed by `FdTable` is called `items`. The items of a table must at least have an `id`-property which contains a `string`, uniquely indentifying the corresponding item. Each item may contain any additional custom properties.
+<div class="tip" style="border-left: 0.5rem solid #ffa94a;">
+  <div class="tip-title">IMPORTANT</div>
+  <div class="tip-body">
+    <p>In a previous release you didn't have to put <code>FdTableRow</code> in a <code>template</code>. Going forward you have to do so.</p>
+  </div>
+</div>
+
+The most important prop exposed by `FdTable` is called `items`. The items of a table must all be some kind of `Object`. If `FdTable` encounters an item without an `id`-property, an `id` will be created. The `id` of an item is used to uniquely identify the corresponding item. Each item may contain any additional custom properties.
 
 ### FdTable Atonomy
 
 #### The Table Header: `FdTableHeader`
-`FdTable` has an optional header which renders column names, sort indicators and custom content.
+It is the responsibility of `FdTable` to render it's header. The header renders column names, sort indicators and custom content. You configure the header of an `FdTable` by using it's `headers`-prop. The `headers`-prop accepts an array which may contain strings or header configuration objects. A plain string inside the `headers`-array will be used as a label for the column header. The complete definition of the `headers`-prop looks like this:
+
+```javascript
+type Header = {
+  label: string;
+  sortable?: boolean;
+  sortBy?: string;
+  alignment?: TextAlignment; // 'center' or 'default'
+  renderHeader?: HeaderCellRenderFunction; // not yet implemented
+} | string;
+```
 
 #### The Table Row Template: `FdTableRow`
 Rows are rendered by `FdTable` on your behalf. This is why you don't specify each row individually. Instead you describe how to render a row (`FdTableRow`) given some context (using Vue's __slot-scope__-mechanism). The object passed to the template has the following shape:
 
 ```typescript
-// The minimum viable table item only needs an id.
-interface Item { id: string; }
-
 // Object passed to the row template.
 interface RowSlotProps<T = object> {
   // Your custom item
-  item: T & Item;
+  item: T & { id: string; };
 
   // True if the corresonding row is currently selected
   selected: boolean;
@@ -37,30 +51,26 @@ interface RowSlotProps<T = object> {
 </tip>
 
 <template>
-  <FdTable :items="tableData">
-    <FdTableHeader>
-      <FdTableHeaderCell label="First Name" />
-      <FdTableHeaderCell label="Last Name" />
-      <FdTableHeaderCell label="Building" />
-    </FdTableHeader>
-
-    <FdTableRow slot="row" slot-scope="{item}">
-      <FdTableCell>{{item.firstName}}</FdTableCell>
-      <FdTableCell>{{item.lastName}}</FdTableCell>
-      <FdTableCell>{{item.building}}</FdTableCell>
-    </FdTableRow>
-
+  <FdTable :headers="headers" :items="items">
+    <template slot="row" slot-scope="{item}">
+      <FdTableRow>
+        <FdTableCell>{{item.firstName}}</FdTableCell>
+        <FdTableCell>{{item.lastName}}</FdTableCell>
+        <FdTableCell>{{item.building}}</FdTableCell>
+      </FdTableRow>
+    </template>
   </FdTable>
 </template>
 
 <script>
 export default {
   data: () => ({
-    tableData: [
-      { id: "1", rating: 1, firstName: "Chris", lastName: "Kienle", building: "WFD02" },
-      { id: "2", rating: 2, firstName: "Andi", lastName: "Kienle", building: "WFD03" },
-      { id: "3", rating: 3, firstName: "Sven", lastName: "Bacia", building: "WFD02" },
-      { id: "4", rating: 4, firstName: "Artur", lastName: "Raess", building: "WFD02" },
+    headers: ["First Name", "Last Name", "Building"],
+    items: [
+      { rating: 1, firstName: "Chris", lastName: "Kienle", building: "WFD02" },
+      { rating: 2, firstName: "Andi", lastName: "Kienle", building: "WFD03" },
+      { rating: 3, firstName: "Sven", lastName: "Bacia", building: "WFD02" },
+      { rating: 4, firstName: "Artur", lastName: "Raess", building: "WFD02" },
     ]
   })
 };

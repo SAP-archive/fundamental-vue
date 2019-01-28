@@ -1,21 +1,102 @@
 import { assert } from 'chai';
 import { createLocalVue, mount } from '@vue/test-utils';
-import { RowSelectionIndicator, Table, TableRow, TableCell } from '../';
+import { RowSelectionIndicator, Table, TableRow, TableCell, TableHeader, TableHeaderCell } from '../';
 
 describe('Table', () => {
+  describe('TableCell', () => {
+    // In the past table cell added empty class attributes to the rendered td-el.
+    it('does not render class attribute', async () => {
+      const localVue = createLocalVue();
+      const ClassAttrWrapper = localVue.extend({
+        name: 'ClassAttrWrapper',
+        components: { Table, TableRow, TableCell },
+        template: `
+        <Table :items="items">
+          <template slot="row" slot-scope="{item}">
+            <TableRow>
+              <TableCell>{{item.id}}</TableCell>
+            </TableRow>
+          </template>
+        </Table>
+        `,
+        data: () => ({
+          items: [
+            { id: '1', firstName: 'Chris', lastName: 'Kienle' },
+            { id: '2', firstName: 'Andi', lastName: 'Kienle' },
+            { id: '3', firstName: 'Sven', lastName: 'Bacia' },
+            { id: '4', firstName: 'Artur', lastName: 'Raess' },
+          ],
+        }),
+      });
+      const wrapper = mount(ClassAttrWrapper, { localVue });
+      await localVue.nextTick();
+
+      const cells = wrapper.findAll('td').wrappers;
+      assert.isNotEmpty(cells);
+      for(const cell of cells) {
+        const classAttr = cell.attributes('class');
+        assert(classAttr == null || classAttr !== '');
+      }
+    });
+  });
+  it('reacts to column changes', async () => {
+    const localVue = createLocalVue();
+    const ChangeColumnWrapper = localVue.extend({
+      name: 'ChangeColumnWrapper',
+      components: { Table, TableRow, TableCell, TableHeader, TableHeaderCell },
+      template: `
+      <Table :headers="headers" :items="items">
+        <template slot='row' slot-scope='item'>
+          <TableRow>
+            <TableCell
+              v-for="header in headers"
+              :key="item.id + header.label"
+            >
+              {{header.label}}
+            </TableCell>
+          </TableRow>
+        </template>
+      </Table>
+      `,
+      data: () => ({
+        headers: [{label: 'c1'}, {label: 'c2'}],
+        items: [
+          { firstName: 'Chris', lastName: 'Kienle' },
+          { firstName: 'Andi', lastName: 'Kienle' },
+          { firstName: 'Sven', lastName: 'Bacia' },
+          { firstName: 'Artur', lastName: 'Raess' },
+        ],
+      }),
+    });
+    const wrapper = mount(ChangeColumnWrapper, { localVue });
+    await localVue.nextTick();
+
+    const headerCells = wrapper.findAll<TableHeaderCell>(TableHeaderCell);
+    assert.lengthOf(headerCells, 2);
+
+    // Now we change the columns
+    wrapper.setData({
+      items: [{ id: '1' }],
+      headers: [{label: 'c1'}, {label: 'c2'}, {label: 'c3'}, {label: 'c4'}]});
+    await localVue.nextTick();
+    assert.lengthOf(wrapper.findAll<TableHeaderCell>(TableHeaderCell), 4);
+  }),
   it('injects item id into table rows', async () => {
     const localVue = createLocalVue();
     const InjectIdTableTest = localVue.extend({
       name: 'InjectIdTableTest',
       components: { Table, TableRow, TableCell },
       template: `
-      <Table :items="items">
-        <TableRow slot="row" slot-scope="{item}">
-          <TableCell>{{item.id}}</TableCell>
-        </TableRow>
+      <Table :columns="columns" :items="items">
+        <template slot="row" slot-scope="{item}">
+          <TableRow>
+            <TableCell>{{item.id}}</TableCell>
+          </TableRow>
+        </template>
       </Table>
       `,
       data: () => ({
+        columns: [],
         items: [
           { id: '1', firstName: 'Chris', lastName: 'Kienle' },
           { id: '2', firstName: 'Andi', lastName: 'Kienle' },
@@ -38,25 +119,28 @@ describe('Table', () => {
       components: { RowSelectionIndicator, Table, TableRow, TableCell },
       template: `
       <Table
+        :headers="headers"
         :selectionMode="selectionMode"
         :items="tableData"
       >
-
-        <TableRow slot="row" slot-scope="{selected, changeSelection, item}">
-          <TableCell>
-            <RowSelectionIndicator
-              :value="item.id"
-              :selected="selected"
-              @change="changeSelection"
-            />
-          </TableCell>
-          <TableCell>{{item.firstName}}</TableCell>
-          <TableCell>{{item.lastName}}</TableCell>
-        </TableRow>
+        <template slot="row" slot-scope="{selected, changeSelection, item}">
+          <TableRow>
+            <TableCell>
+              <RowSelectionIndicator
+                :value="item.id"
+                :selected="selected"
+                @change="changeSelection"
+              />
+            </TableCell>
+            <TableCell>{{item.firstName}}</TableCell>
+            <TableCell>{{item.lastName}}</TableCell>
+          </TableRow>
+        </template>
       </Table>
       `,
       data: () => ({
         selectionMode: 'multiple',
+        headers: ['id', 'firstName', 'lastName'],
         tableData: [
           { id: '1', firstName: 'Chris', lastName: 'Kienle' },
           { id: '2', firstName: 'Andi', lastName: 'Kienle' },
@@ -95,21 +179,24 @@ describe('Table', () => {
     const TestComponent = localVue.extend({
       components: { RowSelectionIndicator, Table, TableRow, TableCell },
       template: `
-      <Table :selectedIds.sync="selectedIds" selectionMode="multiple" :items="tableData">
-        <TableRow slot="row" slot-scope="{item, changeSelection, selected}">
+      <Table :headers="headers" :selectedIds.sync="selectedIds" selectionMode="multiple" :items="tableData">
+      <template slot="row" slot-scope="{item, changeSelection, selected}">
+        <TableRow>
           <TableCell>
             <RowSelectionIndicator
               :value="item.id"
               :selected="selected"
               @change="changeSelection"
             />
-          </TableCell>
-          <TableCell>{{item.firstName}}</TableCell>
-          <TableCell>{{item.lastName}}</TableCell>
-        </TableRow>
+            </TableCell>
+            <TableCell>{{item.firstName}}</TableCell>
+            <TableCell>{{item.lastName}}</TableCell>
+          </TableRow>
+        </template>
       </Table>
       `,
       data: () => ({
+        headers: ['firstName', 'lastName'],
         selectedIds: [],
         tableData: [
           { id: '1', firstName: 'Chris', lastName: 'Kienle' },
@@ -148,15 +235,20 @@ describe('Table', () => {
     const wrapper = mount({
       components: { Table, TableRow, TableCell },
       template: `
-      <Table selectionMode="single" :items="tableData">
-        <TableRow slot="row" slot-scope="{item}">
-          <TableCell>{{item.firstName}}</TableCell>
-          <TableCell>{{item.lastName}}</TableCell>
-          <TableCell>{{item.building}}</TableCell>
-        </TableRow>
+      <Table :headers="headers" selectionMode="single" :items="tableData">
+        <template slot="row" slot-scope="{item}">
+          <TableRow>
+            <TableCell>{{item.firstName}}</TableCell>
+            <TableCell>{{item.lastName}}</TableCell>
+            <TableCell>{{item.building}}</TableCell>
+          </TableRow>
+        </template>
       </Table>
       `,
-      data: () => ({ tableData: [...data] }),
+      data: () => ({
+        headers: ['firstName', 'lastName', 'building'],
+        tableData: [...data],
+      }),
     }, { localVue });
     await localVue.nextTick();
 
@@ -182,11 +274,13 @@ describe('Table', () => {
       components: { Table, TableRow, TableCell },
       template: `
       <Table selectionMode="multiple" :items="tableData">
-        <TableRow slot="row" slot-scope="{item}">
-          <TableCell>{{item.firstName}}</TableCell>
-          <TableCell>{{item.lastName}}</TableCell>
-          <TableCell>{{item.building}}</TableCell>
-        </TableRow>
+        <template slot="row" slot-scope="{item}">
+          <TableRow>
+            <TableCell>{{item.firstName}}</TableCell>
+            <TableCell>{{item.lastName}}</TableCell>
+            <TableCell>{{item.building}}</TableCell>
+          </TableRow>
+        </template>
       </Table>
       `,
       data: () => ({ tableData: [...data] }),
@@ -216,11 +310,13 @@ describe('Table', () => {
       components: { Table, TableRow, TableCell },
       template: `
       <Table :items="tableData">
-        <TableRow slot="row" slot-scope="{item}">
-          <TableCell>{{item.firstName}}</TableCell>
-          <TableCell>{{item.lastName}}</TableCell>
-          <TableCell>{{item.building}}</TableCell>
-        </TableRow>
+        <template slot="row" slot-scope="{item}">
+          <TableRow>
+            <TableCell>{{item.firstName}}</TableCell>
+            <TableCell>{{item.lastName}}</TableCell>
+            <TableCell>{{item.building}}</TableCell>
+          </TableRow>
+        </template>
       </Table>
       `,
       data: () => ({ tableData: [...data] }),
@@ -239,11 +335,13 @@ describe('Table', () => {
       data: () => ({ tableData: [] }),
       template: `
       <Table :items="tableData">
-        <TableRow slot="row" slot-scope="{item}">
-          <TableCell>{{item.firstName}}</TableCell>
-          <TableCell>{{item.lastName}}</TableCell>
-          <TableCell>{{item.building}}</TableCell>
-        </TableRow>
+        <template slot="row" slot-scope="{item}">
+          <TableRow>
+            <TableCell>{{item.firstName}}</TableCell>
+            <TableCell>{{item.lastName}}</TableCell>
+            <TableCell>{{item.building}}</TableCell>
+          </TableRow>
+        </template>
       </Table>
       `,
     }, { localVue });

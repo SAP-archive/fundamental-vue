@@ -3,8 +3,9 @@ import {
   Prop,
 } from 'vue-property-decorator';
 import { EventDocumentation } from '@/api';
-import { Table, TableHeader, TableHeaderCell, TableRow, TableCell, ScopedRowSlot } from '@/components';
+import { Table, TableRow, TableCell, ScopedRowSlot } from '@/components';
 import { TsxComponent } from '@/vue-tsx';
+import { RowTemplate } from '../RowTemplate';
 
 interface Props {
   events: EventDocumentation[];
@@ -16,7 +17,10 @@ type EventEntry = {
   description: string;
 };
 
-@Component({ name: 'EventsReference' })
+@Component({
+  name: 'EventsReference',
+  components: { RowTemplate },
+})
 export class EventsReference extends TsxComponent<Props> {
   @Prop({ type: Array, required: true })
   public events!: EventDocumentation[];
@@ -29,14 +33,17 @@ export class EventsReference extends TsxComponent<Props> {
   public render() {
     const rowSlot: ScopedRowSlot<EventEntry> = ({item}) => {
       return (
-        <TableRow slot='row'>
-          <TableCell>{item.name}</TableCell>
-          <TableCell>{item.description}</TableCell>
-        </TableRow>
+        <row-template slot='row'>
+          <TableRow>
+            <TableCell>{item.name}</TableCell>
+            <TableCell>{item.description}</TableCell>
+          </TableRow>
+        </row-template>
       );
     };
     return (
       <Table
+        headers={[{label: 'Event'}, {label: 'Description'}]}
         items={this.tableData}
         {...
           {
@@ -45,12 +52,7 @@ export class EventsReference extends TsxComponent<Props> {
             },
           }
         }
-      >
-        <TableHeader>
-          <TableHeaderCell label='Event' />
-          <TableHeaderCell label='Description' />
-        </TableHeader>
-    </Table>
+      />
     );
   }
 }

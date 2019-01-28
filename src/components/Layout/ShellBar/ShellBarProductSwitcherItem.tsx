@@ -1,6 +1,8 @@
-import { Location } from 'vue-router';
-import { ShellBarProductSwitcherItemTitle, ShellBarProductSwitcherItemImg } from '@/components';
-import { Component, DefaultSlot, Prop, Base } from '@/core';
+import {
+  ShellBarProductSwitcherItemTitle,
+  ShellBarProductSwitcherItemImg,
+} from '@/components';
+import { warn, Component, DefaultSlot, Prop, Base } from '@/core';
 
 interface Props {
   src: string;
@@ -12,18 +14,38 @@ interface Props {
 @Component('ShellBarProductSwitcherItem')
 @DefaultSlot('Product Switcher Item Title')
 export class ShellBarProductSwitcherItem extends Base<Props> {
-  @Prop('image source', {type: String, required: false, default: ''})
+  @Prop('image source', {type: String, default: ''})
   public src!: string;
 
-  @Prop({type: String, required: false, default: ''})
+  @Prop({type: String, default: ''})
   public title!: string;
 
-  @Prop('router link destination', {type: [String, Object], required: false, default: ''})
-  public to!: string | Location;
+  @Prop('router link destination', {
+    type: [String, Object],
+    required: false,
+    default: null,
+  })
+  public to!: string | object | null;
 
-  @Prop('external link destination', {type: [String, Object], required: false, default: ''})
+  @Prop('external link destination', {
+    type: [String, Object],
+    required: false,
+    default: '#',
+  })
   public href!: string;
 
+  private onClick(event: MouseEvent) {
+    event.preventDefault();
+    const { to, $router } = this;
+    if (to != null) {
+      if($router != null) {
+        $router.push(to);
+      } else {
+        warn(`Tried to navigate to ${to} but $router not found.`);
+      }
+    }
+    this.$emit('click', this);
+  }
   public render() {
     const content = this.$slots.default;
     const title = (
@@ -43,7 +65,7 @@ export class ShellBarProductSwitcherItem extends Base<Props> {
       {content}
       {!content && (
         (!this.href && !this.to) ? template :
-        this.to ? <a href={this.href}>{template}</a> : <router-link to={this.to}>{template}</router-link>
+        this.to ? <a href={this.href}>{template}</a> : <a href='#' on-click={this.onClick}>{template}</a>
       )}
       </li>
     );

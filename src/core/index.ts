@@ -1,5 +1,5 @@
 import Vue from 'vue';
-export * from '@/api';
+export * from '@/api/Decorators';
 
 // Re-exporting for convenience
 export { Vue };

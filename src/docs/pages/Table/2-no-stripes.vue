@@ -4,27 +4,22 @@ You can use `striped` on `FdTable` in order enable alternating colored rows.
 </docs>
 
 <template>
-  <FdTable striped :items="tableData">
-
-    <FdTableHeader>
-      <FdTableHeaderCell label="First Name" />
-      <FdTableHeaderCell label="Last Name" />
-      <FdTableHeaderCell label="Building" />
-    </FdTableHeader>
-
-    <FdTableRow slot="row" slot-scope="{item}">
-      <FdTableCell>{{item.firstName}}</FdTableCell>
-      <FdTableCell>{{item.lastName}}</FdTableCell>
-      <FdTableCell>{{item.building}}</FdTableCell>
-    </FdTableRow>
-
+  <FdTable striped :headers="headers" :items="items">
+    <template slot="row" slot-scope="{item}">
+      <FdTableRow>
+        <FdTableCell>{{item.firstName}}</FdTableCell>
+        <FdTableCell>{{item.lastName}}</FdTableCell>
+        <FdTableCell>{{item.building}}</FdTableCell>
+      </FdTableRow>
+    </template>
   </FdTable>
 </template>
 
 <script>
 export default {
   data: () => ({
-    tableData: [
+    headers: ["First Name", "Last Name", "Building"],
+    items: [
       { id: "1", firstName: "Chris", lastName: "Kienle", building: "WFD02" },
       { id: "2", firstName: "Andi", lastName: "Kienle", building: "WFD03" },
       { id: "3", firstName: "Sven", lastName: "Bacia", building: "WFD02" },

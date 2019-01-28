@@ -1,7 +1,10 @@
 import { Watch, Provide } from 'vue-property-decorator';
 import { CreateElement, VNode } from 'vue';
-import { ScopedSlotChildren } from 'vue/types/vnode';
+import { ScopedSlotArrayContents, ScopedSlotChildren } from 'vue/types/vnode';
 import { TableBody } from './Components/TableBody';
+import { TableHeader } from './Components/TableHeader';
+import { normalizedHeaders, NormalizedHeader, RawHeader } from './Util';
+
 import {
   SortOrder,
   toggleSortOrder,
@@ -11,6 +14,11 @@ import {
   SelectionMode,
   SelectionModeValidator,
   withoutDuplicates,
+  SortDescriptor,
+  Item,
+  normalizeItems,
+  TableItems,
+  RawItem,
 } from './Util';
 import {
   Component,
@@ -23,21 +31,14 @@ import {
 
 export const TABLE_KEY = Symbol();
 
-type TableItems = Array<Item & object>;
-interface Item { id: string; }
-
 interface Props {
+  headers?: RawHeader[];
   firstColumnFixed?: boolean;
-  items?: TableItems;
+  items?: RawItem[];
   selectionMode?: SelectionMode;
   borderless?: boolean;
   striped?: boolean;
 }
-
-type SortDescriptor = {
-  prop: string;
-  order: SortOrder;
-} & object;
 
 // Props passed to the row template. See ScopedRowSlot below.
 interface RowSlotProps<T = object> {
@@ -61,6 +62,19 @@ const enum SelectAction {
 export class Table extends Base<Props> {
   @Provide(TABLE_KEY)
   public table = this;
+
+  @Prop('header configuration', {
+    type: Array,
+    default: () => [],
+    readableDefault: '[]',
+  })
+  public headers!: RawHeader[];
+
+  @Watch('headers', { immediate: true })
+  public columnsChanged(newValue: RawHeader[]) {
+    this.normalizedHeaders = normalizedHeaders(newValue, this.firstColumnFixed);
+  }
+  private normalizedHeaders: NormalizedHeader[] = [];
 
   @Prop('whether the column is fixed (experimental)', {
     type: Boolean,
@@ -91,7 +105,13 @@ export class Table extends Base<Props> {
     default: () => [],
     readableDefault: 'object[]',
   })
-  public items!: TableItems;
+  public items!: RawItem[];
+
+  @Watch('items', { immediate: true })
+  public itemsDidChange(newItems: RawItem[]) {
+    this.normalizedItems = normalizeItems(newItems);
+  }
+  private normalizedItems: TableItems = [];
 
   @Prop('selected ids', {
     type: Array,
@@ -109,7 +129,11 @@ export class Table extends Base<Props> {
   public selectionMode!: SelectionMode;
 
   public sortDescriptor: SortDescriptor | null = null;
-  private sortedByColumnId: string | null = null;
+  private get sortedByColumnId(): string | null {
+    const { sortDescriptor } = this;
+    if (sortDescriptor == null) { return null; }
+    return sortDescriptor.columnId;
+  }
   private currentSelectedIds: string[] = this.selectedIds;
 
   public sortOrder(columnId: string): SortOrder | null {
@@ -127,8 +151,7 @@ export class Table extends Base<Props> {
     const needsToggle = this.sortedByColumnId === columnId;
     const { order = SortOrder.ascending } = this.sortDescriptor || {};
     const newOrder = needsToggle ? toggleSortOrder(order) : order;
-    this.sortDescriptor = { prop: sortBy, order: newOrder };
-    this.sortedByColumnId = columnId;
+    this.sortDescriptor = { columnId, prop: sortBy, order: newOrder };
   }
 
   // Emit the passed ids in order to support .sync
@@ -158,7 +181,7 @@ export class Table extends Base<Props> {
   }
 
   private get sortedData(): TableItems {
-    const copy = [...this.items];
+    const copy = [...this.normalizedItems];
     const { sortDescriptor } = this;
     if (sortDescriptor == null) {
       return copy;
@@ -168,6 +191,10 @@ export class Table extends Base<Props> {
 
   public isSelected(id: string) {
     return this.currentSelectedIds.includes(id);
+  }
+
+  public get canSelect(): boolean {
+    return this.selectionMode !== SelectionMode.none;
   }
 
   public render(h: CreateElement) {
@@ -223,30 +250,39 @@ export class Table extends Base<Props> {
   private preparedRenderedRow(
     rowNode: ScopedSlotChildren,
     { id: itemId }: Item,
-  ): VNode | null {
-    if (typeof rowNode !== 'object' || Array.isArray(rowNode)) {
+  ): ScopedSlotArrayContents {
+    if (typeof rowNode === 'string') {
       warn(`Unable to prepare table row because rendered slot is not a VNode: ${rowNode}`);
-      return null;
+      return [];
     }
-    const { componentOptions } = rowNode;
-    if (componentOptions == null) {
-      return null;
+
+    if (Array.isArray(rowNode)) {
+      if (rowNode.length === 0) {
+        warn(`Unable to prepare table row because rendered slot seems to be an empty array: ${rowNode}`);
+        return [];
+      }
+      const node = rowNode[0] as VNode;
+      const { componentOptions } = node;
+      if (componentOptions == null) {
+        return [];
+      }
+      const { propsData = {} } = componentOptions;
+      const selected = this.isSelected(itemId);
+      node.key = itemId;
+      componentOptions.propsData = {
+        ...propsData,
+        itemId,
+        isSelected: selected,
+      };
+      return rowNode;
     }
-    const { propsData = {} } = componentOptions;
-    const selected = this.isSelected(itemId);
-    rowNode.key = itemId;
-    componentOptions.propsData = {
-      ...propsData,
-      itemId,
-      isSelected: selected,
-    };
-    return rowNode;
+    return [];
   }
 
   private renderdRow(
     rowTemplate: ScopedRowSlot,
     item: Item,
-  ): VNode | null {
+  ): ScopedSlotArrayContents {
     const changeSelection = (selected: boolean, event: Event) => {
       event.stopImmediatePropagation();
       event.preventDefault();
@@ -262,16 +298,38 @@ export class Table extends Base<Props> {
     return this.preparedRenderedRow(renderedRow, item);
   }
 
-  private get renderedRows(): VNode[] {
-    const isVNode = (node: VNode | null): node is VNode => node != null;
+  private get renderedRows(): ScopedSlotArrayContents[] {
     const rowTemplate = this.$scopedSlots.row || (() => undefined);
-    return this.sortedData.map(item => this.renderdRow(rowTemplate, item)).filter(isVNode);
+    return this.sortedData.map(item => this.renderdRow(rowTemplate, item));
+  }
+
+  private onColumnClick(columnId: string) {
+    const column = this.normalizedHeaders.find(({ id }) => id === columnId);
+    if (column == null) {
+      return;
+    }
+    const { sortBy } = column;
+    if(sortBy == null) { return; }
+    this.sortBy(sortBy, columnId);
   }
 
   private renderTable(h: CreateElement) {
-    const renderedRows = [...this.renderedRows];
-    const body = <TableBody>{renderedRows}</TableBody>;
-    return h('table', { staticClass: 'fd-table', class: this.classes }, [this.$slots.default || [], body]);
+    const header = (
+      <TableHeader
+        {... {
+          on: {
+            'click:column': this.onColumnClick,
+          },
+        }}
+        sortDescriptor={this.sortDescriptor}
+        headers={this.normalizedHeaders}
+      />
+    );
+    const body = <TableBody>{this.renderedRows}</TableBody>;
+    return h('table', {
+      staticClass: 'fd-table',
+      class: this.classes,
+    }, [header, body]);
   }
 
   private get classes() {
