@@ -34,8 +34,10 @@
     "license": "Apache-2.0",
     "main": "dist/FundamentalVue.umd.js",
     "dependencies": {
+        "fiori-fundamentals": "^1.4.1",
         "vue-class-component": "^6.3.2",
-        "vue-property-decorator": "^7.3.0"
+        "vue-property-decorator": "^7.3.0",
+        "vue-router": "^3.0.2"
     },
     "devDependencies": {
         "@babel/plugin-proposal-class-properties": "^7.2.3",
