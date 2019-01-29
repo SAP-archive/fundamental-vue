@@ -14,7 +14,6 @@ interface Props {
 
 @Component('TimePicker')
 @Event('timePickerUpdate', 'Event triggered from the TimePicker Input Popover in the TimePicker on every keystroke in the input field.')
-@Event('timePickerChange', 'Event triggered from the TimePicker Input Popover in the TimePicker once the focus is out of the TimePicker input')
 export class TimePicker extends Base<Props> {
   @Prop('ID of the TimePicker', {
     type: String,

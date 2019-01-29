@@ -2,7 +2,7 @@ import { Component, Prop, Event } from '@/core';
 import { Time, TimeType } from './Time/Time';
 import { mixins } from 'vue-class-component';
 import { TimeRangeMixin } from './mixins/TimeRange';
-interface Props {
+export interface Props {
   value?: string | null;
   ariaLabel?: string | null;
   showMeridian?: boolean;
