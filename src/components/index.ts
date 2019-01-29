@@ -29,6 +29,7 @@ export * from './SearchInput';
 export * from './Pagination';
 export * from './Counter';
 export * from './Calendar';
+export * from './TimePicker';
 export * from './Tree';
 
 import * as Calendar from './Calendar';
@@ -66,6 +67,8 @@ import * as TileGrid from './TileGrid';
 import * as SearchInput from './SearchInput';
 import { version, libName } from '@/config';
 import * as Pagination from './Pagination';
+import * as TimePicker from './TimePicker';
+
 import * as Tree from './Tree';
 import { log } from '@/core';
 
@@ -83,6 +86,8 @@ export const all: { [key: string]: any } = {
   ActionBar,
   Icon,
   InlineHelp,
+  Pagination,
+  Counter,
   ...Calendar,
   ...Layout,
   ...Table,
@@ -99,9 +104,8 @@ export const all: { [key: string]: any } = {
   ...ListGroup,
   ...Tile,
   ...TileGrid,
-  Pagination,
-  Counter,
   ...Pagination,
+  ...TimePicker,
   ...Tree,
 };
 

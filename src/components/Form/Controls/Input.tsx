@@ -15,6 +15,7 @@ interface Props {
   readonly?: boolean;
   value?: string | number | null;
   compact?: boolean;
+  maxlength?: string | null;
 }
 import { isInputElement } from './Helper';
 
@@ -59,11 +60,14 @@ export class Input extends Base<Props> {
   @Prop('whether the control is readonly', { default: false, type: Boolean })
   public readonly!: boolean;
 
-  @Prop('current value', { default: '', type: String })
+  @Prop('current value', { default: '', type: [String, Number] })
   public value!: string | null;
 
   @Prop('whether input is compact', { type: Boolean, default: false })
   public compact!: boolean;
+
+  @Prop('upper limit on the number of characters that can be entered in the input field.', {type:String})
+  public maxlength!: string | null;
 
   private get inputId(): string | null {
     return this.formItemId;
@@ -81,6 +85,7 @@ export class Input extends Base<Props> {
           class={this.classes}
           staticClass='fd-form__control'
           placeholder={this.placeholder.length > 0 ? this.placeholder : false}
+          maxlength={this.maxlength}
         />
     );
   }
