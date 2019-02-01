@@ -11,6 +11,7 @@
 
 # Now include the important stuff...
 !dist/*.js
+!dist/*.js.map
 !dist/*.css
 !src/**
 

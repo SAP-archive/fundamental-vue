@@ -23,7 +23,7 @@ Paste the following snippet in your `<head>`-tag:
 ```html
 <link rel="stylesheet" href="https://unpkg.com/fiori-fundamentals@1.4.1/dist/fiori-fundamentals.min.css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/fundamental-vue@0.0.10-beta/dist/FundamentalVue.umd.js"></script>
+<script src="https://unpkg.com/fundamental-vue@0.0.12-beta/dist/FundamentalVue.umd.js"></script>
 ```
 
 Then you can use Fundamental Vue like this:
@@ -116,9 +116,9 @@ Import the main SCSS file in your `App.js` style block to add Fiori Fundamentals
 </style>
 ```
 
-To learn more about currently available components please go to the official [component documentation](https://dist-lkl4ej2tj.now.sh).
+To learn more about currently available components please go to the official [component documentation](https://dist-dn5k4szxw.now.sh).
 
-To use a Fundamental Vue component, paste the desired code snippet from the [component documentation](https://dist-lkl4ej2tj.now.sh) and configure it as necessarry:
+To use a Fundamental Vue component, paste the desired code snippet from the [component documentation](https://dist-dn5k4szxw.now.sh) and configure it as necessarry:
 
 ```
 <FdAlert dismissible>

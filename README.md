@@ -17,14 +17,14 @@
 
 <p align="center">
 :open_book:
-<strong><a href="https://dist-lkl4ej2tj.now.sh">Component Documentation</a></strong>
+<strong><a href="https://dist-dn5k4szxw.now.sh">Component Documentation</a></strong>
 :open_book:
 </p>
 
 ## Current Version
 
 ```
-0.0.10-beta
+0.0.12-beta
 ```
 
 ## Description
@@ -50,7 +50,7 @@ Paste the following snippet in your `<head>`-tag:
 ```html
 <link rel="stylesheet" href="https://unpkg.com/fiori-fundamentals@1.4.1/dist/fiori-fundamentals.min.css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/fundamental-vue@0.0.10-beta/dist/FundamentalVue.umd.js"></script>
+<script src="https://unpkg.com/fundamental-vue@0.0.12-beta/dist/FundamentalVue.umd.js"></script>
 ```
 
 Then you can use Fundamental Vue like this:
@@ -146,7 +146,7 @@ To download and use this library, you first need to install the node package man
     </style>
     ```
 
-    You can now use the [Documentation](https://dist-lkl4ej2tj.now.sh) to browse the components currently available with Fundamental Vue.
+    You can now use the [Documentation](https://dist-dn5k4szxw.now.sh) to browse the components currently available with Fundamental Vue.
 
     To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessarry:
 
