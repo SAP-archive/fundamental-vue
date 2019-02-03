@@ -5,45 +5,60 @@ import { SlotDocumentation } from './SlotDocumentation';
 export class ComponentDocumentation {
   constructor(public componentName: string) {}
 
-  public readonly propsByName: { [name: string]: PropDocumentation; } = {};
-  public readonly events: EventDocumentation[] = [];
-  public readonly slots: SlotDocumentation[] = [];
-  public readonly mixins: string[] = [];
-  public get humanName(): string {
+  readonly propsByName: { [name: string]: PropDocumentation; } = {};
+  readonly events: EventDocumentation[] = [];
+  readonly slots: SlotDocumentation[] = [];
+  readonly mixins: string[] = [];
+  get humanName(): string {
     return this.componentName;
   }
-  public get props(): PropDocumentation[] {
+  get props(): PropDocumentation[] {
     return Object.values(this.propsByName);
   }
 
   // Working with the Api
-  public addProp(prop: PropDocumentation) {
+  addProp(prop: PropDocumentation) {
     this.props.push(prop);
     this.propsByName[prop.key] = prop;
   }
 
-  public addEvent(event: EventDocumentation): this {
+  addEvent(event: EventDocumentation): this {
     this.events.push(event);
     return this;
   }
 
-  public addSlot(slot: SlotDocumentation): this {
+  addSlot(slot: SlotDocumentation): this {
     this.slots.push(slot);
     return this;
   }
 
-  public addMixin(name: string): this {
+  addMixin(name: string): this {
     this.mixins.push(name);
     return this;
   }
 
-  public getProp(key: string): PropDocumentation {
+  getProp(key: string): PropDocumentation {
     const prop = this.propsByName[key] || new PropDocumentation(key);
     this.propsByName[key] = prop;
     return prop;
   }
 
-  public hasProp(key: string): boolean {
+  hasProp(key: string): boolean {
     return this.propsByName[key] != null;
+  }
+
+  toJSON(): object {
+    const events: any = {};
+    this.events.forEach(event => (events[event.name] = event));
+    const slots: any = {};
+    this.slots.forEach(slot => (slots[slots.name || ''] = slot));
+
+    return {
+      slots,
+      events,
+      mixins: this.mixins,
+      props: this.propsByName,
+      componentName: this.componentName,
+    };
   }
 }

@@ -1,4 +1,4 @@
-import { Component, DefaultSlot, Prop, Base } from '@/core';
+import { Component, Prop, Base } from '@/core';
 
 const positionMapping = {
   start: 'start',
@@ -13,12 +13,12 @@ interface Props {
 }
 
 @Component('ShellBarGroup')
-@DefaultSlot('Main Group Content')
+
 export class ShellBarGroup extends Base<Props> {
   @Prop('position in the shell bar', { acceptableValues: Positions, type: String, validator: value => Positions.includes(value) })
-  public position!: Position;
+  position!: Position;
 
-  public render() {
+  render() {
     const classes = `fd-shellbar__group fd-shellbar__group--${this.position}`;
     return <div class={classes}>{this.$slots.default}</div>;
   }

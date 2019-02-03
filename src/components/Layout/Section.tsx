@@ -1,17 +1,16 @@
-import { Slot, Component, DefaultSlot, Prop, Base } from '@/core';
+import { Component, Prop, Base } from '@/core';
 
 interface Props {
   title?: string | null;
 }
 
 @Component('Section')
-@DefaultSlot('Section Body')
-@Slot('title', 'Custom Title')
+
 export class Section extends Base<Props> {
   @Prop({ type: String, default: null })
-  public title!: string | null;
+  title!: string | null;
 
-  public render() {
+  render() {
     const body = this.$slots.default;
     const titleSlot = this.$slots.title;
     const title = this.title;

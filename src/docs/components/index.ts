@@ -14,7 +14,7 @@ import ExpandTransition from './ExpandTransition.vue';
 export { default as FullscreenDemo } from './FullscreenDemo.vue';
 
 export { ComponentReference } from './ComponentReference';
-export { ExampleCollection };
+export { default as ExampleCollection } from './ExampleCollection.vue';
 export { default as StaticContent } from './StaticContent.vue';
 export { default as ExpandTransition } from './ExpandTransition.vue';
 

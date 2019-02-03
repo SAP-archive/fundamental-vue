@@ -1,7 +1,7 @@
-import { Button } from './Button';
+import { Vue } from 'vue/types/vue';
 
 export interface ButtonContainer {
   readonly compact: boolean;
-  didClickButton(button: Button): void;
-  isButtonPressed(button: Button): boolean;
+  didClickButton(button: Vue): void;
+  isButtonPressed(button: Vue): boolean;
 }

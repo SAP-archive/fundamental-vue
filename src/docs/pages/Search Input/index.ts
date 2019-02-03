@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ SearchInput, MenuItem }) => {
-    return { componentStatus: 'experimental', icon: 'search', relatedComponents: [SearchInput, MenuItem] };
+export const plugin: ExampleCollectionFunction = () => {
+    return { status: 'experimental', icon: 'search', related: ['FdSearchInput', 'FdMenuItem'] };
 };

@@ -1,4 +1,4 @@
-import { Component, DefaultSlot, Prop, Base } from '@/core';
+import { Component, Prop, Base } from '@/core';
 
 interface Props {
   flex?: boolean;
@@ -6,15 +6,15 @@ interface Props {
 }
 
 @Component('Container')
-@DefaultSlot('Content displaye by the container.')
+
 export class Container extends Base<Props> {
   @Prop({ type: Boolean, default: false })
-  public flex!: boolean;
+  flex!: boolean;
 
   @Prop({ type: Boolean, default: false })
-  public fluid!: boolean;
+  fluid!: boolean;
 
-  public render() {
+  render() {
     const body = this.$slots.default;
     return <div class={this.classes}>{body}</div>;
   }

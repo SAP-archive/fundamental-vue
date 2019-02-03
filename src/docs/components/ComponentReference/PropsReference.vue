@@ -2,7 +2,7 @@
   <Table :items="tableItems" :headers="headers" style="margin-bottom: 0;">
     <template slot="row" slot-scope="{item}">
       <TableRow>
-        <TableCell>{{item.id}}</TableCell>
+        <TableCell>{{item.name}}</TableCell>
         <TableCell>{{item.description}}</TableCell>
         <TableCell>
           <ValueToken :key="item.name" :representedValue="item.defaultValue" />
@@ -22,19 +22,9 @@
 <script lang="ts">
 import Vue from "vue";
 import { Prop } from "vue/types/options";
-import { PropDocumentation, PropType } from "@/api/Model/PropDocumentation";
 import { Table, TableRow, TableCell } from "@/components";
 import { ValueToken, TypeTokens } from './Tokens';
-
-type PropEntry = {
-  id: string;
-  name: string;
-  description: string;
-  acceptedValues: string; // formatted
-  types: PropType[];
-  defaultValue: any | undefined;
-  required: boolean;
-};
+import { PropDocumentation } from '@/api/Model/JSON/PropDocumentation';
 
 const defaultValueFromProp = ({
   readableDefaultValue,
@@ -48,16 +38,15 @@ export default Vue.extend({
     documentedProps: Array as Prop<PropDocumentation[]>
   },
   computed: {
-    tableItems(): PropEntry[] {
+    tableItems(): PropDocumentation[] {
       return this.documentedProps.map(prop => {
         const defaultValue = defaultValueFromProp(prop);
-        const acceptedValues = prop.formattedAcceptedValues;
+        const acceptedValues = (prop.acceptableValues || []).join(', ');
         const types = prop.types;
         return {
           defaultValue,
           types,
-          id: prop.key,
-          name: prop.key,
+          name: prop.name,
           description: prop.description,
           acceptedValues,
           required: prop.required

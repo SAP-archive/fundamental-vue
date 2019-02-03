@@ -4,4 +4,4 @@ export enum SelectionMode {
   none = 'none',
 }
 export const SelectionModes = Object.keys(SelectionMode);
-export const SelectionModeValidator = SelectionModes.includes;
+export const SelectionModeValidator = (value: any) => SelectionModes.indexOf(value) >= 0;

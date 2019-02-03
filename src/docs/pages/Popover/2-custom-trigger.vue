@@ -37,7 +37,7 @@ Because of the fact that we assume that the consumer has special needs, we do no
     <FdButton
       slot-scope="popover"
       slot="control"
-      :type="popover.visible ? 'negative' : 'warning'"
+      :type="popover.visible ? 'negative' : 'medium'"
       @click="popover.toggle"
     >Custom Popover Trigger Control (manual popover visibility)</FdButton>
     <FdMenuItem>Option 1</FdMenuItem>

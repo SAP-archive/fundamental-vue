@@ -1,9 +1,9 @@
-import { Component, DefaultSlot, Base } from '@/core';
+import { Component, Base } from '@/core';
 
 @Component('ShellBarProduct')
-@DefaultSlot('Product Title')
+
 export class ShellBarProduct extends Base<{}> {
-  public render() {
+  render() {
     return (
       <div class='fd-shellbar__product'>
           {this.$slots.default}

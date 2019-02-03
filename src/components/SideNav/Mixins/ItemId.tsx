@@ -8,5 +8,5 @@ interface Props {
 @Component('ItemId')
 export class ItemId extends Base<Props> implements Required<Props> {
   @Prop(String, { default: shortUuid })
-  public itemId!: string;
+  itemId!: string;
 }

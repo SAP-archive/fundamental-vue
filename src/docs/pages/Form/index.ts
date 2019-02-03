@@ -1,33 +1,21 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({
-    FormSet,
-    FormGroup,
-    FormItem,
-    FormLabel,
-    FormMessage,
-    FieldSet,
-    Input,
-    InputGroup,
-    Legend,
-    TextArea,
-    Select,
-}) => {
+export const plugin: ExampleCollectionFunction = () => {
     return {
-        componentStatus: 'stable',
+        status: 'stable',
         icon: 'form',
-        relatedComponents: [
-            FormSet,
-            FormGroup,
-            FormItem,
-            FormLabel,
-            FormMessage,
-            FieldSet,
-            Input,
-            InputGroup,
-            Legend,
-            TextArea,
-            Select,
+        related: [
+            'FdFormSet',
+            'FdFormGroup',
+            'FdFormItem',
+            'FdFormLabel',
+            'FdFormMessage',
+            'FdFieldSet',
+            'FdInput',
+            'FdInputGroup',
+            'FdLegend',
+            'FdTextArea',
+            'FdSelect',
         ],
     };
 };

@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ Label }) => {
-    return { componentStatus: 'stable', icon: 'text-formatting', relatedComponents: [Label] };
+export const plugin: ExampleCollectionFunction = () => {
+    return { status: 'stable', icon: 'text-formatting', related: ['FdLabel'] };
 };

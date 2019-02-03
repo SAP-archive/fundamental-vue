@@ -10,16 +10,16 @@ describe('Documentation of', () => {
     class TestComponent extends Base {
 
       @Prop('anyProp')
-      public anyProp!: any;
+      anyProp!: any;
 
       @Prop('firstName', String)
-      public firstName!: string;
+      firstName!: string;
 
       @Prop({ type: String, default: null })
-      public label!: string | null;
+      label!: string | null;
 
       @Prop(Person)
-      public person!: Person | null;
+      person!: Person | null;
     }
     const tc = new TestComponent();
     const { $componentDocumentation: doc }  = tc.$options;

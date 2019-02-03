@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ Shell }) => {
-    return { componentStatus: 'experimental', icon: 'database', relatedComponents: [Shell] };
+export const plugin: ExampleCollectionFunction = () => {
+    return { status: 'experimental', icon: 'database', related: ['FdShell'] };
 };

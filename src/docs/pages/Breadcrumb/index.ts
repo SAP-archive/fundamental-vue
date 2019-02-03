@@ -1,9 +1,9 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ Breadcrumb, BreadcrumbItem }) => {
+export const plugin: ExampleCollectionFunction = () => {
     return {
-        componentStatus: 'inprogress',
+        status: 'inprogress',
         icon: 'navigation-right-arrow',
-        relatedComponents: [Breadcrumb, BreadcrumbItem],
+        related: ['FdBreadcrumb', 'FdBreadcrumbItem'],
     };
 };

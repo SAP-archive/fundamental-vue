@@ -2,7 +2,7 @@ import {
   ShellBarProductSwitcherItemTitle,
   ShellBarProductSwitcherItemImg,
 } from '@/components';
-import { warn, Component, DefaultSlot, Prop, Base } from '@/core';
+import { warn, Component, Prop, Base } from '@/core';
 
 interface Props {
   src: string;
@@ -12,27 +12,27 @@ interface Props {
 }
 
 @Component('ShellBarProductSwitcherItem')
-@DefaultSlot('Product Switcher Item Title')
+
 export class ShellBarProductSwitcherItem extends Base<Props> {
   @Prop('image source', {type: String, default: ''})
-  public src!: string;
+  src!: string;
 
   @Prop({type: String, default: ''})
-  public title!: string;
+  title!: string;
 
   @Prop('router link destination', {
     type: [String, Object],
     required: false,
     default: null,
   })
-  public to!: string | object | null;
+  to!: string | object | null;
 
   @Prop('external link destination', {
     type: [String, Object],
     required: false,
     default: '#',
   })
-  public href!: string;
+  href!: string;
 
   private onClick(event: MouseEvent) {
     event.preventDefault();
@@ -46,7 +46,7 @@ export class ShellBarProductSwitcherItem extends Base<Props> {
     }
     this.$emit('click', this);
   }
-  public render() {
+  render() {
     const content = this.$slots.default;
     const title = (
       <ShellBarProductSwitcherItemTitle>{this.title}</ShellBarProductSwitcherItemTitle>

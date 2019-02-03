@@ -7,9 +7,9 @@ interface Props {
 @Component('ShellBarProductSwitcherItemImg')
 export class ShellBarProductSwitcherItemImg extends Base<Props> {
   @Prop('image source', { type: String, default: '' })
-  public src!: string;
+  src!: string;
 
-  public render() {
+  render() {
     return (
       <span class='fd-product-switcher__product-icon'>
         <img src={this.src} alt=''/>

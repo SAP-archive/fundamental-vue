@@ -26,19 +26,19 @@ const CLICK_OUTSIDE_EVENT = 'clickOutside';
 @Component('ClickAwayContainer')
 export class ClickAwayContainer extends Base<Props> {
   @Prop({ type: String, default: 'div' })
-  public tag!: string;
+  tag!: string;
 
   @Prop({ type: Boolean, default: false })
-  public active!: boolean;
+  active!: boolean;
 
   @Prop({ type: Function, default: () => () => [] })
-  public ignoredElements!: IgnoredElements;
+  ignoredElements!: IgnoredElements;
 
-  public render(h: CreateElement): VNode {
+  render(h: CreateElement): VNode {
     return h(this.tag, this.$slots.default);
   }
 
-  public beforeDestroy() {
+  beforeDestroy() {
     // We have to remove ourselves as a listener but only if we are indeed active (=listening) and
     // there is a documentElement.
     const { documentElement } = document;
@@ -64,7 +64,7 @@ export class ClickAwayContainer extends Base<Props> {
   }
 
   @Watch('active', { immediate: true })
-  public handleActiveDidChange(isActive: boolean, wasActive: boolean) {
+  handleActiveDidChange(isActive: boolean, wasActive: boolean) {
     const { documentElement } = document;
     if(documentElement == null) {
       warn(`v-${this}: Cannot do anything without a document element.`);

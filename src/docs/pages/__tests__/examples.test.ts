@@ -1,4 +1,4 @@
-import { exampleCollections } from './..';
+import DocumentationLoader from '@/docs/DocumentationLoader';
 import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils';
 import { assert } from 'chai';
 import FundamentalVue from '@/.';
@@ -12,9 +12,13 @@ type VueError = {
 };
 
 describe('All Examples', () => {
-  exampleCollections.map(collection => {
-    describe(`Examples for ${collection.title}`, () => {
-      collection.examples().map(example => {
+  const loader = new DocumentationLoader();
+  const { pages } = loader;
+
+  pages.map(page => {
+    describe(`Examples for ${page.title}`, () => {
+      const examples = loader.examplesForPage(page);
+      examples.map(example => {
         describe(`Example ${example.title}`, () => {
           let vueWarning: VueWarning | null = null;
           let vueError: VueError | null = null;

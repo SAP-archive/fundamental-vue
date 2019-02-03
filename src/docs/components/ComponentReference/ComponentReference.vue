@@ -6,13 +6,13 @@
   >
     <FdTabs :value="initialTab">
       <FdTabItem v-if="hasProps" label='Properties' name='props'>
-        <PropsReference :documentedProps="documentation.props" />
+        <PropsReference :documentedProps="documentedProps" />
       </FdTabItem>
       <FdTabItem v-if="hasEvents" label='Events' name='events'>
-        <EventsReference :events="documentation.events" />
+        <EventsReference :events="documentedEvents" />
       </FdTabItem>
       <FdTabItem v-if="hasSlots" label='Slots' name='slots'>
-        <SlotsReference :slots="documentation.slots" />
+        <SlotsReference :slots="documentedSlots" />
       </FdTabItem>
     </FdTabs>
 
@@ -21,28 +21,56 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { ComponentDocumentation } from '@/api';
+import { PropValidator } from "vue/types/options";
+import {
+  ComponentDocumentation,
+  EventDocumentation,
+  SlotDocumentation,
+  PropDocumentation,
+} from '@/api/Model/JSON';
+
+const makeEmptyDocumentation = (): ComponentDocumentation => ({
+  componentName: '',
+  mixins: [],
+  events: {},
+  props: {},
+  slots: {},
+});
+
 export default Vue.extend({
   props: {
-    documentation: ComponentDocumentation,
+    componentDocumentation: { type: Object, default: makeEmptyDocumentation } as PropValidator<ComponentDocumentation>,
   },
   computed: {
     title(): string {
-      return `${this.documentation.humanName} API`;
+      return `${this.componentDocumentation.componentName} API`;
     },
     initialTab(): string | null {
-      const { props, events, slots } = this.documentation;
-      if(props.length > 0) { return 'props'; }
-      if(events.length > 0) { return 'events'; }
-      if(slots.length > 0) { return 'slots'; }
+      if(this.hasProps) { return 'props'; }
+      if(this.hasEvents) { return 'events'; }
+      if(this.hasSlots) { return 'slots'; }
       return null;
     },
-    hasProps(): boolean { return this.documentation.props.length > 0; },
-    hasEvents(): boolean { return this.documentation.events.length > 0; },
-    hasSlots(): boolean { return this.documentation.slots.length > 0; },
+    documentedProps(): PropDocumentation[] {
+      return Object.values(this.componentDocumentation.props || {});
+    },
+    documentedEvents(): EventDocumentation[] {
+      return Object.values(this.componentDocumentation.events || {});
+    },
+    documentedSlots(): SlotDocumentation[] {
+      return Object.values(this.componentDocumentation.slots || {});
+    },
+    hasProps(): boolean {
+      return this.documentedProps.length > 0;
+    },
+    hasEvents(): boolean {
+      return this.documentedEvents.length > 0;
+    },
+    hasSlots(): boolean {
+      return this.documentedSlots.length > 0;
+    },
     isDocumented(): boolean {
-      const { props, events, slots } = this.documentation;
-      return props.length > 0 || events.length > 0 || slots.length > 0;
+      return this.hasProps || this.hasEvents || this.hasSlots;
     }
   },
 })

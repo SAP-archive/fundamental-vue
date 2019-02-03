@@ -1,2 +1,2 @@
-export * from './Uid';
+export { UidMixin } from './Uid';
 export * from './Icon';

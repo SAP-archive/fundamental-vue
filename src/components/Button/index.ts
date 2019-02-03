@@ -1,2 +1,4 @@
-export * from './Button';
-export { ButtonGroup } from './ButtonGroup';
+import Button from './Button.vue';
+import { pluginify } from '@/util';
+export default pluginify(Button);
+export { Button };

@@ -1,16 +1,16 @@
-import { Component, DefaultSlot, Prop, Base } from '@/core';
+import { Component, Prop, Base } from '@/core';
 
 interface Props {
   span?: number | null;
 }
 
 @Component('Col')
-@DefaultSlot('Column content')
+
 export class Col extends Base<Props> {
   @Prop({ type: Number, default: null })
-  public span!: number | null;
+  span!: number | null;
 
-  public render() {
+  render() {
     const content = this.$slots.default;
     return <div class={this.classes}>{content}</div>;
   }

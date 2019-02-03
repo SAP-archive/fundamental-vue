@@ -12,6 +12,7 @@
     ]
   },
   "rules": {
+    "member-access": [true, "no-public"],
     "variable-name": false,
     "no-unused-expression": [true, "allow-fast-null-checks"],
     "whitespace": true,

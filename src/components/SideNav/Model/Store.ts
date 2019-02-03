@@ -15,44 +15,44 @@ type SubItem = Item & { parentId: string; };
 type Items = {[itemId: string]: Item | SubItem };
 
 export class Store {
-  public static KEY = Symbol();
+  static KEY = Symbol();
 
   constructor(
-    public readonly initialState = makeDefaultState()) {
+    readonly initialState = makeDefaultState()) {
     this.state = {...initialState};
   }
 
   private state: State;
 
-  public get selectedId(): string | null {
+  get selectedId(): string | null {
     return this.state.selectedId;
   }
 
-  public set selectedId(selectedId: string | null) {
+  set selectedId(selectedId: string | null) {
     this.state = {...this.state, selectedId};
   }
 
-  public get expandedIds(): string[] {
+  get expandedIds(): string[] {
     return [...this.state.expandedIds];
   }
 
-  public set expandedIds(expandedIds: string[]) {
+  set expandedIds(expandedIds: string[]) {
     this.state = {...this.state, expandedIds};
   }
 
-  public get expanded(): ((id: string) => boolean) {
+  get expanded(): ((id: string) => boolean) {
     return id => this.expandedIds.includes(id);
   }
 
-  public get selected(): ((id: string) => boolean) {
+  get selected(): ((id: string) => boolean) {
     return id => this.selectedId === id;
   }
 
-  public get items(): Items {
+  get items(): Items {
     return {...this.state.items};
   }
 
-  public subItems(itemId: string): SubItem[] {
+  subItems(itemId: string): SubItem[] {
     const items = Object.values(this.items);
     const result: SubItem[] = [];
     items.forEach(item => {
@@ -66,19 +66,19 @@ export class Store {
     return result;
   }
 
-  public hasSubItems(itemId: string): boolean {
+  hasSubItems(itemId: string): boolean {
     return this.subItems(itemId).length > 0;
   }
 
   // Actions & Mutations
-  public registerItem(itemId: string) {
+  registerItem(itemId: string) {
     this.state = {
       ...this.state,
       items: {...this.items, [itemId]: { itemId }},
     };
   }
 
-  public unregisterItem(itemId: string) {
+  unregisterItem(itemId: string) {
     const items = this.items;
     delete items[itemId];
     this.state = {
@@ -87,18 +87,18 @@ export class Store {
     };
   }
 
-  public registerSubItem({itemId, parentId}: SubItem) {
+  registerSubItem({itemId, parentId}: SubItem) {
     this.state = {
       ...this.state,
       items: {...this.items, [itemId]: { itemId, parentId }},
     };
   }
 
-  public ununregisterSubItem({itemId}: SubItem) {
+  ununregisterSubItem({itemId}: SubItem) {
     this.unregisterItem(itemId);
   }
 
-  public toggleExpanded(itemId: string) {
+  toggleExpanded(itemId: string) {
     const expand = !this.expandedIds.includes(itemId);
     expand ? this.expand(itemId) : this.collapse(itemId);
   }

@@ -1,9 +1,9 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ Table, TableHeader, TableHeaderCell, TableRow, TableCell }) => {
+export const plugin: ExampleCollectionFunction = () => {
     return {
-        componentStatus: 'inprogress',
-        relatedComponents: [Table, TableRow, TableCell],
+        status: 'inprogress',
+        components: ['FdTable', 'FdTableRow', 'FdTableCell'],
         icon: 'table-view',
     };
 };

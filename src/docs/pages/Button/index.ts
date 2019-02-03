@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ Button, ButtonGroup }) => {
-    return { componentStatus: 'stable', icon: 'draw-rectangle', relatedComponents: [Button, ButtonGroup] };
+export const plugin: ExampleCollectionFunction = () => {
+    return { status: 'stable', icon: 'draw-rectangle', related: ['FdButton', 'FdButtonGroup'] };
 };

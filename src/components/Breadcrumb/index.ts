@@ -1,2 +1,4 @@
-export { Breadcrumb } from './Breadcrumb';
-export { BreadcrumbItem } from './BreadcrumbItem';
+import Breadcrumb from './Breadcrumb.vue';
+import { pluginify } from '@/util';
+export default pluginify(Breadcrumb);
+export { Breadcrumb };

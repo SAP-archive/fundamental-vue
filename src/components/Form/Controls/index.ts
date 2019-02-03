@@ -1,7 +1,7 @@
-export { Input } from './Input';
-export { InputGroup } from './InputGroup';
-export { Select } from './Select';
-export { TextArea } from './TextArea';
-export { Toggle } from './Toggle';
-export { Checkbox } from './Checkbox';
-export { Radio } from './Radio';
+export { default as Input } from './Input.vue';
+export { default as InputGroup } from './InputGroup.vue';
+export { default as Select } from './Select.vue';
+export { default as TextArea } from './TextArea.vue';
+export { default as Toggle } from './Toggle.vue';
+export { default as Checkbox } from './Checkbox.vue';
+export { default as Radio } from './Radio.vue';

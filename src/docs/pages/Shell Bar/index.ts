@@ -1,40 +1,24 @@
 import { ExampleCollectionFunction } from '../types';
-import {
-    ShellBarProduct,
-    ShellBarProductTitle,
-    ShellBarProductMenu,
-    ShellBarGroup,
-    ShellBarLogo,
-    ShellBarSubtitle,
-    ShellBarActions,
-    ShellBarAction,
-    ShellBarUserMenu,
-    ShellBarProductSwitcher,
-    ShellBar,
-    ShellBarProductSwitcherItem,
-    ShellBarProductSwitcherItemImg,
-    ShellBarProductSwitcherItemTitle,
-} from '@/components';
 
-export const plugin: ExampleCollectionFunction = ({ Shell }) => {
+export const plugin: ExampleCollectionFunction = () => {
   return {
-    experimental: true,
+    status: 'experimental',
     icon: 'header',
-    relatedComponents: [
-      ShellBar,
-      ShellBarGroup,
-      ShellBarProduct,
-      ShellBarProductMenu,
-      ShellBarProductTitle,
-      ShellBarLogo,
-      ShellBarSubtitle,
-      ShellBarActions,
-      ShellBarAction,
-      ShellBarUserMenu,
-      ShellBarProductSwitcher,
-      ShellBarProductSwitcherItem,
-      ShellBarProductSwitcherItemImg,
-      ShellBarProductSwitcherItemTitle,
+    related: [
+      'FdShellBar',
+      'FdShellBarGroup',
+      'FdShellBarProduct',
+      'FdShellBarProductMenu',
+      'FdShellBarProductTitle',
+      'FdShellBarLogo',
+      'FdShellBarSubtitle',
+      'FdShellBarActions',
+      'FdShellBarAction',
+      'FdShellBarUserMenu',
+      'FdShellBarProductSwitcher',
+      'FdShellBarProductSwitcherItem',
+      'FdShellBarProductSwitcherItemImg',
+      'FdShellBarProductSwitcherItemTitle',
     ],
   };
 };

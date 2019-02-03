@@ -4,7 +4,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { exampleCollections, Example } from '@/docs/pages';
+import {
+  Example
+   } from '@/docs/pages';
 
 export default Vue.extend({
   computed: {
@@ -12,7 +14,12 @@ export default Vue.extend({
       return this.$route.params.id;
     },
     example(): Example {
-      return exampleCollections.getExample(this.exampleId);
+      const { exampleId } = this;
+      const result = this.$docLoader.exampleForId(exampleId);
+      if(result == null) {
+        throw Error(`Unable to get example with id: ${exampleId}`);
+      }
+      return result;
     }
   },
 })

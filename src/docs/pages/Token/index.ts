@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ Token }) => {
-    return { componentStatus: 'stable', icon: 'tags', relatedComponents: [Token] };
+export const plugin: ExampleCollectionFunction = () => {
+    return { status: 'stable', icon: 'tags', related: ['FdToken'] };
 };

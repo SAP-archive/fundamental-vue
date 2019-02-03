@@ -1,9 +1,9 @@
-import { Component, DefaultSlot, Base } from '@/core';
+import { Component, Base } from '@/core';
 
 @Component('ShellBarActions')
-@DefaultSlot('Shell Bar Action Instances')
+
 export class ShellBarActions extends Base<{}> {
-  public render() {
+  render() {
     return <div class='fd-shellbar__actions'>{this.$slots.default}</div>;
   }
 }

@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ Icon }) => {
-    return { componentStatus: 'stable', icon: 'nutrition-activity', relatedComponents: [Icon] };
+export const plugin: ExampleCollectionFunction = () => {
+    return { status: 'stable', icon: 'nutrition-activity', related: ['FdIcon'] };
 };

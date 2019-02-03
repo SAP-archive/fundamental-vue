@@ -27,19 +27,19 @@
     </ShellHeader>
     <App>
       <AppNavigation orientation="vertical" class="sidebar">
-        <SideNav
+        <FdSideNav
           mode='router'
           style="padding-bottom': 25px;"
           selectedId.sync="activeNavItemId"
         >
-          <SideNavList :items="staticMenuItems" />
-          <SideNavGroup>
-            <SideNavGroupTitle>Examples</SideNavGroupTitle>
-            <SideNavList
+          <FdSideNavList :items="staticMenuItems" />
+          <FdSideNavGroup>
+            <FdSideNavGroupTitle>Examples</FdSideNavGroupTitle>
+            <FdSideNavList
               :items="exampleCollectionsMenuItems"
               style='margin-bottom: 60px;'
             >
-              <template slot="afterLinkText" slot-scope="exampleItem">
+              <!-- <template slot="afterLinkText" slot-scope="exampleItem">
               <Identifier
                 style="width: 20px; height: 20px;"
                 :title="exampleItem.componentState.title"
@@ -50,10 +50,10 @@
                 :icon="exampleItem.componentState.icon"
               />
 
-              </template>
-            </SideNavList>
-          </SideNavGroup>
-        </SideNav>
+              </template> -->
+            </FdSideNavList>
+          </FdSideNavGroup>
+        </FdSideNav>
       </AppNavigation>
       <AppMain class="main-with-sidebar">
         <router-view/>
@@ -64,8 +64,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Color } from "@/lib";
-import { exampleCollections } from "@/docs/pages";
 import {
   Shell,
   ShellHeader,
@@ -88,48 +86,53 @@ import {
   SideNavListItem
 } from "@/components";
 
-type ComponentState = {
-  title: string | null;
-  icon: string | null;
-  color: Color | null;
-};
+// type ComponentState = {
+//   title: string;
+//   icon: string;
+//   color: Color;
+// };
 
-interface ExampleItem extends SideNavListItem {
-  componentState: ComponentState;
-}
+// interface ExampleItem extends SideNavListItem {
+//   componentState: ComponentState;
+// }
 
-const componentStateMapping: { [state: string]: ComponentState } = {
-  stable: {
-    title: "Safe to use, no major updates planned.",
-    color: "accent-8",
-    icon: "thumb-up"
-  },
-  experimental: {
-    title:
-      "Work-In-Progres that may be used but be prepared for changes in the future.",
-    color: "accent-1",
-    icon: "lab"
-  },
-  deprecated: {
-    title:
-      "This component should not be used and will be removed in the future.",
-    color: "accent-3",
-    icon: "cancel"
-  },
-  inprogress: {
-    title:
-      "This component is under development. Or it is being actively reviewed to be refactored, safe to use but talk to us.",
-    color: "accent-13",
-    icon: "edit"
-  }
-};
+// const componentStateMapping: { [state: string]: ComponentState } = {
+//   stable: {
+//     title: "Safe to use, no major updates planned.",
+//     color: "accent-8",
+//     icon: "thumb-up"
+//   },
+//   experimental: {
+//     title:
+//       "Work-In-Progres that may be used but be prepared for changes in the future.",
+//     color: "accent-1",
+//     icon: "lab"
+//   },
+//   deprecated: {
+//     title:
+//       "This component should not be used and will be removed in the future.",
+//     color: "accent-3",
+//     icon: "cancel"
+//   },
+//   inprogress: {
+//     title:
+//       "This component is under development. Or it is being actively reviewed to be refactored, safe to use but talk to us.",
+//     color: "accent-13",
+//     icon: "edit"
+//   }
+// };
 
-const componentStateFrom = (raw: string): ComponentState =>
-  componentStateMapping[raw];
+// const componentStateFrom = (raw: string): ComponentState => {
+//   const state = componentStateMapping[raw];
+//   if(state == null) {
+//     return componentStateMapping.inprogress;
+//   }
+//   return state;
+// };
 
-interface ExampleItem extends SideNavListItem {
-  componentState: ComponentState;
-}
+// interface ExampleItem extends SideNavListItem {
+//   // componentState: ComponentState;
+// }
 
 export default Vue.extend({
   components: {
@@ -153,21 +156,50 @@ export default Vue.extend({
     Identifier,
   },
   computed: {
-    exampleCollectionsMenuItems(): ExampleItem[] {
-      return exampleCollections.map(
-        ({ title, slug, icon, componentStatus }) => {
-          return {
-            icon,
-            id: slug,
-            name: title,
-            componentState: componentStateFrom(componentStatus),
-            to: {
-              name: "example",
-              params: { slug }
-            }
-          };
-        }
-      );
+    exampleCollectionsMenuItems(): SideNavListItem[] {
+      const pages = this.$docLoader.pages;
+      return pages.map(page => {
+
+        return {
+          id: page.slug,
+          name: page.title,
+          icon: page.icon,
+          to: {
+            name: 'example',
+            params: { slug: page.slug },
+          },
+        };
+      });
+      // const items: ExampleItem[] = pages.map(page => {
+      //   // const componentState = componentStateFrom(page.status);
+      //   const result = {
+      //     // componentState,
+      //     name: page.title,
+      //     ...page,
+      //     id: page.slug,
+      //     to: {
+      //       name: 'example',
+      //       params: { slug: page.slug },
+      //     },
+      //     //
+      //   };
+      //   return result;
+    // });
+    // return items;
+      // return exampleCollections.map(
+      //   ({ title, slug, icon, componentStatus }) => {
+      //     return {
+      //       icon,
+      //       id: slug,
+      //       name: title,
+      //       componentState: componentStateFrom(componentStatus),
+            // to: {
+            //   name: "example",
+            //   params: { slug }
+            // }
+      //     };
+      //   }
+      // );
     },
     staticMenuItems(): SideNavListItem[] {
       return [

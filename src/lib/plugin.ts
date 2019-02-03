@@ -16,14 +16,14 @@ export class PluginAPI {
   constructor(public options: PluginAPIOptions = { log: {registerComponent: !isProduction, welcome: !isProduction }}) {
 
   }
-  public registerComponent(vue: VueConstructor, component: any, name: string): void {
+  registerComponent(vue: VueConstructor, component: any, name: string): void {
     const prefixedName = componentName(name);
     if(this.options.log.registerComponent) {
       log(`Register component ${prefixedName}`);
     }
     vue.component(prefixedName, component);
   }
-  public logWelcomeMessage() {
+  logWelcomeMessage() {
     if(this.options.log.welcome) {
       log(
         `%c Welcome to ${libName} %c Detected v${version} %c`,

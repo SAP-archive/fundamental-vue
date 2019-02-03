@@ -1,21 +1,20 @@
 import { ExampleCollectionFunction } from '../types';
-import { SideNavGroup, SideNavGroupTitle, SideNavSubList, SideNavSubItem, SideNavSubLink, SideNavIcon } from '@/components';
 
-export const plugin: ExampleCollectionFunction = ({ SideNav, SideNavList, SideNavItem, SideNavLink }) => {
+export const plugin: ExampleCollectionFunction = () => {
     return {
-        componentStatus: 'experimental',
+        status: 'experimental',
         icon: 'menu2',
-        relatedComponents: [
-            SideNav,
-            SideNavList,
-            SideNavItem,
-            SideNavLink,
-            SideNavGroup,
-            SideNavGroupTitle,
-            SideNavSubList,
-            SideNavSubItem,
-            SideNavSubLink,
-            SideNavIcon,
+        related: [
+            'FdSideNav',
+            'FdSideNavList',
+            'FdSideNavItem',
+            'FdSideNavLink',
+            'FdSideNavGroup',
+            'FdSideNavGroupTitle',
+            'FdSideNavSubList',
+            'FdSideNavSubItem',
+            'FdSideNavSubLink',
+            'FdSideNavIcon',
         ],
     };
 };

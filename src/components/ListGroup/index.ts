@@ -1,2 +1,5 @@
-export { ListGroup } from './ListGroup';
-export { ListGroupItem } from './ListGroupItem';
+import ListGroup from './ListGroup.vue';
+import ListGroupItem from './ListGroupItem.vue';
+import { pluginify } from '@/util';
+export default pluginify(ListGroup, ListGroupItem);
+export { ListGroup, ListGroupItem };

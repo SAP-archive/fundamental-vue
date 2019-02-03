@@ -11,13 +11,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import { PropValidator } from 'vue/types/options';
-import { PropType } from '@/api/Model/PropDocumentation';
+// import { PropType } from '@/api/Model/PropDocumentation';
 import TypeToken from './TypeToken.vue';
 
 export default Vue.extend({
   components: { TypeToken },
   props: {
-    propTypes: { type: Array, required: true } as PropValidator<PropType[]>,
+    propTypes: { type: Array, required: true } as PropValidator<string[]>,
   },
 })
 </script>

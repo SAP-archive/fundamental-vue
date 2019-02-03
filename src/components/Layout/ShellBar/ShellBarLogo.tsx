@@ -15,21 +15,21 @@ export class ShellBarLogo extends Base<Props> {
     type: String,
     required: true,
   })
-  public src!: string;
+  src!: string;
 
   @Prop('image source set', {
     type: String,
     default: null,
   })
-  public srcset!: string | null;
+  srcset!: string | null;
 
   @Prop('link destination', {
     type: [String, Object],
     default: '/',
   })
-  public to!: string | Location;
+  to!: string | Location;
 
-  public render() {
+  render() {
     return (
       <a class='fd-shellbar__logo' href='#' onClick={this.onClick}>
         <img src={this.src} srcset={this.srcset}/>

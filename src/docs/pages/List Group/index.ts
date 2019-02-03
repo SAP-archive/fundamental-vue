@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ ListGroup }) => {
-    return { componentStatus: 'inprogress', icon: 'list', relatedComponents: [ListGroup] };
+export const plugin: ExampleCollectionFunction = () => {
+    return { status: 'inprogress', icon: 'list', related: ['FdListGroup'] };
 };

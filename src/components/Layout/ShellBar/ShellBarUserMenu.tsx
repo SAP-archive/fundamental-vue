@@ -1,11 +1,10 @@
-import { Slot, Component, DefaultSlot, Base } from '@/core';
+import { Component, Base } from '@/core';
 import { Identifier, Popover } from '@/components';
 
 @Component('ShellBarUserMenu')
-@DefaultSlot('Menu Items (FdMenuItem)')
-@Slot('control', 'Popover Control (optional). Defaults to a specially configured FdIdentifier.')
+
 export class ShellBarUserMenu extends Base<{}> {
-    public render() {
+    render() {
         const control = this.$slots.control;
         return (
             <div class='fd-user-menu'>

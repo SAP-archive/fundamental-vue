@@ -1,11 +1,10 @@
-import { Slot, Component, DefaultSlot, Base } from '@/core';
+import { Component, Base } from '@/core';
 import { Button, Popover } from '@/components';
 
 @Component('ShellBarProductSwitcher')
-@DefaultSlot('Product Items (FdShellBarProductSwitcherItem)')
-@Slot('control', 'Popover Control (optional). Defaults to a specially configured FdButton with grid icon.')
+
 export class ShellBarProductSwitcher extends Base<{}> {
-  public render() {
+  render() {
     const control = this.$slots.control;
     return (
       <div class='fd-product-switcher'>

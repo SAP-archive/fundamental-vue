@@ -1,15 +1,15 @@
-import { Component, DefaultSlot, Prop, Base } from '@/core';
+import { Component, Prop, Base } from '@/core';
 
 @Component('ShellBarAction')
-@DefaultSlot('The actual action. The only supported element is FdShellBarUserMenu.')
+
 export class ShellBarAction extends Base<{}> {
   @Prop('whether the action is always shown', { type: Boolean, default: true })
-  public showAlways!: boolean;
+  showAlways!: boolean;
 
   @Prop('whether the action is collapsible', { type: Boolean, default: false })
-  public collapsible!: boolean;
+  collapsible!: boolean;
 
-  public render() {
+  render() {
     return <div class={this.classes}>{this.$slots.default}</div>;
   }
 

@@ -1,5 +1,5 @@
 import { ExampleCollectionFunction } from '../types';
 
-export const plugin: ExampleCollectionFunction = ({ Panel, PanelGrid }) => {
-    return { componentStatus: 'stable', icon: 'along-stacked-chart', relatedComponents: [Panel, PanelGrid] };
+export const plugin: ExampleCollectionFunction = () => {
+    return { status: 'stable', icon: 'along-stacked-chart', related: ['FdPanel', 'FdPanelGrid'] };
 };

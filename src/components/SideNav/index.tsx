@@ -1,40 +1,18 @@
-import { IconMixin, IconProps } from '@/mixins';
-import { ComponentProps, Component, Base } from '@/core';
-import { mixins } from 'vue-class-component';
+import SideNavSubItem from './SideNavSubItem.vue';
+import SideNavSubLink from './SideNavSubLink.vue';
+import SideNavSubList from './SideNavSubList.vue';
+import SideNavGroupTitle from './SideNavGroupTitle.vue';
+import SideNavGroup from './SideNavGroup.vue';
 
-export * from './SideNav';
-export * from './SideNavList';
+import SideNavIcon from './SideNavIcon.vue';
+import SideNavList from './SideNavList.vue';
+import SideNavLink from './SideNavLink.vue';
+import SideNavItem from './SideNavItem.vue';
+import SideNav from './SideNav.vue';
+import { pluginify } from '@/util';
 
-export { SideNavItem } from './SideNavItem';
-export { SideNavSubItem } from './SideNavSubItem';
-export { SideNavLink } from './SideNavLink';
-export { SideNavSubLink } from './SideNavSubLink';
-export { SideNavSubList } from './SideNavSubList';
+export default pluginify(SideNav, SideNavGroupTitle, SideNavGroup, SideNavIcon, SideNavList, SideNavItem, SideNavSubItem, SideNavLink, SideNavSubLink, SideNavSubList);
+
+export { SideNav, SideNavGroupTitle, SideNavGroup, SideNavIcon, SideNavList, SideNavItem, SideNavSubItem, SideNavLink, SideNavSubLink, SideNavSubList };
+
 export { Item as SideNavListItem } from './Model';
-
-@Component('SideNavGroup')
-export class SideNavGroup extends Base {
-  public render() {
-    return <div class='d-side-nav__group'>{this.$slots.default}</div>;
-  }
-}
-
-@Component('SideNavGroupTitle')
-export class SideNavGroupTitle extends Base {
-  public render() {
-    return <h1 class='fd-side-nav__title'>{this.$slots.default}</h1>;
-  }
-}
-
-@Component('SideNavIcon')
-export class SideNavIcon extends mixins(IconMixin) {
-  public $tsxProps!: ComponentProps<IconProps>;
-  public render() {
-    return (
-      <span
-        class={`fd-side-nav__icon ${this.iconClassName} sap-icon--m`}
-        role='presentation'
-      />
-    );
-  }
-}

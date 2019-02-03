@@ -1,12 +1,12 @@
 // @ts-ignore
-import { all } from '@/components';
+// import { all } from '@/components';
 import { VueConstructor } from 'vue';
 import { IconName } from '@/lib';
 
 type ExampleCollectionPlugin = {
-    relatedComponents?: VueConstructor[];
+    related?: string[];
     icon?: IconName;
-    componentStatus?: string;
+    status?: string;
 };
 
-export type ExampleCollectionFunction = (components: typeof all) => ExampleCollectionPlugin;
+export type ExampleCollectionFunction = () => ExampleCollectionPlugin;

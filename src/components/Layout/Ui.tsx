@@ -1,19 +1,16 @@
-import { Slot, Component, DefaultSlot, Prop, Base } from '@/core';
+import { Component, Prop, Base } from '@/core';
 
 interface Props {
   headerClass?: string;
 }
 
 @Component('Ui')
-@DefaultSlot('Main Content')
-@Slot('sidebar', 'Sidebar Content')
-@Slot('header', 'Header Content')
-@Slot('footer', 'Footer Content')
+
 export class Ui extends Base<Props> {
   @Prop('header class', {type: String, default: null })
-  public headerClass!: string | null;
+  headerClass!: string | null;
 
-  public render() {
+  render() {
     const sidebar = this.$slots.sidebar;
     const header = this.$slots.header;
     const footer = this.$slots.footer;

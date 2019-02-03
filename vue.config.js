@@ -1,7 +1,8 @@
 const Path = require('path');
 
 module.exports = {
-  runtimeCompiler: false,
+  lintOnSave: process.env.NODE_ENV !== 'test',
+  // runtimeCompiler: false,
   chainWebpack: config => {
     config.module
       .rule('raw-loader')
@@ -27,6 +28,7 @@ module.exports = {
       })
       .end()
   },
+
   configureWebpack: {
     entry: './src/index.ts',
     output: {
@@ -71,4 +73,12 @@ module.exports = {
       ],
     },
   },
+
+  publicPath: undefined,
+  outputDir: undefined,
+  assetsDir: undefined,
+  runtimeCompiler: undefined,
+  productionSourceMap: false,
+  parallel: undefined,
+  css: undefined
 };

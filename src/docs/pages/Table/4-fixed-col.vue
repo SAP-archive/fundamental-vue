@@ -8,6 +8,7 @@ Using fixed columns is still experimental.
 </tip>
 
 <template>
+<div>
   <FdTable :headers="headers" :fixedWrapperStyle="{'width': '100%'}" firstColumnFixed :items="items">
     <template slot="row" slot-scope="{item}">
       <FdTableRow>
@@ -26,6 +27,7 @@ Using fixed columns is still experimental.
       </FdTableRow>
     </template>
   </FdTable>
+  </div>
 </template>
 
 <script>

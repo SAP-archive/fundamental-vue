@@ -4,27 +4,30 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { PropValidator } from 'vue/types/options';
+// import { PropValidator } from 'vue/types/options';
 
 export default Vue.extend({
   props: {
-    propType: { required: true } as PropValidator<any>,
+    propType: String,
   },
   computed: {
     typeName(): string {
-      const propType = this.propType;
-      return typeof propType === 'string' ? propType : propType.name;
+      return this.propType;
     },
+    // typeName(): string {
+    //   const propType = this.propType;
+    //   return typeof propType === 'string' ? propType : propType.name;
+    // },
     classes(): object {
-      const propType = this.propType;
+      // const propType = this.propType;
       return {
         'type-token': true,
-        'type-token__number': propType === Number,
-        'type-token__object': propType === Object,
-        'type-token__string': propType === String,
-        'type-token__boolean': propType === Boolean,
-        'type-token__array': propType === Array,
-        'type-token__raw': typeof propType === 'string',
+        // 'type-token__number': propType === Number,
+        // 'type-token__object': propType === Object,
+        // 'type-token__string': propType === String,
+        // 'type-token__boolean': propType === Boolean,
+        // 'type-token__array': propType === Array,
+        // 'type-token__raw': typeof propType === 'string',
       };
     }
   },

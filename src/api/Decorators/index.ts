@@ -1,25 +1,12 @@
 import Vue from 'vue';
-import { createDecorator } from 'vue-class-component';
+// import { createDecorator } from 'vue-class-component';
 import { apiDocsEnabled } from '@/config';
-import { ComponentDocumentation, SlotDocumentation, EventDocumentation } from './..';
-import { TsxComponent } from '@/vue-tsx';
+import { ComponentDocumentation } from './..';
+// import { TsxComponent } from '@/vue-tsx';
 import { ComponentOptions } from 'vue/types/options';
-import { Component as VueComponent } from 'vue-property-decorator';
+import { Model as ModelDecorator, Component as VueComponent } from 'vue-property-decorator';
 import { PropOptions } from './Prop';
 export * from './Prop';
-
-type TsxComponentType = (typeof TsxComponent);
-type EventParameterType = string | BooleanConstructor | NumberConstructor | StringConstructor;
-type EventType = [/* name */ string, EventParameterType];
-
-export const Slot = (slotName: string, description: string = '') => {
-  return createDecorator(options => {
-    const documentation = componentDocumentationFromOptions(options);
-    if(documentation != null) {
-      documentation.addSlot(new SlotDocumentation(slotName, description));
-    }
-  });
-};
 
 type DocModelOptions = PropOptions & {
   event: string;
@@ -27,44 +14,7 @@ type DocModelOptions = PropOptions & {
 };
 
 export const Model = (propDescription: string, options: DocModelOptions) => {
-  return createDecorator((componentOptions, propKey) => {
-    const documentation = componentDocumentationFromOptions(componentOptions);
-    if(documentation != null) {
-      const props = componentOptions.props || {};
-      const prop = documentation.getProp(propKey);
-      prop.updateWithOptions(options);
-      prop.description = propDescription;
-      componentOptions.props = {
-        [propKey]: prop.vuePropOptions,
-        ...props,
-      };
-      componentOptions.model = { prop: propKey, event: options.event };
-    }
-  });
-};
-
-export const DefaultSlot = (description: string) => {
-  return Slot('', description);
-};
-
-export const Mixins = (...mixins: TsxComponentType[]) => {
-  return createDecorator(options => {
-    const documentation = componentDocumentationFromOptions(options);
-    if(documentation != null) {
-      mixins.forEach(mixin => {
-        documentation.addMixin(mixin.name);
-      });
-    }
-  });
-};
-
-export const Event = (eventName: string, description: string, parameter?: EventType) => {
-  return createDecorator(options => {
-    const documentation = componentDocumentationFromOptions(options);
-    if(documentation != null) {
-      documentation.addEvent(new EventDocumentation(eventName, description, parameter));
-    }
-  });
+  return ModelDecorator(options.event, options);
 };
 
 const componentDocumentationFromOptions = (options: ComponentOptions<any>, componentName?: string): ComponentDocumentation | undefined => {
