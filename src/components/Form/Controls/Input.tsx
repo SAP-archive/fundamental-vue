@@ -37,6 +37,7 @@ const InputStates = Object.keys(stateMapping) as InputState[];
 
 @Component('Input')
 @Event('input', 'Sent when the value changes', ['value', 'any'])
+@Event('change', 'Sent when the value finishes to change', ['value', 'any'])
 export class Input extends Base<Props> {
 
   @Inject({from: FORM_ITEM_ID_KEY, default: null})
@@ -79,6 +80,7 @@ export class Input extends Base<Props> {
           id={this.inputId}
           value={this.currentValue}
           on-input={this.updateInput}
+          on-change={this.hasChange}
           readonly={this.readonly}
           disabled={this.disabled}
           type={this.type}
@@ -105,7 +107,16 @@ export class Input extends Base<Props> {
     const { value } = target;
     this.$emit('input', value);
   }
-
+  private hasChange({target}: Event) {
+    if(target == null) {
+      return;
+    }
+    if(!isInputElement(target)) {
+      return;
+    }
+    const { value } = target;
+    this.$emit('change', value);
+  }
   public currentValue: string | null = (this.value === undefined || this.value === null) ? '' : this.value;
 
   private get classes() {
