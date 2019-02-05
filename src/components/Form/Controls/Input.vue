@@ -3,6 +3,7 @@
     :id="inputId"
     :value="currentValue"
     @input="updateInput"
+    @change="$emit($event.target.value)"
     :readonly="readonly"
     :disabled="disabled"
     :type="type"

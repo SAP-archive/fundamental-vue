@@ -10,9 +10,9 @@ describe('Popover', () => {
           default: 'Hi',
         },
       });
-      expect(wrapper.find(MenuList).exists()).to.equal(true)
+      expect(wrapper.find(MenuList).exists()).to.equal(true);
   });
-  it('renders custom content in body slot', () => {
+    it('renders custom content in body slot', () => {
     const wrapper = shallowMount(Popover, {
       slots: {
         body: '<div>Hi</div>',
@@ -20,20 +20,19 @@ describe('Popover', () => {
     });
     expect(wrapper.find('div').text()).to.include('Hi');
   });
-  it('clicking control slot content emits visible event', () => {
+    it('clicking control slot content emits visible event', () => {
     const wrapper = shallowMount(Popover, {
       slots: {
         control: '<p>Hi</p>',
       },
     });
     const emitVisibleArray = wrapper.emitted().visible;
-    //Prior to click, wrapper.emitted().visible = [ [false] ]
+    // Prior to click, wrapper.emitted().visible = [ [false] ]
     assert.lengthOf(emitVisibleArray, 1);
-    wrapper.find('p').trigger('click')
-    //After click, wrapper.emitted().visible = [ [false], [true] ]
+    wrapper.find('p').trigger('click');
+    // After click, wrapper.emitted().visible = [ [false], [true] ]
     assert.lengthOf(emitVisibleArray, 2);
-    expect(wrapper.emitted().visible[1][0]).to.equal(true)
+    expect(wrapper.emitted().visible[1][0]).to.equal(true);
 
   });
-})
-
+});
