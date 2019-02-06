@@ -40,7 +40,7 @@ import Vue from "vue";
 // Use these types in order to cast your props. Delete if not needed.
 // import { PropValidator } from "vue/types/options";
 // import { Prop } from "vue/types/options";
-import { ClickAwayContainer } from "@/components/ClickAwayContainer";
+import ClickAwayContainer from "@/components/ClickAwayContainer";
 import { Button } from "@/components/Button";
 
 export default Vue.extend({

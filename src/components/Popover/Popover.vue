@@ -43,7 +43,7 @@
 
 <script lang="ts">
 import { Uid, mixins } from '@/mixins2';
-import { ClickAwayContainer } from "@/components/ClickAwayContainer";
+import ClickAwayContainer from "@/components/ClickAwayContainer";
 import { Menu, MenuList } from "@/components/Menu";
 import { Button } from "@/components/Button";
 
