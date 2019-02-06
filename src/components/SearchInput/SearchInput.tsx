@@ -17,7 +17,7 @@ interface Props {
 
 @Component('SearchInput')
 @Event('search', 'Triggered when the search button is clicked or enter is pressed from the keyboard.')
-@Event('autoComplete', 'Trigerred when the value in the SearchInput is changed. \n NOTE: This event will get trigerred only if there are children components in the suggestion.')
+@Event('autoComplete', 'Triggered when the value in the SearchInput is changed. \n NOTE: This event will get triggered only if there are children components in the suggestion.')
 export class SearchInput extends mixins(UidMixin) {
     @Prop('Value set in the Search Input', { default: '', type: String })
     public value!: string;
@@ -61,7 +61,9 @@ export class SearchInput extends mixins(UidMixin) {
     private emitSearch() {
         this.$emit('search', this.searchValue);
     }
-
+    private emitOnChange() {
+        this.$emit('change',this.searchValue);
+    }
     private emitAutoComplete() {
         this.$emit('autoComplete', this.searchValue);
     }
@@ -79,6 +81,7 @@ export class SearchInput extends mixins(UidMixin) {
                                 placeholder={this.placeholder}
                                 nativeOn-keyup={this.handleKeyboardSearch}
                                 on-input={this.setCurrentValue}
+                                on-change={this.emitOnChange}
                                 compact={this.compact}
                             />
                             <Button styling='light' slot='after' icon='search' on-click={this.handleSearchClick} />
@@ -92,6 +95,7 @@ export class SearchInput extends mixins(UidMixin) {
                                 placeholder={this.placeholder}
                                 nativeOn-keyup={this.handleKeyboardSearch}
                                 on-input={this.setCurrentValue}
+                                on-change={this.emitOnChange}
                                 compact={this.compact}
                             />
                             <Button
