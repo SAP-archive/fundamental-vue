@@ -18,6 +18,10 @@
 import { PropValidator } from "vue/types/options";
 import { mixins } from "@/mixins2";
 import TimeRange from "../mixins/TimeRange";
+import TimeAction from './TimeAction.vue';
+import TimeInput from './TimeInput.vue';
+
+
 
 // Time type
 const typeMapping = {
@@ -33,6 +37,7 @@ const isTimeType = (value: any) => TimeTypeList.indexOf(value) >= 0;
 
 export default mixins(TimeRange).extend({
   name: "FdTime",
+  components: { TimeAction, TimeInput },
   props: {
     type: {
       type: String,

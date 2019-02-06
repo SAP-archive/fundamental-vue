@@ -17,9 +17,12 @@
 import Vue from "vue";
 import { Prop } from "vue/types/options";
 import ButtonTypes from "@/components/Button/ButtonTypes";
+import {Button} from '@/components/Button';
+
 const isButtonType = (value: any) => ButtonTypes.indexOf(value) >= 0;
 export default Vue.extend({
   name: "FdTimeAction",
+  components: { Button },
   computed: {
     buttonState(): string {
       return this.disabled ? "disabled" : "normal";

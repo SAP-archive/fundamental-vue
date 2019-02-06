@@ -1,7 +1,7 @@
 <template>
   <input
     :id="inputId"
-    value="currentValue"
+    :value="currentValue"
     @input="updateInput"
     :readonly="readonly"
     :disabled="disabled"

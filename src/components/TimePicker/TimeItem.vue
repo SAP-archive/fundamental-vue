@@ -28,19 +28,17 @@
 </template>
 
 <script lang="ts">
-// Use these types in order to cast your props. Delete if not needed.
-// import { PropValidator } from "vue/types/options";
-// import { Prop } from "vue/types/options";
 import { mixins } from "@/mixins2";
 import TimeRange from "./mixins/TimeRange";
 import { TimeType } from './Time/Time.vue';
-
+import Time  from './Time/Time.vue'
 const timeUnitMapping = {
   hour: 'hour',
   minute: 'minute',
   second: 'second',
   meridian: 'meridian',
 };
+
 type TimeUnitType = keyof (typeof timeUnitMapping);
 interface TimeUnitUpdateParams {
   timeUnitType: TimeUnitType;
@@ -52,6 +50,7 @@ interface TimeUnitUpdateParams {
 
 export default mixins(TimeRange).extend({
   name: "FdTimeItem",
+  components: { Time },
   props: {
     ariaLabel: { type: String, default: "Time Item" },
     value: String, // validator needs to be added.
@@ -200,4 +199,3 @@ export default mixins(TimeRange).extend({
   }
 });
 </script>
-
