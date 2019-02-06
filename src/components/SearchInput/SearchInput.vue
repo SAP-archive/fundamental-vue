@@ -9,6 +9,7 @@
             :compact="compact"
             @keyup.native="handleKeyboardSearch"
             @input="setCurrentValue"
+            @change="setCurrentValue"
           />
           <Button styling="light" slot="after" icon="search" @click="handleSearchClick"/>
         </InputGroup>
@@ -23,6 +24,7 @@
           :compact="compact"
           @keyup.native="handleKeyboardSearch"
           @input="setCurrentValue"
+          @change="setCurrentValue"
         />
         <Button styling="light" slot="after" icon="search" @click="handleSearchClick"/>
       </InputGroup>
@@ -32,9 +34,9 @@
 
 <script lang="ts">
 import { Uid, mixins } from "@/mixins";
-import { Popover } from '@/components/Popover';
-import { Button } from '@/components/Button';
-import { Input, InputGroup } from '@/components/Form';
+import { Popover } from "@/components/Popover";
+import { Button } from "@/components/Button";
+import { Input, InputGroup } from "@/components/Form";
 
 export default mixins(Uid).extend({
   name: "FdSearchInput",
