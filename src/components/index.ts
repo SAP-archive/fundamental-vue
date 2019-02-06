@@ -79,7 +79,6 @@ import * as Spinner from './Spinner';
 // export { default as HelloWorld } from './HelloWorld';
 
 const allNonPluginComponents: { [key: string]: any } = {
-  ...Layout,
   ...Tabs,
   // ...Tree,
 };
@@ -129,6 +128,7 @@ const $plugin: Plugin = () => {
       vue.use(Pagination.default);
       vue.use(TimePicker.default);
       vue.use(Panel.default);
+      vue.use(Layout.default);
 
       for (const name of Object.keys(allNonPluginComponents)) {
         const comp = allNonPluginComponents[name];
@@ -181,6 +181,7 @@ export const all = {
   Pagination: Pagination.Pagination,
   TimePicker: TimePicker.TimePicker,
   Panel: Panel.Panel,
+  Container: Layout.Container,
 };
 
 export const plugin = $plugin;
