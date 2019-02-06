@@ -6,12 +6,12 @@ describe('MenuItem', () => {
   // There was a bug that causes '<MenuItem><a href='#'>Item 1</a></MenuItem>'
   // to render an a-element into another a-element.
   it('does render embeddded link only once', () => {
-    const item = mount({ render: h => <MenuItem><a href='#'>Item 1</a></MenuItem> });
+    const item = mount({ template: `<MenuItem><a href='#'>Item 1</a></MenuItem>`});
     assert.strictEqual(item.findAll('a').length, 1);
   });
 
   it('does render embeddded text as link', () => {
-    const item = mount({ render: h => <MenuItem>Item 1</MenuItem> });
+    const item = mount({ template: `<MenuItem>Item 1</MenuItem>` });
     assert.strictEqual(item.findAll('a').length, 1);
   });
 });
