@@ -172,6 +172,7 @@ export const all = {
   TileGrid: TileGrid.TileGrid,
   Form: Form.Form,
   Menu: Menu.Menu,
+  MenuItem: Menu.MenuItem,
   SearchInput: SearchInput.SearchInput,
   Table: Table.Table,
   SideNav: SideNav.SideNav,

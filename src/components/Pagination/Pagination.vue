@@ -46,20 +46,23 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { PropValidator } from "vue/types/options";
+
 type PageType = "invisbile" | "normal" | "more";
 
 type Page = {
   number: number;
   type: PageType;
 };
+
 export default Vue.extend({
   name: "FdPagination",
   props: {
-    itemsPerPage: { type: Number, default: 10 },
-    itemsTotal: { type: Number, required: true },
-    initialPage: { type: Number, default: 1 },
-    displayTotal: { type: Boolean, default: true },
-    totalText: { type: String, default: "" }
+    itemsPerPage: { type: Number, default: 10 } as PropValidator<number>,
+    itemsTotal: { type: Number, required: true } as PropValidator<number>,
+    initialPage: { type: Number, default: 1 } as PropValidator<number>,
+    displayTotal: { type: Boolean, default: true } as PropValidator<boolean>,
+    totalText: { type: String, default: "" } as PropValidator<string>,
   },
   computed: {
     pages(): Page[] {

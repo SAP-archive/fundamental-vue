@@ -19,19 +19,20 @@ describe('Tabs', () => {
     }), { localVue });
     await localVue.nextTick();
 
-    const items = wrapper.findAll<TabItem>(TabItem);
+    const items = wrapper.findAll(TabItem);
     const links = wrapper.findAll('a');
 
     links.at(0).trigger('click');
     await localVue.nextTick();
-    isTrue(items.at(0).vm.active);
+
+    isTrue((items.at(0).vm as any).active);
 
     links.at(1).trigger('click');
     await localVue.nextTick();
-    isTrue(items.at(1).vm.active);
+    isTrue((items.at(1).vm as any).active);
 
     links.at(2).trigger('click');
     await localVue.nextTick();
-    isTrue(items.at(2).vm.active);
+    isTrue((items.at(2).vm as any).active);
   });
 });

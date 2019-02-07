@@ -1,7 +1,6 @@
 import { assert } from 'chai';
 import { mount, createLocalVue } from '@vue/test-utils';
-import { Toggle } from '../Toggle';
-import { ComponentOptions } from 'vue';
+import Toggle from '../Toggle.vue';
 
 describe('Toggle', () => {
   it('does not react on click outside the input element when disabled', async () => {
@@ -71,7 +70,8 @@ describe('Toggle', () => {
   });
 
   it('supports v-model', () => {
-    const Parent: ComponentOptions<any> = {
+    const localVue = createLocalVue();
+    const Wrapper = localVue.extend({
       components: { Toggle },
       template: `<Toggle v-model="on" />`,
       data() {
@@ -79,9 +79,8 @@ describe('Toggle', () => {
           on: false,
         };
       },
-    };
-    const localVue = createLocalVue();
-    const toggle = mount<Toggle>(Parent, { localVue });
+    });
+    const toggle = mount<InstanceType<typeof Wrapper>>(Wrapper, { localVue });
     assert.strictEqual(false, toggle.vm.on);
     toggle.setData({ on: true });
     assert.strictEqual(true, toggle.vm.on);

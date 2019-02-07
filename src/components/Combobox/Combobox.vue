@@ -32,8 +32,10 @@
 
 <script lang="ts">
 import { mixins, Uid } from "@/mixins";
-import { MenuItem, Button, Popover, Input, InputGroup } from "@/components";
+import { Button, Popover, Input, InputGroup } from "@/components";
 import { PropValidator } from "vue/types/options";
+import MenuItem from './../Menu/MenuItem.vue';
+type MenuItemType = InstanceType<typeof MenuItem>;
 
 export default mixins(Uid).extend({
   name: "FdCombobox",
@@ -70,7 +72,7 @@ export default mixins(Uid).extend({
       this.$emit("input", this.currentValue);
       this.$emit("update:value", this.currentValue);
     },
-    handleMenuItemClick(item: MenuItem): void {
+    handleMenuItemClick(item: MenuItemType): void {
       this.setCurrentValue(item.value);
     },
     togglePopoverVisible(): void {

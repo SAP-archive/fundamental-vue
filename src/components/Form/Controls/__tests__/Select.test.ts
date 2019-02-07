@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import { mount, createLocalVue } from '@vue/test-utils';
-import { Select } from '../Select';
+import Select from '../Select.vue';
 
 describe('Select', () => {
   it('supports v-model', async () => {

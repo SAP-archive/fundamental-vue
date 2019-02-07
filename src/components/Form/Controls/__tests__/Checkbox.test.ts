@@ -128,7 +128,7 @@ describe('FormItem', () => {
       const expectedValues: any[] = [];
       assert.sameMembers(form.vm.checked, expectedValues);
       for(const checkbox of checkboxes.wrappers) {
-        const value = checkbox.vm.value;
+        const value = (checkbox.vm as any).value;
         checkbox.trigger('click');
         expectedValues.push(value);
         assert.sameMembers(form.vm.checked, expectedValues);

@@ -21,7 +21,7 @@ describe('ButtonGroup', () => {
       `,
     }
     , { localVue });
-    const buttons = buttonGroup.findAll<Button>(Button);
+    const buttons = buttonGroup.findAll(Button);
     assert.lengthOf(buttons, 3);
     assert(buttons.wrappers.every(w => w.classes('fd-button--grouped')), 'Every button is grouped');
   });
@@ -37,11 +37,11 @@ describe('ButtonGroup', () => {
       </ButtonGroup>
       `,
     }, { localVue });
-    const buttons = buttonGroup.findAll<Button>(Button);
+    const buttons = buttonGroup.findAll(Button);
     assert.lengthOf(buttons, 3);
     // We have no public api in order to determine whether a button is compact or not.
     // Because of that we have to check if the compact class is present.
-    const buttonIsCompact = (button: Wrapper<Button>) => button.classes('fd-button--compact');
+    const buttonIsCompact = (button: Wrapper<any>) => button.classes('fd-button--compact');
     assert(buttons.wrappers.every(buttonIsCompact, 'Every button is compact'));
   });
 });

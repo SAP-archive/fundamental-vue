@@ -1,5 +1,3 @@
-// export { default as Table } from './Table.vue';
-// import * as TableComponents from './Components';
 import TableBody from './Components/TableBody.vue';
 import TableCell from './Components/TableCell.vue';
 import TableHeader from './Components/TableHeader.vue';

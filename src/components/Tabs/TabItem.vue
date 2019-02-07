@@ -7,6 +7,7 @@
 <script lang="ts">
 import { TabItemContainer } from "./TabItemContainer";
 import { Uid, mixins } from "@/mixins";
+import { PropValidator } from "vue/types/options";
 
 export default mixins(Uid).extend({
   name: "FdTabItem",
@@ -15,9 +16,9 @@ export default mixins(Uid).extend({
     $tabs: { from: "tabs", default: null }
   },
   props: {
-    label: { type: String, default: null },
-    name: { type: String, default: null },
-    disabled: { type: Boolean, default: false }
+    label: { type: String, default: null } as PropValidator<string | null>,
+    name: { type: String, default: null } as PropValidator<string | null>,
+    disabled: { type: Boolean, default: false } as PropValidator<Boolean>,
   },
   computed: {
     ariaExpanded(): string {

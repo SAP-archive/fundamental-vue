@@ -14,6 +14,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { isInputElement } from "./Helper";
+import { PropValidator } from "vue/types/options";
 
 const sizeMapping = {
   xs: "xs",
@@ -32,9 +33,9 @@ export default Vue.extend({
     formItem: { default: null }
   },
   props: {
-    size: { type: String, default: null, validator: isToggleSize },
-    on: { type: Boolean, default: false },
-    disabled: { type: Boolean, default: false }
+    size: { type: String, default: null, validator: isToggleSize } as PropValidator<string>,
+    on: { type: Boolean, default: false } as PropValidator<boolean>,
+    disabled: { type: Boolean, default: false } as PropValidator<boolean>,
   },
   computed: {
     classes(): object {

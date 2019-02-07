@@ -1,6 +1,7 @@
 import { assert } from 'chai';
 import { createLocalVue, mount } from '@vue/test-utils';
-import { RowSelectionIndicator, Table, TableRow, TableCell, TableHeader, TableHeaderCell } from '../';
+import { RowSelectionIndicator, TableRow, TableCell, TableHeader, TableHeaderCell } from './../Components';
+import Table from './../Table.vue';
 
 describe('Table', () => {
   describe('TableCell', () => {
@@ -109,7 +110,7 @@ describe('Table', () => {
     await localVue.nextTick();
 
     const rows = wrapper.findAll<TableRow>(TableRow);
-    const ids = rows.wrappers.map(row => row.vm.itemId);
+    const ids = rows.wrappers.map(row => (row.vm as any).itemId);
     assert.sameMembers(ids, ['1', '2', '3', '4'], `TableRows should have itemIds... html: ${wrapper.html()}`);
   });
 
@@ -161,7 +162,7 @@ describe('Table', () => {
 
     assert.lengthOf(selectedRows, 2, 'expected selected tr-elements');
     const checkboxes = wrapper.findAll<RowSelectionIndicator>(RowSelectionIndicator);
-    const checkedCheckboxes = checkboxes.wrappers.filter(checkbox => checkbox.vm.selected === true);
+    const checkedCheckboxes = checkboxes.wrappers.filter(checkbox => (checkbox.vm as any).selected === true);
     assert.lengthOf(checkedCheckboxes, 2, 'expected checked checkboxes');
     const selectedIdsEvents = wrapper.find<Table>(Table).emitted('update:selectedIds');
     assert.isNotEmpty(selectedIdsEvents, 'expected at least one update:selectedIds event');
@@ -170,7 +171,7 @@ describe('Table', () => {
     wrapper.setData({ selectionMode: 'single' });
     wrapper.find(Table).setData({ selectionMode: 'single' });
     await localVue.nextTick();
-    const checkedCheckboxesAfterChange = checkboxes.wrappers.filter(checkbox => checkbox.vm.selected === true);
+    const checkedCheckboxesAfterChange = checkboxes.wrappers.filter(checkbox => (checkbox.vm as any).selected === true);
     assert.lengthOf(checkedCheckboxesAfterChange, 1);
 });
 
@@ -217,7 +218,7 @@ describe('Table', () => {
 
     assert.lengthOf(selectedRows, 2);
     const checkboxes = wrapper.findAll<RowSelectionIndicator>(RowSelectionIndicator);
-    const checkedCheckboxes = checkboxes.wrappers.filter(checkbox => checkbox.vm.selected === true);
+    const checkedCheckboxes = checkboxes.wrappers.filter(checkbox => (checkbox.vm as any) === true);
     assert.lengthOf(checkedCheckboxes, 2);
     const selectedIds = wrapper.vm.selectedIds;
     assert.lengthOf(selectedIds, 2);

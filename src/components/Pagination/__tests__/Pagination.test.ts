@@ -1,17 +1,16 @@
 import { assert, expect } from 'chai';
 import { mount } from '@vue/test-utils';
-import { Pagination, Props } from '../Pagination';
+import Pagination from '../Pagination.vue';
 
 describe('Pagination', () => {
-  const propsData: Props = {
+  const propsData = {
     itemsTotal: 101,
     initialPage: 1,
     totalText: 'Dalmations',
     displayTotal: true,
   };
-
   const pagination = mount(Pagination, { propsData });
-  const vm = pagination.vm;
+  const vm: any = pagination.vm;
   const links = pagination.findAll('a');
   const leftArrow = links.at(0);
   const rightArrow = links.at(4);

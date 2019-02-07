@@ -1,15 +1,15 @@
 import { assert } from 'chai';
-import { Counter, Props } from '../components/Counter';
+import { Counter } from '@/components/Counter';
 import { mount } from '@vue/test-utils';
 
 describe('Counter', () => {
   it('info type counter rendered if type is info', () => {
-    const propsData: Props = {
+    const propsData = {
       type: 'info',
       value: 23,
     };
     const counter = mount(Counter, { propsData });
-    assert(counter.hasClass('fd-counter'));
+    assert(counter.classes('fd-counter'));
   });
 
   it('info type counter rendered if type is notification', () => {
@@ -18,6 +18,6 @@ describe('Counter', () => {
       value: 23,
     };
     const counter = mount(Counter, { propsData });
-    assert(counter.hasClass('fd-counter--notification'));
+    assert(counter.classes('fd-counter--notification'));
   });
 });
