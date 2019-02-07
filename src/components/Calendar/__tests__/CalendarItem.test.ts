@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import { shallowMount } from '@vue/test-utils';
-import { CalendarItem } from '../CalendarItem';
+import CalendarItem from '../CalendarItem.vue';
 
 describe('CalendarItem', () => {
   it('emits click', () => {
