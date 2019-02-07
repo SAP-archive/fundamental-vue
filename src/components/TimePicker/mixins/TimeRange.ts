@@ -25,7 +25,7 @@ const makeDefaultRange = () => ({
   },
 });
 
-type RangeType = ReturnType<typeof makeDefaultRange>
+type RangeType = ReturnType<typeof makeDefaultRange>;
 
 export default Vue.extend({
   methods: {

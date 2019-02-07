@@ -22,7 +22,7 @@ export default Vue.extend({
       validator: (mode: any) => SelectionModes.indexOf(mode) >= 0,
       default: 'single',
     },
-    selection: { type: Array, default: () => [] } as PropValidator<Date[]>
+    selection: { type: Array, default: () => [] } as PropValidator<Date[]>,
   },
   data() {
     return {
@@ -34,8 +34,8 @@ export default Vue.extend({
       immediate: true,
       handler(newSelection: Date[]) {
         this.currentDateSelection = newSelection;
-      }
-    }
+      },
+    },
   },
   computed: {
     dateSelectionNeedsReset(): boolean {
@@ -61,7 +61,7 @@ export default Vue.extend({
       }
       const [from, to] = this.currentDateSelection;
       return laterDate(from, to);
-    }
+    },
   },
   methods: {
     selectionContains(date: Date): boolean {
@@ -135,6 +135,6 @@ export default Vue.extend({
       }
       this.currentDateSelection = [...this.currentDateSelection, date];
       this.emitCurrentSelection();
-    }
-  }
+    },
+  },
 });
