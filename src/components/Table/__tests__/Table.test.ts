@@ -1,6 +1,7 @@
 import { assert } from 'chai';
 import { createLocalVue, mount } from '@vue/test-utils';
-import { RowSelectionIndicator, TableRow, TableCell, TableHeader, TableHeaderCell } from './../Components';
+import { TableRow, TableCell, TableHeader, TableHeaderCell } from './../Components';
+import RowSelectionIndicator from './../Components/RowSelectionIndicator.vue';
 import Table from './../Table.vue';
 
 describe('Table', () => {
@@ -72,7 +73,7 @@ describe('Table', () => {
     const wrapper = mount(ChangeColumnWrapper, { localVue });
     await localVue.nextTick();
 
-    const headerCells = wrapper.findAll<TableHeaderCell>(TableHeaderCell);
+    const headerCells = wrapper.findAll(TableHeaderCell);
     assert.lengthOf(headerCells, 2);
 
     // Now we change the columns
@@ -80,7 +81,7 @@ describe('Table', () => {
       items: [{ id: '1' }],
       headers: [{label: 'c1'}, {label: 'c2'}, {label: 'c3'}, {label: 'c4'}]});
     await localVue.nextTick();
-    assert.lengthOf(wrapper.findAll<TableHeaderCell>(TableHeaderCell), 4);
+    assert.lengthOf(wrapper.findAll(TableHeaderCell), 4);
   }),
   it('injects item id into table rows', async () => {
     const localVue = createLocalVue();
@@ -109,7 +110,7 @@ describe('Table', () => {
     const wrapper = mount(InjectIdTableTest);
     await localVue.nextTick();
 
-    const rows = wrapper.findAll<TableRow>(TableRow);
+    const rows = wrapper.findAll(TableRow);
     const ids = rows.wrappers.map(row => (row.vm as any).itemId);
     assert.sameMembers(ids, ['1', '2', '3', '4'], `TableRows should have itemIds... html: ${wrapper.html()}`);
   });
@@ -161,10 +162,10 @@ describe('Table', () => {
     const selectedRows = wrapper.findAll('tr[aria-selected="true"]');
 
     assert.lengthOf(selectedRows, 2, 'expected selected tr-elements');
-    const checkboxes = wrapper.findAll<RowSelectionIndicator>(RowSelectionIndicator);
+    const checkboxes = wrapper.findAll(RowSelectionIndicator);
     const checkedCheckboxes = checkboxes.wrappers.filter(checkbox => (checkbox.vm as any).selected === true);
     assert.lengthOf(checkedCheckboxes, 2, 'expected checked checkboxes');
-    const selectedIdsEvents = wrapper.find<Table>(Table).emitted('update:selectedIds');
+    const selectedIdsEvents = wrapper.find(Table).emitted('update:selectedIds');
     assert.isNotEmpty(selectedIdsEvents, 'expected at least one update:selectedIds event');
     const selectedIds = selectedIdsEvents[selectedIdsEvents.length - 1][0];
     assert.sameMembers(selectedIds, ['1', '2']);
@@ -217,7 +218,7 @@ describe('Table', () => {
     const selectedRows = wrapper.findAll('tr[aria-selected="true"]');
 
     assert.lengthOf(selectedRows, 2);
-    const checkboxes = wrapper.findAll<RowSelectionIndicator>(RowSelectionIndicator);
+    const checkboxes = wrapper.findAll(RowSelectionIndicator);
     const checkedCheckboxes = checkboxes.wrappers.filter(checkbox => (checkbox.vm as any) === true);
     assert.lengthOf(checkedCheckboxes, 2);
     const selectedIds = wrapper.vm.selectedIds;

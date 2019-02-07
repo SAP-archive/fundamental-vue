@@ -56,15 +56,15 @@ describe('Toggle', () => {
   // with the same size, no matter what value the size prop had.
   describe('renders correctly with size', () => {
     it('xs', () => {
-      const toggle = mount<Toggle>(Toggle, { propsData: { size: 'xs' }});
+      const toggle = mount(Toggle, { propsData: { size: 'xs' }});
       assert(toggle.find('.fd-toggle').classes('fd-toggle--xs'));
     });
     it('s', () => {
-      const toggle = mount<Toggle>(Toggle, { propsData: { size: 's' }});
+      const toggle = mount(Toggle, { propsData: { size: 's' }});
       assert(toggle.find('.fd-toggle').classes('fd-toggle--s'));
     });
     it('l', () => {
-      const toggle = mount<Toggle>(Toggle, { propsData: { size: 'l' }});
+      const toggle = mount(Toggle, { propsData: { size: 'l' }});
       assert(toggle.find('.fd-toggle').classes('fd-toggle--l'));
     });
   });

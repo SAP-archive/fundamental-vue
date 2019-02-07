@@ -7,7 +7,6 @@ import SideNavLink from "./SideNavLink.vue";
 import SideNavItem from "./SideNavItem.vue";
 import SideNavIcon from "./SideNavIcon.vue";
 import SideNavSubList from "./SideNavSubList.vue";
-import { noop } from "@/util";
 import { PropValidator } from "vue/types/options";
 
 export default Vue.extend({
@@ -27,7 +26,7 @@ export default Vue.extend({
   methods: {},
   render(h: CreateElement): VNode {
     const store = this.store;
-    const afterLinkTextRenderer = this.$scopedSlots.afterLinkText || noop;
+    const afterLinkTextRenderer = this.$scopedSlots.afterLinkText || (() => []);
     const renderSubItem = ({ id, to = "#", name }: Item) => {
       return h(
         SideNavSubItem,

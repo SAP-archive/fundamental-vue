@@ -14,7 +14,7 @@ describe('Radiobutton', () => {
     });
     const wrapper = mount(TestComponent, { localVue });
     assert.strictEqual(wrapper.vm.checked, '');
-    const radio = wrapper.find<Radio>(Radio);
+    const radio = wrapper.find(Radio);
     assert.isDefined(radio);
     radio.trigger('click');
     await localVue.nextTick();
@@ -39,7 +39,7 @@ describe('Checkbox', () => {
     });
     const wrapper = mount(TestComponent, { localVue });
     assert.strictEqual(wrapper.vm.checked, '');
-    const checkbox = wrapper.find<Checkbox>(Checkbox);
+    const checkbox = wrapper.find(Checkbox);
     assert.isDefined(checkbox);
     checkbox.trigger('click');
     await localVue.nextTick();
@@ -70,7 +70,7 @@ describe('FormItem', () => {
       });
       const form = mount(Parent, { localVue });
       assert.strictEqual(form.vm.checked, '');
-      const radio = form.find<Radio>(Radio);
+      const radio = form.find(Radio);
       assert.isDefined(radio);
       radio.trigger('click');
       await localVue.nextTick();
@@ -93,7 +93,7 @@ describe('FormItem', () => {
       });
       const form = mount(Parent, { localVue });
       assert.isFalse(form.vm.checked);
-      const checkbox = form.find<Checkbox>(Checkbox);
+      const checkbox = form.find(Checkbox);
       assert.isDefined(checkbox);
       checkbox.trigger('click');
       await localVue.nextTick();
@@ -123,7 +123,7 @@ describe('FormItem', () => {
       });
       const form = mount(Parent, { localVue });
       assert.lengthOf(form.vm.checked, 0);
-      const checkboxes = form.findAll<Checkbox>(Checkbox);
+      const checkboxes = form.findAll(Checkbox);
       assert.lengthOf(checkboxes, 4);
       const expectedValues: any[] = [];
       assert.sameMembers(form.vm.checked, expectedValues);
