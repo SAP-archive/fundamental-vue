@@ -212,16 +212,9 @@ describe('Table', () => {
     await localVue.nextTick();
 
     const rows = wrapper.findAll('tbody tr');
-    console.log("Rows Length")
-    console.log(rows.length)
     rows.at(0).trigger('click');
     rows.at(1).trigger('click');
-    const selectedRows = wrapper.findAll('tr[aria-selected="true"]');
-    
-
-    console.log("Selected rows")
-    console.log(selectedRows)
-
+    const selectedRows = wrapper.findAll('tr[aria-selected="true"]'); // length = 0
 
     assert.lengthOf(selectedRows, 2);
     const checkboxes = wrapper.findAll(RowSelectionIndicator);
