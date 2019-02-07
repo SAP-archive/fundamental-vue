@@ -21,13 +21,6 @@ import { Color, backgroundColorClassName } from "@/lib";
 
 export default Vue.extend({
   name: "FdTile",
-  provide() {
-    return {};
-  },
-  inject: {
-    $$$: { default: null }
-  },
-
   props: {
     title: { type: String, default: null },
     description: { type: String, default: null },

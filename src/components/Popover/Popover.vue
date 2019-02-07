@@ -5,7 +5,7 @@
       <div v-if="hasControlSlot" @click="toggle" role="button">
         <slot name="control"/>
       </div>
-      <template v-if="hasControlScopedSlot">
+      <template v-else-if="hasControlScopedSlot">
         <slot :toggle="toggle" :visible="currentPopoverVisible" name="control"/>
       </template>
       <Button

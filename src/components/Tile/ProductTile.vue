@@ -15,7 +15,7 @@ export default Vue.extend({
   props: {
     url: { type: String, default: null },
     title: { type: String, default: null },
-    isButton: { type: String, default: null, required: true },
+    isButton: { type: String, default: null },
     disabled: { type: String, default: null }
   },
   computed: {
