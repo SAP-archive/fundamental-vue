@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { Uid, mixins } from "@/mixins2";
+import { Uid, mixins } from "@/mixins";
 import { Popover } from '@/components/Popover';
 import { Button } from '@/components/Button';
 import { Input, InputGroup } from '@/components/Form';

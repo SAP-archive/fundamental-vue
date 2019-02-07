@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { PropValidator } from "vue/types/options";
-import { mixins, Uid } from "@/mixins2";
+import { mixins, Uid } from "@/mixins";
 import { isInputElement } from "./Helper";
 const stateMapping = {
   valid: "valid",

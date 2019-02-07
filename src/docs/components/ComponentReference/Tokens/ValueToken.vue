@@ -4,16 +4,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { PropDocumentation } from '@/api';
-
-const unspecifiedValue = PropDocumentation.unspecifiedValue();
+import { PropValidator} from 'vue/types/options';
 
 export default Vue.extend({
   props: {
     representedValue: {
       required: true,
-      default: unspecifiedValue,
-    }
+      default: null,
+    } as PropValidator<any>,
   },
   computed: {
     classesAndText(): [string[], string] {
@@ -24,20 +22,17 @@ export default Vue.extend({
       let classSuffix = '';
       let text = '';
       if (value == null) {
-        classSuffix = 'null';
-        text = 'null';
+        classSuffix = 'unspecified';
+        text = 'not specified';
       } else {
         if (typeof value === 'number') { classSuffix = 'number'; text = String(value); }
         if (typeof value === 'object') { classSuffix = 'object'; text = JSON.stringify(value); }
         if (typeof value === 'string') { classSuffix = 'string'; text = `\u275D${value}\u275E`; }
         if (typeof value === 'boolean') { classSuffix = 'boolean'; text = String(value); }
-        if (Array.isArray(value)) { classSuffix = 'array'; text = value.toString(); }
-        if (typeof value === 'function') { classSuffix = 'function'; text = 'function(…) {…}'; }
-        if (value === unspecifiedValue) {
-          classSuffix = 'unspecified'; text = 'not specified';
+        if (Array.isArray(value)) {
+          classSuffix = 'array'; text = value.toString();
         }
-      }
-      if(typeof value === 'symbol') {
+        if (typeof value === 'function') { classSuffix = 'function'; text = 'function(…) {…}'; }
       }
       return [['value-token', `value-token__${classSuffix}`], text];
     },

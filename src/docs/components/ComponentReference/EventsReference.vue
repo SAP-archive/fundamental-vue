@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { EventDocumentation } from '@/api';
+import { EventDocumentation } from '@/docs/api';
 import { Prop } from "vue/types/options";
 import { Table, TableRow, TableCell } from "@/components";
 

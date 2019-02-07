@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Store } from "./Model";
-import { Uid, mixins } from "@/mixins2";
+import { Uid, mixins } from "@/mixins";
 
 export default mixins(Uid).extend({
   name: "FdSideNavSubItem",

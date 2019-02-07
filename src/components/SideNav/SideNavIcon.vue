@@ -2,7 +2,7 @@
   <span :class="classes" role="presentation" />
 </template>
 <script lang="ts">
-import { Icon, mixins } from '@/mixins2';
+import { Icon, mixins } from '@/mixins';
 export default mixins(Icon).extend({
   name: 'FdSideNavIcon',
   computed: {

@@ -1,9 +1,8 @@
-import { TabItem } from './TabItem';
-
+// FIXME: Add types back
 export interface TabItemContainer {
-  addTabItem(item: TabItem): void;
-  removeTabItem(item: TabItem): void;
-  activateTabItem(item: TabItem): void;
-  onTabItemKeyup(event: KeyboardEvent, item: TabItem): void;
+  addTabItem(item: any): void;
+  removeTabItem(item: any): void;
+  activateTabItem(item: any): void;
+  onTabItemKeyup(event: KeyboardEvent, item: any): void;
   readonly value: string | null;
 }

@@ -30,7 +30,7 @@
 //    input(type=radio; id=a name=radio) .fd-form__control
 //    Option 1
 
-import { mixins, Uid } from "@/mixins2";
+import { mixins, Uid } from "@/mixins";
 import { FormGropInterface } from "./FormGroupInterface";
 import FormLabel from "./FormLabel.vue";
 import { PropValidator } from "vue/types/options";

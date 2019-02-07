@@ -1,21 +1,21 @@
-import { iconClass, IconName } from '@/lib';
 import Vue from 'vue';
+import { PropValidator } from 'vue/types/options';
+import { iconClass, IconName } from '@/lib';
 
 export interface IconProps {
   icon?: IconName;
 }
 
-export const IconMixin = Vue.extend({
+export default Vue.extend({
   props: {
-    icon: { type: String, default: null },
+    icon: {
+      type: String,
+      default: null,
+    } as PropValidator<string | null>,
   },
   computed: {
     iconClassName(): string | null {
-      const icon = this.icon;
-      if(icon == null) {
-        return null;
-      }
-      return iconClass(icon);
+      return this.icon != null ? iconClass(this.icon) : null;
     },
   },
 });

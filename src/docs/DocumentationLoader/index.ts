@@ -106,12 +106,4 @@ export default class DocumentationLoader {
   pageForSlug(slug: string): Page | undefined {
     return this.pages.find(page => page.slug === slug);
   }
-
 }
-
-// const plugin: PluginFunction<any> = (VueCtor) => {
-//   console.log('Installing DocumentationLoader Plugin…');
-//   VueCtor.$docLoader = new DocumentationLoader();
-// };
-
-// DocumentationLoader.install = plugin;

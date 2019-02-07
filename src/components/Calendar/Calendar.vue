@@ -53,7 +53,7 @@ import {
   DisplayedDateMixin,
   DateSelectionMixin
 } from "./mixins";
-import { mixins } from "@/mixins2";
+import { mixins } from "@/mixins";
 import CalendarHeader from "./CalendarHeader.vue";
 import { DayPicker, MonthPicker, YearPicker } from "./Pickers";
 

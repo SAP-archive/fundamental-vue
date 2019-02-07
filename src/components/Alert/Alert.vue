@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { mixins, Uid } from "@/mixins2";
+import { mixins, Uid } from "@/mixins";
 
 export default mixins(Uid).extend({
   name: "FdAlert",

@@ -4,7 +4,7 @@ import { PropValidator } from "vue/types/options";
 import { normalizedHeaders, NormalizedHeader, RawHeader } from "./Util";
 import { warn } from '@/core';
 
-import { ScopedSlotArrayContents, ScopedSlotChildren } from 'vue/types/vnode';
+import { ScopedSlotChildren } from 'vue/types/vnode';
 import TableBody from './Components/TableBody.vue';
 import TableHeader from './Components/TableHeader.vue';
 import {
@@ -122,7 +122,7 @@ export default Vue.extend({
         'fd-table--no-borders': this.borderless,
       };
     },
-    renderedRows(): ScopedSlotArrayContents[] {
+    renderedRows(): ScopedSlotChildren[] {
       const rowTemplate = this.$scopedSlots.row || (() => undefined);
       return this.sortedData.map(item => this.renderdRow(rowTemplate, item));
     },
@@ -205,7 +205,7 @@ export default Vue.extend({
   preparedRenderedRow(
     rowNode: ScopedSlotChildren,
     { id: itemId }: Item,
-  ): ScopedSlotArrayContents {
+  ): ScopedSlotChildren {
     if (typeof rowNode === 'string') {
       warn(`Unable to prepare table row because rendered slot is not a VNode: ${rowNode}`);
       return [];
@@ -236,7 +236,7 @@ export default Vue.extend({
   renderdRow(
     rowTemplate: ScopedRowSlot,
     item: Item,
-  ): ScopedSlotArrayContents {
+  ): ScopedSlotChildren {
     const changeSelection = (selected: boolean, event: Event) => {
       event.stopImmediatePropagation();
       event.preventDefault();
@@ -304,24 +304,7 @@ export default Vue.extend({
           }, [this.renderTable(h)])
         ]);
     }
-      // );
-
-      //   <div staticClass='fd-table--fixed-wrapper' style={this.fixedWrapperStyle}>
-      //     <div
-      //       staticClass='fd-table--fixed'
-      //       style={{
-      //         'margin-left': '200px',
-      //         'padding-left': '0px',
-      //       }}
-      //     >
-      //       {this.renderTable(h)}
-      //     </div>
-      //   </div>
-      // );
-    // }
-    // debugger;
     return this.renderTable(h);
   }
 });
 </script>
-

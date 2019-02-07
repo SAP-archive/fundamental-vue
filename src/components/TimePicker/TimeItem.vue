@@ -28,10 +28,11 @@
 </template>
 
 <script lang="ts">
-import { mixins } from "@/mixins2";
+import { mixins } from "@/mixins";
 import TimeRange from "./mixins/TimeRange";
-import { TimeType } from './Time/Time.vue';
+import { TimeType } from './Time/TimeType';
 import Time  from './Time/Time.vue'
+
 const timeUnitMapping = {
   hour: 'hour',
   minute: 'minute',

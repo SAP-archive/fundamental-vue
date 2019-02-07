@@ -1,4 +1,4 @@
-import { TimeType } from '../Time/Time';
+import { TimeType } from './../Time/TimeType';
 
 import Vue from 'vue';
 
@@ -39,38 +39,3 @@ export default Vue.extend({
     };
   },
 });
-
-
-// @Component('TimeRangeMixin')
-// export class TimeRangeMixin extends Base {
-
-//   private timeRange = {
-//     hour24: {
-//       min: '00',
-//       max: '23',
-//     },
-//     hour12: {
-//       min: '01',
-//       max: '12',
-//     },
-//     minute: {
-//       min: '00',
-//       max: '59',
-//     },
-//     second: {
-//       min: '00',
-//       max: '59',
-//     },
-//     meridian: {
-//       min: 'am',
-//       max: 'pm',
-//     },
-//   };
-//   get range() {
-//     return (this.timeRange);
-//   }
-
-//   checkValueRange(timeValue: string | number, timeType: TimeType) {
-//     return !isNaN(Number(timeValue)) && (Number(timeValue) >= Number(this.timeRange[timeType].min) && Number(timeValue) <= Number(this.timeRange[timeType].max));
-//   }
-// }

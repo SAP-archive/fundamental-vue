@@ -27,7 +27,7 @@ import {
   EventDocumentation,
   SlotDocumentation,
   PropDocumentation,
-} from '@/api/Model/JSON';
+} from '@/docs/api';
 
 const makeEmptyDocumentation = (): ComponentDocumentation => ({
   componentName: '',

@@ -1,12 +1,12 @@
 <template>
   <div :id="uid" role="tabpanel" class="fd-tabs__panel" :aria-expanded="ariaExpanded">
-    <slot/>
+    <slot />
   </div>
 </template>
 
 <script lang="ts">
 import { TabItemContainer } from "./TabItemContainer";
-import { Uid, mixins } from "@/mixins2";
+import { Uid, mixins } from "@/mixins";
 
 export default mixins(Uid).extend({
   name: "FdTabItem",
@@ -85,22 +85,6 @@ export default mixins(Uid).extend({
         },
         [link]
       );
-      // return (
-      //   <li class="fd-tabs__item">
-      //     <a
-      //       class="fd-tabs__link"
-      //       aria-controls={this.uid}
-      //       aria-selected={active}
-      //       aria-disabled={this.disabled}
-      //       role="tab"
-      //       on-click={this.onClick}
-      //       tabIndex={0}
-      //       on-keyup={this.onKeyup}
-      //     >
-      //       {this.label}
-      //     </a>
-      //   </li>
-      // );
     },
     onClick(event: Event) {
       event.preventDefault();

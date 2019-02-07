@@ -8,11 +8,10 @@
     "module": "esnext",
     "strict": true,
     "preserveConstEnums": true,
-    "jsx": "preserve",
     "strictNullChecks": true,
     "importHelpers": true,
     "moduleResolution": "node",
-    "experimentalDecorators": true,
+    "experimentalDecorators": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
@@ -38,10 +37,8 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules"

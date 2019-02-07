@@ -1,16 +1,12 @@
-import { Component, Prop, Base } from '@/core';
+import Vue from 'vue';
 import { shortUuid } from '@/lib';
+import { PropValidator } from 'vue/types/options';
 
-export interface UidProps {
-  uid?: string;
-}
-
-@Component('UidMixin')
-export class UidMixin extends Base<UidProps> {
-  @Prop({
-    type: String,
-    required: false,
-    default: shortUuid,
-  })
-  uid!: string;
-}
+export default Vue.extend({
+  props: {
+    uid: {
+      type: String,
+      default: shortUuid,
+    } as PropValidator<string>,
+  },
+});

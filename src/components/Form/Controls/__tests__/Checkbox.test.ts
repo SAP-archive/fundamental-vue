@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import { mount, createLocalVue } from '@vue/test-utils';
 import { Checkbox, Radio } from '../';
-import { FormItem } from '../../FormItem';
+import FormItem from '../../FormItem.vue';
 
 describe('Radiobutton', () => {
   it('can be disabled', async () => {

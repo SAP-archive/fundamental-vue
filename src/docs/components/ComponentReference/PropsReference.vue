@@ -24,7 +24,7 @@ import Vue from "vue";
 import { Prop } from "vue/types/options";
 import { Table, TableRow, TableCell } from "@/components";
 import { ValueToken, TypeTokens } from './Tokens';
-import { PropDocumentation } from '@/api/Model/JSON/PropDocumentation';
+import { PropDocumentation } from '@/docs/api/PropDocumentation';
 
 const defaultValueFromProp = ({
   readableDefaultValue,

@@ -1,27 +1,21 @@
 <title>Search Input</title>
 
 <template>
-    <div>
-        <FdLabel>The Search value is : {{searchVal}}</FdLabel>
-        <FdSearchInput v-model="searchVal" placeholder='Enter Search Query' @search='onSearch'>
-      </FdSearchInput>   
-    </div>
+  <div>
+    <p>Search Query: '{{query}}'</p>
+    <FdSearchInput v-model="query" placeholder="Enter Search Query" @search="onSearch"/>
+  </div>
 </template>
 
 <script>
 export default {
-    methods: {
-        onSearch(txt){
-            // search handler
-            this.searchVal = txt;
-        }
-    },
-    data(){
-        return {
-            searchVal : 'Dips'
-        };
+  methods: {
+    onSearch(txt) {
+      this.query = txt;
     }
-}
+  },
+  data: () => ({ query: "Apples and Oranges" })
+};
 </script>
 
 

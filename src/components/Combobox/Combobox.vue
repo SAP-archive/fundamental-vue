@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { mixins, Uid } from "@/mixins2";
+import { mixins, Uid } from "@/mixins";
 import { MenuItem, Button, Popover, Input, InputGroup } from "@/components";
 import { PropValidator } from "vue/types/options";
 

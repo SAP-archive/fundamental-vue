@@ -16,24 +16,11 @@
 
 <script lang="ts">
 import { PropValidator } from "vue/types/options";
-import { mixins } from "@/mixins2";
+import { mixins } from "@/mixins";
 import TimeRange from "../mixins/TimeRange";
 import TimeAction from './TimeAction.vue';
 import TimeInput from './TimeInput.vue';
-
-
-
-// Time type
-const typeMapping = {
-  hour24: "hour24",
-  hour12: "hour12",
-  minute: "minute",
-  second: "second",
-  meridian: "meridian"
-};
-export type TimeType = keyof (typeof typeMapping);
-export const TimeTypeList = Object.keys(typeMapping) as TimeType[];
-const isTimeType = (value: any) => TimeTypeList.indexOf(value) >= 0;
+import { TimeType, isTimeType } from './TimeType';
 
 export default mixins(TimeRange).extend({
   name: "FdTime",
