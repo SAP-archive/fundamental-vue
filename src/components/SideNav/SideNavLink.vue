@@ -76,7 +76,7 @@ export default Vue.extend({
       this.store.selectedId = this.parentItemId;
       this.store.toggleExpanded(this.parentItemId);
 
-      const { to, $router } = this;
+      const { to, $router } = (this as any);
       if (to != null) {
         if ($router != null) {
           $router.push(to);

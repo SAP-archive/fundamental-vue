@@ -43,7 +43,7 @@ export default Vue.extend({
       event.preventDefault();
       event.stopPropagation();
       this.store.selectedId = this.parentId;
-      const { to, $router } = this;
+      const { to, $router } = (this as any);
       if (to != null) {
         if ($router != null) {
           $router.push(to);

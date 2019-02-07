@@ -29,7 +29,7 @@ export default Vue.extend({
   methods: {
     onClick(event: MouseEvent) {
       event.preventDefault();
-      const { to, $router } = this;
+      const { to, $router } = (this as any);
       if (to != null) {
         if ($router != null) {
           // @ts-ignore

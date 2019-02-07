@@ -42,17 +42,11 @@ export default Vue.extend({
       return this.href || "#";
     }
   },
-  watch: {
-    $$$: {
-      immediate: true,
-      handler(newValue: any) {}
-    }
-  },
   methods: {
     onClick(event: MouseEvent) {
       // TODO: Do not always prevent default. Only if there is no to value.
       event.preventDefault();
-      const { to, $router } = this;
+      const { to, $router } = (this as any);
       if (to != null) {
         if ($router != null) {
           $router.push(to);

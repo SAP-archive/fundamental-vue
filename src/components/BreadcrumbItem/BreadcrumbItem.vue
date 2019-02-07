@@ -20,7 +20,7 @@ export default Vue.extend({
   methods: {
     click(event: Event) {
       event.preventDefault();
-      const { to, $router } = this;
+      const { to, $router } = (this as any);
       if (to != null) {
         if ($router != null) {
           $router.push(to);
