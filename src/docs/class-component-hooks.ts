@@ -1,8 +1,8 @@
-import Component from 'vue-class-component';
+// import Component from 'vue-class-component';
 
 // Register the router hooks with their names
-Component.registerHooks([
-  'beforeRouteEnter',
-  'beforeRouteLeave',
-  'beforeRouteUpdate', // for vue-router 2.2+
-]);
+// Component.registerHooks([
+//   'beforeRouteEnter',
+//   'beforeRouteLeave',
+//   'beforeRouteUpdate', // for vue-router 2.2+
+// ]);

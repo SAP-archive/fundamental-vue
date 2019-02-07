@@ -1,5 +1,5 @@
 import { Prop as VueProp } from 'vue/types/options';
-import { createDecorator } from 'vue-class-component';
+// import { createDecorator } from 'vue-class-component';
 import { withComponentDocumentation } from './Helper';
 import { VuePropDefaultValueType, AcceptableValues, DefaultValue } from '@/api';
 

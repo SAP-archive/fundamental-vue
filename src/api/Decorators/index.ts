@@ -4,7 +4,7 @@ import { apiDocsEnabled } from '@/config';
 import { ComponentDocumentation } from './..';
 // import { TsxComponent } from '@/vue-tsx';
 import { ComponentOptions } from 'vue/types/options';
-import { Model as ModelDecorator, Component as VueComponent } from 'vue-property-decorator';
+// import { Model as ModelDecorator, Component as VueComponent } from 'vue-property-decorator';
 import { PropOptions } from './Prop';
 export * from './Prop';
 
