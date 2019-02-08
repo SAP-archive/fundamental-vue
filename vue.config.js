@@ -30,6 +30,9 @@ module.exports = {
   },
 
   configureWebpack: {
+    externals: {
+      vue: 'Vue',
+    },
     entry: './src/index.ts',
     output: {
       libraryExport: 'default'

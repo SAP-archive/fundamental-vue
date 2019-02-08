@@ -79,7 +79,7 @@ describe('Table', () => {
     // Now we change the columns
     wrapper.setData({
       items: [{ id: '1' }],
-      headers: [{ label: 'c1' }, { label: 'c2' }, { label: 'c3' }, { label: 'c4' }]
+      headers: [{ label: 'c1' }, { label: 'c2' }, { label: 'c3' }, { label: 'c4' }],
     });
     await localVue.nextTick();
     assert.lengthOf(wrapper.findAll(TableHeaderCell), 4);
