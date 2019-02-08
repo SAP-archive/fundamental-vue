@@ -22,11 +22,10 @@ export default Vue.extend({
   },
   computed: {
     classes(): object {
+      const staticClass = "fd-form__message";
       return {
-        "fd-form__message": true,
-        "fd-form__message--error": this.type === "error",
-        "fd-form__message--warning": this.type === "warning",
-        "fd-form__message--help": this.type === "help"
+        [staticClass]: true,
+        [`${staticClass}--${this.type || ''}`]: this.type != null,
       };
     }
   }

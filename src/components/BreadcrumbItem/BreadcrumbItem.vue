@@ -14,9 +14,6 @@ export default Vue.extend({
   props: {
     to: { type: Object, default: null } as PropValidator<object | null>
   },
-  data() {
-    return {};
-  },
   methods: {
     click(event: Event) {
       event.preventDefault();
@@ -33,4 +30,3 @@ export default Vue.extend({
   }
 });
 </script>
-
