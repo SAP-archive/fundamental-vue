@@ -64,5 +64,8 @@
         "vue": "^2.5.22",
         "vue-gh-pages": "^1.19.0",
         "vue-template-compiler": "^2.5.22"
+    },
+    "peerDependencies": {
+        "vue": "^2.5.22"
     }
 }
