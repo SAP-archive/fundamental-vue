@@ -11,10 +11,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { Checkbox } from '@/components/Form';
-
-// Use these types in order to cast your props. Delete if not needed.
-// import { PropValidator } from "vue/types/options";
-// import { Prop } from "vue/types/options";
+import { PropValidator } from "vue/types/options";
 
 // Simply wraps a Checkbox in order to hide the ugly truth.
 // See handleNativeClick for details. Is there a better way to do this?
@@ -28,11 +25,11 @@ export default Vue.extend({
     selected: {
       type: Boolean,
       default: false
-    },
+    } as PropValidator<boolean>,
     value: {
       type: [String, Number, Boolean],
       required: true
-    }
+    } as PropValidator<string | number | boolean>
   },
   methods: {
     // We have to handle native click events this way.

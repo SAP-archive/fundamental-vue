@@ -1,30 +1,28 @@
 <template>
-  <Table
+  <FdTable
     :items="events"
     :headers="headers"
   >
-    <template slot="row" scope="{item}">
-      <TableRow>
-        <TableCell>{{item.name}}</TableCell>
-        <TableCell>{{item.description}}</TableCell>
-      </TableRow>
+    <template slot="row" slot-scope="{item}">
+      <FdTableRow>
+        <FdTableCell>{{item.name}}</FdTableCell>
+        <FdTableCell>{{item.description}}</FdTableCell>
+      </FdTableRow>
     </template>
-  </Table>
+  </FdTable>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { EventDocumentation } from '@/docs/api';
 import { Prop } from "vue/types/options";
-import { Table, TableRow, TableCell } from "@/components";
 
 export default Vue.extend({
-  components: { Table, TableRow, TableCell },
   props: {
     events: Array as Prop<EventDocumentation[]>,
   },
   computed: {
-    headers() {
+    headers(): string[] {
       return ['Event', 'Description'];
     }
   },

@@ -23,11 +23,6 @@
       "mocha",
       "chai"
     ],
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
     "lib": [
       "esnext",
       "dom",
@@ -36,12 +31,10 @@
     ]
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.vue",
-    "tests/**/*.ts"
+    "./**/*.ts",
+    "./**/*.vue",
   ],
   "exclude": [
-    "src/docs/**/*.*",
     "node_modules"
   ]
 }

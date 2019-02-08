@@ -35,7 +35,7 @@ describe('Table', () => {
 
       const cells = wrapper.findAll('td').wrappers;
       assert.isNotEmpty(cells);
-      for(const cell of cells) {
+      for (const cell of cells) {
         const classAttr = cell.attributes('class');
         assert(classAttr == null || classAttr !== '');
       }
@@ -61,7 +61,7 @@ describe('Table', () => {
       </Table>
       `,
       data: () => ({
-        headers: [{label: 'c1'}, {label: 'c2'}],
+        headers: [{ label: 'c1' }, { label: 'c2' }],
         items: [
           { firstName: 'Chris', lastName: 'Kienle' },
           { firstName: 'Andi', lastName: 'Kienle' },
@@ -79,16 +79,17 @@ describe('Table', () => {
     // Now we change the columns
     wrapper.setData({
       items: [{ id: '1' }],
-      headers: [{label: 'c1'}, {label: 'c2'}, {label: 'c3'}, {label: 'c4'}]});
+      headers: [{ label: 'c1' }, { label: 'c2' }, { label: 'c3' }, { label: 'c4' }]
+    });
     await localVue.nextTick();
     assert.lengthOf(wrapper.findAll(TableHeaderCell), 4);
   }),
-  it('injects item id into table rows', async () => {
-    const localVue = createLocalVue();
-    const InjectIdTableTest = localVue.extend({
-      name: 'InjectIdTableTest',
-      components: { Table, TableRow, TableCell },
-      template: `
+    it('injects item id into table rows', async () => {
+      const localVue = createLocalVue();
+      const InjectIdTableTest = localVue.extend({
+        name: 'InjectIdTableTest',
+        components: { Table, TableRow, TableCell },
+        template: `
       <Table :columns="columns" :items="items">
         <template slot="row" slot-scope="{item}">
           <TableRow>
@@ -97,23 +98,23 @@ describe('Table', () => {
         </template>
       </Table>
       `,
-      data: () => ({
-        columns: [],
-        items: [
-          { id: '1', firstName: 'Chris', lastName: 'Kienle' },
-          { id: '2', firstName: 'Andi', lastName: 'Kienle' },
-          { id: '3', firstName: 'Sven', lastName: 'Bacia' },
-          { id: '4', firstName: 'Artur', lastName: 'Raess' },
-        ],
-      }),
-    });
-    const wrapper = mount(InjectIdTableTest);
-    await localVue.nextTick();
+        data: () => ({
+          columns: [],
+          items: [
+            { id: '1', firstName: 'Chris', lastName: 'Kienle' },
+            { id: '2', firstName: 'Andi', lastName: 'Kienle' },
+            { id: '3', firstName: 'Sven', lastName: 'Bacia' },
+            { id: '4', firstName: 'Artur', lastName: 'Raess' },
+          ],
+        }),
+      });
+      const wrapper = mount(InjectIdTableTest);
+      await localVue.nextTick();
 
-    const rows = wrapper.findAll(TableRow);
-    const ids = rows.wrappers.map(row => (row.vm as any).itemId);
-    assert.sameMembers(ids, ['1', '2', '3', '4'], `TableRows should have itemIds... html: ${wrapper.html()}`);
-  });
+      const rows = wrapper.findAll(TableRow);
+      const ids = rows.wrappers.map(row => (row.vm as any).itemId);
+      assert.sameMembers(ids, ['1', '2', '3', '4'], `TableRows should have itemIds... html: ${wrapper.html()}`);
+    });
 
   it('correctly disables checkboxes when switching from multiple selection to single selection with multiple rows selected', async () => {
     const localVue = createLocalVue();
@@ -174,7 +175,7 @@ describe('Table', () => {
     await localVue.nextTick();
     const checkedCheckboxesAfterChange = checkboxes.wrappers.filter(checkbox => (checkbox.vm as any).selected === true);
     assert.lengthOf(checkedCheckboxesAfterChange, 1);
-});
+  });
 
   it('correctly checks checkboxes when selecting rows', async () => {
     const localVue = createLocalVue();
@@ -208,17 +209,18 @@ describe('Table', () => {
         ],
       }),
     });
-    const wrapper = mount(TestComponent);
+    const wrapper = mount(TestComponent, { localVue });
     await localVue.nextTick();
 
     const rows = wrapper.findAll('tbody tr');
     rows.at(0).trigger('click');
     rows.at(1).trigger('click');
-    const selectedRows = wrapper.findAll('tr[aria-selected="true"]'); // length = 0
-
+    await localVue.nextTick();
+    const selectedRows = wrapper.findAll('tr[aria-selected="true"]');
     assert.lengthOf(selectedRows, 2);
     const checkboxes = wrapper.findAll(RowSelectionIndicator);
-    const checkedCheckboxes = checkboxes.wrappers.filter(checkbox => (checkbox.vm as any) === true);
+    const isChecked = (indicator: any) => indicator.element.checked === true;
+    const checkedCheckboxes = checkboxes.wrappers.filter(isChecked);
     assert.lengthOf(checkedCheckboxes, 2);
     const selectedIds = wrapper.vm.selectedIds;
     assert.lengthOf(selectedIds, 2);

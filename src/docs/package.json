@@ -7,8 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@vue/cli-service": "^3.4.0",
+    "fiori-fundamentals": "^1.4.1",
+    "vue": "2.5.22",
     "vue-router": "^3.0.2",
-    "fiori-fundamentals": "^1.4.1"
+    "vue-template-compiler": "2.5.22"
+  },
+  "devDependencies": {
+    "vue": "2.5.22"
   },
   "author": "SAP SE",
   "license": "Apache-2.0"

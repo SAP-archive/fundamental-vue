@@ -46,16 +46,15 @@ export default Vue.extend({
       handler(newId: string | null) {
         this.store.selectedId = newId;
       }
-    },
+    }
   },
-  methods: {},
   data() {
     return {
       sideNavStore: new Store({
         selectedId: this.selectedId,
         expandedIds: [],
         items: {}
-      }),
+      })
     };
   }
 });

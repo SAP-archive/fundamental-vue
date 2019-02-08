@@ -14,7 +14,7 @@ type ExampleOptions = {
   condensed: boolean;
   fullscreenOnly: boolean;
 };
-class Example {
+export class Example {
   id: string;
   title: string;
   code: string;

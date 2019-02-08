@@ -2,7 +2,7 @@ const Path = require('path');
 
 module.exports = {
   lintOnSave: process.env.NODE_ENV !== 'test',
-  // runtimeCompiler: false,
+  runtimeCompiler: false,
   chainWebpack: config => {
     config.module
       .rule('raw-loader')
@@ -73,12 +73,5 @@ module.exports = {
       ],
     },
   },
-
-  publicPath: undefined,
-  outputDir: undefined,
-  assetsDir: undefined,
-  runtimeCompiler: undefined,
   productionSourceMap: true,
-  parallel: undefined,
-  css: undefined
 };

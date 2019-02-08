@@ -1,7 +1,7 @@
 
 import { PluginFunction, PluginObject } from 'vue/types/plugin';
 import { VueConstructor } from 'vue/types/vue';
-import { log } from '@/core';
+// import { log } from '@/core';
 
 const getComponentName = (component: VueConstructor): string => {
   return component.prototype.constructor.extendOptions.name;
@@ -14,10 +14,10 @@ export default (component: VueConstructor, ...dependencies: VueConstructor[]): P
   const componentName = getComponentName(component);
   const install: PluginFunction<any> = (Vue, options) => {
     Vue.component(componentName, component);
-    log(`Register component ${componentName}`);
+    // log(`Register component ${componentName}`);
     dependencies.forEach(dependency => {
       Vue.component(getComponentName(dependency), dependency);
-      log(`Register component ${getComponentName(dependency)}`);
+      // log(`Register component ${getComponentName(dependency)}`);
     });
   };
   // @ts-ignore
