@@ -86,28 +86,21 @@ export default mixins(Uid).extend({
   computed: {
     ignoredElements(): (() => Element[]) {
       const vm = this;
-
       return () => {
-        const triggerControl = vm.$refs.triggerControl;
-        // debugger;
         return vm.controlElement != null ? [vm.controlElement] : [];
       };
     },
     controlElement(): Element | null {
-      const slots = this.$slots;
-      const scopedSlots = this.$scopedSlots;
-      console.log('slots', slots);
-      console.log('scopedSlots', scopedSlots);
-      const standardControl = this.$refs.control;
-      if (standardControl == null) {
+      const control = this.$refs.control;
+      if (control == null) {
         return null;
       }
-      if (Array.isArray(standardControl)) {
+      if (Array.isArray(control)) {
         warn("Trigger control must be a single element or component.");
         return null;
       }
       // @ts-ignore
-      return standardControl["$el"] || standardControl;
+      return control["$el"] || control;
     }
   },
   watch: {
@@ -115,7 +108,6 @@ export default mixins(Uid).extend({
       immediate: true,
       handler(visible: boolean) {
         this.currentPopoverVisible = visible;
-        // this.$emit("visible", this.currentPopoverVisible);
       }
     }
   },

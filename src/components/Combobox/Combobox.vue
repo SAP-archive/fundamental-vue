@@ -6,7 +6,8 @@
       :popoverVisible="currentPopoverVisible"
       @visible="currentPopoverVisible = $event"
     >
-      <div slot-scope="{toggle}" slot="control" class="fd-combobox-control">
+    <template v-slot:control="{toggle}">
+      <div class="fd-combobox-control">
         <InputGroup :compact="compact" afterClass="fd-input-group__addon--button">
           <Input
             :id="uid"
@@ -17,14 +18,16 @@
             @keyup.native="handleKeyup"
             @input="setCurrentValue"
           />
+          <template #after>
           <Button
-            slot="after"
-            @click="{scope.toggle}"
+            @click="toggle"
             icon="navigation-down-arrow"
             styling="light"
           />
+          </template>
         </InputGroup>
       </div>
+    </template>
       <slot/>
     </Popover>
   </div>
