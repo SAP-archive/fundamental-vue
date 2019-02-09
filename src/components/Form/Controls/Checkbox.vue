@@ -28,6 +28,7 @@ const ValueCtors = [String, Number, Boolean];
 
 export default mixins(Uid).extend({
   name: "FdCheckbox",
+  inject: ['formItem'],
   model: {
     prop: "modelValue",
     event: "change"
