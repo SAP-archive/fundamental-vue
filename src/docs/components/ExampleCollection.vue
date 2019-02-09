@@ -51,8 +51,6 @@ export default Vue.extend({
       return `api-${documentation.componentName}`;
     },
     resetUI() {
-      // this
-      // this.examples = [];
       this.relatedComponents = [];
     }
   },

@@ -46,16 +46,33 @@ export default Vue.extend({
     }
   },
   render(h: CreateElement): VNode {
+    const body = this.$slots.default || [];
+    const renderRouterLink = () => {
+      const RouterLink = Vue.component("RouterLink");
+      return h(
+        RouterLink,
+        {
+          staticClass: "fd-side-nav__link",
+          class: {
+            "has-child": this.hasChildren,
+          },
+          props: {
+            to: this.to,
+            "exact-active-class": "is-selected"
+          }
+        },
+        body
+      );
+    };
     const attrs: { [key: string]: any } = {
       href: "#",
       "aria-selected": this.selected
     };
     if (this.mode === "router") {
-      attrs["exact-active-class"] = "is-selected";
+      return renderRouterLink();
     }
-    const body = this.$slots.default || [];
     return h(
-      "a",
+      'a',
       {
         attrs,
         class: {
@@ -63,8 +80,8 @@ export default Vue.extend({
           ...this.classes
         },
         on: {
-          click: this.onClick,
-        },
+          click: this.onClick
+        }
       },
       body
     );
@@ -76,7 +93,7 @@ export default Vue.extend({
       this.store.selectedId = this.parentItemId;
       this.store.toggleExpanded(this.parentItemId);
 
-      const { to, $router } = (this as any);
+      const { to, $router } = this as any;
       if (to != null) {
         if ($router != null) {
           $router.push(to);
