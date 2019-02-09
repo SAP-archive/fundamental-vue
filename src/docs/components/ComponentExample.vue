@@ -2,7 +2,7 @@
   <div class='component-example'>
     <h1 v-font-weight:light v-type:4 class='example-title'>
       {{title}}
-      <Button
+      <FdButton
         compact
         styling='light'
         type='standard'
@@ -13,7 +13,7 @@
     </h1>
 
     <div v-if="docs !== ''" class='docs rendered-markdown' v-html="docs" />
-    <Panel condensed condensedFooter>
+    <FdPanel condensed condensedFooter>
       <div v-if="tip" class='tip'>
         <div class='tip-title'>TIP</div>
         <div class='tip-body' v-html="tip" />
@@ -24,14 +24,14 @@
           class='component__default-margin'
           style='display: flex; justify-content: center;'
         >
-          <Button
+          <FdButton
             style='margin-left: auto; margin-right: auto;'
             type='standard'
             icon='popup-window'
             @click="showExampleStandalone"
           >
             Show Demo
-          </Button>
+          </FdButton>
         </div>
         <component
           v-else
@@ -61,17 +61,14 @@
           </div>
         </expand-transition>
       </div>
-    </Panel>
+    </FdPanel>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { Button, Panel } from '@/components';
-
 export default Vue.extend({
   name: 'ComponentExample',
-  components: { Button, Panel },
   props: {
     exampleId: { type: String, required: true },
     tip: String,

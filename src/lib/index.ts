@@ -4,4 +4,3 @@ export {
   iconClass,
 } from './icon';
 export * from './icon';
-export * from './plugin';

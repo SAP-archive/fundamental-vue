@@ -1,32 +1,32 @@
 <template>
-  <Shell>
-    <ShellHeader fixed>
-      <ShellBar>
-        <ShellBarGroup position="start">
-          <ShellBarLogo
+  <FdShell>
+    <FdShellHeader fixed>
+      <FdShellBar>
+        <FdShellBarGroup position="start">
+          <FdShellBarLogo
             src="/images/logo.png"
             srcset="/images/logo.png 1x, /images/logo@2x.png 2x"
           />
-          <ShellBarProduct>Fundamental Vue</ShellBarProduct>
-        </ShellBarGroup>
-        <ShellBarGroup position="end">
-          <ShellBarActions>
-            <ShellBarAction>
-              <ShellBarUserMenu>
-                <MenuItem>
+        <FdShellBarProduct>Fundamental Vue</FdShellBarProduct>
+        </FdShellBarGroup>
+        <FdShellBarGroup position="end">
+          <FdShellBarActions>
+            <FdShellBarAction>
+              <FdShellBarUserMenu>
+                <FdMenuItem>
                   <a
                     href="https://github.com/SAP/fundamental-vue/issues/new"
                     target="_blank"
                   >Report an Issue</a>
-                </MenuItem>
-              </ShellBarUserMenu>
-            </ShellBarAction>
-          </ShellBarActions>
-        </ShellBarGroup>
-      </ShellBar>
-    </ShellHeader>
-    <App>
-      <AppNavigation orientation="vertical" class="sidebar">
+                </FdMenuItem>
+              </FdShellBarUserMenu>
+            </FdShellBarAction>
+          </FdShellBarActions>
+        </FdShellBarGroup>
+      </FdShellBar>
+    </FdShellHeader>
+    <FdApp>
+      <FdAppNavigation orientation="vertical" class="sidebar">
         <FdSideNav
           mode='router'
           style="padding-bottom': 25px;"
@@ -54,37 +54,16 @@
             </FdSideNavList>
           </FdSideNavGroup>
         </FdSideNav>
-      </AppNavigation>
-      <AppMain class="main-with-sidebar">
+      </FdAppNavigation>
+      <FdAppMain class="main-with-sidebar">
         <router-view/>
-      </AppMain>
-    </App>
-  </Shell>
+      </FdAppMain>
+    </FdApp>
+  </FdShell>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import {
-  Shell,
-  ShellHeader,
-  App,
-  AppMain,
-  AppNavigation,
-  SideNav,
-  SideNavList,
-  SideNavGroup,
-  SideNavGroupTitle,
-  ShellBar,
-  ShellBarGroup,
-  ShellBarLogo,
-  ShellBarActions,
-  ShellBarAction,
-  ShellBarUserMenu,
-  ShellBarProduct,
-  MenuItem,
-  Identifier,
-  SideNavListItem
-} from "@/components";
 
 // type ComponentState = {
 //   title: string;
@@ -92,9 +71,12 @@ import {
 //   color: Color;
 // };
 
-// interface ExampleItem extends SideNavListItem {
-//   componentState: ComponentState;
-// }
+interface SideNavListItem {
+  id: string;
+  name: string;
+  icon: string;
+  to: object | string;
+}
 
 // const componentStateMapping: { [state: string]: ComponentState } = {
 //   stable: {
@@ -135,26 +117,6 @@ import {
 // }
 
 export default Vue.extend({
-  components: {
-    Shell,
-    ShellHeader,
-    App,
-    AppMain,
-    AppNavigation,
-    SideNav,
-    SideNavList,
-    SideNavGroup,
-    SideNavGroupTitle,
-    ShellBar,
-    ShellBarGroup,
-    ShellBarLogo,
-    ShellBarActions,
-    ShellBarAction,
-    ShellBarUserMenu,
-    ShellBarProduct,
-    MenuItem,
-    Identifier,
-  },
   computed: {
     exampleCollectionsMenuItems(): SideNavListItem[] {
       const pages = this.$docLoader.pages;

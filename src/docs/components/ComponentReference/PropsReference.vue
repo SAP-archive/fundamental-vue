@@ -1,28 +1,27 @@
 <template>
-  <Table :items="tableItems" :headers="headers" style="margin-bottom: 0;">
+  <FdTable :items="tableItems" :headers="headers" style="margin-bottom: 0;">
     <template slot="row" slot-scope="{item}">
-      <TableRow>
-        <TableCell>{{item.name}}</TableCell>
-        <TableCell>{{item.description}}</TableCell>
-        <TableCell>
+      <FdTableRow>
+        <FdTableCell>{{item.name}}</FdTableCell>
+        <FdTableCell>{{item.description}}</FdTableCell>
+        <FdTableCell>
           <ValueToken :key="item.name" :representedValue="item.defaultValue" />
-        </TableCell>
-        <TableCell>
+        </FdTableCell>
+        <FdTableCell>
           <TypeTokens
             :key="item.name"
             :propTypes="item.types"
           />
-        </TableCell>
-        <TableCell>{{item.acceptedValues}}</TableCell>
-      </TableRow>
+        </FdTableCell>
+        <FdTableCell>{{item.acceptedValues}}</FdTableCell>
+      </FdTableRow>
     </template>
-  </Table>
+  </FdTable>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Prop } from "vue/types/options";
-import { Table, TableRow, TableCell } from "@/components";
 import { ValueToken, TypeTokens } from './Tokens';
 import { PropDocumentation } from '@/docs/api/PropDocumentation';
 
@@ -33,7 +32,7 @@ const defaultValueFromProp = ({
   readableDefaultValue != null ? readableDefaultValue : defaultValue;
 
 export default Vue.extend({
-  components: { ValueToken, TypeTokens, TableRow, TableCell, Table },
+  components: { ValueToken, TypeTokens },
   props: {
     documentedProps: Array as Prop<PropDocumentation[]>
   },

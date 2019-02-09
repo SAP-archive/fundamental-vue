@@ -32,7 +32,9 @@
 
 <script lang="ts">
 import { mixins, Uid } from "@/mixins";
-import { Button, Popover, Input, InputGroup } from "@/components";
+import { Input, InputGroup } from "@/components/Form";
+import { Button } from "@/components/Button";
+import { Popover } from "@/components/Popover";
 import { PropValidator } from "vue/types/options";
 import MenuItem from './../Menu/MenuItem.vue';
 type MenuItemType = InstanceType<typeof MenuItem>;

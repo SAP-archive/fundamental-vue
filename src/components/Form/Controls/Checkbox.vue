@@ -29,7 +29,10 @@ const ValueCtors = [String, Number, Boolean];
 
 export default Vue.extend({
   name: "FdCheckbox",
-  inject: ['itemId', 'formItem'],
+  inject: {
+    itemId: { default: null },
+    formItem: { default: null },
+  },
   model: {
     prop: "modelValue",
     event: "change"

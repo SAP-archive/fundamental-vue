@@ -1,30 +1,28 @@
 <template>
-  <Table
+  <FdTable
     :headers="tableHeaders"
     :items="slots"
     style="margin-bottom: 0;">
     <template slot="row" slot-scope="{item}">
-      <TableRow>
-        <TableCell>
+      <FdTableRow>
+        <FdTableCell>
           <span
             v-if="isDefaultSlot(item.name)"
             style="color: rgb(200, 200, 200);">
             default
           </span>
           <span v-else>{{item.name}}</span>
-        </TableCell>
-        <TableCell>{{item.description}}</TableCell>
-      </TableRow>
+        </FdTableCell>
+        <FdTableCell>{{item.description}}</FdTableCell>
+      </FdTableRow>
     </template>
-  </Table>
+  </FdTable>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { Table, TableRow, TableCell } from "@/components";
 
 export default Vue.extend({
-  components: { TableRow, TableCell, Table },
   methods: {
     isDefaultSlot(name: string) {
       return name === '';
