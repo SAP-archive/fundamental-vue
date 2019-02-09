@@ -33,10 +33,22 @@ export default Vue.extend({
     formItem: { default: null }
   },
   props: {
-    size: { type: String, default: null, validator: isToggleSize } as PropValidator<string>,
+    size: {
+      type: String,
+      default: null,
+      validator: isToggleSize
+    } as PropValidator<string>,
     on: { type: Boolean, default: false } as PropValidator<boolean>,
-    disabled: { type: Boolean, default: false } as PropValidator<boolean>,
+    disabled: { type: Boolean, default: false } as PropValidator<boolean>
   },
+  mounted() {
+    // @ts-ignore
+    const formItem = this.formItem;
+    if (formItem) {
+      formItem.setCheck(true);
+    }
+  },
+
   computed: {
     classes(): object {
       return {

@@ -67,7 +67,7 @@ export default Vue.extend({
   computed: {
     uid(): string | null {
       // @ts-ignore
-      return this.formItemId;
+      return this.itemId;
     },
     shouldBeChecked(): boolean {
       const { modelValue, value } = this;

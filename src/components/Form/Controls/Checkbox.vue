@@ -12,8 +12,9 @@
 </template>
 
 <script lang="ts">
+
+import Vue from 'vue';
 import { PropValidator } from "vue/types/options";
-import { mixins, Uid } from "@/mixins";
 import { isInputElement } from "./Helper";
 const stateMapping = {
   valid: "valid",
@@ -26,9 +27,9 @@ const InputStates = Object.values(stateMapping);
 type ValueType = string | number | boolean;
 const ValueCtors = [String, Number, Boolean];
 
-export default mixins(Uid).extend({
+export default Vue.extend({
   name: "FdCheckbox",
-  inject: ['formItem'],
+  inject: ['itemId', 'formItem'],
   model: {
     prop: "modelValue",
     event: "change"
@@ -61,6 +62,10 @@ export default mixins(Uid).extend({
     }
   },
   computed: {
+    uid(): string {
+      // @ts-ignore
+      return this.itemId;
+    },
     listeners(): object {
       const { ...listeners } = this.$listeners;
       return listeners;
