@@ -11,7 +11,7 @@ export const DocsRouter = new Router({
     return new Promise((resolve) => {
       window.requestAnimationFrame(() => {
         const main = window.document.querySelector('main');
-        if(main != null) {
+        if (main != null) {
           main.scrollIntoView(/* alignToTop */ true);
         }
         resolve();

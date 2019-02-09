@@ -1,24 +1,18 @@
 <template>
-  <div
-    class='rendered-markdown'
-    style='padding: 50px;'
-  >
-    <div
-      v-html="html"
-      style='font-size: 1.2em; margin-bottom: 12px;'
-    />
+  <div class="rendered-markdown" style="padding: 50px;">
+    <div v-html="html" style="font-size: 1.2em; margin-bottom: 12px;"/>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import 'highlight.js/styles/docco.css';
+import Vue from "vue";
+import "highlight.js/styles/docco.css";
 
 export default Vue.extend({
   props: {
     html: String
-  },
-})
+  }
+});
 </script>
 
 <style lang="sass">

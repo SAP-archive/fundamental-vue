@@ -12,14 +12,13 @@ import DocumentationLoader from './DocumentationLoader';
 import DefaultLayout from '@/docs/layouts/DefaultLayout.vue';
 import FullscreenLayout from '@/docs/layouts/FullscreenLayout.vue';
 
+// Install Plugins
+Vue.use(Router);
 Vue.use(FundamentalVue);
 Vue.use(DocumentationLoader);
 
 Vue.component('DefaultLayout', DefaultLayout);
 Vue.component('FullscreenLayout', FullscreenLayout);
-
-// Install Plugins
-Vue.use(Router);
 
 registerComponents(Vue);
 
