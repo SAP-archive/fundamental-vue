@@ -30,9 +30,6 @@ module.exports = {
   },
 
   configureWebpack: {
-    externals: {
-      vue: 'Vue',
-    },
     entry: './src/index.ts',
     output: {
       libraryExport: 'default'
@@ -40,7 +37,8 @@ module.exports = {
     resolveLoader: {
       modules: [
         'node_modules',
-        Path.resolve(__dirname, 'loaders')
+        Path.resolve(__dirname, 'loaders'),
+        Path.resolve(__dirname, 'src', 'docs', 'node_modules')
       ],
     },
     module: {
@@ -76,5 +74,4 @@ module.exports = {
       ],
     },
   },
-  productionSourceMap: true,
 };

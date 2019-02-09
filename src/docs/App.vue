@@ -2,16 +2,16 @@
   <component :is="layout" />
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 
 const DEFAULT_LAYOUT = 'Default';
 
-export default Vue.extend({
+export default {
   computed: {
-    layout(): string {
+    layout() {
       return (this.$route.meta.layout || DEFAULT_LAYOUT) + 'Layout';
     },
   },
-})
+}
 </script>

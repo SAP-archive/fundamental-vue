@@ -5,7 +5,7 @@
     </div>
     <div class="fd-action-bar__header">
       <h1 class="fd-action-bar__title">{{title}}</h1>
-      <p v-if="description != null" class="fdfd-action-bar__description">{{description}}</p>
+      <p v-if="description != null" class="fd-action-bar__description">{{description}}</p>
     </div>
     <div v-if="hasActions" class="fd-action-bar__actions">
       <slot/>
