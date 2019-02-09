@@ -1,24 +1,21 @@
 <template>
   <div class="fd-popover">
     <!-- Complicated Trigger Control logic: BEGIN-->
-    <div class="fd-popover__control" ref="popoverTriggerControl">
-      <div v-if="hasControlSlot" @click="toggle" role="button">
-        <slot name="control"/>
-      </div>
-      <template v-else-if="hasControlScopedSlot">
-        <slot :toggle="toggle" :visible="currentPopoverVisible" name="control"/>
-      </template>
-      <Button
-        v-if="!hasControlSlot && !hasControlScopedSlot"
-        class="fd-popover__control"
-        :aria-controls="uid"
-        :aria-expanded="currentPopoverVisible"
-        aria-haspopup="true"
-        @click="toggle"
-      >{{title}}</Button>
+    <div class="fd-popover__control" ref="control">
+      <div v-if="$slots.control != null" @click="toggle" role="button"><slot name="control" /></div>
+      <slot v-else :toggle="toggle" :visible="currentPopoverVisible" name="control">
+        <Button
+          class="fd-popover__control"
+          :aria-controls="uid"
+          :aria-expanded="currentPopoverVisible"
+          aria-haspopup="true"
+          @click="toggle"
+        >{{title}}</Button>
+      </slot>
     </div>
     <!-- Complicated Trigger Control logic: END-->
     <ClickAwayContainer
+      :ignoredElements="ignoredElements"
       :id="uid"
       class="fd-popover__body"
       :class="{
@@ -41,10 +38,21 @@
 </template>
 
 <script lang="ts">
-import { Uid, mixins } from '@/mixins';
+import { Uid, mixins } from "@/mixins";
 import ClickAwayContainer from "@/components/ClickAwayContainer";
 import { Menu, MenuList } from "@/components/Menu";
 import { Button } from "@/components/Button";
+import { warn } from "@/core";
+
+const pathToRootFrom = (element: Element): Element[] => {
+  const result: Element[] = [];
+  let parent: Element | null = element.parentElement;
+  while(parent != null) {
+    result.push(parent);
+    parent = parent.parentElement;
+  }
+  return result;
+}
 
 const popoverPlacementMapping = {
   left: "left", // default
@@ -76,11 +84,30 @@ export default mixins(Uid).extend({
     popoverVisible: { type: Boolean, default: false }
   },
   computed: {
-    hasControlSlot(): boolean {
-      return this.$slots.control != null;
+    ignoredElements(): (() => Element[]) {
+      const vm = this;
+
+      return () => {
+        const triggerControl = vm.$refs.triggerControl;
+        // debugger;
+        return vm.controlElement != null ? [vm.controlElement] : [];
+      };
     },
-    hasControlScopedSlot(): boolean {
-      return this.$scopedSlots.control != null;
+    controlElement(): Element | null {
+      const slots = this.$slots;
+      const scopedSlots = this.$scopedSlots;
+      console.log('slots', slots);
+      console.log('scopedSlots', scopedSlots);
+      const standardControl = this.$refs.control;
+      if (standardControl == null) {
+        return null;
+      }
+      if (Array.isArray(standardControl)) {
+        warn("Trigger control must be a single element or component.");
+        return null;
+      }
+      // @ts-ignore
+      return standardControl["$el"] || standardControl;
     }
   },
   watch: {
@@ -88,27 +115,40 @@ export default mixins(Uid).extend({
       immediate: true,
       handler(visible: boolean) {
         this.currentPopoverVisible = visible;
-        this.$emit("visible", this.currentPopoverVisible);
+        // this.$emit("visible", this.currentPopoverVisible);
       }
     }
   },
   methods: {
+    ignored(element: Element): boolean {
+      console.log("controlElement", this.controlElement);
+      console.log("element", element);
+      const ignoredElement = this.controlElement;
+      if(ignoredElement == null) { return false; }
+      const path = pathToRootFrom(element);
+      console.log(path);
+      const index = path.indexOf(ignoredElement);
+      const ignore = index  >= 0;
+      // debugger;
+      return ignore;
+    },
     handleItemClick(value: string | null) {
       this.$emit("click", value);
       this.toggle();
     },
     hidePopover() {
       this.currentPopoverVisible = false;
-      this.$emit("visible", this.currentPopoverVisible);
+      this.$emit("visible", false);
     },
     toggle() {
+      // debugger;
       this.currentPopoverVisible = !this.currentPopoverVisible;
       this.$emit("visible", this.currentPopoverVisible);
     }
   },
   data() {
     return {
-      currentPopoverVisible: this.popoverVisible
+      currentPopoverVisible: this.popoverVisible || false
     };
   }
 });

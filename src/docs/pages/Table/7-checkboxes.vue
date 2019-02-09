@@ -41,7 +41,7 @@ export default {
     }
   },
   data: () => ({
-    headers: ["First Name", "Last Name", "Building"],
+    headers: ["", "First Name", "Last Name", "Building"],
     selectedIds: [],
     items: [
       { id: "1", firstName: "Chris", lastName: "Kienle", building: "WFD02" },

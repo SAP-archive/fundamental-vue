@@ -36,25 +36,25 @@
         "@types/chai": "^4.1.7",
         "@types/highlight.js": "^9.12.3",
         "@types/mocha": "^5.2.5",
-        "@vue/cli-plugin-babel": "^3.3.0",
-        "@vue/cli-plugin-typescript": "^3.3.0",
-        "@vue/cli-plugin-unit-mocha": "^3.3.0",
-        "@vue/cli-service": "^3.3.0",
-        "@vue/test-utils": "^1.0.0-beta.28",
+        "@vue/cli-plugin-babel": "^3.4.0",
+        "@vue/cli-plugin-typescript": "^3.4.0",
+        "@vue/cli-plugin-unit-mocha": "^3.4.0",
+        "@vue/cli-service": "^3.4.0",
+        "@vue/test-utils": "^1.0.0-beta.29",
         "chai": "^4.2.0",
-        "highlight.js": "^9.13.1",
+        "highlight.js": "^9.14.2",
         "html-loader": "^1.0.0-alpha.0",
         "markdown-loader": "^5.0.0",
         "node-sass": "^4.11.0",
         "raw-loader": "^1.0.0",
         "sass-loader": "^7.1.0",
         "tslint": "^5.12.1",
-        "typescript": "^3.2.2",
-        "vue": "2.5.22",
+        "typescript": "^3.3.3",
+        "vue": "^2.6.4",
         "vue-gh-pages": "^1.19.0",
-        "vue-template-compiler": "2.5.22"
+        "vue-template-compiler": "^2.6.4"
     },
     "peerDependencies": {
-        "vue": "2.5.22"
+        "vue": "^2.6.4"
     }
 }

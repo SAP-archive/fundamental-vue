@@ -11,7 +11,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import { PropValidator } from 'vue/types/options';
-// import { PropType } from '@/api/Model/PropDocumentation';
 import TypeToken from './TypeToken.vue';
 
 export default Vue.extend({

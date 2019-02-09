@@ -4,7 +4,6 @@ import {
   StaticContent,
 } from '@/docs/components';
 import { FullscreenDemo } from '@/docs/components';
-
 export const DocsRouter = new Router({
   // Scroll the main component to the top.
   scrollBehavior() {

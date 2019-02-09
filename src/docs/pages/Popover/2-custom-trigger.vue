@@ -23,25 +23,37 @@ Because of the fact that we assume that the consumer has special needs, we do no
 
 3. If there is no (scoped) control-slot we simply render a standard button on behalf of the consumer.
 </docs>
-<template><div>
-<FdPopover>
-  <FdButton styling="emphasized" type="positive" slot="control">Custom Popover Trigger Control (automatic popover visibility)</FdButton>
-    <FdMenuItem>Option 1</FdMenuItem>
-    <FdMenuItem>Option 2</FdMenuItem>
-    <FdMenuItem>Option 3</FdMenuItem>
-  </FdPopover>
+<template>
+  <div>
+    <FdPopover>
+      <template v-slot:control>
+        <FdButton
+          styling="emphasized"
+          type="positive"
+        >Custom Popover Trigger Control (automatic popover visibility)</FdButton>
+      </template>
+      <template v-slot:default>
+        <FdMenuItem>Option 1</FdMenuItem>
+        <FdMenuItem>Option 2</FdMenuItem>
+        <FdMenuItem>Option 3</FdMenuItem>
+      </template>
+    </FdPopover>
 
-  <br /><br />
+    <br>
+    <br>
 
-  <FdPopover>
-    <FdButton
-      slot-scope="popover"
-      slot="control"
-      :type="popover.visible ? 'negative' : 'medium'"
-      @click="popover.toggle"
-    >Custom Popover Trigger Control (manual popover visibility)</FdButton>
-    <FdMenuItem>Option 1</FdMenuItem>
-    <FdMenuItem>Option 2</FdMenuItem>
-    <FdMenuItem>Option 3</FdMenuItem>
-  </FdPopover>
-</div></template>
+    <FdPopover>
+      <template v-slot:control="popover">
+        <FdButton
+          :type="popover.visible ? 'negative' : 'medium'"
+          @click="popover.toggle"
+        >Custom Popover Trigger Control (manual popover visibility)</FdButton>
+      </template>
+      <template v-slot:default>
+        <FdMenuItem>Option 1</FdMenuItem>
+        <FdMenuItem>Option 2</FdMenuItem>
+        <FdMenuItem>Option 3</FdMenuItem>
+      </template>
+    </FdPopover>
+  </div>
+</template>
