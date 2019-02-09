@@ -1,12 +1,7 @@
 import { VueConstructor } from 'vue';
-// import { slugify } from '@/docs/util';
-// import { ExampleCollectionFunction } from './types';
-// import { all } from '@/components';
 import { IconName } from '@/lib';
-
 import pagesJson from './pages.json';
 
-// type GetElementType<T extends Array<any>> = T extends (infer U)[] ? U : never;
 export type PageType = {
   id: string;
   status: string;
@@ -18,8 +13,7 @@ export type PageType = {
 };
 export type PagesType = typeof pagesJson;
 
-const $pages: PagesType = pagesJson;
-export const pages = $pages as PageType[];
+export const pages = pagesJson as PageType[];
 
 export type Example = {
   readonly id: string;
@@ -42,45 +36,6 @@ export type ExampleCollection = {
   readonly componentStatus: string;
   examples(): Example[];
 };
-
-// type DocModule = { plugin: ExampleCollectionFunction };
-
-// const isDocModule = (module: any): module is DocModule => {
-//   if (module == null) {
-//     return false;
-//   }
-//   if ('plugin' in module) {
-//     return true;
-//   }
-//   return false;
-// };
-
-export class ExampleCollections implements Iterable<ExampleCollection> {
-  constructor(public collections: ExampleCollection[]) { }
-  get [Symbol.iterator]() {
-    return this.collections[Symbol.iterator];
-  }
-  map<T>(mapper: (collection: ExampleCollection) => T): T[] {
-    return this.collections.map(mapper);
-  }
-
-  exampleCollection({ slug }: { slug: string }): ExampleCollection | undefined {
-    return this.collections.find(collection => slug === collection.slug);
-  }
-
-  getExample(id: string): Example {
-    const exampleInCollection = (collection: ExampleCollection, exampleId: string): Example | undefined => {
-      return collection.examples().find(example => example.id === exampleId);
-    };
-    for (const collection of this.collections) {
-      const example = exampleInCollection(collection, id);
-      if (example != null) {
-        return example;
-      }
-    }
-    throw Error('example not found');
-  }
-}
 
 const examplesContext = require.context('./', true, /\.vue$/);
 const examplesCodeContext = require.context('!remove-docs-loader!./', true, /\.vue$/);
@@ -119,116 +74,3 @@ export const getExamples = (collectionName: string): Example[] => {
   result.sort((lhs, rhs) => lhs.id.localeCompare(rhs.id, 'en', { numeric: true }));
   return result;
 };
-
-// const requireExampleCollections = (): ExampleCollection[] => {
-//     const titleFromKey = (key: string): string => {
-//         const [, title] = key.split('/');
-//         return title || key;
-//     };
-//     const context = require.context('./', true, /(.*)\/(.+)\/index\.ts$/);
-//     const collectionFromKey = (key: string): ExampleCollection => {
-//         const title = titleFromKey(key);
-//         const slug = slugify(title);
-//         const id = key;
-//         const module = context(key);
-//         const {
-//           status = 'inprogress',
-//           related = [],
-//           icon = null,
-//         } = isDocModule(module)
-//             ? module.plugin()
-//             : {};
-//         return {
-//             id,
-//             status,
-//             slug,
-//             key,
-//             title,
-//             relatedComponents,
-//             icon: icon || undefined,
-//             examples() {
-//                 return getExamples(title);
-//             },
-//         };
-//     };
-//     // keys contains strings like: ./Breadcrumb/index.ts
-//     const keys = context.keys();
-//     return keys.map(collectionFromKey);
-// };
-// const titleFromKey = (key: string): string => {
-//   const [, title] = key.split('/');
-//   return title || key;
-// };
-// export const collectionFromSlug = (slug: string): ExampleCollection => {
-//   const page = this.$docsLoader.pageForSlug(slug);
-//   if(page == null) {
-//     throw Error('unable');
-//   }
-//   const title = page.title; // titleFromKey(pageId);
-//   // const slug = page.slug; //slugify(title);
-//   const id = page.id;
-//   // const module = require.context(pageId);
-//   const {
-//     status = 'inprogress',
-//     related = [],
-//     icon = null,
-//   } = (page || {});
-//   return {
-//     id,
-//     componentStatus: status,
-//     slug,
-//     key: id,
-//     title,
-//     related,
-//     icon: icon || undefined,
-//     examples() {
-//       return getExamples(title);
-//     },
-//   };
-// };
-export const exampleComponents = (pageTitle: string): VueConstructor[] => {
-  // import()
-
-  // const
-  const context = require.context('./', true, /(.*)\/(.+)\/*\.vue$/);
-  const isPageKey = (key: string) => key.startsWith(`./${pageTitle}/`);
-
-  // => ./Tile Grid/2-cols.vue
-  const keys = context.keys().filter(isPageKey);
-  // debugger;
-  const r = keys.map(key => {
-    return context(key).default;
-  });
-
-  return r as VueConstructor[];
-  // const collectionFromKey = (key: string): ExampleCollection => {
-  //     const title = titleFromKey(key);
-  //     const slug = slugify(title);
-  //     const id = key;
-  //     const module = context(key);
-  //     const {
-  //       status = 'inprogress',
-  //       related = [],
-  //       icon = null,
-  //     } = isDocModule(module)
-  //         ? module.plugin()
-  //         : {};
-  //     return {
-  //         id,
-  //         status,
-  //         slug,
-  //         key,
-  //         title,
-  //         relatedComponents,
-  //         icon: icon || undefined,
-  //         examples() {
-  //             return getExamples(title);
-  //         },
-  //     };
-  // };
-  // // keys contains strings like: ./Breadcrumb/index.ts
-  // const keys = context.keys();
-  // return keys.map(collectionFromKey);
-};
-
-// export const exampleCollections = new ExampleCollections(requireExampleCollections());

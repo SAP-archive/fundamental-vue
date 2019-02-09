@@ -15,8 +15,6 @@ type SubItem = Item & { parentId: string; };
 type Items = {[itemId: string]: Item | SubItem };
 
 export class Store {
-  static KEY = Symbol();
-
   constructor(
     readonly initialState = makeDefaultState()) {
     this.state = {...initialState};
