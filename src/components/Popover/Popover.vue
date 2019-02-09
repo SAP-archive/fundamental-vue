@@ -27,7 +27,6 @@
           }"
       @clickOutside="hidePopover"
       :active="currentPopoverVisible"
-      :ignoredElements="ignoredElementsHandler"
       :aria-hidden="!currentPopoverVisible"
     >
       <slot name="body">
@@ -97,13 +96,6 @@ export default mixins(Uid).extend({
     handleItemClick(value: string | null) {
       this.$emit("click", value);
       this.toggle();
-    },
-    ignoredElementsHandler() {
-      const el = this.$refs.popoverTriggerControl;
-      if (el == null) {
-        return [];
-      }
-      return [el];
     },
     hidePopover() {
       this.currentPopoverVisible = false;

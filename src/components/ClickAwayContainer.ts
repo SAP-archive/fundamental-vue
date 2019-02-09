@@ -18,7 +18,6 @@ export default Vue.extend({
   props: {
     tag: { type: String, default: 'div' },
     active: { type: Boolean, default: false },
-    ignoredElements: { type: Function, default: () => () => [] },
   },
   render(h: CreateElement): VNode {
     return h(this.tag, this.$slots.default);
@@ -26,42 +25,36 @@ export default Vue.extend({
   beforeDestroy() {
     // We have to remove ourselves as a listener but only if we are indeed active (=listening) and
     // there is a documentElement.
-    const { documentElement } = document;
-    if (this.active && documentElement != null) {
-      documentElement.removeEventListener('click', this.handleClick, false);
+    const { body } = document;
+    if (this.active && body != null) {
+      this.$el.removeEventListener('click', this.clickOnSelf);
+      body.removeEventListener('click', this.clickOnBody);
     }
   },
   methods: {
-    handleClick(event: MouseEvent) {
-      const path = event.composedPath();
-      const isClickOutsideSelf = !path.includes(this.$el);
-      if (isClickOutsideSelf === false) {
-        return;
-      }
-      // We now have to check the ignored elements
-      const ignoredElements = this.ignoredElements();
-      for (const ignoredElement of ignoredElements) {
-        if (path.includes(ignoredElement)) {
-          return;
-        }
-      }
+    clickOnBody(event: Event) {
       this.$emit(CLICK_OUTSIDE_EVENT, event);
+    },
+    clickOnSelf(event: Event) {
+      event.stopPropagation();
     },
   },
   watch: {
     active: {
       immediate: true,
       handler(isActive: boolean, wasActive: boolean) {
-        const { documentElement } = document;
-        if (documentElement == null) {
-          warn(`v-${this}: Cannot do anything without a document element.`);
+        const { body } = document;
+        if (body == null) {
+          warn(`v-${this}: Cannot do anything without a body element.`);
           return;
         }
         if (isActive && !wasActive) {
-          documentElement.addEventListener('click', this.handleClick, false);
+          this.$el.addEventListener('click', this.clickOnSelf);
+          body.addEventListener('click', this.clickOnBody);
         }
         if (!isActive && wasActive) {
-          documentElement.removeEventListener('click', this.handleClick, false);
+          this.$el.removeEventListener('click', this.clickOnSelf);
+          body.removeEventListener('click', this.clickOnBody);
         }
       },
     },

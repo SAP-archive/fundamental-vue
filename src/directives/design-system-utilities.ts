@@ -16,9 +16,12 @@ const isSize = (value: any): value is Size | undefined => value === undefined ||
 type PaddingModifiers = {
   top?: boolean; left?: boolean; right?: boolean; bottom?: boolean;
 };
-
 type DesignClass = 'padding' | 'margin';
 
+// Helper
+const addClasses = (list: DOMTokenList, classes: string[]) => classes.forEach(cssClass => list.add(cssClass));
+
+// Actual Design System Utils
 const designClass = (prefix: DesignClass, size: Size, side?: Side) => side == null ? `fd-has-${prefix}-${size}` : `fd-has-${prefix}-${side}-${size}`;
 const designClasses = (prefix: DesignClass, size: Size, modifiers: PaddingModifiers = {}): string[] => {
   const {top, left, right, bottom} = modifiers;
@@ -46,14 +49,14 @@ export const padding = Vue.directive(directiveName('padding'), ({ classList }, b
   const { arg, modifiers } = binding;
   if(!isSize(arg)) { return; }
   const size = arg;
-  classList.add(...paddingClasses(size || 'none', modifiers));
+  addClasses(classList, paddingClasses(size || 'none', modifiers));
 });
 
 export const margin = Vue.directive(directiveName('margin'), ({ classList }, binding) => {
   const { arg, modifiers } = binding;
   if(!isSize(arg)) { return; }
   const size = arg;
-  classList.add(...marginClasses(size || 'none', modifiers));
+  addClasses(classList, marginClasses(size || 'none', modifiers));
 });
 
 type FontWeight = 'light' | 'bold' | 'normal';
@@ -61,7 +64,7 @@ const isFontWeight = (value: any): value is FontWeight => value === 'light' || v
 export const fontWeight = Vue.directive(directiveName('font-weight'), ({ classList }, binding) => {
   const { arg } = binding;
   if(!isFontWeight(arg)) { return; }
-  classList.add(`fd-has-font-weight-${arg}`);
+  addClasses(classList, [`fd-has-font-weight-${arg}`]);
 });
 
 type FontFamily = 'body' | 'header' | 'code';
@@ -69,7 +72,7 @@ const isFontFamily = (value: any): value is FontFamily => ['body', 'header', 'co
 export const fontFamily = Vue.directive(directiveName('font-family'), ({ classList }, binding) => {
   const { arg } = binding;
   if(!isFontFamily(arg)) { return; }
-  classList.add(`fd-has-font-family-${arg}`);
+  addClasses(classList, [`fd-has-font-family-${arg}`]);
 });
 
 const typeMapping = { '-1': 'minus-1', '0': '0', '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6' };
@@ -79,5 +82,5 @@ const isType = (value: any): value is Type => Types.includes(value);
 export const type = Vue.directive(directiveName('type'), ({ classList }, binding) => {
   const { arg } = binding;
   if(!isType(arg)) { return 'fd-has-type'; }
-  classList.add(`fd-has-type-${typeMapping[arg]}`);
+  addClasses(classList, [`fd-has-type-${typeMapping[arg]}`]);
 });
