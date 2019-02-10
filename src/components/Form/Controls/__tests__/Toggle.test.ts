@@ -1,8 +1,35 @@
 import { assert } from 'chai';
 import { mount, createLocalVue } from '@vue/test-utils';
 import Toggle from '../Toggle.vue';
+import FundamentalVue from '@/index';
 
 describe('Toggle', () => {
+  it('input event is emitted once', async () => {
+    const localVue = createLocalVue();
+    localVue.use(FundamentalVue);
+    const Wrapper = localVue.extend({
+      data: () => ({
+        active: false,
+      }),
+      template: `
+        <FdFormGroup>
+          <FdFormItem label="toggle">
+            <FdToggle v-model="active" />
+          </FdFormItem>
+        </FdFormGroup>
+      `,
+    });
+    const wrapper = mount(Wrapper, { localVue });
+    await localVue.nextTick();
+    assert.isFalse(wrapper.vm.active);
+    const toggle = wrapper.find(Toggle);
+    toggle.find('input').trigger('click');
+    await localVue.nextTick();
+    const events = toggle.emitted('input');
+    assert.deepEqual(events, [[true]]);
+    assert.isTrue(wrapper.vm.active);
+  });
+
   it('does not react on click outside the input element when disabled', async () => {
     const localVue = createLocalVue();
     const Parent = localVue.extend({
@@ -22,25 +49,6 @@ describe('Toggle', () => {
     assert.isFalse(wrapper.vm.on, 'after click on should still be false');
   });
 
-  it('reacts on click outside the input element', async () => {
-    const localVue = createLocalVue();
-    const Parent = localVue.extend({
-      components: { Toggle },
-      template: `<Toggle v-model="on" />`,
-      data() {
-        return {
-          on: false,
-        };
-      },
-    });
-    const wrapper = mount(Parent, { localVue });
-    assert.isFalse(wrapper.vm.on, 'toggle should be on');
-    const toggle = wrapper.find(Toggle);
-    toggle.trigger('click');
-    await localVue.nextTick();
-    assert.isTrue(wrapper.vm.on, 'after click on should be true');
-  });
-
   // Toggles which are not embedded in a form item have no default id.
   // If they have no id they should not render the id attribute.
   // The generated html was kinda funky:
@@ -56,15 +64,15 @@ describe('Toggle', () => {
   // with the same size, no matter what value the size prop had.
   describe('renders correctly with size', () => {
     it('xs', () => {
-      const toggle = mount(Toggle, { propsData: { size: 'xs' }});
+      const toggle = mount(Toggle, { propsData: { size: 'xs' } });
       assert(toggle.find('.fd-toggle').classes('fd-toggle--xs'));
     });
     it('s', () => {
-      const toggle = mount(Toggle, { propsData: { size: 's' }});
+      const toggle = mount(Toggle, { propsData: { size: 's' } });
       assert(toggle.find('.fd-toggle').classes('fd-toggle--s'));
     });
     it('l', () => {
-      const toggle = mount(Toggle, { propsData: { size: 'l' }});
+      const toggle = mount(Toggle, { propsData: { size: 'l' } });
       assert(toggle.find('.fd-toggle').classes('fd-toggle--l'));
     });
   });

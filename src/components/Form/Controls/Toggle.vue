@@ -1,5 +1,5 @@
 <template>
-  <span @click="toggleState" :class="classes">
+  <span :class="classes">
     <input
       :id="formItemId"
       type="checkbox"

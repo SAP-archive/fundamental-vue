@@ -1,4 +1,4 @@
-import { expect, assert } from 'chai';
+import { assert } from 'chai';
 import { mount, createLocalVue } from '@vue/test-utils';
 import MenuList from '../../Menu/MenuList.vue';
 import { Popover } from '../../Popover';

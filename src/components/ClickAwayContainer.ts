@@ -6,12 +6,13 @@ const CLICK_OUTSIDE_EVENT = 'clickOutside';
 const pathToRootFrom = (element: Element): Element[] => {
   const result: Element[] = [element];
   let parent: Element | null = element.parentElement;
-  while(parent != null) {
+  while (parent != null) {
     result.push(parent);
     parent = parent.parentElement;
   }
   return result;
-}
+};
+
 // Our awesome click away component comes with a few nice enhancements.
 // You use this component in order to detect clicks outside of a component/element.
 // For example:
@@ -42,8 +43,8 @@ export default Vue.extend({
     }
   },
   methods: {
-    click({target}: Event) {
-      if(target == null) { return; }
+    click({ target }: Event) {
+      if (target == null) { return; }
       const path = pathToRootFrom(target as Element);
       const isClickOutsideSelf = !(path.indexOf(this.$el) >= 0);
       if (isClickOutsideSelf === false) {
