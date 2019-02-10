@@ -2,9 +2,6 @@ import { Store } from './../Store';
 import { assert } from 'chai';
 
 describe('Store', () => {
-
-  // beforeEach(() => store = new Store());
-
   it('correctly handles item registration', () => {
     const store = new Store();
     const itemId = 'item1';

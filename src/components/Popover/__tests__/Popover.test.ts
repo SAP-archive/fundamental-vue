@@ -1,38 +1,61 @@
 import { expect, assert } from 'chai';
-import { shallowMount } from '@vue/test-utils';
-import Popover from '../Popover.vue';
+import { mount, createLocalVue } from '@vue/test-utils';
 import MenuList from '../../Menu/MenuList.vue';
+import { Popover } from '../../Popover';
+import FundamentalVue from '@/index';
 
 describe('Popover', () => {
-    it('renders menu list as default slot', () => {
-      const wrapper = shallowMount(Popover, {
-        slots: {
-          default: 'Hi',
-        },
-      });
-      expect(wrapper.find(MenuList).exists()).to.equal(true);
+  let localVue = createLocalVue();
+  beforeEach(() => {
+    localVue = createLocalVue();
+    localVue.use(FundamentalVue);
   });
-    it('renders custom content in body slot', () => {
-    const wrapper = shallowMount(Popover, {
-      slots: {
-        body: '<div>Hi</div>',
-      },
-    });
-    expect(wrapper.find('div').text()).to.include('Hi');
-  });
-    it('clicking control slot content emits visible event', () => {
-    const wrapper = shallowMount(Popover, {
-      slots: {
-        control: '<p>Hi</p>',
-      },
-    });
-    const emitVisibleArray = wrapper.emitted().visible;
-    // Prior to click, wrapper.emitted().visible = [ [false] ]
-    assert.lengthOf(emitVisibleArray, 1);
-    wrapper.find('p').trigger('click');
-    // After click, wrapper.emitted().visible = [ [false], [true] ]
-    assert.lengthOf(emitVisibleArray, 2);
-    expect(wrapper.emitted().visible[1][0]).to.equal(true);
 
+  it('renders menu list as default slot', async () => {
+    const wrapper = mount({
+      template: `
+        <FdPopover>
+        <FdMenuItem>Hi</FdMenuItem>
+        </FdPopover>
+        `,
+    }, { localVue });
+    await localVue.nextTick();
+    const list = wrapper.find(MenuList);
+    assert.isDefined(list);
+  });
+
+  it('renders custom content in body slot', async () => {
+    const wrapper = mount({
+      template: `
+        <FdPopover>
+        <template v-slot:default>
+        <div>Hi</div>
+        </template>
+        </FdPopover>
+        `,
+    }, { localVue });
+    await localVue.nextTick();
+    assert.include(wrapper.find('div').text(), 'Hi');
+  });
+
+  it('clicking control slot content emits visible event', async () => {
+    const wrapper = mount({
+      template: `
+        <FdPopover>
+        <template v-slot:control>
+          <button>show</button>
+        </template>
+        <FdMenuItem>hi</FdMenuItem>
+        </FdPopover>
+        `,
+    }, { localVue });
+    await localVue.nextTick();
+    wrapper.find('button').trigger('click');
+    wrapper.find('button').trigger('click');
+    // After click, wrapper.emitted().visible = [ [false], [true] ]
+    const popover = wrapper.find(Popover);
+    const events = popover.emitted('visible');
+    assert.lengthOf(events, 2);
+    assert.deepEqual(events, [[true], [false]]);
   });
 });
