@@ -1,20 +1,14 @@
 <script lang="ts">
 import Vue, { CreateElement, VNode } from "vue";
 import { ModeType, Config, Store } from "./Model";
-import { warn } from "@/core";
+import { withTargetLocation, mixins } from "@/mixins";
 
-export default Vue.extend({
+export default mixins(withTargetLocation("#")).extend({
   name: "FdSideNavLink",
   inject: {
     sideNavStore: { default: null },
     sideNavItem: { default: null },
     $config: { from: "config" }
-  },
-  props: {
-    to: {
-      type: [Object, String],
-      default: "#"
-    }
   },
   computed: {
     parentItemId(): string {
@@ -54,7 +48,10 @@ export default Vue.extend({
         {
           staticClass: "fd-side-nav__link",
           class: {
-            "has-child": this.hasChildren,
+            "has-child": this.hasChildren
+          },
+          nativeOn: {
+            click: this.onRouterLinkClick
           },
           props: {
             to: this.to,
@@ -72,7 +69,7 @@ export default Vue.extend({
       return renderRouterLink();
     }
     return h(
-      'a',
+      "a",
       {
         attrs,
         class: {
@@ -87,21 +84,18 @@ export default Vue.extend({
     );
   },
   methods: {
-    onClick(event: Event): void {
-      event.preventDefault();
-      event.stopPropagation();
+    selectSelf() {
       this.store.selectedId = this.parentItemId;
       this.store.toggleExpanded(this.parentItemId);
-
-      const { to, $router } = this as any;
-      if (to != null) {
-        if ($router != null) {
-          $router.push(to);
-        } else {
-          warn(`Tried to navigate to ${to} but $router not found.`);
-        }
-      }
-      this.$emit("click", this);
+    },
+    onRouterLinkClick(event: Event): void {
+      event.preventDefault();
+      event.stopPropagation();
+      this.selectSelf();
+    },
+    onClick(event: Event): void {
+      this.selectSelf();
+      this.pushLocation(event);
     }
   }
 });

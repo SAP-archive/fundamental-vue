@@ -3,9 +3,9 @@
 <template>
   <div>
     <FdBreadcrumb>
-      <FdBreadcrumbItem @click="handleClick">Link Text</FdBreadcrumbItem>
-      <FdBreadcrumbItem>Link Text</FdBreadcrumbItem>
-      <FdBreadcrumbItem>Link Text</FdBreadcrumbItem>
+      <FdBreadcrumbItem @click.prevent="handleClick">Home</FdBreadcrumbItem>
+      <FdBreadcrumbItem href="#helloworld">Products</FdBreadcrumbItem>
+      <FdBreadcrumbItem to="#chris">Butter Pretzel</FdBreadcrumbItem>
     </FdBreadcrumb>
   </div>
 </template>

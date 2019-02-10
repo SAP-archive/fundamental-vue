@@ -12,6 +12,8 @@ type Orientation = keyof typeof orientationMapping;
 const Orientations = Object.keys(orientationMapping) as Orientation[];
 const isOrientation = (value: any) => Orientations.indexOf(value) >= 0;
 
+const APP_NAV_CLASS = 'fd-app__navigation';
+
 export default Vue.extend({
   name: "FdAppNavigation",
   props: {
@@ -23,7 +25,7 @@ export default Vue.extend({
   },
   computed: {
     classes(): string[] {
-      return ["fd-app__navigation", `fd-app__navigation--${this.orientation}`];
+      return [APP_NAV_CLASS, `${APP_NAV_CLASS}--${this.orientation}`];
     }
   },
 });

@@ -20,6 +20,8 @@ import { paddingClasses } from '@/directives/design-system-utilities';
 
 const isValidColSpan = (value: number) => value >= 2 && value <= 6;
 
+const PANEL_CLASS = 'fd-panel';
+
 export default Vue.extend({
   name: "FdPanel",
   props: {
@@ -48,14 +50,14 @@ export default Vue.extend({
   computed: {
     bodyClasses(): string[] {
       const classes = !this.condensed ? [] : paddingClasses('none');
-      return ['fd-panel__body', ...classes];
+      return [`${PANEL_CLASS}__body`, ...classes];
     },
     footerClasses(): string[] {
       const classes = !this.condensedFooter ? [] : paddingClasses('none');
-      return ['fd-panel__footer', ...classes];
+      return [`${PANEL_CLASS}__footer`, ...classes];
     },
     classes(): object {
-      const staticClasses = ["fd-panel"];
+      const staticClasses = [PANEL_CLASS];
       const { span } = this;
       return span == null
         ? staticClasses

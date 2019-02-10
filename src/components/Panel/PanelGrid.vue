@@ -5,6 +5,8 @@
 </template>
 
 <script lang="ts">
+const PANEL_GRID_CLASS = "fd-panel-grid";
+
 import Vue from "vue";
 export default Vue.extend({
   name: "FdPanelGrid",
@@ -17,15 +19,13 @@ export default Vue.extend({
     nogap: { type: Boolean, default: false }
   },
   computed: {
-    classes(): object {
+    classes(): string[] {
       const col = this.col;
-      const colClass =
-        col == null ? {} : { [`fd-panel-grid--${col}col`]: true };
-      return {
-        "fd-panel-grid": true,
-        "fd-panel-grid--nogap": this.nogap,
-        ...colClass
-      };
+      return [
+        PANEL_GRID_CLASS,
+        ...(col != null ? [`${PANEL_GRID_CLASS}--${col}col`] : []),
+        ...(this.nogap ? [`${PANEL_GRID_CLASS}--nogap`] : [])
+      ];
     }
   }
 });

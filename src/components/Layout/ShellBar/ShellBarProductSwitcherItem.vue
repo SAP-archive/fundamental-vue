@@ -1,12 +1,7 @@
 <template>
   <li>
     <slot>
-      <template v-if="href == null && to != null">
-        <!-- content fallback -->
-        <ShellBarProductSwitcherItemImg :src="src"/>
-        <ShellBarProductSwitcherItemTitle>{{title}}</ShellBarProductSwitcherItemTitle>
-      </template>
-      <a v-else :href="hrefForLink" @click="onClick">
+      <a :href="hrefForLink" @click.prevent="onClick">
         <ShellBarProductSwitcherItemImg :src="src"/>
         <ShellBarProductSwitcherItemTitle>{{title}}</ShellBarProductSwitcherItemTitle>
       </a>
@@ -15,22 +10,19 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { warn } from "@/core";
-import ShellBarProductSwitcherItemImg from './ShellBarProductSwitcherItemImg.vue';
-import ShellBarProductSwitcherItemTitle from './ShellBarProductSwitcherItemTitle.vue';
+import ShellBarProductSwitcherItemImg from "./ShellBarProductSwitcherItemImg.vue";
+import ShellBarProductSwitcherItemTitle from "./ShellBarProductSwitcherItemTitle.vue";
+import { withTargetLocation, mixins } from "@/mixins";
 
-export default Vue.extend({
+export default mixins(withTargetLocation()).extend({
   name: "FdShellBarProductSwitcherItem",
-  components: { ShellBarProductSwitcherItemImg, ShellBarProductSwitcherItemTitle },
+  components: {
+    ShellBarProductSwitcherItemImg,
+    ShellBarProductSwitcherItemTitle
+  },
   props: {
     src: { type: String, default: "" },
     title: { type: String, default: "" },
-    to: {
-      type: [String, Object],
-      required: false,
-      default: null
-    },
     href: {
       type: String,
       required: false,
@@ -44,18 +36,12 @@ export default Vue.extend({
   },
   methods: {
     onClick(event: MouseEvent) {
-      // TODO: Do not always prevent default. Only if there is no to value.
-      event.preventDefault();
-      const { to, $router } = (this as any);
-      if (to != null) {
-        if ($router != null) {
-          $router.push(to);
-        } else {
-          warn(`Tried to navigate to ${to} but $router not found.`);
-        }
+      if (this.to != null) {
+        this.pushLocation(event);
+        return;
       }
       this.$emit("click", this);
     }
-  },
+  }
 });
 </script>

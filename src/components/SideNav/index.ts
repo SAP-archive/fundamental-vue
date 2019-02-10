@@ -3,7 +3,6 @@ import SideNavSubLink from './SideNavSubLink.vue';
 import SideNavSubList from './SideNavSubList.vue';
 import SideNavGroupTitle from './SideNavGroupTitle.vue';
 import SideNavGroup from './SideNavGroup.vue';
-
 import SideNavIcon from './SideNavIcon.vue';
 import SideNavList from './SideNavList.vue';
 import SideNavLink from './SideNavLink.vue';

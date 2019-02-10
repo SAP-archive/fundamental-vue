@@ -5,23 +5,19 @@
     class="fd-side-nav__sublink"
     :class="classes"
     :aria-selected="selected"
-  ><slot /></a>
+  >
+    <slot/>
+  </a>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import { Store } from "./Model";
-import { warn } from "@/core";
+import { withTargetLocation, mixins } from "@/mixins";
 
-export default Vue.extend({
+// TODO: Refactor so that SideNavSubLink uses SideNavLink
+export default mixins(withTargetLocation("#")).extend({
   name: "FdSideNavSubLink",
   inject: ["sideNavStore", "sideNavSubItem"],
-  props: {
-    to: {
-      type: [Object, String],
-      default: "#"
-    }
-  },
   computed: {
     selected(): boolean {
       return this.store.selected(this.parentId);
@@ -43,15 +39,7 @@ export default Vue.extend({
       event.preventDefault();
       event.stopPropagation();
       this.store.selectedId = this.parentId;
-      const { to, $router } = (this as any);
-      if (to != null) {
-        if ($router != null) {
-          $router.push(to);
-        } else {
-          warn(`Tried to navigate to ${to} but $router not found.`);
-        }
-      }
-      this.$emit("click", this);
+      this.pushLocationIfPossible();
     }
   }
 });
