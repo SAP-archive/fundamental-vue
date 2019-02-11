@@ -3,16 +3,6 @@ import { warn } from '@/core';
 
 const CLICK_OUTSIDE_EVENT = 'clickOutside';
 
-const pathToRootFrom = (element: Element): Element[] => {
-  const result: Element[] = [element];
-  let parent: Element | null = element.parentElement;
-  while (parent != null) {
-    result.push(parent);
-    parent = parent.parentElement;
-  }
-  return result;
-};
-
 // Our awesome click away component comes with a few nice enhancements.
 // You use this component in order to detect clicks outside of a component/element.
 // For example:
@@ -45,17 +35,17 @@ export default Vue.extend({
   methods: {
     click({ target }: Event) {
       if (target == null) { return; }
-      const path = pathToRootFrom(target as Element);
-      const isClickOutsideSelf = !(path.indexOf(this.$el) >= 0);
-      if (isClickOutsideSelf === false) {
+      const targetNode = target as Node;
+
+      const isClickOnSelf = this.$el.contains(targetNode);
+      if (isClickOnSelf) {
         return;
       }
+
       // We now have to check the ignored elements
       const ignoredElements = this.ignoredElements();
       for (const ignoredElement of ignoredElements) {
-        if (path.includes(ignoredElement)) {
-          return;
-        }
+        if(ignoredElement.contains(targetNode)) { return; }
       }
       this.$emit(CLICK_OUTSIDE_EVENT, event);
     },
@@ -63,7 +53,7 @@ export default Vue.extend({
   watch: {
     active: {
       immediate: true,
-      handler(isActive: boolean, wasActive: boolean) {
+      handler(isActive: boolean, wasActive: boolean): void {
         const { documentElement } = document;
         // We are listening for clicks on the documentElement. Listening for clicks
         // on the body elements also works but less reliably. For example if the height
