@@ -1,8 +1,8 @@
-import allPages from '@/docs/pages/pages.json';
-import { VueConstructor } from 'vue';
-import { getExamples } from '@/docs/pages';
-import { frameworkDocumentation } from '@/docs/api';
-import { log } from '@/core';
+import allPages from "@/docs/pages/pages.json";
+import { VueConstructor } from "vue";
+import { getExamples } from "@/docs/pages";
+import { frameworkDocumentation } from "@/docs/api";
+import { log } from "@/core";
 
 type ExampleOptions = {
   id: string;
@@ -23,7 +23,16 @@ export class Example {
   component: VueConstructor;
   condensed: boolean;
   fullscreenOnly: boolean;
-  constructor({ id, title, code, tip, docs, component, condensed, fullscreenOnly }: ExampleOptions) {
+  constructor({
+    id,
+    title,
+    code,
+    tip,
+    docs,
+    component,
+    condensed,
+    fullscreenOnly
+  }: ExampleOptions) {
     this.id = id;
     this.title = title;
     this.code = code;
@@ -47,7 +56,7 @@ class Page {
   title: string;
   related: string[];
   icon: string;
-  constructor({ slug, title, related, icon}: PageOptions) {
+  constructor({ slug, title, related, icon }: PageOptions) {
     this.slug = slug;
     this.title = title;
     this.related = related;
@@ -56,9 +65,8 @@ class Page {
 }
 
 export default class DocumentationLoader {
-
   static install(VueCtor: VueConstructor) {
-    log('Installing DocumentationLoader Plugin…');
+    log("Installing DocumentationLoader Plugin…");
     VueCtor.prototype.$docLoader = new DocumentationLoader();
   }
 
@@ -71,27 +79,28 @@ export default class DocumentationLoader {
   exampleForId(id: string): Example | undefined {
     const { pages } = this;
     const withId = (example: Example) => example.id === id;
-    for(const page of pages) {
+    for (const page of pages) {
       const examples = this.examplesForPage(page);
       const example = examples.find(withId);
-      if(example != null) {
+      if (example != null) {
         return example;
       }
     }
   }
 
-  examplesForPage({slug}: Page): Example[] {
+  examplesForPage({ slug }: Page): Example[] {
     return this.examplesForPageWithSlug(slug);
   }
 
   examplesForPageWithSlug(slug: string): Example[] {
     const page = this.pageForSlug(slug);
-    if(page == null) { return []; }
-    return getExamples(page.title)
-    .map(example => new Example(example));
+    if (page == null) {
+      return [];
+    }
+    return getExamples(page.title).map(example => new Example(example));
   }
 
-  relatedComponentDocumentation({related}: Page) {
+  relatedComponentDocumentation({ related }: Page) {
     const { components } = frameworkDocumentation;
     return related.map(componentName => {
       return components[componentName];
@@ -99,7 +108,9 @@ export default class DocumentationLoader {
   }
   relatedComponentDocumentationForPageWithSlug(slug: string) {
     const page = this.pageForSlug(slug);
-    if(page == null) { return []; }
+    if (page == null) {
+      return [];
+    }
     return this.relatedComponentDocumentation(page);
   }
 

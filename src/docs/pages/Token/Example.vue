@@ -13,9 +13,9 @@
 export default {
   methods: {
     click() {
-      window.alert('Clicked!');
-    },
-  },
+      window.alert("Clicked!");
+    }
+  }
 };
 </script>
 

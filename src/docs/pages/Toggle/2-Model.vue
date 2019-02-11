@@ -5,15 +5,17 @@
 
 <template>
   <div>
-    <p>The following toggles will stay in sync and control the popover's visibilit.</p>
+    <p>
+      The following toggles will stay in sync and control the popover's
+      visibilit.
+    </p>
     <FdFormSet>
-    <FdFormItem :label="String(isOn)">
-      <FdToggle v-model="isOn"  />
-    </FdFormItem>
-    <FdFormItem :label="String(isOn)">
-      <FdToggle v-model="isOn" />
-    </FdFormItem>
-
+      <FdFormItem :label="String(isOn)">
+        <FdToggle v-model="isOn" />
+      </FdFormItem>
+      <FdFormItem :label="String(isOn)">
+        <FdToggle v-model="isOn" />
+      </FdFormItem>
     </FdFormSet>
     <FdButton @click="isOn = !isOn">Toggle</FdButton>
     <br /><br />
@@ -26,5 +28,5 @@
 <script>
 export default {
   data: () => ({ isOn: false })
-}
+};
 </script>

@@ -9,10 +9,10 @@
 // > 1. Make sure to import 'vue' before declaring augmented types
 //
 // @ts-ignore TS6133
-import Vue from 'vue';
-import DocumentationLoader from './DocumentationLoader';
+import Vue from "vue";
+import DocumentationLoader from "./DocumentationLoader";
 
-declare module 'vue/types/vue' {
+declare module "vue/types/vue" {
   // Uncomment the following line once the interface blow contains anything.
   // tslint:disable-next-line:no-empty-interface
   interface Vue {

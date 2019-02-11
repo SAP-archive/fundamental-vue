@@ -25,8 +25,8 @@
 export default {
   data() {
     return {
-      activeButton: 1,
+      activeButton: 1
     };
-  },
+  }
 };
 </script>

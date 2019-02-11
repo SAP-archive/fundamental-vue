@@ -16,20 +16,20 @@ Use the `selectionMode`-prop to set the selection mode of your choice.
         <FdLegend>Selection Mode</FdLegend>
         <FdFormGroup inline>
           <FdFormItem label="None">
-            <FdRadio value="none" v-model="selectionMode"/>
+            <FdRadio value="none" v-model="selectionMode" />
           </FdFormItem>
           <FdFormItem label="Single">
-            <FdRadio value="single" v-model="selectionMode"/>
+            <FdRadio value="single" v-model="selectionMode" />
           </FdFormItem>
           <FdFormItem label="Multiple">
-            <FdRadio value="multiple" v-model="selectionMode"/>
+            <FdRadio value="multiple" v-model="selectionMode" />
           </FdFormItem>
         </FdFormGroup>
       </FdFieldSet>
     </FdFormSet>
 
     <FdTable :headers="headers" :selectionMode="selectionMode" :items="items">
-      <template slot="row" slot-scope="{item, changeSelection, selected}">
+      <template slot="row" slot-scope="{ item, changeSelection, selected }">
         <FdTableRow>
           <FdTableCell>
             <FdRowSelectionIndicator
@@ -38,9 +38,9 @@ Use the `selectionMode`-prop to set the selection mode of your choice.
               @change="changeSelection"
             />
           </FdTableCell>
-          <FdTableCell>{{item.firstName}}</FdTableCell>
-          <FdTableCell>{{item.lastName}}</FdTableCell>
-          <FdTableCell>{{item.building}}</FdTableCell>
+          <FdTableCell>{{ item.firstName }}</FdTableCell>
+          <FdTableCell>{{ item.lastName }}</FdTableCell>
+          <FdTableCell>{{ item.building }}</FdTableCell>
         </FdTableRow>
       </template>
     </FdTable>

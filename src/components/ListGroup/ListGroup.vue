@@ -1,10 +1,12 @@
 <template>
-  <ul class='fd-list-group'><slot /></ul>
+  <ul class="fd-list-group">
+    <slot />
+  </ul>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 export default Vue.extend({
-  name: 'FdListGroup',
+  name: "FdListGroup"
 });
 </script>

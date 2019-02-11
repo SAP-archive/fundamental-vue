@@ -10,15 +10,17 @@ export type PluginOptions<Log = LogOptions> = {
 export type RawPluginOptions = Partial<PluginOptions<RawLogOptions>>;
 
 const makeDefaultOptions = (): PluginOptions => ({
-  log: { welcome: false, registerComponent: false },
+  log: { welcome: false, registerComponent: false }
 });
-export const normalizedPluginOptions = (options: RawPluginOptions = makeDefaultOptions()): PluginOptions => {
+export const normalizedPluginOptions = (
+  options: RawPluginOptions = makeDefaultOptions()
+): PluginOptions => {
   const { log = {} } = options;
   const defaultLog = makeDefaultOptions().log;
   return {
     log: {
       ...log,
-      ...defaultLog,
-    },
+      ...defaultLog
+    }
   };
 };

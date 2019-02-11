@@ -1,6 +1,10 @@
 <template>
   <div class="fd-time__item" :aria-label="ariaLabel">
-    <TimeAction icon="navigation-up-arrow" type="standard" @click="increaseValue" />
+    <TimeAction
+      icon="navigation-up-arrow"
+      type="standard"
+      @click="increaseValue"
+    />
     <TimeInput
       :value="sanitizeInputValue"
       @input="timeUpdate"
@@ -18,9 +22,9 @@
 import { PropValidator } from "vue/types/options";
 import { mixins } from "@/mixins";
 import TimeRange from "../mixins/TimeRange";
-import TimeAction from './TimeAction.vue';
-import TimeInput from './TimeInput.vue';
-import { TimeType, isTimeType } from './TimeType';
+import TimeAction from "./TimeAction.vue";
+import TimeInput from "./TimeInput.vue";
+import { TimeType, isTimeType } from "./TimeType";
 
 export default mixins(TimeRange).extend({
   name: "FdTime",

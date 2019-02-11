@@ -1,6 +1,6 @@
 <template>
   <div class="rendered-markdown" style="padding: 50px;">
-    <div v-html="html" style="font-size: 1.2em; margin-bottom: 12px;"/>
+    <div v-html="html" style="font-size: 1.2em; margin-bottom: 12px;" />
   </div>
 </template>
 

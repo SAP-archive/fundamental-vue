@@ -2,15 +2,23 @@
   <div class="fd-popover">
     <!-- Complicated Trigger Control logic: BEGIN-->
     <div class="fd-popover__control" ref="control">
-      <div v-if="$slots.control != null" @click="toggle" role="button"><slot name="control" /></div>
-      <slot v-else :toggle="toggle" :visible="currentPopoverVisible" name="control">
+      <div v-if="$slots.control != null" @click="toggle" role="button">
+        <slot name="control" />
+      </div>
+      <slot
+        v-else
+        :toggle="toggle"
+        :visible="currentPopoverVisible"
+        name="control"
+      >
         <Button
           class="fd-popover__control"
           :aria-controls="uid"
           :aria-expanded="currentPopoverVisible"
           aria-haspopup="true"
           @click="toggle"
-        >{{title}}</Button>
+          >{{ title }}</Button
+        >
       </slot>
     </div>
     <!-- Complicated Trigger Control logic: END-->
@@ -19,9 +27,9 @@
       :id="uid"
       class="fd-popover__body"
       :class="{
-            'fd-popover__body--right': this.placement === 'right',
-            'fd-popover__body--no-arrow': this.noArrow,
-          }"
+        'fd-popover__body--right': this.placement === 'right',
+        'fd-popover__body--no-arrow': this.noArrow
+      }"
       @clickOutside="hidePopover"
       :active="currentPopoverVisible"
       :aria-hidden="!currentPopoverVisible"
@@ -29,7 +37,7 @@
       <slot name="body">
         <Menu @select="handleItemClick">
           <MenuList>
-            <slot/>
+            <slot />
           </MenuList>
         </Menu>
       </slot>
@@ -47,12 +55,12 @@ import { warn } from "@/core";
 const pathToRootFrom = (element: Element): Element[] => {
   const result: Element[] = [];
   let parent: Element | null = element.parentElement;
-  while(parent != null) {
+  while (parent != null) {
     result.push(parent);
     parent = parent.parentElement;
   }
   return result;
-}
+};
 
 const popoverPlacementMapping = {
   left: "left", // default
@@ -84,7 +92,7 @@ export default mixins(Uid).extend({
     popoverVisible: { type: Boolean, default: false }
   },
   computed: {
-    ignoredElements(): (() => Element[]) {
+    ignoredElements(): () => Element[] {
       const vm = this;
       return () => {
         return vm.controlElement != null ? [vm.controlElement] : [];
@@ -116,11 +124,13 @@ export default mixins(Uid).extend({
       console.log("controlElement", this.controlElement);
       console.log("element", element);
       const ignoredElement = this.controlElement;
-      if(ignoredElement == null) { return false; }
+      if (ignoredElement == null) {
+        return false;
+      }
       const path = pathToRootFrom(element);
       console.log(path);
       const index = path.indexOf(ignoredElement);
-      const ignore = index  >= 0;
+      const ignore = index >= 0;
       // debugger;
       return ignore;
     },

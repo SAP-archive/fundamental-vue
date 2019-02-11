@@ -1,11 +1,11 @@
 <template>
   <li>
     <div v-if="canHaveAddon" class="fd-menu__addon-before">
-      <slot name="addon"/>
+      <slot name="addon" />
     </div>
-    <slot v-if="hasCustomAnchor"/>
+    <slot v-if="hasCustomAnchor" />
     <a v-else href="#" class="fd-menu__item" @click.prevent="onClick">
-      <slot/>
+      <slot />
     </a>
   </li>
 </template>

@@ -1,10 +1,10 @@
 <template>
-   <div class='fd-shellbar'><slot /></div>
+  <div class="fd-shellbar"><slot /></div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 export default Vue.extend({
-  name: 'FdShellBar',
+  name: "FdShellBar"
 });
 </script>

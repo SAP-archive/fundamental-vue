@@ -6,8 +6,8 @@
       @change="onChange"
       :disabled="disabled"
       :checked="currentOn"
-    >
-    <span class="fd-toggle__switch" role="presentation"/>
+    />
+    <span class="fd-toggle__switch" role="presentation" />
   </span>
 </template>
 
@@ -106,4 +106,3 @@ export default Vue.extend({
   }
 });
 </script>
-

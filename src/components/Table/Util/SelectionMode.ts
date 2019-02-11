@@ -1,7 +1,8 @@
 export enum SelectionMode {
-  single = 'single',
-  multiple = 'multiple',
-  none = 'none',
+  single = "single",
+  multiple = "multiple",
+  none = "none"
 }
 export const SelectionModes = Object.keys(SelectionMode);
-export const SelectionModeValidator = (value: any) => SelectionModes.indexOf(value) >= 0;
+export const SelectionModeValidator = (value: any) =>
+  SelectionModes.indexOf(value) >= 0;

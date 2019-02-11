@@ -6,22 +6,22 @@
 It will be rare to see this component used outside of it being composed in the time-picker component.
 </docs>
 <template>
-    <div>
-        <FdTime :value="value" @update:value="onTimeUpdate" type='hour24'></FdTime>
-    </div>
+  <div>
+    <FdTime :value="value" @update:value="onTimeUpdate" type="hour24"></FdTime>
+  </div>
 </template>
 
 <script>
 export default {
-    methods: {
-        onTimeUpdate(val){
-            // time update handler
-        }
-    },
-    data() {
-        return {
-            value : 17
-        };
+  methods: {
+    onTimeUpdate(val) {
+      // time update handler
     }
-}
+  },
+  data() {
+    return {
+      value: 17
+    };
+  }
+};
 </script>

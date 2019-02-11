@@ -9,7 +9,8 @@
       :aria-label="ariaLabel"
       :aria-controls="ariaControls"
       @click="$emit('click')"
-    >{{title}}</Button>
+      >{{ title }}</Button
+    >
   </div>
 </template>
 
@@ -17,7 +18,7 @@
 import Vue from "vue";
 import { Prop } from "vue/types/options";
 import ButtonTypes from "@/components/Button/ButtonTypes";
-import {Button} from '@/components/Button';
+import { Button } from "@/components/Button";
 
 const isButtonType = (value: any) => ButtonTypes.indexOf(value) >= 0;
 export default Vue.extend({

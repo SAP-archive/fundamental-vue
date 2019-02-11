@@ -5,7 +5,11 @@
   <FdMenu>
     <FdMenuList>
       <FdMenuItem><a href="https://sap.com">Option 1</a></FdMenuItem>
-      <FdMenuItem><a href="https://sap.com" target="_blank">Goto sap.com (new window)</a></FdMenuItem>
+      <FdMenuItem
+        ><a href="https://sap.com" target="_blank"
+          >Goto sap.com (new window)</a
+        ></FdMenuItem
+      >
       <FdMenuItem><a href="https://sap.com">Option 3</a></FdMenuItem>
       <FdMenuItem><a href="https://sap.com">Option 4</a></FdMenuItem>
     </FdMenuList>

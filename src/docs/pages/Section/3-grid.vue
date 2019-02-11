@@ -3,7 +3,7 @@
 <template>
   <FdSection>
     <FdPanelGrid>
-      <FdPanel :span=2>Panel 1</FdPanel>
+      <FdPanel :span="2">Panel 1</FdPanel>
       <FdPanel>Panel 2</FdPanel>
       <FdPanel>Panel 3</FdPanel>
       <FdPanel>Panel 4</FdPanel>

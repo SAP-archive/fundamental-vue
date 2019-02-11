@@ -1,5 +1,10 @@
 <template>
-  <div :id="uid" role="tabpanel" class="fd-tabs__panel" :aria-expanded="ariaExpanded">
+  <div
+    :id="uid"
+    role="tabpanel"
+    class="fd-tabs__panel"
+    :aria-expanded="ariaExpanded"
+  >
     <slot />
   </div>
 </template>
@@ -18,7 +23,7 @@ export default mixins(Uid).extend({
   props: {
     label: { type: String, default: null } as PropValidator<string | null>,
     name: { type: String, default: null } as PropValidator<string | null>,
-    disabled: { type: Boolean, default: false } as PropValidator<Boolean>,
+    disabled: { type: Boolean, default: false } as PropValidator<Boolean>
   },
   computed: {
     ariaExpanded(): string {
@@ -97,4 +102,3 @@ export default mixins(Uid).extend({
   }
 });
 </script>
-

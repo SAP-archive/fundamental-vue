@@ -10,7 +10,7 @@
     class="fd-form__control"
     :class="classes"
     :placeholder="placeholder"
-  >
+  />
 </template>
 
 <script lang="ts">
@@ -36,7 +36,7 @@ export default Vue.extend({
     state: {
       default: null,
       type: String,
-      validator: (value: string) => InputStates.indexOf(value) >= 0,
+      validator: (value: string) => InputStates.indexOf(value) >= 0
     } as PropValidator<InputState | null>,
     required: { type: Boolean, default: false } as PropValidator<boolean>,
     compact: { type: Boolean, default: false } as PropValidator<boolean>,
@@ -91,4 +91,3 @@ export default Vue.extend({
   }
 });
 </script>
-

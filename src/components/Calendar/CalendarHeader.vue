@@ -7,8 +7,8 @@
         :disabled="!hasPrevious"
         @click="$emit('previous')"
       />
-      <CalendarAction :title="month" @click="$emit('month')"/>
-      <CalendarAction :title="String(this.year)" @click="$emit('year')"/>
+      <CalendarAction :title="month" @click="$emit('month')" />
+      <CalendarAction :title="String(this.year)" @click="$emit('year')" />
       <CalendarAction
         type="standard"
         icon="slim-arrow-right"

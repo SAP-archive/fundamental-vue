@@ -5,11 +5,11 @@ You can use `striped` on `FdTable` in order enable alternating colored rows.
 
 <template>
   <FdTable striped :headers="headers" :items="items">
-    <template slot="row" slot-scope="{item}">
+    <template slot="row" slot-scope="{ item }">
       <FdTableRow>
-        <FdTableCell>{{item.firstName}}</FdTableCell>
-        <FdTableCell>{{item.lastName}}</FdTableCell>
-        <FdTableCell>{{item.building}}</FdTableCell>
+        <FdTableCell>{{ item.firstName }}</FdTableCell>
+        <FdTableCell>{{ item.lastName }}</FdTableCell>
+        <FdTableCell>{{ item.building }}</FdTableCell>
       </FdTableRow>
     </template>
   </FdTable>
@@ -23,7 +23,7 @@ export default {
       { id: "1", firstName: "Chris", lastName: "Kienle", building: "WFD02" },
       { id: "2", firstName: "Andi", lastName: "Kienle", building: "WFD03" },
       { id: "3", firstName: "Sven", lastName: "Bacia", building: "WFD02" },
-      { id: "4", firstName: "Artur", lastName: "Raess", building: "WFD02" },
+      { id: "4", firstName: "Artur", lastName: "Raess", building: "WFD02" }
     ]
   })
 };

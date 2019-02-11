@@ -15,15 +15,16 @@
       </FdFormItem>
     </FdFormSet>
 
-    <FdTable :headers="headers" :fixedWrapperStyle="{'width': '100%'}" firstColumnFixed :items="items">
-      <template slot="row" slot-scope="{item}">
-
+    <FdTable
+      :headers="headers"
+      :fixedWrapperStyle="{ width: '100%' }"
+      firstColumnFixed
+      :items="items"
+    >
+      <template slot="row" slot-scope="{ item }">
         <FdTableRow>
-          <FdTableCell
-            v-for="colName in colNames"
-            :key="item.id + colName"
-          >
-            {{valueInItem(item, colName)}}
+          <FdTableCell v-for="colName in colNames" :key="item.id + colName">
+            {{ valueInItem(item, colName) }}
           </FdTableCell>
         </FdTableRow>
       </template>
@@ -36,7 +37,7 @@ export default {
   methods: {
     valueInItem(item, col) {
       return item[col];
-    },
+    }
   },
   computed: {
     headers() {

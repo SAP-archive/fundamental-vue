@@ -1,8 +1,8 @@
 <template>
   <li class="fd-list-group__item">
-    <slot/>
+    <slot />
     <span v-if="hasAction" class="fd-list-group__action">
-      <slot name="action"/>
+      <slot name="action" />
     </span>
   </li>
 </template>

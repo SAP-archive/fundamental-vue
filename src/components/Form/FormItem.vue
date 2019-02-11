@@ -1,12 +1,12 @@
 <template>
   <div class="fd-form__item" :class="classes">
-    <slot v-if="!hasLabel"/>
+    <slot v-if="!hasLabel" />
     <FormLabel v-if="hasLabel">
-      <slot v-if="check"/>
-      {{label}}
+      <slot v-if="check" />
+      {{ label }}
     </FormLabel>
-    <slot v-if="!check && hasLabel"/>
-    <slot name="message"/>
+    <slot v-if="!check && hasLabel" />
+    <slot name="message" />
   </div>
 </template>
 

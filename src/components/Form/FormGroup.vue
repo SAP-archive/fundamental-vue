@@ -1,6 +1,6 @@
 <template>
   <div class="fd-form__group">
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -18,4 +18,3 @@ export default Vue.extend({
   }
 });
 </script>
-

@@ -1,5 +1,5 @@
-import { ExampleCollectionFunction } from '../types';
+import { ExampleCollectionFunction } from "../types";
 
 export const plugin: ExampleCollectionFunction = () => {
-    return { icon: 'color-fill', related: [] };
+  return { icon: "color-fill", related: [] };
 };

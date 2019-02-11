@@ -1,10 +1,10 @@
-import { assert } from 'chai';
-import { mount } from '@vue/test-utils';
-import { Combobox } from './../';
-import { MenuItem } from './../../Menu';
+import { assert } from "chai";
+import { mount } from "@vue/test-utils";
+import { Combobox } from "./../";
+import { MenuItem } from "./../../Menu";
 
-describe('Combobox', () => {
-  it('supports vmodel', () => {
+describe("Combobox", () => {
+  it("supports vmodel", () => {
     const wrapper = mount({
       template: `
       <Combobox v-model="value">
@@ -16,18 +16,18 @@ describe('Combobox', () => {
       `,
       data() {
         return {
-          value: 'abc',
+          value: "abc"
         };
       },
       components: {
         Combobox,
-        MenuItem,
-      },
+        MenuItem
+      }
     });
-    const item = wrapper.find({ ref: 'menuItem1' });
-    item.find('a').trigger('click');
-    assert.strictEqual(item.text(), '1'); // ensure that we have selected the correct item
+    const item = wrapper.find({ ref: "menuItem1" });
+    item.find("a").trigger("click");
+    assert.strictEqual(item.text(), "1"); // ensure that we have selected the correct item
     // @ts-ignore
-    assert.strictEqual(wrapper.vm.value, '1');
+    assert.strictEqual(wrapper.vm.value, "1");
   });
 });

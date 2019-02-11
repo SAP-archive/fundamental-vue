@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <p>Search Query: '{{query}}'</p>
+    <p>Search Query: '{{ query }}'</p>
     <FdSearchInput
       v-model="query"
       placeholder="Enter Search Query"
@@ -14,7 +14,8 @@
         v-for="item in data"
         :key="item.key"
         @click="searchvalue = item.text"
-      >{{item.text}}</FdMenuItem>
+        >{{ item.text }}</FdMenuItem
+      >
     </FdSearchInput>
   </div>
 </template>
@@ -32,10 +33,10 @@ export default {
       query: "",
       data: [
         { key: 1, text: "apple" },
-        { key: 2,text: "mango" },
-        { key: 3,text: "grapes" },
-        { key: 4,text: "banana" },
-        { key: 5,text: "orange" }
+        { key: 2, text: "mango" },
+        { key: 3, text: "grapes" },
+        { key: 4, text: "banana" },
+        { key: 5, text: "orange" }
       ]
     };
   }

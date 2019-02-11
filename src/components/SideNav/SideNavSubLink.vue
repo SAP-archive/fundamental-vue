@@ -6,7 +6,7 @@
     :class="classes"
     :aria-selected="selected"
   >
-    <slot/>
+    <slot />
   </a>
 </template>
 

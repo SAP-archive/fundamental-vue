@@ -7,8 +7,11 @@
 </docs>
 <template>
   <div>
-    <FdTimePicker :showMeridian="meridianTime.showMeridian" :value="meridianTime.value"></FdTimePicker>
-    <br>
+    <FdTimePicker
+      :showMeridian="meridianTime.showMeridian"
+      :value="meridianTime.value"
+    ></FdTimePicker>
+    <br />
     <FdTimePicker :value="millitaryTime.value"></FdTimePicker>
   </div>
 </template>

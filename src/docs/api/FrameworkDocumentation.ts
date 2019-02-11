@@ -1,4 +1,4 @@
-import { ComponentDocumentation } from './ComponentDocumentation';
+import { ComponentDocumentation } from "./ComponentDocumentation";
 
 export type FrameworkDocumentation = {
   components: { [componentName: string]: ComponentDocumentation };

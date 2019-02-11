@@ -2,7 +2,10 @@
 
 <template>
   <div>
-    <FdCombobox v-model="fruit" placeholder="Pick your Fruit of the day (default size)">
+    <FdCombobox
+      v-model="fruit"
+      placeholder="Pick your Fruit of the day (default size)"
+    >
       <FdMenuItem @click="fruit = 'Apple'">Apple</FdMenuItem>
       <FdMenuItem @click="fruit = 'Banana'">Banana</FdMenuItem>
       <FdMenuItem @click="fruit = 'Cherry'">Cherry</FdMenuItem>
@@ -10,7 +13,11 @@
 
     <br /><br />
 
-    <FdCombobox v-model="fruit" compact placeholder="Pick your Fruit of the day (compact size)">
+    <FdCombobox
+      v-model="fruit"
+      compact
+      placeholder="Pick your Fruit of the day (compact size)"
+    >
       <FdMenuItem @click="fruit = 'Apple'">Apple</FdMenuItem>
       <FdMenuItem @click="fruit = 'Banana'">Banana</FdMenuItem>
       <FdMenuItem @click="fruit = 'Cherry'">Cherry</FdMenuItem>
@@ -23,12 +30,12 @@ export default {
   methods: {
     select(value) {
       this.fruit = value;
-    },
+    }
   },
   data() {
     return {
-      fruit: null,
+      fruit: null
     };
-  },
+  }
 };
 </script>

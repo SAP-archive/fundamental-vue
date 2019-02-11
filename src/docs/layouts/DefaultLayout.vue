@@ -7,7 +7,7 @@
             src="/images/logo.png"
             srcset="/images/logo.png 1x, /images/logo@2x.png 2x"
           />
-        <FdShellBarProduct>Fundamental Vue</FdShellBarProduct>
+          <FdShellBarProduct>Fundamental Vue</FdShellBarProduct>
         </FdShellBarGroup>
         <FdShellBarGroup position="end">
           <FdShellBarActions>
@@ -17,7 +17,8 @@
                   <a
                     href="https://github.com/SAP/fundamental-vue/issues/new"
                     target="_blank"
-                  >Report an Issue</a>
+                    >Report an Issue</a
+                  >
                 </FdMenuItem>
               </FdShellBarUserMenu>
             </FdShellBarAction>
@@ -28,7 +29,7 @@
     <FdApp>
       <FdAppNavigation orientation="vertical" class="sidebar">
         <FdSideNav
-          mode='router'
+          mode="router"
           style="padding-bottom': 25px;"
           selectedId.sync="activeNavItemId"
         >
@@ -37,7 +38,7 @@
             <FdSideNavGroupTitle>Examples</FdSideNavGroupTitle>
             <FdSideNavList
               :items="exampleCollectionsMenuItems"
-              style='margin-bottom: 60px;'
+              style="margin-bottom: 60px;"
             >
               <!-- <template slot="afterLinkText" slot-scope="exampleItem">
               <Identifier
@@ -56,7 +57,7 @@
         </FdSideNav>
       </FdAppNavigation>
       <FdAppMain class="main-with-sidebar">
-        <router-view/>
+        <router-view />
       </FdAppMain>
     </FdApp>
   </FdShell>
@@ -121,15 +122,14 @@ export default Vue.extend({
     exampleCollectionsMenuItems(): SideNavListItem[] {
       const pages = this.$docLoader.pages;
       return pages.map(page => {
-
         return {
           id: page.slug,
           name: page.title,
           icon: page.icon,
           to: {
-            name: 'example',
-            params: { slug: page.slug },
-          },
+            name: "example",
+            params: { slug: page.slug }
+          }
         };
       });
       // const items: ExampleItem[] = pages.map(page => {
@@ -146,8 +146,8 @@ export default Vue.extend({
       //     //
       //   };
       //   return result;
-    // });
-    // return items;
+      // });
+      // return items;
       // return exampleCollections.map(
       //   ({ title, slug, icon, componentStatus }) => {
       //     return {
@@ -155,10 +155,10 @@ export default Vue.extend({
       //       id: slug,
       //       name: title,
       //       componentState: componentStateFrom(componentStatus),
-            // to: {
-            //   name: "example",
-            //   params: { slug }
-            // }
+      // to: {
+      //   name: "example",
+      //   params: { slug }
+      // }
       //     };
       //   }
       // );
@@ -210,5 +210,4 @@ $border-color: #d9d9d9
 
 body
   background-color: white;
-
 </style>

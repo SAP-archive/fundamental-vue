@@ -1,6 +1,6 @@
 <template>
   <span class="fd-shellbar__title">
-    <slot/>
+    <slot />
   </span>
 </template>
 

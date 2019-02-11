@@ -8,25 +8,30 @@ Using fixed columns is still experimental.
 </tip>
 
 <template>
-<div>
-  <FdTable :headers="headers" :fixedWrapperStyle="{'width': '100%'}" firstColumnFixed :items="items">
-    <template slot="row" slot-scope="{item}">
-      <FdTableRow>
-        <FdTableCell>{{item.firstName}}</FdTableCell>
-        <FdTableCell>{{item.lastName}}</FdTableCell>
-        <FdTableCell>{{item.building}}</FdTableCell>
-        <FdTableCell>{{item.building}}1</FdTableCell>
-        <FdTableCell>{{item.building}}2</FdTableCell>
-        <FdTableCell>{{item.building}}3</FdTableCell>
-        <FdTableCell>{{item.building}}4</FdTableCell>
-        <FdTableCell>{{item.building}}5</FdTableCell>
-        <FdTableCell>{{item.building}}6</FdTableCell>
-        <FdTableCell>{{item.building}}7</FdTableCell>
-        <FdTableCell>{{item.building}}8</FdTableCell>
-        <FdTableCell>{{item.building}}9</FdTableCell>
-      </FdTableRow>
-    </template>
-  </FdTable>
+  <div>
+    <FdTable
+      :headers="headers"
+      :fixedWrapperStyle="{ width: '100%' }"
+      firstColumnFixed
+      :items="items"
+    >
+      <template slot="row" slot-scope="{ item }">
+        <FdTableRow>
+          <FdTableCell>{{ item.firstName }}</FdTableCell>
+          <FdTableCell>{{ item.lastName }}</FdTableCell>
+          <FdTableCell>{{ item.building }}</FdTableCell>
+          <FdTableCell>{{ item.building }}1</FdTableCell>
+          <FdTableCell>{{ item.building }}2</FdTableCell>
+          <FdTableCell>{{ item.building }}3</FdTableCell>
+          <FdTableCell>{{ item.building }}4</FdTableCell>
+          <FdTableCell>{{ item.building }}5</FdTableCell>
+          <FdTableCell>{{ item.building }}6</FdTableCell>
+          <FdTableCell>{{ item.building }}7</FdTableCell>
+          <FdTableCell>{{ item.building }}8</FdTableCell>
+          <FdTableCell>{{ item.building }}9</FdTableCell>
+        </FdTableRow>
+      </template>
+    </FdTable>
   </div>
 </template>
 
@@ -45,7 +50,7 @@ export default {
       "Building6",
       "Building7",
       "Building8",
-      "Building9",
+      "Building9"
     ],
     items: [
       {

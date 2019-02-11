@@ -1,6 +1,6 @@
 <template>
   <div :class="classes">
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -20,4 +20,3 @@ export default Vue.extend({
   }
 });
 </script>
-

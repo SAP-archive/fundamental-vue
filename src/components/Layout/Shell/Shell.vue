@@ -1,10 +1,10 @@
 <template>
-  <div class='fd-shell fd-shell--fixed fd-shell--fundamentals'><slot /></div>
+  <div class="fd-shell fd-shell--fixed fd-shell--fundamentals"><slot /></div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 export default Vue.extend({
-  name: 'FdShell',
+  name: "FdShell"
 });
 </script>

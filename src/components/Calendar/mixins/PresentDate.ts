@@ -1,10 +1,10 @@
-import Vue from 'vue';
+import Vue from "vue";
 export default Vue.extend({
   data() {
     return {
       presentYear: new Date(Date.now()).getFullYear(),
       presentMonth: new Date(Date.now()).getMonth(),
-      presentDay: new Date(Date.now()).getDate(),
+      presentDay: new Date(Date.now()).getDate()
     };
   },
   methods: {
@@ -14,6 +14,6 @@ export default Vue.extend({
         this.presentMonth === date.getMonth() &&
         this.presentDay === date.getDate()
       );
-    },
-  },
+    }
+  }
 });

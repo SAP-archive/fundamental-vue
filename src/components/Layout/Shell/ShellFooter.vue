@@ -7,7 +7,7 @@ import Vue from "vue";
 export default Vue.extend({
   name: "FdShellFooter",
   props: {
-    fixed: { type: Boolean, default: false },
+    fixed: { type: Boolean, default: false }
   },
   computed: {
     classes(): string[] {
@@ -15,6 +15,6 @@ export default Vue.extend({
         this.fixed ? ["fd-shell__footer--fixed"] : []
       );
     }
-  },
+  }
 });
 </script>

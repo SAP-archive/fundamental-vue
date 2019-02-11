@@ -17,7 +17,7 @@ export default Vue.extend({
     isSelected: {
       type: Boolean,
       default: false
-    } as PropValidator<boolean>,
+    } as PropValidator<boolean>
   },
   computed: {
     firstColumnFixed(): boolean {
@@ -28,7 +28,7 @@ export default Vue.extend({
   },
   methods: {
     handleClick(event: Event) {
-            // @ts-ignore
+      // @ts-ignore
       const table = this.table;
       const { itemId } = this;
       if (itemId == null || table == null) {
@@ -41,22 +41,26 @@ export default Vue.extend({
     const cells = this.$slots.default || [];
     cells.forEach((cell, index) => {
       const options = cell.componentOptions;
-      if(options == null) {
+      if (options == null) {
         return;
       }
       const fixed = index === 0 && this.firstColumnFixed;
       const { propsData = {} } = options;
       options.propsData = { ...propsData, fixed };
     });
-    return h('tr', {
-      on: {
-        ...this.$listeners,
-        '&click': this.handleClick, // & = passive modifier
+    return h(
+      "tr",
+      {
+        on: {
+          ...this.$listeners,
+          "&click": this.handleClick // & = passive modifier
+        },
+        attrs: {
+          "aria-selected": this.isSelected
+        }
       },
-      attrs: {
-        'aria-selected': this.isSelected,
-      },
-    }, cells);
+      cells
+    );
   }
 });
 </script>

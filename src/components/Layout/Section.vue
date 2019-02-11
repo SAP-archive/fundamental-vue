@@ -2,10 +2,10 @@
   <section class="fd-section">
     <div class="fd-section__header" v-if="needsHeader">
       <slot name="title">
-        <h1 class="fd-section__title">{{title}}</h1>
+        <h1 class="fd-section__title">{{ title }}</h1>
       </slot>
     </div>
-    <slot/>
+    <slot />
   </section>
 </template>
 
@@ -23,4 +23,3 @@ export default Vue.extend({
   }
 });
 </script>
-

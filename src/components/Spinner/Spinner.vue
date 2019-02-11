@@ -1,6 +1,6 @@
 <template>
   <div class="fd-spinner" aria-hidden="false" :aria-label="ariaLabel">
-    <div/>
+    <div />
   </div>
 </template>
 
@@ -13,4 +13,3 @@ export default Vue.extend({
   }
 });
 </script>
-

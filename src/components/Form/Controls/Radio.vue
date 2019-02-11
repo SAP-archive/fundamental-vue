@@ -8,7 +8,7 @@
     :checked="shouldBeChecked"
     :value="value"
     @change="updateInput"
-  >
+  />
 </template>
 
 <script lang="ts">

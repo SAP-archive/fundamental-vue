@@ -8,7 +8,7 @@
         aria-label="Close"
         @click="dismiss"
       />
-      <slot/>
+      <slot />
     </div>
   </transition>
 </template>
@@ -27,9 +27,9 @@ export default mixins(Uid).extend({
       immediate: true,
       handler(visible: boolean) {
         this.currentVisible = visible;
-        this.$emit('visible', this.currentVisible);
+        this.$emit("visible", this.currentVisible);
       }
-    },
+    }
   },
   props: {
     dismissible: {
@@ -60,7 +60,7 @@ export default mixins(Uid).extend({
   },
   computed: {
     classes(): string[] {
-      const type = this.type === 'default' ? [] : [`fd-alert--${this.type}`];
+      const type = this.type === "default" ? [] : [`fd-alert--${this.type}`];
       const dismissible = this.dismissible ? [] : ["fd-alert--dismissible"];
       return ["fd-alert", ...type, ...dismissible];
     }

@@ -19,7 +19,6 @@ matrix:
 jobs:
   include:
     - script: "npm run lint"
-    - script: "npm run lint:vue"
     - script: "npm run typecheck"
     - script: "npm test"
 notifications:

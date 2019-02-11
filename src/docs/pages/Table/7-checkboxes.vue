@@ -9,8 +9,13 @@ You can use the `sync`-modifier on the `selectedIds`-prop in order to be informe
 
 <template>
   <div>
-    <FdTable :headers="headers" :selectedIds.sync="selectedIds" selectionMode="multiple" :items="items">
-      <template slot="row" slot-scope="{item, changeSelection, selected}">
+    <FdTable
+      :headers="headers"
+      :selectedIds.sync="selectedIds"
+      selectionMode="multiple"
+      :items="items"
+    >
+      <template slot="row" slot-scope="{ item, changeSelection, selected }">
         <FdTableRow>
           <FdTableCell>
             <FdRowSelectionIndicator
@@ -19,14 +24,14 @@ You can use the `sync`-modifier on the `selectedIds`-prop in order to be informe
               @change="changeSelection"
             />
           </FdTableCell>
-          <FdTableCell>{{item.firstName}}</FdTableCell>
-          <FdTableCell>{{item.lastName}}</FdTableCell>
-          <FdTableCell>{{item.building}}</FdTableCell>
+          <FdTableCell>{{ item.firstName }}</FdTableCell>
+          <FdTableCell>{{ item.lastName }}</FdTableCell>
+          <FdTableCell>{{ item.building }}</FdTableCell>
         </FdTableRow>
       </template>
     </FdTable>
     <div>
-      <p>Selected Rows: {{formattedSelectedIds}}</p>
+      <p>Selected Rows: {{ formattedSelectedIds }}</p>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <li class="fd-side-nav__item">
-    <slot/>
+    <slot />
   </li>
 </template>
 

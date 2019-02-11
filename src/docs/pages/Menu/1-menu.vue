@@ -16,7 +16,7 @@ export default {
   methods: {
     sayHi(item) {
       alert(`Clicked Menu Item with value: '${item.value}'`);
-    },
-  },
+    }
+  }
 };
 </script>

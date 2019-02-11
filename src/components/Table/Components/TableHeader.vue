@@ -19,11 +19,11 @@
 import Vue from "vue";
 import { NormalizedHeader, SortDescriptor, SortOrder } from "./../Util";
 import { PropValidator } from "vue/types/options";
-import TableHeaderCell from './TableHeaderCell.vue';
+import TableHeaderCell from "./TableHeaderCell.vue";
 
 export default Vue.extend({
   name: "FdTableHeader",
-  components: {TableHeaderCell},
+  components: { TableHeaderCell },
   props: {
     headers: {
       type: Array,
@@ -46,6 +46,6 @@ export default Vue.extend({
       }
       return sortDescriptor && sortDescriptor.order;
     }
-  },
+  }
 });
 </script>

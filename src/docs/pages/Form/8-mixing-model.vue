@@ -7,9 +7,15 @@ The example below is using `v-model` in order to bind similar component to the s
     <FdFieldSet>
       <FdLegend>Favorite Color</FdLegend>
       <FdFormGroup>
-        <FdFormItem label="Red"><FdRadio value="red" v-model="color" /></FdFormItem>
-        <FdFormItem label="Green"><FdRadio value="green" v-model="color" /></FdFormItem>
-        <FdFormItem label="Yellow"><FdRadio value="yellow" v-model="color" /></FdFormItem>
+        <FdFormItem label="Red"
+          ><FdRadio value="red" v-model="color"
+        /></FdFormItem>
+        <FdFormItem label="Green"
+          ><FdRadio value="green" v-model="color"
+        /></FdFormItem>
+        <FdFormItem label="Yellow"
+          ><FdRadio value="yellow" v-model="color"
+        /></FdFormItem>
       </FdFormGroup>
     </FdFieldSet>
     <FdFormItem label="Favorite Color">
@@ -22,17 +28,21 @@ The example below is using `v-model` in order to bind similar component to the s
     <FdFieldSet>
       <FdLegend>Favorite Dish (multiple selection)</FdLegend>
       <FdFormGroup>
-        <FdFormItem label="Fish"><FdCheckbox v-model="dish.fish" /></FdFormItem>
-        <FdFormItem label="Meat"><FdCheckbox v-model="dish.meat" /></FdFormItem>
-        <FdFormItem label="Noodles"><FdCheckbox v-model="dish.noodles" /></FdFormItem>
+        <FdFormItem label="Fish"><FdCheckbox v-model="dish.fish"/></FdFormItem>
+        <FdFormItem label="Meat"><FdCheckbox v-model="dish.meat"/></FdFormItem>
+        <FdFormItem label="Noodles"
+          ><FdCheckbox v-model="dish.noodles"
+        /></FdFormItem>
       </FdFormGroup>
     </FdFieldSet>
     <FdFieldSet>
       <FdLegend>Favorite Dish (multiple selection)</FdLegend>
       <FdFormGroup>
-        <FdFormItem label="Fish"><FdToggle v-model="dish.fish" /></FdFormItem>
-        <FdFormItem label="Meat"><FdToggle v-model="dish.meat" /></FdFormItem>
-        <FdFormItem label="Noodles"><FdToggle v-model="dish.noodles" /></FdFormItem>
+        <FdFormItem label="Fish"><FdToggle v-model="dish.fish"/></FdFormItem>
+        <FdFormItem label="Meat"><FdToggle v-model="dish.meat"/></FdFormItem>
+        <FdFormItem label="Noodles"
+          ><FdToggle v-model="dish.noodles"
+        /></FdFormItem>
       </FdFormGroup>
     </FdFieldSet>
   </FdFormSet>
@@ -46,9 +56,9 @@ export default {
       dish: {
         fish: false,
         meat: false,
-        noodles: false,
+        noodles: false
       }
-    }
+    };
   }
-}
+};
 </script>

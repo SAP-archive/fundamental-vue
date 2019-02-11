@@ -1,8 +1,8 @@
-import { earlierDate, laterDate } from './../util';
-import Vue from 'vue';
-import { PropValidator } from 'vue/types/options';
+import { earlierDate, laterDate } from "./../util";
+import Vue from "vue";
+import { PropValidator } from "vue/types/options";
 
-const selectionModeMapping = { single: 'single', range: 'range' };
+const selectionModeMapping = { single: "single", range: "range" };
 type SelectionMode = keyof typeof selectionModeMapping;
 const SelectionModes = Object.keys(selectionModeMapping) as SelectionMode[];
 
@@ -13,20 +13,20 @@ export interface Props {
 
 export default Vue.extend({
   model: {
-    prop: 'selection',
-    event: 'change',
+    prop: "selection",
+    event: "change"
   },
   props: {
     selectionMode: {
       type: String,
       validator: (mode: any) => SelectionModes.indexOf(mode) >= 0,
-      default: 'single',
+      default: "single"
     },
-    selection: { type: Array, default: () => [] } as PropValidator<Date[]>,
+    selection: { type: Array, default: () => [] } as PropValidator<Date[]>
   },
   data() {
     return {
-      currentDateSelection: this.selection,
+      currentDateSelection: this.selection
     };
   },
   watch: {
@@ -34,8 +34,8 @@ export default Vue.extend({
       immediate: true,
       handler(newSelection: Date[]) {
         this.currentDateSelection = newSelection;
-      },
-    },
+      }
+    }
   },
   computed: {
     dateSelectionNeedsReset(): boolean {
@@ -61,7 +61,7 @@ export default Vue.extend({
       }
       const [from, to] = this.currentDateSelection;
       return laterDate(from, to);
-    },
+    }
   },
   methods: {
     selectionContains(date: Date): boolean {
@@ -110,14 +110,14 @@ export default Vue.extend({
     },
     resetSelection() {
       this.currentDateSelection = [];
-      this.$emit('change', this.currentDateSelection);
+      this.$emit("change", this.currentDateSelection);
     },
     emitCurrentSelection() {
-      this.$emit('change', this.currentDateSelection);
+      this.$emit("change", this.currentDateSelection);
     },
 
     selectDate(date: Date) {
-      if (this.selectionMode === 'single') {
+      if (this.selectionMode === "single") {
         this.currentDateSelection = [date];
         this.emitCurrentSelection();
         return;
@@ -135,6 +135,6 @@ export default Vue.extend({
       }
       this.currentDateSelection = [...this.currentDateSelection, date];
       this.emitCurrentSelection();
-    },
-  },
+    }
+  }
 });

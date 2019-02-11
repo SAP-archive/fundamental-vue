@@ -1,3 +1,1 @@
-export type SortBy =
-| string // prop
-;
+export type SortBy = string; // prop

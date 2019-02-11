@@ -11,8 +11,8 @@
 export default {
   data() {
     return {
-      selection: [],
+      selection: []
     };
   }
-}
+};
 </script>

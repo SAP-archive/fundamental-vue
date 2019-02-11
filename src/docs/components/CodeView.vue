@@ -1,18 +1,21 @@
 <template>
-  <pre class="sourcecode" v-highlight><code class="sourcecode lang-js">{{sourcecode}}</code></pre>
+  <pre
+    class="sourcecode"
+    v-highlight
+  ><code class="sourcecode lang-js">{{sourcecode}}</code></pre>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { highlight } from '@/docs/directives/highlight';
+import Vue from "vue";
+import { highlight } from "@/docs/directives/highlight";
 
 export default Vue.extend({
-  name: 'CodeView',
+  name: "CodeView",
   props: {
-    sourcecode: String,
+    sourcecode: String
   },
-  directives: { highlight },
-})
+  directives: { highlight }
+});
 </script>
 
 <style scoped>
@@ -22,7 +25,6 @@ export default Vue.extend({
   width: 100%;
   background-color: rgb(250, 250, 250);
 }
-
 </style>
 <style>
 .hljs {

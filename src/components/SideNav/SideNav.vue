@@ -1,6 +1,6 @@
 <template>
   <nav class="fd-side-nav">
-    <slot/>
+    <slot />
   </nav>
 </template>
 
@@ -59,4 +59,3 @@ export default Vue.extend({
   }
 });
 </script>
-

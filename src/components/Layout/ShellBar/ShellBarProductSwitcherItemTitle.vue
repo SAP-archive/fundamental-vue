@@ -1,6 +1,6 @@
 <template>
   <span class="fd-product-switcher__product-title">
-    <slot/>
+    <slot />
   </span>
 </template>
 
@@ -8,6 +8,6 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "FdShellBarProductSwitcherItemTitle",
+  name: "FdShellBarProductSwitcherItemTitle"
 });
 </script>

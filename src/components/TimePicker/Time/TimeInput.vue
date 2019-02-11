@@ -29,6 +29,6 @@ export default Vue.extend({
     handleInput(newValue: string) {
       this.$emit("input", newValue);
     }
-  },
+  }
 });
 </script>

@@ -17,5 +17,9 @@
 </template>
 
 <style scoped>
-.container div { border: 1px solid #cccccc; font-family: monospace; background-color: #efefef;  }
+.container div {
+  border: 1px solid #cccccc;
+  font-family: monospace;
+  background-color: #efefef;
+}
 </style>

@@ -8,12 +8,11 @@
     type="checkbox"
     class="fd-form__control"
     @change="updateInput"
-  >
+  />
 </template>
 
 <script lang="ts">
-
-import Vue from 'vue';
+import Vue from "vue";
 import { PropValidator } from "vue/types/options";
 import { isInputElement } from "./Helper";
 const stateMapping = {
@@ -31,14 +30,16 @@ export default Vue.extend({
   name: "FdCheckbox",
   inject: {
     itemId: { default: null },
-    formItem: { default: null },
+    formItem: { default: null }
   },
   model: {
     prop: "modelValue",
     event: "change"
   },
   props: {
-    trueValue: { type: ValueCtors, default: () => true } as PropValidator<ValueType>,
+    trueValue: { type: ValueCtors, default: () => true } as PropValidator<
+      ValueType
+    >,
     falseValue: { type: ValueCtors, default: () => false } as PropValidator<
       ValueType
     >,
@@ -118,6 +119,6 @@ export default Vue.extend({
         this.$emit("change", newValue, event);
       }
     }
-  },
+  }
 });
 </script>

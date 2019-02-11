@@ -2,38 +2,38 @@
 
 <template>
   <div class="grid">
-    <div v-bg:action-1/>
-    <div v-bg:action-2/>
-    <div v-bg:text-1/>
-    <div v-bg:text-2/>
-    <div v-bg:text-3/>
-    <div v-bg:text-4/>
-    <div v-bg:text-5/>
-    <div v-bg:background-1/>
-    <div v-bg:background-2/>
-    <div v-bg:neutral-1/>
-    <div v-bg:neutral-2/>
-    <div v-bg:neutral-3/>
-    <div v-bg:neutral-4/>
-    <div v-bg:status-1/>
-    <div v-bg:status-2/>
-    <div v-bg:status-3/>
-    <div v-bg:status-4/>
-    <div v-bg:accent-1/>
-    <div v-bg:accent-2/>
-    <div v-bg:accent-3/>
-    <div v-bg:accent-4/>
-    <div v-bg:accent-5/>
-    <div v-bg:accent-6/>
-    <div v-bg:accent-7/>
-    <div v-bg:accent-8/>
-    <div v-bg:accent-9/>
-    <div v-bg:accent-10/>
-    <div v-bg:accent-11/>
-    <div v-bg:accent-12/>
-    <div v-bg:accent-13/>
-    <div v-bg:accent-14/>
-    <div v-bg:accent-15/>
+    <div v-bg:action-1 />
+    <div v-bg:action-2 />
+    <div v-bg:text-1 />
+    <div v-bg:text-2 />
+    <div v-bg:text-3 />
+    <div v-bg:text-4 />
+    <div v-bg:text-5 />
+    <div v-bg:background-1 />
+    <div v-bg:background-2 />
+    <div v-bg:neutral-1 />
+    <div v-bg:neutral-2 />
+    <div v-bg:neutral-3 />
+    <div v-bg:neutral-4 />
+    <div v-bg:status-1 />
+    <div v-bg:status-2 />
+    <div v-bg:status-3 />
+    <div v-bg:status-4 />
+    <div v-bg:accent-1 />
+    <div v-bg:accent-2 />
+    <div v-bg:accent-3 />
+    <div v-bg:accent-4 />
+    <div v-bg:accent-5 />
+    <div v-bg:accent-6 />
+    <div v-bg:accent-7 />
+    <div v-bg:accent-8 />
+    <div v-bg:accent-9 />
+    <div v-bg:accent-10 />
+    <div v-bg:accent-11 />
+    <div v-bg:accent-12 />
+    <div v-bg:accent-13 />
+    <div v-bg:accent-14 />
+    <div v-bg:accent-15 />
   </div>
 </template>
 

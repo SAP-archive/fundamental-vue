@@ -7,7 +7,7 @@
     :disabled="disabled"
     @input="updateInput"
   >
-    <slot/>
+    <slot />
   </select>
 </template>
 
@@ -55,7 +55,7 @@ export default Vue.extend({
     state: {
       validator: (value: string) => States.indexOf(value) >= 0,
       default: State.default,
-      type: String,
+      type: String
     },
     value: { default: "", type: [String, Number, Object] } as PropValidator<
       Value
@@ -110,4 +110,3 @@ export default Vue.extend({
   }
 });
 </script>
-

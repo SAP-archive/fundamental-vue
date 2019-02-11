@@ -1,5 +1,5 @@
-import { ExampleCollectionFunction } from '../types';
+import { ExampleCollectionFunction } from "../types";
 
 export const plugin: ExampleCollectionFunction = () => {
-    return { status: 'stable', icon: 'heatmap-chart', related: ['FdTileGrid'] };
+  return { status: "stable", icon: "heatmap-chart", related: ["FdTileGrid"] };
 };

@@ -6,29 +6,32 @@
       :popoverVisible="currentPopoverVisible"
       @visible="currentPopoverVisible = $event"
     >
-    <template v-slot:control="{toggle}">
-      <div class="fd-combobox-control">
-        <InputGroup :compact="compact" afterClass="fd-input-group__addon--button">
-          <Input
-            :id="uid"
-            :value="value"
+      <template v-slot:control="{ toggle }">
+        <div class="fd-combobox-control">
+          <InputGroup
             :compact="compact"
-            :placeholder="placeholder"
-            @click.native="toggle"
-            @keyup.native="handleKeyup"
-            @input="setCurrentValue"
-          />
-          <template #after>
-          <Button
-            @click="toggle"
-            icon="navigation-down-arrow"
-            styling="light"
-          />
-          </template>
-        </InputGroup>
-      </div>
-    </template>
-      <slot/>
+            afterClass="fd-input-group__addon--button"
+          >
+            <Input
+              :id="uid"
+              :value="value"
+              :compact="compact"
+              :placeholder="placeholder"
+              @click.native="toggle"
+              @keyup.native="handleKeyup"
+              @input="setCurrentValue"
+            />
+            <template #after>
+              <Button
+                @click="toggle"
+                icon="navigation-down-arrow"
+                styling="light"
+              />
+            </template>
+          </InputGroup>
+        </div>
+      </template>
+      <slot />
     </Popover>
   </div>
 </template>
@@ -39,7 +42,7 @@ import { Input, InputGroup } from "@/components/Form";
 import { Button } from "@/components/Button";
 import { Popover } from "@/components/Popover";
 import { PropValidator } from "vue/types/options";
-import MenuItem from './../Menu/MenuItem.vue';
+import MenuItem from "./../Menu/MenuItem.vue";
 type MenuItemType = InstanceType<typeof MenuItem>;
 
 export default mixins(Uid).extend({

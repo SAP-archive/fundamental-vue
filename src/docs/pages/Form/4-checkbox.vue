@@ -40,7 +40,7 @@ You can bind multiple checkboxes to a single array. For each checked control it'
       </FdFieldSet>
     </FdSection>
     <FdSection>
-      <strong>Favorite Colors: {{favoriteColors}}</strong>
+      <strong>Favorite Colors: {{ favoriteColors }}</strong>
     </FdSection>
   </div>
 </template>
@@ -48,7 +48,7 @@ You can bind multiple checkboxes to a single array. For each checked control it'
 <script>
 export default {
   data: () => ({
-    favoriteColors: ["red"],
-  }),
-}
+    favoriteColors: ["red"]
+  })
+};
 </script>

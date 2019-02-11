@@ -1,6 +1,6 @@
 <template>
   <legend class="fd-form__legend">
-    <slot/>
+    <slot />
   </legend>
 </template>
 
@@ -10,4 +10,3 @@ export default Vue.extend({
   name: "FdLegend"
 });
 </script>
-

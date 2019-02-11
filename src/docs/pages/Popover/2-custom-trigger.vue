@@ -27,10 +27,10 @@ Because of the fact that we assume that the consumer has special needs, we do no
   <div>
     <FdPopover>
       <template v-slot:control>
-        <FdButton
-          styling="emphasized"
-          type="positive"
-        >Custom Popover Trigger Control (automatic popover visibility)</FdButton>
+        <FdButton styling="emphasized" type="positive"
+          >Custom Popover Trigger Control (automatic popover
+          visibility)</FdButton
+        >
       </template>
       <template v-slot:default>
         <FdMenuItem>Option 1</FdMenuItem>
@@ -39,15 +39,16 @@ Because of the fact that we assume that the consumer has special needs, we do no
       </template>
     </FdPopover>
 
-    <br>
-    <br>
+    <br />
+    <br />
 
     <FdPopover>
       <template v-slot:control="popover">
         <FdButton
           :type="popover.visible ? 'negative' : 'medium'"
           @click="popover.toggle"
-        >Custom Popover Trigger Control (manual popover visibility)</FdButton>
+          >Custom Popover Trigger Control (manual popover visibility)</FdButton
+        >
       </template>
       <template v-slot:default>
         <FdMenuItem>Option 1</FdMenuItem>

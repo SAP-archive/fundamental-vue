@@ -2,8 +2,12 @@
 
 <template>
   <div>
-    <p>Search Query: '{{query}}'</p>
-    <FdSearchInput v-model="query" placeholder="Enter Search Query" @search="onSearch"/>
+    <p>Search Query: '{{ query }}'</p>
+    <FdSearchInput
+      v-model="query"
+      placeholder="Enter Search Query"
+      @search="onSearch"
+    />
   </div>
 </template>
 
@@ -17,5 +21,3 @@ export default {
   data: () => ({ query: "Apples and Oranges" })
 };
 </script>
-
-

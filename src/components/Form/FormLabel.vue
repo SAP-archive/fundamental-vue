@@ -1,9 +1,9 @@
 <template>
-  <label
-  class="fd-form__label"
-  v-bind="attributes">
-    <slot/>
-    <template v-if="required">*</template>
+  <label class="fd-form__label" v-bind="attributes">
+    <slot />
+    <template v-if="required"
+      >*</template
+    >
   </label>
 </template>
 
@@ -18,8 +18,8 @@ export default Vue.extend({
     attributes(): object {
       return {
         for: this.for,
-        ariaRequired: this.required ? 'true' : null,
-        ...this.$attrs,
+        ariaRequired: this.required ? "true" : null,
+        ...this.$attrs
       };
     },
     for(): string | null {
@@ -32,6 +32,6 @@ export default Vue.extend({
       default: false,
       type: Boolean
     }
-  },
+  }
 });
 </script>

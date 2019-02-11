@@ -1,40 +1,40 @@
-import { PluginObject } from 'vue';
-import { PluginOptions } from '@/util/PluginOptions';
+import { PluginObject } from "vue";
+import { PluginOptions } from "@/util/PluginOptions";
 
-import * as ActionBar from './ActionBar';
-import * as Alert from './Alert';
-import * as Badge from './Badge';
-import * as Breadcrumb from './Breadcrumb';
-import * as BreadcrumbItem from './BreadcrumbItem';
-import * as Button from './Button';
-import * as ButtonGroup from './ButtonGroup';
-import * as Calendar from './Calendar';
-import * as Combobox from './Combobox';
-import * as Counter from './Counter';
-import * as Form from './Form';
-import * as Icon from './Icon';
-import * as Identifier from './Identifier';
-import * as Image from './Image';
-import * as InlineHelp from './InlineHelp';
-import * as Label from './Label';
-import * as Layout from './Layout';
-import * as Link from './Link';
-import * as ListGroup from './ListGroup';
-import * as Menu from './Menu';
-import * as Modal from './Modal';
-import * as Pagination from './Pagination';
-import * as Panel from './Panel';
-import * as Popover from './Popover';
-import * as SearchInput from './SearchInput';
-import * as SideNav from './SideNav';
-import * as Spinner from './Spinner';
-import * as Status from './Status';
-import * as Table from './Table';
-import * as Tabs from './Tabs';
-import * as Tile from './Tile';
-import * as TileGrid from './TileGrid';
-import * as TimePicker from './TimePicker';
-import * as Token from './Token';
+import * as ActionBar from "./ActionBar";
+import * as Alert from "./Alert";
+import * as Badge from "./Badge";
+import * as Breadcrumb from "./Breadcrumb";
+import * as BreadcrumbItem from "./BreadcrumbItem";
+import * as Button from "./Button";
+import * as ButtonGroup from "./ButtonGroup";
+import * as Calendar from "./Calendar";
+import * as Combobox from "./Combobox";
+import * as Counter from "./Counter";
+import * as Form from "./Form";
+import * as Icon from "./Icon";
+import * as Identifier from "./Identifier";
+import * as Image from "./Image";
+import * as InlineHelp from "./InlineHelp";
+import * as Label from "./Label";
+import * as Layout from "./Layout";
+import * as Link from "./Link";
+import * as ListGroup from "./ListGroup";
+import * as Menu from "./Menu";
+import * as Modal from "./Modal";
+import * as Pagination from "./Pagination";
+import * as Panel from "./Panel";
+import * as Popover from "./Popover";
+import * as SearchInput from "./SearchInput";
+import * as SideNav from "./SideNav";
+import * as Spinner from "./Spinner";
+import * as Status from "./Status";
+import * as Table from "./Table";
+import * as Tabs from "./Tabs";
+import * as Tile from "./Tile";
+import * as TileGrid from "./TileGrid";
+import * as TimePicker from "./TimePicker";
+import * as Token from "./Token";
 
 const plugin: PluginObject<PluginOptions> = {
   install(vue, options) {
@@ -72,6 +72,6 @@ const plugin: PluginObject<PluginOptions> = {
     vue.use(TileGrid.default);
     vue.use(TimePicker.default);
     vue.use(Token.default);
-  },
+  }
 };
 export default plugin;

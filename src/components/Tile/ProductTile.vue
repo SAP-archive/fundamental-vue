@@ -1,9 +1,9 @@
 <template>
   <div class="fd-product-tile" :role="role" :aria-disabled="disabled">
-    <div class="fd-product-tile__media" :style="style"/>
+    <div class="fd-product-tile__media" :style="style" />
     <div class="fd-product-tile__content">
-      <h2 v-if="title != null" class="fd-product-tile__title">{{title}}</h2>
-      <slot name="content"/>
+      <h2 v-if="title != null" class="fd-product-tile__title">{{ title }}</h2>
+      <slot name="content" />
     </div>
   </div>
 </template>

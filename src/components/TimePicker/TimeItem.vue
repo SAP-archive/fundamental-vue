@@ -7,7 +7,12 @@
       placeholder="hh"
     />
 
-    <Time type="minute" :value="minute" @timeUpdate="updateMinute" placeholder="mm"/>
+    <Time
+      type="minute"
+      :value="minute"
+      @timeUpdate="updateMinute"
+      placeholder="mm"
+    />
 
     <Time
       v-if="shouldRenderSeconds"
@@ -30,14 +35,14 @@
 <script lang="ts">
 import { mixins } from "@/mixins";
 import TimeRange from "./mixins/TimeRange";
-import { TimeType } from './Time/TimeType';
-import Time  from './Time/Time.vue'
+import { TimeType } from "./Time/TimeType";
+import Time from "./Time/Time.vue";
 
 const timeUnitMapping = {
-  hour: 'hour',
-  minute: 'minute',
-  second: 'second',
-  meridian: 'meridian',
+  hour: "hour",
+  minute: "minute",
+  second: "second",
+  meridian: "meridian"
 };
 
 type TimeUnitType = keyof (typeof timeUnitMapping);
@@ -67,11 +72,16 @@ export default mixins(TimeRange).extend({
       immediate: true,
       handler(newTimeValue: string | null) {
         if (newTimeValue != null) {
-          const time = newTimeValue.toString().split(' ');
-          const timeValue = time[0].split(':');
-          [this.hour, this.minute, this.second, this.meridian] = [timeValue[0], timeValue[1], timeValue[2], time[1]];
+          const time = newTimeValue.toString().split(" ");
+          const timeValue = time[0].split(":");
+          [this.hour, this.minute, this.second, this.meridian] = [
+            timeValue[0],
+            timeValue[1],
+            timeValue[2],
+            time[1]
+          ];
         }
-      },
+      }
     }
   },
   methods: {

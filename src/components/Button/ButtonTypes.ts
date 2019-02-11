@@ -1,1 +1,1 @@
-export default ['standard', 'positive', 'medium', 'negative'];
+export default ["standard", "positive", "medium", "negative"];

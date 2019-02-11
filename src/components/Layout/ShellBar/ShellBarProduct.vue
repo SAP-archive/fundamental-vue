@@ -1,6 +1,6 @@
 <template>
   <div class="fd-shellbar__product">
-    <slot/>
+    <slot />
   </div>
 </template>
 

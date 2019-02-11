@@ -1,5 +1,5 @@
 <template>
-  <span :class="classes"/>
+  <span :class="classes" />
 </template>
 
 <script lang="ts">
@@ -31,7 +31,8 @@ export default Vue.extend({
   },
   computed: {
     classes(): object {
-      const size = this.size == null ? {} : { [`sap-icon--${this.size}`]: true };
+      const size =
+        this.size == null ? {} : { [`sap-icon--${this.size}`]: true };
       return {
         [`sap-icon--${this.name}`]: true,
         ...size
@@ -40,4 +41,3 @@ export default Vue.extend({
   }
 });
 </script>
-

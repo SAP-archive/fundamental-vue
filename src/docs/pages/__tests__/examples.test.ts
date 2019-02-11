@@ -1,17 +1,24 @@
-import DocumentationLoader, { Example } from './../../DocumentationLoader';
-import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils';
-import { assert } from 'chai';
-import Vue from 'vue';
-import FundamentalVue from './../../../';
+import DocumentationLoader, { Example } from "./../../DocumentationLoader";
+import { mount, createLocalVue, RouterLinkStub } from "@vue/test-utils";
+import { assert } from "chai";
+import Vue from "vue";
+import FundamentalVue from "./../../../";
 
 type VueWarning = {
-  msg: string; vm: Vue; trace: string;
+  msg: string;
+  vm: Vue;
+  trace: string;
 };
 type VueError = {
-  err: Error; vm: Vue; info: string;
+  err: Error;
+  vm: Vue;
+  info: string;
 };
 
-const messageForWarningDuringMount = ({ id, title }: Example, { msg, vm, trace }: VueWarning) => (`
+const messageForWarningDuringMount = (
+  { id, title }: Example,
+  { msg, vm, trace }: VueWarning
+) => `
 ⚠️  'mount(${id})' produced a warning.
 Failing example: ${title}
 Warning:
@@ -19,18 +26,21 @@ Warning:
   vm: ${vm}
   data: ${vm.$data}
   trace: ${trace}
-`);
+`;
 
-const messageForErrorDuringMount = ({ id, title }: Example, { err, vm, info }: VueError) => (`
+const messageForErrorDuringMount = (
+  { id, title }: Example,
+  { err, vm, info }: VueError
+) => `
 ☢️️  'mount(${id})' produced an error.
 Failing example: ${title}
 Error:
   msg: ${err.message}
   vm: ${vm}
   info: ${info}
-`);
+`;
 
-describe('All Examples', () => {
+describe("All Examples", () => {
   const loader = new DocumentationLoader();
   const { pages } = loader;
 
@@ -46,32 +56,46 @@ describe('All Examples', () => {
             vueWarning = null;
             vueError = null;
             localVue = createLocalVue();
-            localVue.config.warnHandler = (msg, vm, trace) => vueWarning = { msg, vm, trace };
-            localVue.config.errorHandler = (err, vm, info) => vueError = { err, vm, info };
+            localVue.config.warnHandler = (msg, vm, trace) =>
+              (vueWarning = { msg, vm, trace });
+            localVue.config.errorHandler = (err, vm, info) =>
+              (vueError = { err, vm, info });
             localVue.config.productionTip = false;
-            localVue.use(FundamentalVue, { log: { registerComponent: false, welcome: false } });
+            localVue.use(FundamentalVue, {
+              log: { registerComponent: false, welcome: false }
+            });
           });
-          it('can be mounted', async () => {
+          it("can be mounted", async () => {
             const messages: string[] = [];
-            let html = '';
+            let html = "";
             // We are not using chai's doesNotThrow-assertion because we want to have the wrapper to get the html
             try {
               // sync: false because of https://github.com/vuejs/vue-test-utils/issues/673
-              const wrapper = mount(example.component, { sync: false, localVue, stubs: { RouterLink: RouterLinkStub } });
+              const wrapper = mount(example.component, {
+                sync: false,
+                localVue,
+                stubs: { RouterLink: RouterLinkStub }
+              });
               await localVue.nextTick();
               assert.isDefined(wrapper);
-              if(vueError != null) {
+              if (vueError != null) {
                 messages.push(messageForErrorDuringMount(example, vueError));
               }
-              if(vueWarning != null) {
-                messages.push(messageForWarningDuringMount(example, vueWarning));
+              if (vueWarning != null) {
+                messages.push(
+                  messageForWarningDuringMount(example, vueWarning)
+                );
               }
               html = wrapper.html();
             } catch (error) {
-              messages.push(`Caught error during mount of example ${example.title}: ${error}`);
+              messages.push(
+                `Caught error during mount of example ${
+                  example.title
+                }: ${error}`
+              );
             }
-            if(messages.length > 0) {
-              throw Error(`${messages.join('\n')}\nHTML:\n\n${html}\n`);
+            if (messages.length > 0) {
+              throw Error(`${messages.join("\n")}\nHTML:\n\n${html}\n`);
             }
           });
         });

@@ -5,7 +5,7 @@
   <div>
     <div class="favorite-fruit">
       <span class="favorite-fruit-label">Selected Fruit:</span>
-      <span class="favorite-fruit-current">{{fruit || 'none'}}</span>
+      <span class="favorite-fruit-current">{{ fruit || "none" }}</span>
     </div>
     <FdCombobox v-model="fruit" placeholder="Pick your Fruit of the day">
       <FdMenuItem @click="fruit = 'Apple'">Apple</FdMenuItem>
@@ -20,13 +20,13 @@ export default {
   methods: {
     select(value) {
       this.fruit = value;
-    },
+    }
   },
   data() {
     return {
-      fruit: null,
+      fruit: null
     };
-  },
+  }
 };
 </script>
 
@@ -51,5 +51,4 @@ export default {
   padding-bottom: 5px;
   border-radius: 5px;
 }
-
 </style>

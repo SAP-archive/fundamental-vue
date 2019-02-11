@@ -1,10 +1,10 @@
-import { SortOrder } from './SortOrder';
-import { isString } from '@/util/is';
+import { SortOrder } from "./SortOrder";
+import { isString } from "@/util/is";
 
 type Value = { [prop: string]: any };
 export const compareValues = (key: string, order: SortOrder) => {
   return (a: Value, b: Value): number => {
-    if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
       // Property [key] does not exist on a and/or b.
       return 0;
     }
@@ -20,6 +20,6 @@ export const compareValues = (key: string, order: SortOrder) => {
         comparison = -1;
       }
     }
-    return (order === 'descending') ? (comparison * -1) : comparison;
+    return order === "descending" ? comparison * -1 : comparison;
   };
 };

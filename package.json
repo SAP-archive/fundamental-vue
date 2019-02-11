@@ -1,60 +1,63 @@
 {
-    "name": "fundamental-vue",
-    "version": "0.0.10-beta",
-    "description": "SAP Fiori Fundamentals, implemented in Vue.JS",
-    "keywords": [
-        "vue",
-        "sap",
-        "fiori",
-        "typescript",
-        "javascript"
-    ],
-    "bugs": {
-        "url": "https://github.com/SAP/fundamental-vue/issues"
-    },
-    "author": "SAP SE",
-    "repository": {
-        "type": "git",
-        "url": "git+git@github.com:SAP/fundamental-vue.git"
-    },
-    "private": false,
-    "homepage": "https://github.com/SAP/fundamental-vue",
-    "scripts": {
-        "typecheck": "tsc --noEmit",
-        "serve": "vue-cli-service serve src/docs/main.ts",
-        "build": "vue-cli-service build --mode production --target lib --report --name FundamentalVue src/index.ts",
-        "lint:vue": "vue-cli-service lint",
-        "test": "vue-cli-service test:unit 'src/**/__tests__/*.test.{tsx,ts,js,vue}'",
-        "test:watch": "npm test -- --watch",
-        "lint": "npx tslint --project tsconfig.json --config tslint.json",
-        "lint:fix": "npm run lint -- --fix",
-        "deploy": "node ./node_modules/vue-gh-pages/index.js"
-    },
-    "license": "Apache-2.0",
-    "main": "dist/FundamentalVue.umd.js",
-    "devDependencies": {
-        "@types/chai": "^4.1.7",
-        "@types/highlight.js": "^9.12.3",
-        "@types/mocha": "^5.2.5",
-        "@vue/cli-plugin-babel": "^3.4.0",
-        "@vue/cli-plugin-typescript": "^3.4.0",
-        "@vue/cli-plugin-unit-mocha": "^3.4.0",
-        "@vue/cli-service": "^3.4.0",
-        "@vue/test-utils": "^1.0.0-beta.29",
-        "chai": "^4.2.0",
-        "highlight.js": "^9.14.2",
-        "html-loader": "^1.0.0-alpha.0",
-        "markdown-loader": "^5.0.0",
-        "node-sass": "^4.11.0",
-        "raw-loader": "^1.0.0",
-        "sass-loader": "^7.1.0",
-        "tslint": "^5.12.1",
-        "typescript": "^3.3.3",
-        "vue": "^2.6.4",
-        "vue-gh-pages": "^1.19.0",
-        "vue-template-compiler": "^2.6.4"
-    },
-    "peerDependencies": {
-        "vue": "^2.6.4"
-    }
+  "name": "fundamental-vue",
+  "version": "0.0.10-beta",
+  "description": "SAP Fiori Fundamentals, implemented in Vue.JS",
+  "keywords": [
+    "vue",
+    "sap",
+    "fiori",
+    "typescript",
+    "javascript"
+  ],
+  "bugs": {
+    "url": "https://github.com/SAP/fundamental-vue/issues"
+  },
+  "author": "SAP SE",
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:SAP/fundamental-vue.git"
+  },
+  "private": false,
+  "homepage": "https://github.com/SAP/fundamental-vue",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "serve": "vue-cli-service serve src/docs/main.ts",
+    "build": "vue-cli-service build --mode production --target lib --report --name FundamentalVue src/index.ts",
+    "test": "vue-cli-service test:unit 'src/**/__tests__/*.test.{tsx,ts,js,vue}'",
+    "test:watch": "npm test -- --watch",
+    "lint": "vue-cli-service lint",
+    "lint:fix": "npm run lint -- --fix",
+    "deploy": "node ./node_modules/vue-gh-pages/index.js"
+  },
+  "license": "Apache-2.0",
+  "main": "dist/FundamentalVue.umd.js",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/highlight.js": "^9.12.3",
+    "@types/mocha": "^5.2.5",
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-plugin-typescript": "^3.4.0",
+    "@vue/cli-plugin-unit-mocha": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "@vue/eslint-config-typescript": "^4.0.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "chai": "^4.2.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "eslint": "^5.8.0",
+    "highlight.js": "^9.14.2",
+    "html-loader": "^1.0.0-alpha.0",
+    "markdown-loader": "^5.0.0",
+    "node-sass": "^4.11.0",
+    "raw-loader": "^1.0.0",
+    "sass-loader": "^7.1.0",
+    "typescript": "^3.3.3",
+    "vue-gh-pages": "^1.19.0",
+    "vue-template-compiler": "^2.6.4",
+    "vue": "^2.6.4"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.4"
+  }
 }

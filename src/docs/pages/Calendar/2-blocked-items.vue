@@ -10,8 +10,8 @@
 export default {
   props: {
     isWeekend: {
-      default: () => (date) => date.getDay() === 0 || date.getDay() === 6
+      default: () => date => date.getDay() === 0 || date.getDay() === 6
     }
-  },
-}
+  }
+};
 </script>

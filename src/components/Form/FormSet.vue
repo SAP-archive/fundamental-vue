@@ -1,6 +1,6 @@
 <template>
   <div class="fd-form__set">
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -11,4 +11,3 @@ export default Vue.extend({
   name: "FdFormSet"
 });
 </script>
-

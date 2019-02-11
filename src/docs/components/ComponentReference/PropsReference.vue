@@ -1,19 +1,16 @@
 <template>
   <FdTable :items="tableItems" :headers="headers" style="margin-bottom: 0;">
-    <template slot="row" slot-scope="{item}">
+    <template slot="row" slot-scope="{ item }">
       <FdTableRow>
-        <FdTableCell>{{item.name}}</FdTableCell>
-        <FdTableCell>{{item.description}}</FdTableCell>
+        <FdTableCell>{{ item.name }}</FdTableCell>
+        <FdTableCell>{{ item.description }}</FdTableCell>
         <FdTableCell>
           <ValueToken :key="item.name" :representedValue="item.defaultValue" />
         </FdTableCell>
         <FdTableCell>
-          <TypeTokens
-            :key="item.name"
-            :propTypes="item.types"
-          />
+          <TypeTokens :key="item.name" :propTypes="item.types" />
         </FdTableCell>
-        <FdTableCell>{{item.acceptedValues}}</FdTableCell>
+        <FdTableCell>{{ item.acceptedValues }}</FdTableCell>
       </FdTableRow>
     </template>
   </FdTable>
@@ -22,8 +19,8 @@
 <script lang="ts">
 import Vue from "vue";
 import { Prop } from "vue/types/options";
-import { ValueToken, TypeTokens } from './Tokens';
-import { PropDocumentation } from '@/docs/api/PropDocumentation';
+import { ValueToken, TypeTokens } from "./Tokens";
+import { PropDocumentation } from "@/docs/api/PropDocumentation";
 
 const defaultValueFromProp = ({
   readableDefaultValue,
@@ -40,7 +37,7 @@ export default Vue.extend({
     tableItems(): PropDocumentation[] {
       return this.documentedProps.map(prop => {
         const defaultValue = defaultValueFromProp(prop);
-        const acceptedValues = (prop.acceptableValues || []).join(', ');
+        const acceptedValues = (prop.acceptableValues || []).join(", ");
         const types = prop.types;
         return {
           defaultValue,

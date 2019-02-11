@@ -17,7 +17,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { PropValidator } from "vue/types/options";
-import CalendarItem from './../CalendarItem.vue';
+import CalendarItem from "./../CalendarItem.vue";
 
 export default Vue.extend({
   components: { CalendarItem },

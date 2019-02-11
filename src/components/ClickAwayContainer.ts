@@ -1,7 +1,7 @@
-import Vue, { CreateElement, VNode } from 'vue';
-import { warn } from '@/core';
+import Vue, { CreateElement, VNode } from "vue";
+import { warn } from "@/core";
 
-const CLICK_OUTSIDE_EVENT = 'clickOutside';
+const CLICK_OUTSIDE_EVENT = "clickOutside";
 
 // Our awesome click away component comes with a few nice enhancements.
 // You use this component in order to detect clicks outside of a component/element.
@@ -17,8 +17,8 @@ const CLICK_OUTSIDE_EVENT = 'clickOutside';
 export default Vue.extend({
   props: {
     ignoredElements: { type: Function, default: () => () => [] },
-    tag: { type: String, default: 'div' },
-    active: { type: Boolean, default: false },
+    tag: { type: String, default: "div" },
+    active: { type: Boolean, default: false }
   },
   render(h: CreateElement): VNode {
     return h(this.tag, this.$slots.default);
@@ -28,13 +28,15 @@ export default Vue.extend({
     // there is a documentElement.
     const { body } = document;
     if (this.active && body != null) {
-      this.$el.removeEventListener('click', this.click);
-      body.removeEventListener('click', this.click);
+      this.$el.removeEventListener("click", this.click);
+      body.removeEventListener("click", this.click);
     }
   },
   methods: {
     click({ target }: Event) {
-      if (target == null) { return; }
+      if (target == null) {
+        return;
+      }
       const targetNode = target as Node;
 
       const isClickOnSelf = this.$el.contains(targetNode);
@@ -45,10 +47,12 @@ export default Vue.extend({
       // We now have to check the ignored elements
       const ignoredElements = this.ignoredElements();
       for (const ignoredElement of ignoredElements) {
-        if(ignoredElement.contains(targetNode)) { return; }
+        if (ignoredElement.contains(targetNode)) {
+          return;
+        }
       }
       this.$emit(CLICK_OUTSIDE_EVENT, event);
-    },
+    }
   },
   watch: {
     active: {
@@ -60,18 +64,20 @@ export default Vue.extend({
         // the body element is < 100% there will be places on the page which will
         // emit nothing when clicked.
         if (documentElement == null) {
-          warn(`v-${this}: Cannot do anything without a documentElement element.`);
+          warn(
+            `v-${this}: Cannot do anything without a documentElement element.`
+          );
           return;
         }
         if (isActive && !wasActive) {
-          this.$el.addEventListener('click', this.click, false);
-          documentElement.addEventListener('click', this.click, false);
+          this.$el.addEventListener("click", this.click, false);
+          documentElement.addEventListener("click", this.click, false);
         }
         if (!isActive && wasActive) {
-          this.$el.removeEventListener('click', this.click, false);
-          documentElement.removeEventListener('click', this.click, false);
+          this.$el.removeEventListener("click", this.click, false);
+          documentElement.removeEventListener("click", this.click, false);
         }
-      },
-    },
-  },
+      }
+    }
+  }
 });

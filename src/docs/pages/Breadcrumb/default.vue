@@ -13,8 +13,8 @@
 export default {
   methods: {
     handleClick() {
-      console.log('clicked');
-    },
-  },
+      console.log("clicked");
+    }
+  }
 };
 </script>

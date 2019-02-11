@@ -2,8 +2,10 @@
   <li>
     <slot>
       <a :href="hrefForLink" @click.prevent="onClick">
-        <ShellBarProductSwitcherItemImg :src="src"/>
-        <ShellBarProductSwitcherItemTitle>{{title}}</ShellBarProductSwitcherItemTitle>
+        <ShellBarProductSwitcherItemImg :src="src" />
+        <ShellBarProductSwitcherItemTitle>{{
+          title
+        }}</ShellBarProductSwitcherItemTitle>
       </a>
     </slot>
   </li>

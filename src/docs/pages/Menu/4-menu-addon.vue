@@ -6,7 +6,7 @@
     <FdMenuList>
       <FdMenuItem>Option 1</FdMenuItem>
       <FdMenuItem>
-        <span slot="addon" class="sap-icon--accept"/>
+        <span slot="addon" class="sap-icon--accept" />
         Option 2
       </FdMenuItem>
       <FdMenuItem>Option 3</FdMenuItem>

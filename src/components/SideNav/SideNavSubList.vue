@@ -1,6 +1,6 @@
 <template>
   <ul class="fd-side-nav__sublist" :aria-hidden="currentHidden">
-    <slot/>
+    <slot />
   </ul>
 </template>
 

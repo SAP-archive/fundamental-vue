@@ -12,7 +12,9 @@
       </FdFormItem>
     </FdFormSet>
     <div style="margin-bottom: 20px;">
-      <p>Selected Color: <code class="fd-has-font-weight-bold">{{color}}</code></p>
+      <p>
+        Selected Color: <code class="fd-has-font-weight-bold">{{ color }}</code>
+      </p>
     </div>
     <FdButton @click="color = 'green'">Set Color to 'green'</FdButton>
   </div>
@@ -22,8 +24,8 @@
 export default {
   data() {
     return {
-      color: "yellow",
-    }
+      color: "yellow"
+    };
   }
-}
+};
 </script>

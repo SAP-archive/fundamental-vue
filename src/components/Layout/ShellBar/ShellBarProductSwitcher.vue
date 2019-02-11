@@ -3,12 +3,14 @@
     <Popover placement="right">
       <div class="fd-user-menu__control" slot="control">
         <slot name="control">
-          <Button styling="light" class="fd-button--shell" icon="grid"/>
+          <Button styling="light" class="fd-button--shell" icon="grid" />
         </slot>
       </div>
       <div slot="body" class="fd-product-switcher__body">
         <nav>
-          <ul><slot /></ul>
+          <ul>
+            <slot />
+          </ul>
         </nav>
       </div>
     </Popover>

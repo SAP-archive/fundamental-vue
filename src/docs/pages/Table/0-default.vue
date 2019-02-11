@@ -1,5 +1,5 @@
 <title>Table</title>
-<docs>
+<docs lang="md">
 Use `FdTable` in order to display data best visualized by rows and columns.
 
 <div class="tip" style="border-left: 0.5rem solid #ffa94a;">
@@ -16,7 +16,7 @@ The most important prop exposed by `FdTable` is called `items`. The items of a t
 #### The Table Header: `FdTableHeader`
 It is the responsibility of `FdTable` to render it's header. The header renders column names, sort indicators and custom content. You configure the header of an `FdTable` by using it's `headers`-prop. The `headers`-prop accepts an array which may contain strings or header configuration objects. A plain string inside the `headers`-array will be used as a label for the column header. The complete definition of the `headers`-prop looks like this:
 
-```javascript
+```typescript
 type Header = {
   label: string;
   sortable?: boolean;
@@ -31,7 +31,7 @@ Rows are rendered by `FdTable` on your behalf. This is why you don't specify eac
 
 ```typescript
 // Object passed to the row template.
-interface RowSlotProps<T = object> {
+interface RowSlotProps<T=object> {
   // Your custom item
   item: T & { id: string; };
 
@@ -52,11 +52,11 @@ interface RowSlotProps<T = object> {
 
 <template>
   <FdTable :headers="headers" :items="items">
-    <template slot="row" slot-scope="{item}">
+    <template slot="row" slot-scope="{ item }">
       <FdTableRow>
-        <FdTableCell>{{item.firstName}}</FdTableCell>
-        <FdTableCell>{{item.lastName}}</FdTableCell>
-        <FdTableCell>{{item.building}}</FdTableCell>
+        <FdTableCell>{{ item.firstName }}</FdTableCell>
+        <FdTableCell>{{ item.lastName }}</FdTableCell>
+        <FdTableCell>{{ item.building }}</FdTableCell>
       </FdTableRow>
     </template>
   </FdTable>
@@ -70,7 +70,7 @@ export default {
       { rating: 1, firstName: "Chris", lastName: "Kienle", building: "WFD02" },
       { rating: 2, firstName: "Andi", lastName: "Kienle", building: "WFD03" },
       { rating: 3, firstName: "Sven", lastName: "Bacia", building: "WFD02" },
-      { rating: 4, firstName: "Artur", lastName: "Raess", building: "WFD02" },
+      { rating: 4, firstName: "Artur", lastName: "Raess", building: "WFD02" }
     ]
   })
 };

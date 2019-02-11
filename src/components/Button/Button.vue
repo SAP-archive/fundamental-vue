@@ -1,6 +1,10 @@
 <template>
-  <button :aria-pressed="isPressed ? 'true' : 'false'" @click="click" :class="classes">
-    <slot/>
+  <button
+    :aria-pressed="isPressed ? 'true' : 'false'"
+    @click="click"
+    :class="classes"
+  >
+    <slot />
   </button>
 </template>
 
@@ -8,7 +12,7 @@
 import Vue from "vue";
 import { ButtonContainer } from "./ButtonContainer";
 import { PropValidator } from "vue/types/options";
-import ButtonTypes from './ButtonTypes';
+import ButtonTypes from "./ButtonTypes";
 
 export default Vue.extend({
   name: "FdButton",
@@ -19,14 +23,12 @@ export default Vue.extend({
     styling: {
       type: String,
       default: null,
-      validator: (value: string) =>
-        ["emphasized", "light"].indexOf(value) >= 0
+      validator: (value: string) => ["emphasized", "light"].indexOf(value) >= 0
     } as PropValidator<string | null>,
     type: {
       type: String,
       default: null,
-      validator: (value: string) =>
-        ButtonTypes.indexOf(value) >= 0
+      validator: (value: string) => ButtonTypes.indexOf(value) >= 0
     } as PropValidator<string | null>,
     icon: {
       type: String,
@@ -55,13 +57,15 @@ export default Vue.extend({
   },
   computed: {
     classes(): string[] {
-      const staticClass = (this.styling == null && !this.computedCompact) ? ['fd-button'] : [];
-      const compact = this.computedCompact ? ['fd-button--compact']: [];
-      const styling = this.styling != null ? [`fd-button--${this.styling}`] : [];
+      const staticClass =
+        this.styling == null && !this.computedCompact ? ["fd-button"] : [];
+      const compact = this.computedCompact ? ["fd-button--compact"] : [];
+      const styling =
+        this.styling != null ? [`fd-button--${this.styling}`] : [];
       const icon = this.icon != null ? [`sap-icon--${this.icon}`] : [];
       const type = this.type != null ? [`fd-button--${this.type}`] : [];
-      const state = this.state !== 'normal' ? [`is-${this.state}`] : [];
-      const grouped = this.isGrouped ? ['fd-button--grouped'] : [];
+      const state = this.state !== "normal" ? [`is-${this.state}`] : [];
+      const grouped = this.isGrouped ? ["fd-button--grouped"] : [];
       return [
         ...staticClass,
         ...compact,
@@ -69,7 +73,7 @@ export default Vue.extend({
         ...icon,
         ...type,
         ...state,
-        ...grouped,
+        ...grouped
       ];
     },
     computedCompact(): boolean {

@@ -1,1 +1,1 @@
-export { DocsRouter } from './DocsRouter';
+export { DocsRouter } from "./DocsRouter";

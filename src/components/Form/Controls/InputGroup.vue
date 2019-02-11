@@ -1,11 +1,14 @@
 <template>
   <div class="fd-input-group" :class="classes">
-    <span v-if="hasBefore" class="fd-input-group__addon fd-input-group__addon--before">
-      <slot name="before">{{before}}</slot>
+    <span
+      v-if="hasBefore"
+      class="fd-input-group__addon fd-input-group__addon--before"
+    >
+      <slot name="before">{{ before }}</slot>
     </span>
-    <slot/>
+    <slot />
     <span v-if="hasAfter" :class="afterClasses">
-      <slot name="after">{{after}}</slot>
+      <slot name="after">{{ after }}</slot>
     </span>
   </div>
 </template>

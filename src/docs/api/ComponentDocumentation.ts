@@ -1,6 +1,6 @@
-import { EventDocumentation } from './EventDocumentation';
-import { PropDocumentation } from './PropDocumentation';
-import { SlotDocumentation } from './SlotDocumentation';
+import { EventDocumentation } from "./EventDocumentation";
+import { PropDocumentation } from "./PropDocumentation";
+import { SlotDocumentation } from "./SlotDocumentation";
 
 export type ComponentDocumentation = {
   componentName: string;

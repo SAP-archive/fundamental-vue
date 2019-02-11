@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Checkbox } from '@/components/Form';
+import { Checkbox } from "@/components/Form";
 import { PropValidator } from "vue/types/options";
 
 // Simply wraps a Checkbox in order to hide the ugly truth.
@@ -66,4 +66,3 @@ export default Vue.extend({
   }
 });
 </script>
-

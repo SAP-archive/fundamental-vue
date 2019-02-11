@@ -3,13 +3,21 @@
     <table class="fd-calendar__table" role="grid">
       <thead class="fd-calendar__group">
         <tr class="fd-calendar__row">
-          <th v-for="dayName in dayNames" :key="dayName" class="fd-calendar__column-header">
-            <span class="fd-calendar__day-of-week">{{dayName}}</span>
+          <th
+            v-for="dayName in dayNames"
+            :key="dayName"
+            class="fd-calendar__column-header"
+          >
+            <span class="fd-calendar__day-of-week">{{ dayName }}</span>
           </th>
         </tr>
       </thead>
       <tbody class="fd-calendar__group">
-        <tr class="fd-calendar__row" v-for="(week, index) in month" :key="String('week-' + index)">
+        <tr
+          class="fd-calendar__row"
+          v-for="(week, index) in month"
+          :key="String('week-' + index)"
+        >
           <CalendarItem
             v-for="date in week"
             :key="date.toString()"
@@ -29,7 +37,7 @@ import Vue from "vue";
 import { Month, sameDay } from "./../util";
 import { PropValidator } from "vue/types/options";
 import { Prop } from "vue/types/options";
-import CalendarItem from './../CalendarItem.vue';
+import CalendarItem from "./../CalendarItem.vue";
 
 type DateFn = (date: Date) => boolean;
 

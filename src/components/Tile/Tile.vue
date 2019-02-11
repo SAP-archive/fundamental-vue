@@ -1,14 +1,14 @@
 <template>
   <div :class="classes" :role="role" :aria-disabled="disabled">
     <div v-if="$slots.media" class="fd-tile__media">
-      <slot name="media"/>
+      <slot name="media" />
     </div>
     <div class="fd-tile__content">
-      <h2 v-if="title != null" class="fd-tile__title">{{title}}</h2>
-      <p v-if="description != null">{{description}}</p>
+      <h2 v-if="title != null" class="fd-tile__title">{{ title }}</h2>
+      <p v-if="description != null">{{ description }}</p>
     </div>
     <div v-if="$slots.actions" class="fd-tile__actions">
-      <slot name="actions"/>
+      <slot name="actions" />
     </div>
   </div>
 </template>
@@ -62,6 +62,6 @@ export default Vue.extend({
         "fd-tile": true
       };
     }
-  },
+  }
 });
 </script>

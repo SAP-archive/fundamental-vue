@@ -2,11 +2,11 @@
 import Vue, { VNode, CreateElement } from "vue";
 import { PropValidator } from "vue/types/options";
 import { normalizedHeaders, NormalizedHeader, RawHeader } from "./Util";
-import { warn } from '@/core';
+import { warn } from "@/core";
 
-import { ScopedSlotChildren } from 'vue/types/vnode';
-import TableBody from './Components/TableBody.vue';
-import TableHeader from './Components/TableHeader.vue';
+import { ScopedSlotChildren } from "vue/types/vnode";
+import TableBody from "./Components/TableBody.vue";
+import TableHeader from "./Components/TableHeader.vue";
 import {
   SortOrder,
   toggleSortOrder,
@@ -36,12 +36,13 @@ interface RowSlotProps<T = object> {
 
 // Typed version of Vue's ScopedSlot type.
 // This will be called row each row our table component has to render.
-export type ScopedRowSlot<T = object> = (props: RowSlotProps<T>) => ScopedSlotChildren;
-
+export type ScopedRowSlot<T = object> = (
+  props: RowSlotProps<T>
+) => ScopedSlotChildren;
 
 export default Vue.extend({
   name: "FdTable",
-  components: {TableBody, TableHeader},
+  components: { TableBody, TableHeader },
   provide(): object {
     return {
       table: this
@@ -51,8 +52,11 @@ export default Vue.extend({
     headers: {
       immediate: true,
       handler(newValue: RawHeader[]) {
-        this.normalizedHeaders = normalizedHeaders(newValue, this.firstColumnFixed);
-      },
+        this.normalizedHeaders = normalizedHeaders(
+          newValue,
+          this.firstColumnFixed
+        );
+      }
     },
     items: {
       immediate: true,
@@ -112,14 +116,14 @@ export default Vue.extend({
     selectionMode: {
       validator: SelectionModeValidator,
       type: String,
-      default: SelectionMode.none,
-    } as PropValidator<SelectionMode>,
+      default: SelectionMode.none
+    } as PropValidator<SelectionMode>
   },
   computed: {
     classes(): object {
       return {
-        'fd-table--striped': this.striped,
-        'fd-table--no-borders': this.borderless,
+        "fd-table--striped": this.striped,
+        "fd-table--no-borders": this.borderless
       };
     },
     renderedRows(): ScopedSlotChildren[] {
@@ -135,7 +139,9 @@ export default Vue.extend({
       if (sortDescriptor == null) {
         return copy;
       }
-      return copy.sort(compareValues(sortDescriptor.prop, sortDescriptor.order));
+      return copy.sort(
+        compareValues(sortDescriptor.prop, sortDescriptor.order)
+      );
     },
     sortedByColumnId(): string | null {
       const { sortDescriptor } = this;
@@ -143,117 +149,132 @@ export default Vue.extend({
         return null;
       }
       return sortDescriptor.columnId;
-    },
+    }
   },
   methods: {
     renderTable(h: CreateElement): VNode {
-      const header =
-        h(TableHeader, {
+      const header = h(
+        TableHeader,
+        {
           on: {
-            'click:column': this.onColumnClick,
+            "click:column": this.onColumnClick
           },
           props: {
             sortDescriptor: this.sortDescriptor,
-            headers: this.normalizedHeaders,
+            headers: this.normalizedHeaders
           }
-        }, []);
+        },
+        []
+      );
       const renderedRows = this.renderedRows;
       const body = h(TableBody, {}, renderedRows);
-      return h('table', {
-        staticClass: 'fd-table',
-        class: this.classes,
-      }, [header, body]);
+      return h(
+        "table",
+        {
+          staticClass: "fd-table",
+          class: this.classes
+        },
+        [header, body]
+      );
     },
     onColumnClick(columnId: string): void {
-    const column = this.normalizedHeaders.find(({ id }) => id === columnId);
-    if (column == null) {
-      return;
-    }
-    const { sortBy } = column;
-    if(sortBy == null) { return; }
-    this.sortBy(sortBy, columnId);
-  },
+      const column = this.normalizedHeaders.find(({ id }) => id === columnId);
+      if (column == null) {
+        return;
+      }
+      const { sortBy } = column;
+      if (sortBy == null) {
+        return;
+      }
+      this.sortBy(sortBy, columnId);
+    },
     execute(action: SelectAction, id: string): void {
-    switch (this.selectionMode) {
-      case SelectionMode.none: {
-        this.updateSelectedIds([]);
-        break;
-      }
-      case SelectionMode.multiple: {
-        if (action === SelectAction.select) {
-          this.updateSelectedIds([id, ...this.currentSelectedIds]);
-        } else {
-          const newIds = [...this.currentSelectedIds].filter(selectedId => selectedId !== id);
-          this.updateSelectedIds(newIds);
+      switch (this.selectionMode) {
+        case SelectionMode.none: {
+          this.updateSelectedIds([]);
+          break;
         }
-        break;
+        case SelectionMode.multiple: {
+          if (action === SelectAction.select) {
+            this.updateSelectedIds([id, ...this.currentSelectedIds]);
+          } else {
+            const newIds = [...this.currentSelectedIds].filter(
+              selectedId => selectedId !== id
+            );
+            this.updateSelectedIds(newIds);
+          }
+          break;
+        }
+        case SelectionMode.single: {
+          this.updateSelectedIds(action === SelectAction.deselect ? [] : [id]);
+          break;
+        }
       }
-      case SelectionMode.single: {
-        this.updateSelectedIds((action === SelectAction.deselect) ? [] : [id]);
-        break;
+    },
+    toggleSelectionForItem(id: string): void {
+      const isSelected = this.currentSelectedIds.includes(id);
+      if (isSelected) {
+        this.execute(SelectAction.deselect, id);
+      } else {
+        this.execute(SelectAction.select, id);
       }
-    }
-  },
-  toggleSelectionForItem(id: string): void {
-    const isSelected = this.currentSelectedIds.includes(id);
-    if (isSelected) {
-      this.execute(SelectAction.deselect, id);
-    } else {
-      this.execute(SelectAction.select, id);
-    }
-  },
-  preparedRenderedRow(
-    rowNode: ScopedSlotChildren,
-    { id: itemId }: Item,
-  ): ScopedSlotChildren {
-    if (typeof rowNode === 'string') {
-      warn(`Unable to prepare table row because rendered slot is not a VNode: ${rowNode}`);
+    },
+    preparedRenderedRow(
+      rowNode: ScopedSlotChildren,
+      { id: itemId }: Item
+    ): ScopedSlotChildren {
+      if (typeof rowNode === "string") {
+        warn(
+          `Unable to prepare table row because rendered slot is not a VNode: ${rowNode}`
+        );
+        return [];
+      }
+
+      if (Array.isArray(rowNode)) {
+        if (rowNode.length === 0) {
+          warn(
+            `Unable to prepare table row because rendered slot seems to be an empty array: ${rowNode}`
+          );
+          return [];
+        }
+        const node = rowNode[0] as VNode;
+        const { componentOptions } = node;
+        if (componentOptions == null) {
+          return [];
+        }
+        const { propsData = {} } = componentOptions;
+        const selected = this.isSelected(itemId);
+        node.key = itemId;
+        componentOptions.propsData = {
+          ...propsData,
+          itemId,
+          isSelected: selected
+        };
+        return rowNode;
+      }
       return [];
-    }
-
-    if (Array.isArray(rowNode)) {
-      if (rowNode.length === 0) {
-        warn(`Unable to prepare table row because rendered slot seems to be an empty array: ${rowNode}`);
-        return [];
-      }
-      const node = rowNode[0] as VNode;
-      const { componentOptions } = node;
-      if (componentOptions == null) {
-        return [];
-      }
-      const { propsData = {} } = componentOptions;
-      const selected = this.isSelected(itemId);
-      node.key = itemId;
-      componentOptions.propsData = {
-        ...propsData,
-        itemId,
-        isSelected: selected,
+    },
+    renderdRow(rowTemplate: ScopedRowSlot, item: Item): ScopedSlotChildren {
+      const changeSelection = (selected: boolean, event: Event) => {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+        this.execute(
+          selected ? SelectAction.select : SelectAction.deselect,
+          item.id
+        );
       };
-      return rowNode;
-    }
-    return [];
-  },
-  renderdRow(
-    rowTemplate: ScopedRowSlot,
-    item: Item,
-  ): ScopedSlotChildren {
-    const changeSelection = (selected: boolean, event: Event) => {
-      event.stopImmediatePropagation();
-      event.preventDefault();
-      this.execute(selected ? SelectAction.select : SelectAction.deselect, item.id);
-    };
 
-    const renderedRow = rowTemplate({
-      item,
-      changeSelection,
-      selected: this.isSelected(item.id),
-    });
+      const renderedRow = rowTemplate({
+        item,
+        changeSelection,
+        selected: this.isSelected(item.id)
+      });
 
-    return this.preparedRenderedRow(renderedRow, item);
-  },
+      return this.preparedRenderedRow(renderedRow, item);
+    },
     isSelected(id: string): boolean {
-    return this.currentSelectedIds.includes(id);
-  },
+      return this.currentSelectedIds.includes(id);
+    },
     sortOrder(columnId: string): SortOrder | null {
       if (this.sortedByColumnId !== columnId) {
         return null;
@@ -264,7 +285,7 @@ export default Vue.extend({
       }
       return sortDescriptor.order;
     },
-  sortBy(sortBy: SortBy, columnId: string): void {
+    sortBy(sortBy: SortBy, columnId: string): void {
       const needsToggle = this.sortedByColumnId === columnId;
       const { order = SortOrder.ascending } = this.sortDescriptor || {};
       const newOrder = needsToggle ? toggleSortOrder(order) : order;
@@ -285,24 +306,31 @@ export default Vue.extend({
       normalizedItems: [] as TableItems,
       sortDescriptor: null as SortDescriptor | null,
       currentSelectedIds: this.selectedIds as string[],
-      normalizedHeaders: [] as NormalizedHeader[],
+      normalizedHeaders: [] as NormalizedHeader[]
     };
   },
   render(h: CreateElement): VNode {
     if (this.firstColumnFixed) {
-      return h('div', {
-          class: 'fd-table--fixed-wrapper',
-          style: this.fixedWrapperStyle,
+      return h(
+        "div",
+        {
+          class: "fd-table--fixed-wrapper",
+          style: this.fixedWrapperStyle
         },
         [
-          h('div', {
-            class: 'fd-table--fixed',
-            style: {
-              'margin-left': '200px',
-              'padding-left': '0px',
+          h(
+            "div",
+            {
+              class: "fd-table--fixed",
+              style: {
+                "margin-left": "200px",
+                "padding-left": "0px"
+              }
             },
-          }, [this.renderTable(h)])
-        ]);
+            [this.renderTable(h)]
+          )
+        ]
+      );
     }
     return this.renderTable(h);
   }

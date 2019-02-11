@@ -1,6 +1,6 @@
 <template>
   <td :class="classes" :style="style">
-    <slot/>
+    <slot />
   </td>
 </template>
 
@@ -27,6 +27,6 @@ export default Vue.extend({
         "fd-table__fixed-col": this.fixed
       };
     }
-  },
+  }
 });
 </script>

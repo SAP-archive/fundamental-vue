@@ -9,14 +9,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import { PropValidator } from 'vue/types/options';
-import TypeToken from './TypeToken.vue';
+import Vue from "vue";
+import { PropValidator } from "vue/types/options";
+import TypeToken from "./TypeToken.vue";
 
 export default Vue.extend({
   components: { TypeToken },
   props: {
-    propTypes: { type: Array, required: true } as PropValidator<string[]>,
-  },
-})
+    propTypes: { type: Array, required: true } as PropValidator<string[]>
+  }
+});
 </script>

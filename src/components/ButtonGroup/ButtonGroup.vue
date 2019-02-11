@@ -1,6 +1,6 @@
 <template>
   <div class="fd-button-group" role="group">
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -55,4 +55,3 @@ export default Vue.extend({
   }
 });
 </script>
-

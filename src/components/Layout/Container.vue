@@ -1,6 +1,6 @@
 <template>
   <div :class="classes">
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -10,7 +10,7 @@ export default Vue.extend({
   name: "FdContainer",
   props: {
     flex: { type: Boolean, default: false },
-    fluid: { type: Boolean, default: false },
+    fluid: { type: Boolean, default: false }
   },
   computed: {
     classes(): object {
@@ -20,6 +20,6 @@ export default Vue.extend({
         "fd-container--fluid": this.fluid
       };
     }
-  },
+  }
 });
 </script>

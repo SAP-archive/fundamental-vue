@@ -3,6 +3,6 @@
 <tip>If you customize weekday names by using the `dayNames`-prop you do that independently from `firstDayOfWeek`. This means that even though you may have set a different `firstDayOfWeek`, the first name specified in `dayNames` is always and will always be the name for **Sunday**.</tip>
 <template>
   <div>
-    <FdCalendar :firstDayOfWeek=1 />
+    <FdCalendar :firstDayOfWeek="1" />
   </div>
 </template>

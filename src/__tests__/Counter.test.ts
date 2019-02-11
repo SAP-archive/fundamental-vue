@@ -1,23 +1,23 @@
-import { assert } from 'chai';
-import { Counter } from '@/components/Counter';
-import { mount } from '@vue/test-utils';
+import { assert } from "chai";
+import { Counter } from "@/components/Counter";
+import { mount } from "@vue/test-utils";
 
-describe('Counter', () => {
-  it('info type counter rendered if type is info', () => {
+describe("Counter", () => {
+  it("info type counter rendered if type is info", () => {
     const propsData = {
-      type: 'info',
-      value: 23,
+      type: "info",
+      value: 23
     };
     const counter = mount(Counter, { propsData });
-    assert(counter.classes('fd-counter'));
+    assert(counter.classes("fd-counter"));
   });
 
-  it('info type counter rendered if type is notification', () => {
+  it("info type counter rendered if type is notification", () => {
     const propsData = {
-      type: 'notification',
-      value: 23,
+      type: "notification",
+      value: 23
     };
     const counter = mount(Counter, { propsData });
-    assert(counter.classes('fd-counter--notification'));
+    assert(counter.classes("fd-counter--notification"));
   });
 });

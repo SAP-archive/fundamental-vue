@@ -1,15 +1,15 @@
 <template>
-  <span class="type-token">{{propType}}</span>
+  <span class="type-token">{{ propType }}</span>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 
 export default Vue.extend({
   props: {
-    propType: String,
-  },
-})
+    propType: String
+  }
+});
 </script>
 
 <style scoped>

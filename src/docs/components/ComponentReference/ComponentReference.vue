@@ -1,54 +1,58 @@
 <template>
-  <FdSection
-    v-if="isDocumented"
-    v-bg:neutral-1
-    :title="title"
-  >
+  <FdSection v-if="isDocumented" v-bg:neutral-1 :title="title">
     <FdTabs :value="initialTab">
-      <FdTabItem v-if="hasProps" label='Properties' name='props'>
+      <FdTabItem v-if="hasProps" label="Properties" name="props">
         <PropsReference :documentedProps="documentedProps" />
       </FdTabItem>
-      <FdTabItem v-if="hasEvents" label='Events' name='events'>
+      <FdTabItem v-if="hasEvents" label="Events" name="events">
         <EventsReference :events="documentedEvents" />
       </FdTabItem>
-      <FdTabItem v-if="hasSlots" label='Slots' name='slots'>
+      <FdTabItem v-if="hasSlots" label="Slots" name="slots">
         <SlotsReference :slots="documentedSlots" />
       </FdTabItem>
     </FdTabs>
-
   </FdSection>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 import { PropValidator } from "vue/types/options";
 import {
   ComponentDocumentation,
   EventDocumentation,
   SlotDocumentation,
-  PropDocumentation,
-} from '@/docs/api';
+  PropDocumentation
+} from "@/docs/api";
 
 const makeEmptyDocumentation = (): ComponentDocumentation => ({
-  componentName: '',
+  componentName: "",
   mixins: [],
   events: {},
   props: {},
-  slots: {},
+  slots: {}
 });
 
 export default Vue.extend({
   props: {
-    componentDocumentation: { type: Object, default: makeEmptyDocumentation } as PropValidator<ComponentDocumentation>,
+    componentDocumentation: {
+      type: Object,
+      default: makeEmptyDocumentation
+    } as PropValidator<ComponentDocumentation>
   },
   computed: {
     title(): string {
       return `${this.componentDocumentation.componentName} API`;
     },
     initialTab(): string | null {
-      if(this.hasProps) { return 'props'; }
-      if(this.hasEvents) { return 'events'; }
-      if(this.hasSlots) { return 'slots'; }
+      if (this.hasProps) {
+        return "props";
+      }
+      if (this.hasEvents) {
+        return "events";
+      }
+      if (this.hasSlots) {
+        return "slots";
+      }
       return null;
     },
     documentedProps(): PropDocumentation[] {
@@ -72,6 +76,6 @@ export default Vue.extend({
     isDocumented(): boolean {
       return this.hasProps || this.hasEvents || this.hasSlots;
     }
-  },
-})
+  }
+});
 </script>

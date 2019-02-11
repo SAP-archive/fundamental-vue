@@ -1,6 +1,6 @@
-import { VueConstructor } from 'vue';
-import { IconName } from '@/lib';
-import pagesJson from './pages.json';
+import { VueConstructor } from "vue";
+import { IconName } from "@/lib";
+import pagesJson from "./pages.json";
 
 export type PageType = {
   id: string;
@@ -37,15 +37,19 @@ export type ExampleCollection = {
   examples(): Example[];
 };
 
-const examplesContext = require.context('./', true, /\.vue$/);
-const examplesCodeContext = require.context('!remove-docs-loader!./', true, /\.vue$/);
+const examplesContext = require.context("./", true, /\.vue$/);
+const examplesCodeContext = require.context(
+  "!remove-docs-loader!./",
+  true,
+  /\.vue$/
+);
 
 export const getExamples = (collectionName: string): Example[] => {
   // Contains stringe like: ./Button/group.vue
   const exampleKeys = examplesContext.keys();
-  const reg = new RegExp(`^\.\/${collectionName}\/(.*)\.vue$`);
+  const reg = new RegExp(`^./${collectionName}/(.*).vue$`);
   const keyMatches = (key: string) => key.match(reg) != null;
-   // This array contains only matching keys. Each key represents a single
+  // This array contains only matching keys. Each key represents a single
   // example eg.: './Alert/0-default.vue'
   // From now on we refer to a matching key as the example's id.
   // The id is used to uniquely identify an example. This is needed to host
@@ -54,7 +58,8 @@ export const getExamples = (collectionName: string): Example[] => {
   const result = matchingKeys.map(key => {
     const component = examplesContext(key).default;
     const titleFromComponent = component.__title;
-    const title = typeof titleFromComponent === 'string' ? titleFromComponent : '';
+    const title =
+      typeof titleFromComponent === "string" ? titleFromComponent : "";
     const tip = component.__tip;
     const docs = component.__docs;
     const condensed = component.__condensed != null;
@@ -68,9 +73,11 @@ export const getExamples = (collectionName: string): Example[] => {
       code,
       docs,
       condensed,
-      fullscreenOnly,
+      fullscreenOnly
     };
   });
-  result.sort((lhs, rhs) => lhs.id.localeCompare(rhs.id, 'en', { numeric: true }));
+  result.sort((lhs, rhs) =>
+    lhs.id.localeCompare(rhs.id, "en", { numeric: true })
+  );
   return result;
 };

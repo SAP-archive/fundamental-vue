@@ -7,17 +7,16 @@ interface State {
 const makeDefaultState = (): State => ({
   selectedId: null,
   expandedIds: [],
-  items: {},
+  items: {}
 });
 
-type Item = { itemId: string; };
-type SubItem = Item & { parentId: string; };
-type Items = {[itemId: string]: Item | SubItem };
+type Item = { itemId: string };
+type SubItem = Item & { parentId: string };
+type Items = { [itemId: string]: Item | SubItem };
 
 export class Store {
-  constructor(
-    readonly initialState = makeDefaultState()) {
-    this.state = {...initialState};
+  constructor(readonly initialState = makeDefaultState()) {
+    this.state = { ...initialState };
   }
 
   private state: State;
@@ -27,7 +26,7 @@ export class Store {
   }
 
   set selectedId(selectedId: string | null) {
-    this.state = {...this.state, selectedId};
+    this.state = { ...this.state, selectedId };
   }
 
   get expandedIds(): string[] {
@@ -35,28 +34,28 @@ export class Store {
   }
 
   set expandedIds(expandedIds: string[]) {
-    this.state = {...this.state, expandedIds};
+    this.state = { ...this.state, expandedIds };
   }
 
-  get expanded(): ((id: string) => boolean) {
+  get expanded(): (id: string) => boolean {
     return id => this.expandedIds.includes(id);
   }
 
-  get selected(): ((id: string) => boolean) {
+  get selected(): (id: string) => boolean {
     return id => this.selectedId === id;
   }
 
   get items(): Items {
-    return {...this.state.items};
+    return { ...this.state.items };
   }
 
   subItems(itemId: string): SubItem[] {
     const items = Object.values(this.items);
     const result: SubItem[] = [];
     items.forEach(item => {
-      if('parentId' in item) {
+      if ("parentId" in item) {
         const { parentId } = item;
-        if(parentId === itemId) {
+        if (parentId === itemId) {
           result.push({ itemId: item.itemId, parentId });
         }
       }
@@ -72,7 +71,7 @@ export class Store {
   registerItem(itemId: string) {
     this.state = {
       ...this.state,
-      items: {...this.items, [itemId]: { itemId }},
+      items: { ...this.items, [itemId]: { itemId } }
     };
   }
 
@@ -81,18 +80,18 @@ export class Store {
     delete items[itemId];
     this.state = {
       ...this.state,
-      items,
+      items
     };
   }
 
-  registerSubItem({itemId, parentId}: SubItem) {
+  registerSubItem({ itemId, parentId }: SubItem) {
     this.state = {
       ...this.state,
-      items: {...this.items, [itemId]: { itemId, parentId }},
+      items: { ...this.items, [itemId]: { itemId, parentId } }
     };
   }
 
-  ununregisterSubItem({itemId}: SubItem) {
+  ununregisterSubItem({ itemId }: SubItem) {
     this.unregisterItem(itemId);
   }
 
@@ -106,6 +105,8 @@ export class Store {
   }
 
   private collapse(id: string) {
-    this.expandedIds = [...this.expandedIds.filter(expandedId => expandedId !== id)];
+    this.expandedIds = [
+      ...this.expandedIds.filter(expandedId => expandedId !== id)
+    ];
   }
 }

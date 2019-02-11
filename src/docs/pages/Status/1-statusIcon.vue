@@ -10,9 +10,9 @@
 
 <style scoped>
 .status {
-    text-align: center;
+  text-align: center;
 }
 .status > span {
-    margin-right: 50px;
+  margin-right: 50px;
 }
 </style>

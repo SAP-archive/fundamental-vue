@@ -11,7 +11,7 @@ import { PropValidator } from "vue/types/options";
 
 export default Vue.extend({
   name: "FdSideNavList",
-  inject: ['sideNavStore'],
+  inject: ["sideNavStore"],
   props: {
     items: { type: Array, default: () => [] } as PropValidator<Item[]>
   },

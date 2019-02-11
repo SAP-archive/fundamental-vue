@@ -1,11 +1,13 @@
 <template>
-  <ul class="fd-breadcrumb"><slot /></ul>
+  <ul class="fd-breadcrumb">
+    <slot />
+  </ul>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 
 export default Vue.extend({
-  name: 'FdBreadcrumb',
+  name: "FdBreadcrumb"
 });
 </script>

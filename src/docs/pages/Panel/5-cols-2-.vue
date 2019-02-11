@@ -1,7 +1,7 @@
 <title>Panel Grid (2 Columns)</title>
 
 <template>
-   <FdPanelGrid :col=2>
+  <FdPanelGrid :col="2">
     <FdPanel>Panel Body 1</FdPanel>
     <FdPanel>Panel Body 2</FdPanel>
     <FdPanel>Panel Body 3</FdPanel>

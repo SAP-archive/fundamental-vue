@@ -1,6 +1,6 @@
 <template>
   <span :class="classes">
-    <slot/>
+    <slot />
   </span>
 </template>
 
@@ -25,10 +25,9 @@ export default Vue.extend({
       const staticClass = "fd-form__message";
       return {
         [staticClass]: true,
-        [`${staticClass}--${this.type || ''}`]: this.type != null,
+        [`${staticClass}--${this.type || ""}`]: this.type != null
       };
     }
   }
 });
 </script>
-

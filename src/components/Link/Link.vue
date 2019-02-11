@@ -1,6 +1,6 @@
 <template>
   <a v-on="listeners" @click="click" :class="classes" href="#">
-    <slot/>
+    <slot />
   </a>
 </template>
 
@@ -12,7 +12,7 @@ export default Vue.extend({
   name: "FdLink",
   props: {
     selected: { type: Boolean, default: false } as PropValidator<boolean>,
-    disabled: { type: Boolean, default: false } as PropValidator<boolean>,
+    disabled: { type: Boolean, default: false } as PropValidator<boolean>
   },
   methods: {
     click(event: Event): void {

@@ -1,77 +1,69 @@
-const Path = require('path');
+const Path = require("path");
 
 module.exports = {
-  lintOnSave: process.env.NODE_ENV !== 'test',
+  lintOnSave: false,
   runtimeCompiler: false,
   chainWebpack: config => {
     config.module
-      .rule('raw-loader')
+      .rule("raw-loader")
       .test(/\.example$/)
-      .use('raw-loader')
-      .loader('raw-loader')
-      .end()
+      .use("raw-loader")
+      .loader("raw-loader")
+      .end();
 
     config.module
-      .rule('html-loader')
+      .rule("html-loader")
       .test(/\.md$/)
-      .use('html-loader')
-      .loader('html-loader')
+      .use("html-loader")
+      .loader("html-loader")
       .end()
-      .use('markdown-loader')
-        .loader('markdown-loader')
-        .tap(() => {
-          return {
-            highlight: function(code) {
-              return require('highlight.js').highlightAuto(code).value;
-            },
-        }
+      .use("markdown-loader")
+      .loader("markdown-loader")
+      .tap(() => {
+        return {
+          highlight: function(code) {
+            return require("highlight.js").highlightAuto(code).value;
+          }
+        };
       })
-      .end()
+      .end();
   },
 
   configureWebpack: {
-    entry: './src/index.ts',
+    entry: "./src/index.ts",
     output: {
-      libraryExport: 'default'
+      libraryExport: "default"
     },
     resolveLoader: {
       modules: [
-        'node_modules',
-        Path.resolve(__dirname, 'loaders'),
-        Path.resolve(__dirname, 'src', 'docs', 'node_modules')
-      ],
+        "node_modules",
+        Path.resolve(__dirname, "loaders"),
+        Path.resolve(__dirname, "src", "docs", "node_modules")
+      ]
     },
     module: {
       rules: [
-         {
+        {
           resourceQuery: /blockType=title/,
-          use: [
-            'block-loader?optionName=__title',
-          ],
+          use: ["block-loader?optionName=__title"]
         },
         {
           resourceQuery: /blockType=docs/,
-          use: [
-            'block-loader?optionName=__docs',
-            'markdown-loader',
-          ],
+          use: ["block-loader?optionName=__docs", "markdown-loader"]
         },
         {
           resourceQuery: /blockType=tip/,
-          use: [
-            'block-loader?optionName=__tip',
-            'markdown-loader',
-          ],
+          use: ["block-loader?optionName=__tip", "markdown-loader"]
         },
         {
           resourceQuery: /blockType=condensed/,
-          use: 'block-loader?optionName=__condensed',
+          use: "block-loader?optionName=__condensed"
         },
         {
           resourceQuery: /blockType=fullscreen-only/,
-          use: 'block-loader?optionName=__fullscreenOnly',
-        },
-      ],
-    },
-  },
+          use: "block-loader?optionName=__fullscreenOnly"
+        }
+      ]
+    }
+  }
 };

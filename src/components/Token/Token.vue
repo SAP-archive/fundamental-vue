@@ -1,6 +1,6 @@
 <template>
   <span class="fd-token" role="button" v-on="$listeners">
-    <slot/>
+    <slot />
   </span>
 </template>
 
@@ -10,4 +10,3 @@ export default Vue.extend({
   name: "FdToken"
 });
 </script>
-

@@ -8,14 +8,14 @@ If a component you put inside an `FdTableCell` subscribes to `@click`-events, yo
 </tip>
 
 <template>
-  <FdTable :headers="headers" selectionMode='multiple' :items="items">
-    <template slot="row" slot-scope="{item}">
+  <FdTable :headers="headers" selectionMode="multiple" :items="items">
+    <template slot="row" slot-scope="{ item }">
       <FdTableRow @click="onRowClick(item)">
         <FdTableCell>
-          <FdButton @click.stop="onButtonClick">{{item.firstName}}</FdButton>
+          <FdButton @click.stop="onButtonClick">{{ item.firstName }}</FdButton>
         </FdTableCell>
-        <FdTableCell>{{item.lastName}}</FdTableCell>
-        <FdTableCell>{{item.building}}</FdTableCell>
+        <FdTableCell>{{ item.lastName }}</FdTableCell>
+        <FdTableCell>{{ item.building }}</FdTableCell>
       </FdTableRow>
     </template>
   </FdTable>
@@ -25,19 +25,43 @@ If a component you put inside an `FdTableCell` subscribes to `@click`-events, yo
 export default {
   methods: {
     onButtonClick() {
-      console.log('click on button');
+      console.log("click on button");
     },
     onRowClick(item) {
-      console.log('click on row representing item: %o', item);
+      console.log("click on row representing item: %o", item);
     }
   },
   data: () => ({
     headers: ["First Name", "Last Name", "Building"],
     items: [
-      { id: "1", rating: 1, firstName: "Chris", lastName: "Kienle", building: "WFD02" },
-      { id: "2", rating: 2, firstName: "Andi", lastName: "Kienle", building: "WFD03" },
-      { id: "3", rating: 3, firstName: "Sven", lastName: "Bacia", building: "WFD02" },
-      { id: "4", rating: 4, firstName: "Artur", lastName: "Raess", building: "WFD02" },
+      {
+        id: "1",
+        rating: 1,
+        firstName: "Chris",
+        lastName: "Kienle",
+        building: "WFD02"
+      },
+      {
+        id: "2",
+        rating: 2,
+        firstName: "Andi",
+        lastName: "Kienle",
+        building: "WFD03"
+      },
+      {
+        id: "3",
+        rating: 3,
+        firstName: "Sven",
+        lastName: "Bacia",
+        building: "WFD02"
+      },
+      {
+        id: "4",
+        rating: 4,
+        firstName: "Artur",
+        lastName: "Raess",
+        building: "WFD02"
+      }
     ]
   })
 };

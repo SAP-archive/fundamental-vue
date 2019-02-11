@@ -16,5 +16,10 @@
 </template>
 
 <style scoped>
-.container div { font-family: monospace; background-color: #efefef; border: 1px #cccccc solid; margin-block-end: 1rem; }
+.container div {
+  font-family: monospace;
+  background-color: #efefef;
+  border: 1px #cccccc solid;
+  margin-block-end: 1rem;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <a class="fd-shellbar__logo" href="#" @click.prevent="pushLocationIfPossible">
-    <img :src="src" :srcset="srcset">
+    <img :src="src" :srcset="srcset" />
   </a>
 </template>
 

@@ -13,20 +13,28 @@
         <div class="fd-modal__content" role="document">
           <!-- HEADER -->
           <div class="fd-modal__header">
-            <h1 class="fd-modal__title">{{title}}</h1>
-            <Button class="fd-modal__close" styling="light" @click="close" aria-label="close"/>
+            <h1 class="fd-modal__title">{{ title }}</h1>
+            <Button
+              class="fd-modal__close"
+              styling="light"
+              @click="close"
+              aria-label="close"
+            />
           </div>
 
           <!-- BODY -->
           <div class="fd-modal__body">
-            <slot/>
+            <slot />
           </div>
 
           <!-- FOOTER -->
-          <footer v-if="$slots.footer != null || $slots.actions != null" class="fd-modal__footer">
-            <slot name="footer"/>
+          <footer
+            v-if="$slots.footer != null || $slots.actions != null"
+            class="fd-modal__footer"
+          >
+            <slot name="footer" />
             <div v-if="$slots.actions" class="fd-modal__actions">
-              <slot name="actions"/>
+              <slot name="actions" />
             </div>
           </footer>
         </div>

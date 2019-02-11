@@ -1,12 +1,12 @@
 <template>
   <div v-if="header != null" class="fd-menu__group">
-    <h1 class="fd-menu__title">{{header}}</h1>
+    <h1 class="fd-menu__title">{{ header }}</h1>
     <ul class="fd-menu__list" :class="menuListClasses">
-      <slot/>
+      <slot />
     </ul>
   </div>
   <ul v-else class="fd-menu__list" :class="menuListClasses">
-    <slot/>
+    <slot />
   </ul>
 </template>
 
@@ -43,6 +43,6 @@ export default Vue.extend({
         menu.menuItemDidClick(item);
       }
     }
-  },
+  }
 });
 </script>

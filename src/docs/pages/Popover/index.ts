@@ -1,5 +1,9 @@
-import { ExampleCollectionFunction } from '../types';
+import { ExampleCollectionFunction } from "../types";
 
 export const plugin: ExampleCollectionFunction = () => {
-    return { status: 'inprogress', icon: 'message-popup', related: ['FdPopover'] };
+  return {
+    status: "inprogress",
+    icon: "message-popup",
+    related: ["FdPopover"]
+  };
 };

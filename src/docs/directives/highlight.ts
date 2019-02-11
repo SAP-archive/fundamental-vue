@@ -1,7 +1,10 @@
-import highlightjs from 'highlight.js';
-import { directiveName } from '@/util';
-import Vue from 'vue';
+import highlightjs from "highlight.js";
+import { directiveName } from "@/util";
+import Vue from "vue";
 
-export const highlight = Vue.directive(directiveName('highlight'), (el, binding) => {
-  highlightjs.highlightBlock(el);
-});
+export const highlight = Vue.directive(
+  directiveName("highlight"),
+  (el, binding) => {
+    highlightjs.highlightBlock(el);
+  }
+);

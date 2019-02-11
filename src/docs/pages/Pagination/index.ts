@@ -1,5 +1,5 @@
-import { ExampleCollectionFunction } from '../types';
+import { ExampleCollectionFunction } from "../types";
 
 export const plugin: ExampleCollectionFunction = () => {
-  return { icon: 'paging', related: ['FdPagination'] };
+  return { icon: "paging", related: ["FdPagination"] };
 };

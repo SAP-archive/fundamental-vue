@@ -1,7 +1,7 @@
 <template>
   <th v-on="$listeners" :class="classes" :style="styles">
-    {{label}}
-    <slot/>
+    {{ label }}
+    <slot />
   </th>
 </template>
 
@@ -20,7 +20,7 @@ export default Vue.extend({
     alignment: {
       type: String,
       default: TextAlignment.default,
-      validator: isTextAlignment,
+      validator: isTextAlignment
     },
     sortOrder: {
       type: String,
@@ -58,7 +58,6 @@ export default Vue.extend({
           }
         : {};
     }
-  },
+  }
 });
 </script>
-

@@ -2,11 +2,11 @@
 
 <template>
   <FdTileGrid>
-    <FdTile description="Lorem ipsum"/>
-    <FdTile description="Lorem ipsum"/>
-    <FdTile description="Lorem ipsum"/>
-    <FdTile description="Lorem ipsum"/>
-    <FdTile description="Lorem ipsum"/>
-    <FdTile description="Lorem ipsum"/>
+    <FdTile description="Lorem ipsum" />
+    <FdTile description="Lorem ipsum" />
+    <FdTile description="Lorem ipsum" />
+    <FdTile description="Lorem ipsum" />
+    <FdTile description="Lorem ipsum" />
+    <FdTile description="Lorem ipsum" />
   </FdTileGrid>
 </template>

@@ -1,10 +1,10 @@
 <template>
   <div class="fd-shell__app">
-    <slot name="header"/>
+    <slot name="header" />
     <div class="fd-app">
-      <slot/>
+      <slot />
     </div>
-    <slot name="footer"/>
+    <slot name="footer" />
   </div>
 </template>
 

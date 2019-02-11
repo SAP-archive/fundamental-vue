@@ -1,6 +1,6 @@
 <template>
   <nav :class="classes">
-    <slot/>
+    <slot />
   </nav>
 </template>
 
@@ -29,7 +29,6 @@ export default Vue.extend({
     menuItemDidClick(item: any /* MenuItem */) {
       this.$emit("select", item);
     }
-  },
+  }
 });
 </script>
-

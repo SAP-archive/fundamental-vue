@@ -1,4 +1,4 @@
-import { SortOrder } from './SortOrder';
+import { SortOrder } from "./SortOrder";
 
 export type SortDescriptor = {
   columnId: string;

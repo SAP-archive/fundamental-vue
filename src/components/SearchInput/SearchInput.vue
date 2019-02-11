@@ -2,7 +2,10 @@
   <div class="fd-search-input">
     <Popover noArrow v-if="suggestionsAvailable">
       <div class="fd-combobox-control" slot="control">
-        <InputGroup afterClass="fd-input-group__addon--button" :compact="compact">
+        <InputGroup
+          afterClass="fd-input-group__addon--button"
+          :compact="compact"
+        >
           <Input
             :value="searchValue"
             :placeholder="placeholder"
@@ -11,10 +14,15 @@
             @input="setCurrentValue"
             @change="setCurrentValue"
           />
-          <Button styling="light" slot="after" icon="search" @click="handleSearchClick"/>
+          <Button
+            styling="light"
+            slot="after"
+            icon="search"
+            @click="handleSearchClick"
+          />
         </InputGroup>
       </div>
-      <slot/>
+      <slot />
     </Popover>
     <div v-else class="fd-combobox-control" slot="control">
       <InputGroup afterClass="fd-input-group__addon--button" :compact="compact">
@@ -26,7 +34,12 @@
           @input="setCurrentValue"
           @change="setCurrentValue"
         />
-        <Button styling="light" slot="after" icon="search" @click="handleSearchClick"/>
+        <Button
+          styling="light"
+          slot="after"
+          icon="search"
+          @click="handleSearchClick"
+        />
       </InputGroup>
     </div>
   </div>

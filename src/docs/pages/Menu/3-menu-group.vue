@@ -19,7 +19,9 @@
 <script>
 export default {
   methods: {
-    sayHi(value) { alert(`Hi >>${value}<<`); },
-  },
+    sayHi(value) {
+      alert(`Hi >>${value}<<`);
+    }
+  }
 };
 </script>

@@ -7,7 +7,9 @@
       <p>Do you want to invite your friends to join the party?</p>
       <template slot="actions">
         <FdButton @click="closeModal" styling="light">Cancel</FdButton>
-        <FdButton @click="closeModal" styling="emphasized">Invite Friends</FdButton>
+        <FdButton @click="closeModal" styling="emphasized"
+          >Invite Friends</FdButton
+        >
       </template>
     </FdModal>
   </div>
@@ -17,7 +19,7 @@
 export default {
   data() {
     return {
-      isModalActive: false,
+      isModalActive: false
     };
   },
   methods: {
@@ -26,7 +28,7 @@ export default {
     },
     showModal() {
       this.isModalActive = true;
-    },
-  },
+    }
+  }
 };
 </script>

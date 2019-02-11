@@ -7,7 +7,8 @@
       :state="state"
       :icon="icon"
       @click="$emit('click')"
-    >{{title}}</Button>
+      >{{ title }}</Button
+    >
   </div>
 </template>
 

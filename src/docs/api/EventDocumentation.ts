@@ -1,6 +1,6 @@
 type Parameter = {
   name: string;
-  type: { name: string; meta?: string; };
+  type: { name: string; meta?: string };
 };
 export type EventDocumentation = {
   name: string;
