@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "vue-router": "^3.0.2",
-    "fiori-fundamentals": "^1.4.1"
+    "fiori-fundamentals": "^1.4.2"
   },
   "author": "SAP SE",
   "license": "Apache-2.0"

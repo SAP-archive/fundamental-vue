@@ -23,6 +23,7 @@
     "typecheck": "tsc --noEmit",
     "serve": "vue-cli-service serve src/docs/main.ts",
     "build": "vue-cli-service build --mode production --target lib --report --name FundamentalVue src/index.ts",
+    "build:docs": "vue-cli-service build --mode production --report --name FundamentalVueDocs src/docs/main.ts",
     "test": "vue-cli-service test:unit 'src/**/__tests__/*.test.{tsx,ts,js,vue}'",
     "test:watch": "npm test -- --watch",
     "lint": "vue-cli-service lint",

@@ -66,56 +66,12 @@
 <script lang="ts">
 import Vue from "vue";
 
-// type ComponentState = {
-//   title: string;
-//   icon: string;
-//   color: Color;
-// };
-
 interface SideNavListItem {
   id: string;
   name: string;
   icon: string;
   to: object | string;
 }
-
-// const componentStateMapping: { [state: string]: ComponentState } = {
-//   stable: {
-//     title: "Safe to use, no major updates planned.",
-//     color: "accent-8",
-//     icon: "thumb-up"
-//   },
-//   experimental: {
-//     title:
-//       "Work-In-Progres that may be used but be prepared for changes in the future.",
-//     color: "accent-1",
-//     icon: "lab"
-//   },
-//   deprecated: {
-//     title:
-//       "This component should not be used and will be removed in the future.",
-//     color: "accent-3",
-//     icon: "cancel"
-//   },
-//   inprogress: {
-//     title:
-//       "This component is under development. Or it is being actively reviewed to be refactored, safe to use but talk to us.",
-//     color: "accent-13",
-//     icon: "edit"
-//   }
-// };
-
-// const componentStateFrom = (raw: string): ComponentState => {
-//   const state = componentStateMapping[raw];
-//   if(state == null) {
-//     return componentStateMapping.inprogress;
-//   }
-//   return state;
-// };
-
-// interface ExampleItem extends SideNavListItem {
-//   // componentState: ComponentState;
-// }
 
 export default Vue.extend({
   computed: {
@@ -132,36 +88,6 @@ export default Vue.extend({
           }
         };
       });
-      // const items: ExampleItem[] = pages.map(page => {
-      //   // const componentState = componentStateFrom(page.status);
-      //   const result = {
-      //     // componentState,
-      //     name: page.title,
-      //     ...page,
-      //     id: page.slug,
-      //     to: {
-      //       name: 'example',
-      //       params: { slug: page.slug },
-      //     },
-      //     //
-      //   };
-      //   return result;
-      // });
-      // return items;
-      // return exampleCollections.map(
-      //   ({ title, slug, icon, componentStatus }) => {
-      //     return {
-      //       icon,
-      //       id: slug,
-      //       name: title,
-      //       componentState: componentStateFrom(componentStatus),
-      // to: {
-      //   name: "example",
-      //   params: { slug }
-      // }
-      //     };
-      //   }
-      // );
     },
     staticMenuItems(): SideNavListItem[] {
       return [
