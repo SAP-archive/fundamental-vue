@@ -23,7 +23,7 @@ const statusIconMapping = {
 const StatusTypes = Object.keys(typeMapping);
 const isStatusType = (value: string) => StatusTypes.indexOf(value) >= 0;
 
-const StatusIconTypes = Object.values(statusIconMapping);
+const StatusIconTypes = Object.keys(statusIconMapping);
 const isStatusIcon = (value: string) => StatusIconTypes.indexOf(value) >= 0;
 
 export default Vue.extend({

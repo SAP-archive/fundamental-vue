@@ -21,7 +21,7 @@ const sizeMapping = {
   s: "s",
   l: "l"
 };
-const ToggleSizes = Object.values(sizeMapping);
+const ToggleSizes = Object.keys(sizeMapping);
 const isToggleSize = (value: string) => ToggleSizes.indexOf(value) >= 0;
 export default Vue.extend({
   name: "FdToggle",

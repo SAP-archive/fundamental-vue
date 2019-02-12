@@ -13,9 +13,9 @@ module.exports = function (source, map) {
   }
   this.callback(
     null, /* no error */
-    `export default function (Component) {
-      Component.options.${optionName} = ${JSON.stringify(source)};
-    }`,
+    'export default function (Component) {\n' +
+      'Component.options.' + optionName + ' = ' + JSON.stringify(source) + '\n'
+    + '}',
     map
   )
 }

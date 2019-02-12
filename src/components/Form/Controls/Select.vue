@@ -20,7 +20,7 @@ enum State {
   invalid = "invalid",
   warning = "warning"
 }
-const States = Object.values(State);
+const States = Object.keys(State);
 type Value = string | number | object | null;
 
 const isValue = (raw: any): raw is Value => {

@@ -13,7 +13,7 @@ const sizeMapping = {
   xl: "xl"
 };
 type IconSize = keyof (typeof sizeMapping);
-export const IconSizes = Object.values(sizeMapping);
+export const IconSizes = Object.keys(sizeMapping);
 const IsValidSize = (value: string) => IconSizes.indexOf(value) >= 0;
 
 export default Vue.extend({

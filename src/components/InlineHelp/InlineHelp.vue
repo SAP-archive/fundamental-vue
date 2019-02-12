@@ -15,7 +15,7 @@ const positionMapping = {
 };
 
 type Position = keyof (typeof positionMapping);
-const Positions = Object.values(positionMapping);
+const Positions = Object.keys(positionMapping);
 const isValidPosition = (value: string) => Positions.indexOf(value) >= 0;
 
 export default Vue.extend({

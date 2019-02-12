@@ -212,7 +212,7 @@ export default Vue.extend({
       }
     },
     toggleSelectionForItem(id: string): void {
-      const isSelected = this.currentSelectedIds.includes(id);
+      const isSelected = this.currentSelectedIds.indexOf(id) >= 0;
       if (isSelected) {
         this.execute(SelectAction.deselect, id);
       } else {
@@ -273,7 +273,7 @@ export default Vue.extend({
       return this.preparedRenderedRow(renderedRow, item);
     },
     isSelected(id: string): boolean {
-      return this.currentSelectedIds.includes(id);
+      return this.currentSelectedIds.indexOf(id) >= 0;
     },
     sortOrder(columnId: string): SortOrder | null {
       if (this.sortedByColumnId !== columnId) {

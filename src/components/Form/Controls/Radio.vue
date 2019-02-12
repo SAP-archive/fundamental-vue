@@ -22,7 +22,7 @@ const stateMapping = {
   warning: "warning"
 };
 type InputState = keyof (typeof stateMapping);
-const InputStates = Object.values(stateMapping);
+const InputStates = Object.keys(stateMapping);
 
 type ValueType = string | number | boolean;
 const ValueCtors = [String, Number, Boolean];

@@ -1,3 +1,5 @@
+import { objectValues } from '@/util';
+
 interface State {
   selectedId: string | null;
   expandedIds: string[];
@@ -38,7 +40,7 @@ export class Store {
   }
 
   get expanded(): (id: string) => boolean {
-    return id => this.expandedIds.includes(id);
+    return id => this.expandedIds.indexOf(id) >= 0;
   }
 
   get selected(): (id: string) => boolean {
@@ -50,7 +52,7 @@ export class Store {
   }
 
   subItems(itemId: string): SubItem[] {
-    const items = Object.values(this.items);
+    const items: Array<SubItem | Item> = objectValues<SubItem | Item>(this.items);
     const result: SubItem[] = [];
     items.forEach(item => {
       if ("parentId" in item) {
@@ -96,7 +98,7 @@ export class Store {
   }
 
   toggleExpanded(itemId: string) {
-    const expand = !this.expandedIds.includes(itemId);
+    const expand = this.expandedIds.indexOf(itemId) < 0;
     expand ? this.expand(itemId) : this.collapse(itemId);
   }
 

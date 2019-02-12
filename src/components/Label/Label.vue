@@ -12,7 +12,7 @@ const typeMapping = {
   error: "error",
   success: "success"
 };
-const LabelTypes = Object.values(typeMapping);
+const LabelTypes = Object.keys(typeMapping);
 const isValidLabelType = (value: string) => LabelTypes.indexOf(value) >= 0;
 
 export default Vue.extend({

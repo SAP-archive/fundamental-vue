@@ -23,6 +23,7 @@ import {
   SlotDocumentation,
   PropDocumentation
 } from "@/docs/api";
+import { objectValues } from "@/util";
 
 const makeEmptyDocumentation = (): ComponentDocumentation => ({
   componentName: "",
@@ -56,13 +57,13 @@ export default Vue.extend({
       return null;
     },
     documentedProps(): PropDocumentation[] {
-      return Object.values(this.componentDocumentation.props || {});
+      return objectValues(this.componentDocumentation.props || {});
     },
     documentedEvents(): EventDocumentation[] {
-      return Object.values(this.componentDocumentation.events || {});
+      return objectValues(this.componentDocumentation.events || {});
     },
     documentedSlots(): SlotDocumentation[] {
-      return Object.values(this.componentDocumentation.slots || {});
+      return objectValues(this.componentDocumentation.slots || {});
     },
     hasProps(): boolean {
       return this.documentedProps.length > 0;

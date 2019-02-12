@@ -23,8 +23,9 @@
     "typecheck": "tsc --noEmit",
     "serve": "vue-cli-service serve src/docs/main.ts",
     "build": "vue-cli-service build --mode production --target lib --report --name FundamentalVue src/index.ts",
-    "build:docs": "vue-cli-service build --mode production --report --name FundamentalVueDocs src/docs/main.ts",
+    "build:docs": "vue-cli-service build --mode production --report --target app src/docs/main.ts",
     "test": "vue-cli-service test:unit 'src/**/__tests__/*.test.{tsx,ts,js,vue}'",
+    "deploy:docs": "npm run build:docs && cp ./now.json ./dist && now --public --local-config=./now.json deploy ./dist",
     "test:watch": "npm test -- --watch",
     "lint": "vue-cli-service lint",
     "lint:fix": "npm run lint -- --fix",
@@ -45,8 +46,8 @@
     "@vue/eslint-config-typescript": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
     "chai": "^4.2.0",
-    "eslint-plugin-vue": "^5.0.0",
     "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
     "highlight.js": "^9.14.2",
     "html-loader": "^1.0.0-alpha.0",
     "markdown-loader": "^5.0.0",
@@ -54,11 +55,12 @@
     "raw-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.3.3",
+    "vue": "^2.6.4",
     "vue-gh-pages": "^1.19.0",
-    "vue-template-compiler": "^2.6.4",
-    "vue": "^2.6.4"
+    "vue-template-compiler": "^2.6.4"
   },
   "peerDependencies": {
     "vue": "^2.6.4"
-  }
+  },
+  "dependencies": {}
 }

@@ -1,9 +1,4 @@
-<p style="margin-top: 0;" align="center">
-      <a href="https://github.com/SAP/fundamental-vue" target="_blank" rel="noopener noreferrer">
-            <img style="border: 0; margin: 0;" srcset="./../../../images/logo_big.png 1x, ./../../../images/logo_big@2x.png 2x" src="./../../../public/images/logo_big.png" alt="Fundamental Vue logo">
-      </a>
-</p>
-
+# Fundamental Vue
 
 > SAP Fundamental Vue is a UI framework based on [SAP Fiori Fundamentals](https://sap.github.io/fundamental/) and [Vue.js](https://vuejs.org).
 
@@ -28,7 +23,7 @@ Paste the following snippet in your `<head>`-tag:
 
 Then you can use Fundamental Vue like this:
 
-````xhtml
+```xhtml
 <body>
   <div id="app" />
   <script>
@@ -39,16 +34,14 @@ Then you can use Fundamental Vue like this:
       data: { message: 'Hello Fundamental Vue!' },
       template: \`
       <FdPopover v-margin:large>
-      <h1 style="margin: 50px;" slot="body">{{ message }}</h1>
+      <h1 style="margin: 50px;" v-slot:"body">{{ message }}</h1>
       </FdPopover>\`,
     });
   </script>
 </body>
-````
+```
 
-You should then see something like this:
-
-![Hello Fundamental Vue in Action](./start-hello-fundamental-vue.png)
+You should then see a button saying *Hello Fundamental Vue!*. Clicking on it will display a popover.
 
 
 ### Install Fundamental Vue via **NPM**:
@@ -76,6 +69,7 @@ Fundamental Vue does not include the ['Fiori Fundamentals' library](https://gith
 
 ## Install Fiori Fundamentals
 The quickest way to get Fiori Fundamentals styling for your components is  to include the compiled and minified Fiori Fundamentals CSS library with the following CDN link in your public `index.html` file:
+
 ```
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.4.1/dist/fiori-fundamentals.min.css">
 ```
@@ -83,6 +77,7 @@ The quickest way to get Fiori Fundamentals styling for your components is  to in
 However, installing the Fiori Fundamentals library with npm (recommended) will give you the flexibility to use individual components and enable [advanced customisation options](https://github.com/SAP/fundamental/wiki/Advanced-Customization). In this case, you do not need the CDN link as this method uses the SASS/SCSS source.
 
 To install the Fiori Fundamentals SASS/SCSS source:
+
 ```
 $ npm install --save fiori-fundamentals
 ```
@@ -98,6 +93,7 @@ Loading the SCSS and running your project at this point will result in errors re
 To rectify this, start by creating a new directory ('scss') in your project's `src`. Within this directory, create a main SCSS file ('main.scss') from which to manage your imports, configurations and customisations.
 
 Add the following to the main SCSS file:
+
 ```
 $fd-icons-path : "../node_modules/fiori-fundamentals/scss/icons/"; // should be declared before the scss import
 

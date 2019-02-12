@@ -19,7 +19,7 @@ const stateMapping = {
   invalid: "invalid", // red border
   warning: "warning" // orange border
 };
-const States = Object.values(stateMapping);
+const States = Object.keys(stateMapping);
 
 export default Vue.extend({
   name: "FdTextArea",

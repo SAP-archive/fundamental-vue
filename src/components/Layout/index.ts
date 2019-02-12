@@ -9,7 +9,7 @@ import Shell from "./Shell/Shell.vue";
 import ShellHeader from "./Shell/ShellHeader.vue";
 import ShellFooter from "./Shell/ShellFooter.vue";
 import * as ShellBar from "./ShellBar";
-import { pluginify } from "@/util";
+import { pluginify, objectValues } from "@/util";
 
 export default pluginify(
   Container,
@@ -22,7 +22,7 @@ export default pluginify(
   Shell,
   ShellHeader,
   ShellFooter,
-  ...Object.values(ShellBar)
+  ...objectValues(ShellBar)
 );
 
 export {

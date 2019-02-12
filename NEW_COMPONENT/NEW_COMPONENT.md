@@ -75,10 +75,6 @@ In order to make your component available to the public you have to document the
 - API Documentation
 
 ## Documenting the new Component: Examples
-The image below shows a example for an existing component.
-
-![Anatomy of an Example](./example.png)
-
 In order to create a example for your new component create the necessary files:
 
 ```shell
@@ -193,10 +189,6 @@ export class Flower extends Base {
 ```
 
 The additional annotations it is now documented that the component emits a `click`-event (to be implemented :)) and has a prop named `color` of type `String` which accepts `red`, `green` and `blue` as values.
-
-The API documentation of a component looks like this:
-
-![Example API Documentation](./api.png)
 
 Every annotated and exported component is automatically documented.
 

@@ -10,7 +10,7 @@ const typeMapping = {
   notification: "notification"
 };
 
-const counterTypeValues = Object.values(typeMapping);
+const counterTypeValues = Object.keys(typeMapping);
 
 export default Vue.extend({
   name: "FdCounter",

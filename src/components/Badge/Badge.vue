@@ -14,7 +14,7 @@ const typeMapping = {
   success: "success"
 };
 type BadgeType = keyof (typeof typeMapping);
-const BadgeTypes = Object.values(typeMapping);
+const BadgeTypes = Object.keys(typeMapping);
 const BadgeTypeIsValid = (value: string) => BadgeTypes.indexOf(value) >= 0;
 
 export default Vue.extend({

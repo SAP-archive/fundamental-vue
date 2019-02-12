@@ -12,7 +12,7 @@ const sizeMapping = {
   m: "m", // default
   l: "l"
 };
-const IdentifierSizes = Object.values(sizeMapping);
+const IdentifierSizes = Object.keys(sizeMapping);
 
 export default Vue.extend({
   name: "FdImage",

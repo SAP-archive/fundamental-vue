@@ -8,6 +8,10 @@ import { registerComponents } from "./components";
 import App from "./App.vue";
 import DocumentationLoader from "./DocumentationLoader";
 
+import bla from './../../NEW_COMPONENT/NEW_COMPONENT.md';
+console.log(bla);
+debugger;
+
 // Register Layouts globally so that they are available by name
 import DefaultLayout from "@/docs/layouts/DefaultLayout.vue";
 import FullscreenLayout from "@/docs/layouts/FullscreenLayout.vue";

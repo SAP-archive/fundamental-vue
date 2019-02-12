@@ -3,32 +3,6 @@ const Path = require("path");
 module.exports = {
   lintOnSave: false,
   runtimeCompiler: false,
-  chainWebpack: config => {
-    config.module
-      .rule("raw-loader")
-      .test(/\.example$/)
-      .use("raw-loader")
-      .loader("raw-loader")
-      .end();
-
-    config.module
-      .rule("html-loader")
-      .test(/\.md$/)
-      .use("html-loader")
-      .loader("html-loader")
-      .end()
-      .use("markdown-loader")
-      .loader("markdown-loader")
-      .tap(() => {
-        return {
-          highlight: function(code) {
-            return require("highlight.js").highlightAuto(code).value;
-          }
-        };
-      })
-      .end();
-  },
-
   configureWebpack: {
     entry: "./src/index.ts",
     output: {
@@ -43,6 +17,22 @@ module.exports = {
     },
     module: {
       rules: [
+        {
+          test: /\.md$/,
+          use: [
+            {
+              loader: "html-loader"
+            },
+            {
+              loader: "markdown-loader",
+              options: {
+                highlight: function (code) {
+                  return require("highlight.js").highlightAuto(code).value;
+                }
+              }
+            }
+          ]
+        },
         {
           resourceQuery: /blockType=title/,
           use: ["block-loader?optionName=__title"]

@@ -18,7 +18,7 @@ const sizeMapping = {
 type Size = keyof typeof sizeMapping;
 const Sizes = Object.keys(sizeMapping) as Size[];
 const isSize = (value: any): value is Size | undefined =>
-  value === undefined || Sizes.includes(value);
+  value === undefined || Sizes.indexOf(value) >= 0;
 
 type PaddingModifiers = {
   top?: boolean;
@@ -117,7 +117,7 @@ export const fontWeight = Vue.directive(
 
 type FontFamily = "body" | "header" | "code";
 const isFontFamily = (value: any): value is FontFamily =>
-  ["body", "header", "code"].includes(value);
+  ["body", "header", "code"].indexOf(value) >= 0;
 export const fontFamily = Vue.directive(
   directiveName("font-family"),
   ({ classList }, binding) => {
@@ -141,7 +141,7 @@ const typeMapping = {
 };
 type Type = keyof typeof typeMapping;
 const Types = Object.keys(typeMapping) as Type[];
-const isType = (value: any): value is Type => Types.includes(value);
+const isType = (value: any): value is Type => Types.indexOf(value) >= 0;
 export const type = Vue.directive(
   directiveName("type"),
   ({ classList }, binding) => {

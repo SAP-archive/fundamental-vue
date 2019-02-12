@@ -12,7 +12,7 @@ const typeMapping = {
   warning: "warning",
   help: "help"
 };
-const MessageTypes = Object.values(typeMapping);
+const MessageTypes = Object.keys(typeMapping);
 const isMessageType = (value: string) => MessageTypes.indexOf(value) >= 0;
 
 export default Vue.extend({

@@ -19,7 +19,7 @@ const sizeMapping = {
   xxl: "xxl"
 };
 
-const IdentifierSizes = Object.values(sizeMapping);
+const IdentifierSizes = Object.keys(sizeMapping);
 const isValidIdentifierSize = (size: string) => {
   return IdentifierSizes.indexOf(size) >= 0;
 };
