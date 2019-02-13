@@ -1,38 +1,21 @@
-<p align="center">
-      <a href="https://github.com/SAP/fundamental-vue" target="_blank" rel="noopener noreferrer">
-            <img width="400" src="./public/images/logo_big.png" alt="Fundamental Vue logo">
-      </a>
-</p>
+# Fundamental React
 
-<p align="center">
-      Fundamental Vue is a light-weight Vue.js component library for <a href="https://github.com/SAP/fundamental">SAP Fiori Fundamentals</a>.
-</p>
-
-<p align="center">
-      <a href="https://travis-ci.org/SAP/fundamental-vue">
-            <img src="https://travis-ci.org/SAP/fundamental-vue.svg?branch=develop" alt="Build Status">
-      </a>
-</p>
-
-
-<p align="center">
-:open_book:
-<strong><a href="https://dist-lkl4ej2tj.now.sh">Component Documentation</a></strong>
-:open_book:
-</p>
-
-## Current Version
-
-```
-0.0.10-beta
-```
+[![npm version](https://badge.fury.io/js/fundamental-vue.svg)](//www.npmjs.com/package/fundamental-vue)
+[![Minified Size](https://badgen.net/bundlephobia/min/fundamental-vue)](https://bundlephobia.com/result?p=fundamental-vue)
+[![Minzipped Size](https://badgen.net/bundlephobia/minzip/fundamental-vue)](https://bundlephobia.com/result?p=fundamental-vue)
+[![Build Status](https://travis-ci.org/SAP/fundamental-vue.svg?branch=develop)](https://travis-ci.org/SAP/fundamental-vue)
+[![Coverage Status](https://coveralls.io/repos/github/SAP/fundamental-vue/badge.svg?branch=develop)](https://coveralls.io/github/SAP/fundamental-vue?branch=develop)
+[![Slack](https://img.shields.io/badge/slack-ui--fundamentals-blue.svg?logo=slack)](https://ui-fundamentals.slack.com)
 
 ## Description
 
-Fundamental Vue is a light-weight set of [Vue.js](https://vuejs.org/) components implementation of [SAP Fiori Fundamentals library](https://sap.github.io/fundamental/). SAP Fiori Fundamentals library is a Design System and HTML/CSS Component Library used to build modern Product User Experiences with the SAP look and feel. This will allow you to stay/use Vue.js for your application and get SAP look and feel.
-Fundamental Vue is open for contribution as long as you follow certain [rules/guidelines](./CONTRIBUTING.md).
+The `fundamental-vue` library is a set of [Vue.js](https://vuejs.org/) components built using [SAP Fiori Fundamentals](https://sap.github.io/fundamental/).
 
-The library is currently in a Beta version and it is under development. The progress can be seen [here](https://github.com/SAP/fundamental-vue/projects/1)
+The SAP Fiori Fundamentals library is a design system and HTML/CSS component library used to build modern product user experiences with the SAP look and feel.
+
+## API Reference
+
+See [Component Documentation](https://dist-lkl4ej2tj.now.sh/) for examples and API details.
 
 ## Requirements
 
@@ -48,7 +31,10 @@ Some prior knowledge of Vue is required for using this library.
 Paste the following snippet in your `<head>`-tag:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/fiori-fundamentals@1.4.1/dist/fiori-fundamentals.min.css">
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/fiori-fundamentals@1.4.1/dist/fiori-fundamentals.min.css"
+/>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/fundamental-vue@0.0.10-beta/dist/FundamentalVue.umd.js"></script>
 ```
@@ -57,19 +43,19 @@ Then you can use Fundamental Vue like this:
 
 ```html
 <body>
-  <div id="app" />
-  <script>
-    Vue.use(FundamentalVue);
-    new Vue({
-      name: 'App',
-      el: '#app',
-      data: { message: 'Hello Fundamental Vue!' },
-      template: `
+    <div id="app" />
+    <script>
+        Vue.use(FundamentalVue);
+        new Vue({
+            name: 'App',
+            el: '#app',
+            data: { message: 'Hello Fundamental Vue!' },
+            template: `
       <FdPopover v-margin:large>
       <h1 style="margin: 50px;" slot="body">{{ message }}</h1>
-      </FdPopover>`,
-    });
-  </script>
+      </FdPopover>`
+        });
+    </script>
 </body>
 ```
 
@@ -160,7 +146,7 @@ To download and use this library, you first need to install the node package man
 
 ## Known Issues
 
-There are no known major issues.
+Please see [Issues](https://github.com/SAP/fundamental-vue/issues).
 
 ## How to obtain support
 
@@ -168,9 +154,9 @@ If you encounter an issue, you can [create a ticket](https://github.com/SAP/fund
 
 ## Contributing
 
-If you want to contribute, please check the [CONTRIBUTING.md](./CONTRIBUTING.md) documentation for contribution guidelines.
+If you want to contribute, please check the [Contribution Guidelines](./CONTRIBUTING.md) documentation for contribution guidelines.
 
-Check out the [NEW_COMPONENT.md](./NEW_COMPONENT/NEW_COMPONENT.md) guide on building a new component for the library and creating the necessary documentation for your new component.
+Check out [this guide](./NEW_COMPONENT/NEW_COMPONENT.md) on building a new component for the library and creating the necessary documentation for your new component.
 
 ## License
 
