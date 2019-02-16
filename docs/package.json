@@ -37,8 +37,9 @@
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.3.3",
-    "vue-template-compiler": "^2.6.6",
-    "vue": "^2.6.6"
+    "vue": "^2.6.6",
+    "vue-loader": "^15.6.2",
+    "vue-template-compiler": "^2.6.6"
   },
   "peerDependencies": {
     "fundamental-vue": "^0.0.12-beta"

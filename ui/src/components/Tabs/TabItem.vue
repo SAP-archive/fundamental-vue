@@ -17,8 +17,8 @@ import { PropValidator } from "vue/types/options";
 export default mixins(Uid).extend({
   name: "FdTabItem",
   inject: {
-    $tabsStore: { from: "store", default: null },
-    $tabs: { from: "tabs", default: null }
+    store: { default: null },
+    tabs: { default: null }
   },
   props: {
     label: { type: String, default: null } as PropValidator<string | null>,
@@ -34,28 +34,24 @@ export default mixins(Uid).extend({
     },
     activeName: {
       get(): string | null {
+        // @ts-ignore
         return this.store.activeName;
       },
       set(newName: string | null) {
+        // @ts-ignore
         this.store.activeName = newName;
       }
-    },
-    store(): any {
-      // @ts-ignore
-      return this.$tabsStore;
-    },
-    tabs(): TabItemContainer | null {
-      // @ts-ignore
-      return this.$tabs;
     }
   },
   mounted(): void {
+    // @ts-ignore
     const { tabs } = this;
     if (tabs != null) {
       tabs.addTabItem(this);
     }
   },
   destroyed(): void {
+    // @ts-ignore
     const { tabs } = this;
     if (tabs != null) {
       tabs.removeTabItem(this);
@@ -94,9 +90,11 @@ export default mixins(Uid).extend({
     },
     onClick(event: Event) {
       event.preventDefault();
+      // @ts-ignore
       this.tabs != null && this.tabs.activateTabItem(this);
     },
     onKeyup(event: KeyboardEvent) {
+      // @ts-ignore
       this.tabs != null && this.tabs.onTabItemKeyup(event, this);
     }
   }

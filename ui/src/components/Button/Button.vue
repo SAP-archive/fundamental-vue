@@ -13,13 +13,19 @@ import Vue from "vue";
 import { ButtonContainer } from "./ButtonContainer";
 import { PropValidator } from "vue/types/options";
 import ButtonTypes from "./ButtonTypes";
+import { mixins, Uid } from "@/mixins";
 
-export default Vue.extend({
+export default mixins(Uid).extend({
   name: "FdButton",
   inject: {
-    $buttonContainer: { default: null }
+    buttonContainer: { default: null },
+    grouped: { default: false }
   },
   props: {
+    value: {
+      type: [String, Number, Boolean],
+      default: null
+    } as PropValidator<string | number | boolean | null>,
     styling: {
       type: String,
       default: null,
@@ -49,10 +55,22 @@ export default Vue.extend({
         return;
       }
       this.$emit("click", event);
-      const container = this.buttonContainer;
+      const container = this.buttonContainer_;
       if (container != null) {
         container.didClickButton(this);
       }
+    }
+  },
+  mounted(): void {
+    const container = this.buttonContainer_;
+    if (container != null) {
+      container.registerButton(this);
+    }
+  },
+  destroyed(): void {
+    const container = this.buttonContainer_;
+    if (container != null) {
+      container.unregisterButton(this);
     }
   },
   computed: {
@@ -65,7 +83,9 @@ export default Vue.extend({
       const icon = this.icon != null ? [`sap-icon--${this.icon}`] : [];
       const type = this.type != null ? [`fd-button--${this.type}`] : [];
       const state = this.state !== "normal" ? [`is-${this.state}`] : [];
-      const grouped = this.isGrouped ? ["fd-button--grouped"] : [];
+
+      // @ts-ignore
+      const grouped = this.grouped_ ? ["fd-button--grouped"] : [];
       return [
         ...staticClass,
         ...compact,
@@ -77,7 +97,7 @@ export default Vue.extend({
       ];
     },
     computedCompact(): boolean {
-      const container = this.buttonContainer;
+      const container = this.buttonContainer_;
       if (container != null) {
         return container.compact;
       }
@@ -93,17 +113,17 @@ export default Vue.extend({
       };
     },
     isPressed(): boolean {
-      const container = this.buttonContainer;
+      const container = this.buttonContainer_;
       if (container != null) {
         return container.isButtonPressed(this);
       }
       return false;
     },
-    buttonContainer(): ButtonContainer | null {
-      return (this as any).$buttonContainer;
+    buttonContainer_(): ButtonContainer | null {
+      return (this as any).buttonContainer;
     },
-    isGrouped(): boolean {
-      return this.buttonContainer != null;
+    grouped_(): boolean {
+      return (this as any).grouped;
     }
   }
 });

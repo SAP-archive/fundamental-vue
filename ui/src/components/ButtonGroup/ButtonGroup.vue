@@ -8,49 +8,69 @@
 import Vue from "vue";
 import { PropValidator } from "vue/types/options";
 import { Vue as VueInstance } from "vue/types/vue";
+import { warn } from "@/core";
 
 export default Vue.extend({
   name: "FdButtonGroup",
   provide() {
     return {
-      $buttonContainer: this
+      buttonContainer: this,
+      grouped: true
     };
   },
   props: {
-    activeButtonIndex: { type: Number, default: null } as PropValidator<
-      number | null
-    >,
+    value: { type: Array, default: () => [] } as PropValidator<any[]>,
     compact: { type: Boolean, default: false }
   },
   data() {
     return {
-      currentActiveButtonIndex: this.activeButtonIndex
+      buttons: [] as VueInstance[],
+      currentValue: this.value
     };
   },
   watch: {
-    activeButtonIndex: {
+    value: {
       immediate: true,
-      handler(newIndex: number | null) {
-        this.currentActiveButtonIndex = newIndex;
+      handler(newValue: any[]) {
+        this.currentValue = newValue;
       }
     }
   },
   methods: {
     // ButtonContainer Implementation
     // compact already implemented
-    didClickButton(button: VueInstance) {
-      const index = this.indexOfButton(button);
-      this.currentActiveButtonIndex = index;
-      this.$emit("input", this.activeButtonIndex);
+    registerButton(button: VueInstance) {
+      this.buttons.push(button);
     },
-
-    indexOfButton(button: VueInstance): number | null {
-      const index = (this.$slots.default || []).indexOf(button.$vnode);
-      return index > -1 ? index : null;
+    unregisterButton(button: VueInstance) {
+      this.buttons = [...this.buttons].splice(this.buttons.indexOf(button));
+    },
+    didClickButton(button: VueInstance) {
+      const buttonValue = this.valueOfButton(button);
+      const valueIndex = this.currentValue.indexOf(buttonValue);
+      const newValue = [...this.currentValue];
+      if (valueIndex > -1) {
+        newValue.splice(valueIndex);
+      } else {
+        newValue.push(buttonValue);
+      }
+      this.$emit("input", newValue);
+    },
+    valueOfButton(button: VueInstance): number | string | boolean | null {
+      // @ts-ignore
+      const buttonValue: any = button.value;
+      if (buttonValue == null) {
+        return null;
+      }
+      return buttonValue;
     },
 
     isButtonPressed(button: VueInstance): boolean {
-      return this.indexOfButton(button) === this.activeButtonIndex;
+      const value = this.valueOfButton(button);
+      if (value == null) {
+        return false;
+      }
+      return this.currentValue.indexOf(value) > -1;
     }
   }
 });

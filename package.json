@@ -8,8 +8,9 @@
     "build:docs": "yarn --cwd docs build",
     "build": "rm -rf dist && yarn build:ui && yarn build:docs && mkdir dist && cp -r ui/dist/* dist && cp -r docs/dist/* dist",
     "lint": "yarn --cwd docs lint && yarn --cwd server lint && yarn --cwd ui lint",
-    "test": "yarn --cwd docs test && yarn --cwd server test && yarn --cwd ui test",
-    "test:watch": "yarn --cwd ui test:watch"
+    "test": "yarn --cwd ui test",
+    "test:watch": "yarn --cwd ui test:watch",
+    "deploy:docs": "cp now.json dist && now --public --local-config=./now.json deploy ./dist"
   },
   "description": "SAP Fiori Fundamentals, implemented in Vue.js",
   "keywords": [

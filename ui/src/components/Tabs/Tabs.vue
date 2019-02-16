@@ -1,37 +1,25 @@
 <script lang="ts">
 import Vue from "vue";
 import TabItem from "./TabItem.vue";
+import { CreateElement, VNode } from "vue";
+import { mixins } from "@/mixins";
+
 type TabItemType = InstanceType<typeof TabItem>;
 
-// Use these types in order to cast your props. Delete if not needed.
-// import { PropValidator } from "vue/types/options";
-// import { Prop } from "vue/types/options";
-import { CreateElement, VNode } from "vue";
-
 const Store = Vue.extend({
-  data() {
-    return {
-      activeName: "" as string | null
-    };
-  }
+  data: () => ({
+    activeName: "" as string | null
+  })
 });
 
 type StoreInstance = InstanceType<typeof Store>;
-declare module "vue/types/vue" {
-  interface Vue {
-    $tabsStore: StoreInstance;
-  }
-}
 
 export default Vue.extend({
   name: "FdTabs",
-  beforeCreate() {
-    this.$tabsStore = new Store();
-  },
-  provide() {
+  provide(): object {
     return {
       tabs: this,
-      store: this.$tabsStore
+      store: this.store
     };
   },
   props: {
@@ -40,10 +28,10 @@ export default Vue.extend({
   computed: {
     activeName: {
       get(): string | null {
-        return this.$tabsStore.activeName;
+        return this.store.activeName;
       },
       set(newName: string | null): void {
-        this.$tabsStore.activeName = newName;
+        this.store.activeName = newName;
       }
     }
   },
@@ -93,6 +81,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      store: new Store(),
       tabItems: [] as TabItemType[]
     };
   },
@@ -110,16 +99,6 @@ export default Vue.extend({
       tabItems
     );
     return h("div", {}, [tabList, this.$slots.default]);
-
-    //  <div>
-    //         <ul class='fd-tabs' role='tablist'>
-
-    //           {tabItems.map(tabItem => {
-    //             return tabItem.renderItem(this.activeName || '');
-    //           })}
-    //         </ul>
-    //         {this.$slots.default}
-    //       </div>
   }
 });
 </script>
