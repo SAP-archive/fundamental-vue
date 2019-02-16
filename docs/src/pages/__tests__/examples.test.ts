@@ -63,7 +63,7 @@ describe("All Examples", () => {
             localVue.config.productionTip = false;
             // @ts-ignore
             const FundamentalVue = window.FundamentalVue;
-           localVue.use(FundamentalVue, {
+            localVue.use(FundamentalVue, {
               log: { registerComponent: false, welcome: false }
             });
           });
