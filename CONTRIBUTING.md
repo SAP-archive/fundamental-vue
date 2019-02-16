@@ -102,4 +102,3 @@ You must follow the coding style as best you can when submitting code. Take note
 7.  Once the change has been approved, we inform you in a comment.
 8.  Your pull request cannot be merged directly into the branch (internal SAP processes), but is merged internally and immediately appears in the public repository as well.
 9. We close the pull request. You can then delete the now obsolete branch.
-

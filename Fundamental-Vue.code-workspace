@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "ui"
+		},
+		{
+			"path": "server"
+		},
+		{
+			"path": "docs"
+		},
+		{
+			"path": "build"
+		}
+	]
+}

@@ -6,21 +6,22 @@ os:
 node_js:
 - "10.15.0"
 before_install:
-- npm install -g typescript@3.2.2
-- cd src/docs && npm i && cd ../..
+- yarn global add typescript@3.3.3
+- yarn bootstrap
 dist: trusty
 git:
   depth: false
 branches:
   only:
+  - master
   - develop
   - "/^feature\\/.*$/"
 matrix:
 jobs:
   include:
-    - script: "npm run lint"
-    - script: "npm run typecheck"
-    - script: "npm test"
+    - script: "yarn lint"
+    - script: "yarn test"
+    - script: "yarn build"
 notifications:
   email:
     on_failure: always
