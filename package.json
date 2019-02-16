@@ -11,7 +11,7 @@
     "test": "yarn --cwd docs test && yarn --cwd server test && yarn --cwd ui test",
     "test:watch": "yarn --cwd ui test:watch"
   },
-  "description": "SAP Fiori Fundamentals, implemented in Vue.JS",
+  "description": "SAP Fiori Fundamentals, implemented in Vue.js",
   "keywords": [
     "vue",
     "sap",
