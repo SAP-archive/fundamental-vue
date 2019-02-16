@@ -10,8 +10,13 @@
     "test:watch": "yarn test --watch"
    },
   "devDependencies": {
+    "chai": "^4.2.0",
     "@types/chai": "^4.1.0",
     "@types/mocha": "^5.2.4",
+    "eslint": "^5.13.0",
+    "babel-eslint": "^11.0.0-beta.0",
+    "eslint-plugin-vue": "^5.2.1",
+    "vue": "^2.6.6",
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
     "@vue/cli-plugin-typescript": "^3.4.0",
@@ -20,12 +25,7 @@
     "@vue/eslint-config-prettier": "^4.0.1",
     "@vue/eslint-config-typescript": "^4.0.0",
     "@vue/test-utils": "^1.0.0-beta.29",
-    "babel-eslint": "^11.0.0-beta.0",
-    "chai": "^4.2.0",
-    "eslint": "^5.13.0",
-    "eslint-plugin-vue": "^5.2.1",
     "typescript": "^3.3.3",
-    "vue": "^2.6.6",
     "vue-template-compiler": "^2.6.6"
   },
   "peerDependencies": {

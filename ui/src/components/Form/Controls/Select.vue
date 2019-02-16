@@ -74,7 +74,6 @@ export default Vue.extend({
     uid(): string {
       // @ts-ignore
       const item = this.formItem;
-      // debugger;
       if (item == null) {
         return "";
       }
@@ -85,7 +84,6 @@ export default Vue.extend({
     value: {
       immediate: true,
       handler(newValue: Value) {
-        // debugger;
         this.currentValue = newValue;
       }
     }

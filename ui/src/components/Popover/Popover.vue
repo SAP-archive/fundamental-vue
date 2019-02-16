@@ -139,7 +139,6 @@ export default mixins(Uid).extend({
       this.$emit("visible", false);
     },
     toggle() {
-      // debugger;
       this.currentPopoverVisible = !this.currentPopoverVisible;
       this.$emit("visible", this.currentPopoverVisible);
     }
