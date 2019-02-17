@@ -1,4 +1,4 @@
-# Fundamental React
+# Fundamental Vue
 
 [![npm version](https://badge.fury.io/js/fundamental-vue.svg)](//www.npmjs.com/package/fundamental-vue)
 [![Minified Size](https://badgen.net/bundlephobia/min/fundamental-vue)](https://bundlephobia.com/result?p=fundamental-vue)
