@@ -3,91 +3,80 @@
 > This is a very brief guide which describes what you have to do in order to implement a new component for Fundamental Vue.
 
 ## Creating the files for the actual Component
-For the purpose of this guide, lets assume that you want to create a component called `Flower`.
 
-If the new component is so simple that it will fit in just a single file then you have to create just a single file:
-
-```
-$ touch src/components/Flower.tsx
-```
-
-If your component is more complex you will probably need more than one file. Maybe your component is a componsition made out of several other related components that you will implement. If that is the case create a folder instead that in turn contains all of your files. For example:
+For the purpose of this guide, lets assume that you want to create a component called `Flower`. Create a folder that contains all of your files. For example:
 
 ```
-$ mkdir src/components/Flower
-$ touch src/components/Flower/index.tsx
-$ touch src/components/Flower/Flower.tsx
-$ touch src/components/Flower/Blossom.tsx
-$ touch src/components/Flower/Util.ts
+$ mkdir ui/src/components/Flower
+$ touch ui/src/components/Flower/index.ts
+$ touch ui/src/components/Flower/Flower.vue
+$ touch ui/src/components/Flower/Blossom.vue
+$ touch ui/src/components/Flower/Util.ts
 ```
-
-Lets further assume that you are implementing a simple component.
 
 ## Implementing the Component
 
+**ui/src/components/Flower/Flower.vue**
 
-**src/components/Flower.tsx**
-
-```js
-import { Base, Component, Prop } from '@/core';
-
-@Component('Flower')
-export class Flower extends Base {
-  @Prop(String)
-  public color!: string;
-
-  private styles() {
-    return {
-      'background-color': this.color,
-    };
-  }
-
-  public render() {
-    return <div style={this.style}>I am a Flower</div>
-  }
-}
 ```
+<template>
+  <div :style="style">I am a flower</div>
+</template>
 
-Key points:
+<script lang="ts">
+import Vue from "vue";
 
-- `@Component('Flower')` is a decorator which is used throughout Fundamental Vue. This decorator is a very thin wrapper around [Vue Class Component](https://github.com/vuejs/vue-class-component). The first parameter is simply the name of your component. By convention the name should be in CamelCase, starting with an uppercase letter and without any prefix. You can pass an `Object` as a second argument which acts as the component's options. If you want to learn more about the shape of the options object please refer to the [Vue Class Component](https://github.com/vuejs/vue-class-component) documentation.
-- In order to improve interoperability default exports for components are avoided.
-- `@Prop` iVars are suffixed with `!` in order to silence the compiler (false positive).
+export default Vue.extend({
+  name: "FdFlower",
+  props: {
+    color: String
+  },
+  computed: {
+    styles() {
+      return {
+        backgroundColor: this.color
+      };
+    }
+  }
+});
+</script>
+```
 
 ## Exporting the new Component
 
 You have to export the new component:
 
-**src/components/index.ts**
+**ui/src/components/Flower/index.ts**
 
-```diff
-+ export * from './Flower'
-+ import { Flower } from './Flower';
-export const all = {
-+ Flower
-};
+```typescript
+import Flower from "./Flower.vue";
+import { pluginify } from "@/util";
+export default pluginify(Flower);
+export { Flower };
 ```
 
 ## Documenting the new Component
+
 In order to make your component available to the public you have to document the component. A properly documented component consists of at least two things:
 
 - Examples
 - API Documentation
 
 ## Documenting the new Component: Examples
+
 In order to create a example for your new component create the necessary files:
 
 ```shell
-$ mkdir src/docs/pages/Flower
-$ touch src/docs/pages/Flower/default.vue
-$ touch src/docs/pages/Flower/index.ts
+$ mkdir docs/src/pages/Flower
+$ touch docs/src/pages/Flower/0-default.vue
+$ touch docs/src/pages/Flower/index.ts
 ```
 
-Examples are implemented as single file components (in our case `src/docs/pages/Flower/default.vue`) because this is what most Vue developers are using. You can put anything you want in the vue-file: a `<template>`-block, a `<script>`-block and a `<style>`-block. Fundamental Vue examples may contain additional documentation specific blocks. More about that later. For now lets simply implement the most basic example possible:
+Examples are implemented as single file components (in our case `docs/src/pages/Flower/0-default.vue`) because this is what most Vue developers are using. You can put anything you want in the vue-file: a `<template>`-block, a `<script>`-block and a `<style>`-block. Fundamental Vue examples may contain additional documentation specific blocks. More about that later. For now lets simply implement the most basic example possible:
 
 ### Simple Example
 
-**src/docs/pages/Flower/default.vue**
+**docs/src/pages/Flower/0-default.vue**
 
 ```xhtml
 <template>
@@ -105,7 +94,7 @@ As already mentioned in the paragraph above, you can improve your example by usi
 - `<docs>Potentially long example description</docs>`: Describe the example in detail. This is displayed directly below the title. **Supports Markdown**
 - `<tip>Short but useful tip related to the example/component.</tip>` If there is something important, especially useful or good to know fact use the `<tip>`-block. This is displayed in a highlighted box below the `<docs>`-block. **Supports Markdown**
 
-**src/docs/pages/Flower/default.vue**
+**docs/src/pages/Flower/0-default.vue**
 
 ```xhtml
 <title>Red Flower (Rose)</title>
@@ -116,183 +105,11 @@ As already mentioned in the paragraph above, you can improve your example by usi
 </template>
 ```
 
-### The `index.ts`-file
-Remember: At the moment you have only a single example. However you can have multiple examples spread over multiple vue-files. It is not uncommon that your examples are related to not only a single component but make use of many different components.
-
-You should list all components that are relevant for your examples. This information will be used to display the corresonding component API reference below the examples.
-
-You do this by modifying the `index.ts`-file in `src/docs/pages/Flower/`. The contents of this file should look like this:
-
-```js
-import { ExampleCollectionFunction } from '../types';
-
-export const plugin: ExampleCollectionFunction = () => {
-  return { relatedComponents: [] };
-  return {
-    // 'stable', 'experimental', 'deprecated', 'inprogress'
-    componentStatus: 'experimental',
-
-    // any icon name supported by Fundamental Vue
-    icon: 'calendar',
-
-    relatedComponents: [],
-  };
-};
-```
-
-By having the code above in the `index.ts`-file you basically say that your examples are not related to any component. The related components you return have to be instances of `VueConstructor`. You don't have to manually import the related components. The first argument of the `ExampleCollectionFunction` is an object which contains all components. So we can simply do this:
-
-```js
-import { ExampleCollectionFunction } from '../types';
-
-export const plugin: ExampleCollectionFunction = () => {
-  return {
-    // 'stable', 'experimental', 'deprecated', 'inprogress'
-    componentStatus: 'experimental',
-
-    // any icon name supported by Fundamental Vue
-    icon: 'calendar',
-
-    relatedComponents: [Flower],
-  };
-};
-```
-
-## Documenting the new Component: API Documentation
-
-Your new component may have props or emit custom events. You can document props and events directly in your custom component.
-
-**src/components/Flower.tsx**
-
-```js
-import { Base, Prop, Component, Event } from '@/core'; // <-- import more Helper
-
-@Component('Flower')
-@Event('click', 'Sent when the Flower is clicked');
-export class Flower extends Base {
-  @Prop('flower color', {
-    type: String,
-    acceptableValues: ['red', 'green', 'blue']
-  })
-  public color!: string;
-
-  private styles() {
-    return {
-      'background-color': this.color,
-    };
-  }
-
-  public render() {
-    return <div style={this.style}>I am a Flower</div>
-  }
-}
-```
-
-The additional annotations it is now documented that the component emits a `click`-event (to be implemented :)) and has a prop named `color` of type `String` which accepts `red`, `green` and `blue` as values.
-
-Every annotated and exported component is automatically documented.
-
-## Enable static Component Attribute Checks
-
-By using [JSX with Typescript](https://www.typescriptlang.org/docs/handbook/jsx.html) (let's refer to this combination as TSX from now on) we can take advantage of additional type safety. TSX differentiates between two element types:
-
-1. **intrinsic elements**: These are elements that refer to something intrinsic to the environment. In our case the environment is a browser executing our Typescript/Javascript code. Prime examples of intrinsic elements are `div`, `span`, `button`, …. By convention, intrinsiv elements start with a lower case letter and accept any attribute. `<div i-am-a-non-existent-attribute="with an invalid value" />` does not cause a compiler warning. We could enable type checking even for intrinsic elements but for now this seemed like not so high on the list of things to do.
-2. **value-based elements**: In our context, every element/component we implement falls into this category: Every element that is non-intrinsic is for our purpose, value-based. By convention value-based elements are be CamelCased. TSX has the ability to perform type checks on our value-based elements. Sadly this does not come for free. In order to enable static component attribute checks you have to tell the type system about every valid attribute your custom element/component supports.
-
-We now come back to our example from earlier and enable the static attribute checks:
-
-**src/components/Flower.tsx**
-
-```js
-import { Base, Prop, Component, Event } from '@/core';
-
-// Declare our puplic props (again)
-interface Props {
-  color?: string;
-}
-
-@Component('Flower')
-@Event('click', 'Sent when the Flower is clicked');
-export class Flower extends Base<Props> { // <-- specify the Props-type
-  @Prop('flower color', {
-    type: String,
-    acceptableValues: ['red', 'green', 'blue']
-  })
-  public color!: string;
-
-  private styles() {
-    return {
-      'background-color': this.color,
-    };
-  }
-
-  public render() {
-    return <div style={this.style}>I am a Flower</div>
-  }
-}
-```
-
-Declaring our public interface is done twice (by using @Prop and by extending from `Base<Props>`). There are third party projects that work around this problem but this low-tech and redundant solution seemed acceptable.
-
 ## Localization
+
 A good component should either be localized or localizable.
 
-* A **localizable component** may display non-localized text/icons but the displayed text should be configurable by the application developer.
-* A **localized component** is fully localized out of the box.
+- A **localizable component** may display non-localized text/icons but the displayed text should be configurable by the application developer.
+- A **localized component** is fully localized out of the box.
 
 Since there is no Fundamental Vue-wide localisation and internationalization concept (localized icons, right-to-left-support, …) you should at least create an issue for the component you implemented.
-
-## Decorators
-
-### @Component(componentName, options?)
-
-Annotate your component with this decorator to give it a name.
-
-* **Arguments:**
-  * `componentName: string` component name
-  * `options?: VueComponentOptions` optional component options
-
-### @Slot(name, description?)
-
-Annotate your component with this decorator to specify available slots.
-
-* **Arguments:**
-  * `name: string` name of the slot (must not be human readable)
-  * `description?: string` brief description of the slot
-
-### @DefaultSlot(description)
-
-Annotate your component with this decorator to describe the default slot (if available).
-
-* **Arguments:**
-  * `description: string` brief description of the slot
-
-### @Prop(description, options)
-
-You can use this decorator in order to document your props.
-
-* **Arguments:**
-  * `description: string` brief description of the prop
-  * `options: PropOptions` optional prop options
-  * `options.acceptableValues?: (string | number)[]` acceptable values. Displayed in the documentation.
-  * `options.readableDefaultValue?: string` A readable representation of the prop's default value. Will be used in the documentation if specified.
-
-### @Event(eventName, eventDescription, ?parameter)
-
-You can use this decorator in order to document events emitted by your component.
-
-* **Arguments:**
-  * `eventName: string` name of the event emitted by the component
-  * `eventDescription: string` description of the event emitted by the component
-  * `parameter: AnyConstructor | string` optional parameter description.
-
-### @Mixins(mixins)
-
-You can use this decorator in order to document mixins used by your component.
-
-* **Arguments:**
-  * `mixins: VueComponent[]` mixins
-
-## Known Issues
-* Parameters of events can be annotated but are not displayed - yet.
-* Props and Events gained by mixins are not displayed.

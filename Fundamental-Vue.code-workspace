@@ -8,11 +8,8 @@
 		},
 		{
 			"path": "docs"
-		},
-		{
-			"path": "build"
 		}
-  ],
+],
   "settings": {
     "debug.node.autoAttach": "on"
   }
