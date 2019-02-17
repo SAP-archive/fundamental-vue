@@ -1,5 +1,5 @@
 <title>Table</title>
-<docs lang="md">
+<docs>
 Use `FdTable` in order to display data best visualized by rows and columns.
 
 <div class="tip" style="border-left: 0.5rem solid #ffa94a;">

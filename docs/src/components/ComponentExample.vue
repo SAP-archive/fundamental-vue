@@ -114,7 +114,7 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
 
 .component-example
   padding: 30px 30px 30px 30px

@@ -9,13 +9,13 @@ import DocumentationLoader from "./DocumentationLoader";
 
 Vue.config.productionTip = false;
 Vue.use(FundamentalVue.default);
+
 // Register Layouts globally so that they are available by name
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import FullscreenLayout from "@/layouts/FullscreenLayout.vue";
 
 // Install Plugins
 Vue.use(Router);
-// Vue.use(FundamentalVue);
 Vue.use(DocumentationLoader);
 
 Vue.component("DefaultLayout", DefaultLayout);
