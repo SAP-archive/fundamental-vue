@@ -4,6 +4,7 @@
   "scripts": {
     "bootstrap": "yarn install && yarn --cwd build install && yarn --cwd ui install && yarn --cwd docs install && yarn --cwd server install",
     "serve": "concurrently --kill-others --names 'dev-server,ui,docs' -c 'blue, red,green' 'node server' 'yarn --cwd ui build --watch' 'yarn --cwd docs serve'",
+    "serve:prod": "concurrently --kill-others --names 'dev-server,ui,docs' -c 'blue, red,green' 'node server' 'yarn --cwd ui build --watch --mode production' 'yarn --cwd docs serve --mode production '",
     "build:ui": "yarn --cwd ui build",
     "build:docs": "yarn --cwd docs build",
     "build": "rm -rf dist && yarn build:ui && yarn build:docs && mkdir dist && cp -r ui/dist/* dist && cp -r docs/dist/* dist",

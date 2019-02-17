@@ -1,5 +1,4 @@
 import "./main.scss";
-
 import * as FundamentalVue from "fundamental-vue";
 import Vue from "vue";
 import Router from "vue-router";

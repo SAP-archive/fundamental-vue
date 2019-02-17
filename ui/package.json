@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --mode production --target lib --report --name FundamentalVue src/main.ts",
+    "build": "vue-cli-service build --target lib --report --name FundamentalVue src/main.ts",
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service test:unit 'src/**/__tests__/*.test.{ts,js,vue}'",
     "test:watch": "yarn test --watch"
-   },
+  },
   "devDependencies": {
     "chai": "^4.2.0",
     "@types/chai": "^4.1.0",

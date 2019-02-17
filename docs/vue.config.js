@@ -11,6 +11,11 @@ module.exports = {
     proxy: "http://localhost:3200"
   },
   configureWebpack: {
+    // resolve: {
+    //   alias: {
+
+    //   }
+    // },
     externals,
     entry: "./src/main.ts",
     resolveLoader: {
