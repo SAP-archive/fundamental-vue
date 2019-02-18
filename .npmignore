@@ -8,4 +8,4 @@
 !dist/*.js.map
 
 ## The actual Artefacts
-!dist/*.js
+!dist/FundamentalVue.*.js
