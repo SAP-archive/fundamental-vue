@@ -4,6 +4,6 @@
 
 <template>
   <div>
-    <FdCalendar defaultValue="2010-2-1" />
+    <FdCalendar defaultValue="2010-02-01" />
   </div>
 </template>

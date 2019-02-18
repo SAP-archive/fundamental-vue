@@ -4,6 +4,5 @@ export * from "./SelectionMode";
 export * from "./SortOrder";
 export * from "./SortDescriptor";
 export * from "./TextAlignment";
-export * from "./withoutDuplicates";
 export * from "./Header";
 export * from "./Item";

@@ -15,6 +15,8 @@
 import Vue from "vue";
 import { PropValidator } from "vue/types/options";
 import { isInputElement } from "./Helper";
+import { withoutDuplicates } from "@/util";
+
 const stateMapping = {
   valid: "valid",
   invalid: "invalid",
@@ -110,10 +112,14 @@ export default Vue.extend({
         throw Error("value cannot be null");
       }
       if (Array.isArray(modelValue)) {
-        const set = new Set(modelValue);
-        checked ? set.add(value) : set.delete(value);
-        const newValue = Array.from(set);
-        this.$emit("change", newValue, event);
+        let newValue = [...modelValue];
+        if (checked) {
+          newValue.push(value);
+        } else {
+          newValue = newValue.filter(currentValue => currentValue !== value);
+        }
+        const newValueWithoutDuplicates = withoutDuplicates(newValue);
+        this.$emit("change", newValueWithoutDuplicates, event);
       } else {
         const newValue = checked === true ? this.trueValue : this.falseValue;
         this.$emit("change", newValue, event);

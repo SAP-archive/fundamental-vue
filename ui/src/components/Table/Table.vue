@@ -3,7 +3,7 @@ import Vue, { VNode, CreateElement } from "vue";
 import { PropValidator } from "vue/types/options";
 import { normalizedHeaders, NormalizedHeader, RawHeader } from "./Util";
 import { warn } from "@/core";
-
+import { withoutDuplicates } from "@/util";
 import { ScopedSlotChildren } from "vue/types/vnode";
 import TableBody from "./Components/TableBody.vue";
 import TableHeader from "./Components/TableHeader.vue";
@@ -14,7 +14,6 @@ import {
   compareValues,
   SelectionMode,
   SelectionModeValidator,
-  withoutDuplicates,
   SortDescriptor,
   Item,
   normalizeItems,
