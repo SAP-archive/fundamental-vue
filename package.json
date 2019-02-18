@@ -7,7 +7,7 @@
     "serve:prod": "concurrently --kill-others --names 'dev-server,ui,docs' -c 'blue, red,green' 'node server' 'yarn --cwd ui build --watch --mode production --report' 'yarn --cwd docs serve --mode production --report'",
     "build:ui": "yarn --cwd ui build",
     "build:docs": "yarn --cwd docs build --mode production --report",
-    "build": "rm -rf dist && yarn build:ui && yarn build:docs && mkdir dist && cp -r ui/dist/* dist && cp -r docs/dist/* dist",
+    "build": "rm -rf dist && yarn build:ui --mode production && yarn build:docs --mode production && mkdir dist && cp -r ui/dist/* dist && cp -r docs/dist/* dist",
     "lint": "yarn --cwd docs lint && yarn --cwd server lint && yarn --cwd ui lint",
     "test": "yarn --cwd ui test",
     "test:watch": "yarn --cwd ui test:watch",
