@@ -1,73 +1,41 @@
 {
-    "name": "fundamental-vue",
-    "version": "0.0.10-beta",
-    "description": "SAP Fiori Fundamentals, implemented in Vue.JS",
-    "keywords": [
-        "vue",
-        "sap",
-        "fiori",
-        "typescript",
-        "javascript"
-    ],
-    "bugs": {
-        "url": "https://github.com/SAP/fundamental-vue/issues"
-    },
-    "author": "SAP SE",
-    "repository": {
-        "type": "git",
-        "url": "git+git@github.com:SAP/fundamental-vue.git"
-    },
-    "private": false,
-    "homepage": "https://github.com/SAP/fundamental-vue",
-    "scripts": {
-        "typecheck": "tsc --noEmit",
-        "serve:docs": "echo '\n\n⚠️⚠️⚠️ WARNING ⚠️⚠️⚠️\n\nThe serve:docs script will soon be removed.\nUse npm run serve instead.\nI will now go to sleep for 30 seconds to make you stop using this script.\n\n\n………zzzZZZZzzz………' && sleep 30 && echo 'Ok, lets go…' && npm run serve",
-        "serve": "vue-cli-service serve src/docs/main.ts",
-        "build": "vue-cli-service build",
-        "lint:vue": "vue-cli-service lint",
-        "test": "vue-cli-service test:unit 'src/**/__tests__/*.test.{tsx,ts,js,vue}'",
-        "test:coveralls": "vue-cli-service test:unit 'src/**/__tests__/*.test.{tsx,ts,js,vue}' && cat ./coverage/lcov.info  | ./node_modules/coveralls/bin/coveralls.js",
-        "test:watch": "npm test -- --watch",
-        "lint": "npx tslint --project tsconfig.json --config tslint.json",
-        "lint:fix": "npm run lint -- --fix",
-        "deploy": "node ./node_modules/vue-gh-pages/index.js"
-    },
-    "license": "Apache-2.0",
-    "main": "dist/FundamentalVue.umd.js",
-    "dependencies": {
-        "vue-class-component": "^6.3.2",
-        "vue-property-decorator": "^7.3.0"
-    },
-    "devDependencies": {
-        "@babel/plugin-proposal-class-properties": "^7.2.3",
-        "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
-        "@babel/preset-env": "^7.2.3",
-        "@babel/preset-typescript": "^7.1.0",
-        "@types/chai": "^4.1.7",
-        "@types/highlight.js": "^9.12.3",
-        "@types/mocha": "^5.2.5",
-        "@vue/cli-plugin-babel": "^3.3.0",
-        "@vue/cli-plugin-typescript": "^3.3.0",
-        "@vue/cli-plugin-unit-mocha": "^3.3.0",
-        "@vue/cli-service": "^3.3.0",
-        "@vue/test-utils": "^1.0.0-beta.28",
-        "babel-core": "7.0.0-bridge.0",
-        "chai": "^4.2.0",
-        "coveralls": "^3.0.2",
-        "highlight.js": "^9.13.1",
-        "html-loader": "^1.0.0-alpha.0",
-        "markdown-loader": "^5.0.0",
-        "node-sass": "^4.11.0",
-        "raw-loader": "^1.0.0",
-        "sass-loader": "^7.1.0",
-        "tslint": "^5.12.1",
-        "tslint-react": "^3.6.0",
-        "typescript": "^3.2.2",
-        "vue": "^2.5.22",
-        "vue-gh-pages": "^1.19.0",
-        "vue-template-compiler": "^2.5.22"
-    },
-    "peerDependencies": {
-        "vue": "^2.5.22"
-    }
+  "name": "fundamental-vue",
+  "version": "0.0.10-beta",
+  "scripts": {
+    "bootstrap": "yarn install && yarn --cwd build install && yarn --cwd ui install && yarn --cwd docs install && yarn --cwd server install",
+    "serve": "concurrently --kill-others --names \"dev-server,ui,docs\" -c \"blue, red,green\" \"node server\" \"yarn --cwd ui build --watch\" \"yarn --cwd docs serve\"",
+    "serve:prod": "concurrently --kill-others --names \"dev-server,ui,docs\" -c \"blue, red,green\" \"node server\" \"yarn --cwd ui build --watch --mode production --report\" \"yarn --cwd docs serve --mode production --report\"",
+    "build:ui": "yarn --cwd ui build",
+    "build:docs": "yarn --cwd docs build --mode production --report",
+    "build": "rm -rf dist && yarn build:ui --mode production && yarn build:docs --mode production && mkdir dist && cp -r ui/dist/* dist && cp -r docs/dist/* dist",
+    "lint": "yarn --cwd docs lint && yarn --cwd server lint && yarn --cwd ui lint",
+    "test": "yarn --cwd ui test",
+    "test:watch": "yarn --cwd ui test:watch",
+    "deploy:docs": "cp now.json dist && now --public --local-config=./now.json deploy ./dist"
+  },
+  "description": "SAP Fiori Fundamentals, implemented in Vue.js",
+  "keywords": [
+    "vue",
+    "sap",
+    "fiori",
+    "typescript",
+    "javascript"
+  ],
+  "bugs": {
+    "url": "https://github.com/SAP/fundamental-vue/issues"
+  },
+  "author": "SAP SE",
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:SAP/fundamental-vue.git"
+  },
+  "homepage": "https://github.com/SAP/fundamental-vue",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.6"
+  },
+  "main": "dist/FundamentalVue.umd.js"
 }

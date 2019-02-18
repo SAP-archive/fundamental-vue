@@ -1,18 +1,11 @@
-# dist/*
-# src/*
-# gfx/*
-# scripts/*
-# @misc/*
-# public/*
-# ./*
-# Files that should be included in the npm package will be whitelisted.
+# Files that should be included in the npm package will be listed below.
 # This is why we start by ignoring everything.
 *
 
-# Now include the important stuff...
-!dist/*.js
-!dist/*.css
-!src/**
+# Now include the important stuff…
 
-# And continue to ignore the docs.
-src/docs/*
+## Source Maps
+!dist/*.js.map
+
+## The actual Artefacts
+!dist/*.js

@@ -7,27 +7,27 @@ Fundamental Vue is tested using [Chai](https://www.chaijs.com/), [Mocha](https:/
 Tests are executed by running:
 
 ```shell
-$ npm test
+$ yarn test
 ```
 
 By running
 
 ```shell
-npm run test:watch
+yarn test:watch
 ```
 
 you make [Mocha](https://mochajs.org/) continuously execute tests. This is great when you prefer test driven development.
 
 ## Writing a new Test
 
-`npm test` will execute tests matching the pattern: `src/**/__tests__/*.test.{tsx,ts,js,vue}`. In order to create a test make sure that your test is in a directory called `__tests__` and has a matching extension.
+`yarn test` will execute tests matching the pattern: `src/**/__tests__/*.test.{ts,js,vue}`. In order to create a test make sure that your test is in a directory called `__tests__` and has a matching extension.
 
 A simple component test might look something like this:
 
 ```javascript
 import { expect } from 'chai';
 import { shallowMount } from '@vue/test-utils';
-import { Button } from '../Button';
+import Button from '../Button.vue';
 
 describe('Button', () => {
   it('renders default slot when passed', () => {
@@ -41,7 +41,6 @@ describe('Button', () => {
   });
 });
 ```
-
 
 ## Guidelines
 
@@ -60,4 +59,3 @@ Pretty soon new code will require a certain test coverage. We will also add test
 > Leave your code better than you found it.
 
 will be *enforced* at some point in the near future.
-

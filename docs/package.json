@@ -1,0 +1,47 @@
+{
+  "name": "docs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test": "true",
+    "test:watch": "yarn test --watch",
+    "test:unit:not:working": "vue-cli-service test:unit \"src/**/__tests__/*.test.{ts,js,vue}\""
+  },
+  "dependencies": {
+    "vue-router": "^3.0.2",
+    "vuex": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/highlight.js": "^9.12.3",
+    "@types/mocha": "^5.2.6",
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-plugin-typescript": "^3.4.0",
+    "@vue/cli-plugin-unit-mocha": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "@vue/eslint-config-typescript": "^4.0.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-eslint": "^11.0.0-beta.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.13.0",
+    "eslint-plugin-vue": "^5.2.1",
+    "fiori-fundamentals": "^1.4.3",
+    "highlight.js": "^9.14.2",
+    "html-loader": "^0.5.5",
+    "markdown-loader": "^5.0.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "typescript": "^3.3.3",
+    "vue": "^2.6.6",
+    "vue-loader": "^15.6.2",
+    "vue-template-compiler": "^2.6.6"
+  },
+  "peerDependencies": {
+    "fundamental-vue": "^0.0.12-beta"
+  }
+}
