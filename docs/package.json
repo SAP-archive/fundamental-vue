@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint",
     "test": "true",
     "test:watch": "yarn test --watch",
-    "test:unit:not:working": "vue-cli-service test:unit 'src/**/__tests__/*.test.{ts,js,vue}'"
+    "test:unit:not:working": "vue-cli-service test:unit \"src/**/__tests__/*.test.{ts,js,vue}\""
   },
   "dependencies": {
     "vue-router": "^3.0.2",
