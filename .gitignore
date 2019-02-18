@@ -95,3 +95,6 @@ node_modules/
 ### Vuejs ###
 node_modules
 /.vscode
+/ui/.vscode
+/server/.vscode
+/docs/.vscode
