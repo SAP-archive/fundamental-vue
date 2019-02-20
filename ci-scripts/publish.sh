@@ -18,6 +18,6 @@ git push --follow-tags "https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG" master >
 
 yarn release:create -- --repo $TRAVIS_REPO_SLUG --tag $release_tag --branch master
 
-yarn publish
+npm publish
 
 # add docs deployment here
