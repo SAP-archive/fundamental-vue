@@ -1,28 +1,46 @@
 language: node_js
 os:
 - linux
-# somehow building for osx does not work correctly either... - osx
-# there is currently an issue with window not finding our tests.- windows
-node_js:
-- "10.15.0"
-before_install:
-- yarn global add typescript@3.3.3
-- yarn bootstrap
+node_js: 10.15.0
+cache: yarn
 dist: trusty
 git:
   depth: false
-branches:
-  only:
-  - master
-  - develop
-  - "/^feature\\/.*$/"
-matrix:
+before_install:
+- yarn global add typescript@3.3.3
+- yarn bootstrap
+script:
+  - yarn build
 jobs:
   include:
-    - script: "yarn lint"
-    - script: "yarn test"
-    - script: "yarn build"
+  - stage: Lint and Test
+    script: yarn lint && yarn test
+  - stage: Pre-release
+    if: branch = master
+    before_deploy:
+    - git checkout master
+    - bash ./ci-scripts/setup-npm.sh
+    deploy:
+    - provider: script
+      script: bash ./ci-scripts/publish-rc.sh
+      skip_cleanup: true
+  - stage: Release
+    if: branch = tmp_branch_for_automated_release_do_not_use
+    before_deploy:
+    - git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+    - git fetch
+    - git checkout master
+    - bash ./ci-scripts/setup-npm.sh
+    deploy:
+    - provider: script
+      script: bash ./ci-scripts/publish.sh
+      skip_cleanup: true
+      on:
+        all_branches: true
 notifications:
   email:
     on_failure: always
     on_success: change
+  slack: 
+    rooms:
+      - ui-fundamentals:zVRyxlqkYnQFD7p8QHkWM8Fd#vue-automated
