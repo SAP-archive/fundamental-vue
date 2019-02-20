@@ -20,4 +20,4 @@ yarn release:create -- --repo $TRAVIS_REPO_SLUG --tag $release_tag --branch mast
 
 yarn publish
 
-yarn deploy:docs
+# add docs deployment here
