@@ -10,7 +10,7 @@ before_install:
 - yarn global add typescript@3.3.3
 - yarn bootstrap
 script:
-  - yarn build
+  - yarn build:ui
 jobs:
   include:
   - stage: Lint and Test
