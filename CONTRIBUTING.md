@@ -6,8 +6,8 @@ We're excited that you're interested in contributing to Fundamental-vue! Your co
 -   [Feature Requests](#feature-requests)
 -   [Contribute Code](#contribute-code)
 
-
 ## Implementing a new Component
+
 If you want to contribute a new component read the [Implementing a new Component Guide](./NEW_COMPONENT/NEW_COMPONENT.md).
 
 ## Issues and Bugs
@@ -32,11 +32,9 @@ GitHub offers labels to categorize issues. You can use the following labels:
 
 Labels for issue categories:
 
-
 -   bug: Something isn't working / Issues in the code.
 -   documentation: Issues with the documentation (repo and website documentation).
 -   enhancement: New feature or enhancement requests.
-
 
 Status of open issues:
 
@@ -63,7 +61,6 @@ There are three important things to consider:
 1.  You must be aware of the Apache License (which describes contributions) and **agree to the Contributors License Agreement**. This is common practice in all major Open Source projects. If you are an individual contributor, use _[CLA assistant](https://cla-assistant.io/)_. CLA assistant is an open source tool that integrates with GitHub and enables a one-click-experience for accepting the CLA. If you are contributing on behalf of a company, see the [Company Contributors](#company-contributors) section below for details.
 2.  You must follow **code style, quality, and product standards requirements**. You can find more information on the coding guidelines below.
 
-
 ### Contributor License Agreement
 
 When you contribute (code, documentation, or anything else), you must be aware that your contribution is covered by the same [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0) that is applied to Fundamental-vue itself.
@@ -86,19 +83,17 @@ The form lists all employees who are authorized to contribute on behalf of your 
 
 ### Contribution Content Guidelines
 
-
 You must follow the coding style as best you can when submitting code. Take note of naming conventions, separation of concerns, and formatting rules. You can use the code formatter [Prettier](https://prettier.io/) to handle some of this for you automatically.
-
 
 ### How to contribute - the Process
 
 1.  Make sure the issue you've filed in the [issue tracker] has the label "contribution welcome" - otherwise, it is not ready to be worked on.
 2.  Fork the Fundamental Vue repository to your GitHub account.
 3.  Create a branch for your issue or feature, and commit or push your changes on that branch.
-4.  Create a Pull Request from your forked repository to github.com/SAP/fundamental-vue. In the subject of the pull request, briefly describe the bug fix or enhancement you're contributing. In the pull request description, please provide a link to the issue in the issue tracker.
+4.  Create a Pull Request from your forked repository to github.com/SAP/fundamental-vue. In the subject of the pull request, use "fix:" to denote a bug fix, "feat:" to denote an enhancement or "chore:" for small configuration updates and briefly describe the bug fix or enhancement you're contributing. In the pull request description, please provide a link to the issue in the issue tracker. **Do not include "BREAKING CHANGE" in the subject or description.**
 5.  Follow the link posted by the CLA assistant to your pull request and accept it, as described above.
 6.  Wait for our code review and approval. We may ask you for additional commits, or make changes to your pull request ourselves.
     -   Note that the Fundamental Vue developers also have their regular duties so, depending on the required effort for reviewing, testing, and clarification, this may take a while.
 7.  Once the change has been approved, we inform you in a comment.
 8.  Your pull request cannot be merged directly into the branch (internal SAP processes), but is merged internally and immediately appears in the public repository as well.
-9. We close the pull request. You can then delete the now obsolete branch.
+9.  We close the pull request. You can then delete the now obsolete branch.
