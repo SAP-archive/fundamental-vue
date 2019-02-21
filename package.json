@@ -37,7 +37,7 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "github-assistant": "^0.2.0",
-    "standard-version": "^5.0.0"
+    "standard-version": "^4.4.0"
   },
   "peerDependencies": {
     "vue": "^2.6.6"
