@@ -144,11 +144,17 @@ To download and use this library, you first need to install the node package man
     ...
     ```
 
+## Versioning
+
+The `fundamental-vue` library follows [Semantic Versioning](https://semver.org/). These components strictly adhere to the `[MAJOR].[MINOR].[PATCH]` numbering system (also known as `[BREAKING].[FEATURE].[FIX]`).
+
+Merges to the `master` branch will be published as a prerelease. Prereleases will include an **rc** version (_e.g._ `[MAJOR].[MINOR].[PATCH]-rc.[RC]`).
+
 ## Known Issues
 
 Please see [Issues](https://github.com/SAP/fundamental-vue/issues).
 
-## How to obtain support
+## Support
 
 If you encounter an issue, you can [create a ticket](https://github.com/SAP/fundamental-vue/issues/new)
 
@@ -160,5 +166,5 @@ Check out [this guide](./NEW_COMPONENT/NEW_COMPONENT.md) on building a new compo
 
 ## License
 
-Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 This file is licensed under the Apache Software License, v. 2 except as noted otherwise in the [LICENSE file](https://github.com/SAP/fundamental-vue/blob/master/LICENSE.txt)
