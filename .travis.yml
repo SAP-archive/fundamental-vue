@@ -10,7 +10,7 @@ before_install:
 - yarn global add typescript@3.3.3
 - yarn bootstrap
 script:
-  - yarn build:ui
+  - yarn build
 jobs:
   include:
   - stage: Lint and Test
@@ -41,6 +41,6 @@ notifications:
   email:
     on_failure: always
     on_success: change
-  slack: 
+  slack:
     rooms:
       - ui-fundamentals:zVRyxlqkYnQFD7p8QHkWM8Fd#vue-automated

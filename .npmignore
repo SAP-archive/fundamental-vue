@@ -9,3 +9,6 @@
 
 ## The actual Artefacts
 !dist/FundamentalVue.*.js
+
+## Sources
+!ui/src/**
