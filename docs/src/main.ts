@@ -1,6 +1,7 @@
-import "./main.scss";
-import * as FundamentalVue from "fundamental-vue";
 import Vue from "vue";
+import * as FundamentalVue from "fundamental-vue";
+
+import "./main.scss";
 import Router from "vue-router";
 import { DocsRouter } from "./DocsRouter";
 import { registerComponents } from "./components";

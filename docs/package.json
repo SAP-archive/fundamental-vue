@@ -7,12 +7,12 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "true",
-    "test:watch": "yarn test --watch",
-    "test:unit:not:working": "vue-cli-service test:unit \"src/**/__tests__/*.test.{ts,js,vue}\""
+    "test:watch": "yarn test --watch"
   },
   "dependencies": {
     "vue-router": "^3.0.2",
-    "vuex": "^3.1.0"
+    "vuex": "^3.1.0",
+    "vue": "^2.6.7"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
@@ -37,9 +37,8 @@
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.3.3",
-    "vue": "^2.6.6",
     "vue-loader": "^15.6.2",
-    "vue-template-compiler": "^2.6.6"
+    "vue-template-compiler": "^2.6.7"
   },
   "peerDependencies": {
     "fundamental-vue": "^0.0.12-beta"

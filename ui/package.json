@@ -1,14 +1,20 @@
 {
-  "name": "ui",
+  "name": "fundamental-vue",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --mode production --target lib --report --name FundamentalVue src/main.ts",
+    "serve": "vue-cli-service serve src/index.ts",
+    "build": "vue-cli-service build --mode production --target lib --report --name FundamentalVue src/index.ts",
     "test": "vue-cli-service test:unit --runInBand --verbose",
     "lint": "vue-cli-service lint",
-    "test:watch": "yarn test --watch --verbose"
+    "test:watch": "yarn test --watch"
   },
+  "files": [
+    "/dist",
+    "/src"
+  ],
+  "main": "dist/FundamentalVue.common",
+  "browser": "dist/FundamentalVue.umd.min",
   "devDependencies": {
     "@types/chai": "^4.1.0",
     "chai": "^4.2.0",
