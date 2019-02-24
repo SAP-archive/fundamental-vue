@@ -7,7 +7,8 @@
     "serve:prod": "concurrently --kill-others --names \"dev-server,ui,docs\" -c \"blue, red,green\" \"node server\" \"yarn --cwd ui build --watch --mode production --report\" \"yarn --cwd docs serve --mode production --report\"",
     "build:ui": "yarn --cwd ui build",
     "build:docs": "yarn --cwd docs build --mode production --report",
-    "build": "rm -rf dist && yarn build:ui --mode production && yarn build:docs --mode production && mkdir dist && cp -r ui/dist/* dist && cp -r docs/dist/* dist",
+    "build:all": "rm -rf dist && yarn build:ui --mode production && yarn build:docs --mode production && mkdir dist && cp -r ui/dist/* dist && cp -r docs/dist/* dist",
+    "build": "yarn build:ui && rm -rf dist && mkdir dist && cp -r ./ui/dist/*.js dist && cp -r ./ui/dist/*.js.map dist",
     "lint": "yarn --cwd docs lint && yarn --cwd server lint && yarn --cwd ui lint",
     "release": "./scripts/publish-release.sh",
     "release:create": "create-release",
@@ -42,5 +43,6 @@
   "peerDependencies": {
     "vue": "^2.6.6"
   },
-  "main": "dist/FundamentalVue.umd.js"
+  "main": "dist/FundamentalVue.common",
+  "browser": "dist/FundamentalVue.umd.min"
 }
