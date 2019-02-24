@@ -1,77 +1,88 @@
 <template>
-  <div class="fd-button-group" role="group">
+  <div class="fd-button-group" role="group" aria-label="hi">
     <slot />
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from "vue";
-import { PropValidator } from "vue/types/options";
-import { Vue as VueInstance } from "vue/types/vue";
 import { warn } from "@/core";
+import { CompactableContainer, mixins } from "@/mixins";
+import SingleSelectionMode from "./selection/single";
+import MultipleSelectionMode from "./selection/multiple";
 
-export default Vue.extend({
+export default {
+  mixins: [CompactableContainer],
   name: "FdButtonGroup",
+  props: {
+    value: { type: Array, default: () => [] },
+    selectionMode: {
+      type: [String, Function],
+      default: "single",
+      validate: value => {
+        if (value == null) {
+          return false;
+        }
+        if (typeof value === "string") {
+          return value === "single" || value === "multiple";
+        }
+        return true;
+      }
+    }
+  },
   provide() {
     return {
-      buttonContainer: this,
-      grouped: true
+      group: this.$_group
     };
   },
-  props: {
-    value: { type: Array, default: () => [] } as PropValidator<any[]>,
-    compact: { type: Boolean, default: false }
+  beforeCreate() {
+    this.$_group = Vue.observable({});
   },
-  data() {
-    return {
-      buttons: [] as VueInstance[],
-      currentValue: this.value
-    };
+  computed: {
+    selectionHandler() {
+      const { selectionMode } = this;
+      if (typeof selectionMode === "function") {
+        return selectionMode;
+      }
+      switch (selectionMode) {
+        case "single": {
+          return SingleSelectionMode;
+        }
+        case "multiple": {
+          return MultipleSelectionMode;
+        }
+        default:
+          return SingleSelectionMode;
+      }
+    },
+    group() {
+      return {
+        value: this.value,
+        toggleStateForValue: this.didClickButton
+      };
+    }
   },
   watch: {
-    value: {
+    group: {
       immediate: true,
-      handler(newValue: any[]) {
-        this.currentValue = newValue;
+      handler(value = {}) {
+        const data = this.$_group;
+        const keys = Object.keys(value);
+        keys.forEach(key => {
+          if (data.hasOwnProperty(key)) {
+            data[key] = value[key];
+          } else {
+            Vue.set(data, key, value[key]);
+          }
+        });
       }
     }
   },
   methods: {
-    // ButtonContainer Implementation
-    // compact already implemented
-    registerButton(button: VueInstance) {
-      this.buttons.push(button);
-    },
-    unregisterButton(button: VueInstance) {
-      this.buttons = [...this.buttons].splice(this.buttons.indexOf(button));
-    },
-    didClickButton(button: VueInstance) {
-      const buttonValue = this.valueOfButton(button);
-      const valueIndex = this.currentValue.indexOf(buttonValue);
-      const newValue = [...this.currentValue];
-      if (valueIndex > -1) {
-        newValue.splice(valueIndex);
-      } else {
-        newValue.push(buttonValue);
-      }
+    didClickButton(buttonValue) {
+      const newValue = this.selectionHandler(this.value, buttonValue);
       this.$emit("input", newValue);
-    },
-    valueOfButton(button: VueInstance): number | string | boolean | null {
-      // @ts-ignore
-      const buttonValue: any = button.value;
-      if (buttonValue == null) {
-        return null;
-      }
-      return buttonValue;
-    },
-
-    isButtonPressed(button: VueInstance): boolean {
-      const value = this.valueOfButton(button);
-      if (value == null) {
-        return false;
-      }
-      return this.currentValue.indexOf(value) > -1;
     }
   }
-});
+};
 </script>

@@ -1,21 +1,13 @@
 const Path = require("path");
 
 const externals = {};
-if (process.env.FDTESTING !== "true") {
-  externals.vue = "Vue";
-}
 externals["fundamental-vue"] = "FundamentalVue";
-
+externals.vue = "Vue";
 module.exports = {
   devServer: {
     proxy: "http://localhost:3200"
   },
   configureWebpack: {
-    // resolve: {
-    //   alias: {
-
-    //   }
-    // },
     externals,
     entry: "./src/main.ts",
     resolveLoader: {

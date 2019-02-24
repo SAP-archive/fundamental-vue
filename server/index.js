@@ -10,11 +10,16 @@ const cwd = process.cwd();
 console.log(cwd);
 const uiPath = path.resolve(cwd, "ui", "dist");
 console.log(uiPath);
-const docsPath = path.resolve(cwd, "docs", "dist");
+const docsPath = path.resolve(cwd, "docs");
 console.log(docsPath);
+const vuePath = path.resolve(docsPath, "node_modules", "vue", "dist");
+console.log(vuePath);
+const docsDistPath = path.resolve(docsPath, "dist");
+console.log(docsDistPath);
 
 app.use(express.static(uiPath));
-app.use(express.static(docsPath));
+app.use(express.static(vuePath));
+app.use(express.static(docsDistPath));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 app.use(bodyParser.json({ limit: "10mb" }));
 
