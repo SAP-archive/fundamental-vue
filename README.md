@@ -168,3 +168,8 @@ Check out [this guide](./NEW_COMPONENT/NEW_COMPONENT.md) on building a new compo
 
 Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
 This file is licensed under the Apache Software License, v. 2 except as noted otherwise in the [LICENSE file](https://github.com/SAP/fundamental-vue/blob/master/LICENSE.txt)
+
+## Similar Projects
+
+-   [Angular implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-ngx)
+-   [React implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-react)
