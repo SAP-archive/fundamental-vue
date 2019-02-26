@@ -26,7 +26,8 @@
 <script lang="ts">
 import Vue from "vue";
 import { Popover } from "@/components/Popover";
-import { Input, InputGroup } from "@/components/Form";
+import { InputGroup } from "@/components/Form";
+import Input from "@/components/Form/Controls/Input.vue";
 import { Button } from "@/components/Button";
 import TimeItem from "./TimeItem.vue";
 

@@ -37,7 +37,7 @@ import * as TimePicker from "./TimePicker";
 import * as Token from "./Token";
 
 const plugin: PluginObject<PluginOptions> = {
-  install(vue, options) {
+  install(vue) {
     vue.use(ActionBar.default);
     vue.use(Alert.default);
     vue.use(Badge.default);

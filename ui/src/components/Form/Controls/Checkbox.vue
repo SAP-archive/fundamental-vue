@@ -1,64 +1,42 @@
 <template>
   <input
-    :id="uid"
-    :class="classes"
-    :checked="checked"
-    :disabled="disabled ? '' : null"
-    :value="value"
     type="checkbox"
     class="fd-form__control"
+    :id="inputId"
+    :class="inputClasses"
+    :disabled="disabled ? '' : null"
+    :checked="checked ? true : false"
     @change="updateInput"
+    :value="value"
+    v-on="$listeners"
+    v-bind="$attrs"
   />
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { PropValidator } from "vue/types/options";
 import { isInputElement } from "./Helper";
 import { withoutDuplicates } from "@/util";
+import InputMixin from "./InputMixin";
+import { mixins } from "@/mixins";
+import { $modelValueWithDefault, $valueWithDefault } from "./Helper/prop";
 
-const stateMapping = {
-  valid: "valid",
-  invalid: "invalid",
-  warning: "warning"
-};
-type InputState = keyof (typeof stateMapping);
-const InputStates = Object.keys(stateMapping);
-
-type ValueType = string | number | boolean;
-const ValueCtors = [String, Number, Boolean];
-
-export default Vue.extend({
+export default mixins(InputMixin).extend({
   name: "FdCheckbox",
+  inheritAttrs: false,
   inject: {
-    itemId: { default: null },
+    // We need the form item so that we can say tell the form item
+    // to render the checked-style
     formItem: { default: null }
   },
   model: {
-    prop: "modelValue",
-    event: "change"
+    event: "update",
+    prop: "modelValue"
   },
   props: {
-    trueValue: { type: ValueCtors, default: () => true } as PropValidator<
-      ValueType
-    >,
-    falseValue: { type: ValueCtors, default: () => false } as PropValidator<
-      ValueType
-    >,
-    value: { type: ValueCtors, default: true } as PropValidator<ValueType>,
-    compact: { type: Boolean, default: false },
-    disabled: { type: Boolean, default: false },
-    readonly: { type: Boolean, default: false },
-    required: { type: Boolean, default: false },
-    state: {
-      default: null,
-      type: String,
-      validator: (value: string) => InputStates.indexOf(value) >= 0
-    } as PropValidator<InputState | null>,
-    modelValue: {
-      type: [Array, String, Boolean, Number],
-      default: false
-    } as PropValidator<ValueType | ValueType[]>
+    trueValue: $valueWithDefault(true),
+    falseValue: $valueWithDefault(false),
+    value: $valueWithDefault(false),
+    modelValue: $modelValueWithDefault(false)
   },
   mounted() {
     // @ts-ignore
@@ -68,33 +46,15 @@ export default Vue.extend({
     }
   },
   computed: {
-    uid(): string {
-      // @ts-ignore
-      return this.itemId;
-    },
-    listeners(): object {
-      const { ...listeners } = this.$listeners;
-      return listeners;
-    },
-    classes(): object {
-      return {
-        "fd-input--compact": this.compact,
-        "is-warning": this.state === "warning",
-        "is-invalid": this.state === "invalid",
-        "is-valid": this.state === "valid",
-        "is-required": this.required
-      };
-    },
     checked(): boolean {
-      const modelValue = this.modelValue;
+      const { modelValue, value } = this;
       if (Array.isArray(modelValue)) {
-        const value = this.value;
         if (value == null) {
           throw Error("value cannot be null");
         }
         return modelValue.indexOf(value) >= 0;
       }
-      return this.modelValue === this.trueValue;
+      return modelValue === this.trueValue;
     }
   },
   methods: {
@@ -107,7 +67,7 @@ export default Vue.extend({
         return;
       }
       const { checked } = target;
-      const { modelValue, value } = this;
+      const { modelValue, value, trueValue, falseValue } = this;
       if (value == null) {
         throw Error("value cannot be null");
       }
@@ -119,10 +79,9 @@ export default Vue.extend({
           newValue = newValue.filter(currentValue => currentValue !== value);
         }
         const newValueWithoutDuplicates = withoutDuplicates(newValue);
-        this.$emit("change", newValueWithoutDuplicates, event);
+        this.$emit("update", newValueWithoutDuplicates, event);
       } else {
-        const newValue = checked === true ? this.trueValue : this.falseValue;
-        this.$emit("change", newValue, event);
+        this.$emit("update", checked ? trueValue : falseValue, event);
       }
     }
   }

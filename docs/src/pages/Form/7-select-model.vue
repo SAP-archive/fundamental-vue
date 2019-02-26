@@ -5,6 +5,7 @@
     <FdFormSet>
       <FdFormItem label="Favorite Color">
         <FdSelect v-model="color">
+          <option disabled>no color</option>
           <option value="red">Red</option>
           <option value="green">Green</option>
           <option value="yellow">Yellow</option>

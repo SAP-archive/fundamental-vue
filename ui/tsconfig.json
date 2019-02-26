@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "resolveJsonModule": true,
     "target": "es5",
     "module": "esnext",
@@ -14,7 +16,8 @@
     "types": [
       "webpack-env",
       "chai",
-      "jest"
+      "jest",
+      "node"
     ],
     "paths": {
       "@/*": [

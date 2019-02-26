@@ -1,45 +1,38 @@
 <template>
   <span :class="classes">
-    <input
-      :id="formItemId"
-      type="checkbox"
-      @change="onChange"
+    <FdCheckbox
+      v-on="$listeners"
+      v-bind="$attrs"
+      :modelValue="on"
+      :value="value"
       :disabled="disabled"
-      :checked="currentOn"
-    />
+      @update="$emit('update', $event)"
+    >
+    </FdCheckbox>
     <span class="fd-toggle__switch" role="presentation" />
   </span>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { isInputElement } from "./Helper";
-import { PropValidator } from "vue/types/options";
+import InputMixin from "./InputMixin";
+import { mixins } from "@/mixins";
+import FdCheckbox from "./Checkbox.vue";
+import { $valueWithDefault, $enum } from "./Helper/prop";
 
-const sizeMapping = {
-  xs: "xs",
-  s: "s",
-  l: "l"
-};
-const ToggleSizes = Object.keys(sizeMapping);
-const isToggleSize = (value: string) => ToggleSizes.indexOf(value) >= 0;
-export default Vue.extend({
+export default mixins(InputMixin).extend({
   name: "FdToggle",
+  inheritAttrs: false,
+  components: { FdCheckbox },
   model: {
-    prop: "on",
-    event: "input"
-  },
-  inject: {
-    formItem: { default: null }
+    event: "update",
+    prop: "on"
   },
   props: {
-    size: {
-      type: String,
-      default: null,
-      validator: isToggleSize
-    } as PropValidator<string>,
-    on: { type: Boolean, default: false } as PropValidator<boolean>,
-    disabled: { type: Boolean, default: false } as PropValidator<boolean>
+    size: $enum("xs", "s", "l"),
+    trueValue: $valueWithDefault(true),
+    falseValue: $valueWithDefault(false),
+    value: $valueWithDefault(true),
+    on: { type: Boolean }
   },
   mounted() {
     // @ts-ignore
@@ -48,61 +41,14 @@ export default Vue.extend({
       formItem.setCheck(true);
     }
   },
-
   computed: {
     classes(): object {
       return {
         "fd-toggle": true,
-        "fd-toggle--s": this.size === "s",
-        "fd-toggle--xs": this.size === "xs",
-        "fd-toggle--l": this.size === "l",
+        [`fd-toggle--${this.size}`]: this.size != null,
         "fd-form__control": true
       };
-    },
-    formItemId(): string | null {
-      // @ts-ignore
-      const item = this.formItem;
-      if (item == null) {
-        return null;
-      }
-      return item.uid;
     }
-  },
-  watch: {
-    on: {
-      immediate: true,
-      handler(newOn: boolean) {
-        this.currentOn = newOn;
-      }
-    }
-  },
-  methods: {
-    onChange({ target }: Event) {
-      if (target == null) {
-        return;
-      }
-      if (isInputElement(target) && !this.disabled) {
-        const checked = target.checked;
-        this.currentOn = checked;
-        this.handleChange();
-      }
-    },
-    handleChange(): void {
-      this.$emit("input", this.currentOn);
-    },
-
-    toggleState(): void {
-      if (this.disabled) {
-        return;
-      }
-      this.currentOn = !this.currentOn;
-      this.handleChange();
-    }
-  },
-  data() {
-    return {
-      currentOn: this.on
-    };
   }
 });
 </script>

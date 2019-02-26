@@ -10,7 +10,6 @@
 </template>
 
 <script lang="ts">
-import { TabItemContainer } from "./TabItemContainer";
 import { Uid, mixins } from "@/mixins";
 import { PropValidator } from "vue/types/options";
 
