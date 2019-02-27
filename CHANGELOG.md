@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.0.15-rc.3"></a>
+## [0.0.15-rc.3](https://github.com/SAP/fundamental-vue/compare/v0.0.15-rc.2...v0.0.15-rc.3) (2019-02-27)
+
+
+### Bug Fixes
+
+* Fixes CI Configuration ([1d99240](https://github.com/SAP/fundamental-vue/commit/1d99240))
+
+
+
 <a name="0.0.15-rc.2"></a>
 ## [0.0.15-rc.2](https://github.com/SAP/fundamental-vue/compare/v0.0.15-rc.1...v0.0.15-rc.2) (2019-02-21)
 
