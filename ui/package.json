@@ -7,7 +7,6 @@
     "build": "vue-cli-service build --mode production --target lib --report --name FundamentalVue src/main.ts",
     "test": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit",
     "test:watch": "yarn test --watch"
   },
   "devDependencies": {
