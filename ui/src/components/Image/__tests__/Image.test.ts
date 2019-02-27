@@ -8,7 +8,7 @@ describe("Image", () => {
         url: "https://vuejs.org/images/logo.png",
         size: "l",
         circle: true
-      },
+      }
     });
     expect(wrapper.element).toMatchSnapshot();
   });
@@ -17,7 +17,7 @@ describe("Image", () => {
     const imageL = mount(Image, {
       propsData: {
         size: "l"
-      },
+      }
     });
     const imageM = mount(Image, {
       propsData: {
@@ -27,15 +27,15 @@ describe("Image", () => {
     const imageS = mount(Image, {
       propsData: {
         size: "s"
-      },
+      }
     });
 
     expect(imageL.element).toMatchSnapshot();
     expect(imageM.element).toMatchSnapshot();
     expect(imageS.element).toMatchSnapshot();
-    
-    expect(imageL.classes('fd-image--l')).toBe(true);
-    expect(imageM.classes('fd-image--m')).toBe(true);
-    expect(imageS.classes('fd-image--s')).toBe(true);
+
+    expect(imageL.classes("fd-image--l")).toBe(true);
+    expect(imageM.classes("fd-image--m")).toBe(true);
+    expect(imageS.classes("fd-image--s")).toBe(true);
   });
-})
+});

@@ -1,5 +1,10 @@
 <template>
-  <a class="fd-shellbar__logo" href="#" @click.prevent="pushLocationIfPossible" v-on="$listeners">
+  <a
+    class="fd-shellbar__logo"
+    href="#"
+    @click.prevent="pushLocationIfPossible"
+    v-on="$listeners"
+  >
     <slot>
       <img :src="src" :srcset="srcset" v-bind="$attrs" />
     </slot>

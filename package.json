@@ -42,7 +42,7 @@
     "standard-version": "^4.4.0"
   },
   "peerDependencies": {
-    "vue": "^2.6.6"
+    "vue": "^2.6.7"
   },
   "main": "dist/FundamentalVue.common",
   "browser": "dist/FundamentalVue.umd.min",
