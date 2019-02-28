@@ -13,8 +13,8 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "mocha",
-      "chai"
+      "chai",
+      "jest"
     ],
     "paths": {
       "@/*": [
@@ -31,7 +31,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.vue",
-    "tests/**/*.ts",
+    "tests/**/*.ts"
   ],
   "exclude": [
     "node_modules"

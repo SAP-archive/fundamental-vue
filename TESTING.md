@@ -1,6 +1,6 @@
 # Testing
 
-Fundamental Vue is tested using [Chai](https://www.chaijs.com/), [Mocha](https://mochajs.org/) and [Vue Test Utils](https://github.com/vuejs/vue-test-utils).
+Fundamental Vue is tested using [Chai](https://www.chaijs.com/), [Jest](https://jestjs.io/) and [Vue Test Utils](https://github.com/vuejs/vue-test-utils).
 
 ## Executing Tests
 
@@ -16,7 +16,7 @@ By running
 yarn test:watch
 ```
 
-you make [Mocha](https://mochajs.org/) continuously execute tests. This is great when you prefer test driven development.
+you make [Jest](https://jestjs.io/) continuously execute tests. This is great when you prefer test driven development.
 
 ## Writing a new Test
 
