@@ -5,30 +5,30 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --mode production --target lib --report --name FundamentalVue src/main.ts",
-    "test": "vue-cli-service test:unit",
+    "test": "vue-cli-service test:unit --runInBand --verbose",
     "lint": "vue-cli-service lint",
-    "test:watch": "yarn test --watch"
+    "test:watch": "yarn test --watch --verbose"
   },
   "devDependencies": {
     "@types/chai": "^4.1.0",
+    "chai": "^4.2.0",
+    "typescript": "^3.3.3",
+    "vue": "^2.6.6",
     "@types/jest": "^23.1.4",
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
     "@vue/cli-plugin-typescript": "^3.4.0",
-    "@vue/cli-plugin-unit-jest": "^3.4.1",
+    "@vue/cli-plugin-unit-jest": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
     "@vue/eslint-config-prettier": "^4.0.1",
     "@vue/eslint-config-typescript": "^4.0.0",
-    "@vue/test-utils": "^1.0.0-beta.29",
+    "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^11.0.0-beta.0",
-    "chai": "^4.2.0",
-    "eslint": "^5.13.0",
-    "eslint-plugin-vue": "^5.2.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
     "ts-jest": "^23.0.0",
-    "typescript": "^3.3.3",
-    "vue": "^2.6.6",
-    "vue-template-compiler": "^2.6.6"
+    "vue-template-compiler": "^2.5.21"
   },
   "peerDependencies": {
     "vue": "^2.6.6"
