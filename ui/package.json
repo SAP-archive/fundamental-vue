@@ -37,6 +37,7 @@
     "vue-template-compiler": "^2.5.21"
   },
   "peerDependencies": {
-    "vue": "^2.6.6"
+    "vue": "^2.6.6",
+    "fiori-fundamentals": "^1.4.3"
   }
 }
