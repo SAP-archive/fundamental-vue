@@ -94,6 +94,12 @@ To download and use this library, you first need to install the node package man
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.4.3/dist/fiori-fundamentals.min.css">
     ```
 
+    If you are targeting IE 11 you have to include the IE-compatible build of Fiori Fundamentals:
+
+    ```
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.4.3/dist/fiori-fundamentals-ie11.min.css">
+    ```
+
     However, installing the Fiori Fundamentals library with npm (recommended) will give you the flexibility to use individual components and enable [advanced customisation options](https://github.com/SAP/fundamental/wiki/Advanced-Customization). In this case, you do not need the CDN link as this method uses the SASS/SCSS source.
 
     To install the Fiori Fundamentals SASS/SCSS source:
@@ -115,6 +121,9 @@ To download and use this library, you first need to install the node package man
     Add the following to the main SCSS file:
 
     ```
+    // If you are targeting IE 11 uncomment the following line.
+    // $fd-support-css-var-fallback: true;
+
     $fd-icons-path : "../node_modules/fiori-fundamentals/scss/icons/"; // should be declared before the scss import
 
     $fd-scss-font-path : "../node_modules/fiori-fundamentals/scss/fonts/";
