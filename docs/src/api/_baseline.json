@@ -969,14 +969,16 @@
       "componentName": "FdShellBarGroup"
     },
     "FdShellBarLogo": {
-      "slots": {},
+      "slots": {
+        "default": "Allows you to provide a custom shell bar logo. If used, this will replace the img-element which is rendered per default."
+      },
       "events": {},
       "mixins": [],
       "props": {
         "src": {
           "name": "src",
           "description": "image source",
-          "required": true,
+          "required": false,
           "types": ["String"]
         },
         "srcset": {
@@ -1149,7 +1151,9 @@
       "componentName": "FdShellBarProductSwitcherItem"
     },
     "FdShellBarProductSwitcherItemImg": {
-      "slots": {},
+      "slots": {
+        "default": "Allows you to provide a custom product logo. If used, this will replace the img-element which is rendered per default."
+      },
       "events": {},
       "mixins": [],
       "props": {
@@ -1158,7 +1162,7 @@
           "description": "image source",
           "required": false,
           "types": ["String"],
-          "defaultValue": ""
+          "defaultValue": null
         }
       },
       "componentName": "FdShellBarProductSwitcherItemImg"

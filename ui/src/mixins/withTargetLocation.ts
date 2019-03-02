@@ -11,13 +11,13 @@ export default (defaultTo: string | object | null = null) =>
       >
     },
     methods: {
-      pushLocationIfPossible(event?: Event, onComplete?: typeof noop) {
+      pushLocationIfPossible(event?: Event, onComplete = noop) {
         if (this.to == null || this.$router == null) {
           return;
         }
         this.pushLocation(event, onComplete);
       },
-      pushLocation(event?: Event, onComplete?: typeof noop) {
+      pushLocation(event?: Event, onComplete = noop) {
         if (event) {
           event.preventDefault();
           event.stopPropagation();
@@ -33,7 +33,7 @@ export default (defaultTo: string | object | null = null) =>
           warn(`Tried to navigate to ${to} but $router not found.`);
           return;
         }
-        $router.push(to, onComplete || noop);
+        $router.push(to, onComplete);
         this.$emit("click", event);
       }
     }

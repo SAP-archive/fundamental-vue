@@ -7,7 +7,9 @@
             src="/images/logo.png"
             srcset="/images/logo.png 1x, /images/logo@2x.png 2x"
           />
-          <FdShellBarProduct>Fundamental Vue</FdShellBarProduct>
+          <FdShellBarProduct>
+            <FdShellBarProductTitle>Fundamental Vue</FdShellBarProductTitle>
+          </FdShellBarProduct>
         </FdShellBarGroup>
         <FdShellBarGroup position="end">
           <FdShellBarActions>
