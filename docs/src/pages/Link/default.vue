@@ -1,5 +1,19 @@
 <title>Link</title>
+<tip>
+You can provide the visible title of the link by using a default slot or by using the `title`-prop.
+If both are provided the `title`-prop is only used for the `title` attribute of the anchor. This means that
 
+```html
+<FdLink href="#" title="foo bar" />
+```
+
+is **equivialent** to
+
+```html
+<FdLink href="#" title="foo bar">foo bar</FdLink>
+```
+
+</tip>
 <template>
   <div>
     <h3>Normal</h3>
@@ -31,6 +45,9 @@
 <script>
 export default {
   methods: {
+    handleFocus() {
+      console.log("focus");
+    },
     handleClick() {
       console.log("clicked");
     }

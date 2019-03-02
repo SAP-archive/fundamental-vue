@@ -200,7 +200,7 @@
       "slots": {
         "": {
           "name": "",
-          "description": "Link Title"
+          "description": "Link Title. If not set the title-prop is used as a fallback."
         }
       },
       "events": {
@@ -211,6 +211,13 @@
       },
       "mixins": [],
       "props": {
+        "title": {
+          "name": "title",
+          "description": "Is used for two things: (1) title-attribute of the rendered anchor and (2) as fallback content when no default slot is provided.",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
         "selected": {
           "name": "selected",
           "description": "whether link is selected",
