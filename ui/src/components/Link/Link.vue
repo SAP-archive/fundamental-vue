@@ -1,21 +1,24 @@
 <template>
-  <a v-on="listeners" @click="click" :class="classes" href="#">
-    <slot />
+  <a v-on="listeners" @click="click" :class="classes" href="#" :title="title">
+    <slot>{{ title }}</slot>
   </a>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { PropValidator } from "vue/types/options";
 
 export default Vue.extend({
   name: "FdLink",
   props: {
-    selected: { type: Boolean, default: false } as PropValidator<boolean>,
-    disabled: { type: Boolean, default: false } as PropValidator<boolean>
+    title: String,
+    selected: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false }
   },
   methods: {
     click(event: Event): void {
+      if (event.defaultPrevented) {
+        return;
+      }
       if (this.disabled) {
         event.preventDefault();
         event.stopPropagation();
