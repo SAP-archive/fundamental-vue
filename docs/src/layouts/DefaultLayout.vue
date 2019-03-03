@@ -33,25 +33,40 @@
           style="padding-bottom': 25px;"
           selectedId.sync="activeNavItemId"
         >
-          <FdSideNavList :items="staticMenuItems" />
-          <FdSideNavGroup>
-            <FdSideNavGroupTitle>Examples</FdSideNavGroupTitle>
-            <FdSideNavList
-              :items="exampleCollectionsMenuItems"
-              style="margin-bottom: 60px;"
+          <FdSideNavList>
+            <FdSideNavItem
+              v-for="item in staticMenuItems"
+              :key="item.id"
+              :icon="item.icon"
             >
-              <!-- <template slot="afterLinkText" slot-scope="exampleItem">
-              <Identifier
-                style="width: 20px; height: 20px;"
-                :title="exampleItem.componentState.title"
-                circle
-                class="fd-has-float-right"
-                :backgroundColor="exampleItem.componentState.color || 'accent-6'"
-                size="xss"
-                :icon="exampleItem.componentState.icon"
-              />
-
-              </template> -->
+              <FdSideNavLink :to="item.to">
+                {{ item.name }}
+              </FdSideNavLink>
+            </FdSideNavItem>
+          </FdSideNavList>
+          <FdSideNavGroup title="Examples">
+            <FdSideNavList>
+              <FdSideNavItem
+                v-for="exampleCollection in exampleCollectionsMenuItems"
+                :key="exampleCollection.id"
+                icon="exampleCollection.icon"
+              >
+                <FdSideNavLink :to="exampleCollection.to">
+                  <FdSideNavIcon :icon="exampleCollection.icon" />
+                  {{ exampleCollection.name }}
+                  <FdIdentifier
+                    circle
+                    style="color: white; width: 20px; height: 20px;"
+                    :title="exampleCollection.status.title"
+                    class="fd-has-float-right"
+                    :backgroundColor="
+                      exampleCollection.status.color || 'accent-6'
+                    "
+                    size="xxs"
+                    :icon="exampleCollection.status.icon"
+                  />
+                </FdSideNavLink>
+              </FdSideNavItem>
             </FdSideNavList>
           </FdSideNavGroup>
         </FdSideNav>
@@ -65,21 +80,26 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { Page } from "./../DocumentationLoader";
 
 interface SideNavListItem {
   id: string;
   name: string;
   icon: string;
+  statusIcon?: string;
+  statusTitle?: string;
   to: object | string;
 }
 
 export default Vue.extend({
   computed: {
     exampleCollectionsMenuItems(): SideNavListItem[] {
+      // @ts-ignore
       const pages = this.$docLoader.pages;
-      return pages.map(page => {
+      return pages.map((page: Page) => {
         return {
           id: page.slug,
+          status: page.status,
           name: page.title,
           icon: page.icon,
           to: {

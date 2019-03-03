@@ -6,7 +6,7 @@ describe("Store", () => {
     const store = new Store();
     const itemId = "item1";
     store.registerItem(itemId);
-    assert.deepStrictEqual(store.items, { [itemId]: { itemId } });
+    assert.deepStrictEqual(store.items, { [itemId]: null });
   });
 
   it("correctly handles item unregistration", () => {
@@ -14,9 +14,9 @@ describe("Store", () => {
     const store = new Store({
       selectedId: null,
       expandedIds: [],
-      items: { [itemId]: { itemId } }
+      items: { [itemId]: null }
     });
-    assert.deepStrictEqual(store.items, { [itemId]: { itemId } });
+    assert.deepStrictEqual(store.items, { [itemId]: null });
     store.unregisterItem(itemId);
     assert.deepStrictEqual(store.items, {});
   });
@@ -31,8 +31,8 @@ describe("Store", () => {
     store.registerSubItem({ itemId: subItemId, parentId: itemId });
 
     assert.deepStrictEqual(store.items, {
-      [itemId]: { itemId },
-      [subItemId]: { itemId: subItemId, parentId: itemId }
+      [itemId]: null,
+      [subItemId]: itemId
     });
   });
 
@@ -60,15 +60,15 @@ describe("Store", () => {
     store.registerSubItem({ itemId: subItemId23, parentId: itemId2 });
 
     assert.sameDeepMembers(store.subItems(itemId1), [
-      { itemId: subItemId11, parentId: itemId1 },
-      { itemId: subItemId12, parentId: itemId1 },
-      { itemId: subItemId13, parentId: itemId1 }
+      subItemId11,
+      subItemId12,
+      subItemId13
     ]);
 
     assert.sameDeepMembers(store.subItems(itemId2), [
-      { itemId: subItemId21, parentId: itemId2 },
-      { itemId: subItemId22, parentId: itemId2 },
-      { itemId: subItemId23, parentId: itemId2 }
+      subItemId21,
+      subItemId22,
+      subItemId23
     ]);
   });
 });

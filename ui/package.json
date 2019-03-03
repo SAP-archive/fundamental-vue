@@ -11,9 +11,6 @@
   },
   "devDependencies": {
     "@types/chai": "^4.1.0",
-    "chai": "^4.2.0",
-    "typescript": "^3.3.3",
-    "vue": "^2.6.6",
     "@types/jest": "^23.1.4",
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
@@ -25,9 +22,12 @@
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "chai": "^4.2.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "ts-jest": "^23.0.0",
+    "typescript": "^3.3.3",
+    "vue": "^2.6.6",
     "vue-template-compiler": "^2.5.21"
   },
   "peerDependencies": {

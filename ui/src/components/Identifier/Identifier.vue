@@ -9,19 +9,18 @@ import Vue from "vue";
 import { PropValidator } from "vue/types/options";
 import { Color, Colors, backgroundColorClassName } from "@/lib";
 
-const sizeMapping = {
-  xxs: "xxs",
-  xs: "xs",
-  s: "s",
-  m: "m", // default
-  l: "l",
-  xl: "xl",
-  xxl: "xxl"
-};
+const sizes = [
+  "xxs",
+  "xs",
+  "s",
+  "m", // default
+  "l",
+  "xl",
+  "xxl"
+];
 
-const IdentifierSizes = Object.keys(sizeMapping);
 const isValidIdentifierSize = (size: string) => {
-  return IdentifierSizes.indexOf(size) >= 0;
+  return sizes.indexOf(size) >= 0;
 };
 
 export default Vue.extend({
@@ -31,7 +30,7 @@ export default Vue.extend({
     url: { type: String, default: null },
     size: {
       type: String,
-      default: sizeMapping.m,
+      default: "m",
       validator: isValidIdentifierSize
     },
     circle: { type: Boolean, default: false },

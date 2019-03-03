@@ -4,8 +4,7 @@ You can construct a navigation by correctly nesting `FdSideNav`-related componen
 </docs>
 <template>
   <FdSideNav>
-    <FdSideNavGroup>
-      <FdSideNavGroupTitle>Group A</FdSideNavGroupTitle>
+    <FdSideNavGroup title="Group A">
       <FdSideNavList>
         <FdSideNavItem>
           <FdSideNavLink>Item A-1</FdSideNavLink>

@@ -14,6 +14,7 @@ type ExampleOptions = {
   condensed: boolean;
   fullscreenOnly: boolean;
 };
+
 export class Example {
   id: string;
   title: string;
@@ -49,18 +50,64 @@ type PageOptions = {
   title: string;
   related: string[];
   icon: string;
+  status: string;
 };
 
-class Page {
+const statusMapping: { [key: string]: any } = {
+  stable: {
+    title: "Safe to use, no major updates planned.",
+    color: "accent-8",
+    icon: "thumb-up"
+  },
+  experimental: {
+    title:
+      "Work-In-Progres that may be used but be prepared for changes in the future.",
+    color: "accent-1",
+    icon: "lab"
+  },
+  deprecated: {
+    title:
+      "This component should not be used and will be removed in the future.",
+    color: "accent-3",
+    icon: "cancel"
+  },
+  inprogress: {
+    title:
+      "This component is under development. Or it is being actively reviewed to be refactored, safe to use but talk to us.",
+    color: "accent-13",
+    icon: "edit"
+  }
+};
+
+class ComponentStatus {
+  public color: any = "";
+  public icon: any = "";
+  public title: any = "";
+  constructor(public status: string) {
+    const config = statusMapping[status];
+    if (config == null) {
+      return;
+    }
+    this.color = config.color;
+    this.title = config.title;
+    this.icon = config.icon;
+  }
+}
+
+export class Page {
   slug: string;
   title: string;
   related: string[];
   icon: string;
-  constructor({ slug, title, related, icon }: PageOptions) {
+  status: ComponentStatus | object = {};
+  constructor({ slug, title, related, icon, status }: PageOptions) {
     this.slug = slug;
     this.title = title;
     this.related = related;
     this.icon = icon;
+    if (status != null) {
+      this.status = new ComponentStatus(status);
+    }
   }
 }
 
