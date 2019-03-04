@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.0-rc.1"></a>
+# [0.1.0-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.1.0-rc.0...v0.1.0-rc.1) (2019-03-04)
+
+
+### Bug Fixes
+
+* Fixes button group issues ([da29f43](https://github.com/SAP/fundamental-vue/commit/da29f43))
+
+
+
 <a name="0.1.0-rc.0"></a>
 # [0.1.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.0.15-rc.5...v0.1.0-rc.0) (2019-03-04)
 
