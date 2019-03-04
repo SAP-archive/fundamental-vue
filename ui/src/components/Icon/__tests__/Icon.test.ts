@@ -1,4 +1,4 @@
-import { shallowMount } from "@vue/test-utils";
+import { mount, shallowMount } from "@vue/test-utils";
 import Icon from "../Icon.vue";
 import { assert } from "chai";
 
@@ -6,12 +6,17 @@ import { assert } from "chai";
 describe("Icon Test Scripts", () => {
     const name = "cart";
     const size = "s";
-    const icon = shallowMount(Icon, {
+    const icon = mount(Icon, {
         propsData: {
             name,
             size
         }
     });
+
+    test("Renders correctly", ()=> {
+        expect(icon.element).toMatchSnapshot();
+    });
+
     test("Render cart icon based on the icon name", () => {
         assert(icon.classes(`sap-icon--${name}`));
     });
