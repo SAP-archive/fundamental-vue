@@ -277,6 +277,17 @@
     ]
   },
   {
+    "id": "./Popper/index.ts",
+    "status": "inprogress",
+    "slug": "popper",
+    "key": "./Popper/index.ts",
+    "title": "Popper",
+    "icon": "message-popup",
+    "related": [
+      "FdPopper"
+    ]
+  },
+  {
     "id": "./Search Input/index.ts",
     "status": "experimental",
     "slug": "search-input",

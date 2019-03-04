@@ -9,6 +9,9 @@
     "lint": "vue-cli-service lint",
     "test:watch": "yarn test --watch --verbose"
   },
+  "dependencies": {
+    "popper.js": "^1.14.7"
+  },
   "devDependencies": {
     "@types/chai": "^4.1.0",
     "chai": "^4.2.0",
