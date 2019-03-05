@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionBar renders correctly 1`] = `
+<div
+  class="fd-action-bar"
+>
+  <div
+    class="fd-action-bar__back"
+  >
+    Back
+  </div>
+   
+  <div
+    class="fd-action-bar__header"
+  >
+    <h1
+      class="fd-action-bar__title"
+    >
+      Page Title
+    </h1>
+     
+    <p
+      class="fd-action-bar__description"
+    >
+      
+      Action bar descrtiption
+    
+    </p>
+  </div>
+   
+  <div
+    class="fd-action-bar__actions"
+  >
+    Actions
+  </div>
+</div>
+`;
+
+exports[`ActionBar renders without description 1`] = `
+<div
+  class="fd-action-bar"
+>
+  <div
+    class="fd-action-bar__back"
+  >
+    Back
+  </div>
+   
+  <div
+    class="fd-action-bar__header"
+  >
+    <h1
+      class="fd-action-bar__title"
+    >
+      Page Title
+    </h1>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="fd-action-bar__actions"
+  >
+    Actions
+  </div>
+</div>
+`;
