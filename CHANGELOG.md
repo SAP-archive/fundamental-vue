@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.0-rc.4"></a>
+# [0.1.0-rc.4](https://github.com/SAP/fundamental-vue/compare/v0.1.0-rc.3...v0.1.0-rc.4) (2019-03-05)
+
+
+### Bug Fixes
+
+* Fixes alt-attribute issues for some shell bar components ([#139](https://github.com/SAP/fundamental-vue/issues/139), [#154](https://github.com/SAP/fundamental-vue/issues/154)) ([4c83185](https://github.com/SAP/fundamental-vue/commit/4c83185))
+
+
+
 <a name="0.1.0-rc.3"></a>
 # [0.1.0-rc.3](https://github.com/SAP/fundamental-vue/compare/v0.1.0-rc.2...v0.1.0-rc.3) (2019-03-05)
 
