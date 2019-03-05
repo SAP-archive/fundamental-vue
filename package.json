@@ -3,10 +3,10 @@
   "version": "0.1.0-rc.4",
   "scripts": {
     "bootstrap": "yarn install && yarn --cwd build install && yarn --cwd ui install && yarn --cwd docs install && yarn --cwd server install",
-    "serve": "concurrently --kill-others --names \"dev-server,ui,docs\" -c \"blue, red,green\" \"node server\" \"yarn build:ui:dev --watch\" \"yarn --cwd docs serve\"",
+    "serve": "concurrently --kill-others --names \"dev-server,ui,docs\" -c \"blue, red,green\" \"node server\" \"yarn build:ui:dev --watch\" \"cd docs && yarn serve\"",
     "serve:prod": "concurrently --kill-others --names \"dev-server,ui,docs\" -c \"blue, red,green\" \"node server\" \"yarn --cwd ui build --watch --mode production --report\" \"yarn --cwd docs serve --mode production --report\"",
     "build:ui": "yarn --cwd ui build",
-    "build:ui:dev": "yarn --cwd ui build --mode development",
+    "build:ui:dev": "cd ui && yarn build --mode development",
     "build:docs": "yarn --cwd docs build --mode production --report",
     "build:all": "rm -rf dist && yarn build:ui --mode production && yarn build:docs --mode production && mkdir dist && cp -r ui/dist/* dist && cp -r docs/dist/* dist",
     "build": "yarn build:ui && rm -rf dist && mkdir dist && cp -r ./ui/dist/*.js dist && cp -r ./ui/dist/*.js.map dist",
