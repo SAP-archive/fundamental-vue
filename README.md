@@ -31,10 +31,7 @@ Some prior knowledge of Vue is required for using this library.
 Paste the following snippet in your `<head>`-tag:
 
 ```html
-<link
-    rel="stylesheet"
-    href="https://unpkg.com/fiori-fundamentals@1.4.3/dist/fiori-fundamentals.min.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/fiori-fundamentals@1.4.3/dist/fiori-fundamentals.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/fundamental-vue@0.0.13-beta/dist/FundamentalVue.umd.js"></script>
 ```
@@ -42,21 +39,19 @@ Paste the following snippet in your `<head>`-tag:
 Then you can use Fundamental Vue like this:
 
 ```html
-<body>
-    <div id="app" />
-    <script>
-        Vue.use(FundamentalVue);
-        new Vue({
-            name: 'App',
-            el: '#app',
-            data: { message: 'Hello Fundamental Vue!' },
-            template: `
+<div id="app" />
+<script>
+  Vue.use(FundamentalVue.default);
+  new Vue({
+    el: '#app',
+    template: `
       <FdPopover v-margin:large>
-      <h1 style="margin: 50px;" slot="body">{{ message }}</h1>
+        <h1 v-margin:large slot="body">
+          🚀 Hello Fundamental Vue 🚀
+        </h1>
       </FdPopover>`
-        });
-    </script>
-</body>
+  });
+</script>
 ```
 
 How to install Fundamental Vue via **NPM** is described below.
