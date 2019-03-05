@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter renders correctly 1`] = `
+<span
+  arialabel="Counter"
+  class="fd-counter"
+>
+  44
+</span>
+`;
+
+exports[`Counter renders correctly 2`] = `
+<span
+  class="fd-counter fd-counter--notification"
+>
+  0
+</span>
+`;
