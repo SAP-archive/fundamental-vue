@@ -47,8 +47,10 @@
   "peerDependencies": {
     "vue": "^2.6.7"
   },
-  "main": "dist/FundamentalVue.common",
-  "browser": "dist/FundamentalVue.umd.min",
+  "main": "dist/FundamentalVue.umd.min.js",
+  "browser": "dist/FundamentalVue.common.js",
+  "unpkg": "dist/FundamentalVue.umd.min.js",
+  "jsDelivr": "dist/FundamentalVue.umd.min.js",
   "files": [
     "/dist",
     "/src"
