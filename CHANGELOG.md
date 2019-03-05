@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.0-rc.2"></a>
+# [0.1.0-rc.2](https://github.com/SAP/fundamental-vue/compare/v0.1.0-rc.1...v0.1.0-rc.2) (2019-03-05)
+
+
+### Features
+
+* add tests for ActionBar component ([#216](https://github.com/SAP/fundamental-vue/issues/216)) ([ebf76bc](https://github.com/SAP/fundamental-vue/commit/ebf76bc))
+* add tests for Image component ([#215](https://github.com/SAP/fundamental-vue/issues/215)) ([1f4a470](https://github.com/SAP/fundamental-vue/commit/1f4a470))
+* add tests for Label component ([#214](https://github.com/SAP/fundamental-vue/issues/214)) ([2782a84](https://github.com/SAP/fundamental-vue/commit/2782a84))
+
+
+
 <a name="0.1.0-rc.1"></a>
 # [0.1.0-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.1.0-rc.0...v0.1.0-rc.1) (2019-03-04)
 
