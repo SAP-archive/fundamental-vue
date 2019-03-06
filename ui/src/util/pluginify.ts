@@ -1,5 +1,5 @@
 import { PluginFunction, PluginObject } from "vue/types/plugin";
-import { VueConstructor } from "vue/types/vue";
+import { VueConstructor } from "vue";
 import { ComponentOptions } from "vue/types/options";
 import { log } from "@/core";
 import { PluginOptions, normalizedPluginOptions } from "./PluginOptions";

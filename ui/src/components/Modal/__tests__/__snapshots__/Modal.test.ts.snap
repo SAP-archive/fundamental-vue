@@ -4,7 +4,6 @@ exports[`Modal renders correctly 1`] = `
 <div
   aria-hidden="true"
   class="fd-ui__overlay fd-overlay fd-overlay--modal"
-  name="fade"
   style="display: none;"
 >
   <div
