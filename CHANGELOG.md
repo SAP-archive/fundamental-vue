@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.1-rc.1"></a>
+## [0.1.1-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.0...v0.1.1-rc.1) (2019-03-06)
+
+
+### Bug Fixes
+
+* Makes eslint configuration less lenient, enables type checking on CI, fixes related errors ([11505e5](https://github.com/SAP/fundamental-vue/commit/11505e5))
+
+
+
 <a name="0.1.1-rc.0"></a>
 ## [0.1.1-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.1.0...v0.1.1-rc.0) (2019-03-06)
 
