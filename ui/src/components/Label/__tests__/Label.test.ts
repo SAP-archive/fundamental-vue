@@ -40,9 +40,9 @@ describe("Label", () => {
       }
     });
 
-    expect(labelWarning.classes('fd-label--warning')).toBe(true);
-    expect(labelError.classes('fd-label--error')).toBe(true);
-    expect(labelSuccess.classes('fd-label--success')).toBe(true);
+    expect(labelWarning.classes("fd-label--warning")).toBe(true);
+    expect(labelError.classes("fd-label--error")).toBe(true);
+    expect(labelSuccess.classes("fd-label--success")).toBe(true);
   });
 
   it("renders default slot when passed", () => {
@@ -54,4 +54,4 @@ describe("Label", () => {
     });
     expect(wrapper.text()).toEqual(label);
   });
-})
+});
