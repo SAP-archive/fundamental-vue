@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.0-rc.5"></a>
+# [0.1.0-rc.5](https://github.com/SAP/fundamental-vue/compare/v0.1.0-rc.4...v0.1.0-rc.5) (2019-03-06)
+
+
+### Bug Fixes
+
+* Combobox/Popover crash ([b403a8c](https://github.com/SAP/fundamental-vue/commit/b403a8c))
+
+
+
 <a name="0.1.0-rc.4"></a>
 # [0.1.0-rc.4](https://github.com/SAP/fundamental-vue/compare/v0.1.0-rc.3...v0.1.0-rc.4) (2019-03-05)
 
