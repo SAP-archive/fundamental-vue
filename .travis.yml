@@ -10,6 +10,8 @@ before_install:
 - yarn global add typescript@3.3.3
 - yarn bootstrap
 script:
+  - yarn lint
+  - yarn build:docs
   - yarn build
 jobs:
   include:
