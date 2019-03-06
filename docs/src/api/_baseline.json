@@ -977,7 +977,10 @@
     },
     "FdShellBarLogo": {
       "slots": {
-        "default": "Allows you to provide a custom shell bar logo. If used, this will replace the img-element which is rendered per default."
+        "": {
+          "name": "",
+          "description": "Allows you to provide a custom shell bar logo. If used, this will replace the img-element which is rendered per default."
+        }
       },
       "events": {},
       "mixins": [],
@@ -1159,7 +1162,10 @@
     },
     "FdShellBarProductSwitcherItemImg": {
       "slots": {
-        "default": "Allows you to provide a custom product logo. If used, this will replace the img-element which is rendered per default."
+        "": {
+          "name": "",
+          "description": "Allows you to provide a custom product logo. If used, this will replace the img-element which is rendered per default."
+        }
       },
       "events": {},
       "mixins": [],

@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve src/index.ts",
     "build": "vue-cli-service build --mode production --target lib --report --name FundamentalVue src/index.ts",
     "test": "vue-cli-service test:unit --runInBand --verbose",
-    "lint": "vue-cli-service lint",
+    "lint": "vue-cli-service lint --no-fix --max-warnings 0 --max-errors 0",
+    "lint:dev": "vue-cli-service lint",
     "test:watch": "yarn test --watch"
   },
   "files": [
