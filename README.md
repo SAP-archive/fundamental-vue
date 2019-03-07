@@ -24,6 +24,9 @@ https://www.npmjs.com/get-npm
 
 Some prior knowledge of Vue is required for using this library.
 
+# Developer Guide
+Interested in contributing to this Fundamental Vue? See the [Developer Guide](https://github.com/SAP/fundamental-vue/wiki/Dev-Guide). 
+
 # Getting started
 
 ## Fundamental Vue in 5 Minutes or less
