@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.1-rc.4"></a>
+## [0.1.1-rc.4](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.3...v0.1.1-rc.4) (2019-03-07)
+
+
+### Bug Fixes
+
+* change serve script for --cwd yarn issue ([f5f3e7a](https://github.com/SAP/fundamental-vue/commit/f5f3e7a))
+
+
+
 <a name="0.1.1-rc.3"></a>
 ## [0.1.1-rc.3](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.2...v0.1.1-rc.3) (2019-03-07)
 
