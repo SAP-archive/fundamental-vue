@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.1-rc.3"></a>
+## [0.1.1-rc.3](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.2...v0.1.1-rc.3) (2019-03-07)
+
+
+### Bug Fixes
+
+* linting test file for Status ([a40e746](https://github.com/SAP/fundamental-vue/commit/a40e746))
+
+
+
 <a name="0.1.1-rc.2"></a>
 ## [0.1.1-rc.2](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.1...v0.1.1-rc.2) (2019-03-06)
 
