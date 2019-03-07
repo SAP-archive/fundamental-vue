@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Token renders correctly 1`] = `
+<span
+  class="fd-token"
+  role="button"
+>
+  Token
+</span>
+`;
