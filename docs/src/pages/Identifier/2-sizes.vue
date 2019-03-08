@@ -1,4 +1,18 @@
-<title>Identifiers</title>
+<docs>
+There are multiple sizes:
+
+- Extra Extra Small: `size="xxs"`
+- Extra Small: `size="xs"`
+- Small: `size="s"`
+- Medium: `size="m"`
+- Large: `size="l"`
+- Extra Large: `size="xl"`
+- Extra Extra Large: `size="xxl"`
+
+Use the `size`-prop to specify the size you want.
+</docs>
+
+<title>Identifier Sizes</title>
 
 <template>
   <div class="identifiers">

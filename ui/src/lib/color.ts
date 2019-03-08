@@ -30,8 +30,10 @@ const colorMapping = {
 
 export type Color = keyof (typeof colorMapping);
 export const Colors = Object.keys(colorMapping) as Color[];
-export const backgroundColorClassName = (color: Color): string =>
+export const backgroundColorClassName = (color: string) =>
   `fd-has-background-color-${color}`;
+export const backgroundColorClasses = (color: string | null) =>
+  color ? [backgroundColorClassName(color)] : [];
 export const isColor = (raw: any): raw is Color => {
   if (typeof raw !== "string") {
     return false;
