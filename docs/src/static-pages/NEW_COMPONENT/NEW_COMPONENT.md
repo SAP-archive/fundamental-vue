@@ -72,8 +72,21 @@ $ touch docs/src/pages/Flower/0-default.vue
 $ touch docs/src/pages/Flower/index.ts
 ```
 
-Examples are implemented as single file components (in our case `docs/src/pages/Flower/0-default.vue`) because this is what most Vue developers are using. You can put anything you want in the vue-file: a `<template>`-block, a `<script>`-block and a `<style>`-block. Fundamental Vue examples may contain additional documentation specific blocks. More about that later. For now lets simply implement the most basic example possible:
+Examples are implemented as single file components (in our case `docs/src/pages/Flower/0-default.vue`) because this is what most Vue developers are using. You can put anything you want in the vue-file: a `<template>`-block, a `<script>`-block and a `<style>`-block. 
 
+Fundamental Vue examples may contain additional documentation specific blocks. 
+
+**_baseline.json:**
+ docs/src/api/_baseline.json
+
+Here you add the documentation that needs to be added for your component; like the possible slots, props, events, mixins etc. 
+  
+**pages.json:**
+ docs/src/pages/pages.json
+
+Here you add the page configuration in which the documentation will be shown; like the title that comes on the left section, the files that need to be read and stuff. 
+
+Lets simply implement the most basic example possible:
 ### Simple Example
 
 **docs/src/pages/Flower/0-default.vue**
@@ -113,3 +126,10 @@ A good component should either be localized or localizable.
 - A **localized component** is fully localized out of the box.
 
 Since there is no Fundamental Vue-wide localisation and internationalization concept (localized icons, right-to-left-support, …) you should at least create an issue for the component you implemented.
+
+## Accessibility
+Having an accessible component directly means catering to a broader audience than otherwise. 
+It needs to be noted that each new component is expected to be accessible. 
+
+For details, please refer to: https://www.w3.org/TR/wai-aria-practices-1.1/
+
