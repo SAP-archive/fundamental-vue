@@ -15,9 +15,7 @@ export default mixins(Uid).extend({
       sideNavItem: this
     };
   },
-  inject: {
-    sideNavStore: { from: "sideNavStore" }
-  },
+  inject: ["sideNavStore"],
   mounted(): void {
     this.store.registerItem(this.itemId);
   },

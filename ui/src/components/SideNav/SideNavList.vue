@@ -1,21 +1,23 @@
 <script lang="ts">
-import Vue, { CreateElement, VNode } from "vue";
-import { Item, Store } from "./Model";
+import Vue, { CreateElement, VNode, PropOptions } from "vue";
+import { Item, RawItem, Store, normalizeItems } from "./Model";
 import SideNavSubItem from "./SideNavSubItem.vue";
 import SideNavSubLink from "./SideNavSubLink.vue";
 import SideNavLink from "./SideNavLink.vue";
 import SideNavItem from "./SideNavItem.vue";
 import SideNavIcon from "./SideNavIcon.vue";
 import SideNavSubList from "./SideNavSubList.vue";
-import { PropValidator } from "vue/types/options";
 
 export default Vue.extend({
   name: "FdSideNavList",
   inject: ["sideNavStore"],
   props: {
-    items: { type: Array, default: () => [] } as PropValidator<Item[]>
+    items: { type: Array, default: () => [] } as PropOptions<RawItem[]>
   },
   computed: {
+    normalizedItems(): Item[] {
+      return normalizeItems(this.items);
+    },
     store(): Store {
       // @ts-ignore
       return this.sideNavStore;
@@ -75,6 +77,7 @@ export default Vue.extend({
       return h(
         SideNavItem,
         {
+          key: id,
           props: { uid: id }
         },
         [
@@ -88,7 +91,7 @@ export default Vue.extend({
 
     return h("ul", { class: "fd-side-nav__list" }, [
       ...(this.$slots.default || []),
-      ...this.items.map(renderItem)
+      ...this.normalizedItems.map(renderItem)
     ]);
   }
 });
