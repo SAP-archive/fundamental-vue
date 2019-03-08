@@ -3,7 +3,7 @@
     :value="value"
     :disabled="selectionDisabled"
     :modelValue="selected"
-    @change="handleChange"
+    @update="handleChange"
     @click.native="handleNativeClick"
   />
 </template>

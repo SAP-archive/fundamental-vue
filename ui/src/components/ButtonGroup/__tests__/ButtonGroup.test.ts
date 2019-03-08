@@ -1,6 +1,5 @@
 import { assert } from "chai";
 import { mount, Wrapper, createLocalVue } from "@vue/test-utils";
-import FdButtonGroup from "./../ButtonGroup.vue";
 import FdButtonGroupButton from "./../ButtonGroupButton.vue";
 import FundamentalVue from "@/index";
 
@@ -24,7 +23,6 @@ describe("ButtonGroup", () => {
     });
     const wrapper = mount(Wrapper, { localVue });
     await localVue.nextTick();
-    const group = wrapper.find(FdButtonGroup);
     const buttons = wrapper.findAll(FdButtonGroupButton);
     for (const buttonWrapper of buttons.wrappers) {
       const button = buttonWrapper.find("button");

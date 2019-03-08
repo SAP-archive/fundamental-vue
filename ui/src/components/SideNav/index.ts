@@ -35,5 +35,3 @@ export {
   SideNavSubLink,
   SideNavSubList
 };
-
-export { Item as SideNavListItem } from "./Model";

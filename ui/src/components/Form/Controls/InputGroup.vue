@@ -12,7 +12,7 @@
     </span>
   </div>
 </template>
-fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button
+
 <script lang="ts">
 import Vue from "vue";
 

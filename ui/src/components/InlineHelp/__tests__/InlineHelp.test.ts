@@ -1,6 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
 import InlineHelp from "../InlineHelp.vue";
-import { assert } from "chai";
 
 describe("InlineHelp test scripts", () => {
   test("Renders correctly", () => {
