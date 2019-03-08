@@ -59,6 +59,12 @@ Then you can use Fundamental Vue like this:
   </body>
 ```
 
+If you are targeting IE 11 you have to include the IE-compatible build of Fiori Fundamentals:
+
+```
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.4.3/dist/fiori-fundamentals-ie11.min.css">
+```
+
 How to install Fundamental Vue via **NPM** is described below.
 
 ## Install
@@ -115,6 +121,9 @@ To download and use this library, you first need to install the node package man
     Add the following to the main SCSS file:
 
     ```
+    // If you are targeting IE 11 uncomment the following line.
+    // $fd-support-css-var-fallback: true;
+    
     $fd-icons-path : "../node_modules/fiori-fundamentals/scss/icons/"; // should be declared before the scss import
 
     $fd-scss-font-path : "../node_modules/fiori-fundamentals/scss/fonts/";
