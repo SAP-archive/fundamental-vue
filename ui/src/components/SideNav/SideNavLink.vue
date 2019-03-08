@@ -23,7 +23,6 @@
 </template>
 
 <script lang="ts">
-import Vue, { CreateElement, VNode } from "vue";
 import { ModeType, Config, Store } from "./Model";
 import { withTargetLocation, mixins } from "@/mixins";
 

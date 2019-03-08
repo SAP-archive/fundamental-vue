@@ -3,9 +3,9 @@ import Directives from "@/directives";
 import { normalizedPluginOptions } from "@/util/PluginOptions";
 import { log } from "@/core";
 import { version, libName } from "@/config";
-import Vue from "vue";
+import { VueConstructor } from "vue";
 
-export default (vue: any, options: any) => {
+export default (vue: VueConstructor, options: any) => {
   const normalized = normalizedPluginOptions(options);
   vue.use(Directives, normalized);
   vue.use(FundamentalVuePlugin, normalized);

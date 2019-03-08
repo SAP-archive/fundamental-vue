@@ -63,7 +63,7 @@ export default mixins(withTargetLocation("#")).extend({
     }
   },
   methods: {
-    onRouterLinkClick(event: Event): void {
+    onRouterLinkClick(): void {
       this.store.selectedId = this.parentId;
       this.pushLocation();
     },

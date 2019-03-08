@@ -2,7 +2,6 @@ import { assert } from "chai";
 import { mount, createLocalVue } from "@vue/test-utils";
 import { Combobox } from "./../";
 import { MenuItem } from "./../../Menu";
-import Vue from "vue";
 
 describe("Combobox", () => {
   it("supports vmodel", async () => {

@@ -2,7 +2,6 @@
 import Vue from "vue";
 import TabItem from "./TabItem.vue";
 import { CreateElement, VNode } from "vue";
-import { mixins } from "@/mixins";
 
 type TabItemType = InstanceType<typeof TabItem>;
 
@@ -11,8 +10,6 @@ const Store = Vue.extend({
     activeName: "" as string | null
   })
 });
-
-type StoreInstance = InstanceType<typeof Store>;
 
 export default Vue.extend({
   name: "FdTabs",

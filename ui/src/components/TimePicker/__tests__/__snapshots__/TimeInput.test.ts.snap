@@ -7,7 +7,6 @@ exports[`TimeInput renders correctly 1`] = `
   <input
     aria-label="Time"
     class="fd-form__control"
-    id="input"
     maxlength="2"
     placeholder="Enter value"
     type="text"

@@ -4,7 +4,7 @@ import Toggle from "../Toggle.vue";
 import FundamentalVue from "@/index";
 
 describe("Toggle", () => {
-  it("input event is emitted once", async () => {
+  it("update event is emitted once", async () => {
     const localVue = createLocalVue();
     localVue.use(FundamentalVue);
     const Wrapper = localVue.extend({
@@ -25,7 +25,7 @@ describe("Toggle", () => {
     const toggle = wrapper.find(Toggle);
     toggle.find("input").trigger("click");
     await localVue.nextTick();
-    const events = toggle.emitted("input");
+    const events = toggle.emitted("update");
     assert.deepEqual(events, [[true]]);
     assert.isTrue(wrapper.vm.active);
   });

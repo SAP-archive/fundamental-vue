@@ -2232,10 +2232,10 @@
       "slots": {},
       "events": {
         "input": {
-          "name": "input",
+          "name": "update",
           "description": "Sent when the value changes",
           "parameter": {
-            "name": "value",
+            "name": "input",
             "type": {
               "name": "Raw",
               "meta": "any"
@@ -2492,7 +2492,7 @@
       "slots": {},
       "events": {
         "change": {
-          "name": "change",
+          "name": "update",
           "description": "Sent when the checkbox has been checked/unchecked."
         }
       },

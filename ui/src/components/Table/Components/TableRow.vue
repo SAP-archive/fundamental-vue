@@ -1,8 +1,6 @@
 <script lang="ts">
 import Vue, { CreateElement, VNode } from "vue";
-// Use these types in order to cast your props. Delete if not needed.
 import { PropValidator } from "vue/types/options";
-// import { Prop } from "vue/types/options";
 
 export default Vue.extend({
   name: "FdTableRow",
@@ -27,7 +25,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    handleClick(event: Event) {
+    handleClick() {
       // @ts-ignore
       const table = this.table;
       const { itemId } = this;
