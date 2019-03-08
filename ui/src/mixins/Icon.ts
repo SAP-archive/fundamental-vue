@@ -1,5 +1,4 @@
-import Vue from "vue";
-import { PropValidator } from "vue/types/options";
+import Vue, { PropOptions } from "vue";
 import { iconClass, IconName } from "@/lib";
 
 export interface IconProps {
@@ -11,7 +10,7 @@ export default Vue.extend({
     icon: {
       type: String,
       default: null
-    } as PropValidator<string | null>
+    } as PropOptions<string | null>
   },
   computed: {
     // We are always returning an array of class names.

@@ -1,38 +1,27 @@
 <template>
-  <span :class="classes" role="presentation" :style="style">
+  <span :class="classes" :role="role" :style="style">
     <slot />
   </span>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { PropValidator } from "vue/types/options";
-import { Color, Colors, backgroundColorClassName } from "@/lib";
+import { Icon, mixins } from "@/mixins";
+import { PropOptions } from "vue";
+import { Colors, backgroundColorClasses } from "@/lib";
 
-const sizeMapping = {
-  xxs: "xxs",
-  xs: "xs",
-  s: "s",
-  m: "m", // default
-  l: "l",
-  xl: "xl",
-  xxl: "xxl"
+const identifierSizes = ["xxs", "xs", "s", "m", "l", "xl", "xxl"];
+const identifierSizeValidator = (size: string) => {
+  return identifierSizes.indexOf(size) >= 0;
 };
 
-const IdentifierSizes = Object.keys(sizeMapping);
-const isValidIdentifierSize = (size: string) => {
-  return IdentifierSizes.indexOf(size) >= 0;
-};
-
-export default Vue.extend({
+export default mixins(Icon).extend({
   name: "FdIdentifier",
   props: {
-    icon: { type: String, default: null },
-    url: { type: String, default: null },
+    url: String,
     size: {
       type: String,
-      default: sizeMapping.m,
-      validator: isValidIdentifierSize
+      default: "m",
+      validator: identifierSizeValidator
     },
     circle: { type: Boolean, default: false },
     transparent: { type: Boolean, default: false },
@@ -41,24 +30,21 @@ export default Vue.extend({
       default: null,
       type: String,
       validator: (value: string) => (Colors as string[]).indexOf(value) >= 0
-    } as PropValidator<Color | null>
+    } as PropOptions<string | null>
   },
   computed: {
-    classes(): object {
-      const backgroundColorClasses =
-        this.backgroundColor == null
-          ? {}
-          : { [backgroundColorClassName(this.backgroundColor)]: true };
-      const iconClass =
-        this.icon == null ? {} : { [`sap-icon--${this.icon}`]: true };
-      return {
-        ...iconClass,
-        ...backgroundColorClasses,
-        [`fd-identifier--${this.size}`]: true,
-        "fd-identifier--transparent": this.transparent,
-        "fd-identifier--circle": this.circle,
-        "fd-identifier--thumbnail": this.thumbnail
-      };
+    role(): string | null {
+      return this.icon != null ? "presentation" : null;
+    },
+    classes(): string[] {
+      return [
+        ...this.iconClasses,
+        ...backgroundColorClasses(this.backgroundColor),
+        `fd-identifier--${this.size}`,
+        ...(this.transparent ? ["fd-identifier--transparent"] : []),
+        ...(this.circle ? ["fd-identifier--circle"] : []),
+        ...(this.thumbnail ? ["fd-identifier--thumbnail"] : [])
+      ];
     },
     style(): object {
       const url = this.url;
