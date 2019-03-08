@@ -34,7 +34,11 @@ export default (defaultTo: string | object | null = null) =>
           return;
         }
         $router.push(to, onComplete);
-        this.$emit("click", event);
+        if (event != null) {
+          this.$emit("click", event);
+        } else {
+          this.$emit("click");
+        }
       }
     }
   });

@@ -5,8 +5,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { PropValidator } from "vue/types/options";
+import Vue, { PropOptions } from "vue";
 import { Config, Store, Modes, Mode, ModeType } from "./Model";
 
 export default Vue.extend({
@@ -18,11 +17,11 @@ export default Vue.extend({
     };
   },
   props: {
-    selectedId: { type: String, default: null } as PropValidator<string | null>,
+    selectedId: { type: String, default: null } as PropOptions<string | null>,
     mode: {
       default: Mode.manual,
       validator: (value: any) => Modes.indexOf(value) >= 0
-    } as PropValidator<ModeType>
+    } as PropOptions<ModeType>
   },
   computed: {
     store(): Store {

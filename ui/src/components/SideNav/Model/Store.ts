@@ -1,5 +1,3 @@
-import { objectValues } from "@/util";
-
 interface State {
   selectedId: string | null;
   expandedIds: string[];
@@ -12,9 +10,9 @@ const makeDefaultState = (): State => ({
   items: {}
 });
 
-type Item = { itemId: string };
-type SubItem = Item & { parentId: string };
-type Items = { [itemId: string]: Item | SubItem };
+type ParentId = string;
+type Item = null | ParentId;
+type Items = { [itemId: string]: Item };
 
 export class Store {
   constructor(readonly initialState = makeDefaultState()) {
@@ -51,19 +49,14 @@ export class Store {
     return { ...this.state.items };
   }
 
-  subItems(itemId: string): SubItem[] {
-    const items: Array<SubItem | Item> = objectValues<SubItem | Item>(
-      this.items
-    );
-    const result: SubItem[] = [];
-    items.forEach(item => {
-      if ("parentId" in item) {
-        const { parentId } = item;
-        if (parentId === itemId) {
-          result.push({ itemId: item.itemId, parentId });
-        }
+  subItems(itemId: string): Item[] {
+    const result: Item[] = [];
+    for (const currentItemId in this.items) {
+      const parentId = this.items[currentItemId];
+      if (parentId === itemId) {
+        result.push(currentItemId);
       }
-    });
+    }
     return result;
   }
 
@@ -75,7 +68,7 @@ export class Store {
   registerItem(itemId: string) {
     this.state = {
       ...this.state,
-      items: { ...this.items, [itemId]: { itemId } }
+      items: { ...this.items, [itemId]: null }
     };
   }
 
@@ -88,15 +81,15 @@ export class Store {
     };
   }
 
-  registerSubItem({ itemId, parentId }: SubItem) {
+  registerSubItem({ itemId, parentId }: { itemId: string; parentId: string }) {
     this.state = {
       ...this.state,
-      items: { ...this.items, [itemId]: { itemId, parentId } }
+      items: { ...this.items, [itemId]: parentId }
     };
   }
 
-  ununregisterSubItem({ itemId }: SubItem) {
-    this.unregisterItem(itemId);
+  ununregisterSubItem(subItemId: string) {
+    this.unregisterItem(subItemId);
   }
 
   toggleExpanded(itemId: string) {

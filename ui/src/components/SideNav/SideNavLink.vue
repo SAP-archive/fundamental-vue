@@ -1,3 +1,27 @@
+<template>
+  <a
+    v-if="manualModeEnabled"
+    href="#"
+    :aria-selected="ariaSelected"
+    class="fd-side-nav__link"
+    :class="classes"
+    @click.prevent.stop="onClick"
+  >
+    <slot />
+  </a>
+  <router-link
+    v-else
+    class="fd-side-nav__link"
+    :aria-selected="ariaSelected"
+    :class="routerLinkClasses"
+    @click="onRouterLinkClick"
+    :to="to"
+    exact-active-class="is-selected"
+  >
+    <slot />
+  </router-link>
+</template>
+
 <script lang="ts">
 import Vue, { CreateElement, VNode } from "vue";
 import { ModeType, Config, Store } from "./Model";
@@ -11,6 +35,9 @@ export default mixins(withTargetLocation("#")).extend({
     $config: { from: "config" }
   },
   computed: {
+    ariaSelected() {
+      return this.selected ? "true" : null;
+    },
     parentItemId(): string {
       // @ts-ignore
       return this.sideNavItem.uid;
@@ -23,6 +50,9 @@ export default mixins(withTargetLocation("#")).extend({
       // @ts-ignore
       return this.$config;
     },
+    manualModeEnabled(): boolean {
+      return this.mode === "manual";
+    },
     mode(): ModeType {
       return this.config.mode;
     },
@@ -32,6 +62,11 @@ export default mixins(withTargetLocation("#")).extend({
     selected(): boolean {
       return this.store.selected(this.parentItemId);
     },
+    routerLinkClasses() {
+      return {
+        "has-child": this.hasChildren
+      };
+    },
     classes(): object {
       return {
         "has-child": this.hasChildren,
@@ -39,63 +74,20 @@ export default mixins(withTargetLocation("#")).extend({
       };
     }
   },
-  render(h: CreateElement): VNode {
-    const body = this.$slots.default || [];
-    const renderRouterLink = () => {
-      const RouterLink = Vue.component("RouterLink");
-      return h(
-        RouterLink,
-        {
-          staticClass: "fd-side-nav__link",
-          class: {
-            "has-child": this.hasChildren
-          },
-          nativeOn: {
-            click: this.onRouterLinkClick
-          },
-          props: {
-            to: this.to,
-            "exact-active-class": "is-selected"
-          }
-        },
-        body
-      );
-    };
-    const attrs: { [key: string]: any } = {
-      href: "#",
-      "aria-selected": this.selected
-    };
-    if (this.mode === "router") {
-      return renderRouterLink();
-    }
-    return h(
-      "a",
-      {
-        attrs,
-        class: {
-          "fd-side-nav__link": true,
-          ...this.classes
-        },
-        on: {
-          click: this.onClick
-        }
-      },
-      body
-    );
-  },
   methods: {
     selectSelf() {
       this.store.selectedId = this.parentItemId;
       this.store.toggleExpanded(this.parentItemId);
     },
-    onRouterLinkClick(event: Event): void {
+    onRouterLinkClick(): void {
+      this.selectSelf();
+      this.pushLocation();
+    },
+    onClick(event: Event): void {
       event.preventDefault();
       event.stopPropagation();
       this.selectSelf();
-    },
-    onClick(event: Event): void {
-      this.selectSelf();
-      this.pushLocation(event);
+      this.pushLocation();
     }
   }
 });
