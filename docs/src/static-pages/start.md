@@ -112,9 +112,9 @@ Import the main SCSS file in your `App.js` style block to add Fiori Fundamentals
 </style>
 ```
 
-To learn more about currently available components please go to the official [component documentation](https://dist-632qgna8s.now.sh).
+To learn more about currently available components please go to the official [component documentation](https://dist-k9e2d0lf1.now.sh).
 
-To use a Fundamental Vue component, paste the desired code snippet from the [component documentation](https://dist-632qgna8s.now.sh) and configure it as necessarry:
+To use a Fundamental Vue component, paste the desired code snippet from the [component documentation](https://dist-k9e2d0lf1.now.sh) and configure it as necessarry:
 
 ```
 <FdAlert dismissible>

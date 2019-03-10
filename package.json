@@ -18,7 +18,7 @@
     "std-version": "standard-version -m \"chore(release): version %s build ${TRAVIS_BUILD_NUMBER} [ci skip]\"",
     "test": "yarn --cwd ui test",
     "test:watch": "yarn --cwd ui test:watch",
-    "deploy:docs": "cp now.json dist && now --public --local-config=./now.json deploy ./dist"
+    "deploy:docs": "cp now.json docs/dist && cp  ui/dist/*.js docs/dist && cd docs && now --public --local-config=./now.json deploy ./dist"
   },
   "description": "SAP Fiori Fundamentals, implemented in Vue.js",
   "keywords": [

@@ -15,7 +15,7 @@ The SAP Fiori Fundamentals library is a design system and HTML/CSS component lib
 
 ## API Reference
 
-See [Component Documentation](https://dist-632qgna8s.now.sh/) for examples and API details.
+See [Component Documentation](https://dist-k9e2d0lf1.now.sh) for examples and API details.
 
 ## Requirements
 
@@ -123,7 +123,7 @@ To download and use this library, you first need to install the node package man
     ```
     // If you are targeting IE 11 uncomment the following line.
     // $fd-support-css-var-fallback: true;
-    
+
     $fd-icons-path : "../node_modules/fiori-fundamentals/scss/icons/"; // should be declared before the scss import
 
     $fd-scss-font-path : "../node_modules/fiori-fundamentals/scss/fonts/";
@@ -141,7 +141,7 @@ To download and use this library, you first need to install the node package man
     </style>
     ```
 
-    You can now use the [Documentation](https://dist-632qgna8s.now.sh) to browse the components currently available with Fundamental Vue.
+    You can now use the [Documentation](https://dist-k9e2d0lf1.now.sh) to browse the components currently available with Fundamental Vue.
 
     To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessarry:
 
@@ -164,10 +164,10 @@ Merges to the `master` branch will be published as a prerelease. Prereleases wil
 Please see [Issues](https://github.com/SAP/fundamental-vue/issues).
 
 # Developer Guide
-Interested in contributing to this Fundamental Vue? See the [Developer Guide](https://github.com/SAP/fundamental-vue/wiki/Dev-Guide). 
+Interested in contributing to this Fundamental Vue? See the [Developer Guide](https://github.com/SAP/fundamental-vue/wiki/Dev-Guide).
 
 # Testing Guide
-See the [Testing Guide](https://github.com/SAP/fundamental-vue/wiki/Test-Guide). 
+See the [Testing Guide](https://github.com/SAP/fundamental-vue/wiki/Test-Guide).
 
 ## Support
 
