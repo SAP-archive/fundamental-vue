@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeAction renders correctly 1`] = `
+<div
+  class="fd-time__control"
+>
+  <button
+    aria-controls="Time Hour"
+    aria-label="Increase Hour"
+    class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+    compact="compact"
+  >
+    Action Title
+  </button>
+</div>
+`;

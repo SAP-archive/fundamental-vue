@@ -1,6 +1,6 @@
 <template>
   <div class="fd-time-picker">
-    <Popover noArrow :popoverVisible="false">
+    <Popover :uid="uid" noArrow :popoverVisible="false">
       <div class="fd-popover__control" slot="control">
         <InputGroup
           :compact="compact"
@@ -24,13 +24,13 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Uid, mixins } from "@/mixins";
 import { Popover } from "@/components/Popover";
 import { Input, InputGroup } from "@/components/Form";
 import { Button } from "@/components/Button";
 import TimeItem from "./TimeItem.vue";
 
-export default Vue.extend({
+export default mixins(Uid).extend({
   name: "FdTimePicker",
   components: { Popover, Input, InputGroup, Button, TimeItem },
   props: {
