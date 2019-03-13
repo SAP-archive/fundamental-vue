@@ -26,7 +26,7 @@ export const DocsRouter = new Router({
       path: "/start",
       component: StaticContent,
       meta: { layout: "Default" },
-      props: { html: require("./../static-pages/start.md") }
+      props: { html: require("@/static-pages/start.md") }
     },
     {
       name: "guide-new-component",

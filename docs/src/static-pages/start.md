@@ -16,9 +16,9 @@ In order to use Fundamental Vue you have to include three things in your `index.
 Paste the following snippet in your `<head>`-tag:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/fiori-fundamentals@1.4.3/dist/fiori-fundamentals.min.css">
+<link rel="stylesheet" href="https://unpkg.com/fiori-fundamentals@latest/dist/fiori-fundamentals.min.css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/fundamental-vue@0.0.13-beta/dist/FundamentalVue.umd.js"></script>
+<script src="https://unpkg.com/fundamental-vue/dist/FundamentalVue.umd.js"></script>
 ```
 
 Then you can use Fundamental Vue like this:
@@ -29,20 +29,25 @@ Then you can use Fundamental Vue like this:
   <script>
     Vue.use(FundamentalVue);
     new Vue({
-      name: 'App',
       el: '#app',
-      data: { message: 'Hello Fundamental Vue!' },
-      template: \`
-      <FdPopover v-margin:large>
-      <h1 style="margin: 50px;" v-slot:"body">{{ message }}</h1>
-      </FdPopover>\`,
+      template: `
+        <FdPopover v-margin:large>
+          <h1 v-margin:large slot="body">
+            🚀 Hello Fundamental Vue 🚀
+          </h1>
+        </FdPopover>`
     });
   </script>
 </body>
 ```
 
-You should then see a button saying *Hello Fundamental Vue!*. Clicking on it will display a popover.
+You should then see a button saying *🚀 Hello Fundamental Vue 🚀*. Clicking on it will display a popover.
 
+If you are targeting IE 11 you have to include the IE-compatible build of Fiori Fundamentals:
+
+```html
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@latest/dist/fiori-fundamentals-ie11.min.css">
+```
 
 ### Install Fundamental Vue via **NPM**:
 
@@ -112,9 +117,9 @@ Import the main SCSS file in your `App.js` style block to add Fiori Fundamentals
 </style>
 ```
 
-To learn more about currently available components please go to the official [component documentation](https://dist-k9e2d0lf1.now.sh).
+To learn more about currently available components please go to the official [component documentation](https://sap.github.io/fundamental-vue).
 
-To use a Fundamental Vue component, paste the desired code snippet from the [component documentation](https://dist-k9e2d0lf1.now.sh) and configure it as necessarry:
+To use a Fundamental Vue component, paste the desired code snippet from the [component documentation](https://sap.github.io/fundamental-vue) and configure it as necessarry:
 
 ```
 <FdAlert dismissible>
