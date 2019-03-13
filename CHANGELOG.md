@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.1-rc.9"></a>
+## [0.1.1-rc.9](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.8...v0.1.1-rc.9) (2019-03-13)
+
+
+### Bug Fixes
+
+* Add stop event modifier on modal example page to avoid event propagation ([cc28d25](https://github.com/SAP/fundamental-vue/commit/cc28d25))
+
+
+
 <a name="0.1.1-rc.8"></a>
 ## [0.1.1-rc.8](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.7...v0.1.1-rc.8) (2019-03-12)
 
