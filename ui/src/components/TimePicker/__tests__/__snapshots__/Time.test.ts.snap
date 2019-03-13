@@ -9,8 +9,7 @@ exports[`Time renders correctly 1`] = `
     class="fd-time__control"
   >
     <button
-      class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
-      compact="compact"
+      class="fd-button--compact fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
     >
       
     </button>
@@ -31,8 +30,7 @@ exports[`Time renders correctly 1`] = `
     class="fd-time__control"
   >
     <button
-      class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
-      compact="compact"
+      class="fd-button--compact fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
     >
       
     </button>

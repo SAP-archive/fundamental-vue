@@ -2,20 +2,22 @@
   <FdButton
     v-bind="$attrs"
     v-on="$listeners"
-    :aria-pressed="pressed ? 'true' : 'false'"
+    :aria-pressed="String(pressed)"
     @click="toggleStateForValue(value)"
+    :compact="compact"
     ><slot />
   </FdButton>
 </template>
 
 <script>
 import FdButton from "@/components/Button/Button.vue";
-import { Compactable, mixins } from "@/mixins";
+import { Compactable } from "@/mixins";
 import { shortUuid } from "@/lib";
 
 export default {
   name: "FdButtonGroupButton",
   components: { FdButton },
+  mixins: [Compactable],
   inject: ["group"],
   props: {
     value: { type: [String, Number, Boolean], default: shortUuid }

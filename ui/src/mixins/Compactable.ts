@@ -1,4 +1,3 @@
-//
 export default {
   inject: {
     compactableContainer: { default: { compact: false } }

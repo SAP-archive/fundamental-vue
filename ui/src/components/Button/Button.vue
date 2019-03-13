@@ -6,14 +6,14 @@
 
 <script>
 import Vue from "vue";
-import { ButtonContainer } from "./ButtonContainer";
 import ButtonTypes from "./ButtonTypes";
-import { mixins, Icon, Compactable, Uid } from "@/mixins";
+import { mixins, Icon, Uid } from "@/mixins";
 
 export default {
   name: "FdButton",
-  mixins: [Icon, Uid, Compactable],
+  mixins: [Icon, Uid],
   props: {
+    compact: Boolean,
     styling: {
       type: String,
       default: null,
@@ -44,12 +44,11 @@ export default {
       return this.state === "disabled";
     },
     classes() {
-      // @ts-ignore
       return [
-        this.styling == null ? "fd-button" : "",
+        this.styling ? "" : "fd-button",
         this.compact ? "fd-button--compact" : "",
-        this.styling != null ? `fd-button--${this.styling}` : "",
-        this.type != null ? `fd-button--${this.type}` : "",
+        this.styling ? `fd-button--${this.styling}` : "",
+        this.type ? `fd-button--${this.type}` : "",
         this.state !== "normal" ? `is-${this.state}` : "",
         ...this.iconClasses
       ];

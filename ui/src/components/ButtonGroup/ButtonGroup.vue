@@ -1,5 +1,5 @@
 <template>
-  <div class="fd-button-group" role="group" aria-label="hi">
+  <div class="fd-button-group" role="group">
     <slot />
   </div>
 </template>
@@ -32,11 +32,11 @@ export default {
   },
   provide() {
     return {
-      group: this.$_group
+      group: this._$group
     };
   },
   beforeCreate() {
-    this.$_group = Vue.observable({});
+    this._$group = Vue.observable({});
   },
   computed: {
     selectionHandler() {
@@ -66,7 +66,7 @@ export default {
     group: {
       immediate: true,
       handler(value = {}) {
-        const data = this.$_group;
+        const data = this._$group;
         const keys = Object.keys(value);
         keys.forEach(key => {
           if (data.hasOwnProperty(key)) {

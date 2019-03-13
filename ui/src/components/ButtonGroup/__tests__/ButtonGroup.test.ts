@@ -1,5 +1,4 @@
-import { assert } from "chai";
-import { mount, Wrapper, createLocalVue } from "@vue/test-utils";
+import { mount, createLocalVue } from "@vue/test-utils";
 import FdButtonGroupButton from "./../ButtonGroupButton.vue";
 import FundamentalVue from "@/index";
 
@@ -32,7 +31,7 @@ describe("ButtonGroup", () => {
       const buttonValue: any = buttonWrapper.vm.value;
       const value = wrapper.vm.value;
       const index = value.indexOf(buttonValue);
-      assert.isTrue(index > -1);
+      expect(index).toBeGreaterThan(-1);
     }
   });
 
@@ -50,11 +49,40 @@ describe("ButtonGroup", () => {
       { localVue }
     );
     const buttons = buttonGroup.findAll(FdButtonGroupButton);
-    assert.lengthOf(buttons, 3);
+    expect(buttons).toHaveLength(3);
     // We have no public api in order to determine whether a button is compact or not.
     // Because of that we have to check if the compact class is present.
-    const buttonIsCompact = (button: Wrapper<any>) =>
-      button.classes("fd-button--compact");
-    assert(buttons.wrappers.every(buttonIsCompact, "Every button is compact"));
+    // const buttonIsCompact = (button: Wrapper<any>) => button.classes("fd-button--compact");
+    const buttonWrappers = buttons.wrappers;
+    for (const buttonWrapper of buttonWrappers) {
+      const classes = buttonWrapper.classes();
+      expect(classes).toContain("fd-button--compact");
+    }
+  });
+
+  // Yes this was actually a problem.
+  it("renders buttons without compact class if group is not compact", () => {
+    const buttonGroup = mount(
+      {
+        template: `
+      <fd-button-group>
+        <fd-button-group-button>b1</fd-button-group-button>
+        <fd-button-group-button>b2</fd-button-group-button>
+        <fd-button-group-button>b3</fd-button-group-button>
+      </fd-button-group>
+      `
+      },
+      { localVue }
+    );
+    const buttons = buttonGroup.findAll(FdButtonGroupButton);
+    expect(buttons).toHaveLength(3);
+    // We have no public api in order to determine whether a button is compact or not.
+    // Because of that we have to check if the compact class is present.
+    // const buttonIsCompact = (button: Wrapper<any>) => button.classes("fd-button--compact");
+    const buttonWrappers = buttons.wrappers;
+    for (const buttonWrapper of buttonWrappers) {
+      const classes = buttonWrapper.classes();
+      expect(classes).not.toContain("fd-button--compact");
+    }
   });
 });
