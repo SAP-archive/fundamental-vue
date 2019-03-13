@@ -1,4 +1,5 @@
 <title>Button Sizes</title>
+<tip>The compact size is only used on desktop and it is full size when used on a touch device.</tip>
 
 <template>
   <div>

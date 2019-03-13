@@ -28,16 +28,29 @@ const mySelectionMode = (selection, value) => {
 
 The custom selection mode above ignores any interactions with buttons that have the value `foo` or `bar`. Otherwise it acts just like the multiple selection mode.
 </docs>
-<tip>A button group may only contain `FdButtonGroupButton`s. If you use `FdButton` instead, things will not work correctly.</tip>
+<tip>A button group may only contain `FdButtonGroupButton`s. If you use `FdButton` instead, things will not work correctly.
+
+**Important**
+
+Make sure to set `aria-label` on the button group.
+</tip>
 <template>
   <div>
-    <FdButtonGroup v-model="activeButtons" selectionMode="multiple">
-      <FdButtonGroupButton value="a">Left</FdButtonGroupButton>
-      <FdButtonGroupButton value="b">Middle</FdButtonGroupButton>
-      <FdButtonGroupButton value="c">Right</FdButtonGroupButton>
+    <FdButtonGroup
+      v-model="activeButtons"
+      selectionMode="multiple"
+      aria-label="Favorite Color"
+    >
+      <FdButtonGroupButton value="a">Red</FdButtonGroupButton>
+      <FdButtonGroupButton value="b">Green</FdButtonGroupButton>
+      <FdButtonGroupButton value="c">Blue</FdButtonGroupButton>
     </FdButtonGroup>
     <br /><br />
-    <FdButtonGroup v-model="activeButtons" selectionMode="multiple">
+    <FdButtonGroup
+      v-model="activeButtons"
+      selectionMode="multiple"
+      aria-label="Favorite Icon"
+    >
       <FdButtonGroupButton icon="survey" value="a" />
       <FdButtonGroupButton icon="pool" value="b" />
       <FdButtonGroupButton icon="pie-chart" value="c" />
