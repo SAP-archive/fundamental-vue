@@ -1,5 +1,5 @@
 import Vue from "vue";
-import * as FundamentalVue from "fundamental-vue";
+import FundamentalVue from "fundamental-vue";
 
 import "./main.scss";
 import Router from "vue-router";
@@ -9,7 +9,7 @@ import App from "./App.vue";
 import DocumentationLoader from "./DocumentationLoader";
 
 Vue.config.productionTip = false;
-Vue.use(FundamentalVue.default);
+Vue.use(FundamentalVue);
 
 // Register Layouts globally so that they are available by name
 import DefaultLayout from "@/layouts/DefaultLayout.vue";

@@ -5,7 +5,9 @@ import { log } from "@/core";
 import { version, libName } from "@/config";
 import { VueConstructor } from "vue";
 
-export default (vue: VueConstructor, options: any) => {
+const FD_AUTO_INSTALL_DISABLED_KEY = "__FD_AUTO_INSTALL_DISABLED_KEY__";
+
+const install = (vue: VueConstructor, options: any) => {
   const normalized = normalizedPluginOptions(options);
   vue.use(Directives, normalized);
   vue.use(FundamentalVuePlugin, normalized);
@@ -18,3 +20,20 @@ export default (vue: VueConstructor, options: any) => {
     );
   }
 };
+
+const installIfPossible = () => {
+  // @ts-ignore
+  if (typeof window !== undefined && window.Vue && window.Vue === Vue) {
+    // Check if auto install was disabled
+    // @ts-ignore
+    if (window[FD_AUTO_INSTALL_DISABLED_KEY] === true) {
+      return;
+    }
+    // @ts-ignore
+    install(window.Vue);
+  }
+};
+
+installIfPossible();
+
+export default install;

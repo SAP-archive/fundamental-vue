@@ -45,7 +45,6 @@ Then you can use Fundamental Vue like this:
   <body>
     <div id="app" />
     <script>
-      Vue.use(FundamentalVue);
       new Vue({
         el: '#app',
         template: `
@@ -58,6 +57,8 @@ Then you can use Fundamental Vue like this:
     </script>
   </body>
 ```
+
+When using *Fundamental Vue* via a `<script>`-tag you don't have to install it manually by calling `Vue.use(FundamentalVue)`. This is done for you automatically. You can disable the automatic installation by setting `window.__FD_AUTO_INSTALL_DISABLED_KEY__` to true early on.
 
 If you are targeting IE 11 you have to include the IE-compatible build of Fiori Fundamentals:
 
@@ -163,6 +164,9 @@ Merges to the `master` branch will be published as a prerelease. Prereleases wil
 
 Please see [Issues](https://github.com/SAP/fundamental-vue/issues).
 
+# Developer Guide
+Interested in contributing to this Fundamental Vue? See the [Developer Guide](https://github.com/SAP/fundamental-vue/wiki/Dev-Guide).
+
 # Testing Guide
 See the [Testing Guide](https://github.com/SAP/fundamental-vue/wiki/Test-Guide).
 
@@ -174,7 +178,7 @@ If you encounter an issue, you can [create a ticket](https://github.com/SAP/fund
 
 If you want to contribute, please check the [Developer Guide](https://github.com/SAP/fundamental-vue/wiki/Fundamental-Vue-Development-Guide) documentation for contribution guidelines.
 
-Check out [this guide](./docs/src/static-pages/NEW_COMPONENT/NEW_COMPONENT.md) on building a new component for the library and creating the necessary documentation for your new component.
+Check out [this guide](./NEW_COMPONENT/NEW_COMPONENT.md) on building a new component for the library and creating the necessary documentation for your new component.
 
 ## License
 
