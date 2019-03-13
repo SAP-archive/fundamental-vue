@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Time renders correctly 1`] = `
+<div
+  aria-label="24-Hour"
+  class="fd-time__item"
+>
+  <div
+    class="fd-time__control"
+  >
+    <button
+      class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+      compact="compact"
+    >
+      
+    </button>
+  </div>
+   
+  <div
+    class="fd-time__input"
+  >
+    <input
+      class="fd-form__control"
+      maxlength="2"
+      placeholder="Hour"
+      type="text"
+    />
+  </div>
+   
+  <div
+    class="fd-time__control"
+  >
+    <button
+      class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
+      compact="compact"
+    >
+      
+    </button>
+  </div>
+</div>
+`;

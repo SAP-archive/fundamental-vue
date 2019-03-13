@@ -1,0 +1,568 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimePicker Compact Style renders correctly 1`] = `
+<div
+  class="fd-time-picker"
+>
+  <div
+    class="fd-popover"
+  >
+    <div
+      class="fd-popover__control"
+    >
+      <div
+        role="button"
+      >
+        <div
+          class="fd-popover__control"
+        >
+          <div
+            class="fd-input-group fd-input-group--after fd-input-group--compact"
+          >
+            <!---->
+             
+            <input
+              class="fd-form__control fd-input--compact"
+              placeholder=""
+              type="text"
+            />
+              
+            <span
+              class="fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button fd-input-group--after"
+            >
+              <button
+                class="fd-button--light sap-icon--fob-watch"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      aria-hidden="true"
+      class="fd-popover__body fd-popover__body--no-arrow"
+      id="time-picker"
+    >
+      <nav
+        class="fd-menu"
+      >
+        <ul
+          class="fd-menu__list"
+        >
+           
+          <div
+            class="fd-time"
+          >
+            <div
+              aria-label="Time Item"
+              class="fd-time__item"
+            >
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+               
+              <div
+                class="fd-time__input"
+              >
+                <input
+                  class="fd-form__control"
+                  maxlength="2"
+                  placeholder="hh"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+            </div>
+             
+            <div
+              aria-label="Time Item"
+              class="fd-time__item"
+            >
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+               
+              <div
+                class="fd-time__input"
+              >
+                <input
+                  class="fd-form__control"
+                  maxlength="2"
+                  placeholder="mm"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+            </div>
+             
+            <div
+              aria-label="Time Item"
+              class="fd-time__item"
+            >
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+               
+              <div
+                class="fd-time__input"
+              >
+                <input
+                  class="fd-form__control"
+                  maxlength="2"
+                  placeholder="ss"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+            </div>
+             
+            <!---->
+          </div>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TimePicker With Meridian renders correctly 1`] = `
+<div
+  class="fd-time-picker"
+>
+  <div
+    class="fd-popover"
+  >
+    <div
+      class="fd-popover__control"
+    >
+      <div
+        role="button"
+      >
+        <div
+          class="fd-popover__control"
+        >
+          <div
+            class="fd-input-group fd-input-group--after"
+          >
+            <!---->
+             
+            <input
+              class="fd-form__control"
+              placeholder=""
+              type="text"
+            />
+              
+            <span
+              class="fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button fd-input-group--after"
+            >
+              <button
+                class="fd-button--light sap-icon--fob-watch"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      aria-hidden="true"
+      class="fd-popover__body fd-popover__body--no-arrow"
+      id="time-picker"
+    >
+      <nav
+        class="fd-menu"
+      >
+        <ul
+          class="fd-menu__list"
+        >
+           
+          <div
+            class="fd-time"
+          >
+            <div
+              aria-label="Time Item"
+              class="fd-time__item"
+            >
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+               
+              <div
+                class="fd-time__input"
+              >
+                <input
+                  class="fd-form__control"
+                  maxlength="2"
+                  placeholder="hh"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+            </div>
+             
+            <div
+              aria-label="Time Item"
+              class="fd-time__item"
+            >
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+               
+              <div
+                class="fd-time__input"
+              >
+                <input
+                  class="fd-form__control"
+                  maxlength="2"
+                  placeholder="mm"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+            </div>
+             
+            <div
+              aria-label="Time Item"
+              class="fd-time__item"
+            >
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+               
+              <div
+                class="fd-time__input"
+              >
+                <input
+                  class="fd-form__control"
+                  maxlength="2"
+                  placeholder="ss"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+            </div>
+             
+            <div
+              aria-label="Time Item"
+              class="fd-time__item"
+            >
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+               
+              <div
+                class="fd-time__input"
+              >
+                <input
+                  class="fd-form__control"
+                  maxlength="2"
+                  placeholder="am"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TimePicker renders correctly 1`] = `
+<div
+  class="fd-time-picker"
+>
+  <div
+    class="fd-popover"
+  >
+    <div
+      class="fd-popover__control"
+    >
+      <div
+        role="button"
+      >
+        <div
+          class="fd-popover__control"
+        >
+          <div
+            class="fd-input-group fd-input-group--after"
+          >
+            <!---->
+             
+            <input
+              class="fd-form__control"
+              placeholder="Pick a time"
+              type="text"
+            />
+              
+            <span
+              class="fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button fd-input-group--after"
+            >
+              <button
+                class="fd-button--light sap-icon--fob-watch"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      aria-hidden="true"
+      class="fd-popover__body fd-popover__body--no-arrow"
+      id="time-picker"
+    >
+      <nav
+        class="fd-menu"
+      >
+        <ul
+          class="fd-menu__list"
+        >
+           
+          <div
+            class="fd-time"
+          >
+            <div
+              aria-label="Time Item"
+              class="fd-time__item"
+            >
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+               
+              <div
+                class="fd-time__input"
+              >
+                <input
+                  class="fd-form__control"
+                  maxlength="2"
+                  placeholder="hh"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+            </div>
+             
+            <div
+              aria-label="Time Item"
+              class="fd-time__item"
+            >
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+               
+              <div
+                class="fd-time__input"
+              >
+                <input
+                  class="fd-form__control"
+                  maxlength="2"
+                  placeholder="mm"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+            </div>
+             
+            <div
+              aria-label="Time Item"
+              class="fd-time__item"
+            >
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+               
+              <div
+                class="fd-time__input"
+              >
+                <input
+                  class="fd-form__control"
+                  maxlength="2"
+                  placeholder="ss"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="fd-time__control"
+              >
+                <button
+                  class="fd-button--light fd-button--standard sap-icon--navigation-down-arrow"
+                  compact="compact"
+                >
+                  
+                </button>
+              </div>
+            </div>
+             
+            <!---->
+          </div>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+`;
