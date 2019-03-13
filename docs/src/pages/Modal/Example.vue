@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <FdButton @click="showModal">Show Modal</FdButton>
+    <FdButton @click.stop="showModal">Show Modal</FdButton>
     <FdModal title="Modal Title" :active.sync="isModalActive">
       <p>Do you want to invite your friends to join the party?</p>
       <template slot="actions">
