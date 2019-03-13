@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tile As Button renders correctly 1`] = `
+<div
+  class="fd-tile"
+  role="button"
+>
+  <!---->
+   
+  <div
+    class="fd-tile__content"
+  >
+    <h2
+      class="fd-tile__title"
+    >
+      Title
+    </h2>
+     
+    <p>
+      Description
+    </p>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Tile Disabled renders correctly 1`] = `
+<div
+  aria-disabled="true"
+  class="fd-tile"
+>
+  <!---->
+   
+  <div
+    class="fd-tile__content"
+  >
+    <h2
+      class="fd-tile__title"
+    >
+      Title
+    </h2>
+     
+    <p>
+      Description
+    </p>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Tile Row Col Span renders correctly 1`] = `
+<div
+  class="fd-has-grid-row-span-3 fd-has-grid-column-span-5 fd-tile"
+>
+  <!---->
+   
+  <div
+    class="fd-tile__content"
+  >
+    <h2
+      class="fd-tile__title"
+    >
+      Title
+    </h2>
+     
+    <p>
+      Description
+    </p>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Tile With Background Color renders correctly 1`] = `
+<div
+  class="fd-has-background-color-accent-2 fd-tile"
+>
+  <!---->
+   
+  <div
+    class="fd-tile__content"
+  >
+    <h2
+      class="fd-tile__title"
+    >
+      Title
+    </h2>
+     
+    <p>
+      Description
+    </p>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Tile With Slot Media renders correctly 1`] = `
+<div
+  class="fd-tile"
+>
+  <div
+    class="fd-tile__media"
+  >
+    <vuecomponent-stub
+      size="m"
+    />
+  </div>
+   
+  <div
+    class="fd-tile__content"
+  >
+    <h2
+      class="fd-tile__title"
+    >
+      Title
+    </h2>
+     
+    <p>
+      Description
+    </p>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Tile renders correctly 1`] = `
+<div
+  class="fd-tile"
+>
+  <!---->
+   
+  <div
+    class="fd-tile__content"
+  >
+    <h2
+      class="fd-tile__title"
+    >
+      Title
+    </h2>
+     
+    <p>
+      Description
+    </p>
+  </div>
+   
+  <!---->
+</div>
+`;
