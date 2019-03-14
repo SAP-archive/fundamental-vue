@@ -1800,79 +1800,19 @@
         }
       },
       "events": {
-        "show": {
-          "name": "show",
-          "description": "Sent when the popper is shown"
-        },
-        "hide": {
-          "name": "hide",
-          "description": "Sent when the popper is hidden"
+        "visible": {
+          "name": "visible",
+          "description": "Sent when the popper is shown or hidden"
         }
       },
       "mixins": [],
       "props": {
-        "target": {
-          "name": "target",
-          "description": "Element that you want to trigger the popover. \n Accepted values are string ID, or a reference to an element or component,",
-          "types": ["String", "Object", "Element", "Function"],
-          "required": true,
-          "defaultValue": null
-        },
         "placement": {
           "name": "placement",
           "description": "Positioning of the popover, relative to the trigger element. \n Valid placements are 'auto', 'top', 'right', 'bottom', 'left'. \n Each placement can have a variation of '-start' and '-end'",
           "types": ["String"],
           "required": false,
           "defaultValue": "bottom"
-        },
-        "triggers": {
-          "name": "triggers",
-          "description": "Event to trigger the popper. \n Accepted values are 'click' (default), 'hover', 'focus', 'manual'. Space-delimited for multiple triggers.",
-          "types": ["String"],
-          "required": false,
-          "defaultValue": "click"
-        },
-        "container": {
-          "name": "container",
-          "description": "Selector to append rendered popover into. \n If null or element not found, popover is appended to <body> (default)",
-          "types": ["String"],
-          "required": false,
-          "defaultValue": null
-        },
-        "boundary": {
-          "name": "boundary",
-          "description": "The container that the popover will be constrained visually. The default should suffice in most cases, but you may need to change this if your target element is in a small container with overflow scroll. \n Accepted values are 'scrollParent' (default), 'viewport', 'window', or a reference to an HTML element.",
-          "required": false,
-          "types": ["String"],
-          "defaultValue": "scrollParent"
-        },
-        "arrowElement": {
-          "name": "arrowElement",
-          "description": "Selector or node used as arrow. '[x-arrow]' (default).",
-          "required": false,
-          "types": ["String"],
-          "defaultValue": null
-        },
-        "wrapperHTML": {
-          "name": "wrapperHTML",
-          "description": "Single node HTML element without any child. The wrapper is act as the container of the popper content.",
-          "required": false,
-          "types": ["String"],
-          "defaultValue": "<div class=\"popper\" role=\"popper\"></div>"
-        },
-        "showOnCreate": {
-          "name": "showOnCreate",
-          "description": "Show the popper after created without waiting till the trigger is called.",
-          "required": false,
-          "types": ["Boolean"],
-          "defaultValue": false
-        },
-        "outsideDismiss": {
-          "name": "outsideDismiss",
-          "description": "Allow popper to dismiss when click outside.",
-          "required": false,
-          "types": ["Boolean"],
-          "defaultValue": true
         }
       },
       "componentName": "FdPopper"
