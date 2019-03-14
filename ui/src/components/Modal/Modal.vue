@@ -8,6 +8,7 @@
       <ClickAwayContainer
         @clickOutside="clickOutside"
         class="fd-modal"
+        :tabindex="isActive ? -1 : 0"
         :active="isActive"
       >
         <div class="fd-modal__content" role="document">
@@ -44,17 +45,21 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 // Use these types in order to cast your props. Delete if not needed.
 // import { PropValidator } from "vue/types/options";
 // import { Prop } from "vue/types/options";
 import ClickAwayContainer from "@/components/ClickAwayContainer";
 import { Button } from "@/components/Button";
+import { FocusTrap, mixins } from "@/mixins";
 
-export default Vue.extend({
+export default mixins(FocusTrap).extend({
   name: "FdModal",
   mounted() {
     document.body.appendChild(this.$el);
+    this.initializeFocusTrap(this.$el, {
+      onDeactivate: this.close,
+      initialFocus: ".fd-modal"
+    });
   },
   destroyed() {
     const el = this.$el;
@@ -63,6 +68,13 @@ export default Vue.extend({
       if (parent != null) {
         parent.removeChild(el);
       }
+    }
+  },
+  updated() {
+    if (this.isActive) {
+      this.activateFocusTrap();
+    } else {
+      this.deactivateFocusTrap();
     }
   },
   props: {
