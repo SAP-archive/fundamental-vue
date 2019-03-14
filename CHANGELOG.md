@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.1-rc.13"></a>
+## [0.1.1-rc.13](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.12...v0.1.1-rc.13) (2019-03-14)
+
+
+### Bug Fixes
+
+* Add unit tests for Spinner component ([#256](https://github.com/SAP/fundamental-vue/issues/256)) ([0b8944c](https://github.com/SAP/fundamental-vue/commit/0b8944c))
+
+
+
 <a name="0.1.1-rc.12"></a>
 ## [0.1.1-rc.12](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.11...v0.1.1-rc.12) (2019-03-14)
 
