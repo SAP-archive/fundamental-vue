@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0-rc.0"></a>
+# [0.2.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.13...v0.2.0-rc.0) (2019-03-15)
+
+
+### Features
+
+* create focus trap mixin and add it to modal ([#257](https://github.com/SAP/fundamental-vue/issues/257)) ([7bb5391](https://github.com/SAP/fundamental-vue/commit/7bb5391))
+
+
+
 <a name="0.1.1-rc.13"></a>
 ## [0.1.1-rc.13](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.12...v0.1.1-rc.13) (2019-03-14)
 
