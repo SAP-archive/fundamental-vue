@@ -6,3 +6,4 @@ export { default as withTargetLocation } from "./withTargetLocation";
 export { default as Compactable } from "./Compactable";
 // @ts-ignore
 export { default as CompactableContainer } from "./CompactableContainer";
+export { default as FocusTrap } from "./FocusTrap";
