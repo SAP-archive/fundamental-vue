@@ -1,23 +1,26 @@
 import Vue from "vue";
 import createFocusTrap, { FocusTrap, Options } from "focus-trap";
 
-let focusTrap: FocusTrap;
-
 export default Vue.extend({
+  data() {
+    return {
+      fdFocusTrap: undefined as FocusTrap | undefined
+    };
+  },
   methods: {
     initializeFocusTrap(element: Element, options?: Options): void {
       const domNode = element as HTMLElement;
-      focusTrap = createFocusTrap(domNode, options);
+      this.fdFocusTrap = createFocusTrap(domNode, options);
     },
     activateFocusTrap(): void {
-      if (typeof focusTrap === "undefined") return;
+      if (typeof this.fdFocusTrap === "undefined") return;
 
-      focusTrap.activate();
+      this.fdFocusTrap.activate();
     },
     deactivateFocusTrap(): void {
-      if (typeof focusTrap === "undefined") return;
+      if (typeof this.fdFocusTrap === "undefined") return;
 
-      focusTrap.deactivate();
+      this.fdFocusTrap.deactivate();
     }
   }
 });
