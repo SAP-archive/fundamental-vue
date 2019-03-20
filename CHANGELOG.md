@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0-rc.1"></a>
+# [0.2.0-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.2.0-rc.0...v0.2.0-rc.1) (2019-03-20)
+
+
+### Features
+
+* Side Navigation Item no longer requires an id to work ([31c55ad](https://github.com/SAP/fundamental-vue/commit/31c55ad))
+
+
+
 <a name="0.2.0-rc.0"></a>
 # [0.2.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.1.1-rc.13...v0.2.0-rc.0) (2019-03-15)
 
