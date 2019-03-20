@@ -20,4 +20,5 @@ yarn release:create -- --repo $TRAVIS_REPO_SLUG --tag $release_tag --branch mast
 
 npm publish
 
-# add docs deployment here
+# deploy documentation site to github pages branch
+yarn deploy:docs

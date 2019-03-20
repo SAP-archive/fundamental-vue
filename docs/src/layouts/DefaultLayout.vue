@@ -4,8 +4,8 @@
       <FdShellBar>
         <FdShellBarGroup position="start">
           <FdShellBarLogo
-            src="/images/logo.png"
-            srcset="/images/logo.png 1x, /images/logo@2x.png 2x"
+            src="/fundamental-vue/images/logo.png"
+            srcset="/fundamental-vue/images/logo.png 1x, /fundamental-vue/images/logo@2x.png 2x"
           />
           <FdShellBarProduct>
             <FdShellBarProductTitle>Fundamental Vue</FdShellBarProductTitle>

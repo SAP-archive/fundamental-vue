@@ -11,8 +11,12 @@ Include `aria-label` when there is no text equivalent for the identifier. This i
     <FdIdentifier backgroundColor="accent-1" icon="washing-machine" />
     <FdIdentifier circle backgroundColor="accent-1" icon="washing-machine" />
     <FdIdentifier aria-label="Christian Kienle">CK</FdIdentifier>
-    <FdIdentifier thumbnail url="/images/headshot-male.jpg" />
-    <FdIdentifier circle thumbnail url="/images/headshot-male.jpg" />
+    <FdIdentifier thumbnail url="/fundamental-vue/images/headshot-male.jpg" />
+    <FdIdentifier
+      circle
+      thumbnail
+      url="/fundamental-vue/images/headshot-male.jpg"
+    />
   </div>
 </template>
 
