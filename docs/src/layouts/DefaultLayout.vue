@@ -4,8 +4,16 @@
       <FdShellBar>
         <FdShellBarGroup position="start">
           <FdShellBarLogo
-            src="/fundamental-vue/images/logo.png"
-            srcset="/fundamental-vue/images/logo.png 1x, /fundamental-vue/images/logo@2x.png 2x"
+            :src="
+              env === 'production'
+                ? '/fundamental-vue/images/logo.png'
+                : '/images/logo.png'
+            "
+            :srcset="
+              env === 'production'
+                ? '/fundamental-vue/images/logo.png 1x, /fundamental-vue/images/logo@2x.png 2x'
+                : '/images/logo.png 1x, /images/logo@2x.png 2x'
+            "
           />
           <FdShellBarProduct>
             <FdShellBarProductTitle>Fundamental Vue</FdShellBarProductTitle>
@@ -105,7 +113,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      activeNavItemId: "./Action Bar/index.ts"
+      activeNavItemId: "./Action Bar/index.ts",
+      env: process.env.NODE_ENV
     };
   }
 });
