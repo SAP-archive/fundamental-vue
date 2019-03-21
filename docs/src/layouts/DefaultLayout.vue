@@ -3,10 +3,7 @@
     <FdShellHeader fixed>
       <FdShellBar>
         <FdShellBarGroup position="start">
-          <FdShellBarLogo
-            src="/images/logo.png"
-            srcset="/images/logo.png 1x, /images/logo@2x.png 2x"
-          />
+          <FdShellBarLogo :src="logoSrc" :srcset="logoSrcSet" />
           <FdShellBarProduct>
             <FdShellBarProductTitle>Fundamental Vue</FdShellBarProductTitle>
           </FdShellBarProduct>
@@ -105,7 +102,13 @@ export default Vue.extend({
   },
   data() {
     return {
-      activeNavItemId: "./Action Bar/index.ts"
+      activeNavItemId: "./Action Bar/index.ts",
+      logoSrc: process.env.BASE_URL + "images/logo.png",
+      logoSrcSet:
+        process.env.BASE_URL +
+        "images/logo.png 1x, " +
+        process.env.BASE_URL +
+        "images/logo@2x.png 2x"
     };
   }
 });

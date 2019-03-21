@@ -4,7 +4,7 @@
 [![Minified Size](https://badgen.net/bundlephobia/min/fundamental-vue)](https://bundlephobia.com/result?p=fundamental-vue)
 [![Minzipped Size](https://badgen.net/bundlephobia/minzip/fundamental-vue)](https://bundlephobia.com/result?p=fundamental-vue)
 [![Build Status](https://travis-ci.org/SAP/fundamental-vue.svg?branch=develop)](https://travis-ci.org/SAP/fundamental-vue)
-[![Coverage Status](https://coveralls.io/repos/github/SAP/fundamental-vue/badge.svg?branch=develop)](https://coveralls.io/github/SAP/fundamental-vue?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/SAP/fundamental-vue/badge.svg?branch=develop)](https://coveralls.io/github/SAP/fundamental-vue?branch=master)
 [![Slack](https://img.shields.io/badge/slack-ui--fundamentals-blue.svg?logo=slack)](https://ui-fundamentals.slack.com)
 
 ## Description
@@ -15,7 +15,7 @@ The SAP Fiori Fundamentals library is a design system and HTML/CSS component lib
 
 ## API Reference
 
-See [Component Documentation](https://dist-k9e2d0lf1.now.sh) for examples and API details.
+See [Component Documentation](https://sap.github.io/fundamental-vue/) for examples and API details.
 
 ## Requirements
 
@@ -33,10 +33,10 @@ Paste the following snippet in your `<head>`-tag:
 ```html
 <link
     rel="stylesheet"
-    href="https://unpkg.com/fiori-fundamentals@1.4.3/dist/fiori-fundamentals.min.css"
+    href="https://unpkg.com/fiori-fundamentals@latest/dist/fiori-fundamentals.min.css"
 />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/fundamental-vue@0.1.0/dist/FundamentalVue.umd.js"></script>
+<script src="https://unpkg.com/fundamental-vue@latest/dist/FundamentalVue.umd.js"></script>
 ```
 
 Then you can use Fundamental Vue like this:
@@ -62,7 +62,7 @@ Then you can use Fundamental Vue like this:
 If you are targeting IE 11 you have to include the IE-compatible build of Fiori Fundamentals:
 
 ```
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.4.3/dist/fiori-fundamentals-ie11.min.css">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@latest/dist/fiori-fundamentals-ie11.min.css">
 ```
 
 How to install Fundamental Vue via **NPM** is described below.
@@ -97,7 +97,7 @@ To download and use this library, you first need to install the node package man
     The quickest way to get Fiori Fundamentals styling for your components is to include the compiled and minified Fiori Fundamentals CSS library with the following CDN link in your public `index.html` file:
 
     ```
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@1.4.3/dist/fiori-fundamentals.min.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@latest/dist/fiori-fundamentals.min.css">
     ```
 
     However, installing the Fiori Fundamentals library with npm (recommended) will give you the flexibility to use individual components and enable [advanced customisation options](https://github.com/SAP/fundamental/wiki/Advanced-Customization). In this case, you do not need the CDN link as this method uses the SASS/SCSS source.
@@ -141,9 +141,9 @@ To download and use this library, you first need to install the node package man
     </style>
     ```
 
-    You can now use the [Documentation](https://dist-k9e2d0lf1.now.sh) to browse the components currently available with Fundamental Vue.
+    You can now use the [Documentation](https://sap.github.io/fundamental-vue/) to browse the components currently available with Fundamental Vue.
 
-    To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessarry:
+    To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessary:
 
     ```
     ...
@@ -163,9 +163,6 @@ Merges to the `master` branch will be published as a prerelease. Prereleases wil
 
 Please see [Issues](https://github.com/SAP/fundamental-vue/issues).
 
-# Developer Guide
-Interested in contributing to this Fundamental Vue? See the [Developer Guide](https://github.com/SAP/fundamental-vue/wiki/Dev-Guide).
-
 # Testing Guide
 See the [Testing Guide](https://github.com/SAP/fundamental-vue/wiki/Test-Guide).
 
@@ -175,9 +172,9 @@ If you encounter an issue, you can [create a ticket](https://github.com/SAP/fund
 
 ## Contributing
 
-If you want to contribute, please check the [Contribution Guidelines](./CONTRIBUTING.md) documentation for contribution guidelines.
+If you want to contribute, please check the [Developer Guide](https://github.com/SAP/fundamental-vue/wiki/Fundamental-Vue-Development-Guide) documentation for contribution guidelines.
 
-Check out [this guide](./NEW_COMPONENT/NEW_COMPONENT.md) on building a new component for the library and creating the necessary documentation for your new component.
+Check out [this guide](./docs/src/static-pages/NEW_COMPONENT/NEW_COMPONENT.md) on building a new component for the library and creating the necessary documentation for your new component.
 
 ## License
 

@@ -7,6 +7,7 @@ module.exports = {
   devServer: {
     proxy: "http://localhost:3200"
   },
+  publicPath: process.env.NODE_ENV === "production" ? "/fundamental-vue/" : "/",
   configureWebpack: {
     externals,
     entry: "./src/main.ts",
