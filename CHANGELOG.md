@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0-rc.3"></a>
+# [0.2.0-rc.3](https://github.com/SAP/fundamental-vue/compare/v0.2.0-rc.2...v0.2.0-rc.3) (2019-03-21)
+
+
+### Bug Fixes
+
+* Input Component fixes from Code Review ([5d10488](https://github.com/SAP/fundamental-vue/commit/5d10488))
+
+
+
 <a name="0.2.0-rc.2"></a>
 # [0.2.0-rc.2](https://github.com/SAP/fundamental-vue/compare/v0.2.0-rc.1...v0.2.0-rc.2) (2019-03-21)
 
