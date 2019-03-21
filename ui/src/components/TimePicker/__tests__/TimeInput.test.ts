@@ -41,9 +41,11 @@ describe("TimeInput", () => {
   const verifyInputValue = async (value: string) => {
     input.trigger("input");
 
-    const inputLength = wrapper.emitted("input").length;
-    expect(inputLength).toBeGreaterThan(0);
-    expect(wrapper.emitted("input")[inputLength - 1][0]).toEqual(value);
+    const inputEvents = wrapper.emitted("input");
+    expect(inputEvents).toBeDefined();
+    const inputEventsCount = inputEvents.length;
+    expect(inputEventsCount).toBeGreaterThan(0);
+    expect(wrapper.emitted("input")[inputEventsCount - 1][0]).toEqual(value);
     expect((input.element as HTMLInputElement).value).toEqual(value);
 
     await wrapper.vm.$nextTick();
