@@ -1,5 +1,5 @@
 <template>
-  <button :class="classes" @click="click">
+  <button :class="classes" @click="click" :disabled="disabled">
     <slot />
   </button>
 </template>
@@ -40,20 +40,17 @@ export default {
     }
   },
   computed: {
+    disabled() {
+      return this.state === "disabled";
+    },
     classes() {
-      const staticClass = [this.styling == null ? "fd-button" : ""];
-      const compact = [this.compact ? "fd-button--compact" : ""];
-      const styling = [this.styling ? `fd-button--${this.styling}` : ""];
-      const type = [this.type ? `fd-button--${this.type}` : ""];
-      const state = [this.state !== "normal" ? `is-${this.state}` : ""];
-
       // @ts-ignore
       return [
-        ...staticClass,
-        ...compact,
-        ...styling,
-        ...type,
-        ...state,
+        this.styling == null ? "fd-button" : "",
+        this.compact ? "fd-button--compact" : "",
+        this.styling != null ? `fd-button--${this.styling}` : "",
+        this.type != null ? `fd-button--${this.type}` : "",
+        this.state !== "normal" ? `is-${this.state}` : "",
         ...this.iconClasses
       ];
     }

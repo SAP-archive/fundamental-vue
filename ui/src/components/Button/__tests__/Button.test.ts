@@ -24,6 +24,7 @@ describe("Button", () => {
     });
     wrapper.trigger("click");
     assert.isEmpty(wrapper.emitted());
+    assert.strictEqual(wrapper.attributes("disabled"), "disabled");
   });
 
   it("does not emit a click event when clicked", () => {
