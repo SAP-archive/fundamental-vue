@@ -3,7 +3,7 @@
 <template>
   <div>
     <FdButton @click.stop="showModal">Show Modal</FdButton>
-    <FdModal title="Modal Title" :active.sync="isModalActive">
+    <FdModal title="Modal Title" :active="isModalActive" :onClose="closeModal">
       <p>Do you want to invite your friends to join the party?</p>
       <template slot="actions">
         <FdButton @click="closeModal" styling="light">Cancel</FdButton>

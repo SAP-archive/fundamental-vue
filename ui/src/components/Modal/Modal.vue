@@ -1,15 +1,15 @@
 <template>
   <transition name="fade">
     <div
-      v-show="isActive"
+      v-show="active"
       class="fd-ui__overlay fd-overlay fd-overlay--modal"
-      :aria-hidden="!isActive"
+      :aria-hidden="!active"
     >
       <ClickAwayContainer
-        @clickOutside="clickOutside"
+        @clickOutside="onClose"
         class="fd-modal"
-        :tabindex="isActive ? -1 : 0"
-        :active="isActive"
+        :tabindex="active ? -1 : 0"
+        :active="active"
       >
         <div class="fd-modal__content" role="document">
           <!-- HEADER -->
@@ -18,7 +18,7 @@
             <Button
               class="fd-modal__close"
               styling="light"
-              @click="close"
+              @click="onClose"
               aria-label="close"
             />
           </div>
@@ -57,7 +57,7 @@ export default mixins(FocusTrap).extend({
   mounted() {
     document.body.appendChild(this.$el);
     this.initializeFocusTrap(this.$el, {
-      onDeactivate: this.close,
+      onDeactivate: () => this.onClose,
       initialFocus: ".fd-modal"
     });
   },
@@ -71,7 +71,7 @@ export default mixins(FocusTrap).extend({
     }
   },
   updated() {
-    if (this.isActive) {
+    if (this.active) {
       this.activateFocusTrap();
     } else {
       this.deactivateFocusTrap();
@@ -79,32 +79,9 @@ export default mixins(FocusTrap).extend({
   },
   props: {
     active: { type: Boolean, default: false },
-    title: { type: String, default: null }
+    title: { type: String, default: null },
+    onClose: { type: Function, required: true }
   },
-  components: { Button, ClickAwayContainer },
-  watch: {
-    active: {
-      immediate: true,
-      handler(newIsActive: boolean) {
-        this.isActive = newIsActive;
-      }
-    }
-  },
-  methods: {
-    clickOutside() {
-      if (this.isActive) {
-        this.close();
-      }
-    },
-    close() {
-      this.$emit("close");
-      this.$emit("update:active", false);
-    }
-  },
-  data() {
-    return {
-      isActive: this.active
-    };
-  }
+  components: { Button, ClickAwayContainer }
 });
 </script>
