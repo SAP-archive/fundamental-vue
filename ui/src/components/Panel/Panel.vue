@@ -3,9 +3,15 @@
     <!-- HEADER -->
     <div v-if="needsHeader" class="fd-panel__header">
       <div v-if="needsHead" class="fd-panel__head">
-        <h1 v-if="title != null" class="fd-panel__title">{{ title }}</h1>
-        <p v-if="description != null" class="fd-panel__description">
-          {{ description }}
+        <h1 v-if="hasTitle" class="fd-panel__title">
+          <slot name="title">
+            {{ title }}
+          </slot>
+        </h1>
+        <p v-if="hasDescription" class="fd-panel__description">
+          <slot name="description">
+            {{ description }}
+          </slot>
         </p>
       </div>
       <div v-if="hasActions" class="fd-panel__actions">
@@ -71,6 +77,12 @@ export default Vue.extend({
         ? staticClasses
         : [...staticClasses, `fd-has-grid-column-span-${span}`];
     },
+    hasTitle(): boolean {
+      return this.$slots.title != null || this.title != null;
+    },
+    hasDescription(): boolean {
+      return this.$slots.description != null || this.description != null;
+    },
     hasActions(): boolean {
       return this.$slots.actions != null;
     },
@@ -78,7 +90,7 @@ export default Vue.extend({
       return this.needsHead || this.hasActions;
     },
     needsHead(): boolean {
-      return this.title != null || this.description != null;
+      return this.hasTitle || this.hasDescription;
     }
   }
 });
