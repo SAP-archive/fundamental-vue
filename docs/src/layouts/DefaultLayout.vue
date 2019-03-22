@@ -1,107 +1,75 @@
 <template>
-  <FdShell>
+  <div
+    :class="sidebarClasses"
+    @touchstart="onTouchStart"
+    @touchend="onTouchEnd"
+  >
     <FdShellHeader fixed>
-      <FdShellBar>
-        <FdShellBarGroup position="start">
-          <FdShellBarLogo :src="logoSrc" :srcset="logoSrcSet" />
-          <FdShellBarProduct>
-            <FdShellBarProductTitle>Fundamental Vue</FdShellBarProductTitle>
-          </FdShellBarProduct>
-        </FdShellBarGroup>
-        <FdShellBarGroup position="end">
-          <FdShellBarActions>
-            <FdShellBarAction>
-              <FdShellBarUserMenu>
-                <FdMenuItem>
-                  <a
-                    href="https://github.com/SAP/fundamental-vue/issues/new"
-                    target="_blank"
-                    >Report an Issue</a
-                  >
-                </FdMenuItem>
-              </FdShellBarUserMenu>
-            </FdShellBarAction>
-          </FdShellBarActions>
-        </FdShellBarGroup>
-      </FdShellBar>
+      <ShellBar>
+        <FdButton
+          @click.prevent.stop="toggleSidebar"
+          :aria-pressed="isSidebarOpen"
+          slot="toggle"
+          type="standard"
+          class="shell-bar__sidenav-toggle"
+          icon="menu2"
+        />
+      </ShellBar>
     </FdShellHeader>
-    <FdApp>
-      <FdAppNavigation orientation="vertical" class="sidebar">
-        <FdSideNav
-          mode="router"
-          style="padding-bottom': 25px;"
-          selectedId.sync="activeNavItemId"
-        >
-          <FdSideNavList :items="staticMenuItems" />
-          <FdSideNavGroup>
-            <FdSideNavGroupTitle>Examples</FdSideNavGroupTitle>
-            <FdSideNavList
-              :items="exampleCollectionsMenuItems"
-              style="margin-bottom: 60px;"
-            >
-              <!-- <template slot="afterLinkText" slot-scope="exampleItem">
-              <Identifier
-                style="width: 20px; height: 20px;"
-                :title="exampleItem.componentState.title"
-                circle
-                class="fd-has-float-right"
-                :backgroundColor="exampleItem.componentState.color || 'accent-6'"
-                size="xss"
-                :icon="exampleItem.componentState.icon"
-              />
+    <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
 
-              </template> -->
-            </FdSideNavList>
-          </FdSideNavGroup>
-        </FdSideNav>
-      </FdAppNavigation>
-      <FdAppMain class="main-with-sidebar">
-        <router-view />
-      </FdAppMain>
-    </FdApp>
-  </FdShell>
+    <div class="sidebar">
+      <SideNav selectedId.sync="activeNavItemId" />
+    </div>
+    <div class="content">
+      <router-view />
+    </div>
+  </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script>
+import ShellBar from "./default/ShellBar.vue";
+import SideNav from "./default/SideNav.vue";
 
-interface SideNavListItem {
-  id: string;
-  name: string;
-  icon: string;
-  to: object | string;
-}
-
-export default Vue.extend({
-  computed: {
-    exampleCollectionsMenuItems(): SideNavListItem[] {
-      const pages = this.$docLoader.pages;
-      return pages.map(page => {
-        return {
-          id: page.slug,
-          name: page.title,
-          icon: page.icon,
-          to: {
-            name: "example",
-            params: { slug: page.slug }
-          }
-        };
-      });
+export default {
+  components: { ShellBar, SideNav },
+  methods: {
+    toggleSidebar(to) {
+      this.isSidebarOpen = typeof to === "boolean" ? to : !this.isSidebarOpen;
     },
-    staticMenuItems(): SideNavListItem[] {
-      return [
-        { id: "start", name: "Start", icon: "home", to: "/start" },
-        {
-          id: "new-component",
-          name: "New Component Guide",
-          icon: "write-new",
-          to: "/guide/new-component"
+    onTouchStart({ changedTouches }) {
+      const [touch, ..._] = changedTouches;
+      this.touchStart = {
+        x: touch.clientX,
+        y: touch.clientY
+      };
+    },
+    onTouchEnd(event) {
+      const { changedTouches } = event;
+      const [touch, ..._] = changedTouches;
+      const { clientX, clientY } = touch;
+      const { touchStart } = this;
+      const dx = clientX - touchStart.x;
+      const dy = clientY - touchStart.y;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 44) {
+        if (dx > 0 && this.touchStart.x <= 80) {
+          this.toggleSidebar(true);
+        } else {
+          this.toggleSidebar(false);
         }
-      ];
+      }
+    }
+  },
+  computed: {
+    sidebarClasses() {
+      return {
+        "sidebar--open": this.isSidebarOpen
+      };
     }
   },
   data() {
     return {
+      isSidebarOpen: false,
       activeNavItemId: "./Action Bar/index.ts",
       logoSrc: process.env.BASE_URL + "images/logo.png",
       logoSrcSet:
@@ -111,34 +79,117 @@ export default Vue.extend({
         "images/logo@2x.png 2x"
     };
   }
-});
+};
 </script>
 
-<style lang="sass" scoped>
-$navbar-height: 48px
-$navbar-vertical-padding: 0px
-$logo-height: $navbar-height - 0px
-$border-color: #d9d9d9
+<style lang="scss">
+@import "./../styles/mixins";
 
-.sidebar
-  font-size: 15px
-  width: 250px
-  position: fixed
-  z-index: 10
-  top: $navbar-height
-  left: 0
-  box-sizing: border-box
-  overflow-y: auto
-  min-width: 250px
-  border-right: 1px solid #d9d9d9
+.shell-bar__sidenav-toggle {
+  margin-left: -10px;
+  margin-right: 10px;
+  color: #fff;
+  border: none;
+  background-color: rgb(53, 74, 95);
+  display: none;
 
-.main-with-sidebar
-  position: absolute
-  left: 250px
-  top: 0
-  right: 0
-  background-color: white;
+  &[aria-pressed="true"] {
+    color: white;
+    background-color: black;
+    border: none;
+  }
 
-body
-  background-color: white;
+  &:hover {
+    background-color: black;
+  }
+  @include for-compact-only {
+    display: inline-block;
+  }
+}
+
+.sidebar-mask {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgb(0, 0, 0);
+  opacity: 0;
+  animation: fadeInFromNone 0.5s ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+    background-color: black;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+    background-color: black;
+  }
+
+  100% {
+    display: block;
+    opacity: 0.2;
+    background-color: black;
+  }
+}
+
+$sidebar-width: 250px;
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: $sidebar-width;
+  background-color: #f1f1f1;
+  position: fixed;
+  top: 48px;
+  height: 100%;
+  overflow: auto;
+  z-index: 10;
+  transition: transform 0.33s ease;
+  border-right: 1px solid #cccccc;
+}
+
+.content {
+  $insetSide: 64px;
+  $insetSide-compact: 16px;
+  margin-left: $sidebar-width;
+  padding-top: calc(44px + 64px);
+  padding-left: $insetSide;
+  padding-right: $insetSide;
+  top: 44px;
+  width: unquote("calc( 100% - (0.5 * #{$sidebar-width} + 2 * #{$insetSide}))");
+
+  @include for-compact-only {
+    padding-left: $insetSide-compact;
+    padding-right: $insetSide-compact;
+    padding-top: calc(44px + 16px);
+    width: 100%;
+  }
+}
+
+.sidebar--open .sidebar {
+  transition: transform 0.2s ease;
+}
+@include for-compact-only {
+  .content {
+    margin-left: 0;
+  }
+  .sidebar--open .sidebar {
+    transform: translateX(0);
+  }
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar--open .sidebar-mask {
+    display: block;
+  }
+}
 </style>
