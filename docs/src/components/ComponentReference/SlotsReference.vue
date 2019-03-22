@@ -1,38 +1,27 @@
 <template>
-  <FdTable :headers="tableHeaders" :items="slots" style="margin-bottom: 0;">
-    <template slot="row" slot-scope="{ item }">
-      <FdTableRow>
-        <FdTableCell>
-          <span
-            v-if="isDefaultSlot(item.name)"
-            style="color: rgb(200, 200, 200);"
-          >
-            default
-          </span>
-          <span v-else>{{ item.name }}</span>
-        </FdTableCell>
-        <FdTableCell>{{ item.description }}</FdTableCell>
-      </FdTableRow>
-    </template>
-  </FdTable>
+  <div>
+    <ApiItem
+      v-for="{ name, description } of slots"
+      :key="name"
+      :name="readableSlotName(name)"
+      :description="description"
+    />
+  </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script>
+import ApiItem from "./components/ApiItem.vue";
 
-export default Vue.extend({
+export default {
+  components: { ApiItem },
+  props: { slots: Array, default: () => [] },
   methods: {
-    isDefaultSlot(name: string) {
+    isDefaultSlot(name) {
       return name === "";
+    },
+    readableSlotName(name) {
+      return this.isDefaultSlot(name) ? "default" : name;
     }
-  },
-  computed: {
-    tableHeaders() {
-      return ["Name", "Description"];
-    }
-  },
-  props: {
-    slots: Array
   }
-});
+};
 </script>

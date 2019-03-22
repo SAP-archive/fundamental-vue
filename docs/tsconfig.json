@@ -1,5 +1,7 @@
 {
+
   "compilerOptions": {
+    "rootDir": "./",
     "allowJs": true,
     "resolveJsonModule": true,
     "target": "esnext",

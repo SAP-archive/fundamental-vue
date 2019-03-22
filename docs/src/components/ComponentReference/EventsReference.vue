@@ -1,27 +1,24 @@
 <template>
-  <FdTable :items="events" :headers="headers">
-    <template slot="row" slot-scope="{ item }">
-      <FdTableRow>
-        <FdTableCell>{{ item.name }}</FdTableCell>
-        <FdTableCell>{{ item.description }}</FdTableCell>
-      </FdTableRow>
-    </template>
-  </FdTable>
+  <div>
+    <ApiItem
+      v-for="event of events"
+      :key="event.name"
+      :name="event.name"
+      :description="event.description"
+    />
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { EventDocumentation } from "@/api";
 import { Prop } from "vue/types/options";
+import ApiItem from "./components/ApiItem.vue";
 
 export default Vue.extend({
+  components: { ApiItem },
   props: {
     events: Array as Prop<EventDocumentation[]>
-  },
-  computed: {
-    headers(): string[] {
-      return ["Event", "Description"];
-    }
   }
 });
 </script>

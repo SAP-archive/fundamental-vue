@@ -6,13 +6,13 @@
     </div>
     <FdTabs :value="initialTab">
       <FdTabItem v-if="hasProps" label="Properties" name="props">
-        <PropsReference :documentedProps="documentedProps" />
+        <PropsReference class="api-items" :documentedProps="documentedProps" />
       </FdTabItem>
       <FdTabItem v-if="hasEvents" label="Events" name="events">
-        <EventsReference :events="documentedEvents" />
+        <EventsReference class="api-items" :events="documentedEvents" />
       </FdTabItem>
       <FdTabItem v-if="hasSlots" label="Slots" name="slots">
-        <SlotsReference :slots="documentedSlots" />
+        <SlotsReference class="api-items" :slots="documentedSlots" />
       </FdTabItem>
     </FdTabs>
   </div>
@@ -85,17 +85,11 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
-.title {
-  font-weight: bold;
-  color: rgb(60, 60, 60);
-  text-align: right;
-  font-size: 14px;
-}
-code {
-  background-color: rgb(184, 213, 250);
-  padding: 3px;
-  border-radius: 3px;
-  font-size: 14px;
+<style lang="scss">
+.api-items {
+  // We have to do that because the text on tab items is centered.
+  padding-left: 15px;
+  min-width: 100%;
+  max-width: 100%;
 }
 </style>
