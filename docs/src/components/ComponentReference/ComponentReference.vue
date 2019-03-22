@@ -1,5 +1,9 @@
 <template>
-  <FdSection v-if="isDocumented" v-bg:neutral-1 :title="title">
+  <div v-if="isDocumented">
+    <div class="title">
+      <code>{{ title }}</code
+      >-API
+    </div>
     <FdTabs :value="initialTab">
       <FdTabItem v-if="hasProps" label="Properties" name="props">
         <PropsReference :documentedProps="documentedProps" />
@@ -11,7 +15,7 @@
         <SlotsReference :slots="documentedSlots" />
       </FdTabItem>
     </FdTabs>
-  </FdSection>
+  </div>
 </template>
 
 <script lang="ts">
@@ -42,7 +46,7 @@ export default Vue.extend({
   },
   computed: {
     title(): string {
-      return `${this.componentDocumentation.componentName} API`;
+      return this.componentDocumentation.componentName;
     },
     initialTab(): string | null {
       if (this.hasProps) {
@@ -80,3 +84,18 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.title {
+  font-weight: bold;
+  color: rgb(60, 60, 60);
+  text-align: right;
+  font-size: 14px;
+}
+code {
+  background-color: rgb(184, 213, 250);
+  padding: 3px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+</style>

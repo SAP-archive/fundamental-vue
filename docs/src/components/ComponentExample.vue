@@ -117,7 +117,8 @@ export default Vue.extend({
 <style lang="sass">
 
 .component-example
-  padding: 30px 30px 30px 30px
+  padding: 0px
+  margin-bottom: 40px
   .example-title
     color: #555555
   .example__show_code
@@ -134,17 +135,16 @@ export default Vue.extend({
     background-color: red
     border-left: 0.5rem solid #42b983
     background-color: #f3f5f7
-    padding: 1.5rem
-    margin-top: 1em
+    padding: 10px
     border-bottom: 1px solid #ebebeb
     .tip-title
       font-weight: 600
       font-size: 16px
       line-height: 1.7
+      padding-left: 20px
     .tip-body
-      margin-top: 1em
-      margin-bottom: 1em
       font-size: 16px
+      padding: 20px
   .fullscreen-demo-button
     display: inline-block
     float: right

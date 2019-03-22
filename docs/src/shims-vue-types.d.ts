@@ -10,6 +10,7 @@
 //
 // @ts-ignore TS6133
 import Vue from "vue";
+// eslint-ignore
 import DocumentationLoader from "./DocumentationLoader";
 
 declare module "vue/types/vue" {
@@ -25,6 +26,7 @@ declare module "vue/types/vue" {
   // Uncomment the following line once the interface blow contains anything.
   // tslint:disable-next-line:no-empty-interface
   interface VueConstructor {
+    // $myGlobal:any;
     // This is where global properties should be declared. For example:
     // You access $myGlobal like this:
     // Vue.$myGlobal

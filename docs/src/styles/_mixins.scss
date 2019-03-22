@@ -1,0 +1,4 @@
+// Use to apply styles for compact view ports.
+@mixin for-compact-only {
+  @media (max-width: 900px) { @content; }
+}

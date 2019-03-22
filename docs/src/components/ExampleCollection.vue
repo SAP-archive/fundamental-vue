@@ -14,12 +14,9 @@
         :fullscreenOnly="example.fullscreenOnly"
       />
     </div>
-    <div
-      v-if="documentedComponents.length > 0"
-      v-bg:neutral-1
-      style="padding-top: 15px;"
-    >
+    <div v-if="documentedComponents.length > 0">
       <component-reference
+        v-margin:large.bottom
         :componentDocumentation="documentedComponent"
         v-for="documentedComponent in documentedComponents"
         :key="keyForComponentDocumentation(documentedComponent)"

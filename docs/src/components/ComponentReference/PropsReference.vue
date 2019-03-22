@@ -21,13 +21,11 @@ import Vue from "vue";
 import { Prop } from "vue/types/options";
 import { ValueToken, TypeTokens } from "./Tokens";
 import { PropDocumentation } from "@/api/PropDocumentation";
-
 const defaultValueFromProp = ({
   readableDefaultValue,
   defaultValue
 }: PropDocumentation) =>
   readableDefaultValue != null ? readableDefaultValue : defaultValue;
-
 export default Vue.extend({
   components: { ValueToken, TypeTokens },
   props: {
