@@ -5,8 +5,6 @@
     :id="inputId"
     :readonly="readonly ? '' : null"
     :disabled="disabled ? '' : null"
-    :type="type"
-    :placeholder="placeholder"
     :value="value"
     @change="$emit('update', $event.target.value)"
     v-on="$listeners"
@@ -16,13 +14,13 @@
   </select>
 </template>
 
-<script lang="ts">
-import { mixins } from "@/mixins";
+<script>
 import InputMixin from "./InputMixin";
 import { $valueWithDefault } from "./Helper/prop";
 
-export default mixins(InputMixin).extend({
+export default {
   name: "FdSelect",
+  mixins: [InputMixin],
   inheritAttrs: false,
   model: {
     event: "update"
@@ -30,5 +28,5 @@ export default mixins(InputMixin).extend({
   props: {
     value: $valueWithDefault("")
   }
-});
+};
 </script>
