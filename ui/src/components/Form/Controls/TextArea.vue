@@ -1,30 +1,15 @@
 <template>
-  <component
-    v-bind="attrs"
-    :is="FdInput"
-    v-on="$listeners"
-    type="textarea"
-    @update="$emit('update', $event)"
-  />
+  <FdInput type="textarea" v-on="$listeners" v-bind="$attrs" />
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script>
 import FdInput from "./Input.vue";
 
-export default Vue.extend({
-  inheritAttrs: false,
-  // eslint-disable-next-line vue/no-unused-components
-  components: { FdInput },
+export default {
   name: "FdTextArea",
-  computed: {
-    attrs(): object {
-      const attrs = this.$attrs;
-      return { ...attrs, is: "FdInput" };
-    }
-  },
+  components: { FdInput },
   model: {
     event: "update"
   }
-});
+};
 </script>
