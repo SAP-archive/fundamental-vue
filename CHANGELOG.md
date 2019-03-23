@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0-rc.6"></a>
+# [0.2.0-rc.6](https://github.com/SAP/fundamental-vue/compare/v0.2.0-rc.5...v0.2.0-rc.6) (2019-03-23)
+
+
+### Bug Fixes
+
+* Fixes issue related to Button, ButtonGroup and ButtonGroupButton + compact mode ([23b29fb](https://github.com/SAP/fundamental-vue/commit/23b29fb))
+
+
+
 <a name="0.2.0-rc.5"></a>
 # [0.2.0-rc.5](https://github.com/SAP/fundamental-vue/compare/v0.2.0-rc.4...v0.2.0-rc.5) (2019-03-23)
 
