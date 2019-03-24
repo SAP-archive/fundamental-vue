@@ -52,31 +52,36 @@ export default Vue.extend({
         }
       }
       this.$emit(CLICK_OUTSIDE_EVENT, event);
+    },
+    activeDidChange(isActive: boolean, wasActive: boolean) {
+      const { documentElement } = document;
+      // We are listening for clicks on the documentElement. Listening for clicks
+      // on the body elements also works but less reliably. For example if the height
+      // the body element is < 100% there will be places on the page which will
+      // emit nothing when clicked.
+      if (documentElement == null) {
+        warn(
+          `v-${this}: Cannot do anything without a documentElement element.`
+        );
+        return;
+      }
+      if (isActive && !wasActive) {
+        this.$el.addEventListener("click", this.click, false);
+        documentElement.addEventListener("click", this.click, false);
+      }
+      if (!isActive && wasActive) {
+        this.$el.removeEventListener("click", this.click, false);
+        documentElement.removeEventListener("click", this.click, false);
+      }
     }
   },
   watch: {
     active: {
       immediate: true,
       handler(isActive: boolean, wasActive: boolean): void {
-        const { documentElement } = document;
-        // We are listening for clicks on the documentElement. Listening for clicks
-        // on the body elements also works but less reliably. For example if the height
-        // the body element is < 100% there will be places on the page which will
-        // emit nothing when clicked.
-        if (documentElement == null) {
-          warn(
-            `v-${this}: Cannot do anything without a documentElement element.`
-          );
-          return;
-        }
-        if (isActive && !wasActive) {
-          this.$el.addEventListener("click", this.click, false);
-          documentElement.addEventListener("click", this.click, false);
-        }
-        if (!isActive && wasActive) {
-          this.$el.removeEventListener("click", this.click, false);
-          documentElement.removeEventListener("click", this.click, false);
-        }
+        setTimeout(() => {
+          this.activeDidChange(isActive, wasActive);
+        });
       }
     }
   }
