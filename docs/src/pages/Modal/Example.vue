@@ -2,14 +2,12 @@
 
 <template>
   <div>
-    <FdButton @click.stop="showModal">Show Modal</FdButton>
-    <FdModal title="Modal Title" :active.sync="isModalActive">
+    <FdButton @click="show">Show Modal</FdButton>
+    <FdModal title="Modal Title" :active="active" @close="close">
       <p>Do you want to invite your friends to join the party?</p>
-      <template slot="actions">
-        <FdButton @click="closeModal" styling="light">Cancel</FdButton>
-        <FdButton @click="closeModal" styling="emphasized"
-          >Invite Friends</FdButton
-        >
+      <template #actions>
+        <FdButton @click="close" styling="light">Cancel</FdButton>
+        <FdButton @click="close" styling="emphasized">Invite</FdButton>
       </template>
     </FdModal>
   </div>
@@ -17,17 +15,13 @@
 
 <script>
 export default {
-  data() {
-    return {
-      isModalActive: false
-    };
-  },
+  data: () => ({ active: false }),
   methods: {
-    closeModal() {
-      this.isModalActive = false;
+    close() {
+      this.active = false;
     },
-    showModal() {
-      this.isModalActive = true;
+    show() {
+      this.active = true;
     }
   }
 };

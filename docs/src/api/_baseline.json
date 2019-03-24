@@ -34,6 +34,22 @@
     },
     "FdModal": {
       "slots": {
+        "footer": {
+          "name": "footer",
+          "description": "Modal Footer"
+        },
+        "actions": {
+          "name": "actions",
+          "description": "Modal Actions"
+        },
+        "close": {
+          "name": "close",
+          "description": "Modal Close Button"
+        },
+        "title": {
+          "name": "title",
+          "description": "Modal Title"
+        },
         "": {
           "name": "",
           "description": "Modal Body"
