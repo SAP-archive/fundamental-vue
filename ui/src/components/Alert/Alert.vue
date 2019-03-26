@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div :id="uid" v-show="currentVisible" :class="classes" role="alert">
+    <div :id="uid" v-show="visible" :class="classes" role="alert">
       <button
         v-if="dismissible"
         class="fd-alert__close"
@@ -20,16 +20,7 @@ export default mixins(Uid).extend({
   name: "FdAlert",
   model: {
     prop: "visible",
-    event: "visible"
-  },
-  watch: {
-    visible: {
-      immediate: true,
-      handler(visible: boolean) {
-        this.currentVisible = visible;
-        this.$emit("visible", this.currentVisible);
-      }
-    }
+    event: "change"
   },
   props: {
     dismissible: {
@@ -54,8 +45,8 @@ export default mixins(Uid).extend({
   },
   methods: {
     dismiss(): void {
-      this.currentVisible = false;
       this.$emit("dismiss");
+      this.$emit("change", false);
     }
   },
   computed: {
@@ -64,11 +55,6 @@ export default mixins(Uid).extend({
       const dismissible = this.dismissible ? [] : ["fd-alert--dismissible"];
       return ["fd-alert", ...type, ...dismissible];
     }
-  },
-  data() {
-    return {
-      currentVisible: this.visible
-    };
   }
 });
 </script>
