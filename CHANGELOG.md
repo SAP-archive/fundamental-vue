@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0-rc.7"></a>
+# [0.2.0-rc.7](https://github.com/SAP/fundamental-vue/compare/v0.2.0-rc.6...v0.2.0-rc.7) (2019-03-28)
+
+
+### Features
+
+* Adds more slots to the modal + makes it more robust ([a13f863](https://github.com/SAP/fundamental-vue/commit/a13f863))
+
+
+
 <a name="0.2.0-rc.6"></a>
 # [0.2.0-rc.6](https://github.com/SAP/fundamental-vue/compare/v0.2.0-rc.5...v0.2.0-rc.6) (2019-03-23)
 
