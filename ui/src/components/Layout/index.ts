@@ -8,8 +8,7 @@ import AppNavigation from "./App/AppNavigation.vue";
 import Shell from "./Shell/Shell.vue";
 import ShellHeader from "./Shell/ShellHeader.vue";
 import ShellFooter from "./Shell/ShellFooter.vue";
-import * as ShellBar from "./ShellBar";
-import { pluginify, objectValues } from "@/util";
+import { pluginify } from "@/util";
 
 export default pluginify(
   Container,
@@ -21,8 +20,7 @@ export default pluginify(
   AppNavigation,
   Shell,
   ShellHeader,
-  ShellFooter,
-  ...objectValues(ShellBar)
+  ShellFooter
 );
 
 export {
