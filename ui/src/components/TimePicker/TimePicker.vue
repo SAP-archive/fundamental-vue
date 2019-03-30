@@ -4,7 +4,7 @@
       <div class="fd-popover__control" slot="control">
         <InputGroup
           :compact="compact"
-          afterClass="fd-input-group__addon--button fd-input-group--after"
+          afterClass="fd-input-group__addon--button"
         >
           <Input
             :value="timeValue"

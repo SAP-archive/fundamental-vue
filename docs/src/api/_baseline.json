@@ -1549,39 +1549,44 @@
       "componentName": "FdCombobox"
     },
     "FdSearchInput": {
-      "slots": {},
+      "slots": {
+        "empty": {
+          "name": "empty",
+          "description": "Content that is rendered in case there are no matching completions."
+        }
+      },
       "events": {
-        "autoComplete": {
-          "name": "autoComplete",
-          "description": "Trigerred when the value in the SearchInput is changed. \n NOTE: This event will get trigerred only if there are children components in the suggestion."
+        "update": {
+          "name": "update",
+          "description": "Trigerred when the value in the search input changed."
         },
-        "search": {
-          "name": "search",
-          "description": "Triggered when the search button is clicked or enter is pressed from the keyboard."
+        "change": {
+          "name": "change",
+          "description": "Trigerred when the value in the search input was confirmed."
         }
       },
       "mixins": [],
       "props": {
-        "value": {
-          "name": "value",
-          "description": "Value set in the Search Input",
+        "predicate": {
+          "name": "predicate",
+          "description": "Value of the enclosed search input element.",
           "required": false,
           "types": ["String"],
-          "defaultValue": ""
+          "defaultValue": null
         },
         "placeholder": {
           "name": "placeholder",
-          "description": "Placeholder in case the SearchInput is empty",
+          "description": "Placeholder in case predicate is empty",
           "required": false,
           "types": ["String"],
           "defaultValue": ""
         },
-        "ariaLabel": {
-          "name": "ariaLabel",
-          "description": "Aria Label",
+        "completions": {
+          "name": "completions",
+          "description": "Array of strings used for auto completion.",
           "required": false,
-          "types": ["String"],
-          "defaultValue": "Search Input"
+          "types": ["Array"],
+          "defaultValue": "empty array"
         },
         "compact": {
           "name": "compact",

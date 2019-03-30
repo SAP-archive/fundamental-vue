@@ -1,7 +1,6 @@
 <template>
   <textarea
     v-if="type === 'textarea'"
-    class="fd-form__control"
     :class="inputClasses"
     :id="inputId"
     :readonly="readonly ? '' : null"
@@ -9,12 +8,13 @@
     :placeholder="placeholder"
     :value="value"
     @input="$emit('update', $event.target.value)"
+    @change="$emit('change', $event.target.value)"
     v-on="$listeners"
     v-bind="$attrs"
   />
   <input
     v-else
-    class="fd-form__control"
+    class="fd-input fd-form__control"
     :class="inputClasses"
     :id="inputId"
     :readonly="readonly ? '' : null"
@@ -23,6 +23,7 @@
     :placeholder="placeholder"
     :value="value"
     @input="$emit('update', $event.target.value)"
+    @change="$emit('change', $event.target.value)"
     v-on="$listeners"
     v-bind="$attrs"
   />

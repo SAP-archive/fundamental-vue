@@ -15,6 +15,7 @@ const sizeMapping = {
   medium: "medium",
   large: "large"
 };
+
 type Size = keyof typeof sizeMapping;
 const Sizes = Object.keys(sizeMapping) as Size[];
 const isSize = (value: any): value is Size | undefined =>

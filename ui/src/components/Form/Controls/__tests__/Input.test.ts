@@ -3,6 +3,13 @@ import { mount, createLocalVue } from "@vue/test-utils";
 import FdInput from "../Input.vue";
 
 describe("FdInput", () => {
+  it("respects compact mode", () => {
+    const wrapper = mount(FdInput, { propsData: { compact: true } });
+    const classes = wrapper.classes();
+    expect(classes).toContain("fd-input");
+    expect(classes).toContain("fd-input--compact");
+  });
+
   it("renders initial value set via v-model", async () => {
     const localVue = createLocalVue();
     const wrapper = mount(

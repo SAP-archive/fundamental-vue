@@ -1,18 +1,21 @@
 import { assert } from "chai";
 import { mount, createLocalVue } from "@vue/test-utils";
-import { Radio } from "../";
+import FdRadio from "./../Radio.vue";
 
 describe("Radiobutton", () => {
   it("can be disabled", async () => {
     const localVue = createLocalVue();
     const TestComponent = localVue.extend({
-      template: `<Radio disabled value="i_like_cookies" v-model="checked" />`,
+      template: `<FdRadio disabled value="i_like_cookies" v-model="checked" />`,
       data: () => ({ checked: "" }),
-      components: { Radio }
+      components: { FdRadio }
     });
-    const wrapper = mount(TestComponent, { localVue });
+    const wrapper = mount(TestComponent, {
+      localVue,
+      components: { FdRadio }
+    });
     assert.strictEqual(wrapper.vm.checked, "");
-    const radio = wrapper.find(Radio);
+    const radio = wrapper.find(FdRadio);
     assert.isDefined(radio);
     radio.trigger("click");
     await localVue.nextTick();

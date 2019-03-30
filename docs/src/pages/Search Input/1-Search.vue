@@ -1,23 +1,19 @@
 <title>Search Input</title>
-
+<docs>`FdSearchInput` supports `v-model`: The *model value* is simply the currently entered predicate/query/value.</docs>
+<tip>
+Currently `FdSearchInput` always renderes an empty state even when no auto compleiton is used. This issue will be addressed in the near future.
+</tip>
 <template>
   <div>
-    <p>Search Query: '{{ query }}'</p>
-    <FdSearchInput
-      v-model="query"
-      placeholder="Enter Search Query"
-      @search="onSearch"
-    />
+    <p>
+      Predicate: <code>{{ predicate }}</code>
+    </p>
+    <FdSearchInput v-model="predicate" placeholder="Search" />
   </div>
 </template>
 
 <script>
 export default {
-  methods: {
-    onSearch(txt) {
-      this.query = txt;
-    }
-  },
-  data: () => ({ query: "Apples and Oranges" })
+  data: () => ({ predicate: "Apples and Oranges" })
 };
 </script>

@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve src/index.ts",
     "build": "vue-cli-service build --mode production --target lib --report --name FundamentalVue src/index.ts",
     "test": "vue-cli-service test:unit --runInBand --verbose",
+    "test:coverage": "vue-cli-service test:unit --runInBand --verbose --coverage",
     "lint": "vue-cli-service lint --no-fix --max-warnings 0 --max-errors 0",
     "lint:dev": "vue-cli-service lint",
     "test:watch": "yarn test --watch"
@@ -39,7 +40,8 @@
   },
   "peerDependencies": {
     "vue": "^2.6.7",
-    "fiori-fundamentals": "^1.4.3"
+    "vue-template-compiler": "^2.6.7",
+    "fiori-fundamentals": "^1.4.9"
   },
   "dependencies": {
     "focus-trap": "^4.0.2"

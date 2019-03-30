@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Completion List renders empty list correctly 1`] = `
+<ul
+  class="fd-menu__list"
+/>
+`;

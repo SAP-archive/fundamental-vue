@@ -6,9 +6,9 @@
       v-model="fruit"
       placeholder="Pick your Fruit of the day (default size)"
     >
-      <FdMenuItem @click="fruit = 'Apple'">Apple</FdMenuItem>
-      <FdMenuItem @click="fruit = 'Banana'">Banana</FdMenuItem>
-      <FdMenuItem @click="fruit = 'Cherry'">Cherry</FdMenuItem>
+      <FdMenuItem value="Apple">Apple</FdMenuItem>
+      <FdMenuItem value="Banana">Banana</FdMenuItem>
+      <FdMenuItem value="Cherry">Cherry</FdMenuItem>
     </FdCombobox>
 
     <br /><br />
@@ -18,9 +18,9 @@
       compact
       placeholder="Pick your Fruit of the day (compact size)"
     >
-      <FdMenuItem @click="fruit = 'Apple'">Apple</FdMenuItem>
-      <FdMenuItem @click="fruit = 'Banana'">Banana</FdMenuItem>
-      <FdMenuItem @click="fruit = 'Cherry'">Cherry</FdMenuItem>
+      <FdMenuItem value="Apple">Apple</FdMenuItem>
+      <FdMenuItem value="Banana">Banana</FdMenuItem>
+      <FdMenuItem value="Cherry">Cherry</FdMenuItem>
     </FdCombobox>
   </div>
 </template>
