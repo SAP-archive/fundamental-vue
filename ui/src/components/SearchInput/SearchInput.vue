@@ -1,107 +1,114 @@
 <template>
-  <div class="fd-search-input">
-    <Popover noArrow v-if="suggestionsAvailable">
-      <div class="fd-combobox-control" slot="control">
-        <InputGroup
-          afterClass="fd-input-group__addon--button"
-          :compact="compact"
-        >
-          <Input
-            :value="searchValue"
-            :placeholder="placeholder"
-            :compact="compact"
-            @keyup.native="handleKeyboardSearch"
-            @input="setCurrentValue"
-            @change="setCurrentValue"
-          />
-          <Button
-            styling="light"
-            slot="after"
-            icon="search"
-            @click="handleSearchClick"
-          />
-        </InputGroup>
-      </div>
-      <slot />
-    </Popover>
-    <div v-else class="fd-combobox-control" slot="control">
-      <InputGroup afterClass="fd-input-group__addon--button" :compact="compact">
-        <Input
-          :value="searchValue"
-          :placeholder="placeholder"
-          :compact="compact"
-          @keyup.native="handleKeyboardSearch"
-          @input="setCurrentValue"
-          @change="setCurrentValue"
-        />
-        <Button
-          styling="light"
-          slot="after"
-          icon="search"
-          @click="handleSearchClick"
-        />
-      </InputGroup>
-    </div>
-  </div>
+  <FdComboboxBase class="fd-search-input">
+    <template #input="{showCompletions, hideCompletions}">
+      <FdInput
+        :value="currentPredicate"
+        :placeholder="placeholder"
+        :compact="compact"
+        @focus.native="showCompletions"
+        @update="setCurrentPredicate"
+        @change="$emit('change', $event)"
+        @keyup.native.esc="hideCompletions"
+      />
+    </template>
+
+    <template #after="{ toggleCompletions }">
+      <FdButton
+        @click="toggleCompletions"
+        :compact="compact"
+        icon="search"
+        styling="light"
+      />
+    </template>
+
+    <template #default="{ hideCompletions }">
+      <FdCompletionList
+        v-if="hasMatches"
+        :completions="completionsMatchingPredicate"
+        :predicate="currentPredicate"
+        @select="
+          completion => setCurrentPredicate(completion) || hideCompletions()
+        "
+      />
+      <template v-else>
+        <slot name="empty">
+          <p class="fd-has-text-align-center" v-fd-type:-1 v-fd-padding:tiny>
+            nothing here
+          </p>
+        </slot>
+      </template>
+    </template>
+  </FdComboboxBase>
 </template>
 
-<script lang="ts">
-import { Uid, mixins } from "@/mixins";
-import { Popover } from "@/components/Popover";
-import { Button } from "@/components/Button";
-import { Input, InputGroup } from "@/components/Form";
+<script>
+import { Uid } from "@/mixins";
+import FdButton from "./../Button/Button.vue";
+import FdInput from "./../Form/Controls/Input.vue";
+import FdCompletionList from "./CompletionList.vue";
+import FdComboboxBase from "./../ComboboxBase/ComboboxBase.vue";
+import { padding, type } from "./../../directives/design-system-utilities";
 
-export default mixins(Uid).extend({
+export default {
   name: "FdSearchInput",
-  components: { Popover, Button, InputGroup, Input },
+  mixins: [Uid],
+  model: {
+    prop: "predicate",
+    event: "update"
+  },
+  directives: {
+    "fd-padding": padding,
+    "fd-type": type
+  },
+  components: {
+    FdComboboxBase,
+    FdCompletionList,
+    FdButton,
+    FdInput
+  },
   props: {
-    value: { type: String, default: "" },
+    predicate: { type: String, default: null },
+    completions: { type: Array, default: () => [] },
     placeholder: { type: String, default: "" },
-    ariaLabel: { type: String, default: "Search Input" },
     compact: { type: Boolean, default: false }
   },
   computed: {
-    suggestionsAvailable(): boolean {
-      const list = this.$slots.default || [];
-      return list.length > 0;
+    hasMatches() {
+      return this.completionsMatchingPredicate.length > 0;
+    },
+    normalizedPredicate() {
+      return this.predicate != null ? this.predicate.toLowerCase() : null;
+    },
+    completionsMatchingPredicate() {
+      const { completions, normalizedPredicate: predicate } = this;
+
+      if (predicate == null) {
+        return completions;
+      }
+      const matchesPredicate = completion =>
+        completion.toLowerCase().startsWith(predicate);
+      return completions.filter(matchesPredicate);
     }
   },
   methods: {
-    handleSearchClick() {
-      this.emitSearch();
-    },
-    setCurrentValue(newValue: string) {
-      this.searchValue = newValue;
-      this.emitSearch();
-      this.$emit("update:value", this.searchValue);
-    },
-    handleKeyboardSearch({ keyCode }: KeyboardEvent) {
-      if (keyCode === 13) {
-        this.emitSearch();
-      } else if (this.$slots.default && this.$slots.default.length > 0) {
-        this.emitAutoComplete();
-      }
-    },
-    emitSearch() {
-      this.$emit("search", this.searchValue);
-    },
-    emitAutoComplete() {
-      this.$emit("autoComplete", this.searchValue);
+    setCurrentPredicate(newValue) {
+      this.currentPredicate = newValue;
+      this.$emit("update", this.currentPredicate);
+      this.$emit("update:predicate", this.currentPredicate);
     }
   },
   watch: {
-    value: {
+    predicate: {
       immediate: true,
-      handler(newValue: string) {
-        this.searchValue = newValue;
-        this.$emit("input", this.searchValue);
+      handler(newValue) {
+        this.currentPredicate = newValue;
       }
     }
   },
   data() {
     return {
-      searchValue: this.value as string
+      currentPredicate: this.predicate
     };
   }
-});
+};
 </script>

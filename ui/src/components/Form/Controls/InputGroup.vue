@@ -36,6 +36,7 @@ export default Vue.extend({
       return [
         "fd-input-group__addon",
         "fd-input-group__addon--after",
+        this.compact ? "fd-input-group--compact" : "",
         ...(afterClass != null ? [afterClass] : [])
       ];
     },

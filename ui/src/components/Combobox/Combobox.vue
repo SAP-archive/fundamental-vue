@@ -1,91 +1,89 @@
 <template>
-  <div class="fd-combobox-input">
-    <Popover
-      @click="handleMenuItemClick"
-      noArrow
-      :popoverVisible="currentPopoverVisible"
-      @visible="currentPopoverVisible = $event"
-    >
-      <template v-slot:control="{ toggle }">
-        <div class="fd-combobox-control">
-          <InputGroup
-            :compact="compact"
-            afterClass="fd-input-group__addon--button"
-          >
-            <Input
-              :id="uid"
-              :value="value"
-              :compact="compact"
-              :placeholder="placeholder"
-              @click.native="toggle"
-              @keyup.native="handleKeyup"
-              @input="setCurrentValue"
-            />
-            <template #after>
-              <Button
-                @click="toggle"
-                icon="navigation-down-arrow"
-                styling="light"
-              />
-            </template>
-          </InputGroup>
-        </div>
-      </template>
-      <slot />
-    </Popover>
-  </div>
+  <FdComboboxBase :compact="compact" class="fd-combobox-input">
+    <template #input="{showCompletions, hideCompletions}">
+      <FdInput
+        :value="currentValue"
+        :placeholder="placeholder"
+        :compact="compact"
+        @focus.native="showCompletions"
+        @update="setCurrentValue"
+        @keyup.native.esc="hideCompletions"
+      />
+    </template>
+
+    <template #after="{ toggleCompletions }">
+      <FdButton
+        @click="toggleCompletions"
+        :compact="compact"
+        icon="navigation-down-arrow"
+        styling="light"
+      />
+    </template>
+
+    <template #default="{ hideCompletions }">
+      <FdMenu @select="item => handleClickOnAndThen(item, hideCompletions)">
+        <FdMenuList>
+          <slot />
+        </FdMenuList>
+      </FdMenu>
+    </template>
+  </FdComboboxBase>
 </template>
 
-<script lang="ts">
-import { mixins, Uid } from "@/mixins";
-import { Input, InputGroup } from "@/components/Form";
-import { Button } from "@/components/Button";
-import { Popover } from "@/components/Popover";
-import { PropValidator } from "vue/types/options";
-import MenuItem from "./../Menu/MenuItem.vue";
-type MenuItemType = InstanceType<typeof MenuItem>;
+<script>
+import { Uid } from "@/mixins";
+import FdInput from "./../Form/Controls/Input.vue";
+import FdButton from "./../Button/Button.vue";
+import FdComboboxBase from "./../ComboboxBase/ComboboxBase.vue";
+import FdMenuItem from "./../Menu/MenuItem.vue";
+import FdMenu from "./../Menu/Menu.vue";
+import FdMenuList from "./../Menu/MenuList.vue";
 
-export default mixins(Uid).extend({
+export default {
   name: "FdCombobox",
-  components: { Button, Popover, Input, InputGroup },
-  provide(): object {
-    return {
-      combobox: this as any
-    };
+  mixins: [Uid],
+  model: {
+    prop: "value",
+    event: "update"
+  },
+  components: {
+    FdMenu,
+    FdMenuList,
+    FdButton,
+    FdComboboxBase,
+    FdInput
   },
   props: {
-    value: { type: String, default: null } as PropValidator<string | null>,
-    placeholder: { type: String, default: "" } as PropValidator<string>,
-    ariaLabel: { type: String, default: "Combobox" } as PropValidator<string>,
-    popoverVisible: { type: Boolean, default: false } as PropValidator<boolean>,
-    compact: { type: Boolean, default: false } as PropValidator<boolean>
+    value: { type: String, default: null },
+    placeholder: { type: String, default: "" },
+    ariaLabel: { type: String, default: "Combobox" },
+    popoverVisible: { type: Boolean, default: false },
+    compact: { type: Boolean, default: false }
   },
   data() {
     return {
-      currentPopoverVisible: this.popoverVisible as boolean,
-      currentValue: this.value as string | number | null
+      currentPopoverVisible: this.popoverVisible,
+      currentValue: this.value // string | number | null
     };
   },
+  watch: {
+    value: {
+      immediate: true,
+      handler(newValue) {
+        this.currentValue = newValue;
+      }
+    }
+  },
   methods: {
-    handleKeyup({ keyCode }: KeyboardEvent): void {
-      if (keyCode !== 13) {
-        return;
-      }
-      if (this.currentPopoverVisible) {
-        this.togglePopoverVisible();
-      }
-    },
-    setCurrentValue(newValue: string | number | null): void {
+    setCurrentValue(newValue) {
       this.currentValue = newValue;
-      this.$emit("input", this.currentValue);
+      this.$emit("update", this.currentValue);
       this.$emit("update:value", this.currentValue);
     },
-    handleMenuItemClick(item: MenuItemType): void {
+    handleClickOnAndThen(item, executeCb) {
       this.setCurrentValue(item.value);
-    },
-    togglePopoverVisible(): void {
-      this.currentPopoverVisible = !this.currentPopoverVisible;
+      executeCb();
     }
   }
-});
+};
 </script>

@@ -1,19 +1,20 @@
 import { assert } from "chai";
 import { mount, createLocalVue } from "@vue/test-utils";
-import { Checkbox, Radio } from "../";
-import FormItem from "../../FormItem.vue";
+import FdCheckbox from "../Checkbox.vue";
+import FdRadio from "../Radio.vue";
+import FdFormItem from "../../FormItem.vue";
 
 describe("Checkbox", () => {
   it("can be disabled", async () => {
     const localVue = createLocalVue();
     const TestComponent = localVue.extend({
-      template: `<Checkbox disabled value="i_like_cookies" v-model="checked" />`,
+      template: `<FdCheckbox disabled value="i_like_cookies" v-model="checked" />`,
       data: () => ({ checked: "" }),
-      components: { Checkbox }
+      components: { FdCheckbox }
     });
     const wrapper = mount(TestComponent, { localVue });
     assert.strictEqual(wrapper.vm.checked, "");
-    const checkbox = wrapper.find(Checkbox);
+    const checkbox = wrapper.find(FdCheckbox);
     assert.isDefined(checkbox);
     checkbox.trigger("click");
     await localVue.nextTick();
@@ -33,13 +34,13 @@ describe("FormItem", () => {
       const localVue = createLocalVue();
       const Parent = localVue.extend({
         template: `
-        <FormItem>
-          <Radio value="helloWorld" v-model="checked" />
-        </FormItem>
+        <FdFormItem>
+          <FdRadio value="helloWorld" v-model="checked" />
+        </FdFormItem>
         `,
         data: () => ({ checked: "" }),
 
-        components: { FormItem, Radio }
+        components: { FdFormItem, FdRadio }
       });
       const form = mount(Parent, { localVue });
       assert.strictEqual(form.vm.checked, "");
@@ -58,16 +59,16 @@ describe("FormItem", () => {
       const localVue = createLocalVue();
       const Parent = localVue.extend({
         template: `
-        <FormItem>
-          <Checkbox value="helloWorld" v-model="checked" />
-        </FormItem>
+        <FdFormItem>
+          <FdCheckbox value="helloWorld" v-model="checked" />
+        </FdFormItem>
         `,
         data: () => ({ checked: false }),
-        components: { FormItem, Checkbox }
+        components: { FdFormItem, FdCheckbox }
       });
       const form = mount(Parent, { localVue });
       assert.isFalse(form.vm.checked);
-      const checkbox = form.find(Checkbox);
+      const checkbox = form.find(FdCheckbox);
       assert.isDefined(checkbox);
       checkbox.trigger("click");
       await localVue.nextTick();
@@ -80,23 +81,23 @@ describe("FormItem", () => {
       const localVue = createLocalVue();
       const Parent = localVue.extend({
         template: `
-        <FormItem>
-          <Checkbox value="check1" v-model="checked" />
-          <Checkbox value="check2" v-model="checked" />
-          <Checkbox value="check3" v-model="checked" />
-          <Checkbox value="check4" v-model="checked" />
-        </FormItem>
+        <FdFormItem>
+          <FdCheckbox value="check1" v-model="checked" />
+          <FdCheckbox value="check2" v-model="checked" />
+          <FdCheckbox value="check3" v-model="checked" />
+          <FdCheckbox value="check4" v-model="checked" />
+        </FdFormItem>
         `,
         data() {
           return {
             checked: []
           };
         },
-        components: { FormItem, Checkbox }
+        components: { FdFormItem, FdCheckbox }
       });
       const form = mount(Parent, { localVue });
       assert.lengthOf(form.vm.checked, 0);
-      const checkboxes = form.findAll(Checkbox);
+      const checkboxes = form.findAll(FdCheckbox);
       assert.lengthOf(checkboxes, 4);
       const expectedValues: any[] = [];
       assert.sameMembers(form.vm.checked, expectedValues);

@@ -1,5 +1,13 @@
 <title>Default Combobox</title>
-<tip>`FdCombobox` supports `v-model` and thus you can easily create bi-directional bindings.</tip>
+<tip>
+`FdCombobox` supports `v-model` and thus you can easily create bi-directional bindings.
+
+---
+
+**Important**
+
+All `FdMenuItem`s need an associated `value` – otherwise `v-model` will not work.
+</tip>
 
 <template>
   <div>
@@ -8,9 +16,9 @@
       <span class="favorite-fruit-current">{{ fruit || "none" }}</span>
     </div>
     <FdCombobox v-model="fruit" placeholder="Pick your Fruit of the day">
-      <FdMenuItem @click="fruit = 'Apple'">Apple</FdMenuItem>
-      <FdMenuItem @click="fruit = 'Banana'">Banana</FdMenuItem>
-      <FdMenuItem @click="fruit = 'Cherry'">Cherry</FdMenuItem>
+      <FdMenuItem value="Apple">Apple</FdMenuItem>
+      <FdMenuItem value="Banana">Banana</FdMenuItem>
+      <FdMenuItem value="Cherry">Cherry</FdMenuItem>
     </FdCombobox>
   </div>
 </template>

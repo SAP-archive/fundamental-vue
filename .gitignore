@@ -98,3 +98,4 @@ node_modules
 /ui/.vscode
 /server/.vscode
 /docs/.vscode
+/ui/coverage

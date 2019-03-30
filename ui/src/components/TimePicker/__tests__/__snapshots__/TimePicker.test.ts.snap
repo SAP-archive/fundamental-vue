@@ -22,13 +22,13 @@ exports[`TimePicker Compact Style renders correctly 1`] = `
             <!---->
              
             <input
-              class="fd-form__control fd-input--compact"
+              class="fd-input fd-form__control fd-input--compact"
               placeholder=""
               type="text"
             />
               
             <span
-              class="fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button fd-input-group--after"
+              class="fd-input-group__addon fd-input-group__addon--after fd-input-group--compact fd-input-group__addon--button"
             >
               <button
                 class="fd-button--light sap-icon--fob-watch"
@@ -193,13 +193,13 @@ exports[`TimePicker With Meridian renders correctly 1`] = `
             <!---->
              
             <input
-              class="fd-form__control"
+              class="fd-input fd-form__control"
               placeholder=""
               type="text"
             />
               
             <span
-              class="fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button fd-input-group--after"
+              class="fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button"
             >
               <button
                 class="fd-button--light sap-icon--fob-watch"
@@ -398,13 +398,13 @@ exports[`TimePicker renders correctly 1`] = `
             <!---->
              
             <input
-              class="fd-form__control"
+              class="fd-input fd-form__control"
               placeholder="Pick a time"
               type="text"
             />
               
             <span
-              class="fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button fd-input-group--after"
+              class="fd-input-group__addon fd-input-group__addon--after fd-input-group__addon--button"
             >
               <button
                 class="fd-button--light sap-icon--fob-watch"

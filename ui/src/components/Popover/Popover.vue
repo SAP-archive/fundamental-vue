@@ -3,14 +3,9 @@
     <!-- Complicated Trigger Control logic: BEGIN-->
     <div class="fd-popover__control" ref="control">
       <div v-if="$slots.control != null" @click="toggle" role="button">
-        <slot name="control" />
+        <slot name="control" v-bind="contextProps" />
       </div>
-      <slot
-        v-else
-        :toggle="toggle"
-        :visible="currentPopoverVisible"
-        name="control"
-      >
+      <slot v-else v-bind="contextProps" name="control">
         <Button
           class="fd-popover__control"
           :aria-controls="uid"
@@ -34,10 +29,10 @@
       :active="currentPopoverVisible"
       :aria-hidden="!currentPopoverVisible"
     >
-      <slot name="body">
-        <Menu @select="handleItemClick">
+      <slot name="body" v-bind="contextProps">
+        <Menu v-if="$slots.default != null" @select="handleItemClick">
           <MenuList>
-            <slot />
+            <slot v-bind="contextProps" />
           </MenuList>
         </Menu>
       </slot>
@@ -92,6 +87,14 @@ export default mixins(Uid).extend({
     popoverVisible: { type: Boolean, default: false }
   },
   computed: {
+    contextProps(): object {
+      return {
+        toggle: this.toggle,
+        show: this.show,
+        hide: this.hide,
+        visible: this.currentPopoverVisible
+      };
+    },
     ignoredElements(): () => Element[] {
       const vm = this;
       return () => {
@@ -114,12 +117,15 @@ export default mixins(Uid).extend({
   watch: {
     popoverVisible: {
       immediate: true,
-      handler(visible: boolean) {
-        this.currentPopoverVisible = visible;
+      handler(newValue: boolean) {
+        this.setCurrentPopoverVisible(newValue);
       }
     }
   },
   methods: {
+    setCurrentPopoverVisible(newValue: boolean): void {
+      this.currentPopoverVisible = newValue;
+    },
     ignored(element: Element): boolean {
       const ignoredElement = this.controlElement;
       if (ignoredElement == null) {
@@ -135,12 +141,20 @@ export default mixins(Uid).extend({
       this.toggle();
     },
     hidePopover() {
-      this.currentPopoverVisible = false;
+      this.setCurrentPopoverVisible(false);
       this.$emit("visible", false);
     },
+    hide() {
+      this.hidePopover();
+    },
+    show() {
+      this.setCurrentPopoverVisible(true);
+      this.$emit("visible", true);
+    },
     toggle() {
-      this.currentPopoverVisible = !this.currentPopoverVisible;
-      this.$emit("visible", this.currentPopoverVisible);
+      const newVisible = !this.currentPopoverVisible;
+      this.setCurrentPopoverVisible(newVisible);
+      this.$emit("visible", newVisible);
     }
   },
   data() {

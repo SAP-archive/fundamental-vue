@@ -7,7 +7,7 @@
     />
     <TimeInput
       :value="sanitizeInputValue"
-      @input="timeUpdate"
+      @update="timeUpdate"
       :placeholder="placeholder"
     />
     <TimeAction
