@@ -10,7 +10,7 @@
     "build:docs": "NODE_ENV=production; yarn --cwd docs build --mode production --report",
     "build:all": "rm -rf dist && yarn build:ui --mode production && yarn build:docs --mode production && mkdir dist && cp -r ui/dist/* dist && cp -r docs/dist/* dist",
     "build": "yarn build:ui && rm -rf dist && mkdir dist && cp -r ./ui/dist/*.js dist && cp -r ./ui/dist/*.js.map dist",
-    "lint": "yarn --cwd docs lint && yarn --cwd server lint && yarn --cwd ui lint",
+    "lint": " cd docs && yarn lint && cd ../server && yarn  lint && cd ../ui && yarn  lint",
     "lint:dev": "yarn --cwd docs lint:dev && yarn --cwd server lint && yarn --cwd ui lint:dev",
     "lint:pre-commit": "printf \"running pre-commit lint...\"  && npm run lint && printf \"done!\n\"",
     "release": "./scripts/publish-release.sh",
