@@ -1,12 +1,12 @@
 <template>
   <transition name="fade">
-    <div :id="uid" v-show="visible" :class="classes" role="alert">
+    <div :id="uid" v-show="isVisible" :class="classes" role="alert">
       <button
-        v-if="dismissible"
-        class="fd-alert__close"
-        :aria-controls="uid"
-        aria-label="Close"
         @click="dismiss"
+        class="fd-alert__close"
+        aria-label="close"
+        v-if="dismissible"
+        :aria-controls="uid"
       />
       <slot />
     </div>
@@ -47,6 +47,7 @@ export default mixins(Uid).extend({
     dismiss(): void {
       this.$emit("dismiss");
       this.$emit("change", false);
+      this.isVisible = false;
     }
   },
   computed: {
@@ -54,6 +55,19 @@ export default mixins(Uid).extend({
       const type = this.type === "default" ? [] : [`fd-alert--${this.type}`];
       const dismissible = this.dismissible ? [] : ["fd-alert--dismissible"];
       return ["fd-alert", ...type, ...dismissible];
+    }
+  },
+  data() {
+    return {
+      isVisible: this.visible
+    };
+  },
+  watch: {
+    visible: {
+      immediate: true,
+      handler(newIsActive: boolean) {
+        this.isVisible = newIsActive;
+      }
     }
   }
 });
