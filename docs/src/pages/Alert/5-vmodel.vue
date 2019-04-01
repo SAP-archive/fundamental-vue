@@ -6,7 +6,10 @@
 
     <br /><br />
 
-    <FdAlert type="success" v-model="visible" dismissible>
+    <FdAlert type="success" v-model="visible" :dismissible="false">
+      <a @click="dismiss" aria-label="close" style="float: right">
+        Close
+      </a>
       Success alert. Click on the close button.
     </FdAlert>
   </div>
@@ -18,6 +21,11 @@ export default {
     return {
       visible: true
     };
+  },
+  methods: {
+    dismiss: function() {
+      this.visible = false;
+    }
   }
 };
 </script>

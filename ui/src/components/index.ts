@@ -3,6 +3,7 @@ import { PluginOptions } from "@/util/PluginOptions";
 
 import * as ActionBar from "./ActionBar";
 import * as Alert from "./Alert";
+import * as CloseButton from "./CloseButton";
 import * as Badge from "./Badge";
 import * as Breadcrumb from "./Breadcrumb";
 import * as BreadcrumbItem from "./BreadcrumbItem";
@@ -40,6 +41,7 @@ const plugin: PluginObject<PluginOptions> = {
   install(vue) {
     vue.use(ActionBar.default);
     vue.use(Alert.default);
+    vue.use(CloseButton.default);
     vue.use(Badge.default);
     vue.use(Breadcrumb.default);
     vue.use(BreadcrumbItem.default);
