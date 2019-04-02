@@ -22,12 +22,12 @@
   </router-link>
 </template>
 
-<script lang="ts">
+<script>
 import { ModeType, Config, Store } from "./Model";
 import { withTargetLocation, mixins } from "@/mixins";
-
-export default mixins(withTargetLocation("#")).extend({
+export default {
   name: "FdSideNavLink",
+  mixins: [withTargetLocation("#")],
   inject: {
     sideNavStore: { default: null },
     sideNavItem: { default: null },
@@ -37,28 +37,25 @@ export default mixins(withTargetLocation("#")).extend({
     ariaSelected() {
       return this.selected ? "true" : null;
     },
-    parentItemId(): string {
-      // @ts-ignore
+    parentItemId() {
       return this.sideNavItem.uid;
     },
-    store(): Store {
-      // @ts-ignore
+    store() {
       return this.sideNavStore;
     },
-    config(): Config {
-      // @ts-ignore
+    config() {
       return this.$config;
     },
-    manualModeEnabled(): boolean {
+    manualModeEnabled() {
       return this.mode === "manual";
     },
-    mode(): ModeType {
+    mode() {
       return this.config.mode;
     },
-    hasChildren(): boolean {
+    hasChildren() {
       return this.store.hasSubItems(this.parentItemId);
     },
-    selected(): boolean {
+    selected() {
       return this.store.selected(this.parentItemId);
     },
     routerLinkClasses() {
@@ -66,7 +63,7 @@ export default mixins(withTargetLocation("#")).extend({
         "has-child": this.hasChildren
       };
     },
-    classes(): object {
+    classes() {
       return {
         "has-child": this.hasChildren,
         "is-selected": this.selected
@@ -78,16 +75,16 @@ export default mixins(withTargetLocation("#")).extend({
       this.store.selectedId = this.parentItemId;
       this.store.toggleExpanded(this.parentItemId);
     },
-    onRouterLinkClick(): void {
+    onRouterLinkClick() {
       this.selectSelf();
       this.pushLocation();
     },
-    onClick(event: Event): void {
+    onClick(event) {
       event.preventDefault();
       event.stopPropagation();
       this.selectSelf();
       this.pushLocation();
     }
   }
-});
+};
 </script>
