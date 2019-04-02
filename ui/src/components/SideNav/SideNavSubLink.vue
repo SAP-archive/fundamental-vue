@@ -21,13 +21,14 @@
   </router-link>
 </template>
 
-<script lang="ts">
-import { withTargetLocation, mixins } from "@/mixins";
+<script>
+import { withTargetLocation } from "@/mixins";
 import { Store, ModeType, Config } from "./Model";
 
 // TODO: Refactor so that SideNavSubLink uses SideNavLink
-export default mixins(withTargetLocation("#")).extend({
+export default {
   name: "FdSideNavSubLink",
+  mixins: [withTargetLocation("#")],
   inject: {
     sideNavStore: { default: null },
     sideNavSubItem: { default: null },
@@ -37,42 +38,40 @@ export default mixins(withTargetLocation("#")).extend({
     ariaSelected() {
       return this.selected ? "true" : null;
     },
-    selected(): boolean {
+    selected() {
       return this.store.selected(this.parentId);
     },
-    classes(): object {
+    classes() {
       return { "is-selected": this.selected };
     },
-    store(): Store {
-      // @ts-ignore
+    store() {
       return this.sideNavStore;
     },
-    parentId(): string {
-      // @ts-ignore
+    parentId() {
       return this.sideNavSubItem.uid;
     },
-    config(): Config {
+    config() {
       // @ts-ignore
       return this.$config;
     },
-    manualModeEnabled(): boolean {
+    manualModeEnabled() {
       return this.mode === "manual";
     },
-    mode(): ModeType {
+    mode() {
       return this.config.mode;
     }
   },
   methods: {
-    onRouterLinkClick(): void {
+    onRouterLinkClick() {
       this.store.selectedId = this.parentId;
       this.pushLocation();
     },
-    onClick(event: Event): void {
+    onClick(event) {
       event.preventDefault();
       event.stopPropagation();
       this.store.selectedId = this.parentId;
       this.pushLocation();
     }
   }
-});
+};
 </script>
