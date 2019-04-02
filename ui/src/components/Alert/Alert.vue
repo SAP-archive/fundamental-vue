@@ -1,16 +1,10 @@
 <template>
   <transition name="fade">
     <div :id="uid" v-show="isVisible" :class="classes" role="alert">
-      <!-- <button
+      <button
         @click="dismiss"
         class="fd-alert__close"
         aria-label="close"
-        v-if="dismissible"
-        :aria-controls="uid"
-      /> -->
-      <FdCloseButton
-        :onClose="dismiss"
-        class="fd-alert__close"
         v-if="dismissible"
         :aria-controls="uid"
       />
