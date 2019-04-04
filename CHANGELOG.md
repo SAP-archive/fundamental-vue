@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0-rc.10"></a>
+# [0.2.0-rc.10](https://github.com/SAP/fundamental-vue/compare/v0.2.0-rc.9...v0.2.0-rc.10) (2019-04-04)
+
+
+### Bug Fixes
+
+* Fixes typescript version and related warnings ([e2d6e02](https://github.com/SAP/fundamental-vue/commit/e2d6e02))
+
+
+### Features
+
+* Automatic Installation via script-tag ([7f3dfcb](https://github.com/SAP/fundamental-vue/commit/7f3dfcb)), closes [#183](https://github.com/SAP/fundamental-vue/issues/183)
+
+
+
 <a name="0.2.0-rc.9"></a>
 # [0.2.0-rc.9](https://github.com/SAP/fundamental-vue/compare/v0.2.0-rc.8...v0.2.0-rc.9) (2019-04-02)
 
