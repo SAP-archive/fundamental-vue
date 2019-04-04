@@ -1,6 +1,6 @@
 {
   "name": "fundamental-vue",
-  "version": "0.2.0-rc.10",
+  "version": "0.2.0",
   "scripts": {
     "bootstrap": "yarn install && yarn --cwd build install && yarn --cwd ui install && yarn --cwd docs install && yarn --cwd server install",
     "serve": "concurrently --kill-others --names \"dev-server,ui,docs\" -c \"blue, red,green\" \"node server\" \"yarn build:ui:dev --watch\" \"cd docs && yarn serve\"",
