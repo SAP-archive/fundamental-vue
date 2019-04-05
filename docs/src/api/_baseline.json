@@ -1045,7 +1045,15 @@
       },
       "events": {},
       "mixins": [],
-      "props": {},
+      "props": {
+        "productTitle": {
+          "name": "productTitle",
+          "description": "Product Title",
+          "types": ["String"],
+          "required": false,
+          "defaultValue": null
+        }
+      },
       "componentName": "FdShellBarProduct"
     },
     "FdShellBarProductTitle": {

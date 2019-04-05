@@ -20,3 +20,4 @@ export {
 export {
   default as ShellBarProductSwitcherItemTitle
 } from "./ShellBarProductSwitcherItemTitle.vue";
+export { default as ShellBarActionButton } from "./ShellBarActionButton.vue";
