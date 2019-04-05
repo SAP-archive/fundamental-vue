@@ -18,7 +18,8 @@ export const plugin: ExampleCollectionFunction = () => {
       "FdShellBarProductSwitcher",
       "FdShellBarProductSwitcherItem",
       "FdShellBarProductSwitcherItemImg",
-      "FdShellBarProductSwitcherItemTitle"
+      "FdShellBarProductSwitcherItemTitle",
+      "FdShellBarActionButton"
     ]
   };
 };

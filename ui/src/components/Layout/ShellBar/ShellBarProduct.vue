@@ -1,12 +1,15 @@
 <template>
   <div class="fd-shellbar__product">
+    <FdShellBarProductTitle v-if="productTitle != null">{{
+      productTitle
+    }}</FdShellBarProductTitle>
     <slot />
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-export default Vue.extend({
-  name: "FdShellBarProduct"
-});
+<script>
+export default {
+  name: "FdShellBarProduct",
+  props: { productTitle: { type: String, default: null } }
+};
 </script>
