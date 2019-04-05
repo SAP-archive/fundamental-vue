@@ -16,9 +16,10 @@ echo "$std_ver"
 
 git push --follow-tags "https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG" master > /dev/null 2>&1;
 
-yarn release:create -- --repo $TRAVIS_REPO_SLUG --tag $release_tag --branch master
-
 npm publish
+
+# run this after publish to make sure GitHub finishes updating from the push
+yarn release:create -- --repo $TRAVIS_REPO_SLUG --tag $release_tag --branch master
 
 # deploy documentation site to github pages branch
 yarn deploy:docs
