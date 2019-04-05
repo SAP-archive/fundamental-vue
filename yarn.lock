@@ -682,10 +682,10 @@ github-api@^3.0.0:
     js-base64 "^2.1.9"
     utf8 "^2.1.1"
 
-github-assistant@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/github-assistant/-/github-assistant-0.2.0.tgz#24c0e5b86babb555fc7bcf7d5c07627c5ae56ea3"
-  integrity sha512-h33eREnaFNxdeLwQQA9zQH82UaPzPQqJsrGhGdMH4Z5FeSWpqXhp7o74saf6flt69ScFWcXAqzPuoQmbG0Jq3A==
+github-assistant@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/github-assistant/-/github-assistant-0.3.0.tgz#4347a53bee80ee024898a420cd33983107d11f5f"
+  integrity sha512-xvt3aRVBYIsu37cUA/xNBHZJWka84e74jG601M3b5Ws2lvj3ddtoep73QqLafMNHElmY6MyxnEOj8WAKJcASTg==
   dependencies:
     github-api "^3.0.0"
     loglevel "^1.6.1"
