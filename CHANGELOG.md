@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0-rc.0"></a>
+# [0.3.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.2.0...v0.3.0-rc.0) (2019-04-05)
+
+
+### Features
+
+* Fixes Search Input and Combobox + makes them better ([48fa2f4](https://github.com/SAP/fundamental-vue/commit/48fa2f4))
+* Improves Shellbar ([30781be](https://github.com/SAP/fundamental-vue/commit/30781be))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/SAP/fundamental-vue/compare/v0.2.0-rc.10...v0.2.0) (2019-04-04)
 
