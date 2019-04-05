@@ -41,7 +41,7 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "gh-pages": "^2.0.1",
-    "github-assistant": "^0.2.0",
+    "github-assistant": "^0.3.0",
     "pre-commit": "^1.2.2",
     "standard-version": "^4.4.0"
   },
