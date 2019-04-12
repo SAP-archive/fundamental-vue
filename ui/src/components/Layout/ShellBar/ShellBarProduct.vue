@@ -8,8 +8,11 @@
 </template>
 
 <script>
+import FdShellBarProductTitle from "./ShellBarProductTitle.vue";
+
 export default {
   name: "FdShellBarProduct",
+  components: { FdShellBarProductTitle },
   props: { productTitle: { type: String, default: null } }
 };
 </script>

@@ -16,3 +16,20 @@ if (typeof process.env.FD_LISTENING_TO_UNHANDLED_REJECTION === "undefined") {
   // Avoid memory leak by adding too many listeners
   process.env.FD_LISTENING_TO_UNHANDLED_REJECTION = "YES";
 }
+
+const VUE_WARN_TOKEN = "[Vue warn]";
+const VUE_ERROR_TOKEN = "[Vue error]";
+
+// eslint-disable-next-line no-console
+const _console__error = console.error;
+
+// eslint-disable-next-line no-console
+console.error = (msg, ...params) => {
+  _console__error(msg, params);
+
+  if (msg.indexOf(VUE_WARN_TOKEN) > -1 || msg.indexOf(VUE_ERROR_TOKEN) > -1) {
+    throw Error(
+      "Detected a warning/error from Vue. This will fail the test that caused it. The causing error was logged above."
+    );
+  }
+};
