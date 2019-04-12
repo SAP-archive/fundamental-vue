@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`background-color directive attaches correct color class when used with arg 1`] = `
+<div
+  class="fd-has-background-color-red"
+/>
+`;
+
+exports[`background-color directive attaches correct color class when used with value 1`] = `
+<div
+  class="fd-has-background-color-red"
+/>
+`;
+
+exports[`background-color directive attaches correct color class when used with value 2`] = `
+<div
+  class="fd-has-background-color-green"
+/>
+`;

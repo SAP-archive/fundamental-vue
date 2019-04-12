@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "allowJs": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "target": "es5",
+    "module": "esnext",
+    "strict": false,
+    "jsx": "preserve",
+    "importHelpers": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "types": [
+      "webpack-env",
+      "chai",
+      "jest",
+      "node"
+    ],
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
+  },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.vue",
+    "src/__tests__/**/*.test.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

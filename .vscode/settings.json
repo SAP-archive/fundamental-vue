@@ -1,0 +1,19 @@
+{
+  "eslint.validate": [
+    "js",
+    "javascript",
+    "vue"
+  ],
+  "debug.node.autoAttach": "on",
+  "eslint.alwaysShowStatus": true,
+  "eslint.enable": true,
+  "eslint.packageManager": "yarn",
+  "jest.debugMode": true,
+  "jest.pathToConfig": "jest.config.js",
+  "jest.pathToJest": "yarn test",
+  "jest.restartJestOnSnapshotUpdate": true,
+  "jest.showCoverageOnLoad": true,
+  "prettier.eslintIntegration": true,
+  "editor.wordWrap": "on"
+}
+

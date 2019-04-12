@@ -1,0 +1,3046 @@
+{
+  "components": {
+    "FdToken": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Token Text"
+        }
+      },
+      "events": {
+        "click": {
+          "name": "click",
+          "description": "triggers when clicked"
+        }
+      },
+      "mixins": [],
+      "props": {},
+      "componentName": "FdToken"
+    },
+    "FdSpinner": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "ariaLabel": {
+          "name": "ariaLabel",
+          "description": "ARIA label",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": "Loading"
+        }
+      },
+      "componentName": "FdSpinner"
+    },
+    "FdModal": {
+      "slots": {
+        "footer": {
+          "name": "footer",
+          "description": "Modal Footer"
+        },
+        "actions": {
+          "name": "actions",
+          "description": "Modal Actions"
+        },
+        "close": {
+          "name": "close",
+          "description": "Modal Close Button"
+        },
+        "title": {
+          "name": "title",
+          "description": "Modal Title"
+        },
+        "": {
+          "name": "",
+          "description": "Modal Body"
+        }
+      },
+      "events": {
+        "close": {
+          "name": "close",
+          "description": "Sent when modal was closed"
+        }
+      },
+      "mixins": [],
+      "props": {
+        "active": {
+          "name": "active",
+          "description": "whether modal is active",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "title": {
+          "name": "title",
+          "description": "title",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdModal"
+    },
+    "FdIdentifier": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Text displayed by the Identifier."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "icon": {
+          "name": "icon",
+          "description": "icon name",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "url": {
+          "name": "url",
+          "description": "image url",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "size": {
+          "name": "size",
+          "description": "size",
+          "required": false,
+          "acceptableValues": ["xxs", "xs", "s", "m", "l", "xl", "xxl"],
+          "types": ["String"],
+          "defaultValue": "m"
+        },
+        "circle": {
+          "name": "circle",
+          "description": "is displayed as circle",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "transparent": {
+          "name": "transparent",
+          "description": "is displayed without background",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "thumbnail": {
+          "name": "thumbnail",
+          "description": "is displayed with background image",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "backgroundColor": {
+          "name": "backgroundColor",
+          "description": "background color",
+          "required": false,
+          "acceptableValues": [
+            "action-1",
+            "text-1",
+            "text-2",
+            "text-3",
+            "background-1",
+            "background-2",
+            "neutral-1",
+            "neutral-2",
+            "neutral-3",
+            "status-1",
+            "status-2",
+            "status-3",
+            "accent-1",
+            "accent-2",
+            "accent-3",
+            "accent-4",
+            "accent-5",
+            "accent-6",
+            "accent-7",
+            "accent-8",
+            "accent-9",
+            "accent-10",
+            "accent-11",
+            "accent-12",
+            "accent-13",
+            "accent-14",
+            "accent-15"
+          ],
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdIdentifier"
+    },
+    "FdImage": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "url": {
+          "name": "url",
+          "description": "image url",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "size": {
+          "name": "size",
+          "description": "size",
+          "required": false,
+          "acceptableValues": ["s", "m", "l"],
+          "types": ["String"],
+          "defaultValue": "m"
+        },
+        "circle": {
+          "name": "circle",
+          "description": "is displayed as circle",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdImage"
+    },
+    "FdLink": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Link Title. If not set the title-prop is used as a fallback."
+        }
+      },
+      "events": {
+        "click": {
+          "name": "click",
+          "description": "Sent when link was clicked"
+        }
+      },
+      "mixins": [],
+      "props": {
+        "title": {
+          "name": "title",
+          "description": "Is used for two things: (1) title-attribute of the rendered anchor and (2) as fallback content when no default slot is provided.",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "selected": {
+          "name": "selected",
+          "description": "whether link is selected",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "disabled": {
+          "name": "disabled",
+          "description": "whether link is disabled",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdLink"
+    },
+    "FdBadge": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Text displayed inside the badge."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "filled": {
+          "name": "filled",
+          "description": "whether the badge is filled",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "pill": {
+          "name": "pill",
+          "description": "whether the badge is displayed as a pill",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "type": {
+          "name": "type",
+          "description": "badge type",
+          "required": false,
+          "acceptableValues": ["warning", "error", "success"],
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdBadge"
+    },
+    "FdLabel": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Text displayed inside the label."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "type": {
+          "name": "type",
+          "description": "label type",
+          "required": false,
+          "acceptableValues": ["warning", "error", "success"],
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdLabel"
+    },
+    "FdStatus": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Text displayed inside the status."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "statusIcon": {
+          "name": "statusIcon",
+          "description": "built-in status icon type",
+          "required": false,
+          "acceptableValues": ["available", "away", "busy", "offline"],
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "type": {
+          "name": "type",
+          "description": "status type",
+          "required": false,
+          "acceptableValues": ["warning", "error", "success"],
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "icon": {
+          "name": "icon",
+          "description": "icon displayed in the status indicator",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdStatus"
+    },
+    "FdAlert": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "alert content"
+        }
+      },
+      "events": {
+        "dismiss": {
+          "name": "dismiss",
+          "description": "Sent when the dismiss button is clicked"
+        }
+      },
+      "mixins": [],
+      "props": {
+        "dismissible": {
+          "name": "dismissible",
+          "description": "whether alert is dismissible",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": true
+        },
+        "visible": {
+          "name": "visible",
+          "description": "whether alert is visible",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": true
+        },
+        "type": {
+          "name": "type",
+          "description": "alert type",
+          "required": false,
+          "acceptableValues": [
+            "default",
+            "warning",
+            "error",
+            "information",
+            "success"
+          ],
+          "types": ["String"],
+          "defaultValue": "default"
+        }
+      },
+      "componentName": "FdAlert"
+    },
+    "FdActionBar": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "custom action buttons"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "title": {
+          "name": "title",
+          "description": "page title",
+          "required": true,
+          "types": ["String"]
+        },
+        "description": {
+          "name": "description",
+          "description": "action bar description",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdActionBar"
+    },
+    "FdIcon": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "name": {
+          "name": "name",
+          "description": "icon name",
+          "required": true,
+          "types": ["String"]
+        },
+        "size": {
+          "name": "size",
+          "description": "icon size",
+          "required": false,
+          "acceptableValues": ["s", "m", "l", "xl"],
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdIcon"
+    },
+    "FdInlineHelp": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Helpful Text"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "position": {
+          "name": "position",
+          "description": "location of inline help relative to icon",
+          "required": false,
+          "acceptableValues": ["left", "right", "center"],
+          "types": ["String"],
+          "defaultValue": "right"
+        },
+        "inline": {
+          "name": "inline",
+          "description": "whether the inline help is displayed adjacent to the icon",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdInlineHelp"
+    },
+    "FdPagination": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "pagination content (usually just total number of items and page numbers)"
+        }
+      },
+      "events": {
+        "click": {
+          "name": "click",
+          "description": "Sent when button is clicked"
+        }
+      },
+      "mixins": [],
+      "props": {
+        "itemsPerPage": {
+          "name": "itemsPerPage",
+          "description": "items per page",
+          "required": false,
+          "types": ["Number"],
+          "defaultValue": 10
+        },
+        "itemsTotal": {
+          "name": "itemsTotal",
+          "description": "total number of items",
+          "required": true,
+          "types": ["Number"]
+        },
+        "initialPage": {
+          "name": "initialPage",
+          "description": "initial page",
+          "required": false,
+          "types": ["Number"],
+          "defaultValue": 1
+        },
+        "displayTotal": {
+          "name": "displayTotal",
+          "description": "whether to dispaly total",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": true
+        },
+        "totalText": {
+          "name": "totalText",
+          "description": "total text",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": ""
+        }
+      },
+      "componentName": "FdPagination"
+    },
+    "FdCounter": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "type": {
+          "name": "type",
+          "description": "built-in counter type",
+          "required": false,
+          "acceptableValues": ["info", "notification"],
+          "types": ["String"],
+          "defaultValue": "info"
+        },
+        "ariaLabel": {
+          "name": "ariaLabel",
+          "description": "Aria Label",
+          "required": false,
+          "types": ["String"]
+        },
+        "value": {
+          "name": "value",
+          "description": "Counter Value",
+          "required": false,
+          "types": ["Number"],
+          "defaultValue": "Counter Value"
+        }
+      },
+      "componentName": "FdCounter"
+    },
+    "FdCalendar": {
+      "slots": {},
+      "events": {},
+      "mixins": [
+        "PresentDateMixin",
+        "DisplayedDateMixin",
+        "DateSelectionMixin"
+      ],
+      "props": {
+        "headerVisible": {
+          "name": "headerVisible",
+          "description": "whether header is shown",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": true
+        },
+        "maxDate": {
+          "name": "maxDate",
+          "description": "maximum date",
+          "required": false,
+          "readableDefaultValue": "now + 10 years",
+          "types": ["Date"],
+          "defaultValue": "Thu Feb 01 2029 18:34:20 GMT+0100 (Central European Standard Time)"
+        },
+        "minDate": {
+          "name": "minDate",
+          "description": "minimum date",
+          "required": false,
+          "readableDefaultValue": "now - 10 years",
+          "types": ["Date"],
+          "defaultValue": "Sun Feb 01 2009 18:34:20 GMT+0100 (Central European Standard Time)"
+        },
+        "disabledDate": {
+          "name": "disabledDate",
+          "description": "Called with a date to be displayed by the calendar. Return false to disable the date.",
+          "required": false,
+          "readableDefaultValue": "() => false",
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return false;\n  }"
+        },
+        "blockedDate": {
+          "name": "blockedDate",
+          "description": "Called with a date to be displayed by the calendar. Return false to block the date.",
+          "required": false,
+          "readableDefaultValue": "() => false",
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return false;\n  }"
+        },
+        "hasPrevious": {
+          "name": "hasPrevious",
+          "description": "Called with a date range object ({ min: Date, max: Date }). Return false to disable the previous button in the header.",
+          "required": false,
+          "readableDefaultValue": "() => true",
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return true;\n  }"
+        },
+        "hasNext": {
+          "name": "hasNext",
+          "description": "Called with a date range object ({ min: Date, max: Date }). Return false to disable the next button in the header.",
+          "required": false,
+          "readableDefaultValue": "() => true",
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return true;\n  }"
+        }
+      },
+      "componentName": "FdCalendar"
+    },
+    "FdCalendarHeader": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "month": {
+          "name": "month",
+          "description": "month",
+          "required": false,
+          "types": ["String"]
+        },
+        "year": {
+          "name": "year",
+          "description": "year",
+          "required": false,
+          "types": ["Number"]
+        },
+        "hasPrevious": {
+          "name": "hasPrevious",
+          "description": "hasPrevious",
+          "required": false,
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return true;\n  }"
+        },
+        "hasNext": {
+          "name": "hasNext",
+          "description": "hasNext",
+          "required": false,
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return true;\n  }"
+        }
+      },
+      "componentName": "FdCalendarHeader"
+    },
+    "FdCalendarAction": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "title": {
+          "name": "title",
+          "description": "title",
+          "required": false,
+          "types": ["String"]
+        },
+        "icon": {
+          "name": "icon",
+          "description": "icon",
+          "required": false,
+          "types": ["String"]
+        },
+        "disabled": {
+          "name": "disabled",
+          "description": "disabled",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "type": {
+          "name": "type",
+          "description": "type",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdCalendarAction"
+    },
+    "FdDayPicker": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "dayNames": {
+          "name": "dayNames",
+          "description": "dayNames",
+          "required": false,
+          "types": ["Array"]
+        },
+        "month": {
+          "name": "month",
+          "description": "month",
+          "required": false,
+          "types": ["Array"],
+          "defaultValue": []
+        },
+        "isPresent": {
+          "name": "isPresent",
+          "description": "isPresent",
+          "required": false,
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return false;\n  }"
+        },
+        "selectionEnd": {
+          "name": "selectionEnd",
+          "description": "selectionEnd",
+          "required": false,
+          "types": ["Date"],
+          "defaultValue": null
+        },
+        "selectionStart": {
+          "name": "selectionStart",
+          "description": "selectionStart",
+          "required": false,
+          "types": ["Date"],
+          "defaultValue": null
+        },
+        "displayedMonth": {
+          "name": "displayedMonth",
+          "description": "displayedMonth",
+          "required": false,
+          "types": ["Number"],
+          "defaultValue": 1
+        },
+        "disabledDate": {
+          "name": "disabledDate",
+          "description": "disabledDate",
+          "required": false,
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return false;\n  }"
+        },
+        "blockedDate": {
+          "name": "blockedDate",
+          "description": "blockedDate",
+          "required": false,
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return false;\n  }"
+        },
+        "selectionContainsDate": {
+          "name": "selectionContainsDate",
+          "description": "selectionContainsDate",
+          "required": false,
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return false;\n  }"
+        }
+      },
+      "componentName": "FdDayPicker"
+    },
+    "FdYearPicker": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "maxDate": {
+          "name": "maxDate",
+          "description": "maxDate",
+          "required": false,
+          "types": ["Date"]
+        },
+        "minDate": {
+          "name": "minDate",
+          "description": "minDate",
+          "required": false,
+          "types": ["Date"]
+        },
+        "years": {
+          "name": "years",
+          "description": "years",
+          "required": false,
+          "types": ["Array"],
+          "defaultValue": []
+        },
+        "presentYear": {
+          "name": "presentYear",
+          "description": "presentYear",
+          "required": false,
+          "types": ["Number"],
+          "defaultValue": 0
+        },
+        "selectionContainsYear": {
+          "name": "selectionContainsYear",
+          "description": "selectionContainsYear",
+          "required": false,
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return false;\n  }"
+        }
+      },
+      "componentName": "FdYearPicker"
+    },
+    "FdMonthPicker": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "monthNames": {
+          "name": "monthNames",
+          "description": "monthNames",
+          "required": false,
+          "types": ["Array"]
+        },
+        "presentMonth": {
+          "name": "presentMonth",
+          "description": "presentMonth",
+          "required": false,
+          "types": ["Number"],
+          "defaultValue": 0
+        },
+        "selectionContainsMonth": {
+          "name": "selectionContainsMonth",
+          "description": "selectionContainsMonth",
+          "required": false,
+          "types": ["Function"],
+          "defaultValue": "function _default() {\n    return false;\n  }"
+        }
+      },
+      "componentName": "FdMonthPicker"
+    },
+    "FdCol": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Column content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "span": {
+          "name": "span",
+          "description": "span",
+          "required": false,
+          "types": ["Number"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdCol"
+    },
+    "FdContainer": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Content displaye by the container."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "flex": {
+          "name": "flex",
+          "description": "flex",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "fluid": {
+          "name": "fluid",
+          "description": "fluid",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdContainer"
+    },
+    "FdSection": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Section Body"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "title": {
+          "name": "title",
+          "description": "title",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdSection"
+    },
+    "FdUi": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Main Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "headerClass": {
+          "name": "headerClass",
+          "description": "header class",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdUi"
+    },
+    "FdShell": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Main Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdShell"
+    },
+    "FdShellHeader": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Header Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "fixed": {
+          "name": "fixed",
+          "description": "fixed",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdShellHeader"
+    },
+    "FdShellFooter": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Footer Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "fixed": {
+          "name": "fixed",
+          "description": "fixed",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdShellFooter"
+    },
+    "FdShellBar": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Main Shell Bar Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdShellBar"
+    },
+    "FdShellBarGroup": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Main Group Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "position": {
+          "name": "position",
+          "description": "position in the shell bar",
+          "required": false,
+          "acceptableValues": ["start", "middle", "end"],
+          "types": ["String"]
+        }
+      },
+      "componentName": "FdShellBarGroup"
+    },
+    "FdShellBarLogo": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Allows you to provide a custom shell bar logo. If used, this will replace the img-element which is rendered per default."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "src": {
+          "name": "src",
+          "description": "image source",
+          "required": false,
+          "types": ["String"]
+        },
+        "srcset": {
+          "name": "srcset",
+          "description": "image source set",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "to": {
+          "name": "to",
+          "description": "link destination",
+          "required": false,
+          "types": ["String", "Object"],
+          "defaultValue": "/"
+        }
+      },
+      "componentName": "FdShellBarLogo"
+    },
+    "FdShellBarSubtitle": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Subtitle"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdShellBarSubtitle"
+    },
+    "FdShellBarProduct": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Product Title"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "productTitle": {
+          "name": "productTitle",
+          "description": "Product Title",
+          "types": ["String"],
+          "required": false,
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdShellBarProduct"
+    },
+    "FdShellBarProductTitle": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Product Title"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdShellBarProductTitle"
+    },
+    "FdShellBarProductMenu": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Product Items (FdShellBarProductSwitcherItem)"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdShellBarProductMenu"
+    },
+    "FdShellBarActions": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Shell Bar Action Instances"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdShellBarActions"
+    },
+    "FdShellBarAction": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "The actual action. The only supported element is FdShellBarUserMenu."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "showAlways": {
+          "name": "showAlways",
+          "description": "whether the action is always shown",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": true
+        },
+        "collapsible": {
+          "name": "collapsible",
+          "description": "whether the action is collapsible",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdShellBarAction"
+    },
+    "FdShellBarUserMenu": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Menu Items (FdMenuItem)"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdShellBarUserMenu"
+    },
+    "FdShellBarProductSwitcher": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Product Items (FdShellBarProductSwitcherItem)"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdShellBarProductSwitcher"
+    },
+    "FdShellBarProductSwitcherItem": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Product Switcher Item Title"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "src": {
+          "name": "src",
+          "description": "image source",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": ""
+        },
+        "title": {
+          "name": "title",
+          "description": "title",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": ""
+        },
+        "to": {
+          "name": "to",
+          "description": "router link destination",
+          "required": false,
+          "types": ["String", "Object"],
+          "defaultValue": null
+        },
+        "href": {
+          "name": "href",
+          "description": "external link destination",
+          "required": false,
+          "types": ["String", "Object"],
+          "defaultValue": "#"
+        }
+      },
+      "componentName": "FdShellBarProductSwitcherItem"
+    },
+    "FdShellBarProductSwitcherItemImg": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Allows you to provide a custom product logo. If used, this will replace the img-element which is rendered per default."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "src": {
+          "name": "src",
+          "description": "image source",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdShellBarProductSwitcherItemImg"
+    },
+    "FdShellBarProductSwitcherItemTitle": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Product Switcher Item Title"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdShellBarProductSwitcherItemTitle"
+    },
+    "FdApp": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Main Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "headerClass": {
+          "name": "headerClass",
+          "description": "header CSS class",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdApp"
+    },
+    "FdAppNavigation": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Navigation Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "orientation": {
+          "name": "orientation",
+          "description": "orientation",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": "horizontal"
+        }
+      },
+      "componentName": "FdAppNavigation"
+    },
+    "FdAppMain": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Main App Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdAppMain"
+    },
+    "FdTable": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Table Columns"
+        }
+      },
+      "events": {
+        "update:selectedIds": {
+          "name": "update:selectedIds",
+          "description": "Sent when the selection changes",
+          "parameter": {
+            "name": "ids",
+            "type": {
+              "name": "Raw",
+              "meta": "string[]"
+            }
+          }
+        }
+      },
+      "mixins": [],
+      "props": {
+        "headers": {
+          "name": "headers",
+          "description": "header configuration",
+          "required": false,
+          "readableDefaultValue": "[]",
+          "types": ["Array"],
+          "defaultValue": []
+        },
+        "firstColumnFixed": {
+          "name": "firstColumnFixed",
+          "description": "whether the column is fixed (experimental)",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "fixedWrapperStyle": {
+          "name": "fixedWrapperStyle",
+          "description": "CSS style for the fixed wrapper (experimental)",
+          "required": false,
+          "types": ["Object"],
+          "defaultValue": {
+            "width": "700px"
+          }
+        },
+        "borderless": {
+          "name": "borderless",
+          "description": "whether no borders are drawn",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "striped": {
+          "name": "striped",
+          "description": "whether table has alternating row colors",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "items": {
+          "name": "items",
+          "description": "displayed items",
+          "required": false,
+          "readableDefaultValue": "object[]",
+          "types": ["Array"],
+          "defaultValue": []
+        },
+        "selectedIds": {
+          "name": "selectedIds",
+          "description": "selected ids",
+          "required": false,
+          "readableDefaultValue": "string[]",
+          "types": ["Array"],
+          "defaultValue": []
+        },
+        "selectionMode": {
+          "name": "selectionMode",
+          "description": "selection mode",
+          "required": false,
+          "acceptableValues": ["single", "multiple", "none"],
+          "types": ["String"],
+          "defaultValue": "none"
+        }
+      },
+      "componentName": "FdTable"
+    },
+    "FdTableBody": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdTableBody"
+    },
+    "FdTableCell": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Cell Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "fixed": {
+          "name": "fixed",
+          "description": "whether the column is fixed",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdTableCell"
+    },
+    "FdTableHeader": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "headers": {
+          "name": "headers",
+          "description": "headers",
+          "required": false,
+          "types": ["Array"],
+          "defaultValue": []
+        },
+        "sortDescriptor": {
+          "name": "sortDescriptor",
+          "description": "sortDescriptor",
+          "required": false,
+          "types": ["Object"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdTableHeader"
+    },
+    "FdTableHeaderCell": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "label": {
+          "name": "label",
+          "description": "header label",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "alignment": {
+          "name": "alignment",
+          "description": "text alignment",
+          "required": false,
+          "acceptableValues": ["default", "center"],
+          "types": ["String"],
+          "defaultValue": "default"
+        },
+        "sortOrder": {
+          "name": "sortOrder",
+          "description": "sort order",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "sortable": {
+          "name": "sortable",
+          "description": "whether the column is sortable",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "sortBy": {
+          "name": "sortBy",
+          "description": "prop used when sorting",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "columnFixed": {
+          "name": "columnFixed",
+          "description": "whether the column is fixed",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdTableHeaderCell"
+    },
+    "FdTableRow": {
+      "slots": {},
+      "events": {
+        "click": {
+          "name": "click",
+          "description": "Triggers when row was clicked."
+        }
+      },
+      "mixins": [],
+      "props": {
+        "itemId": {
+          "name": "itemId",
+          "description": "item id",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "isSelected": {
+          "name": "isSelected",
+          "description": "whether the row is selected",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdTableRow"
+    },
+    "FdRowSelectionIndicator": {
+      "slots": {},
+      "events": {
+        "change": {
+          "name": "change",
+          "description": "Sent when the selection changed"
+        }
+      },
+      "mixins": [],
+      "props": {
+        "selected": {
+          "name": "selected",
+          "description": "whether row is selected",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "value": {
+          "name": "value",
+          "description": "value",
+          "required": true,
+          "types": ["String", "Number", "Boolean"]
+        }
+      },
+      "componentName": "FdRowSelectionIndicator"
+    },
+    "FdCombobox": {
+      "slots": {},
+      "events": {
+        "input": {
+          "name": "input",
+          "description": "Sent when the selected item changes"
+        }
+      },
+      "mixins": [],
+      "props": {
+        "value": {
+          "name": "value",
+          "description": "initial value",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "placeholder": {
+          "name": "placeholder",
+          "description": "placeholder text (displayed when nothing is selected)",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": ""
+        },
+        "ariaLabel": {
+          "name": "ariaLabel",
+          "description": "ARIA Label",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": "Combobox"
+        },
+        "popoverVisible": {
+          "name": "popoverVisible",
+          "description": "whether popover is visible",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "compact": {
+          "name": "compact",
+          "description": "whether combobox is compact",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdCombobox"
+    },
+    "FdSearchInput": {
+      "slots": {
+        "empty": {
+          "name": "empty",
+          "description": "Content that is rendered in case there are no matching completions."
+        }
+      },
+      "events": {
+        "update": {
+          "name": "update",
+          "description": "Trigerred when the value in the search input changed."
+        },
+        "change": {
+          "name": "change",
+          "description": "Trigerred when the value in the search input was confirmed."
+        }
+      },
+      "mixins": [],
+      "props": {
+        "predicate": {
+          "name": "predicate",
+          "description": "Value of the enclosed search input element.",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "placeholder": {
+          "name": "placeholder",
+          "description": "Placeholder in case predicate is empty",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": ""
+        },
+        "completions": {
+          "name": "completions",
+          "description": "Array of strings used for auto completion.",
+          "required": false,
+          "types": ["Array"],
+          "defaultValue": "empty array"
+        },
+        "compact": {
+          "name": "compact",
+          "description": "whether search input is compact",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdSearchInput"
+    },
+    "FdPanel": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Panel Body"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "title": {
+          "name": "title",
+          "description": "Panel Title",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "description": {
+          "name": "description",
+          "description": "Panel Description (displayed below the title)",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "span": {
+          "name": "span",
+          "description": "Panel colspan when used inside a Panel Grid",
+          "required": false,
+          "acceptableValues": [2, 3, 4, 5, 6],
+          "types": ["Number"],
+          "defaultValue": null
+        },
+        "condensed": {
+          "name": "condensed",
+          "description": "whether the panel body is condensed (has no padding; not officially part of Fundamentals)",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "condensedFooter": {
+          "name": "condensedFooter",
+          "description": "whether the panel footer is condensed (has no padding)",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdPanel"
+    },
+    "FdPanelGrid": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Panels displayed by the grid."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "col": {
+          "name": "col",
+          "description": "number of columns",
+          "required": false,
+          "acceptableValues": [2, 3, 4, 5, 6],
+          "types": ["Number"],
+          "defaultValue": null
+        },
+        "nogap": {
+          "name": "nogap",
+          "description": "whether there is a gap between the individual panels",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdPanelGrid"
+    },
+    "FdMenu": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "0 or more menu lists."
+        }
+      },
+      "events": {
+        "select": {
+          "name": "select",
+          "description": "Sent when a menu item was selected",
+          "parameter": {
+            "name": "value",
+            "type": {
+              "name": "String"
+            }
+          }
+        }
+      },
+      "mixins": [],
+      "props": {
+        "canHaveAddon": {
+          "name": "canHaveAddon",
+          "description": "whether menu item can have an addon",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdMenu"
+    },
+    "FdMenuList": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "0 or more menu items."
+        }
+      },
+      "events": {
+        "select": {
+          "name": "select",
+          "description": "Sent when a menu item was selected",
+          "parameter": {
+            "name": "item",
+            "type": {
+              "name": "Raw",
+              "meta": "MenuItem"
+            }
+          }
+        }
+      },
+      "mixins": [],
+      "props": {
+        "header": {
+          "name": "header",
+          "description": "text displayed in the menu list (group) header",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "separated": {
+          "name": "separated",
+          "description": "whether a separator is placed between menu items",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdMenuList"
+    },
+    "FdMenuItem": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Content displayed by the menu item (usually text)."
+        }
+      },
+      "events": {
+        "click": {
+          "name": "click",
+          "description": "Sent when the itme was clicked"
+        }
+      },
+      "mixins": [],
+      "props": {
+        "value": {
+          "name": "value",
+          "description": "value (can be used to associate a context with the item)",
+          "required": false,
+          "types": ["String", "Number"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdMenuItem"
+    },
+    "FdPopover": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "MenuItems or custom content via the body-slot"
+        }
+      },
+      "events": {
+        "click": {
+          "name": "click",
+          "description": "Sent when an item in the popover was clicked",
+          "parameter": {
+            "name": "value",
+            "type": {
+              "name": "Raw",
+              "meta": "MenuItem value"
+            }
+          }
+        }
+      },
+      "mixins": [],
+      "props": {
+        "ariaLabel": {
+          "name": "ariaLabel",
+          "description": "ARIA label",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": "Popover"
+        },
+        "title": {
+          "name": "title",
+          "description": "title displayed when no custom trigger element is used",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": "Show"
+        },
+        "placement": {
+          "name": "placement",
+          "description": "popover placement",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": "left"
+        },
+        "popoverVisible": {
+          "name": "popoverVisible",
+          "description": "whether popover is visible",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "noArrow": {
+          "name": "noArrow",
+          "description": "whether popover has an arrow",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdPopover"
+    },
+    "FdButton": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "button content (usually just text)"
+        }
+      },
+      "events": {
+        "click": {
+          "name": "click",
+          "description": "Sent when button is clicked"
+        }
+      },
+      "mixins": [],
+      "props": {
+        "value": {
+          "name": "value",
+          "description": "button value used when in a button group",
+          "required": false,
+          "defaultValue": null,
+          "types": ["String", "Number", "Boolean"]
+        },
+        "styling": {
+          "name": "styling",
+          "description": "button styling",
+          "required": false,
+          "acceptableValues": ["emphasized", "light", "regular"],
+          "types": ["String"],
+          "defaultValue": "regular"
+        },
+        "type": {
+          "name": "type",
+          "description": "button type",
+          "required": false,
+          "acceptableValues": ["standard", "positive", "medium", "negative"],
+          "types": ["String"],
+          "defaultValue": "primary"
+        },
+        "icon": {
+          "name": "icon",
+          "description": "icon displayed in the button",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "compact": {
+          "name": "compact",
+          "description": "whether button is compact",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "state": {
+          "name": "state",
+          "description": "button state",
+          "required": false,
+          "acceptableValues": ["normal", "selected", "disabled"],
+          "types": ["String"],
+          "defaultValue": "normal"
+        }
+      },
+      "componentName": "FdButton"
+    },
+    "FdButtonGroup": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Buttons to be displayed in a group"
+        }
+      },
+      "events": {
+        "input": {
+          "name": "input",
+          "description": "triggers when the active buttons change",
+          "parameter": {
+            "name": "values",
+            "type": {
+              "name": "Array"
+            }
+          }
+        }
+      },
+      "mixins": [],
+      "props": {
+        "compact": {
+          "name": "compact",
+          "description": "whether button group is compact",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "value": {
+          "name": "value",
+          "description": "index of active button",
+          "required": false,
+          "types": ["Number"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdButtonGroup"
+    },
+    "FdTabs": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Tab Items"
+        }
+      },
+      "events": {
+        "input": {
+          "name": "input",
+          "description": "triggers when the active tab item name changes",
+          "parameter": {
+            "name": "tabItemName",
+            "type": {
+              "name": "String"
+            }
+          }
+        }
+      },
+      "mixins": [],
+      "props": {
+        "value": {
+          "name": "value",
+          "description": "active tab item name",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdTabs"
+    },
+    "FdTabItem": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Content to be displayed in the tab body when this item is active."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "label": {
+          "name": "label",
+          "description": "tab item label",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "name": {
+          "name": "name",
+          "description": "name, used to determine whether item is active",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "disabled": {
+          "name": "disabled",
+          "description": "whether item is disabled",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdTabItem"
+    },
+    "FdSideNavGroup": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdSideNavGroup"
+    },
+    "FdSideNavGroupTitle": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdSideNavGroupTitle"
+    },
+    "FdSideNavIcon": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdSideNavIcon"
+    },
+    "FdSideNav": {
+      "slots": {},
+      "events": {
+        "update:selectedId": {
+          "name": "update:selectedId",
+          "description": "Emitted when selectedId changes."
+        }
+      },
+      "mixins": [],
+      "props": {
+        "selectedId": {
+          "name": "selectedId",
+          "description": "id of the selected item. Supports the sync-modifier.",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "mode": {
+          "name": "mode",
+          "description": "mode",
+          "required": false,
+          "acceptableValues": ["router", "manual"],
+          "types": ["String"],
+          "defaultValue": "manual"
+        }
+      },
+      "componentName": "FdSideNav"
+    },
+    "FdSideNavList": {
+      "slots": {
+        "": {
+          "name": "link",
+          "description": "Render a custom Link. slot-scope gives you access to the rendered item."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "items": {
+          "name": "items",
+          "description": "items",
+          "required": false,
+          "readableDefaultValue": "Array<Item>",
+          "types": ["Array"],
+          "defaultValue": []
+        }
+      },
+      "componentName": "FdSideNavList"
+    },
+    "FdSideNavItem": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdSideNavItem"
+    },
+    "FdSideNavSubItem": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdSideNavSubItem"
+    },
+    "FdSideNavLink": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "to": {
+          "name": "to",
+          "description": "to",
+          "required": false,
+          "types": ["Object", "String"],
+          "defaultValue": "#"
+        }
+      },
+      "componentName": "FdSideNavLink"
+    },
+    "FdSideNavSubLink": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "to": {
+          "name": "to",
+          "description": "to",
+          "required": false,
+          "types": ["Object", "String"],
+          "defaultValue": "#"
+        }
+      },
+      "componentName": "FdSideNavSubLink"
+    },
+    "FdSideNavSubList": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "hidden": {
+          "name": "hidden",
+          "description": "hidden",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdSideNavSubList"
+    },
+    "FdFormItem": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Content of the form item. Usually inputs and labels."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "inline": {
+          "name": "inline",
+          "description": "inline",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": null
+        },
+        "label": {
+          "name": "label",
+          "description": "label",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdFormItem"
+    },
+    "FdFormLabel": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Contents of the label: For non-inline elements simply use text which will become the text displayed by the label. For inline elements use text alongside with any elements that form your input control."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "required": {
+          "name": "required",
+          "description": "whether a value is required (adds a *)",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdFormLabel"
+    },
+    "FdFormMessage": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Message to be displayed (usually just text)."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "type": {
+          "name": "type",
+          "description": "type",
+          "required": false,
+          "acceptableValues": ["error", "warning", "help"],
+          "types": ["String"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdFormMessage"
+    },
+    "FdFormSet": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Content of the form set (usually form items)."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdFormSet"
+    },
+    "FdFormGroup": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Content of the form group. Usually form items."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "inline": {
+          "name": "inline",
+          "description": "inline",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdFormGroup"
+    },
+    "FdLegend": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Legend text"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdLegend"
+    },
+    "FdFieldSet": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Content of the field set. Usually a legend with a form group."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdFieldSet"
+    },
+    "FdInput": {
+      "slots": {},
+      "events": {
+        "input": {
+          "name": "update",
+          "description": "Sent when the value changes",
+          "parameter": {
+            "name": "input",
+            "type": {
+              "name": "Raw",
+              "meta": "any"
+            }
+          }
+        }
+      },
+      "mixins": [],
+      "props": {
+        "placeholder": {
+          "name": "placeholder",
+          "description": "placeholder text",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": ""
+        },
+        "state": {
+          "name": "state",
+          "description": "current state",
+          "required": false,
+          "acceptableValues": ["valid", "invalid", "warning"],
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "required": {
+          "name": "required",
+          "description": "whether a value is required (adds a *)",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "type": {
+          "name": "type",
+          "description": "button type",
+          "required": false,
+          "acceptableValues": ["text", "password", "search"],
+          "types": ["String"],
+          "defaultValue": "text"
+        },
+        "disabled": {
+          "name": "disabled",
+          "description": "whether the control is disabled",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "readonly": {
+          "name": "readonly",
+          "description": "whether the control is readonly",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "value": {
+          "name": "value",
+          "description": "current value",
+          "required": false,
+          "types": ["String", "Number"],
+          "defaultValue": ""
+        },
+        "compact": {
+          "name": "compact",
+          "description": "whether input is compact",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "maxlength": {
+          "name": "maxlength",
+          "description": "upper limit on the number of characters that can be entered in the input field.",
+          "required": false,
+          "types": ["String"]
+        }
+      },
+      "componentName": "FdInput"
+    },
+    "FdInputGroup": {
+      "slots": {
+        "": {
+          "name": "before",
+          "description": "Content to be placed before the input component."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "before": {
+          "name": "before",
+          "description": "text/number before the input",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "after": {
+          "name": "after",
+          "description": "text/number after the input",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "afterClass": {
+          "name": "afterClass",
+          "description": "afterClass",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "compact": {
+          "name": "compact",
+          "description": "whether input group is compact",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdInputGroup"
+    },
+    "FdSelect": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "List of native option elements."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "state": {
+          "name": "state",
+          "description": "select state",
+          "required": false,
+          "acceptableValues": ["default", "valid", "invalid", "warning"],
+          "types": ["String"],
+          "defaultValue": "default"
+        },
+        "required": {
+          "name": "required",
+          "description": "whether input is required",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "disabled": {
+          "name": "disabled",
+          "description": "whether select is disabled",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "readonly": {
+          "name": "readonly",
+          "description": "whether select is readonly",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "value": {
+          "name": "value",
+          "description": "current value",
+          "required": false,
+          "types": ["String", "Number", "Object"]
+        }
+      },
+      "componentName": "FdSelect"
+    },
+    "FdTextArea": {
+      "slots": {},
+      "events": {
+        "input": {
+          "name": "input",
+          "description": "Sent when the value changes",
+          "parameter": {
+            "name": "value",
+            "type": {
+              "name": "Raw",
+              "meta": "any"
+            }
+          }
+        }
+      },
+      "mixins": [],
+      "props": {
+        "placeholder": {
+          "name": "placeholder",
+          "description": "placeholder displayed when no value is set",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": ""
+        },
+        "state": {
+          "name": "state",
+          "description": "state of the text area",
+          "required": false,
+          "acceptableValues": ["default", "valid", "invalid", "warning"],
+          "types": ["String"],
+          "defaultValue": "default"
+        },
+        "required": {
+          "name": "required",
+          "description": "whether input is required",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "value": {
+          "name": "value",
+          "description": "current value",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": ""
+        },
+        "type": {
+          "name": "type",
+          "description": "native element type",
+          "required": false,
+          "acceptableValues": ["text", "password"],
+          "types": ["String"],
+          "defaultValue": "text"
+        }
+      },
+      "componentName": "FdTextArea"
+    },
+    "FdToggle": {
+      "slots": {},
+      "events": {},
+      "mixins": [],
+      "props": {
+        "size": {
+          "name": "size",
+          "description": "size class",
+          "required": false,
+          "acceptableValues": ["xs", "s", "l"],
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "disabled": {
+          "name": "disabled",
+          "description": "whether toggle is disabled",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "on": {
+          "name": "on",
+          "description": "whether toggle is checked",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdToggle"
+    },
+    "FdCheckbox": {
+      "slots": {},
+      "events": {
+        "change": {
+          "name": "update",
+          "description": "Sent when the checkbox has been checked/unchecked."
+        }
+      },
+      "mixins": [],
+      "props": {
+        "trueValue": {
+          "name": "trueValue",
+          "description": "Payload of the change-event when the user checks the checkbox",
+          "required": false,
+          "types": ["String", "Number", "Boolean"],
+          "defaultValue": true
+        },
+        "falseValue": {
+          "name": "falseValue",
+          "description": "Payload of the change-event when the user unchecks the checkbox",
+          "required": false,
+          "types": ["String", "Number", "Boolean"],
+          "defaultValue": false
+        },
+        "value": {
+          "name": "value",
+          "description": "value used when checked is true",
+          "required": false,
+          "types": ["String", "Number", "Boolean"],
+          "defaultValue": true
+        },
+        "compact": {
+          "name": "compact",
+          "description": "whether input is compact",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "disabled": {
+          "name": "disabled",
+          "description": "whether the control is disabled",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "readonly": {
+          "name": "readonly",
+          "description": "whether the control is readonly",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "state": {
+          "name": "state",
+          "description": "current state",
+          "required": false,
+          "acceptableValues": ["valid", "invalid", "warning"],
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "required": {
+          "name": "required",
+          "description": "whether a value is required (adds a *)",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "modelValue": {
+          "name": "modelValue",
+          "description": "modelValue",
+          "required": false,
+          "types": ["Array", "String", "Boolean", "Number"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdCheckbox"
+    },
+    "FdRadio": {
+      "slots": {},
+      "events": {
+        "change": {
+          "name": "change",
+          "description": "Sent when the checkbox has been checked/unchecked."
+        }
+      },
+      "mixins": [],
+      "props": {
+        "trueValue": {
+          "name": "trueValue",
+          "description": "Payload of the change-event when the user checks the checkbox",
+          "required": false,
+          "types": ["String", "Number", "Boolean"],
+          "defaultValue": true
+        },
+        "falseValue": {
+          "name": "falseValue",
+          "description": "Payload of the change-event when the user unchecks the checkbox",
+          "required": false,
+          "types": ["String", "Number", "Boolean"],
+          "defaultValue": false
+        },
+        "value": {
+          "name": "value",
+          "description": "value used when checked is true",
+          "required": false,
+          "types": ["String"]
+        },
+        "compact": {
+          "name": "compact",
+          "description": "whether the control is compact",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "disabled": {
+          "name": "disabled",
+          "description": "whether the control is disabled",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "readonly": {
+          "name": "readonly",
+          "description": "whether the control is readonly",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "state": {
+          "name": "state",
+          "description": "current state",
+          "required": false,
+          "acceptableValues": ["valid", "invalid", "warning"],
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "required": {
+          "name": "required",
+          "description": "whether a value is required (adds a *)",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "modelValue": {
+          "name": "modelValue",
+          "description": "modelValue",
+          "required": false,
+          "types": ["String", "Boolean", "Number"],
+          "defaultValue": ""
+        }
+      },
+      "componentName": "FdRadio"
+    },
+    "FdBreadcrumb": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Breadcrumb Items"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdBreadcrumb"
+    },
+    "FdBreadcrumbItem": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Breadcrumb Item Title"
+        }
+      },
+      "events": {
+        "click": {
+          "name": "click",
+          "description": "Sent when item was clicked",
+          "parameter": {
+            "name": "item",
+            "type": {
+              "name": "Raw",
+              "meta": "BreadcrumbItem"
+            }
+          }
+        }
+      },
+      "mixins": [],
+      "props": {
+        "to": {
+          "name": "to",
+          "description": "target route (passed to $router.to(…))",
+          "required": false,
+          "types": ["Object"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdBreadcrumbItem"
+    },
+    "FdListGroup": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "List of list group items."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdListGroup"
+    },
+    "FdListGroupItem": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Content displayed by the item. Usually text."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {},
+      "componentName": "FdListGroupItem"
+    },
+    "FdTile": {
+      "slots": {
+        "": {
+          "name": "media",
+          "description": "Tile Media"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "title": {
+          "name": "title",
+          "description": "title",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "description": {
+          "name": "description",
+          "description": "description",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "rowSpan": {
+          "name": "rowSpan",
+          "description": "row span",
+          "required": false,
+          "types": ["Number"],
+          "defaultValue": null
+        },
+        "colSpan": {
+          "name": "colSpan",
+          "description": "column span",
+          "required": false,
+          "types": ["Number"],
+          "defaultValue": null
+        },
+        "backgroundColor": {
+          "name": "backgroundColor",
+          "description": "background color",
+          "required": false,
+          "acceptableValues": [
+            "action-1",
+            "text-1",
+            "text-2",
+            "text-3",
+            "background-1",
+            "background-2",
+            "neutral-1",
+            "neutral-2",
+            "neutral-3",
+            "status-1",
+            "status-2",
+            "status-3",
+            "accent-1",
+            "accent-2",
+            "accent-3",
+            "accent-4",
+            "accent-5",
+            "accent-6",
+            "accent-7",
+            "accent-8",
+            "accent-9",
+            "accent-10",
+            "accent-11",
+            "accent-12",
+            "accent-13",
+            "accent-14",
+            "accent-15"
+          ],
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "isButton": {
+          "name": "isButton",
+          "description": "render tile as a button",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "disabled": {
+          "name": "disabled",
+          "description": "disable tile",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdTile"
+    },
+    "FdProductTile": {
+      "slots": {
+        "": {
+          "name": "content",
+          "description": "Product Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "url": {
+          "name": "url",
+          "description": "image url",
+          "required": true,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "title": {
+          "name": "title",
+          "description": "title",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": null
+        },
+        "isButton": {
+          "name": "isButton",
+          "description": "render product tile as a button",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "disabled": {
+          "name": "disabled",
+          "description": "disable product tile",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdProductTile"
+    },
+    "FdTileGrid": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Tiles displayed by the grid."
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "col": {
+          "name": "col",
+          "description": "number of columns",
+          "required": false,
+          "acceptableValues": [2, 3, 4, 5, 6],
+          "types": ["Number"],
+          "defaultValue": null
+        }
+      },
+      "componentName": "FdTileGrid"
+    },
+    "FdTime": {
+      "slots": {},
+      "events": {
+        "timeUpdate": {
+          "name": "timeUpdate",
+          "description": "Event triggered when the time value is updated"
+        }
+      },
+      "mixins": [],
+      "props": {
+        "type": {
+          "name": "type",
+          "description": "Time Item Type",
+          "required": true,
+          "acceptableValues": [
+            "hour24",
+            "hour12",
+            "minute",
+            "second",
+            "meridian"
+          ],
+          "types": ["String"]
+        },
+        "value": {
+          "name": "value",
+          "description": "Value in the Time input field",
+          "required": false,
+          "types": ["String", "Number"],
+          "defaultValue": ""
+        },
+        "ariaLabel": {
+          "name": "ariaLabel",
+          "description": "Aria Label",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": "Time Item"
+        },
+        "placeholder": {
+          "name": "placeholder",
+          "description": "Placeholder for the Time component",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": ""
+        }
+      },
+      "componentName": "FdTime"
+    },
+    "FdTimeItem": {
+      "slots": {},
+      "events": {
+        "timeUpdate": {
+          "name": "timeUpdate",
+          "description": "Event triggered whenever the time value is updated."
+        }
+      },
+      "mixins": [],
+      "props": {
+        "ariaLabel": {
+          "name": "ariaLabel",
+          "description": "Aria Label for TimeItem",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": "Time Item"
+        },
+        "value": {
+          "name": "value",
+          "description": "Value of Time to be set in the time Item. This has to be in the format \"hh:mm:ss\" / \"hh:mm\" for the 24 hour clock or \"hh:mm:ss a\" / \"hh:mm a\" for the 12 hour clock",
+          "required": false,
+          "types": ["String"]
+        },
+        "showMeridian": {
+          "name": "showMeridian",
+          "description": "If Meridian should be shown",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdTimeItem"
+    },
+    "FdTimePicker": {
+      "slots": {},
+      "events": {
+        "timePickerChange": {
+          "name": "timePickerChange",
+          "description": "Event triggered from the TimePicker Input Popover in the TimePicker once the focus is out of the TimePicker input"
+        },
+        "timePickerUpdate": {
+          "name": "timePickerUpdate",
+          "description": "Event triggered from the TimePicker Input Popover in the TimePicker on every keystroke in the input field."
+        }
+      },
+      "mixins": [],
+      "props": {
+        "id": {
+          "name": "id",
+          "description": "ID of the TimePicker",
+          "required": false,
+          "types": ["String"]
+        },
+        "placeholder": {
+          "name": "placeholder",
+          "description": "Placeholder of the TimePicker",
+          "required": false,
+          "types": ["String"]
+        },
+        "value": {
+          "name": "value",
+          "description": "Value of Time to be set in the time Item. This has to be in the format \"hh:mm:ss\" / \"hh:mm\" for the 24 hour clock or \"hh:mm:ss a\" / \"hh:mm a\" for the 12 hour clock",
+          "required": false,
+          "types": ["String"]
+        },
+        "ariaLabel": {
+          "name": "ariaLabel",
+          "description": "aria-label for the TimePicker",
+          "required": false,
+          "types": ["String"],
+          "defaultValue": "Time Picker"
+        },
+        "compact": {
+          "name": "compact",
+          "description": "whether TimePicker is compact",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "showMeridian": {
+          "name": "showMeridian",
+          "description": "If Meridian should be shown",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      },
+      "componentName": "FdTimePicker"
+    },
+    "FdTree": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Tree Content"
+        }
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+        "headers": {
+          "name": "headers",
+          "description": "headers of the tree",
+          "required": true,
+          "types": ["Array"]
+        },
+        "treeData": {
+          "name": "treeData",
+          "description": "data of the tree",
+          "required": true,
+          "types": ["Array"]
+        }
+      },
+      "componentName": "FdTree"
+    }
+  }
+}
