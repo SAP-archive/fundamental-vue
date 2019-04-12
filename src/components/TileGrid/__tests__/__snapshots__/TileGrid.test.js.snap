@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TileGrid 2 Columns renders correctly 1`] = `
+<div
+  class="fd-tile-grid fd-tile-grid--2col"
+>
+  <div>
+    <div
+      class="fd-tile"
+    >
+      <!---->
+       
+      <div
+        class="fd-tile__content"
+      >
+        <!---->
+         
+        <p>
+          Lorem ipsum
+        </p>
+      </div>
+       
+      <!---->
+    </div>
+    <div
+      class="fd-tile"
+    >
+      <!---->
+       
+      <div
+        class="fd-tile__content"
+      >
+        <!---->
+         
+        <p>
+          Lorem ipsum
+        </p>
+      </div>
+       
+      <!---->
+    </div>
+    <div
+      class="fd-tile"
+    >
+      <!---->
+       
+      <div
+        class="fd-tile__content"
+      >
+        <!---->
+         
+        <p>
+          Lorem ipsum
+        </p>
+      </div>
+       
+      <!---->
+    </div>
+    <div
+      class="fd-tile"
+    >
+      <!---->
+       
+      <div
+        class="fd-tile__content"
+      >
+        <!---->
+         
+        <p>
+          Lorem ipsum
+        </p>
+      </div>
+       
+      <!---->
+    </div>
+    <div
+      class="fd-tile"
+    >
+      <!---->
+       
+      <div
+        class="fd-tile__content"
+      >
+        <!---->
+         
+        <p>
+          Lorem ipsum
+        </p>
+      </div>
+       
+      <!---->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TileGrid 6 Columns renders correctly 1`] = `
+<div
+  class="fd-tile-grid fd-tile-grid--6col"
+>
+  <div>
+    <div
+      class="fd-tile"
+    >
+      <!---->
+       
+      <div
+        class="fd-tile__content"
+      >
+        <!---->
+         
+        <p>
+          Lorem ipsum
+        </p>
+      </div>
+       
+      <!---->
+    </div>
+    <div
+      class="fd-tile"
+    >
+      <!---->
+       
+      <div
+        class="fd-tile__content"
+      >
+        <!---->
+         
+        <p>
+          Lorem ipsum
+        </p>
+      </div>
+       
+      <!---->
+    </div>
+    <div
+      class="fd-tile"
+    >
+      <!---->
+       
+      <div
+        class="fd-tile__content"
+      >
+        <!---->
+         
+        <p>
+          Lorem ipsum
+        </p>
+      </div>
+       
+      <!---->
+    </div>
+    <div
+      class="fd-tile"
+    >
+      <!---->
+       
+      <div
+        class="fd-tile__content"
+      >
+        <!---->
+         
+        <p>
+          Lorem ipsum
+        </p>
+      </div>
+       
+      <!---->
+    </div>
+    <div
+      class="fd-tile"
+    >
+      <!---->
+       
+      <div
+        class="fd-tile__content"
+      >
+        <!---->
+         
+        <p>
+          Lorem ipsum
+        </p>
+      </div>
+       
+      <!---->
+    </div>
+  </div>
+</div>
+`;

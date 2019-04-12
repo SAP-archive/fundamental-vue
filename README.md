@@ -48,8 +48,8 @@ Then you can use Fundamental Vue like this:
       new Vue({
         el: '#app',
         template: `
-          <FdPopover v-margin:large>
-            <h1 v-margin:large slot="body">
+          <FdPopover v-fd-margin:large>
+            <h1 v-fd-margin:large slot="body">
               🚀 Hello Fundamental Vue 🚀
             </h1>
           </FdPopover>`

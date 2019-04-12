@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItem does render embeddded link with href 1`] = `
+<li>
+  <!---->
+   
+  <a
+    class="fd-menu__item"
+    href="#"
+  >
+    Item 1
+  </a>
+</li>
+`;
+
+exports[`MenuItem does render embedded link 1`] = `
+<li>
+  <!---->
+   
+  <a
+    class="fd-menu__item"
+  >
+    Item 1
+  </a>
+</li>
+`;

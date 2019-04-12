@@ -1,4 +1,5 @@
 dist
+coverage
 
 # Ignore files generates by running `npm pack`
 fundamental-vue-*.tgz
@@ -84,9 +85,9 @@ node_modules/
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+#!.vscode/tasks.json
+#!.vscode/launch.json
+#!.vscode/extensions.json
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
@@ -94,8 +95,3 @@ node_modules/
 
 ### Vuejs ###
 node_modules
-/.vscode
-/ui/.vscode
-/server/.vscode
-/docs/.vscode
-/ui/coverage
