@@ -13,13 +13,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script>
 import { Popover } from "@/components/Popover";
 import ShellBarProductTitle from "./ShellBarProductTitle.vue";
 
-export default Vue.extend({
+export default {
   name: "FdShellBarProductMenu",
   components: { Popover, ShellBarProductTitle }
-});
+};
 </script>

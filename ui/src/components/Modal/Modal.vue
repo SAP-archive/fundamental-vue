@@ -4,11 +4,12 @@
     class="fd-ui__overlay fd-overlay fd-overlay--modal"
     :aria-hidden="String(!active)"
   >
-    <ClickAwayContainer
+    <div
       @clickOutside="close"
       class="fd-modal"
       :tabindex="active ? -1 : 0"
       :active="active"
+      v-fd-on-click-outside:close="active"
     >
       <div class="fd-modal__content" role="document">
         <!-- HEADER -->
@@ -44,18 +45,23 @@
           </div>
         </footer>
       </div>
-    </ClickAwayContainer>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import ClickAwayContainer from "@/components/ClickAwayContainer";
+<script>
 import FdButton from "@/components/Button";
-import { FocusTrap, mixins } from "@/mixins";
+import { ClickOutside, FocusTrap } from "@/mixins";
+import { isInside, onClickOutside } from "@/directives";
 
-export default mixins(FocusTrap).extend({
+export default {
   name: "FdModal",
-  components: { FdButton, ClickAwayContainer },
+  mixins: [ClickOutside, FocusTrap],
+  directives: {
+    "fd-is-inside": isInside,
+    "fd-on-click-outside": onClickOutside
+  },
+  components: { FdButton },
   methods: {
     close() {
       this.$emit("close");
@@ -91,5 +97,5 @@ export default mixins(FocusTrap).extend({
     active: { type: Boolean, default: false },
     title: { type: String, default: null }
   }
-});
+};
 </script>

@@ -9,6 +9,7 @@ exports[`TimePicker Compact Style renders correctly 1`] = `
   >
     <div
       class="fd-popover__control"
+      data-fd-is-inside-context="time-picker"
     >
       <div
         role="button"
@@ -42,6 +43,7 @@ exports[`TimePicker Compact Style renders correctly 1`] = `
     <div
       aria-hidden="true"
       class="fd-popover__body fd-popover__body--no-arrow"
+      data-fd-detects-outside-interaction="true"
       id="time-picker"
     >
       <nav
@@ -180,6 +182,7 @@ exports[`TimePicker With Meridian renders correctly 1`] = `
   >
     <div
       class="fd-popover__control"
+      data-fd-is-inside-context="time-picker"
     >
       <div
         role="button"
@@ -213,6 +216,7 @@ exports[`TimePicker With Meridian renders correctly 1`] = `
     <div
       aria-hidden="true"
       class="fd-popover__body fd-popover__body--no-arrow"
+      data-fd-detects-outside-interaction="true"
       id="time-picker"
     >
       <nav
@@ -385,6 +389,7 @@ exports[`TimePicker renders correctly 1`] = `
   >
     <div
       class="fd-popover__control"
+      data-fd-is-inside-context="time-picker"
     >
       <div
         role="button"
@@ -418,6 +423,7 @@ exports[`TimePicker renders correctly 1`] = `
     <div
       aria-hidden="true"
       class="fd-popover__body fd-popover__body--no-arrow"
+      data-fd-detects-outside-interaction="true"
       id="time-picker"
     >
       <nav

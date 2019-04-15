@@ -1,6 +1,14 @@
 import { mount } from "@vue/test-utils";
 import TimePicker from "../TimePicker.vue";
 
+jest.mock("./../../../lib/uuid", () => {
+  return {
+    shortUuid() {
+      return "time-picker";
+    }
+  };
+});
+
 describe("TimePicker", () => {
   const placeholder = "Pick a time";
   const value = "11:01:58 am";

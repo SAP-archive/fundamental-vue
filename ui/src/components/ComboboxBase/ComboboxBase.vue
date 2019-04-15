@@ -21,44 +21,38 @@
   </FdPopover>
 </template>
 
-<script lang="ts">
-import { mixins, Uid } from "@/mixins";
-import {
-  Input as FdInput,
-  InputGroup as FdInputGroup
-} from "@/components/Form";
-import FdButton from "@/components/Button/Button.vue";
+<script>
+import { Uid } from "@/mixins";
+import { InputGroup as FdInputGroup } from "@/components/Form";
 import FdPopover from "@/components/Popover/Popover.vue";
-import { PropValidator } from "vue/types/options";
 
-export default mixins(Uid).extend({
+export default {
   name: "FdComboboxBase",
+  mixins: [Uid],
   model: {
     prop: "value",
     event: "update"
   },
   components: {
-    FdButton,
     FdPopover,
-    FdInput,
     FdInputGroup
   },
-  provide(): object {
+  provide() {
     return {
-      combobox: this as any
+      combobox: this
     };
   },
   props: {
-    value: { type: String, default: null } as PropValidator<string | null>,
-    placeholder: { type: String, default: "" } as PropValidator<string>,
-    popoverVisible: { type: Boolean, default: false } as PropValidator<boolean>,
-    compact: { type: Boolean, default: false } as PropValidator<boolean>
+    value: { type: String, default: null },
+    placeholder: { type: String, default: "" },
+    popoverVisible: { type: Boolean, default: false },
+    compact: { type: Boolean, default: false }
   },
   data() {
     return {
-      currentPopoverVisible: this.popoverVisible as boolean,
-      currentValue: this.value as string | number | null
+      currentPopoverVisible: this.popoverVisible,
+      currentValue: this.value
     };
   }
-});
+};
 </script>

@@ -3,7 +3,7 @@ import FdCompletionList from "./../CompletionList.vue";
 import FdMenuItem from "./../../Menu/MenuItem.vue";
 
 // A little neat helper to create a completion list
-const createCompletionList = (predicate: string, completions: string[]) => {
+const createCompletionList = (predicate, completions) => {
   const propsData = { predicate, completions };
   return mount(FdCompletionList, {
     propsData

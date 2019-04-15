@@ -1,11 +1,11 @@
 <template>
   <div class="fd-popover">
     <!-- Complicated Trigger Control logic: BEGIN-->
-    <div class="fd-popover__control" ref="control">
+    <div class="fd-popover__control" ref="control" v-fd-is-inside>
       <div v-if="$slots.control != null" @click="toggle" role="button">
-        <slot name="control" v-bind="contextProps" />
+        <slot v-fd-is-inside name="control" v-bind="contextProps" />
       </div>
-      <slot v-else v-bind="contextProps" name="control">
+      <slot v-else v-bind="contextProps" v-fd-is-inside name="control">
         <Button
           class="fd-popover__control"
           :aria-controls="uid"
@@ -17,16 +17,15 @@
       </slot>
     </div>
     <!-- Complicated Trigger Control logic: END-->
-    <ClickAwayContainer
-      :ignoredElements="ignoredElements"
+    <div
       :id="uid"
       class="fd-popover__body"
       :class="{
         'fd-popover__body--right': this.placement === 'right',
         'fd-popover__body--no-arrow': this.noArrow
       }"
-      @clickOutside="hidePopover"
-      :active="currentPopoverVisible"
+      v-fd-detects-outside-interaction="currentPopoverVisible"
+      v-fd-on-click-outside="hidePopover"
       :aria-hidden="!currentPopoverVisible"
     >
       <slot name="body" v-bind="contextProps">
@@ -36,41 +35,38 @@
           </MenuList>
         </Menu>
       </slot>
-    </ClickAwayContainer>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Uid, mixins } from "@/mixins";
-import ClickAwayContainer from "@/components/ClickAwayContainer";
+<script>
+import {
+  detectsOutsideInteraction,
+  onClickOutside,
+  isInside
+} from "./../../directives/click-outside";
+import { ClickOutside, Uid } from "@/mixins";
 import { Menu, MenuList } from "@/components/Menu";
 import { Button } from "@/components/Button";
 import { warn } from "@/core";
-
-const pathToRootFrom = (element: Element): Element[] => {
-  const result: Element[] = [];
-  let parent: Element | null = element.parentElement;
-  while (parent != null) {
-    result.push(parent);
-    parent = parent.parentElement;
-  }
-  return result;
-};
 
 const popoverPlacementMapping = {
   left: "left", // default
   right: "right"
 };
-type PopoverPlacement = keyof typeof popoverPlacementMapping;
-const PopoverPlacements = Object.keys(
-  popoverPlacementMapping
-) as PopoverPlacement[];
 
-const isPlacement = (value: any) => PopoverPlacements.indexOf(value) >= 0;
+const PopoverPlacements = Object.keys(popoverPlacementMapping);
+const isPlacement = value => PopoverPlacements.indexOf(value) >= 0;
 
-export default mixins(Uid).extend({
+export default {
   name: "FdPopover",
-  components: { Button, Menu, MenuList, ClickAwayContainer },
+  mixins: [Uid, ClickOutside],
+  components: { Button, Menu, MenuList },
+  directives: {
+    "fd-is-inside": isInside,
+    "fd-on-click-outside": onClickOutside,
+    "fd-detects-outside-interaction": detectsOutsideInteraction
+  },
   model: {
     prop: "popoverVisible",
     event: "visible"
@@ -87,56 +83,28 @@ export default mixins(Uid).extend({
     popoverVisible: { type: Boolean, default: false }
   },
   computed: {
-    contextProps(): object {
+    contextProps() {
       return {
         toggle: this.toggle,
         show: this.show,
         hide: this.hide,
         visible: this.currentPopoverVisible
       };
-    },
-    ignoredElements(): () => Element[] {
-      const vm = this;
-      return () => {
-        return vm.controlElement != null ? [vm.controlElement] : [];
-      };
-    },
-    controlElement(): Element | null {
-      const control = this.$refs.control;
-      if (control == null) {
-        return null;
-      }
-      if (Array.isArray(control)) {
-        warn("Trigger control must be a single element or component.");
-        return null;
-      }
-      // @ts-ignore
-      return control["$el"] || control;
     }
   },
   watch: {
     popoverVisible: {
       immediate: true,
-      handler(newValue: boolean) {
+      handler(newValue) {
         this.setCurrentPopoverVisible(newValue);
       }
     }
   },
   methods: {
-    setCurrentPopoverVisible(newValue: boolean): void {
+    setCurrentPopoverVisible(newValue) {
       this.currentPopoverVisible = newValue;
     },
-    ignored(element: Element): boolean {
-      const ignoredElement = this.controlElement;
-      if (ignoredElement == null) {
-        return false;
-      }
-      const path = pathToRootFrom(element);
-      const index = path.indexOf(ignoredElement);
-      const ignore = index >= 0;
-      return ignore;
-    },
-    handleItemClick(value: string | null) {
+    handleItemClick(value) {
       this.$emit("click", value);
       this.toggle();
     },
@@ -162,5 +130,5 @@ export default mixins(Uid).extend({
       currentPopoverVisible: this.popoverVisible || false
     };
   }
-});
+};
 </script>

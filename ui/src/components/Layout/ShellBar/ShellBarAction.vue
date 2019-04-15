@@ -2,17 +2,15 @@
   <div :class="classes"><slot /></div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({
+<script>
+export default {
   name: "FdShellBarAction",
   props: {
     showAlways: { type: Boolean, default: true },
     collapsible: { type: Boolean, default: false }
   },
   computed: {
-    classes(): object {
+    classes() {
       return {
         "fd-shellbar__action": true,
         "fd-shellbar__action--show-always": this.showAlways,
@@ -20,5 +18,5 @@ export default Vue.extend({
       };
     }
   }
-});
+};
 </script>

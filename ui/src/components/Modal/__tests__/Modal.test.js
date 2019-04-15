@@ -1,17 +1,10 @@
 import Vue from "vue";
-import { mount, Wrapper, shallowMount } from "@vue/test-utils";
+import { mount, shallowMount } from "@vue/test-utils";
 import Modal from "../Modal.vue";
 import { FocusTrap } from "@/mixins";
-import createFocusTrap, { Options } from "focus-trap";
+import createFocusTrap from "focus-trap";
 
 jest.mock("focus-trap");
-interface ModalWrapper extends Vue {
-  clickOutside(): void;
-  close(): void;
-  activateFocusTrap(): void;
-  deactivateFocusTrap(): void;
-  initializeFocusTrap(element: Element, options?: Options): void;
-}
 
 describe("Modal", () => {
   it("renders correctly", () => {
@@ -40,12 +33,12 @@ describe("Modal", () => {
   it("should initialize focus trap while mounting", () => {
     const initializeFocusTrapMock = jest.fn();
 
-    const wrapper: Wrapper<ModalWrapper> = shallowMount(Modal, {
+    const wrapper = shallowMount(Modal, {
       mixins: [FocusTrap],
       methods: {
         initializeFocusTrap: initializeFocusTrapMock
       }
-    }) as Wrapper<ModalWrapper>;
+    });
 
     expect(initializeFocusTrapMock).toHaveBeenCalledWith(wrapper.element, {
       initialFocus: ".fd-modal",
@@ -59,7 +52,7 @@ describe("Modal", () => {
         const mockElement = document.createElement("div");
         const wrapper = shallowMount(Modal, {
           mixins: [FocusTrap]
-        }) as Wrapper<ModalWrapper>;
+        });
 
         wrapper.vm.initializeFocusTrap(mockElement, {});
 
@@ -73,10 +66,10 @@ describe("Modal", () => {
           activate: jest.fn(),
           deactivate: jest.fn()
         };
-        (<jest.Mock>createFocusTrap).mockReturnValue(focusTrapMock);
+        createFocusTrap.mockReturnValue(focusTrapMock);
         const wrapper = shallowMount(Modal, {
           mixins: [FocusTrap]
-        }) as Wrapper<ModalWrapper>;
+        });
 
         wrapper.vm.activateFocusTrap();
 
@@ -90,10 +83,10 @@ describe("Modal", () => {
           activate: jest.fn(),
           deactivate: jest.fn()
         };
-        (<jest.Mock>createFocusTrap).mockReturnValue(focusTrapMock);
+        createFocusTrap.mockReturnValue(focusTrapMock);
         const wrapper = shallowMount(Modal, {
           mixins: [FocusTrap]
-        }) as Wrapper<ModalWrapper>;
+        });
 
         wrapper.vm.activateFocusTrap();
 

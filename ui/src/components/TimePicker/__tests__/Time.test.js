@@ -42,7 +42,7 @@ describe("Time", () => {
     expect(timeUpdate[timeUpdate.length - 1][0]).toEqual(expected);
 
     expect(wrapper.vm.$data.inputValue).toEqual(expected);
-    expect((input.element as HTMLInputElement).value).toEqual(expected);
+    expect(input.element.value).toEqual(expected);
   });
 
   describe("Hour24", () => {

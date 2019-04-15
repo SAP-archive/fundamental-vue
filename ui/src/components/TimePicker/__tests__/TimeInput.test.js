@@ -11,7 +11,7 @@ describe("TimeInput", () => {
   });
 
   const input = timeInput.find("input");
-  const inputEl = input.element as HTMLInputElement;
+  const inputEl = input.element;
 
   it("has input element", () => {
     expect(inputEl).toBeDefined();

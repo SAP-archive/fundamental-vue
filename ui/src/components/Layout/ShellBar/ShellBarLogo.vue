@@ -11,15 +11,16 @@
   </a>
 </template>
 
-<script lang="ts">
-import { withTargetLocation, mixins } from "@/mixins";
+<script>
+import { withTargetLocation } from "@/mixins";
 
-export default mixins(withTargetLocation("/")).extend({
+export default {
   name: "FdShellBarLogo",
+  mixins: [withTargetLocation("/")],
   inheritAttrs: false,
   props: {
     src: String,
     srcset: String
   }
-});
+};
 </script>
