@@ -1,4 +1,3 @@
-import { PluginObject } from "vue";
 import { hasBackgroundColor } from "./has-background-color";
 import { icon } from "./icon";
 import {
@@ -7,10 +6,16 @@ import {
   fontWeight,
   fontFamily
 } from "./design-system-utilities";
+import {
+  isInside,
+  onClickOutside,
+  detectsOutsideInteraction
+} from "./click-outside";
 
 export * from "./has-background-color";
 export * from "./icon";
 export * from "./design-system-utilities";
+export * from "./click-outside";
 
 export default {
   install(Vue) {
@@ -21,5 +26,8 @@ export default {
     Vue.directive("margin", margin);
     Vue.directive("font-weight", fontWeight);
     Vue.directive("font-family", fontFamily);
+    Vue.directive("on-click-outside", onClickOutside);
+    Vue.directive("detects-outside-interaction", detectsOutsideInteraction);
+    Vue.directive("is-inside", isInside);
   }
-} as PluginObject<{}>;
+};

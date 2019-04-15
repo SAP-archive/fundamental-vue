@@ -7,3 +7,4 @@ export { default as Compactable } from "./Compactable";
 // @ts-ignore
 export { default as CompactableContainer } from "./CompactableContainer";
 export { default as FocusTrap } from "./FocusTrap";
+export { default as ClickOutside } from "./click-outside";

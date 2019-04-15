@@ -11,13 +11,14 @@
   </li>
 </template>
 
-<script lang="ts">
+<script>
 import ShellBarProductSwitcherItemImg from "./ShellBarProductSwitcherItemImg.vue";
 import ShellBarProductSwitcherItemTitle from "./ShellBarProductSwitcherItemTitle.vue";
 import { withTargetLocation, mixins } from "@/mixins";
 
-export default mixins(withTargetLocation()).extend({
+export default {
   name: "FdShellBarProductSwitcherItem",
+  mixins: [withTargetLocation()],
   components: {
     ShellBarProductSwitcherItemImg,
     ShellBarProductSwitcherItemTitle
@@ -32,12 +33,12 @@ export default mixins(withTargetLocation()).extend({
     }
   },
   computed: {
-    hrefForLink(): string {
+    hrefForLink() {
       return this.href || "#";
     }
   },
   methods: {
-    onClick(event: MouseEvent) {
+    onClick(event) {
       if (this.to != null) {
         this.pushLocation(event);
         return;
@@ -45,5 +46,5 @@ export default mixins(withTargetLocation()).extend({
       this.$emit("click", this);
     }
   }
-});
+};
 </script>

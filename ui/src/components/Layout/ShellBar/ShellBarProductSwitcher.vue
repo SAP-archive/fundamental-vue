@@ -17,12 +17,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script>
 import { Popover } from "@/components/Popover";
 import { Button } from "@/components/Button";
-export default Vue.extend({
+export default {
   name: "FdShellBarProductSwitcher",
   components: { Popover, Button }
-});
+};
 </script>

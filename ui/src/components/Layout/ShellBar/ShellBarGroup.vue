@@ -4,27 +4,24 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-
+<script>
 const positionMapping = {
   start: "start",
   middle: "middle",
   end: "end"
 };
-type Position = keyof typeof positionMapping;
-const Positions = Object.keys(positionMapping) as Position[];
-const isPosition = (value: any) => Positions.indexOf(value) >= 0;
+const Positions = Object.keys(positionMapping);
+const isPosition = value => Positions.indexOf(value) >= 0;
 
-export default Vue.extend({
+export default {
   name: "FdShellBarGroup",
   props: {
     position: { type: String, validator: isPosition }
   },
   computed: {
-    classes(): string[] {
+    classes() {
       return [`fd-shellbar__group fd-shellbar__group--${this.position}`];
     }
   }
-});
+};
 </script>

@@ -11,6 +11,15 @@
     ]
   },
   {
+    "id": "./ClickOutside/index.ts",
+    "status": "inprogress",
+    "slug": "ClickOutside",
+    "key": "./ClickOutside/index.ts",
+    "title": "ClickOutside",
+    "icon": "cursor",
+    "related": []
+  },
+  {
     "id": "./Alert/index.ts",
     "status": "stable",
     "slug": "alert",

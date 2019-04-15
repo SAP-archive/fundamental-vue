@@ -6,7 +6,7 @@
     "resolveJsonModule": true,
     "target": "es5",
     "module": "esnext",
-    "strict": true,
+    "strict": false,
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",

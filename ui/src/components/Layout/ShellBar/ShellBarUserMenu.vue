@@ -16,13 +16,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script>
 import { Popover } from "@/components/Popover";
 import { Identifier } from "@/components/Identifier";
 
-export default Vue.extend({
+export default {
   name: "FdShellBarUserMenu",
   components: { Identifier, Popover }
-});
+};
 </script>
