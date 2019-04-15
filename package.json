@@ -8,6 +8,7 @@
     "build:ui": "yarn --cwd ui build",
     "build:ui:dev": "cd ui && yarn build --mode development",
     "build:docs": "NODE_ENV=production; yarn --cwd docs build --mode production --report",
+    "build:docs:netlify": "yarn bootstrap && yarn build:ui && yarn build:docs -- --NETLIFY && cp ui/dist/*.js docs/dist",
     "build:all": "rm -rf dist && yarn build:ui --mode production && yarn build:docs --mode production && mkdir dist && cp -r ui/dist/* dist && cp -r docs/dist/* dist",
     "build": "yarn build:ui && rm -rf dist && mkdir dist && cp -r ./ui/dist/*.js dist && cp -r ./ui/dist/*.js.map dist",
     "lint": " cd docs && yarn lint && cd ../server && yarn  lint && cd ../ui && yarn  lint",
