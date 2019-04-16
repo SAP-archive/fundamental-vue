@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="./favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/fiori-fundamentals@1.4.5/dist/fiori-fundamentals.min.css"
+    />
+    <script src="./vue.js"></script>
+    <script src="./FundamentalVue.umd.js"></script>
+
+    <title>Fundamental Vue</title>
+  </head>
+  <body>
+    <noscript>
+      <strong
+        >We're sorry but docs doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong
+      >
+    </noscript>
+    <div id="app"></div>
+    <script>
+      new Vue({
+        el: '#app',
+        template: `
+          <FdPopover v-margin:large>
+            <h1 v-margin:large slot="body">
+              🚀 Hello Fundamental Vue 🚀
+            </h1>
+          </FdPopover>`
+      });
+    </script>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
