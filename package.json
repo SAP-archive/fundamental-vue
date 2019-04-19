@@ -21,6 +21,7 @@
     "test:watch": "yarn --cwd ui test:watch",
     "deploy:docs": "yarn build:docs && cp ui/dist/*.js docs/dist && gh-pages -d docs/dist"
   },
+  
   "description": "SAP Fiori Fundamentals, implemented in Vue.js",
   "keywords": [
     "vue",
