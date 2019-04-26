@@ -3,7 +3,14 @@ const targetsNetlify = process.argv[4] === "--NETLIFY";
 const mode =
   nodeEnv !== "production" ? "dev" : targetsNetlify ? "netlify" : "prod";
 const appPresets = ["@vue/app"];
-const prodPresets = [
+
+if(process.env.VUE_CLI_BUILD_TARGET === "app") {
+  return {
+    presets: ["@vue/app"]
+  }
+};
+
+const uiPresets = [
   [
     "@babel/env",
     {
@@ -13,7 +20,7 @@ const prodPresets = [
     }
   ]
 ];
-const presets = mode === "prod" ? prodPresets : appPresets;
+const presets = mode === "prod" ? uiPresets : appPresets;
 module.exports = {
   presets
 };

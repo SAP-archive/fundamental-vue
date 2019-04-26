@@ -13,7 +13,7 @@
     "build:ui": "vue-cli-service build --target lib --report --name FundamentalVue src/index.js",
     "build:ui:dev": "vue-cli-service build --target lib --report --name FundamentalVue src/index.js --mode development",
     "build:docs": "NODE_ENV=production; vue-cli-service build src/docs/index.js",
-    "build:docs:netlify": "yarn bootstrap && yarn build:docs --NETLIFY",
+    "build:docs:netlify": "yarn build:docs --NETLIFY",
     "build": "yarn build:ui",
     "lint": "vue-cli-service lint --no-fix --max-warnings 0 --max-errors 0 src",
     "lint:dev": "vue-cli-service lint",
@@ -23,7 +23,7 @@
     "std-version": "standard-version -m \"chore(release): version %s build ${TRAVIS_BUILD_NUMBER} [ci skip]\"",
     "test": "vue-cli-service test:unit",
     "test:watch": "vue-cli-service test:unit --watch",
-    "deploy:docs": "yarn build:docs && gh-pages -d dist"
+    "deploy:docs": "yarn build:docs  && gh-pages -d dist"
   },
   "description": "SAP Fiori Fundamentals, implemented in Vue.js",
   "keywords": [
