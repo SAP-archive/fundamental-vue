@@ -42,20 +42,18 @@ Paste the following snippet in your `<head>`-tag:
 Then you can use Fundamental Vue like this:
 
 ```html
-  <body>
-    <div id="app" />
-    <script>
-      new Vue({
-        el: '#app',
-        template: `
-          <FdPopover v-fd-margin:large>
-            <h1 v-fd-margin:large slot="body">
-              🚀 Hello Fundamental Vue 🚀
-            </h1>
-          </FdPopover>`
-      });
-    </script>
-  </body>
+<div id="app">
+  <fd-popover v-fd-margin:large placement="bottom-start" with-arrow>
+    <h1 v-fd-margin:large>
+      🚀 Hello Fundamental Vue 🚀
+    </h1>
+    <template #control="{toggle}">
+      <fd-button @click="toggle">Show Popover</fd-button>
+    </template>
+  </fd-popover>
+</div>
+
+<script>new Vue({ el: '#app' })</script>
 ```
 
 When using *Fundamental Vue* via a `<script>`-tag you don't have to install it manually by calling `Vue.use(FundamentalVue)`. This is done for you automatically. You can disable the automatic installation by setting `window.__FD_AUTO_INSTALL_DISABLED_KEY__` to true early on.
