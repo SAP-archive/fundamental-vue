@@ -5,9 +5,10 @@ const mode =
 const appPresets = ["@vue/app"];
 
 if(process.env.VUE_CLI_BUILD_TARGET === "app") {
-  return {
+  module.exports = {
     presets: ["@vue/app"]
-  }
+  };
+  return;
 };
 
 const uiPresets = [

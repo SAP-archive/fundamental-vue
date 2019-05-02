@@ -10,13 +10,11 @@
       href="https://unpkg.com/fiori-fundamentals@latest/dist/fiori-fundamentals.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-
     <script>
       // This is how you disable auto install if you don't like it for any reason.
       window.__FD_AUTO_INSTALL_DISABLED_KEY__ = true;
-    </script>
-
-    <script src="./FundamentalVue.umd.js"></script>
+      </script>
+    <script src="./../dist/FundamentalVue.umd.js"></script>
 
     <title>Fundamental Vue</title>
   </head>
@@ -32,8 +30,11 @@
       new Vue({
         el: '#app',
         template: `
-          <FdPopover v-fd-margin:large>
-            <h1 v-fd-margin:large slot="body">
+          <FdPopover with-arrow v-fd-margin:large placement="bottom-start">
+            <template #control="{toggle}">
+              <FdButton @click="toggle">Show Popover</FdButton>
+            </template>
+            <h1 v-fd-margin:large>
               🚀 Hello Fundamental Vue 🚀
             </h1>
           </FdPopover>`

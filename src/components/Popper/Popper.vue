@@ -217,8 +217,7 @@ export default {
   beforeDestroy() {
     document.querySelector("body").removeChild(this.elements().body);
   },
-  async mounted() {
-    await this.$nextTick();
+  mounted() {
     const popoverBody = this.elements().body;
     popoverBody.parentNode.removeChild(popoverBody);
     const body = document.querySelector("body");
