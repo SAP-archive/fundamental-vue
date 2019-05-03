@@ -1,6 +1,6 @@
 {
   "name": "fundamental-vue",
-  "version": "0.5.2-rc.0",
+  "version": "0.5.2",
   "sideEffects": [
     "src/docs/**",
     "./**/*.scss",
