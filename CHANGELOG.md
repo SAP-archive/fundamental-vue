@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.2-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.5.1...v0.5.2-rc.0) (2019-05-03)
+
+
+### Bug Fixes
+
+* Fixes babel config and removes only usage of async ([44d9790](https://github.com/SAP/fundamental-vue/commit/44d9790))
+
+
+
 ## [0.5.1](https://github.com/SAP/fundamental-vue/compare/v0.5.1-rc.0...v0.5.1) (2019-04-26)
 
 
