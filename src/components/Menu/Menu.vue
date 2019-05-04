@@ -24,8 +24,8 @@ export default {
     }
   },
   methods: {
-    menuItemDidClick(item) {
-      this.$emit("select", item);
+    menuItemDidClick(item, event) {
+      this.$emit("select", item, event);
     }
   }
 };

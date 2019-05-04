@@ -1,53 +1,80 @@
 <template>
-  <FdComboboxBase class="fd-search-input">
-    <template #input="{showCompletions, hideCompletions}">
-      <FdInput
-        :value="currentPredicate"
-        :placeholder="placeholder"
-        :compact="compact"
-        @update="setCurrentPredicate"
-        @change="$emit('change', $event)"
-        @focus.native="showCompletions"
-        @keyup.native.esc="hideCompletions"
-      />
-    </template>
+  <div class="fd-search-input">
+    <FdComboboxBase
+      ref="combobox"
+      :popoverClass="popoverClass"
+      :ignoredElements="ignoredElements"
+    >
+      <template #input>
+        <FdInput
+          :value="currentPredicate"
+          :placeholder="placeholder"
+          :compact="compact"
+          ref="input"
+          @update="setCurrentPredicateAndShowCompletions"
+          @change="$emit('change', $event)"
+          @focus="showCompletions"
+          @click="showCompletions"
+          @keyup.esc="hideCompletions"
+          @keydown.down.native.prevent="highlightNext"
+          @keydown.up.native.prevent="highlightPrevious"
+          @keyup.enter="handleEnter"
+          @keyup.tab="handleTab"
+          @keydown.tab="handleKeydownTab"
+        />
+      </template>
 
-    <template #after="{ toggleCompletions }">
-      <FdButton
-        @click="toggleCompletions"
-        :compact="compact"
-        icon="search"
-        styling="light"
-      />
-    </template>
-
-    <template #default="{ hideCompletions }">
-      <FdCompletionList
-        v-if="hasMatches"
-        :completions="completionsMatchingPredicate"
-        :predicate="currentPredicate"
-        @select="
-          completion => setCurrentPredicate(completion) || hideCompletions()
-        "
-      />
-      <template v-else>
-        <slot name="empty">
-          <p class="fd-has-text-align-center" v-fd-type:-1 v-fd-padding:tiny>
-            nothing here
-          </p>
+      <template #after>
+        <slot name="search-button">
+          <FdButton
+            @click="toggleCompletions"
+            :compact="compact"
+            icon="search"
+            styling="light"
+          />
         </slot>
       </template>
-    </template>
-  </FdComboboxBase>
+
+      <template #default>
+        <FdMenu ref="menu">
+          <FdCompletionList
+            :completions="completionsMatchingPredicate"
+            :predicate="currentPredicate"
+          >
+            <template #no-results>
+              <slot name="no-results">
+                <FdMenuItem>No Results</FdMenuItem>
+              </slot>
+            </template>
+            <template #item="completion">
+              <FdMenuItem @click="selectCompletion(completion.value)">
+                <FdMatchingCompletion
+                  :selected="isValueSelected(completion.value)"
+                  v-bind="completion"
+                />
+              </FdMenuItem>
+            </template>
+          </FdCompletionList>
+        </FdMenu>
+      </template>
+    </FdComboboxBase>
+  </div>
 </template>
 
 <script>
+// @ts-check
+
 import { Uid } from "./../../mixins";
 import FdButton from "./../Button/Button.vue";
-import FdInput from "./../Form/Controls/Input.vue";
+import FdMenu from "./../Menu/Menu.vue";
+import FdMenuItem from "./../Menu/MenuItem.vue";
 import FdCompletionList from "./CompletionList.vue";
+import FdMatchingCompletion from "./MatchingCompletion.vue";
+import FdInput from "./../Form/Controls/Input.vue";
 import FdComboboxBase from "./../ComboboxBase/ComboboxBase.vue";
-import { padding, type } from "./../../directives/design-system-utilities";
+
+const EVENT_SELECT = "select";
+const EVENT_UPDATE = "update";
 
 export default {
   name: "FdSearchInput",
@@ -56,23 +83,34 @@ export default {
     prop: "predicate",
     event: "update"
   },
-  directives: {
-    "fd-padding": padding,
-    "fd-type": type
-  },
   components: {
-    FdComboboxBase,
+    FdMatchingCompletion,
     FdCompletionList,
+    FdMenu,
+    FdMenuItem,
+    FdComboboxBase,
     FdButton,
     FdInput
   },
   props: {
+    popoverClass: {
+      type: [Array, Object, String],
+      default: null
+    },
     predicate: { type: String, default: null },
     completions: { type: Array, default: () => [] },
     placeholder: { type: String, default: "" },
-    compact: { type: Boolean, default: false }
+    compact: { type: Boolean, default: false },
+    confirmOn: {
+      type: String,
+      default: "keyup.enter",
+      validator: value => ["keyup.enter", "keyup.tab"].indexOf(value) >= 0
+    }
   },
   computed: {
+    combobox() {
+      return this.$refs.combobox;
+    },
     hasMatches() {
       return this.completionsMatchingPredicate.length > 0;
     },
@@ -91,10 +129,94 @@ export default {
     }
   },
   methods: {
+    handleKeydownTab(event) {
+      if (this.confirmOn === "keyup.tab") {
+        const combobox = this.$refs.combobox;
+        const popover = combobox.$refs.popover;
+        const { visible_ } = popover.popper;
+        if (visible_) {
+          event.preventDefault();
+        }
+      }
+    },
+    handleTab() {
+      if (this.selectedValue == null || this.confirmOn !== "keyup.tab") {
+        return;
+      }
+      this.selectCompletion(this.selectedValue);
+    },
+    handleEnter() {
+      if (this.selectedValue == null || this.confirmOn !== "keyup.enter") {
+        return;
+      }
+      this.selectCompletion(this.selectedValue);
+    },
+    showCompletions() {
+      if (this.completions.length === 0) {
+        return;
+      }
+      this.combobox.show();
+    },
+    hideCompletions() {
+      this.combobox.hide();
+    },
+    toggleCompletions() {
+      if (this.completions.length === 0) {
+        return;
+      }
+      this.combobox.toggle();
+    },
+    isValueSelected(value) {
+      return value === this.selectedValue;
+    },
+    highlightNext() {
+      const completions = this.completionsMatchingPredicate;
+      if (completions.length === 0) {
+        return;
+      }
+      const { selectedValue } = this;
+      const index = completions.indexOf(selectedValue);
+
+      if (index < 0) {
+        this.selectedValue = completions[0];
+        return;
+      }
+      const maxIndex = completions.length - 1;
+      const nextIndex = Math.min(maxIndex, index + 1);
+      const nextValue = completions[nextIndex];
+      this.selectedValue = nextValue;
+    },
+    highlightPrevious() {
+      const completions = this.completionsMatchingPredicate;
+      if (completions.length === 0) {
+        return;
+      }
+      const { selectedValue } = this;
+      const index = completions.indexOf(selectedValue);
+      if (index < 0) {
+        return;
+      }
+      const newIndex = Math.max(0, index - 1);
+      this.selectedValue = completions[newIndex];
+    },
+    selectCompletion(value) {
+      this.setCurrentPredicate(value);
+      this.hideCompletions();
+      if (value != null) {
+        this.$emit(EVENT_SELECT, value);
+      }
+    },
+    ignoredElements() {
+      // @ts-ignore
+      return [this.$refs.input.$el];
+    },
     setCurrentPredicate(newValue) {
       this.currentPredicate = newValue;
-      this.$emit("update", this.currentPredicate);
-      this.$emit("update:predicate", this.currentPredicate);
+      this.$emit(EVENT_UPDATE, this.currentPredicate);
+    },
+    setCurrentPredicateAndShowCompletions(newValue) {
+      this.setCurrentPredicate(newValue);
+      this.showCompletions();
     }
   },
   watch: {
@@ -107,6 +229,7 @@ export default {
   },
   data() {
     return {
+      selectedValue: null,
       currentPredicate: this.predicate
     };
   }

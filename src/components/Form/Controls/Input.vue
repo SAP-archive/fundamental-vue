@@ -22,6 +22,8 @@
     :type="type"
     :placeholder="placeholder"
     :value="value"
+    @blur="handleBlur"
+    @focus="handleFocus"
     @input="$emit('update', $event.target.value)"
     @change="$emit('change', $event.target.value)"
     v-on="$listeners"
@@ -34,11 +36,25 @@ import InputMixin from "./InputMixin";
 import { $default, $valueWithDefault } from "./Helper/prop";
 
 export default {
+  methods: {
+    handleBlur(event) {
+      this.focused = false;
+      this.$emit("blur", event);
+    },
+    handleFocus(event) {
+      this.focused = true;
+      this.$emit("focus", event);
+    }
+  },
   name: "FdInput",
   mixins: [InputMixin],
-  inheritAttrs: false,
   model: {
     event: "update"
+  },
+  data() {
+    return {
+      focused: false
+    };
   },
   props: {
     placeholder: $default(""),

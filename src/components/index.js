@@ -7,6 +7,7 @@ import Button from "./Button";
 import ButtonGroup from "./ButtonGroup";
 import Calendar from "./Calendar";
 import Combobox from "./Combobox";
+import ComboboxMenu from "./ComboboxMenu";
 import Counter from "./Counter";
 import Form from "./Form";
 import Icon from "./Icon";
@@ -32,43 +33,49 @@ import Tile from "./Tile";
 import TileGrid from "./TileGrid";
 import TimePicker from "./TimePicker";
 import Token from "./Token";
+import $fd from "./$fd";
 
 const plugin = {
-  install(vue) {
-    vue.use(ActionBar);
-    vue.use(Alert);
-    vue.use(Badge);
-    vue.use(Breadcrumb);
-    vue.use(BreadcrumbItem);
-    vue.use(Button);
-    vue.use(ButtonGroup);
-    vue.use(Calendar);
-    vue.use(Combobox);
-    vue.use(Counter);
-    vue.use(Form);
-    vue.use(Icon);
-    vue.use(Identifier);
-    vue.use(Image);
-    vue.use(InlineHelp);
-    vue.use(Label);
-    vue.use(Layout);
-    vue.use(Link);
-    vue.use(ListGroup);
-    vue.use(Menu);
-    vue.use(Modal);
-    vue.use(Pagination);
-    vue.use(Panel);
-    vue.use(Popover);
-    vue.use(SearchInput);
-    vue.use(SideNav);
-    vue.use(Spinner);
-    vue.use(Status);
-    vue.use(Table);
-    vue.use(Tabs);
-    vue.use(Tile);
-    vue.use(TileGrid);
-    vue.use(TimePicker);
-    vue.use(Token);
+  install(vue, options) {
+    const plugins = [
+      ActionBar,
+      Alert,
+      Badge,
+      Breadcrumb,
+      BreadcrumbItem,
+      Button,
+      ButtonGroup,
+      Calendar,
+      Combobox,
+      ComboboxMenu,
+      Counter,
+      Form,
+      Icon,
+      Identifier,
+      Image,
+      InlineHelp,
+      Label,
+      Layout,
+      Link,
+      ListGroup,
+      Menu,
+      Modal,
+      Pagination,
+      Panel,
+      Popover,
+      SearchInput,
+      SideNav,
+      Spinner,
+      Status,
+      Table,
+      Tabs,
+      Tile,
+      TileGrid,
+      TimePicker,
+      Token,
+      $fd
+    ];
+    plugins.forEach(plugin => vue.use(plugin, options));
   }
 };
 export default plugin;
