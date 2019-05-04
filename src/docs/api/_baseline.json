@@ -1549,8 +1549,8 @@
     "FdSearchInput": {
       "slots": {
         "empty": {
-          "name": "empty",
-          "description": "Content that is rendered in case there are no matching completions."
+          "name": "no-results",
+          "description": "Content that is rendered in case there are no matching completions. This slot is rendered inside a menu list."
         }
       },
       "events": {
@@ -1558,9 +1558,17 @@
           "name": "update",
           "description": "Trigerred when the value in the search input changed."
         },
+        "select": {
+          "name": "select",
+          "description": "Triggered when a suggestion has been selected from the auto-completion list."
+        },
         "change": {
           "name": "change",
           "description": "Trigerred when the value in the search input was confirmed."
+        },
+        "search-button": {
+          "name": "search-button",
+          "description": "A custom search button."
         }
       },
       "mixins": [],
@@ -1592,6 +1600,13 @@
           "required": false,
           "types": ["Boolean"],
           "defaultValue": false
+        },
+        "popoverClass": {
+          "name": "popoverClass",
+          "description": "a CSS class that will be attached to the popover body/content (which contains the list of suggestions.",
+          "required": false,
+          "types": ["Array", "String", "Object"],
+          "defaultValue": "null"
         }
       },
       "componentName": "FdSearchInput"

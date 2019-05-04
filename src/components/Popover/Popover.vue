@@ -33,6 +33,15 @@ export default {
   components: { FdOnClickOutside, KPop },
   mixins: [Uid],
   methods: {
+    show() {
+      this.kpop.show();
+    },
+    hide() {
+      this.kpop.hide();
+    },
+    toggle() {
+      this.kpop.toggle();
+    },
     ignoredElements_() {
       if (this.controlEl == null) {
         return this.ignoredElements();
@@ -41,6 +50,9 @@ export default {
     }
   },
   computed: {
+    kpop() {
+      return this.$refs.kpop;
+    },
     controlEl() {
       const { kpop } = this.$refs;
       if (kpop == null) {

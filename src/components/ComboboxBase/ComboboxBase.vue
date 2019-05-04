@@ -1,5 +1,5 @@
 <template>
-  <FdPopover adjustsBodyWidth placement="bottom-start">
+  <FdPopover ref="popover" adjustsBodyWidth placement="bottom-start">
     <template #control="{ hide, show, toggle }">
       <div class="fd-combobox-control">
         <FdInputGroup
@@ -37,20 +37,38 @@ export default {
     FdPopover,
     FdInputGroup
   },
-  provide() {
-    return {
-      combobox: this
-    };
+  computed: {
+    popover() {
+      return this.$refs.popover;
+    }
+  },
+  methods: {
+    show() {
+      this.popover.show();
+    },
+    hide() {
+      this.popover.hide();
+    },
+    toggle() {
+      this.popover.toggle();
+    }
   },
   props: {
+    popoverControlClass: {
+      type: [Array, Object, String],
+      default: null
+    },
+    popoverClass: {
+      type: [Array, Object, String],
+      default: null
+    },
+    ignoredElements: { type: Function, default: () => [] },
     value: { type: String, default: null },
     placeholder: { type: String, default: "" },
-    popoverVisible: { type: Boolean, default: false },
     compact: { type: Boolean, default: false }
   },
   data() {
     return {
-      currentPopoverVisible: this.popoverVisible,
       currentValue: this.value
     };
   }

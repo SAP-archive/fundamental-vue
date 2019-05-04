@@ -9,7 +9,7 @@ if (process.env.VUE_CLI_BUILD_TARGET === "app") {
     presets: ["@vue/app"]
   };
   return;
-};
+}
 
 const uiPresets = [
   [
@@ -23,5 +23,6 @@ const uiPresets = [
 ];
 const presets = mode === "prod" ? uiPresets : appPresets;
 module.exports = {
-  presets
+  presets,
+  plugins: ["@babel/plugin-syntax-dynamic-import"]
 };

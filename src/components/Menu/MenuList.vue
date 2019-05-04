@@ -18,14 +18,15 @@ export default {
       menuList: this
     };
   },
-  inject: {
-    menu: { default: null }
-  },
+  inject: ["menu"],
   props: {
     header: { type: String, default: null },
     separated: { type: Boolean, default: false }
   },
   computed: {
+    canHaveAddon() {
+      return this.menu.canHaveAddon;
+    },
     menuListClasses() {
       return {
         "fd-menu__list--separated": this.separated
@@ -33,12 +34,9 @@ export default {
     }
   },
   methods: {
-    menuItemDidClick(item /* MenuItem */) {
-      this.$emit("select", item.value);
-      const menu = this.menu;
-      if (menu) {
-        menu.menuItemDidClick(item);
-      }
+    menuItemDidClick(item /* MenuItem */, event) {
+      this.menu.menuItemDidClick(item, event);
+      this.$emit("select", item.value, event);
     }
   }
 };

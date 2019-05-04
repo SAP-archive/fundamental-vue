@@ -3,10 +3,20 @@ import FdMenuItem from "./../MenuItem.vue";
 import FdMenuLink from "./../MenuLink.vue";
 
 const mountMenuItem = template => {
-  return mount({
-    template,
-    components: { FdMenuItem, FdMenuLink }
-  });
+  return mount(
+    {
+      template,
+      components: { FdMenuItem, FdMenuLink }
+    },
+    {
+      provide: {
+        menuList: {
+          canHaveAddon: false,
+          menuItemDidClick() {}
+        }
+      }
+    }
+  );
 };
 
 describe("MenuItem", () => {
@@ -47,6 +57,16 @@ describe("MenuItem", () => {
     const wrapper = mountMenuItem(
       `
       <FdMenuItem>
+        <FdMenuLink>Item 1</FdMenuLink>
+      </FdMenuItem>`
+    );
+    expect(wrapper.element).toMatchSnapshot();
+  });
+
+  it("does render selected state", () => {
+    const wrapper = mountMenuItem(
+      `
+      <FdMenuItem :selected="true">
         <FdMenuLink>Item 1</FdMenuLink>
       </FdMenuItem>`
     );

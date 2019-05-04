@@ -24,3 +24,15 @@ exports[`MenuItem does render embedded link 1`] = `
   </a>
 </li>
 `;
+
+exports[`MenuItem does render selected state 1`] = `
+<li>
+  <!---->
+   
+  <a
+    class="fd-menu__item"
+  >
+    Item 1
+  </a>
+</li>
+`;

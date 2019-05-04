@@ -1,21 +1,16 @@
 <template>
-  <a class="fd-menu__item" @click="click"><slot /></a>
+  <a class="fd-menu__item" :class="classes"><slot /></a>
 </template>
 
 <script>
 export default {
   name: "FdMenuLink",
-  inject: {
-    menuItem: { default: null }
+  props: {
+    selected: { type: Boolean, default: false }
   },
-  methods: {
-    click() {
-      const item = this.menuItem;
-      if (item != null) {
-        item.onClick();
-      } else {
-        this.$emit("click");
-      }
+  computed: {
+    classes() {
+      return this.selected ? "is-selected" : null;
     }
   }
 };

@@ -16,9 +16,11 @@ All `FdMenuItem`s need an associated `value` – otherwise `v-model` will not wo
       <span class="favorite-fruit-current">{{ fruit || "none" }}</span>
     </div>
     <FdCombobox v-model="fruit" placeholder="Pick your Fruit of the day">
-      <FdMenuItem value="Apple">Apple</FdMenuItem>
-      <FdMenuItem value="Banana">Banana</FdMenuItem>
-      <FdMenuItem value="Cherry">Cherry</FdMenuItem>
+      <template style="width: 300px;" #default>
+        <FdMenuItem value="Apple">Apple</FdMenuItem>
+        <FdMenuItem value="Banana">Banana</FdMenuItem>
+        <FdMenuItem value="Cherry">Cherry</FdMenuItem>
+      </template>
     </FdCombobox>
   </div>
 </template>
