@@ -4,7 +4,12 @@
     "javascript",
     "vue"
   ],
-  "debug.node.autoAttach": "on",
+  "vetur.grammar.customBlocks": {
+    "docs": "md",
+    "tip": "md",
+    "title": "md"
+  },
+  "debug.node.autoAttach": "off",
   "eslint.alwaysShowStatus": true,
   "eslint.enable": true,
   "eslint.packageManager": "yarn",

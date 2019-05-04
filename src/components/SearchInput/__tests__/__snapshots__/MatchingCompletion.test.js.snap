@@ -1,31 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MatchingCompletion renders prefix 1`] = `
-<li>
-  <!---->
-   
-  <a
-    class="fd-menu__item"
-  >
-    <strong>
-      he
-    </strong>
-    llo
-  
-  </a>
-</li>
+<a
+  class="fd-menu__item"
+>
+  <strong>
+    he
+  </strong>
+  llo
+
+</a>
 `;
 
 exports[`MatchingCompletion renders remainingCompletion without prefix 1`] = `
-<li>
+<a
+  class="fd-menu__item"
+>
   <!---->
-   
-  <a
-    class="fd-menu__item"
-  >
-    <!---->
-    hello
-  
-  </a>
-</li>
+  hello
+
+</a>
 `;

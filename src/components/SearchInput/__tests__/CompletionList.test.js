@@ -1,22 +1,45 @@
 import { mount } from "@vue/test-utils";
 import FdCompletionList from "./../CompletionList.vue";
+import FdMatchingCompletion from "./../MatchingCompletion.vue";
 import FdMenuItem from "./../../Menu/MenuItem.vue";
 
 // A little neat helper to create a completion list
 const createCompletionList = (predicate, completions) => {
-  const propsData = { predicate, completions };
-  return mount(FdCompletionList, {
-    propsData
-  });
+  return mount(
+    {
+      components: {
+        FdMatchingCompletion,
+        FdMenuItem,
+        FdCompletionList
+      },
+      data() {
+        return {
+          predicate,
+          completions: [...completions]
+        };
+      },
+      template: `
+    <FdCompletionList :predicate="predicate" :completions="completions">
+      <template #item="completion">
+        <FdMenuItem>
+          <FdMatchingCompletion v-bind="completion" />
+        </FdMenuItem>
+      </template>
+    </FdCompletionList>
+    `
+    },
+    {
+      provide: {
+        menu: {
+          canHaveAddon: false,
+          menuItemDidClick() {}
+        }
+      }
+    }
+  );
 };
 
 describe("Completion List", () => {
-  it("renders no menu items when no completions are given", () => {
-    const wrapper = createCompletionList("", []);
-    const menuItems = wrapper.findAll(FdMenuItem);
-    expect(menuItems).toHaveLength(0);
-  });
-
   it("renders empty list correctly", () => {
     const wrapper = createCompletionList("", []);
     expect(wrapper.element).toMatchSnapshot();

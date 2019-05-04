@@ -4,12 +4,12 @@ const mode =
   nodeEnv !== "production" ? "dev" : targetsNetlify ? "netlify" : "prod";
 const appPresets = ["@vue/app"];
 
-if(process.env.VUE_CLI_BUILD_TARGET === "app") {
+if (process.env.VUE_CLI_BUILD_TARGET === "app") {
   module.exports = {
     presets: ["@vue/app"]
   };
   return;
-};
+}
 
 const uiPresets = [
   [
@@ -23,5 +23,6 @@ const uiPresets = [
 ];
 const presets = mode === "prod" ? uiPresets : appPresets;
 module.exports = {
-  presets
+  presets,
+  plugins: ["@babel/plugin-syntax-dynamic-import"]
 };

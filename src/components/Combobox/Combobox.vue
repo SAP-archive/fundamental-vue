@@ -1,13 +1,21 @@
 <template>
-  <FdComboboxBase :compact="compact" class="fd-combobox-input">
+  <FdComboboxBase
+    ref="comboboxBase"
+    :ignoredElements="ignoredElements"
+    :compact="compact"
+    class="fd-combobox-input"
+  >
     <template #input="{showCompletions, hideCompletions}">
       <FdInput
+        ref="input"
         :value="currentValue"
         :placeholder="placeholder"
         :compact="compact"
-        @focus.native="showCompletions"
+        @blur="handleBlur"
+        @focus="showCompletions"
         @update="setCurrentValue"
-        @keyup.native.esc="hideCompletions"
+        @click="showCompletions"
+        @keyup.esc="hideCompletions"
       />
     </template>
 
@@ -20,12 +28,14 @@
       />
     </template>
 
-    <template #default="{ hideCompletions }">
-      <FdMenu @select="item => handleClickOnAndThen(item, hideCompletions)">
-        <FdMenuList>
-          <slot />
-        </FdMenuList>
-      </FdMenu>
+    <template #default>
+      <slot name="menu">
+        <FdMenu @select="selectItem">
+          <FdMenuList>
+            <slot />
+          </FdMenuList>
+        </FdMenu>
+      </slot>
     </template>
   </FdComboboxBase>
 </template>
@@ -41,6 +51,11 @@ import FdMenuList from "./../Menu/MenuList.vue";
 export default {
   name: "FdCombobox",
   mixins: [Uid],
+  provide() {
+    return {
+      combobox: this
+    };
+  },
   model: {
     prop: "value",
     event: "update"
@@ -56,12 +71,10 @@ export default {
     value: { type: String, default: null },
     placeholder: { type: String, default: "" },
     ariaLabel: { type: String, default: "Combobox" },
-    popoverVisible: { type: Boolean, default: false },
     compact: { type: Boolean, default: false }
   },
   data() {
     return {
-      currentPopoverVisible: this.popoverVisible,
       currentValue: this.value // string | number | null
     };
   },
@@ -74,14 +87,22 @@ export default {
     }
   },
   methods: {
+    handleBlur() {
+      setTimeout(() => {
+        this.$refs.comboboxBase.hide();
+      });
+    },
+    selectItem(item) {
+      this.setCurrentValue(item.value);
+      this.$refs.comboboxBase.hide();
+    },
+    ignoredElements() {
+      return [this.$refs.input.$el];
+    },
     setCurrentValue(newValue) {
       this.currentValue = newValue;
       this.$emit("update", this.currentValue);
       this.$emit("update:value", this.currentValue);
-    },
-    handleClickOnAndThen(item, executeCb) {
-      this.setCurrentValue(item.value);
-      executeCb();
     }
   }
 };

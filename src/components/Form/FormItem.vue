@@ -28,7 +28,7 @@
 // div .fd-form__item .fd-form__item--check
 //  label(for=a) .fd-form__label
 //    input(type=radio; id=a name=radio) .fd-form__control
-//    Option 1
+//     Option 1
 
 import { Uid } from "./../../mixins";
 import FormLabel from "./FormLabel.vue";

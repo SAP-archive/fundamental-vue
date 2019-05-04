@@ -1,7 +1,12 @@
 <template>
-  <FdPopover placement="bottom-start">
-    <template #control="{ hide, show, toggle }">
-      <div class="fd-combobox-control">
+  <FdPopover
+    ref="popover"
+    :ignoredElements="ignoredElements"
+    :bodyClass="popoverClass"
+    placement="bottom-start"
+  >
+    <template #control>
+      <div class="fd-combobox-control" :class="popoverControlClass">
         <FdInputGroup
           :compact="compact"
           afterClass="fd-input-group__addon--button"
@@ -37,20 +42,38 @@ export default {
     FdPopover,
     FdInputGroup
   },
-  provide() {
-    return {
-      combobox: this
-    };
+  computed: {
+    popover() {
+      return this.$refs.popover;
+    }
+  },
+  methods: {
+    show() {
+      this.popover.show();
+    },
+    hide() {
+      this.popover.hide();
+    },
+    toggle() {
+      this.popover.toggle();
+    }
   },
   props: {
+    popoverControlClass: {
+      type: [Array, Object, String],
+      default: null
+    },
+    popoverClass: {
+      type: [Array, Object, String],
+      default: null
+    },
+    ignoredElements: { type: Function, default: () => [] },
     value: { type: String, default: null },
     placeholder: { type: String, default: "" },
-    popoverVisible: { type: Boolean, default: false },
     compact: { type: Boolean, default: false }
   },
   data() {
     return {
-      currentPopoverVisible: this.popoverVisible,
       currentValue: this.value
     };
   }

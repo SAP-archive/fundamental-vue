@@ -1,5 +1,6 @@
 <template>
-  <li>
+  <!-- mousedown.prevent has to be used here. Otherwise this would have blur events to be fired. -->
+  <li @mousedown.prevent @click="onClick">
     <div v-if="canHaveAddon" class="fd-menu__addon-before">
       <slot name="addon" />
     </div>
@@ -27,25 +28,20 @@ export default {
   provide() {
     return { menuItem: this };
   },
-  inject: {
-    menuList: { default: null },
-    menu: { default: null }
-  },
+  inject: ["menuList"],
   props: {
+    selected: { type: Boolean, default: false },
     value: { default: null, type: [String, Number] }
   },
   computed: {
     canHaveAddon() {
-      return this.menu == null ? false : this.menu.canHaveAddon;
+      return this.menuList.canHaveAddon;
     }
   },
   methods: {
-    onClick() {
-      const list = this.menuList;
-      if (list != null) {
-        list.menuItemDidClick(this);
-      }
-      this.$emit("click");
+    onClick(event) {
+      this.menuList.menuItemDidClick(this, event);
+      this.$emit("click", this.value, event);
     }
   }
 };

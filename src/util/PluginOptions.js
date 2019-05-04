@@ -6,8 +6,8 @@ export const normalizedPluginOptions = (options = makeDefaultOptions()) => {
   const defaultLog = makeDefaultOptions().log;
   return {
     log: {
-      ...log,
-      ...defaultLog
+      ...defaultLog,
+      ...log
     }
   };
 };
