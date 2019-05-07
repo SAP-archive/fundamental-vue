@@ -6,10 +6,20 @@
     <p>
       Predicate: <code>{{ predicate }}</code>
     </p>
-    <FdSearchInput
+    <fd-search-input
+      popoverClass="docs-search"
+      inputGroupClass="docs-search"
+      class="docs-search-input"
       v-model="predicate"
       placeholder="Search"
-      :completions="['Apple', 'Peach', 'Banana']"
+      :completions="[
+        'Apple',
+        'Peach',
+        'Banana',
+        'Chris',
+        'Vue is Cool',
+        'Test123'
+      ]"
     />
   </div>
 </template>
@@ -19,3 +29,9 @@ export default {
   data: () => ({ predicate: "" })
 };
 </script>
+
+<style>
+.docs-search {
+  width: 300px;
+}
+</style>

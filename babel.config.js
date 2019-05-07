@@ -23,5 +23,6 @@ const uiPresets = [
 ];
 const presets = mode === "prod" ? uiPresets : appPresets;
 module.exports = {
-  presets
+  presets,
+  plugins: ["@babel/plugin-syntax-dynamic-import"]
 };

@@ -22,4 +22,9 @@
 //
 //
 // -- This is will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+// import VueRouter from "vue-router";
+// console.log("VueRouter", VueRouter);
+// Cypress.Commands.add("visitPage", ({ named }) => {
+//   cy.visit(`/pages/${named}`);
+
+// });

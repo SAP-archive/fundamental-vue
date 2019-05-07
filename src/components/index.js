@@ -33,6 +33,7 @@ import Tile from "./Tile";
 import TileGrid from "./TileGrid";
 import TimePicker from "./TimePicker";
 import Token from "./Token";
+import $fd from "./$fd";
 
 const plugin = {
   install(vue) {
@@ -71,6 +72,7 @@ const plugin = {
     vue.use(TileGrid);
     vue.use(TimePicker);
     vue.use(Token);
+    vue.use($fd);
   }
 };
 export default plugin;

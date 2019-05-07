@@ -3,5 +3,15 @@
 exports[`Completion List renders empty list correctly 1`] = `
 <ul
   class="fd-menu__list"
-/>
+>
+  <li>
+    <!---->
+     
+    <a
+      class="fd-menu__item"
+    >
+      No Results
+    </a>
+  </li>
+</ul>
 `;

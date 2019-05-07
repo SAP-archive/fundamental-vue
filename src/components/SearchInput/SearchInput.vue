@@ -1,18 +1,29 @@
 <template>
-  <FdComboboxBase class="fd-search-input">
-    <template #input="{showCompletions, hideCompletions}">
+  <FdComboboxBase
+    ref="combobox"
+    :popoverClass="popoverClass"
+    :ignoredElements="ignoredElements"
+    :popoverControlClass="inputGroupClass"
+    class="fd-search-input"
+  >
+    <template #input>
       <FdInput
         :value="currentPredicate"
         :placeholder="placeholder"
         :compact="compact"
+        ref="input"
         @update="setCurrentPredicate"
         @change="$emit('change', $event)"
         @focus.native="showCompletions"
-        @keyup.native.esc="hideCompletions"
+        @click="showCompletions"
+        @keyup.esc="hideCompletions"
+        @keyup.down="arrowDown"
+        @keyup.up="arrowUp"
+        @keyup.enter="confirmAndHide"
       />
     </template>
 
-    <template #after="{ toggleCompletions }">
+    <template #after>
       <FdButton
         @click="toggleCompletions"
         :compact="compact"
@@ -21,22 +32,22 @@
       />
     </template>
 
-    <template #default="{ hideCompletions }">
-      <FdCompletionList
-        v-if="hasMatches"
-        :completions="completionsMatchingPredicate"
-        :predicate="currentPredicate"
-        @select="
-          completion => setCurrentPredicate(completion) || hideCompletions()
-        "
-      />
-      <template v-else>
-        <slot name="empty">
-          <p class="fd-has-text-align-center" v-fd-type:-1 v-fd-padding:tiny>
-            nothing here
-          </p>
-        </slot>
-      </template>
+    <template #default>
+      <FdMenu ref="menu">
+        <FdCompletionList
+          :completions="completionsMatchingPredicate"
+          :predicate="currentPredicate"
+        >
+          <template #item="completion">
+            <FdMenuItem @click="takePredicateAndHide(completion.value)">
+              <FdMatchingCompletion
+                :selected="isValueSelected(completion.value)"
+                v-bind="completion"
+              />
+            </FdMenuItem>
+          </template>
+        </FdCompletionList>
+      </FdMenu>
     </template>
   </FdComboboxBase>
 </template>
@@ -44,8 +55,11 @@
 <script>
 import { Uid } from "./../../mixins";
 import FdButton from "./../Button/Button.vue";
-import FdInput from "./../Form/Controls/Input.vue";
+import FdMenu from "./../Menu/Menu.vue";
+import FdMenuItem from "./../Menu/MenuItem.vue";
 import FdCompletionList from "./CompletionList.vue";
+import FdMatchingCompletion from "./MatchingCompletion.vue";
+import FdInput from "./../Form/Controls/Input.vue";
 import FdComboboxBase from "./../ComboboxBase/ComboboxBase.vue";
 import { padding, type } from "./../../directives/design-system-utilities";
 
@@ -61,18 +75,32 @@ export default {
     "fd-type": type
   },
   components: {
-    FdComboboxBase,
+    FdMatchingCompletion,
     FdCompletionList,
+    FdMenu,
+    FdMenuItem,
+    FdComboboxBase,
     FdButton,
     FdInput
   },
   props: {
+    popoverClass: {
+      type: [Array, Object, String],
+      default: null
+    },
+    inputGroupClass: {
+      type: [Array, Object, String],
+      default: null
+    },
     predicate: { type: String, default: null },
     completions: { type: Array, default: () => [] },
     placeholder: { type: String, default: "" },
     compact: { type: Boolean, default: false }
   },
   computed: {
+    combobox() {
+      return this.$refs.combobox;
+    },
     hasMatches() {
       return this.completionsMatchingPredicate.length > 0;
     },
@@ -91,6 +119,74 @@ export default {
     }
   },
   methods: {
+    showCompletions() {
+      // This logic is a little complicated because there are two cases:
+      // 1. We have completions: show the completion list
+      // 2. We have no completions: show nothing
+      if (this.completions.length === 0) {
+        return;
+      }
+      this.combobox.show();
+    },
+    hideCompletions() {
+      this.combobox.hide();
+    },
+    toggleCompletions() {
+      this.combobox.togge();
+    },
+    isValueSelected(value) {
+      return value === this.selectedValue;
+    },
+    confirmAndHide() {
+      if (this.selectedValue != null) {
+        this.setCurrentPredicate(this.selectedValue);
+      }
+      this.hideCompletions();
+    },
+    arrowDown() {
+      const completions = this.completionsMatchingPredicate;
+      const { selectedValue } = this;
+      const index = completions.findIndex(completion => {
+        return completion === selectedValue;
+      });
+      if (index < 0) {
+        if (completions.length > 0) {
+          this.selectedValue = completions[0];
+        }
+        return;
+      }
+      const max = completions.length - 1;
+      if (index < max) {
+        this.selectedValue = completions[index + 1];
+      } else {
+        this.selectedValue = completions[0];
+      }
+    },
+    arrowUp() {
+      const completions = this.completionsMatchingPredicate;
+      const { selectedValue } = this;
+      const index = completions.findIndex(completion => {
+        return completion === selectedValue;
+      });
+      if (index < 0) {
+        if (completions.length > 0) {
+          this.selectedValue = completions[0];
+        }
+        return;
+      }
+      if (index === 0) {
+        this.selectedValue = completions[completions.length - 1];
+      } else {
+        this.selectedValue = completions[index - 1];
+      }
+    },
+    takePredicateAndHide(predicate) {
+      this.setCurrentPredicate(predicate);
+      this.hideCompletions();
+    },
+    ignoredElements() {
+      return [this.$refs.input.$el];
+    },
     setCurrentPredicate(newValue) {
       this.currentPredicate = newValue;
       this.$emit("update", this.currentPredicate);
@@ -107,6 +203,7 @@ export default {
   },
   data() {
     return {
+      selectedValue: null,
       currentPredicate: this.predicate
     };
   }

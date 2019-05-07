@@ -1,13 +1,14 @@
 import { mount } from "@vue/test-utils";
 import FdSearchInput from "./../SearchInput.vue";
 import FdMenuItem from "./../../Menu/MenuItem.vue";
+import FdMenu from "./../../Menu/Menu.vue";
+import FdInput from "./../../Form/Controls/Input.vue";
 
 describe("Search Input", () => {
   // There was an issue where the search input component emitted objects/event objects instead of just strings.
   it("does not emit an object", () => {
     const searchInput = mount(FdSearchInput);
     const input = searchInput.find("input");
-
     input.element.value = "hi";
     input.trigger("input");
     const searchEvents = searchInput.emitted("update");
@@ -18,7 +19,6 @@ describe("Search Input", () => {
 
   it("renders Peach for predicate 'p'", () => {
     const completions = ["Bambus", "Apple", "Peach", "Banana"];
-
     const searchInput = mount(FdSearchInput, {
       propsData: { predicate: "p", completions }
     });
@@ -30,7 +30,6 @@ describe("Search Input", () => {
 
   it("renders Banana and Bambus for predicate 'ba'", () => {
     const completions = ["Bambus", "Apple", "Peach", "Banana"];
-
     const searchInput = mount(FdSearchInput, {
       propsData: { predicate: "ba", completions }
     });
@@ -40,5 +39,21 @@ describe("Search Input", () => {
     expect(bambusItem.text()).toBe("Bambus");
     const bananaItem = menuItems.at(1);
     expect(bananaItem.text()).toBe("Banana");
+  });
+
+  it("renders no completion list if no completions are given", async () => {
+    const completions = [
+      /* none */
+    ];
+    const searchInput = mount(FdSearchInput, {
+      propsData: { predicate: "", completions }
+    });
+    const menu = searchInput.findAll(FdMenu);
+    expect(menu.isVisible()).toBe(false);
+
+    const input = searchInput.find(FdInput);
+    input.trigger("click");
+    await searchInput.vm.$nextTick();
+    expect(menu.isVisible()).toBe(false);
   });
 });

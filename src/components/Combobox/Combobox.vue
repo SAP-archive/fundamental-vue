@@ -1,13 +1,19 @@
 <template>
-  <FdComboboxBase :compact="compact" class="fd-combobox-input">
+  <FdComboboxBase
+    :ignoredElements="ignoredElements"
+    :compact="compact"
+    class="fd-combobox-input"
+  >
     <template #input="{showCompletions, hideCompletions}">
       <FdInput
+        ref="input"
         :value="currentValue"
         :placeholder="placeholder"
         :compact="compact"
         @focus.native="showCompletions"
+        @blur.native="hideCompletions"
         @update="setCurrentValue"
-        @keyup.native.esc="hideCompletions"
+        @keyup.esc="hideCompletions"
       />
     </template>
 
@@ -74,6 +80,10 @@ export default {
     }
   },
   methods: {
+    ignoredElements() {
+      const input = this.$refs.input.$el;
+      return [input];
+    },
     setCurrentValue(newValue) {
       this.currentValue = newValue;
       this.$emit("update", this.currentValue);

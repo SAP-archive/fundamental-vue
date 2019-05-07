@@ -3,20 +3,26 @@
     <FdPopoverControl ref="reference">
       <slot name="reference" :show="show" :hide="hide" :toggle="toggle" />
     </FdPopoverControl>
-
-    <FdPopoverBody
-      ref="body"
-      v-fd-click-out="hide"
-      v-show="visible_"
-      :aria-hidden="String(!visible_)"
-      :x-placement="placement_"
-      :x-out-of-boundaries="outOfBoundariesState"
-      :style="popperStyles"
-      :class="bodyClasses"
+    <fd-on-click-outside
+      @do="hide"
+      :active="visible_"
+      :ignoredElements="ignoredElements"
     >
-      <slot :show="show" :hide="hide" :toggle="toggle" />
-      <FdPopoverArrow :style="arrowStylesWithUnits" ref="arrow" />
-    </FdPopoverBody>
+      <template #default>
+        <FdPopoverBody
+          :class="bodyClass_"
+          ref="body"
+          v-show="visible_"
+          :aria-hidden="String(!visible_)"
+          :x-placement="placement_"
+          :x-out-of-boundaries="outOfBoundariesState"
+          :style="popperStyles"
+        >
+          <slot :show="show" :hide="hide" :toggle="toggle" />
+          <FdPopoverArrow :style="arrowStylesWithUnits" ref="arrow" />
+        </FdPopoverBody>
+      </template>
+    </fd-on-click-outside>
   </div>
 </template>
 
@@ -25,7 +31,7 @@ import Popper from "popper.js";
 import components from "./components";
 import elFromRef from "./helper/el-from-ref";
 export const PLACEMENTS = Popper.placements;
-import clickOut from "./../../directives/click-out";
+import FdOnClickOutside from "./../$fd/on-click-outside.vue";
 
 const withPx = value => {
   if (value === "") {
@@ -47,13 +53,13 @@ const createInitialStyle = () => ({
   opacity: 0,
   pointerEvents: "none"
 });
+
 export default {
   name: "FdPopper",
-  components,
-  directives: {
-    "fd-click-out": clickOut
-  },
+  components: { ...components, FdOnClickOutside },
   props: {
+    bodyClass: { type: [Array, Object, String], default: null },
+    ignoredElements: { type: Function, default: () => [] },
     withArrow: { type: Boolean, default: false },
     visible: { type: Boolean, default: false },
     modifiers: {
@@ -110,6 +116,9 @@ export default {
       }
     },
     setVisible(newVisible) {
+      if (newVisible === this.visible_) {
+        return;
+      }
       this.visible_ = newVisible;
       this.$emit("update:visible", this.visible_);
       this.scheduleUpdate();
@@ -117,15 +126,7 @@ export default {
     show() {
       this.setVisible(true);
     },
-    hide(event) {
-      if (event != null) {
-        const { target } = event;
-        const { reference } = this.elements();
-        const targetsReference = reference.contains(target);
-        if (targetsReference) {
-          return;
-        }
-      }
+    hide() {
       this.setVisible(false);
     },
     toggle() {
@@ -171,8 +172,25 @@ export default {
     }
   },
   computed: {
-    bodyClasses() {
-      return { "fd-popover__popper--no-arrow": !this.withArrow_ };
+    bodyClass_() {
+      const { bodyClass } = this;
+      if (this.withArrow_) {
+        return bodyClass;
+      }
+      const noArrowClass = "fd-popover__popper--no-arrow";
+      if (bodyClass == null) {
+        return noArrowClass;
+      }
+      if (Array.isArray(bodyClass)) {
+        return [noArrowClass, ...bodyClass];
+      }
+      if (typeof bodyClass === "string") {
+        return [noArrowClass, bodyClass];
+      }
+      return {
+        ...bodyClass,
+        noArrowClass: true
+      };
     },
     arrowStylesWithUnits() {
       const { arrowStyles_ } = this;

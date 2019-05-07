@@ -52,4 +52,14 @@ describe("MenuItem", () => {
     );
     expect(wrapper.element).toMatchSnapshot();
   });
+
+  it("does render selected state", () => {
+    const wrapper = mountMenuItem(
+      `
+      <FdMenuItem :selected="true">
+        <FdMenuLink>Item 1</FdMenuLink>
+      </FdMenuItem>`
+    );
+    expect(wrapper.element).toMatchSnapshot();
+  });
 });

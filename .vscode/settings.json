@@ -4,7 +4,7 @@
     "javascript",
     "vue"
   ],
-  "debug.node.autoAttach": "on",
+  "debug.node.autoAttach": "off",
   "eslint.alwaysShowStatus": true,
   "eslint.enable": true,
   "eslint.packageManager": "yarn",

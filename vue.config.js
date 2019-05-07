@@ -1,9 +1,11 @@
 const Path = require("path");
+const isE2e = process.env.FD_E2E === "true";
 
-const publicPath =
-  process.env.NODE_ENV === "production" && process.argv[4] !== "--NETLIFY"
-    ? "/fundamental-vue/"
-    : "/";
+const publicPath = isE2e
+  ? "/"
+  : process.env.NODE_ENV === "production" && process.argv[4] !== "--NETLIFY"
+  ? "/fundamental-vue/"
+  : "/";
 
 module.exports = {
   publicPath,
@@ -33,7 +35,7 @@ module.exports = {
     config
       .entry("app")
       .clear()
-      .add("./src/docs/index.js");
+      .add(isE2e ? "./demo/index.js" : "./src/docs/index.js");
 
     config.module
       .rule("handle-title-tags")

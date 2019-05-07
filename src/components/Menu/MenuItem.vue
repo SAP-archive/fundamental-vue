@@ -32,6 +32,7 @@ export default {
     menu: { default: null }
   },
   props: {
+    selected: { type: Boolean, default: false },
     value: { default: null, type: [String, Number] }
   },
   computed: {

@@ -36,7 +36,6 @@ import { $default, $valueWithDefault } from "./Helper/prop";
 export default {
   name: "FdInput",
   mixins: [InputMixin],
-  inheritAttrs: false,
   model: {
     event: "update"
   },
