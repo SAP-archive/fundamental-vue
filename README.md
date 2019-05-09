@@ -15,7 +15,7 @@ The SAP Fiori Fundamentals library is a design system and HTML/CSS component lib
 
 ## API Reference
 
-See [Component Documentation](https://sap.github.io/fundamental-vue/) for examples and API details.
+See [Component Documentation](https://fundamental-vue.netlify.com/) for examples and API details.
 
 ## Requirements
 
@@ -140,7 +140,7 @@ To download and use this library, you first need to install the node package man
     </style>
     ```
 
-    You can now use the [Documentation](https://sap.github.io/fundamental-vue/) to browse the components currently available with Fundamental Vue.
+    You can now use the [Documentation](https://fundamental-vue.netlify.com/) to browse the components currently available with Fundamental Vue.
 
     To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessary:
 
