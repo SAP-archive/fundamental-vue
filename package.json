@@ -23,7 +23,7 @@
     "std-version": "standard-version -m \"chore(release): version %s build ${TRAVIS_BUILD_NUMBER} [ci skip]\"",
     "test": "vue-cli-service test:unit",
     "test:watch": "vue-cli-service test:unit --watch",
-    "deploy:docs": "yarn build:docs  && gh-pages -d dist"
+    "deploy:docs": "gh-pages -d dist"
   },
   "description": "SAP Fiori Fundamentals, implemented in Vue.js",
   "keywords": [

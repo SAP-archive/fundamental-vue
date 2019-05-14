@@ -21,5 +21,8 @@ npm publish
 # run this after publish to make sure GitHub finishes updating from the push
 yarn release:create -- --repo $TRAVIS_REPO_SLUG --tag $release_tag --branch master
 
+# build the documentation site
+yarn build:docs
+
 # deploy documentation site to github pages branch
-yarn deploy:docs
+npm run deploy:docs -- --repo "https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG"
