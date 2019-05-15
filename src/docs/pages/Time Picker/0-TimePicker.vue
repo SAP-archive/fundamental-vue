@@ -6,13 +6,11 @@
 ```
 </docs>
 <template>
-  <div>
+  <div style="display: flex;">
     <FdTimePicker
       :showMeridian="meridianTime.showMeridian"
       :value="meridianTime.value"
-    ></FdTimePicker>
-    <br />
-    <FdTimePicker :value="millitaryTime.value"></FdTimePicker>
+    />
   </div>
 </template>
 

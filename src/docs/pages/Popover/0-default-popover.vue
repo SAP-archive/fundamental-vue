@@ -18,7 +18,7 @@ Each slot (`control` and `default`) have access to the following *slot-props*:
 You can use those slot-props to customize all sorts of things. For example, showing the popover's content when the user hovers over the *control* just means that you have to call `toggle` or `show` for `mouseenter` instead of `click`.
 </tip>
 <template>
-  <FdPopover>
+  <FdPopover boundary="viewport">
     <template #control="{toggle}">
       <FdButton @click="toggle">top-start</FdButton>
     </template>

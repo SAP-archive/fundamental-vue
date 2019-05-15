@@ -1,6 +1,6 @@
 <template>
   <div class="fd-time-picker">
-    <FdPopover placement="bottom-start">
+    <FdPopover adjustsBodyWidth placement="bottom-start">
       <template #control="{toggle, show, hide}">
         <InputGroup
           :compact="compact"
@@ -19,11 +19,13 @@
           />
         </InputGroup>
       </template>
-      <TimeItem
-        :value="timeValue"
-        :showMeridian="showMeridian"
-        @timeItemUpdate="updateTimeItem"
-      />
+      <template #default>
+        <TimeItem
+          :value="timeValue"
+          :showMeridian="showMeridian"
+          @timeItemUpdate="updateTimeItem"
+        />
+      </template>
     </FdPopover>
   </div>
 </template>

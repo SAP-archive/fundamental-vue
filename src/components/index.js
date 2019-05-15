@@ -22,7 +22,6 @@ import Modal from "./Modal";
 import Pagination from "./Pagination";
 import Panel from "./Panel";
 import Popover from "./Popover";
-import Popper from "./Popper";
 import SearchInput from "./SearchInput";
 import SideNav from "./SideNav";
 import Spinner from "./Spinner";
@@ -59,7 +58,6 @@ const plugin = {
     vue.use(Modal);
     vue.use(Pagination);
     vue.use(Panel);
-    vue.use(Popper);
     vue.use(Popover);
     vue.use(SearchInput);
     vue.use(SideNav);

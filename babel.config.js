@@ -4,7 +4,7 @@ const mode =
   nodeEnv !== "production" ? "dev" : targetsNetlify ? "netlify" : "prod";
 const appPresets = ["@vue/app"];
 
-if(process.env.VUE_CLI_BUILD_TARGET === "app") {
+if (process.env.VUE_CLI_BUILD_TARGET === "app") {
   module.exports = {
     presets: ["@vue/app"]
   };
