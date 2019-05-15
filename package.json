@@ -44,15 +44,10 @@
   "homepage": "https://sap.github.io/fundamental-vue",
   "license": "Apache-2.0",
   "dependencies": {
-    "focus-trap": "^5.0.0",
-    "popper.js": "^1.15.0"
+    "@ckienle/k-pop": "^0.3.2",
+    "focus-trap": "^5.0.0"
   },
   "devDependencies": {
-    "core-js": "^2.6.5",
-    "vue": "^2.6.10",
-    "fiori-fundamentals": "^1.5.5",
-    "highlight.js": "^9.15.6",
-    "vue-router": "^3.0.6",
     "@types/jest": "^24.0.11",
     "@vue/cli-plugin-babel": "^3.6.0",
     "@vue/cli-plugin-eslint": "^3.6.0",
@@ -64,17 +59,22 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.7.1",
     "concurrently": "^4.1.0",
+    "core-js": "^2.6.5",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.2",
+    "fiori-fundamentals": "^1.5.5",
     "gh-pages": "^2.0.1",
     "github-assistant": "^0.3.0",
+    "highlight.js": "^9.15.6",
     "html-loader": "^0.5.5",
     "markdown-loader": "^5.0.0",
+    "node-sass": "^4.11.0",
     "pre-commit": "^1.2.2",
     "sass-loader": "^7.1.0",
-    "node-sass": "^4.11.0",
-    "vue-template-compiler": "^2.6.10",
-    "standard-version": "^5.0.2"
+    "standard-version": "^5.0.2",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6",
+    "vue-template-compiler": "^2.6.10"
   },
   "peerDependencies": {
     "fiori-fundamentals": "^1.5.5",

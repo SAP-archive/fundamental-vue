@@ -1,5 +1,5 @@
 <template>
-  <FdPopover placement="bottom-start">
+  <FdPopover adjustsBodyWidth placement="bottom-start">
     <template #control="{ hide, show, toggle }">
       <div class="fd-combobox-control">
         <FdInputGroup

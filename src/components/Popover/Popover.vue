@@ -1,30 +1,69 @@
 <template>
-  <FdPopper :placement="placement" :withArrow="withArrow">
-    <template #reference="{hide, show, toggle}">
-      <slot name="control" :hide="hide" :show="show" :toggle="toggle" />
+  <k-pop
+    ref="kpop"
+    :bodyClass="fdBodyClass"
+    arrowClass="fd-popover__arrow"
+    :placement="placement"
+    :with-arrow="withArrow"
+    :adjustsBodyWidth="adjustsBodyWidth"
+    v-bind="$attrs"
+  >
+    <template #trigger="popProps">
+      <slot name="control" v-bind="popProps" />
     </template>
-    <template #default="{show, toggle, hide}">
-      <div>
-        <slot :hide="hide" :show="show" :toggle="toggle" />
-      </div>
+    <template #default="popProps">
+      <fd-on-click-outside
+        :ignoredElements="ignoredElements_"
+        @do="popProps.hide"
+        :active="popProps.visible"
+      >
+        <slot v-bind="popProps" />
+      </fd-on-click-outside>
     </template>
-  </FdPopper>
+  </k-pop>
 </template>
 
 <script>
-import FdPopper, { PLACEMENTS } from "./../Popper";
 import { Uid } from "./../../mixins";
+import KPop from "@ckienle/k-pop";
+import FdOnClickOutside from "./../$fd/on-click-outside.vue";
 
 export default {
   name: "FdPopover",
-  components: { FdPopper },
+  components: { FdOnClickOutside, KPop },
   mixins: [Uid],
+  methods: {
+    ignoredElements_() {
+      if (this.controlEl == null) {
+        return this.ignoredElements();
+      }
+      return [...this.ignoredElements(), this.controlEl];
+    }
+  },
+  computed: {
+    controlEl() {
+      const { kpop } = this.$refs;
+      if (kpop == null) {
+        return;
+      }
+      return kpop.$el;
+    },
+
+    fdBodyClass() {
+      const result = ["fd-popover__popper"];
+      if (!this.withArrow) {
+        result.push("fd-popover__popper--no-arrow");
+      }
+      return result.join(" ");
+    }
+  },
   props: {
+    adjustsBodyWidth: { type: Boolean, default: false },
+    ignoredElements: { type: Function, default: () => [] },
     withArrow: Boolean,
     placement: {
       type: String,
-      default: "bottom",
-      validator: value => PLACEMENTS.indexOf(value) > -1
+      default: "bottom"
     }
   }
 };

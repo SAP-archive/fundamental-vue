@@ -30,13 +30,22 @@
       new Vue({
         el: '#app',
         template: `
-          <FdPopover with-arrow v-fd-margin:large placement="bottom-start">
+          <FdPopover
+            v-fd-margin:large
+            boundary="window"
+            with-arrow
+            placement="bottom-start"
+          >
             <template #control="{toggle}">
               <FdButton @click="toggle">Show Popover</FdButton>
             </template>
-            <h1 v-fd-margin:large>
-              🚀 Hello Fundamental Vue 🚀
-            </h1>
+
+            <template #default>
+              <h1 v-fd-margin:large>
+                🚀 Hello Fundamental Vue 🚀
+              </h1>
+            </template>
+
           </FdPopover>`
       });
     </script>
