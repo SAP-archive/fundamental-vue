@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.6.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.5.3-rc.1...v0.6.0-rc.0) (2019-05-15)
+
+
+### Features
+
+* Improved Popovers ([9d55fd7](https://github.com/SAP/fundamental-vue/commit/9d55fd7))
+
+
+
 ## [0.5.3-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.5.3-rc.0...v0.5.3-rc.1) (2019-05-14)
 
 
