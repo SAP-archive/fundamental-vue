@@ -1,5 +1,12 @@
 {
   "components": {
+    "FdVirtualizedList": {
+      "slots": {},
+      "props": {},
+      "events": {},
+      "mixins": [],
+      "componentName": "FdVirtualizedList"
+    },
     "FdToken": {
       "slots": {
         "": {
