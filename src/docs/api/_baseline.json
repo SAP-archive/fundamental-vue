@@ -63,12 +63,12 @@
       },
       "mixins": [],
       "props": {
-        "active": {
-          "name": "active",
-          "description": "whether modal is active",
+        "name": {
+          "name": "name",
+          "description": "modal name – can be used together with $fdModal.open('$name')",
           "required": false,
-          "types": ["Boolean"],
-          "defaultValue": false
+          "types": ["String"],
+          "defaultValue": "unique id"
         },
         "title": {
           "name": "title",

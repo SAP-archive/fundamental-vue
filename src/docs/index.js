@@ -19,6 +19,8 @@ Vue.use(DocumentationLoader);
 
 Vue.component("DefaultLayout", DefaultLayout);
 Vue.component("FullscreenLayout", FullscreenLayout);
+Vue.prototype.$withBase = relativePath =>
+  `${process.env.BASE_URL}${relativePath}`;
 
 registerComponents(Vue);
 

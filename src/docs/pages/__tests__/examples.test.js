@@ -61,6 +61,9 @@ describe("All Examples", () => {
           let vueWarning;
           let vueError;
           const localVue = createLocalVue();
+          localVue.prototype.$withBase = relativePath =>
+            `${process.env.BASE_URL}${relativePath}`;
+
           localVue.config.warnHandler = (msg, vm, trace) =>
             (vueWarning = { msg, vm, trace });
           localVue.config.errorHandler = (err, vm, info) =>

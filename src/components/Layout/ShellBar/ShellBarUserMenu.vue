@@ -1,20 +1,10 @@
 <template>
   <div class="fd-user-menu">
-    <FdPopover placement="bottom-end" withArrow>
+    <FdPopover with-arrow placement="bottom-end">
       <template #control="{toggle}">
-        <div
-          class="fd-user-menu__control"
-          role="button"
-          title="Experimental"
-          @click="toggle"
-        >
-          <FdIdentifier
-            size="s"
-            backgroundColor="accent-6"
-            circle
-            icon="settings"
-          />
-        </div>
+        <slot name="control" :toggle="toggle">
+          <fd-shell-bar-user-menu-control @click="toggle" />
+        </slot>
       </template>
       <template #default>
         <slot />
@@ -25,10 +15,10 @@
 
 <script>
 import FdPopover from "./../../Popover/Popover.vue";
-import FdIdentifier from "./../../Identifier/Identifier.vue";
+import FdShellBarUserMenuControl from "./ShellBarUserMenuControl.vue";
 
 export default {
   name: "FdShellBarUserMenu",
-  components: { FdPopover, FdIdentifier }
+  components: { FdShellBarUserMenuControl, FdPopover }
 };
 </script>

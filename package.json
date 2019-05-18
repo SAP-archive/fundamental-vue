@@ -6,13 +6,12 @@
   "scripts": {
     "serve:demo": "cd demo && cross-env FD_E2E=true vue-cli-service serve index.js --port 10000",
     "serve": "vue-cli-service serve src/docs/index.js",
-    "build": "yarn build:ui",
+    "build": "vue-cli-service build --target lib --report --name FundamentalVue src/index.js",
     "test": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint --no-fix --max-warnings 0 --max-errors 0 src",
     "bootstrap": "yarn install",
     "build:docs": "NODE_ENV=production; vue-cli-service build src/docs/index.js",
     "build:docs:netlify": "yarn build:docs --NETLIFY",
-    "build:ui": "vue-cli-service build --target lib --report --name FundamentalVue src/index.js",
     "build:ui:dev": "vue-cli-service build --target lib --report --name FundamentalVue src/index.js --mode development",
     "deploy:docs": "yarn build:docs  && gh-pages -d dist",
     "lint:dev": "vue-cli-service lint",
@@ -36,6 +35,7 @@
     "focus-trap": "^5.0.0"
   },
   "devDependencies": {
+    "@linusborg/vue-simple-portal": "^0.1.2",
     "@types/jest": "^24.0.12",
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-e2e-cypress": "^3.7.0",

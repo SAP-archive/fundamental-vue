@@ -14,6 +14,10 @@ export default new VueRouter({
     {
       path: "/pages/combobox-default",
       component: () => import("./pages/combobox-default.vue")
+    },
+    {
+      path: "/pages/modal-default",
+      component: () => import("./pages/modal-default.vue")
     }
   ]
 });

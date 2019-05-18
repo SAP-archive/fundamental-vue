@@ -1,6 +1,12 @@
 <template>
-  <FdModalOverlay :visible="visible">
-    <div class="fd-modal" :tabindex="modalTabIndex" v-fd-click-out="safeClose">
+  <Portal :selector="portalSelector">
+    <div
+      :data-fd-modal-identifier="name"
+      :aria-hidden="String(!visible)"
+      v-show="visible"
+      class="fd-modal"
+      :tabindex="modalTabIndex"
+    >
       <div class="fd-modal__content" role="document">
         <!-- HEADER -->
         <div class="fd-modal__header">
@@ -36,75 +42,53 @@
         </footer>
       </div>
     </div>
-  </FdModalOverlay>
+  </Portal>
 </template>
 
 <script>
+import { shortUuid } from "./../../lib";
 import FdButton from "./../Button";
 import { FocusTrap } from "./../../mixins";
-import clickOut from "./../../directives/click-out";
-import FdModalOverlay from "./components/Overlay.vue";
+import { Portal } from "@linusborg/vue-simple-portal";
+import { OVERLAY_SELECTOR } from "./ModalManager";
 
 export default {
   name: "FdModal",
   mixins: [FocusTrap],
-  components: { FdModalOverlay, FdButton },
-  directives: {
-    "fd-click-out": clickOut
+  components: { Portal, FdButton },
+  props: {
+    title: { type: String, default: null },
+    name: {
+      type: String,
+      default: () => `fd-modal-${shortUuid()}`
+    }
   },
   computed: {
+    portalSelector() {
+      return OVERLAY_SELECTOR;
+    },
     modalTabIndex() {
       return this.visible ? -1 : 0;
     }
   },
   data: () => ({ visible: false }),
   methods: {
-    open(event) {
-      this.showEvent = event;
-      this.visible = true;
+    open() {
+      this.$fdModal.openModal(this);
     },
     close() {
-      this.visible = false;
       this.$emit("close");
-    },
-    safeClose(event) {
-      if (this.visible === false) {
-        return;
-      }
-      const ignoreClose = this.showEvent == null || event === this.showEvent;
-      if (ignoreClose) {
-        this.showEvent = undefined;
-        return;
-      }
-      this.close();
+      this.$fdModal.closeModal(this);
     }
   },
-  mounted() {
-    document.body.appendChild(this.$el);
-    this.initializeFocusTrap(this.$el, {
-      initialFocus: ".fd-modal"
-    });
+  created() {
+    this.$fdModal.registerModal(this);
   },
   beforeDestroy() {
-    const { $el } = this;
-    if ($el == null) {
-      return;
-    }
-    const parent = $el.parentNode;
-    if (parent == null) {
-      return;
-    }
-    parent.removeChild($el);
+    this.$fdModal.unregisterModal(this);
   },
-  updated() {
-    if (this.visible) {
-      this.activateFocusTrap();
-    } else {
-      this.deactivateFocusTrap();
-    }
-  },
-  props: {
-    title: { type: String, default: null }
+  beforeMount() {
+    this.$fdModal.createAndUpdateOverlayIfNeeded();
   }
 };
 </script>

@@ -7,8 +7,8 @@
       <FdShellBarGroup position="start">
         <FdShellBarLogo
           alt="SAP"
-          src="/images/sap-logo.png"
-          srcset="/images/sap-logo@2x.png 1x, /images/sap-logo@3x.png 2x, /images/sap-logo@4x.png 3x"
+          :src="$withBase('images/sap-logo.png')"
+          :srcset="srcset"
           width="48"
           height="24"
         />
@@ -41,3 +41,17 @@
     </FdShellBar>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    srcset() {
+      return [
+        `${this.$withBase("images/sap-logo@2x.png")} 2x`,
+        `${this.$withBase("images/sap-logo@3x.png")} 3x`,
+        `${this.$withBase("images/sap-logo@4x.png")} 4x`
+      ].join(", ");
+    }
+  }
+};
+</script>

@@ -7,8 +7,8 @@
       <FdShellBarGroup position="start">
         <FdShellBarLogo
           alt="SAP"
-          src="/images/sap-logo.png"
-          srcset="/images/sap-logo@2x.png 1x, /images/sap-logo@3x.png 2x, /images/sap-logo@4x.png 3x"
+          :src="$withBase('images/sap-logo.png')"
+          :srcset="srcset"
           width="48"
           height="24"
         />
@@ -38,77 +38,12 @@
           <FdShellBarAction>
             <FdShellBarProductSwitcher>
               <FdShellBarProductSwitcherItem
+                v-for="product in products"
+                :key="product.title"
                 href="#"
-                src="/images/products/01.png"
-                title="Fiori Home"
+                :src="$withBase(product.src)"
+                :title="product.title"
               />
-              <FdShellBarProductSwitcherItem
-                href="#"
-                src="/images/products/02.png"
-                title="S/4 HANA Cloud"
-              />
-              <FdShellBarProductSwitcherItem
-                href="#"
-                src="/images/products/03.png"
-                title="Analytics Cloud"
-              />
-              <FdShellBarProductSwitcherItem
-                :to="{ path: '/test' }"
-                src="/images/products/04.png"
-                title="Ariba"
-              />
-              <FdShellBarProductSwitcherItem
-                :to="{ path: '/' }"
-                src="/images/products/05.png"
-                title="SuccessFactors"
-              />
-              <FdShellBarProductSwitcherItem
-                :to="{ path: '/' }"
-                src="/images/products/06.png"
-                title="Commerce Cloud"
-              />
-              <FdShellBarProductSwitcherItem
-                src="/images/products/07.png"
-                title="Gigya"
-              />
-              <FdShellBarProductSwitcherItem
-                src="/images/products/08.png"
-                title="Callidus Cloud"
-              />
-              <FdShellBarProductSwitcherItem
-                src="/images/products/09.png"
-                title="Fieldglass"
-              />
-              <FdShellBarProductSwitcherItem>
-                <router-link :to="{ path: '/' }">
-                  <FdShellBarProductSwitcherItemImg
-                    src="/images/products/10.png"
-                  />
-                  <FdShellBarProductSwitcherItemTitle
-                    >Concur</FdShellBarProductSwitcherItemTitle
-                  >
-                </router-link>
-              </FdShellBarProductSwitcherItem>
-              <FdShellBarProductSwitcherItem src="/images/products/11.png">
-                <router-link :to="{ path: '/' }">
-                  <FdShellBarProductSwitcherItemImg
-                    src="/images/products/11.png"
-                  />
-                  <FdShellBarProductSwitcherItemTitle
-                    >Cloud for Customer</FdShellBarProductSwitcherItemTitle
-                  >
-                </router-link>
-              </FdShellBarProductSwitcherItem>
-              <FdShellBarProductSwitcherItem>
-                <router-link :to="{ path: '/' }">
-                  <FdShellBarProductSwitcherItemImg
-                    src="/images/products/12.png"
-                  />
-                  <FdShellBarProductSwitcherItemTitle
-                    >Cloud Portal</FdShellBarProductSwitcherItemTitle
-                  >
-                </router-link>
-              </FdShellBarProductSwitcherItem>
             </FdShellBarProductSwitcher>
           </FdShellBarAction>
         </FdShellBarActions>
@@ -116,3 +51,35 @@
     </FdShellBar>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      products: [
+        {
+          src: "images/products/01.png",
+          title: "Fiori"
+        },
+        {
+          src: "images/products/02.png",
+          title: "S/4 HANA Cloud"
+        },
+        {
+          src: "images/products/03.png",
+          title: "Analytics Cloud"
+        }
+      ]
+    };
+  },
+  computed: {
+    srcset() {
+      return [
+        `${this.$withBase("images/sap-logo@2x.png")} 2x`,
+        `${this.$withBase("images/sap-logo@3x.png")} 3x`,
+        `${this.$withBase("images/sap-logo@4x.png")} 4x`
+      ].join(", ");
+    }
+  }
+};
+</script>
