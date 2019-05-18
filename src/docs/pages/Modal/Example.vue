@@ -18,7 +18,7 @@ Of course you can also manually show or close the modal by simply calling the co
 </tip>
 <template>
   <div>
-    <FdModal ref="party" title="Modal Title">
+    <FdModal name="party" ref="party" title="Modal Title">
       <template #default="{close}">
         <div>
           <p>Do you want to invite your friends to join the party?</p>
@@ -31,5 +31,10 @@ Of course you can also manually show or close the modal by simply calling the co
       </template>
     </FdModal>
     <FdButton v-fd-open-modal:party>Show Modal</FdButton>
+    <br />
+    <br />
+    <FdButton @click="$fdModal.open('party')">
+      Show Modal using $fdModal.open(…)
+    </FdButton>
   </div>
 </template>

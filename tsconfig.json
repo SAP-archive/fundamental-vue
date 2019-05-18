@@ -16,8 +16,6 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "webpack-env",
-      "chai",
       "jest",
       "node"
     ],

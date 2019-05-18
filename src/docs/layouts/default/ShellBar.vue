@@ -45,13 +45,7 @@ export default {
   },
   data() {
     return {
-      sidenavVisibleModel: [true],
-      logoSrc: process.env.BASE_URL + "images/logo.png",
-      logoSrcSet:
-        process.env.BASE_URL +
-        "images/logo.png 1x, " +
-        process.env.BASE_URL +
-        "images/logo@2x.png 2x"
+      sidenavVisibleModel: [true]
     };
   }
 };

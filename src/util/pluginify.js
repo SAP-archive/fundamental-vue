@@ -25,11 +25,8 @@ export default (...dependencies) => {
       if (registerComponent) {
         log(`Register component ${componentName}`);
       }
-      if (typeof component === "function") {
-        vue.component(componentName, component);
-      } else {
-        vue.component(componentName, component);
-      }
+
+      vue.component(componentName, component);
     });
   };
 

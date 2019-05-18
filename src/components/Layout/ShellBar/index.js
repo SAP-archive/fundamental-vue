@@ -9,6 +9,9 @@ export { default as ShellBarActions } from "./ShellBarActions.vue";
 export { default as ShellBarAction } from "./ShellBarAction.vue";
 export { default as ShellBarUserMenu } from "./ShellBarUserMenu.vue";
 export {
+  default as ShellBarUserMenuControl
+} from "./ShellBarUserMenuControl.vue";
+export {
   default as ShellBarProductSwitcher
 } from "./ShellBarProductSwitcher.vue";
 export {

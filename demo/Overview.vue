@@ -9,6 +9,11 @@
           Combobox
         </router-link>
       </li>
+      <li>
+        <router-link to="/pages/modal-default">
+          Modal
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>
