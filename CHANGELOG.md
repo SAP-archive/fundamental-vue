@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.6.0](https://github.com/SAP/fundamental-vue/compare/v0.6.0-rc.0...v0.6.0) (2019-05-18)
+
+
+### Features
+
+* Search Menu Auto Completion ([99c4306](https://github.com/SAP/fundamental-vue/commit/99c4306))
+
+
+
 # [0.6.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.5.3-rc.1...v0.6.0-rc.0) (2019-05-15)
 
 
