@@ -31,7 +31,7 @@
     "/src"
   ],
   "dependencies": {
-    "@ckienle/k-pop": "^0.3.2",
+    "@ckienle/k-pop": "^0.4.1",
     "focus-trap": "^5.0.0"
   },
   "devDependencies": {

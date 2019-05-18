@@ -133,7 +133,7 @@ export default {
       if (this.confirmOn === "keyup.tab") {
         const combobox = this.$refs.combobox;
         const popover = combobox.$refs.popover;
-        const { visible_ } = popover.popper;
+        const { visible_ } = popover.kpop;
         if (visible_) {
           event.preventDefault();
         }

@@ -667,10 +667,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@ckienle/k-pop@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@ckienle/k-pop/-/k-pop-0.3.2.tgz#36c38c4d72400148fef269a42f06fb576fea2454"
-  integrity sha512-bL1VeolyrRO2l7JeaULTqNQSjXPgO8jKKAz55870GLrpiDDHtHYAe7AaovvFUdTOui0uJSBsTayU1P86WvTyZA==
+"@ckienle/k-pop@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@ckienle/k-pop/-/k-pop-0.4.1.tgz#27f291f4dc0539146c4d5f3303ea0663261f4196"
+  integrity sha512-eLw6btNRMd0dYgm3mUBtxzRJQzyTzfN1m1ocX+A3ZT9kda7YQK3B/FDq73vQ4wkQd831AgHzRlHWNqaUNAhrWQ==
   dependencies:
     "@linusborg/vue-simple-portal" "^0.1.2"
     popper.js "^1.15.0"
