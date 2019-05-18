@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.7.0-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.7.0-rc.0...v0.7.0-rc.1) (2019-05-18)
+
+
+### Bug Fixes
+
+* Updates k-pop ([2d269cb](https://github.com/SAP/fundamental-vue/commit/2d269cb))
+
+
+
 # [0.7.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.6.0...v0.7.0-rc.0) (2019-05-18)
 
 
