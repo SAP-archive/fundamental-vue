@@ -1,6 +1,7 @@
 <template>
   <k-pop
     ref="kpop"
+    :portalId="$fdDefaultPortalId"
     :bodyClass="fdBodyClass"
     arrowClass="fd-popover__arrow"
     :placement="placement"
