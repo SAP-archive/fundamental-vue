@@ -7,6 +7,7 @@ const FD_AUTO_INSTALL_DISABLED_KEY = "__FD_AUTO_INSTALL_DISABLED_KEY__";
 
 const install = (vue, options) => {
   const normalized = normalizedPluginOptions(options);
+  vue.prototype.$fdDefaultPortalId = normalized.defaultPortalId;
   vue.use(Directives, normalized);
   vue.use(FundamentalVuePlugin, normalized);
   if (normalized.log.welcome) {
