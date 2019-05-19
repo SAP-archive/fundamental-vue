@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.1-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.8.0...v0.8.1-rc.0) (2019-05-19)
+
+
+### Bug Fixes
+
+* Prettier Warnings ([2f9593b](https://github.com/SAP/fundamental-vue/commit/2f9593b))
+* Sets default portal id via plugin options ([ded20c5](https://github.com/SAP/fundamental-vue/commit/ded20c5))
+
+
+
 # [0.8.0](https://github.com/SAP/fundamental-vue/compare/v0.8.0-rc.0...v0.8.0) (2019-05-18)
 
 
