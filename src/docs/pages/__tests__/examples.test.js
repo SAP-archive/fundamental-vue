@@ -76,9 +76,9 @@ describe("All Examples", () => {
           let html = "";
           // We are not using chai's doesNotThrow-assertion because we want to have the wrapper to get the html
           try {
-            const componentModule = await import(
-              `./../${page.name}/${example}.vue`
-            );
+            const componentModule = await import(`./../${
+              page.name
+            }/${example}.vue`);
             const component =
               componentModule.default != null
                 ? componentModule.default
