@@ -1,7 +1,7 @@
 import Vue from "vue";
 import router from "./router";
 import VueRouter from "vue-router";
-import FundamentalVue from "./../src/index";
+import FundamentalVue from "./../src";
 import FullscreenLayout from "./layouts/FullscreenLayout.vue";
 import "./main.scss";
 

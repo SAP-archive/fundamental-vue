@@ -11,6 +11,7 @@ global.document.createRange = () => ({
 });
 
 module.exports = {
+  modulePathIgnorePatterns: ["<rootDir>/dist"],
   moduleFileExtensions: ["js", "jsx", "json", "vue"],
   transform: {
     "^.+\\.vue$": "vue-jest",
@@ -32,7 +33,7 @@ module.exports = {
     "jest-watch-typeahead/testname"
   ],
   setupFiles: ["./jest.setup.js"],
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: ["src/**/*.{js,vue}", "!**/node_modules/**"],
   coverageReporters: ["html", "json", "lcov", "clover"]
 };
