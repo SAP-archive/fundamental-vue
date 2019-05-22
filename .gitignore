@@ -95,3 +95,4 @@ node_modules/
 
 ### Vuejs ###
 node_modules
+tests/e2e/videos/*.mp4
