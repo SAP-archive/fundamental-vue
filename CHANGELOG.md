@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.1-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.8.1-rc.0...v0.8.1-rc.1) (2019-05-22)
+
+
+### Bug Fixes
+
+* Using the bundled version of Fundamental Vue should now be possible again ([77fffd4](https://github.com/SAP/fundamental-vue/commit/77fffd4))
+
+
+
 ## [0.8.1-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.8.0...v0.8.1-rc.0) (2019-05-19)
 
 
