@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="fd-ui__overlay fd-overlay fd-overlay--modal"
-    :aria-hidden="String(!visible)"
-    v-show="visible"
-  >
+  <div v-show="visible" class="fd-ui__overlay fd-overlay fd-overlay--modal">
     <slot />
   </div>
 </template>
