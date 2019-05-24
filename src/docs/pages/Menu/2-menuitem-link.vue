@@ -24,7 +24,7 @@ If you put anything other than just plain text inside `FdMenuItem` then this aut
   <FdMenu>
     <FdMenuList>
       <FdMenuItem
-        ><FdMenuLink href="https://sap.com">Option 1</FdMenuLink></FdMenuItem
+        ><FdMenuLink disabled>Disabled Menu Item</FdMenuLink></FdMenuItem
       >
       <FdMenuItem
         ><FdMenuLink href="https://sap.com" target="_blank"

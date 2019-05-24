@@ -100,13 +100,6 @@
     "javascript"
   ],
   "license": "Apache-2.0",
-  "pre-commit": {
-    "colors": true,
-    "run": [
-      "lint:pre-commit"
-    ],
-    "silent": false
-  },
   "repository": {
     "type": "git",
     "url": "git+git@github.com:SAP/fundamental-vue.git"

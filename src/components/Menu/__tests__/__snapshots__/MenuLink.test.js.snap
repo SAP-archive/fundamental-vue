@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MenuLink can be disabled 1`] = `
+<a
+  class="fd-menu__item is-disabled fd-has-color-text-4"
+>
+  title
+</a>
+`;
+
 exports[`MenuLink renders correctly 1`] = `
 <a
   class="fd-menu__item"
