@@ -25,7 +25,7 @@ const directive = {
         }
       }
       // @ts-ignore
-      modal.open(event);
+      modal.open.call(modal, event);
     };
     el.addEventListener("click", onClick, false);
     const removeListener = () => {

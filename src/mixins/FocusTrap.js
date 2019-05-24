@@ -7,9 +7,14 @@ export default {
     };
   },
   methods: {
+    pauseFocusTrap() {
+      this.fdFocusTrap.pause();
+    },
+    unpauseFocusTrap() {
+      this.fdFocusTrap.unpause();
+    },
     initializeFocusTrap(element, options) {
-      const domNode = element;
-      this.fdFocusTrap = createFocusTrap(domNode, options);
+      this.fdFocusTrap = createFocusTrap(element, options);
     },
     activateFocusTrap() {
       if (typeof this.fdFocusTrap === "undefined") return;

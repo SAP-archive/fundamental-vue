@@ -1,9 +1,11 @@
 <template>
   <div style="width: 1000px; height: 1000px; padding: 100px;">
-    <fd-modal name="party" title="Hello World" ref="party">
+    <fd-modal data-cy-modal name="party" title="Hello World" ref="party">
       <template #default="{close}">
         <div data-cy-modal-body>
-          <button data-cy-close-via-fdModal @click="$fdModal.close('party')">close</button>
+          <button data-cy-close-via-fdModal @click="$fdModal.close('party')">
+            close
+          </button>
           <FdLink data-cy-close-via-slot-prop @click="close">Nah…</FdLink>
         </div>
       </template>

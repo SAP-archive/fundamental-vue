@@ -5,9 +5,9 @@ Each slot (*footer*, *actions*, *default*, *close*, *title*) has access to the m
 <tip>
 There are multiple ways to show a modal.
 
-**Using the `v-fd-open-modal`-directive**
+**Using `$fdModal.open(modalName)`**
 
-You can use the `v-fd-open-modal`-directive on anything that emits `click`-events. The argument of the `v-fd-open-modal`-directive is the name of the modal you want to show. The name if a modal is specified by setting the `ref`-attribute. The example below shows the party-modal using this technique.
+You can use the `$fdModal.open(modalName)` to open modals from anywhere. Just give each modal a name (using the `name`-prop) and pass this to the `open`-function.
 
 **Manually showing the modal**
 
@@ -15,6 +15,7 @@ Of course you can also manually show or close the modal by simply calling the co
 
 - `show(event?)`: shows the modal.
 - `close(event?)`: closes the modal.
+
 </tip>
 <template>
   <div>

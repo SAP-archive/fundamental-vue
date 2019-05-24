@@ -1,85 +1,173 @@
-const OVERLAY_DATA_ATTRIBUTE = "data-fd-vue-modal-overlay";
-export const OVERLAY_SELECTOR = `[${OVERLAY_DATA_ATTRIBUTE}]`;
+import getModalsContainer from "./lib/get-modals-container";
+import createModalPortal from "./lib/create-modal-portal";
+import createFocusTrap from "focus-trap";
+import { noop } from "./../../util";
+
+class Modal {
+  constructor(vm) {
+    this.vm = vm;
+    this.onDeactivate = noop;
+  }
+
+  trapDidDeactivate() {
+    this.onDeactivate(this);
+  }
+
+  orderToBackground() {
+    this.vm.overlayVisible = true;
+    return this;
+  }
+
+  orderOut() {
+    this.vm.visible = false;
+    this.vm.overlayVisible = false;
+    return this;
+  }
+
+  orderFront() {
+    this.vm.visible = true;
+    this.vm.overlayVisible = true;
+    return this;
+  }
+
+  createTrap() {
+    const modalEl = this.vm.modalEl();
+    this.trap = createFocusTrap(modalEl, {
+      initialFocus: modalEl,
+      escapeDeactivates: !this.vm.handleEscManually,
+      onDeactivate: this.trapDidDeactivate.bind(this),
+      returnFocusOnDeactivate: false
+    });
+    return this;
+  }
+
+  deactivateTrap() {
+    this.trap.deactivate();
+    return this;
+  }
+
+  focus() {
+    this.trap.activate();
+    return this;
+  }
+}
 
 export default class ModalManager {
   constructor() {
-    this.openModalsCount = 0;
-    this.modals = [];
+    this.modalsByName = {};
+    this.openModals = [];
   }
 
-  registerModal(modal) {
-    this.modals.push(modal);
+  registerModalVM(vm) {
+    const portalEl = createModalPortal(vm.name);
+    const container = getModalsContainer();
+    container.appendChild(portalEl);
+    const wrapper = new Modal(vm);
+    wrapper.onDeactivate = this.handleDeactivate.bind(this);
+    this.modalsByName[vm.name] = wrapper;
   }
 
-  unregisterModal({ name }) {
-    const index = this.modals.indexOf(modal => modal.name === name);
-    if (index >= 0) {
-      this.modals.splice(index);
+  unregisterModalVM({ name }) {
+    const modal = this.modalsByName[name];
+    modal.onDeactivate = noop;
+    delete this.modalsByName[name];
+  }
+
+  get topModal() {
+    const { openModals } = this;
+    return openModals.length === 0
+      ? undefined
+      : openModals[openModals.length - 1];
+  }
+
+  // This is our 'public' method. We expose only one method for
+  // opening modals to keep it simple. To make this work, open(…)
+  // can be given just the name of a modal or a modal instance.
+  // Usually app developers should open modals only by name.
+  open(modalOrModalName) {
+    if (typeof modalOrModalName === "string") {
+      this._openModalByName(modalOrModalName);
+    } else {
+      this._openModalByName(modalOrModalName.name);
     }
   }
 
-  open(modalName) {
-    const modal = this.modals.find(modal => modal.name === modalName);
-    if (modal) {
-      this.openModal(modal);
+  _openModalByName(modalName) {
+    const wrapper = this.modalsByName[modalName];
+    this.__openModal(wrapper);
+  }
+
+  handleDeactivate(wrapper) {
+    if (this.topModal !== wrapper) {
+      return;
+    }
+    wrapper.orderOut();
+    this.openModals.pop();
+    const { topModal } = this;
+    if (topModal != null) {
+      topModal.orderFront().focus();
     }
   }
 
-  openModal(modalVM) {
-    this.openModalsCount = this.openModalsCount + 1;
-    this.createAndUpdateOverlayIfNeeded();
-    const modalEl = document.querySelector(
-      `[data-fd-modal-identifier='${modalVM.name}']`
-    );
-
-    modalVM.initializeFocusTrap(modalEl, {
-      initialFocus: ".fd-modal"
-    });
-
-    modalVM.visible = true;
-    modalVM.activateFocusTrap();
+  _openFirstModal(wrapper) {
+    this.openModals.push(wrapper);
+    wrapper
+      .orderFront()
+      .createTrap()
+      .focus();
   }
 
-  closeModal(modalVM) {
-    this.openModalsCount = this.openModalsCount - 1;
-    this.createAndUpdateOverlayIfNeeded();
-    modalVM.visible = false;
-    modalVM.deactivateFocusTrap();
+  _closeTheOnlyOpenModal(wrapper) {
+    wrapper.deactivateTrap();
   }
 
-  close(modalName) {
-    const modal = this.modals.find(modal => modal.name === modalName);
-    if (modal) {
-      this.closeModal(modal);
+  _transitionFromOpenWrapperToWrapper(fromWrapper, toWrapper) {
+    fromWrapper.orderToBackground();
+    this.openModals.push(toWrapper);
+    toWrapper
+      .orderFront()
+      .createTrap()
+      .focus();
+  }
+
+  _closeTopModal(wrapper) {
+    wrapper.deactivateTrap();
+  }
+
+  __openModal(wrapper) {
+    const { topModal } = this;
+    if (topModal == null) {
+      this._openFirstModal(wrapper);
+      return;
+    }
+    this._transitionFromOpenWrapperToWrapper(topModal, wrapper);
+  }
+
+  close(modalOrModalName) {
+    if (typeof modalOrModalName === "string") {
+      this._closeModalByName(modalOrModalName);
+    } else {
+      const wrapper = this.modalsByName[modalOrModalName.name];
+      this.__closeModal(wrapper);
     }
   }
 
-  get overlayEl() {
-    return document.querySelector(OVERLAY_SELECTOR);
+  _closeModalByName(modalName) {
+    const wrapper = this.modalsByName[modalName];
+    this.__closeModal(wrapper);
   }
 
-  updateOverlayVisbility() {
-    const el = this.overlayEl;
-    const shouldBeHidden = this.openModalsCount === 0;
-    el.setAttribute("aria-hidden", String(shouldBeHidden));
-  }
-
-  createAndUpdateOverlayIfNeeded() {
-    const el = this.overlayEl;
-    const hasOverlay = el != null;
-    if (hasOverlay) {
-      this.updateOverlayVisbility();
-      return el;
+  __closeModal(wrapper) {
+    const index = this.openModals.indexOf(wrapper);
+    if (index < 0) {
+      return;
     }
-    const overlay = document.createElement("DIV");
-    overlay.classList.add("fd-ui__overlay");
-    overlay.classList.add("fd-overlay");
-    overlay.classList.add("fd-overlay--modal");
 
-    overlay.setAttribute("aria-hidden", "true");
-    overlay.setAttribute(OVERLAY_DATA_ATTRIBUTE, "");
-    document.body.appendChild(overlay);
-    this.updateOverlayVisbility();
-    return overlay;
+    if (this.openModals.length === 1) {
+      this._closeTheOnlyOpenModal(wrapper);
+      return;
+    }
+
+    this._closeTopModal(this.topModal);
   }
 }
