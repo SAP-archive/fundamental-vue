@@ -40,12 +40,12 @@
   "dependencies": {
     "@ckienle/k-pop": "^0.4.3",
     "@linusborg/vue-simple-portal": "^0.1.2",
-    "focus-trap": "^5.0.0",
+    "focus-trap": "^5.0.1",
     "popper.js": "^1.15.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
-    "@types/jest": "^24.0.12",
+    "@babel/cli": "^7.4.4",
+    "@types/jest": "^24.0.13",
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-e2e-cypress": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
@@ -56,7 +56,7 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.7.1",
+    "babel-jest": "^24.8.0",
     "bili": "^4.8.0",
     "core-js": "^2.6.5",
     "cross-env": "^5.2.0",
@@ -78,14 +78,14 @@
     "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-vue": "^5.0.0",
     "sass-loader": "^7.1.0",
-    "standard-version": "^5.0.2",
-    "start-server-and-test": "^1.9.0",
+    "standard-version": "^6.0.1",
+    "start-server-and-test": "^1.9.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
     "vue-template-compiler": "^2.6.10"
   },
   "peerDependencies": {
-    "fiori-fundamentals": "^1.5.7",
+    "fiori-fundamentals": "^1.5.8",
     "vue": "^2.6.10"
   },
   "bugs": {
