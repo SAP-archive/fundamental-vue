@@ -1,7 +1,7 @@
 <title>Custom Controls</title>
 
 <template>
-  <FdPopover>
+  <FdPopover placement="right" with-arrow>
     <template #control="{toggle}">
       <FdIdentifier @click="toggle" icon="settings" />
     </template>
