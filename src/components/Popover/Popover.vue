@@ -1,16 +1,19 @@
 <template>
   <k-pop
+    class="fd-popover"
     ref="kpop"
+    arrowClass="fd-popover__arrow"
     :portalId="$fdDefaultPortalId"
     :bodyClass="fdBodyClass"
-    arrowClass="fd-popover__arrow"
     :placement="placement"
     :with-arrow="withArrow"
     :adjustsBodyWidth="adjustsBodyWidth"
     v-bind="$attrs"
   >
     <template #trigger="popProps">
-      <slot name="control" v-bind="popProps" />
+      <div class="fd-popover__control">
+        <slot name="control" v-bind="popProps" />
+      </div>
     </template>
     <template #default="popProps">
       <fd-on-click-outside
