@@ -12,10 +12,14 @@ module.exports = {
 */`,
   plugins: {
     vue: true,
-    commonjs: true,
+    commonjs: true
+  },
+  output: {
+    // Virtualized List needs CSS but we want to include it.
+    extractCSS: false
   },
   runtimeHelpers: true,
   globals: {
-    vue: "Vue",
-  },
-}
+    vue: "Vue"
+  }
+};

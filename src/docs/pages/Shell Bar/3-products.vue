@@ -15,7 +15,7 @@
         <FdShellBarProduct>
           <FdShellBarProductMenu>
             <template #title
-              >Product Name</template
+              >Very long Product Name</template
             >
             <template #default>
               <FdMenuList>
