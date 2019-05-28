@@ -17,17 +17,15 @@
             <template #title
               >Product Name</template
             >
-            <template #menu>
-              <FdMenu>
-                <FdMenuList>
-                  <FdMenuItem>
-                    Application A
-                  </FdMenuItem>
-                  <FdMenuItem>
-                    Application B
-                  </FdMenuItem>
-                </FdMenuList>
-              </FdMenu>
+            <template #default>
+              <FdMenuList>
+                <FdMenuItem @click="itemClicked('a')">
+                  Application A
+                </FdMenuItem>
+                <FdMenuItem>
+                  Application B
+                </FdMenuItem>
+              </FdMenuList>
             </template>
           </FdShellBarProductMenu>
         </FdShellBarProduct>
@@ -54,6 +52,12 @@
 
 <script>
 export default {
+  methods: {
+    itemClicked(item) {
+      // eslint-disable-next-line no-console
+      console.log("item clicked", item);
+    }
+  },
   data() {
     return {
       products: [
