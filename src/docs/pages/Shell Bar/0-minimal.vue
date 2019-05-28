@@ -17,13 +17,13 @@
       <FdShellBarGroup position="end">
         <FdShellBarActions>
           <FdShellBarAction>
-            <FdShellBarUserMenu>
+            <FdShellBarUserMenu ref="userMenu">
               <FdMenu>
                 <FdMenuList>
-                  <FdMenuItem>
+                  <FdMenuItem @click="closeUserMenu">
                     Settings
                   </FdMenuItem>
-                  <FdMenuItem>
+                  <FdMenuItem @click="closeUserMenu">
                     Sign out
                   </FdMenuItem>
                 </FdMenuList>
@@ -38,6 +38,11 @@
 
 <script>
 export default {
+  methods: {
+    closeUserMenu() {
+      this.$refs.userMenu.close();
+    }
+  },
   computed: {
     srcset() {
       return [
