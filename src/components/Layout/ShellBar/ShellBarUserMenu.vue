@@ -1,6 +1,6 @@
 <template>
   <div class="fd-user-menu">
-    <FdPopover with-arrow placement="bottom-end">
+    <FdPopover ref="popover" with-arrow placement="bottom-end">
       <template #control="{toggle}">
         <slot name="control" :toggle="toggle">
           <fd-shell-bar-user-menu-control @click="toggle" />
@@ -19,6 +19,14 @@ import FdShellBarUserMenuControl from "./ShellBarUserMenuControl.vue";
 
 export default {
   name: "FdShellBarUserMenu",
-  components: { FdShellBarUserMenuControl, FdPopover }
+  components: { FdShellBarUserMenuControl, FdPopover },
+  methods: {
+    close() {
+      this.popover().hide();
+    },
+    popover() {
+      return this.$refs.popover;
+    }
+  }
 };
 </script>
