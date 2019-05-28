@@ -241,6 +241,14 @@
     ]
   },
   {
+    "id": "./Menu Popover/index.ts",
+    "slug": "menu-popover",
+    "key": "./Menu Popover/index.ts",
+    "title": "Menu Popover",
+    "icon": "message-popup",
+    "related": ["FdMenuPopover"]
+  },
+  {
     "id": "./Modal/index.ts",
     "status": "inprogress",
     "slug": "modal",

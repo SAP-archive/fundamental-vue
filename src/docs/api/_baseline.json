@@ -17,6 +17,17 @@
       "props": {},
       "componentName": "FdToken"
     },
+    "FdMenuPopover": {
+      "slots": {
+
+      },
+      "events": {
+
+      },
+      "mixins": [],
+      "props": {},
+      "componentName": "FdMenuPopover"
+    },
     "FdSpinner": {
       "slots": {},
       "events": {},

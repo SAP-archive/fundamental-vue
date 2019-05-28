@@ -19,6 +19,7 @@ import Layout from "./Layout";
 import Link from "./Link";
 import ListGroup from "./ListGroup";
 import Menu from "./Menu";
+import MenuPopover from "./MenuPopover";
 import Modal from "./Modal";
 import Pagination from "./Pagination";
 import Panel from "./Panel";
@@ -59,6 +60,7 @@ const plugin = {
       Link,
       ListGroup,
       Menu,
+      MenuPopover,
       Modal,
       Pagination,
       Panel,
