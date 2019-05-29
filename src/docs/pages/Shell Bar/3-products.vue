@@ -47,6 +47,52 @@
         </FdShellBarActions>
       </FdShellBarGroup>
     </FdShellBar>
+
+    <br /><br /><br /><br />
+    <FdShellBar>
+      <FdShellBarGroup position="start">
+        <FdShellBarLogo
+          alt="SAP"
+          :src="$withBase('images/sap-logo.png')"
+          :srcset="srcset"
+          width="48"
+          height="24"
+        />
+        <FdShellBarProduct>
+          <FdShellBarProductMenu>
+            <template #title
+              >Short</template
+            >
+            <template #default>
+              <FdMenuList>
+                <FdMenuItem @click="itemClicked('a')">
+                  Application with a very very long name
+                </FdMenuItem>
+                <FdMenuItem>
+                  anotherApplication with a very very long name
+                </FdMenuItem>
+              </FdMenuList>
+            </template>
+          </FdShellBarProductMenu>
+        </FdShellBarProduct>
+        <FdShellBarSubtitle>Subtitle</FdShellBarSubtitle>
+      </FdShellBarGroup>
+      <FdShellBarGroup position="end">
+        <FdShellBarActions>
+          <FdShellBarAction>
+            <FdShellBarProductSwitcher>
+              <FdShellBarProductSwitcherItem
+                v-for="product in products"
+                :key="product.title"
+                href="#"
+                :src="$withBase(product.src)"
+                :title="product.title"
+              />
+            </FdShellBarProductSwitcher>
+          </FdShellBarAction>
+        </FdShellBarActions>
+      </FdShellBarGroup>
+    </FdShellBar>
   </div>
 </template>
 
