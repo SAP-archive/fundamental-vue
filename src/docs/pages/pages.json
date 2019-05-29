@@ -444,6 +444,15 @@
     ]
   },
   {
+    "id": "./VirtualizedList/index.ts",
+    "status": "inprogress",
+    "slug": "virtualized-list",
+    "key": "./VirtualizedList/index.ts",
+    "title": "Virtualized List",
+    "icon": "activate",
+    "related": ["FdVirtualizedList"]
+  },
+  {
     "id": "./Time Picker/index.ts",
     "status": "inprogress",
     "slug": "time-picker",

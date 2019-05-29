@@ -30,7 +30,7 @@
 <script>
 import { Uid } from "./../../mixins";
 import KPop from "@ckienle/k-pop";
-import FdOnClickOutside from "./../$fd/on-click-outside.vue";
+import FdOnClickOutside from "./../$Support/on-click-outside.vue";
 
 export default {
   name: "FdPopover",

@@ -1,3 +1,4 @@
+import $Support from "./$Support";
 import ActionBar from "./ActionBar";
 import Alert from "./Alert";
 import Badge from "./Badge";
@@ -34,11 +35,12 @@ import Tile from "./Tile";
 import TileGrid from "./TileGrid";
 import TimePicker from "./TimePicker";
 import Token from "./Token";
-import $fd from "./$fd";
+import VirtualizedList from "./VirtualizedList";
 
 const plugin = {
   install(vue, options) {
     const plugins = [
+      $Support,
       ActionBar,
       Alert,
       Badge,
@@ -75,7 +77,7 @@ const plugin = {
       TileGrid,
       TimePicker,
       Token,
-      $fd
+      VirtualizedList
     ];
     plugins.forEach(plugin => vue.use(plugin, options));
   }

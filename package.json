@@ -82,7 +82,8 @@
     "start-server-and-test": "^1.9.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "vue-virtual-scroller": "^1.0.0-rc.2"
   },
   "peerDependencies": {
     "fiori-fundamentals": "^1.5.8",

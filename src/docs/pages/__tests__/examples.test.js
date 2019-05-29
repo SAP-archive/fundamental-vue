@@ -61,6 +61,7 @@ describe("All Examples", () => {
           let vueWarning;
           let vueError;
           const localVue = createLocalVue();
+
           localVue.prototype.$withBase = relativePath =>
             `${process.env.BASE_URL}${relativePath}`;
 
@@ -85,8 +86,13 @@ describe("All Examples", () => {
                 : componentModule;
             const wrapper = mount(component, {
               sync: false,
+
               localVue,
-              stubs: { RouterLink: RouterLinkStub }
+              stubs: {
+                DynamicScroller: "<div />",
+                DynamicScrollerItem: "<div />",
+                RouterLink: RouterLinkStub
+              }
             });
             await localVue.nextTick();
             expect(wrapper.isVisible()).toBe(true);

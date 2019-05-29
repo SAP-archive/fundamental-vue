@@ -25,7 +25,6 @@ export default (...dependencies) => {
       if (registerComponent) {
         log(`Register component ${componentName}`);
       }
-
       vue.component(componentName, component);
     });
   };
