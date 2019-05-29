@@ -1,6 +1,80 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.9.1](https://github.com/SAP/fundamental-vue/compare/v0.9.1-rc.1...v0.9.1) (2019-05-28)
+
+
+
+### [0.9.1-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.9.1-rc.0...v0.9.1-rc.1) (2019-05-28)
+
+
+### Bug Fixes
+
+* Shell Bar Product Menu closes ([afa0f5d](https://github.com/SAP/fundamental-vue/commit/afa0f5d))
+
+
+
+### [0.9.1-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.9.0...v0.9.1-rc.0) (2019-05-28)
+
+
+### Bug Fixes
+
+* Adds close method to user menu so that consumers can close the menu ([7a191fd](https://github.com/SAP/fundamental-vue/commit/7a191fd))
+
+
+
+## [0.9.0](https://github.com/SAP/fundamental-vue/compare/v0.9.0-rc.3...v0.9.0) (2019-05-25)
+
+
+
+## [0.9.0-rc.3](https://github.com/SAP/fundamental-vue/compare/v0.9.0-rc.2...v0.9.0-rc.3) (2019-05-25)
+
+
+
+# [0.9.0-rc.2](https://github.com/SAP/fundamental-vue/compare/v0.9.0-rc.1...v0.9.0-rc.2) (2019-05-25)
+
+
+### Bug Fixes
+
+* Popover Control Hover ([ff6e42a](https://github.com/SAP/fundamental-vue/commit/ff6e42a))
+
+
+
+# [0.9.0-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.9.0-rc.0...v0.9.0-rc.1) (2019-05-25)
+
+
+### Features
+
+* close modal on esc + nested modals ([3ac965d](https://github.com/SAP/fundamental-vue/commit/3ac965d))
+
+
+
+# [0.9.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.8.1...v0.9.0-rc.0) (2019-05-25)
+
+
+### Features
+
+* Menu Item Link can now be disabled ([8abc4ec](https://github.com/SAP/fundamental-vue/commit/8abc4ec))
+
+
+
+## [0.8.1](https://github.com/SAP/fundamental-vue/compare/v0.8.1-rc.2...v0.8.1) (2019-05-23)
+
+
+
+## [0.8.1-rc.2](https://github.com/SAP/fundamental-vue/compare/v0.8.1-rc.1...v0.8.1-rc.2) (2019-05-23)
+
+
+
+## [0.8.1-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.8.1-rc.0...v0.8.1-rc.1) (2019-05-22)
+
+
+### Bug Fixes
+
+* Using the bundled version of Fundamental Vue should now be possible again ([77fffd4](https://github.com/SAP/fundamental-vue/commit/77fffd4))
+
+
 
 ## [0.8.1-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.8.0...v0.8.1-rc.0) (2019-05-19)
 

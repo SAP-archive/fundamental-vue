@@ -5,7 +5,8 @@ module.exports = {
   },
   rules: {
     "no-console": "error",
-    "no-debugger": "error"
+    "no-debugger": "error",
+    "getter-return": ["error", { allowImplicit: true }]
   },
   extends: ["plugin:vue/essential", "@vue/prettier"],
   parserOptions: {

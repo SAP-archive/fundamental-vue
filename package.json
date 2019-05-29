@@ -1,12 +1,17 @@
 {
   "name": "fundamental-vue",
-  "version": "0.8.1-rc.0",
+  "version": "0.9.1",
   "description": "SAP Fiori Fundamentals, implemented in Vue.js",
   "author": "SAP SE",
   "scripts": {
-    "serve:demo": "cd demo && cross-env FD_E2E=true vue-cli-service serve index.js --port 10000",
+    "test:e2e": "start-server-and-test 'serve:demo' http://localhost:10000 'cross-env FD_E2E=true vue-cli-service test:e2e --url http://localhost:10000'",
+    "test:e2e:headless": "start-server-and-test 'serve:demo' http://localhost:10000 'cross-env FD_E2E=true vue-cli-service test:e2e --url http://localhost:10000 --headless'",
+    "build": "rimraf -r dist && cross-env NODE_ENV=production yarn build:bili && cross-env NODE_ENV=production yarn build:src",
+    "build:src:babel": "babel src --out-dir dist/src --ignore \"src/docs/index.js\"",
+    "build:src": "cp -r src dist/src",
+    "build:bili": "bili --bundle-node-modules --file-name FundamentalVue.[format].js --format cjs --format umd-min --format es --module-name FundamentalVue --env.NODE_ENV production -d dist",
+    "serve:demo": "cd demo && cross-env FD_E2E=true vue-cli-service serve index.js --port 10000 --mode production",
     "serve": "vue-cli-service serve src/docs/index.js",
-    "build": "vue-cli-service build --target lib --report --name FundamentalVue src/index.js",
     "test": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint --no-fix --max-warnings 0 --max-errors 0 src",
     "bootstrap": "yarn install",
@@ -19,57 +24,69 @@
     "release": "./scripts/publish-release.sh",
     "release:create": "create-release",
     "std-version": "standard-version -m \"chore(release): version %s build ${TRAVIS_BUILD_NUMBER} [ci skip]\"",
-    "test:e2e": "cross-env FD_E2E=true vue-cli-service test:e2e --url http://localhost:10000",
     "test:watch": "vue-cli-service test:unit --watch"
   },
-  "main": "dist/FundamentalVue.umd.min.js",
-  "browser": "dist/FundamentalVue.common.js",
-  "jsDelivr": "dist/FundamentalVue.umd.min.js",
-  "unpkg": "dist/FundamentalVue.umd.min.js",
+  "main": "dist/FundamentalVue.cjs.js",
+  "module": "dist/FundamentalVue.esm.js",
+  "unpkg": "dist/FundamentalVue.umd.js",
+  "jsdelivr": "dist/FundamentalVue.umd.js",
   "files": [
-    "/dist",
-    "/src"
+    "LICENSE.txt",
+    "README.md",
+    "CHANGELOG.md",
+    "dist",
+    "src"
   ],
   "dependencies": {
-    "@ckienle/k-pop": "^0.4.1",
-    "focus-trap": "^5.0.0"
+    "@ckienle/k-pop": "^0.4.3",
+    "@linusborg/vue-simple-portal": "^0.1.2",
+    "focus-trap": "^5.0.1",
+    "popper.js": "^1.15.0"
   },
   "devDependencies": {
-    "@linusborg/vue-simple-portal": "^0.1.2",
-    "@types/jest": "^24.0.12",
+    "@babel/cli": "^7.4.4",
+    "@types/jest": "^24.0.13",
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-e2e-cypress": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-plugin-unit-jest": "^3.7.0",
     "@vue/cli-service": "^3.7.0",
+    "@vue/component-compiler": "^4.0.0",
     "@vue/eslint-config-prettier": "^4.0.1",
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.7.1",
-    "concurrently": "^4.1.0",
+    "babel-jest": "^24.8.0",
+    "bili": "^4.8.0",
     "core-js": "^2.6.5",
     "cross-env": "^5.2.0",
-    "cypress-vue-unit-test": "^1.11.0",
     "eslint": "^5.16.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.2.2",
-    "fiori-fundamentals": "^1.5.7",
+    "execa": "^1.0.0",
+    "fiori-fundamentals": "^1.5.0",
     "gh-pages": "^2.0.1",
     "github-assistant": "^0.3.0",
     "highlight.js": "^9.15.6",
     "html-loader": "^0.5.5",
     "markdown-loader": "^5.0.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
     "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.12.3",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-node-resolve": "^5.0.0",
+    "rollup-plugin-vue": "^5.0.0",
     "sass-loader": "^7.1.0",
-    "standard-version": "^5.0.2",
+    "standard-version": "^6.0.1",
+    "start-server-and-test": "^1.9.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
     "vue-template-compiler": "^2.6.10",
     "vue-virtual-scroller": "^1.0.0-rc.2"
   },
   "peerDependencies": {
-    "fiori-fundamentals": "^1.5.7",
+    "fiori-fundamentals": "^1.5.8",
     "vue": "^2.6.10"
   },
   "bugs": {
@@ -84,13 +101,6 @@
     "javascript"
   ],
   "license": "Apache-2.0",
-  "pre-commit": {
-    "colors": true,
-    "run": [
-      "lint:pre-commit"
-    ],
-    "silent": false
-  },
   "repository": {
     "type": "git",
     "url": "git+git@github.com:SAP/fundamental-vue.git"

@@ -15,7 +15,7 @@ script:
 jobs:
   include:
   - stage: Lint and Test
-    script: yarn lint && yarn test
+    script: yarn lint && yarn test && yarn test:e2e:headless
   - stage: Pre-release
     if: branch = master
     before_deploy:

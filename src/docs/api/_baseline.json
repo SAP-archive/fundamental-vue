@@ -24,6 +24,17 @@
       "props": {},
       "componentName": "FdToken"
     },
+    "FdMenuPopover": {
+      "slots": {
+
+      },
+      "events": {
+
+      },
+      "mixins": [],
+      "props": {},
+      "componentName": "FdMenuPopover"
+    },
     "FdSpinner": {
       "slots": {},
       "events": {},
@@ -1764,6 +1775,37 @@
         }
       },
       "componentName": "FdMenuList"
+    },
+    "FdMenuLink": {
+      "slots": {
+        "": {
+          "name": "",
+          "description": "Title of the link"
+        }
+      },
+      "events": {
+        "click": {
+          "name": "click",
+          "description": "Sent when the itme was clicked (only works for links that are not disabled)"
+        }
+      },
+      "mixins": [],
+      "props": {
+        "selected": {
+          "name": "selected",
+          "description": "whether the link is displayed in a selected state",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        },
+        "disabled": {
+          "name": "disabled",
+          "description": "whether the link is disabled",
+          "required": false,
+          "types": ["Boolean"],
+          "defaultValue": false
+        }
+      }
     },
     "FdMenuItem": {
       "slots": {
