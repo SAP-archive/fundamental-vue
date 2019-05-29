@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.10.1-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.10.0...v0.10.1-rc.0) (2019-05-29)
+
+
+### Bug Fixes
+
+* Product Menu Width ([2d483eb](https://github.com/SAP/fundamental-vue/commit/2d483eb))
+
+
+
 ## [0.10.0](https://github.com/SAP/fundamental-vue/compare/v0.10.0-rc.1...v0.10.0) (2019-05-29)
 
 
