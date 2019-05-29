@@ -1,6 +1,6 @@
 <template>
   <div class="fd-product-menu">
-    <fd-popover :offset="10" adjusts-body-width placement="bottom-end">
+    <fd-popover :offset="10" placement="bottom-start">
       <template #control="{toggle}">
         <button @click="toggle" class="fd-product-menu__control">
           <fd-shell-bar-product-title class="fd-product-menu__title">
