@@ -64,7 +64,6 @@ export default {
       }
       return kpop.$el;
     },
-
     fdBodyClass() {
       const result = ["fd-popover__popper"];
       if (!this.withArrow) {

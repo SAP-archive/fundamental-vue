@@ -17,16 +17,23 @@
         <FdToggle v-model="isOn" />
       </FdFormItem>
     </FdFormSet>
-    <FdButton @click="isOn = !isOn">Toggle</FdButton>
-    <br /><br />
-    <FdPopover v-model="isOn">
-      <div slot="body" v-fd-padding:large><h1>hi</h1></div>
-    </FdPopover>
+    <fd-popover ref="popover">
+      <template #control>
+        <fd-button @click="isOn = !isOn">Toggle</fd-button>
+      </template>
+      <div v-fd-padding:large><h1>hi</h1></div>
+    </fd-popover>
   </div>
 </template>
 
 <script>
 export default {
+  watch: {
+    isOn(on) {
+      const popover = this.$refs.popover;
+      on ? popover.show() : popover.hide();
+    }
+  },
   data: () => ({ isOn: false })
 };
 </script>

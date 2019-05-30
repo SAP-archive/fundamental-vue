@@ -24,9 +24,9 @@
         :selectedId.sync="activeNavItemId"
       />
     </div>
-    <main class="content">
+    <div class="content">
       <router-view />
-    </main>
+    </div>
   </div>
 </template>
 
