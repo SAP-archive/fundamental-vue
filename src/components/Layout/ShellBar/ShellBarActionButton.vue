@@ -1,7 +1,8 @@
 <template>
   <button v-on="$listeners" class="fd-button--shell" v-fd-icon="icon">
-    <slot /></button
-></template>
+    <slot />
+  </button>
+</template>
 
 <script>
 import { Icon } from "./../../../mixins";

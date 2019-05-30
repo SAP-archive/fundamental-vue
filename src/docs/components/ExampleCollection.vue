@@ -1,19 +1,17 @@
 <template>
   <div>
-    <div v-if="!showApiOnly">
-      <component-example
-        v-for="example in examples"
-        :key="keyForExample(example)"
-        :exampleId="example.id"
-        :tip="example.tip"
-        :docs="example.docs"
-        :component="example.component"
-        :sourcecode="example.code"
-        :title="example.title"
-        :condensed="example.condensed"
-        :fullscreenOnly="example.fullscreenOnly"
-      />
-    </div>
+    <component-example
+      v-for="example in examples"
+      :key="keyForExample(example)"
+      :exampleId="example.id"
+      :tip="example.tip"
+      :docs="example.docs"
+      :component="example.component"
+      :sourcecode="example.code"
+      :title="example.title"
+      :condensed="example.condensed"
+      :fullscreenOnly="example.fullscreenOnly"
+    />
     <div v-if="documentedComponents.length > 0">
       <component-reference
         v-fd-margin:large.bottom
@@ -27,10 +25,6 @@
 
 <script>
 export default {
-  props: {
-    title: String,
-    showApiOnly: Boolean
-  },
   data() {
     return {
       relatedComponents: []
@@ -42,9 +36,6 @@ export default {
     },
     keyForComponentDocumentation(documentation) {
       return `api-${documentation.componentName}`;
-    },
-    resetUI() {
-      this.relatedComponents = [];
     }
   },
 

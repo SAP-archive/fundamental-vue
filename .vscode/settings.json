@@ -9,9 +9,9 @@
     "tip": "md",
     "title": "md"
   },
-  "debug.node.autoAttach": "off",
+  "debug.node.autoAttach": "on",
   "eslint.alwaysShowStatus": true,
-  "eslint.enable": true,
+  "eslint.enable": false,
   "eslint.packageManager": "yarn",
   "jest.debugMode": true,
   "jest.pathToConfig": "jest.config.js",
