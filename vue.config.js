@@ -10,6 +10,7 @@ const publicPath = isE2e
 module.exports = {
   publicPath,
   chainWebpack: config => {
+
     config.resolveLoader.modules
       .add("node_modules")
       .add(Path.resolve(__dirname, "loaders"))

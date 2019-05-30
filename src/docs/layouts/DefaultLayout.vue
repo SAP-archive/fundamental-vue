@@ -24,8 +24,10 @@
         :selectedId.sync="activeNavItemId"
       />
     </div>
-    <div class="content">
-      <router-view />
+    <div data-fd-main-content class="page">
+      <div class="content">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
@@ -157,25 +159,27 @@ $sidebar-width: 250px;
   overflow: auto;
   z-index: 10;
   transition: transform 0.33s ease;
-  border-right: 1px solid #cccccc;
+  border-right: 1px solid #efefef;
 }
 
-.content {
-  $insetSide: 64px;
-  $insetSide-compact: 16px;
-  margin-left: $sidebar-width;
-  padding-top: calc(44px + 64px);
-  padding-left: $insetSide;
-  padding-right: $insetSide;
+$insetSide: 20px;
+$insetSide-compact: 16px;
+.page {
+  padding-left: $sidebar-width;
+  padding-top: calc(44px);
   top: 44px;
-  width: unquote("calc( 100% - (0.5 * #{$sidebar-width} + 2 * #{$insetSide}))");
-
   @include for-compact-only {
-    padding-left: $insetSide-compact;
-    padding-right: $insetSide-compact;
+    padding-left: 0;
+    padding-right: 0;
     padding-top: calc(44px + 16px);
     width: 100%;
   }
+}
+
+.content {
+  max-width: calc(740px);
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .sidebar--open .sidebar {

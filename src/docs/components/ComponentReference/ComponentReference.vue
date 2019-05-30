@@ -31,6 +31,7 @@ const makeEmptyDocumentation = () => ({
 
 export default {
   props: {
+    componentName: String,
     componentDocumentation: {
       type: Object,
       default: makeEmptyDocumentation

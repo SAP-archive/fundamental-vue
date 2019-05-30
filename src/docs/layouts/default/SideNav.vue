@@ -28,6 +28,7 @@ export default {
     staticPages() {
       return [
         { id: "start", name: "Start", icon: "home", to: "/start" },
+        { id: "api", name: "API", icon: "home", to: "/api" },
         {
           id: "new-component",
           name: "New Component Guide",
