@@ -25,6 +25,10 @@
                 <FdMenuItem>
                   Application B
                 </FdMenuItem>
+                <FdMenuItem>
+                  A very long application name - even longer than the product
+                  title.
+                </FdMenuItem>
               </FdMenuList>
             </template>
           </FdShellBarProductMenu>
