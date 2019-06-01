@@ -3,7 +3,6 @@
     <template #control="controlProps">
       <slot name="control" v-bind="controlProps" />
     </template>
-
     <template #default="bodyProps">
       <fd-menu @select="bodyProps.hide">
         <slot v-bind="bodyProps" />

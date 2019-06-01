@@ -10,6 +10,8 @@ import Calendar from "./Calendar";
 import Combobox from "./Combobox";
 import ComboboxMenu from "./ComboboxMenu";
 import Counter from "./Counter";
+import Dropdown from "./Dropdown";
+import DropdownControl from "./DropdownControl";
 import Form from "./Form";
 import Icon from "./Icon";
 import Identifier from "./Identifier";
@@ -52,6 +54,8 @@ const plugin = {
       Combobox,
       ComboboxMenu,
       Counter,
+      Dropdown,
+      DropdownControl,
       Form,
       Icon,
       Identifier,
