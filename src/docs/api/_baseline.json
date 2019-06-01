@@ -967,6 +967,15 @@
       },
       "componentName": "FdShellFooter"
     },
+    "FdDropdown": {
+      "slots": {
+      },
+      "events": {},
+      "mixins": [],
+      "props": {
+      },
+      "componentName": "FdDropdown"
+    },
     "FdShellBar": {
       "slots": {
         "": {

@@ -117,6 +117,15 @@
     "related": []
   },
   {
+    "id": "./Dropdown/index.ts",
+    "status": "stable",
+    "slug": "dropdown",
+    "key": "./Dropdown/index.ts",
+    "title": "Dropdown",
+    "icon": "action",
+    "related": ["FdDropdown"]
+  },
+  {
     "id": "./Form/index.ts",
     "status": "stable",
     "slug": "form",
