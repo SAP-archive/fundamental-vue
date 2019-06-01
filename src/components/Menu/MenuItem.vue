@@ -10,6 +10,8 @@
 
 <script>
 import FdMenuLink from "./MenuLink.vue";
+import Uid from "./../../mixins/Uid";
+
 const FdSmartMenuInterior = {
   functional: true,
   components: { FdMenuLink },
@@ -24,11 +26,22 @@ const FdSmartMenuInterior = {
 };
 export default {
   name: "FdMenuItem",
+  mixins: [Uid],
   components: { FdSmartMenuInterior },
   provide() {
-    return { menuItem: this };
+    return {
+      menuItem: this
+    };
   },
-  inject: ["menuList"],
+  inject: ["menu", "menuList"],
+  created() {
+    const { menu } = this;
+    menu.registerMenuItem(this);
+  },
+  beforeDestroy() {
+    const { menu } = this;
+    menu.unregisterMenuItem(this);
+  },
   props: {
     selected: { type: Boolean, default: false },
     value: { default: null, type: [String, Number] }

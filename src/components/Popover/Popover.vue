@@ -9,6 +9,7 @@
     :with-arrow="withArrow"
     :adjustsBodyWidth="adjustsBodyWidth"
     v-bind="$attrs"
+    v-on="$listeners"
   >
     <template #trigger="popProps">
       <div class="fd-popover__control">

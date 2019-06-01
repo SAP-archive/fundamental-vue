@@ -3,6 +3,7 @@
 exports[`MenuLink can be disabled 1`] = `
 <a
   class="fd-menu__item is-disabled fd-has-color-text-4"
+  data-fd-menu-item-link-uid="aaa"
 >
   title
 </a>
@@ -11,6 +12,7 @@ exports[`MenuLink can be disabled 1`] = `
 exports[`MenuLink renders correctly 1`] = `
 <a
   class="fd-menu__item"
+  data-fd-menu-item-link-uid="aaa"
 >
   Item 1
 </a>
