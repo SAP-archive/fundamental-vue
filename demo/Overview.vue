@@ -1,23 +1,28 @@
 <template>
   <div>
     <ul>
-      <li>
-        <router-link to="/pages/popover-default">Popover Default</router-link>
-      </li>
-      <li>
-        <router-link to="/pages/combobox-default">
-          Combobox
-        </router-link>
-      </li>
-      <li>
-        <router-link to="/pages/modal-default">
-          Modal
-        </router-link>
+      <li v-for="page in pages" :key="page.to">
+        <router-link :to="page.to">{{ page.title }}</router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-export default {};
+
+export default {
+  computed: {
+    pages() {
+      return this.pageNames.map(pageName => ({
+        to: `/pages/${pageName}`,
+        title: pageName
+      }));
+    }
+  },
+  props: {
+    pageNames: {
+      type: Array
+    }
+  }
+};
 </script>

@@ -5,6 +5,12 @@ describe("MenuLink", () => {
   it("renders correctly", () => {
     expect(
       mount({
+        provide() {
+          return {
+            menuItem: { uid: "aaa" },
+            menuHighlight: { highlightedId: null }
+          };
+        },
         template: `<FdMenuLink>Item 1</FdMenuLink>`,
         components: { FdMenuLink }
       }).element
@@ -13,6 +19,12 @@ describe("MenuLink", () => {
 
   it("can be disabled", () => {
     const wrapper = mount({
+      provide() {
+        return {
+          menuItem: { uid: "aaa" },
+          menuHighlight: { highlightedId: null }
+        };
+      },
       template: `<fd-menu-link :disabled="disabled">title</fd-menu-link>`,
       components: { FdMenuLink },
       data() {

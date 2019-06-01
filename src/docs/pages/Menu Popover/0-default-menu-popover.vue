@@ -1,5 +1,7 @@
 <title>Menu Popover with multiple Lists</title>
-
+<docs>
+`fd-menu-popover` is a relatively low-level component. It is used internally by *Fundamental Vue* for dropdowns and other more high-level components.
+</docs>
 <template>
   <div>
     <p>
@@ -8,7 +10,10 @@
     <p>
       Favorite Dish: <span v-fd-font-weight:bold>{{ dish }}</span>
     </p>
-    <fd-menu-popover>
+    <p>
+      highlightedId: <span v-fd-font-weight:bold>{{ highlightedId }}</span>
+    </p>
+    <fd-menu-popover @highlight="highlightedId = $event.uid">
       <template #control="{toggle}">
         <fd-button @click="toggle">Select Dish & Color</fd-button>
       </template>
@@ -30,6 +35,7 @@
 export default {
   data() {
     return {
+      highlightedId: "none",
       color: "red",
       dish: "pizza"
     };

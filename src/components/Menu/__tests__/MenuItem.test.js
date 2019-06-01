@@ -1,18 +1,28 @@
-import { mount } from "@vue/test-utils";
+import { mount, createLocalVue } from "@vue/test-utils";
 import FdMenuItem from "./../MenuItem.vue";
 import FdMenuLink from "./../MenuLink.vue";
+import FundamentalVue from "./../../../index";
 
 const mountMenuItem = template => {
+  const localVue = createLocalVue();
+  localVue.use(FundamentalVue);
+
   return mount(
     {
       template,
       components: { FdMenuItem, FdMenuLink }
     },
     {
+      localVue,
       provide: {
         menuList: {
           canHaveAddon: false,
           menuItemDidClick() {}
+        },
+        menuHighlight: { highlightedId: null },
+        menu: {
+          registerMenuItem() {},
+          unregisterMenuItem() {}
         }
       }
     }
@@ -20,23 +30,6 @@ const mountMenuItem = template => {
 };
 
 describe("MenuItem", () => {
-  describe("MenuItem with just text", () => {
-    it("renders correctly", () => {
-      const wrapper = mountMenuItem(`<FdMenuItem>hello</FdMenuItem>`);
-      expect(wrapper.element).toMatchInlineSnapshot(`
-<li>
-  <!---->
-   
-  <a
-    class="fd-menu__item"
-  >
-    hello
-  </a>
-</li>
-`);
-    });
-  });
-
   it("emits click-event", async () => {
     const wrapper = mountMenuItem(`<FdMenuItem>hello</FdMenuItem>`);
     wrapper.find("a").trigger("click");
@@ -47,7 +40,7 @@ describe("MenuItem", () => {
 
   it("does render embeddded link with href", () => {
     const wrapper = mountMenuItem(`
-    <FdMenuItem>
+    <FdMenuItem uid="aaa">
       <FdMenuLink href='#'>Item 1</FdMenuLink>
     </FdMenuItem>`);
     expect(wrapper.element).toMatchSnapshot();
@@ -56,7 +49,7 @@ describe("MenuItem", () => {
   it("does render embedded link", () => {
     const wrapper = mountMenuItem(
       `
-      <FdMenuItem>
+      <FdMenuItem uid="aaa">
         <FdMenuLink>Item 1</FdMenuLink>
       </FdMenuItem>`
     );
@@ -66,7 +59,7 @@ describe("MenuItem", () => {
   it("does render selected state", () => {
     const wrapper = mountMenuItem(
       `
-      <FdMenuItem :selected="true">
+      <FdMenuItem uid="aaa" :selected="true">
         <FdMenuLink>Item 1</FdMenuLink>
       </FdMenuItem>`
     );

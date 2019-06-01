@@ -90,7 +90,7 @@
     "slug": "combobox",
     "key": "./Combobox/index.ts",
     "title": "Combobox",
-    "icon": "drop-down-list",
+    "icon": "download",
     "related": [
       "FdCombobox",
       "FdMenuItem"
@@ -122,7 +122,7 @@
     "slug": "dropdown",
     "key": "./Dropdown/index.ts",
     "title": "Dropdown",
-    "icon": "action",
+    "icon": "arrow-bottom",
     "related": ["FdDropdown"]
   },
   {
