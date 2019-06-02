@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.10.3-rc.0...v0.11.0-rc.0) (2019-06-02)
+
+
+### Features
+
+* Added Dropdown component ([5fe08a9](https://github.com/SAP/fundamental-vue/commit/5fe08a9))
+
+
+
 ### [0.10.3-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.10.2...v0.10.3-rc.0) (2019-06-01)
 
 
