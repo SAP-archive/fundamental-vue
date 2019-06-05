@@ -66,7 +66,22 @@ export default {
       return this.state === "loading";
     }
   },
+  mounted() {
+    if (this.items.length === 0) {
+      this.startToLoadMoreItems();
+    }
+  },
   methods: {
+    startToLoadMoreItems(event) {
+      if (this.loadMoreItems != null) {
+        this.state = "loading";
+        if (event != null) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        this.loadMoreItems(this.acceptNewItems);
+      }
+    },
     acceptNewItems(newItems) {
       this.items_ = [...this.items_, ...newItems];
       this.state = "default";
@@ -80,20 +95,13 @@ export default {
         if (this.state === "loading") {
           return;
         }
-        if (this.loadMoreItems != null) {
-          this.state = "loading";
-          event.preventDefault();
-          event.stopPropagation();
-          this.loadMoreItems(this.acceptNewItems);
-        }
+        this.startToLoadMoreItems(event);
       }
     },
-
     selectItem(item) {
       this.selectedId = item.fd__id;
       this.$emit("input", item);
     },
-
     rowClasses(item) {
       return {
         "list-item--selected": item.fd__id === this.selectedId
