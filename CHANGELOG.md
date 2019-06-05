@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.11.0-rc.0...v0.11.0-rc.1) (2019-06-05)
+
+
+### Bug Fixes
+
+* Click Outside Component ([c2c79ec](https://github.com/SAP/fundamental-vue/commit/c2c79ec))
+
+
+
 ## [0.11.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.10.3-rc.0...v0.11.0-rc.0) (2019-06-02)
 
 
