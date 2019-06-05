@@ -38,7 +38,8 @@ export default {
     }
   },
   methods: {
-    click({ target }) {
+    click(event) {
+      const { target } = event;
       if (target == null) {
         return;
       }

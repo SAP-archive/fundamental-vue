@@ -18,7 +18,7 @@
     <template #default="popProps">
       <fd-on-click-outside
         :ignoredElements="ignoredElements_"
-        @do="popProps.hide"
+        @do="handleClickOutside"
         :active="popProps.visible"
       >
         <slot v-bind="popProps" />
@@ -37,6 +37,9 @@ export default {
   components: { FdOnClickOutside, KPop },
   mixins: [Uid],
   methods: {
+    handleClickOutside() {
+      this.hide();
+    },
     show() {
       this.kpop.show();
     },
