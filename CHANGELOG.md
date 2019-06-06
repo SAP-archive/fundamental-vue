@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.1-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.11.0...v0.11.1-rc.0) (2019-06-06)
+
+
+### Bug Fixes
+
+* fixed initial load of virtualized list ([9b4deb9](https://github.com/SAP/fundamental-vue/commit/9b4deb9))
+
+
+
 ## [0.11.0](https://github.com/SAP/fundamental-vue/compare/v0.11.0-rc.1...v0.11.0) (2019-06-05)
 
 
