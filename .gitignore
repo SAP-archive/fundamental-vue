@@ -97,3 +97,4 @@ node_modules/
 node_modules
 tests/e2e/videos/*.mp4
 /api
+/tests/e2e/screenshots
