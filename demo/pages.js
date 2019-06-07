@@ -3,5 +3,6 @@ export const pages = [
   "combobox-default",
   "modal-default",
   "menu-popover-default",
-  "menu-selection"
+  "menu-selection",
+  "virtualized-list"
 ];
