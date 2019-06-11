@@ -10,6 +10,7 @@ import { registerComponents } from "./components";
 import "./main.scss";
 
 Vue.config.productionTip = false;
+Vue.use(Router);
 Vue.use(FundamentalVue);
 Vue.use(VueVirtualScroller);
 Vue.use(VueObserveVisibility);
@@ -19,7 +20,6 @@ import DefaultLayout from "./layouts/DefaultLayout.vue";
 import FullscreenLayout from "./layouts/FullscreenLayout.vue";
 
 // Install Plugins
-Vue.use(Router);
 Vue.use(DocumentationLoader);
 
 Vue.component("DefaultLayout", DefaultLayout);

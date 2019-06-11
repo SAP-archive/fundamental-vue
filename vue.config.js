@@ -9,8 +9,8 @@ const publicPath = isE2e
 
 module.exports = {
   publicPath,
-  chainWebpack: config => {
 
+  chainWebpack: config => {
     config.resolveLoader.modules
       .add("node_modules")
       .add(Path.resolve(__dirname, "loaders"))
@@ -80,5 +80,7 @@ module.exports = {
       .loader("block-loader")
       .options({ optionName: "__fullscreenOnly" })
       .end();
-  }
+  },
+
+  lintOnSave: false
 };

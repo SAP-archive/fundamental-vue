@@ -1,10 +1,17 @@
-import { iconClass } from "./../lib";
+import { iconClasses } from "./../lib";
 
 export default {
   props: {
     icon: {
       type: String,
       default: null
+    },
+    iconSize: {
+      type: String,
+      default: null,
+      validator(size) {
+        return ["s", "m", "l", "xl"].indexOf(size) >= 0;
+      }
     }
   },
   computed: {
@@ -12,10 +19,8 @@ export default {
     // This is done because of the following reasons:
     // - By returning an array we can return an empty array in case icon is null.
     //   This makes it easier for consumers to use this mixin.
-    // - We may return more than one class in the futre. Possible use case is to
-    //   add another prop that specifies the icon size.
     iconClasses() {
-      return this.icon != null ? [iconClass(this.icon)] : [];
+      return iconClasses(this.icon, this.iconSize);
     }
   }
 };

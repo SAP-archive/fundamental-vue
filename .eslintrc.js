@@ -19,5 +19,7 @@ module.exports = {
         jest: true
       }
     }
-  ]
+  ],
+
+  extends: ["plugin:vue/essential", "@vue/prettier"]
 };

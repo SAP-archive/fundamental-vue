@@ -22,24 +22,24 @@ $blockquote-color: lighten($text-color, 10%);
 .rendered-markdown {
   h1 {
     color: $headline-color;
-    padding-bottom: 30px;
-    font-size: 3rem;
-    font-weight: normal;
+    padding-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-bottom: 0;
   }
 
   h2 {
     color: $headline-color;
-    font-size: 1.65rem;
-    padding-bottom: 0.3rem;
+    font-size: 1.3rem;
+    padding-bottom: 15px;
     border-bottom: 1px solid #eaecef;
     padding-top: 3rem;
   }
 
   h3 {
     color: $headline-color;
-    font-size: 1.4rem;
-    padding-bottom: 0.3rem;
+    font-size: 1.2rem;
+    padding-bottom: 15px;
     padding-top: 2.8rem;
   }
 
@@ -106,8 +106,8 @@ $blockquote-color: lighten($text-color, 10%);
   blockquote {
     color: darken(desaturate(#f2f7ff, 50%), 60%);
     border-left: 0.3rem solid darken(desaturate(#f2f7ff, 50%), 60%);
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 0;
     margin-right: 0;
     padding: 20px;

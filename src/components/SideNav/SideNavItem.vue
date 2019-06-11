@@ -1,30 +1,46 @@
 <template>
   <li class="fd-side-nav__item">
     <slot />
+    <fd-side-nav-sub-list :items="childItems">
+      <template #subItem="subItem">
+        <slot name="subItem" v-bind="subItem" />
+      </template>
+    </fd-side-nav-sub-list>
   </li>
 </template>
 
 <script>
-import { Uid } from "./../../mixins";
+import Vue from "vue";
+import FdSideNavSubList from "./SideNavSubList.vue";
+import { normalizedChildren } from "./Model/normalize-items";
 
 export default {
   name: "FdSideNavItem",
-  mixins: [Uid],
+  components: { FdSideNavSubList },
   provide() {
     return {
-      sideNavItem: this
+      sideNavItem: Vue.observable({
+        id: this.item.id,
+        expandable: this.expandable
+      })
     };
   },
-  inject: ["sideNavStore"],
-  mounted() {
-    this.store.registerItem(this.itemId);
-  },
-  beforeDestroy() {
-    this.store.unregisterItem(this.itemId);
-  },
+  inject: ["fdItemProvider", "sideNavStore"],
   computed: {
+    item() {
+      return this.fdItemProvider.item;
+    },
+    expandable() {
+      return this.hasChildItems;
+    },
+    hasChildItems() {
+      return this.childItems.length > 0;
+    },
+    childItems() {
+      return normalizedChildren(this.item);
+    },
     itemId() {
-      return this.uid;
+      return this.item.id;
     },
     store() {
       return this.sideNavStore;

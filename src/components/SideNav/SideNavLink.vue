@@ -1,88 +1,81 @@
 <template>
-  <a
-    v-if="manualModeEnabled"
-    href="#"
-    :aria-selected="ariaSelected"
-    class="fd-side-nav__link"
-    :class="classes"
-    @click.prevent.stop="onClick"
-  >
-    <slot />
-  </a>
   <router-link
-    v-else
+    v-if="asRouterLink"
     class="fd-side-nav__link"
-    :aria-selected="ariaSelected"
+    :aria-selected="String(selected)"
+    :aria-expanded="String(isExpaned)"
     :class="routerLinkClasses"
-    @click="onRouterLinkClick"
-    :to="to"
     exact-active-class="is-selected"
+    v-bind="$attrs"
+    @click.native="selectSelf"
   >
     <slot />
   </router-link>
+  <a
+    v-else
+    href="#"
+    :aria-selected="String(selected)"
+    :aria-expanded="String(isExpaned)"
+    class="fd-side-nav__link"
+    :class="classes"
+    @click.stop.prevent="selectSelf"
+  >
+    <slot />
+  </a>
 </template>
 
 <script>
-import { withTargetLocation } from "./../../mixins";
+import { normalizedChildren, normalizedId } from "./Model/normalize-items";
+
 export default {
   name: "FdSideNavLink",
-  mixins: [withTargetLocation("#")],
-  inject: {
-    sideNavStore: { default: null },
-    sideNavItem: { default: null },
-    $config: { from: "config" }
+  props: {
+    asRouterLink: {
+      type: Boolean,
+      default: false
+    }
   },
+  inject: ["fdItemProvider", "sideNavStore"],
   computed: {
-    ariaSelected() {
-      return this.selected ? "true" : null;
+    item() {
+      return this.fdItemProvider.item;
     },
-    parentItemId() {
-      return this.sideNavItem.uid;
+    itemId() {
+      return normalizedId(this.item);
+    },
+    childItems() {
+      return normalizedChildren(this.item);
+    },
+    expandable() {
+      return this.childItems.length > 0;
+    },
+    isExpaned() {
+      return this.store.itemWithIdIsExpanded(this.itemId);
     },
     store() {
       return this.sideNavStore;
     },
-    config() {
-      return this.$config;
-    },
-    manualModeEnabled() {
-      return this.mode === "manual";
-    },
-    mode() {
-      return this.config.mode;
-    },
-    hasChildren() {
-      return this.store.hasSubItems(this.parentItemId);
-    },
     selected() {
-      return this.store.selected(this.parentItemId);
+      return this.store.itemWithIdIsSelected(this.itemId);
     },
     routerLinkClasses() {
       return {
-        "has-child": this.hasChildren
+        "has-child": this.expandable
       };
     },
     classes() {
       return {
-        "has-child": this.hasChildren,
+        "has-child": this.expandable,
         "is-selected": this.selected
       };
     }
   },
   methods: {
     selectSelf() {
-      this.store.selectedId = this.parentItemId;
-      this.store.toggleExpanded(this.parentItemId);
-    },
-    onRouterLinkClick() {
-      this.selectSelf();
-      this.pushLocation();
-    },
-    onClick(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.selectSelf();
-      this.pushLocation();
+      this.store.selectedId = this.itemId;
+      if (this.expandable) {
+        this.store.toggleExpandedForItemWithId(this.itemId);
+      }
     }
   }
 };
