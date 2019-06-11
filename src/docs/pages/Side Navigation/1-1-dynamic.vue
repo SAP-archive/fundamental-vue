@@ -1,32 +1,33 @@
-<title>Side Navigation (Dynamic)</title>
-<docs>`FdSideNavList` comes with a handy `items`-prop. If this prop is set, `FdSideNavList` will automatically render everything on it's own. The `items`-array should contains plain objects with the following shape:
+<title>Side Navigation</title>
+<docs>`fd-side-nav-list` requires  which you set via the `items`-prop. You can put anything into your items. However there are a few special attributes you should be aware of:
 
 ```typescript
 type Item = {
   // A SideNav-wide unique id
   id?: string; // default: random string
 
-  // A VueRouter-Type. to can:
-  // - be a string and is then interpreted as a url/path
-  // - be a RouterLink compatible value for it's to-prop.
-  to?: RawLocation; // default: '#'
-
-  // Displayed title
-  name?: string;
-
-  // Icon rendered before the title
-  icon?: string;
-
-  // Child items, if set this item becomes expandable.
-  children?: Item[]; // default: []
+  // Child items – if this is non-empty the
+  // item becomes expandable.
+  children: Item[] = [];
 }
 ```
 </docs>
 
 <template>
-  <FdSideNav>
-    <FdSideNavList :items="items" />
-  </FdSideNav>
+  <fd-side-nav>
+    <fd-side-nav-list :items="items">
+      <template #item="item">
+        <fd-side-nav-item>
+          <fd-side-nav-link>{{ item.name }}</fd-side-nav-link>
+          <template #subItem="subItem">
+            <fd-side-nav-sub-item>
+              <fd-side-nav-sub-link>{{ subItem.name }}</fd-side-nav-sub-link>
+            </fd-side-nav-sub-item>
+          </template>
+        </fd-side-nav-item>
+      </template>
+    </fd-side-nav-list>
+  </fd-side-nav>
 </template>
 
 <script>

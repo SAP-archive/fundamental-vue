@@ -5,53 +5,77 @@
 </template>
 
 <script>
-import { Config, Store, Modes, Mode } from "./Model";
-
 export default {
   name: "FdSideNav",
   provide() {
     return {
-      sideNavStore: this.sideNavStore,
-      config: new Config(this.mode)
+      sideNavStore: this.sideNavStore
     };
   },
   props: {
-    selectedId: { type: String, default: null },
-    mode: {
-      default: Mode.manual,
-      validator: value => Modes.indexOf(value) >= 0
-    }
+    selectedId: { type: String, default: null }
   },
   computed: {
+    expandedIds: {
+      set(expandedIds) {
+        this.sideNavStore.expandedIds = expandedIds;
+      },
+      get() {
+        return this.sideNavStore.expandedIds;
+      }
+    },
     store() {
       return this.sideNavStore;
     },
-    localSelectedId() {
-      return this.store.selectedId;
+    selectedId_: {
+      set(newValue) {
+        this.store.selectedId = newValue;
+      },
+      get() {
+        return this.store.selectedId;
+      }
+    }
+  },
+  methods: {
+    itemWithIdIsExpanded(id) {
+      return this.expandedIds.indexOf(id) >= 0;
+    },
+    itemWithIdIsSelected(id) {
+      return id === this.selectedId_;
+    },
+    expandItemWithId(id) {
+      this.expandedIds = [...this.expandedIds, id];
+    },
+    collapseItemWithId(id) {
+      this.expandedIds = [
+        ...this.expandedIds.filter(expandedId => expandedId !== id)
+      ];
+    },
+    toggleExpandedForItemWithId(itemId) {
+      const { expandedIds } = this;
+      const needsToBeExpanded = expandedIds.indexOf(itemId) < 0;
+      needsToBeExpanded
+        ? this.expandItemWithId(itemId)
+        : this.collapseItemWithId(itemId);
     }
   },
   watch: {
-    localSelectedId: {
-      immediate: true,
-      handler(newId) {
-        this.store.selectedId = newId;
-        this.$emit("update:selectedId", this.store.selectedId);
-      }
-    },
     selectedId: {
       immediate: true,
       handler(newId) {
-        this.store.selectedId = newId;
+        this.selectedId_ = newId;
       }
     }
   },
   data() {
     return {
-      sideNavStore: new Store({
-        selectedId: this.selectedId,
+      sideNavStore: {
+        toggleExpandedForItemWithId: this.toggleExpandedForItemWithId,
         expandedIds: [],
-        items: {}
-      })
+        selectedId: this.selectedId_,
+        itemWithIdIsExpanded: this.itemWithIdIsExpanded,
+        itemWithIdIsSelected: this.itemWithIdIsSelected
+      }
     };
   }
 };

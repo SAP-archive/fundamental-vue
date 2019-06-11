@@ -1,44 +1,47 @@
 <template>
-  <a
-    v-if="manualModeEnabled"
-    href="#"
-    :aria-selected="ariaSelected"
-    class="fd-side-nav__sublink"
-    :class="classes"
-    @click.prevent.stop="onClick"
-  >
-    <slot />
-  </a>
   <router-link
-    v-else
+    v-if="asRouterLink"
     class="fd-side-nav__sublink"
-    :aria-selected="ariaSelected"
-    @click="onRouterLinkClick"
-    :to="to"
     exact-active-class="is-selected"
+    v-bind="$attrs"
+    @click.native="selectSelf"
   >
     <slot />
   </router-link>
+  <a
+    v-else
+    href="#"
+    :aria-selected="String(selected)"
+    class="fd-side-nav__sublink"
+    :class="classes"
+    @click.prevent.stop="selectSelf"
+  >
+    <slot />
+  </a>
 </template>
 
 <script>
-import { withTargetLocation } from "./../../mixins";
+import { normalizedId } from "./Model/normalize-items";
 
 // TODO: Refactor so that SideNavSubLink uses SideNavLink
 export default {
   name: "FdSideNavSubLink",
-  mixins: [withTargetLocation("#")],
   inject: {
-    sideNavStore: { default: null },
-    sideNavSubItem: { default: null },
-    $config: { from: "config" }
+    fdSubItemProvider: { default: null },
+    sideNavStore: { default: null }
+  },
+  props: {
+    asRouterLink: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
-    ariaSelected() {
-      return this.selected ? "true" : null;
+    subItem() {
+      return this.fdSubItemProvider.subItem;
     },
     selected() {
-      return this.store.selected(this.parentId);
+      return this.store.itemWithIdIsSelected(this.subItemId);
     },
     classes() {
       return { "is-selected": this.selected };
@@ -46,29 +49,13 @@ export default {
     store() {
       return this.sideNavStore;
     },
-    parentId() {
-      return this.sideNavSubItem.uid;
-    },
-    config() {
-      return this.$config;
-    },
-    manualModeEnabled() {
-      return this.mode === "manual";
-    },
-    mode() {
-      return this.config.mode;
+    subItemId() {
+      return normalizedId(this.subItem);
     }
   },
   methods: {
-    onRouterLinkClick() {
-      this.store.selectedId = this.parentId;
-      this.pushLocation();
-    },
-    onClick(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.store.selectedId = this.parentId;
-      this.pushLocation();
+    selectSelf() {
+      this.store.selectedId = this.subItemId;
     }
   }
 };
