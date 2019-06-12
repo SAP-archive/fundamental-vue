@@ -5589,9 +5589,9 @@ find-up@^2.0.0, find-up@^2.1.0:
     locate-path "^2.0.0"
 
 fiori-fundamentals@^1.5.0:
-  version "1.5.8"
-  resolved "https://registry.yarnpkg.com/fiori-fundamentals/-/fiori-fundamentals-1.5.8.tgz#d6cf6cb5dc86c0d49dd2057c9b4f6c6f44328dfd"
-  integrity sha512-k6emAhE/W8/8jVOWI1+A8kK0ehxp2JC325KLUGjSDG1tAWCSLUMcFE+519CqRdQfVpoMlv9QC2kke2e9S4fPIw==
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/fiori-fundamentals/-/fiori-fundamentals-1.6.0.tgz#be2d82f4ff055707c1240198a381c718d3194144"
+  integrity sha512-ueTreQyyy3THjlmgu3v/MTE6WyPyjcATPSfe55MN+dBHlHKHrA/9K6nMueXoe+MmAvmiGI+weqbkPgGCU6lAhQ==
 
 flat-cache@^1.2.1:
   version "1.3.4"
