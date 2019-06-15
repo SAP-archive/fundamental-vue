@@ -4,6 +4,7 @@ import App from "./App.vue";
 import Router from "vue-router";
 import DocumentationLoader from "./DocumentationLoader";
 import VueVirtualScroller from "vue-virtual-scroller";
+import VueObserveVisibility from "vue-observe-visibility";
 import { DocsRouter } from "./DocsRouter";
 import { registerComponents } from "./components";
 import "./main.scss";
@@ -11,6 +12,7 @@ import "./main.scss";
 Vue.config.productionTip = false;
 Vue.use(FundamentalVue);
 Vue.use(VueVirtualScroller);
+Vue.use(VueObserveVisibility);
 
 // Register Layouts globally so that they are available by name
 import DefaultLayout from "./layouts/DefaultLayout.vue";
