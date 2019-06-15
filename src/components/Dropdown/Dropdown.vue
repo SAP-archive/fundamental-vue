@@ -57,7 +57,7 @@ export default {
     handleControlClick() {
       const { menuPopover } = this.$refs;
       if (menuPopover.visible_) {
-        this._confirmSelection();
+        this._confirmHighlighted();
         return;
       }
       menuPopover.show();

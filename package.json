@@ -70,7 +70,7 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.2.2",
     "execa": "^1.0.0",
-    "fiori-fundamentals": "^1.5.0",
+    "fundamental-styles": "^0.1.0",
     "gh-pages": "^2.0.1",
     "github-assistant": "^0.3.0",
     "highlight.js": "^9.15.8",
@@ -92,7 +92,7 @@
     "vue-virtual-scroller": "^1.0.0-rc.2"
   },
   "peerDependencies": {
-    "fiori-fundamentals": "^1.5.8",
+    "fundamental-styles": "^0.1.0",
     "vue": "^2.6.10"
   },
   "bugs": {
