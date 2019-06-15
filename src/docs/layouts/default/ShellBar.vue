@@ -6,25 +6,6 @@
         <span class="product-name">Fundamental Vue</span>
       </FdShellBarLogo>
     </FdShellBarGroup>
-    <FdShellBarGroup position="end">
-      <FdShellBarActions>
-        <FdShellBarAction>
-          <FdShellBarUserMenu>
-            <FdMenu>
-              <FdMenuList>
-                <FdMenuItem>
-                  <FdMenuLink
-                    href="https://github.com/SAP/fundamental-vue/issues/new"
-                    target="_blank"
-                    >Report an Issue</FdMenuLink
-                  >
-                </FdMenuItem>
-              </FdMenuList>
-            </FdMenu>
-          </FdShellBarUserMenu>
-        </FdShellBarAction>
-      </FdShellBarActions>
-    </FdShellBarGroup>
   </FdShellBar>
 </template>
 
