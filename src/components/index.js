@@ -31,6 +31,9 @@ import SearchInput from "./SearchInput";
 import SideNav from "./SideNav";
 import Spinner from "./Spinner";
 import Status from "./Status";
+import SplitButton from "./SplitButton";
+import SplitButtonAuxiliary from "./SplitButtonAuxiliary";
+import SplitButtonAction from "./SplitButtonAction";
 import Table from "./Table";
 import Tabs from "./Tabs";
 import Tile from "./Tile";
@@ -75,6 +78,9 @@ const plugin = {
       SideNav,
       Spinner,
       Status,
+      SplitButton,
+      SplitButtonAuxiliary,
+      SplitButtonAction,
       Table,
       Tabs,
       Tile,
