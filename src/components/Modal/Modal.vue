@@ -13,8 +13,8 @@
         v-bind="$attrs"
       >
         <div class="fd-modal__content" role="document">
-          <!-- HEADER -->
           <div class="fd-modal__header">
+            <!-- Custom Title Content -->
             <slot name="title" v-bind="this">
               <h3 class="fd-modal__title">
                 {{ title }}

@@ -8,6 +8,7 @@
         aria-label="Close"
         @click="dismiss"
       />
+      <!-- Content of the alert. -->
       <slot />
     </div>
   </transition>

@@ -44,6 +44,7 @@ const _normalizedItem = item => {
     ...item
   };
 };
+
 const _normalizedItems = items => items.map(_normalizedItem);
 
 export default {

@@ -24,7 +24,8 @@ export default {
       return {
         name: json.name,
         documentedProps,
-        documentedEvents: json.events || []
+        documentedEvents: json.events || [],
+        documentedSlots: json.slots || []
       };
     },
     jsonContent() {
