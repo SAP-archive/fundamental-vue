@@ -2,6 +2,14 @@
 
 <docs>
 You can use `fd-virtualized-list` when you need to display a lot of data in a scrollable list. `fd-virtualized-list` only renders what is currently on your screen. Offscreen data is not rendered. Thus scrolling through your list should be very efficient. `fd-virtualized-list` depends on a 3rd-party (open source) library called [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller). *Fundamental Vue* does not include a copy of [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller). It is up to you to properly setup [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller).
+
+<div class="tip" style="border-left: 0.5rem solid #ffa94a;">
+  <div class="tip-title">IMPORTANT</div>
+  <div class="tip-body">
+    <p>You also have to install <a href="https://github.com/Akryum/vue-observe-visibility">vue-observe-visibility</a>. <code>fd-virtualized-list</code> makes use of the <code>v-observe-visibility</code>-directive.</p>
+  </div>
+</div>
+
 </docs>
 
 <condensed />

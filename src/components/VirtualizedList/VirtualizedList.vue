@@ -8,7 +8,11 @@
     @scroll.native="handleOnScroll"
   >
     <template v-slot:after>
-      <div ref="after">
+      <div
+        style="height: 10px;"
+        ref="after"
+        v-observe-visibility="afterVisibilityChanged"
+      >
         <template v-if="isLoading">
           <slot name="loading">
             <fd-spinner v-if="isLoading" />
@@ -97,6 +101,12 @@ export default {
     });
   },
   methods: {
+    afterVisibilityChanged(isVisible) {
+      this.afterSlotVisible = isVisible;
+      if (isVisible) {
+        this.loadMoreItemsIfNeeded();
+      }
+    },
     loadMoreItemsIfNeeded() {
       const { totalItemCount, isLoading } = this;
       const loadingIsPossible = totalItemCount != null && !isLoading;
@@ -104,15 +114,11 @@ export default {
         return;
       }
       const isNeeded =
-        this.afterSlotIsVisible() && totalItemCount > this.items.length;
+        this.afterSlotVisible && totalItemCount > this.items.length;
       if (!isNeeded) {
         return;
       }
       this.startToLoadMoreItems();
-    },
-    afterSlotIsVisible() {
-      const { $el, $refs } = this;
-      return $refs.after.getBoundingClientRect().top <= $el.scrollHeight;
     },
     startToLoadMoreItems(event) {
       if (this.loadMoreItems != null) {
@@ -156,6 +162,7 @@ export default {
   },
   data() {
     return {
+      afterSlotVisible: false,
       state: "default",
       selectedId: null,
       items_: this.items
