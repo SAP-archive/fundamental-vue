@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0-rc.7](https://github.com/SAP/fundamental-vue/compare/v0.12.0-rc.6...v0.12.0-rc.7) (2019-06-15)
+
+
+### Bug Fixes
+
+* fd-virtualized-list now uses vue-observe-visibility to track the visibility of the footer ([516faaf](https://github.com/SAP/fundamental-vue/commit/516faaf))
+
+
+### Features
+
+* switched to fundamental-styles ([7d33012](https://github.com/SAP/fundamental-vue/commit/7d33012))
+
+
+
 ## [0.12.0-rc.6](https://github.com/SAP/fundamental-vue/compare/v0.12.0-rc.5...v0.12.0-rc.6) (2019-06-15)
 
 
