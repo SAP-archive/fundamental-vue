@@ -33,3 +33,7 @@ You can nest modals just by calling `$fdModal.open(…)` multiple times.
     </fd-modal>
   </div>
 </template>
+
+<style lang="scss">
+@import "./../../../styles";
+</style>
