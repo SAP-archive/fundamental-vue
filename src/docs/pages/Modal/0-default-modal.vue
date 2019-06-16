@@ -15,7 +15,6 @@ Of course you can also manually show or close the modal by simply calling the co
 
 - `show(event?)`: shows the modal.
 - `close(event?)`: closes the modal.
-
 </tip>
 <template>
   <div>
@@ -39,3 +38,7 @@ Of course you can also manually show or close the modal by simply calling the co
     </FdButton>
   </div>
 </template>
+
+<style lang="scss">
+@import "./../../../styles";
+</style>

@@ -1,69 +1,78 @@
 <template>
-  <Portal :selector="portalSelector">
-    <FdOverlay :visible="overlayVisible">
-      <div
-        ref="modalEl"
-        class="fd-modal"
-        v-show="visible"
-        :data-fd-modal-identifier="name"
-        :aria-hidden="String(!visible)"
-        :tabindex="modalTabIndex"
-        :style="modalStyle"
-        @keydown.esc="handleEsc"
-        v-bind="$attrs"
-      >
-        <div class="fd-modal__content" role="document">
-          <div class="fd-modal__header">
-            <!-- Custom Title Content -->
-            <slot name="title" v-bind="this">
-              <h3 class="fd-modal__title">
-                {{ title }}
-              </h3>
-            </slot>
-            <slot name="close" v-bind="this">
-              <FdButton
-                class="fd-modal__close"
-                styling="light"
-                @click="close"
-                aria-label="close"
-              />
-            </slot>
-          </div>
-
-          <!-- BODY -->
-
-          <div class="fd-modal__body">
-            <slot v-bind="this" />
-          </div>
-
-          <!-- FOOTER -->
-          <footer
-            class="fd-modal__footer"
-            v-if="$scopedSlots.footer != null || $scopedSlots.actions != null"
-          >
-            <slot name="footer" v-bind="this" />
-            <div v-if="$scopedSlots.actions != null" class="fd-modal__actions">
-              <slot name="actions" v-bind="this" />
+  <fd-portal :selector="portalSelector">
+    <fd-modal-overlay
+      :visible="overlayVisible"
+      @after-enter="visible = overlayVisible"
+    >
+      <transition name="fdv-modal" @after-leave="overlayVisible = visible">
+        <div
+          :key="name"
+          ref="modalEl"
+          class="fd-modal"
+          v-show="visible"
+          :data-fd-modal-identifier="name"
+          :aria-hidden="String(!visible)"
+          :tabindex="modalTabIndex"
+          :style="modalStyle"
+          @keydown.esc="handleEsc"
+          v-bind="$attrs"
+        >
+          <div class="fd-modal__content" role="document">
+            <div class="fd-modal__header">
+              <!-- Custom Title Content -->
+              <slot name="title" v-bind="this">
+                <h3 class="fd-modal__title">
+                  {{ title }}
+                </h3>
+              </slot>
+              <slot name="close" v-bind="this">
+                <FdButton
+                  class="fd-modal__close"
+                  styling="light"
+                  @click="close"
+                  aria-label="close"
+                />
+              </slot>
             </div>
-          </footer>
+
+            <!-- BODY -->
+
+            <div class="fd-modal__body">
+              <slot v-bind="this" />
+            </div>
+
+            <!-- FOOTER -->
+            <footer
+              class="fd-modal__footer"
+              v-if="$scopedSlots.footer != null || $scopedSlots.actions != null"
+            >
+              <slot name="footer" v-bind="this" />
+              <div
+                v-if="$scopedSlots.actions != null"
+                class="fd-modal__actions"
+              >
+                <slot name="actions" v-bind="this" />
+              </div>
+            </footer>
+          </div>
         </div>
-      </div>
-    </FdOverlay>
-  </Portal>
+      </transition>
+    </fd-modal-overlay>
+  </fd-portal>
 </template>
 
 <script>
 import { shortUuid } from "./../../lib";
-import FdButton from "./../Button";
 import { FocusTrap } from "./../../mixins";
 import { Portal } from "@linusborg/vue-simple-portal";
-import FdOverlay from "./components/Overlay.vue";
+import FdModalOverlay from "./../ModalOverlay/ModalOverlay.vue";
+import FdButton from "./../Button";
 
 export default {
   name: "FdModal",
   mixins: [FocusTrap],
   inheritAttrs: false,
-  components: { FdOverlay, Portal, FdButton },
+  components: { FdModalOverlay, FdButton, FdPortal: Portal },
   props: {
     handleEscManually: {
       type: Boolean,
@@ -99,7 +108,13 @@ export default {
     modalEl() {
       return this.$refs.modalEl;
     },
-    focus() {},
+    $_open() {
+      this.overlayVisible = true;
+    },
+    $_close() {
+      this.visible = false;
+    },
+    // Used by the App developer.
     open() {
       this.$fdModal.open(this);
     },

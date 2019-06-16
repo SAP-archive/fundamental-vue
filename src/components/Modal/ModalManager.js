@@ -1,32 +1,32 @@
+// @ts-check
+
 import getModalsContainer from "./lib/get-modals-container";
 import createModalPortal from "./lib/create-modal-portal";
 import createFocusTrap from "focus-trap";
 import { noop } from "./../../util";
 
-class Modal {
+class ModalWrapper {
   constructor(vm) {
     this.vm = vm;
     this.onDeactivate = noop;
   }
 
   trapDidDeactivate() {
+    // @ts-ignore
     this.onDeactivate(this);
   }
 
   orderToBackground() {
-    this.vm.overlayVisible = true;
     return this;
   }
 
   orderOut() {
-    this.vm.visible = false;
-    this.vm.overlayVisible = false;
+    this.vm.$_close();
     return this;
   }
 
   orderFront() {
-    this.vm.visible = true;
-    this.vm.overlayVisible = true;
+    this.vm.$_open();
     return this;
   }
 
@@ -47,14 +47,32 @@ class Modal {
   }
 
   focus() {
-    this.trap.activate();
+    // We first check if the modal is visible. If yes, focus it,
+    if (this.vm.visible) {
+      this.trap.activate();
+      return this;
+    }
+
+    // If not, we expect "visible" to switch to true "soon".
+    // Thus we watch (once) and then activate the trap.
+    // If we are not doing this – the focusTrap will not work.
+    const unwatch = this.vm.$watch("visible", visible => {
+      unwatch();
+      if (visible) {
+        this.trap.activate();
+        return;
+      }
+    });
+
     return this;
   }
 }
 
 export default class ModalManager {
   constructor() {
+    /** @type { {[modalName: string]: ModalWrapper} } */
     this.modalsByName = {};
+    /** @type {ModalWrapper[]} */
     this.openModals = [];
   }
 
@@ -62,7 +80,7 @@ export default class ModalManager {
     const portalEl = createModalPortal(vm.name);
     const container = getModalsContainer();
     container.appendChild(portalEl);
-    const wrapper = new Modal(vm);
+    const wrapper = new ModalWrapper(vm);
     wrapper.onDeactivate = this.handleDeactivate.bind(this);
     this.modalsByName[vm.name] = wrapper;
   }
@@ -109,25 +127,8 @@ export default class ModalManager {
     }
   }
 
-  _openFirstModal(wrapper) {
-    this.openModals.push(wrapper);
-    wrapper
-      .orderFront()
-      .createTrap()
-      .focus();
-  }
-
   _closeTheOnlyOpenModal(wrapper) {
     wrapper.deactivateTrap();
-  }
-
-  _transitionFromOpenWrapperToWrapper(fromWrapper, toWrapper) {
-    fromWrapper.orderToBackground();
-    this.openModals.push(toWrapper);
-    toWrapper
-      .orderFront()
-      .createTrap()
-      .focus();
   }
 
   _closeTopModal(wrapper) {
@@ -135,12 +136,11 @@ export default class ModalManager {
   }
 
   __openModal(wrapper) {
-    const { topModal } = this;
-    if (topModal == null) {
-      this._openFirstModal(wrapper);
-      return;
-    }
-    this._transitionFromOpenWrapperToWrapper(topModal, wrapper);
+    this.openModals.push(wrapper);
+    wrapper
+      .orderFront()
+      .createTrap()
+      .focus();
   }
 
   close(modalOrModalName) {

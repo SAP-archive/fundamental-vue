@@ -24,6 +24,7 @@ import ListGroup from "./ListGroup";
 import Menu from "./Menu";
 import MenuPopover from "./MenuPopover";
 import Modal from "./Modal";
+import ModalOverlay from "./ModalOverlay";
 import Pagination from "./Pagination";
 import Panel from "./Panel";
 import Popover from "./Popover";
@@ -71,6 +72,7 @@ const plugin = {
       Menu,
       MenuPopover,
       Modal,
+      ModalOverlay,
       Pagination,
       Panel,
       Popover,
