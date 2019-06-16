@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.13.0-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.13.0-rc.0...v0.13.0-rc.1) (2019-06-16)
+
+
+### Bug Fixes
+
+* Fixed Side Nav ([e27f200](https://github.com/SAP/fundamental-vue/commit/e27f200))
+
+
+
 ## [0.13.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.12.0...v0.13.0-rc.0) (2019-06-15)
 
 
