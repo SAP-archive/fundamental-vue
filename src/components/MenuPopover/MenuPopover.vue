@@ -28,6 +28,21 @@ import FdPopover from "./../Popover/Popover.vue";
 export default {
   name: "FdMenuPopover",
   components: { FdPopover, FdMenu },
+  props: {
+    // Imagine the following scenario:
+    // 1. A user clicks on the control – a menu is displayed.
+    // 2. Now the user is using arrow.down to highlight the first
+    //    menu item.
+    // 3. Now the user clicks outside of the menu.
+    // 4. User opens the menu again.
+    // Sometimes you want the highlighted (but not selected item)
+    // to remaing highlighted. Sometimes not (product menu).
+    // This prop can be used to adjust exactly that.
+    discardHighlight: {
+      type: Boolean,
+      default: false
+    }
+  },
   methods: {
     getPopover() {
       return this.$refs.popover;
@@ -52,6 +67,9 @@ export default {
     // Misc
     updateVisible(visible) {
       this.visible_ = visible;
+      if (this.discardHighlight) {
+        this.highlightedId = null;
+      }
     },
     handleMenuSelect(item) {
       this.$emit("select", item);

@@ -36,13 +36,13 @@ export default {
       return this.typeDesc.length > 0;
     },
     renderedTypeDescription() {
-      return this.typeDesc.join("\n\n");
+      return this.typeDesc.join("\n");
     },
     defaultValue_() {
       return this.defaultValue != null ? this.defaultValue : "–";
     },
     renderedDescription() {
-      return this.describe.join("\n\n");
+      return this.describe.join("\n");
     }
   },
   props: {
