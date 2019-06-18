@@ -1,5 +1,5 @@
 <template>
-  <markdown-it-vue :content="content" class="md-body" />
+  <markdown-it-vue data-fdv-markdown :content="content" class="md-body" />
 </template>
 
 <script>
@@ -26,3 +26,20 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+div[data-fdv-markdown].md-body {
+  ol {
+    margin-left: 15px;
+    li {
+      margin-left: 15px;
+    }
+  }
+  ul {
+    margin-left: 15px;
+    li {
+      margin-left: 15px;
+    }
+  }
+}
+</style>

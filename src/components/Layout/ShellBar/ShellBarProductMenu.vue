@@ -1,6 +1,12 @@
 <template>
   <div class="fd-product-menu">
-    <fd-popover
+    <fd-menu-popover
+      :flips="false"
+      :body-styles="{
+        overflowY: 'scroll',
+        maxHeight: 'calc(100vh - 65px)'
+      }"
+      discard-highlight
       :offset="10"
       body-size-mode="at-least-trigger"
       placement="bottom-start"
@@ -13,29 +19,18 @@
         </button>
       </template>
       <template #default="bodyProps">
-        <!--
-          This seems strange but is for backward compatibility:
-          Currently, consumers use the menu-slot to render a custom menu.
-          Now they can use the default slot instead which renders a menu
-          on their behalf and additionally hides the popover body when clicked.
-        -->
-        <slot name="menu">
-          <fd-menu @select="bodyProps.hide">
-            <slot v-bind="bodyProps" />
-          </fd-menu>
-        </slot>
+        <slot v-bind="bodyProps" />
       </template>
-    </fd-popover>
+    </fd-menu-popover>
   </div>
 </template>
 
 <script>
-import FdMenu from "./../../Menu/Menu.vue";
-import FdPopover from "./../../Popover/Popover.vue";
+import FdMenuPopover from "./../../MenuPopover/MenuPopover.vue";
 import FdShellBarProductTitle from "./ShellBarProductTitle.vue";
 
 export default {
   name: "FdShellBarProductMenu",
-  components: { FdPopover, FdMenu, FdShellBarProductTitle }
+  components: { FdMenuPopover, FdShellBarProductTitle }
 };
 </script>

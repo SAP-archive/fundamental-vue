@@ -22,13 +22,42 @@
                 <FdMenuItem @click="itemClicked('a')">
                   Application A
                 </FdMenuItem>
-                <FdMenuItem>
-                  Application B
-                </FdMenuItem>
-                <FdMenuItem>
-                  A very long application name - even longer than the product
-                  title.
-                </FdMenuItem>
+                <FdMenuItem>Sample Application No 1</FdMenuItem>
+                <FdMenuItem>Sample Application No 1</FdMenuItem>
+                <FdMenuItem>Sample Application No 1</FdMenuItem>
+                <FdMenuItem>Sample Application No 2</FdMenuItem>
+                <FdMenuItem>Sample Application No 2</FdMenuItem>
+                <FdMenuItem>Sample Application No 2</FdMenuItem>
+                <FdMenuItem>Sample Application No 3</FdMenuItem>
+                <FdMenuItem>Sample Application No 3</FdMenuItem>
+                <FdMenuItem>Sample Application No 3</FdMenuItem>
+                <FdMenuItem>Sample Application No 4</FdMenuItem>
+                <FdMenuItem>Sample Application No 4</FdMenuItem>
+                <FdMenuItem>Sample Application No 4</FdMenuItem>
+                <FdMenuItem>Sample Application No 5</FdMenuItem>
+                <FdMenuItem>Sample Application No 5</FdMenuItem>
+                <FdMenuItem>Sample Application No 5</FdMenuItem>
+                <FdMenuItem>Sample Application No 6</FdMenuItem>
+                <FdMenuItem>Sample Application No 6</FdMenuItem>
+                <FdMenuItem>Sample Application No 6</FdMenuItem>
+                <FdMenuItem>Sample Application No 7</FdMenuItem>
+                <FdMenuItem>Sample Application No 7</FdMenuItem>
+                <FdMenuItem>Sample Application No 7</FdMenuItem>
+                <FdMenuItem>Sample Application No 8</FdMenuItem>
+                <FdMenuItem>Sample Application No 8</FdMenuItem>
+                <FdMenuItem>Sample Application No 8</FdMenuItem>
+                <FdMenuItem>Sample Application No 9</FdMenuItem>
+                <FdMenuItem>Sample Application No 9</FdMenuItem>
+                <FdMenuItem>Sample Application No 9</FdMenuItem>
+                <FdMenuItem>Sample Application No 10</FdMenuItem>
+                <FdMenuItem>Sample Application No 10</FdMenuItem>
+                <FdMenuItem>Sample Application No 10</FdMenuItem>
+                <FdMenuItem>Sample Application No 11</FdMenuItem>
+                <FdMenuItem>Sample Application No 11</FdMenuItem>
+                <FdMenuItem>Sample Application No 11</FdMenuItem>
+                <FdMenuItem>Sample Application No 12</FdMenuItem>
+                <FdMenuItem>Sample Application No 12</FdMenuItem>
+                <FdMenuItem>Sample Application No 12</FdMenuItem>
               </FdMenuList>
             </template>
           </FdShellBarProductMenu>
