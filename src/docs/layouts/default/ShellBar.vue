@@ -1,16 +1,46 @@
 <template>
-  <FdShellBar>
-    <FdShellBarGroup position="start">
-      <FdShellBarLogo style="display: flex;">
+  <fd-shell-bar>
+    <fd-shell-bar-group position="start">
+      <fd-shell-bar-logo style="display: flex;">
         <slot name="toggle" />
         <span class="product-name">Fundamental Vue</span>
-      </FdShellBarLogo>
-    </FdShellBarGroup>
-  </FdShellBar>
+      </fd-shell-bar-logo>
+    </fd-shell-bar-group>
+    <fd-shell-bar-group position="end">
+      <fd-shell-bar-actions>
+        <fd-shell-bar-action>
+          <fd-popover
+            ref="popover"
+            with-arrow
+            :flips="false"
+            placement="bottom-end"
+          >
+            <template #control="{toggle}">
+              <fd-shell-bar-action-button icon="search" @click="toggle" />
+            </template>
+            <template #default>
+              <d-component-picker @input="navigateToComponent" />
+            </template>
+          </fd-popover>
+        </fd-shell-bar-action>
+      </fd-shell-bar-actions>
+    </fd-shell-bar-group>
+  </fd-shell-bar>
 </template>
 
 <script>
+import DComponentPicker from "./../../components/component-picker.vue";
+
 export default {
+  components: { DComponentPicker },
+  methods: {
+    navigateToComponent(key) {
+      const route = this.$componentApiRepository.routeForKey(key);
+      this.selectedComponent = key;
+      this.$router.push(route);
+      this.$refs.popover.hide();
+    }
+  },
   computed: {
     sidenavVisible: {
       get() {
@@ -26,6 +56,7 @@ export default {
   },
   data() {
     return {
+      selectedComponentKey: null,
       sidenavVisibleModel: [true]
     };
   }

@@ -1,4 +1,5 @@
-import { laterDate, earlierDate } from "./../";
+import earlierDate from "./../earlier-date";
+import laterDate from "./../later-date";
 
 describe("utils", () => {
   describe("laterDate", () => {

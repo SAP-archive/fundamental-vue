@@ -12,6 +12,12 @@
           <strong>Sync Prop:</strong> <code>{{ syncProp }}</code>
         </p>
       </li>
+      <li v-if="argumentsDesc.length">
+        <strong>Arguments:</strong>
+        <ol style="margin-left: 20px;" v-if="argumentsDesc.length > 0">
+          <li v-for="arg in argumentsDesc" :key="String(arg)">{{ arg }}</li>
+        </ol>
+      </li>
     </ul>
     <template v-if="describe != null && describe.length > 0">
       <div class="event__description" v-html="renderedDescription" />
@@ -30,7 +36,8 @@ export default {
     name: { type: String },
     isSync: { type: Boolean, default: false },
     syncProp: { type: String, default: null },
-    describe: { type: Array, default: () => [] }
+    describe: { type: Array, default: () => [] },
+    argumentsDesc: { type: Array, default: () => [] }
   }
 };
 </script>

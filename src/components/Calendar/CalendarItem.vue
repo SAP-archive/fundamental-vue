@@ -1,4 +1,6 @@
 <script>
+import Mode from "./../../util/date/mode";
+
 // Map modifier to CSS class name
 const calendarItemModifierMapping = {
   // Apply to dates outside the current month
@@ -34,6 +36,7 @@ const CalendarItemStatesValidator = value =>
 export default {
   name: "FdCalendarItem",
   props: {
+    ...Mode.prop,
     tag: { type: String, default: "td" },
     text: { type: String, default: "" },
     modifier: {

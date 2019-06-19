@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <FdCalendar :blockedDate="isWeekend" />
+    <fd-calendar :blocked-date="isWeekend" />
   </div>
 </template>
 

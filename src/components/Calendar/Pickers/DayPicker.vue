@@ -24,6 +24,7 @@
             @click="$emit('select', date)"
             :text="String(date.getDate())"
             :modifier="modifier(date)"
+            :mode="mode"
             :state="state(date)"
           />
         </tr>
@@ -33,32 +34,39 @@
 </template>
 
 <script>
-import { sameDay } from "./../util";
+import sameDay from "./../../../util/date/same-day";
 import CalendarItem from "./../CalendarItem.vue";
+import Mode from "./../../../util/date/mode";
 
 export default {
   components: { CalendarItem },
   props: {
-    dayNames: Array,
-    month: { type: Array, default: () => [] },
+    ...Mode.prop,
+    dayNames: {
+      type: Array,
+      required: true
+    },
+    month: {
+      type: Array,
+      default: () => []
+    },
     isPresent: {
-      // if we use type: Function typescript complains and I don't know why
-      validator: value => value != null && typeof value === "function",
+      type: Function,
       default: () => false
     },
     selectionEnd: { type: Date, default: null },
     selectionStart: { type: Date, default: null },
     displayedMonth: { type: Number, default: 1 },
     disabledDate: {
-      validator: value => value != null && typeof value === "function",
+      type: Function,
       default: () => false
     },
     blockedDate: {
-      validator: value => value != null && typeof value === "function",
+      type: Function,
       default: () => false
     },
     selectionContainsDate: {
-      validator: value => value != null && typeof value === "function",
+      type: Function,
       default: () => false
     }
   },
@@ -74,7 +82,7 @@ export default {
       const isFirst =
         selectionStart != null ? sameDay(date, selectionStart) : false;
       const isLast = selectionEnd != null ? sameDay(date, selectionEnd) : false;
-      const isFirstAndLast = isFirst && isLast;
+      const isFirstAndLast = isFirst && (isLast || this.mode === Mode.single);
       if (isFirstAndLast) {
         return "selected";
       }

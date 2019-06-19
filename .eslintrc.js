@@ -4,6 +4,7 @@ module.exports = {
     node: true
   },
   rules: {
+    "max-len": "off",
     "no-console": "error",
     "no-debugger": "error",
     "getter-return": ["error", { allowImplicit: true }]

@@ -1,3 +1,5 @@
+// @ts-check
+
 export const weekFromDate = (
   date,
   { firstDayOfWeek } = { firstDayOfWeek: 0 }
@@ -37,13 +39,3 @@ export const monthFromDate = (
   }
   return result;
 };
-
-export const sameYear = (lhs, rhs) => lhs.getFullYear() === rhs.getFullYear();
-export const sameMonth = (lhs, rhs) =>
-  sameYear(lhs, rhs) && lhs.getMonth() === rhs.getMonth();
-export const sameDay = (lhs, rhs) =>
-  sameMonth(lhs, rhs) && lhs.getDate() === rhs.getDate();
-export const earlierDate = (lhs, rhs) =>
-  lhs.getTime() < rhs.getTime() ? lhs : rhs;
-export const laterDate = (lhs, rhs) =>
-  lhs.getTime() < rhs.getTime() ? rhs : lhs;

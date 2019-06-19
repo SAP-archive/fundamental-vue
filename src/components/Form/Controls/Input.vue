@@ -7,9 +7,7 @@
     :disabled="disabled ? '' : null"
     :placeholder="placeholder"
     :value="value"
-    @input="$emit('update', $event.target.value)"
-    @change="$emit('change', $event.target.value)"
-    v-on="$listeners"
+    v-on="listeners"
     v-bind="$attrs"
   />
   <input
@@ -23,9 +21,7 @@
     :value="value"
     @blur="handleBlur"
     @focus="handleFocus"
-    @input="$emit('update', $event.target.value)"
-    @change="$emit('change', $event.target.value)"
-    v-on="$listeners"
+    v-on="listeners"
     v-bind="$attrs"
   />
 </template>
@@ -43,6 +39,12 @@ export default {
     handleFocus(event) {
       this.focused = true;
       this.$emit("focus", event);
+    },
+    handleChange(event) {
+      this.$emit("change", event.target.value);
+    },
+    handleUpdate(event) {
+      this.$emit("update", event.target.value);
     }
   },
   name: "FdInput",
@@ -56,6 +58,13 @@ export default {
     };
   },
   computed: {
+    listeners() {
+      return {
+        ...this.$listeners,
+        change: this.handleChange,
+        input: this.handleUpdate
+      };
+    },
     inputClasses_() {
       return {
         ...this.inputClasses,

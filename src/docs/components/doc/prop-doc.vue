@@ -6,6 +6,11 @@
         <p>
           <strong>Type:</strong> <code>{{ type }}</code>
         </p>
+        <template v-if="hasTypeDescription">
+          <div class="prop__description">
+            <d-markdown :content="renderedTypeDescription" />
+          </div>
+        </template>
       </li>
       <li>
         <p>
@@ -13,8 +18,10 @@
         </p>
       </li>
     </ul>
-    <template v-if="describe != null && describe.length > 0">
-      <div class="prop__description" v-html="renderedDescription" />
+    <template v-if="hasDescribe">
+      <div class="prop__description">
+        <d-markdown :content="renderedDescription" />
+      </div>
     </template>
   </div>
 </template>
@@ -22,18 +29,50 @@
 <script>
 export default {
   computed: {
+    hasDescribe() {
+      return this.describe.length > 0;
+    },
+    hasTypeDescription() {
+      return this.typeDesc.length > 0;
+    },
+    renderedTypeDescription() {
+      return this.typeDesc.join("\n\n");
+    },
     defaultValue_() {
       return this.defaultValue != null ? this.defaultValue : "–";
     },
     renderedDescription() {
-      return this.describe.join("<br />");
+      return this.describe.join("\n\n");
     }
   },
   props: {
-    type: { type: [String, Array, Object] },
+    // Name of the prop.
     name: { type: String },
-    defaultValue: { default: null },
-    describe: { type: Array, default: () => [] }
+    // Either a single string which describes the type or an array of strings.
+    type: {
+      type: [String, Array],
+      default: null
+    },
+    // Array of strings describing the type
+    typeDesc: {
+      type: Array,
+      default: () => []
+    },
+    // String or array of strings representing the default value
+    defaultValue: {
+      type: [String, Array],
+      default: null
+    },
+    // An array of strings describing the default value.
+    defaultDesc: {
+      type: Array,
+      default: () => []
+    },
+    // An array of strings describing the prop.
+    describe: {
+      type: Array,
+      default: () => []
+    }
   }
 };
 </script>

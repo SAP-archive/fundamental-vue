@@ -1,7 +1,7 @@
 <template>
   <fd-input-group>
     <template #input>
-      <fd-input type="search" plain placeholder="Enter Search Term…" />
+      <slot name="input" />
     </template>
     <template #after-input>
       <fd-input-group-addon>

@@ -10,6 +10,10 @@ import Calendar from "./Calendar";
 import Combobox from "./Combobox";
 import ComboboxMenu from "./ComboboxMenu";
 import Counter from "./Counter";
+import DatePicker from "./DatePicker";
+import DatePickerInput from "./DatePickerInput";
+import DatePickerCalendar from "./DatePickerCalendar";
+import DateInput from "./DateInput";
 import Dropdown from "./Dropdown";
 import DropdownControl from "./DropdownControl";
 import Form from "./Form";
@@ -60,6 +64,10 @@ const plugin = {
       Combobox,
       ComboboxMenu,
       Counter,
+      DatePicker,
+      DatePickerCalendar,
+      DatePickerInput,
+      DateInput,
       Dropdown,
       DropdownControl,
       Form,
