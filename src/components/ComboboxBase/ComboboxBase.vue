@@ -1,29 +1,35 @@
 <template>
-  <FdPopover ref="popover" adjustsBodyWidth placement="bottom-start">
+  <fd-popover ref="popover" adjustsBodyWidth placement="bottom-start">
     <template #control="{ hide, show, toggle }">
       <div class="fd-combobox-control">
-        <FdInputGroup
-          :compact="compact"
-          afterClass="fd-input-group__addon--button"
-        >
-          <slot name="input" :hideCompletions="hide" :showCompletions="show" />
+        <fd-input-group :compact="compact">
+          <template #input>
+            <slot
+              name="input"
+              :hideCompletions="hide"
+              :showCompletions="show"
+            />
+          </template>
 
           <template #after>
-            <slot name="after" :toggleCompletions="toggle" />
+            <fd-input-group-addon>
+              <slot name="after" :toggleCompletions="toggle" />
+            </fd-input-group-addon>
           </template>
-        </FdInputGroup>
+        </fd-input-group>
       </div>
     </template>
 
     <template #default="{hide}">
       <slot :hideCompletions="hide" />
     </template>
-  </FdPopover>
+  </fd-popover>
 </template>
 
 <script>
 import { Uid } from "./../../mixins";
-import { InputGroup as FdInputGroup } from "./../Form";
+import FdInputGroup from "./../InputGroup/InputGroup.vue";
+import FdInputGroupAddon from "./../InputGroup/InputGroupAddon.vue";
 import FdPopover from "./../Popover/Popover.vue";
 
 export default {
@@ -35,7 +41,8 @@ export default {
   },
   components: {
     FdPopover,
-    FdInputGroup
+    FdInputGroup,
+    FdInputGroupAddon
   },
   computed: {
     popover() {

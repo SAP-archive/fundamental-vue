@@ -1,45 +1,53 @@
 <template>
   <div class="fd-time-picker">
-    <FdPopover adjustsBodyWidth placement="bottom-start">
+    <fd-popover adjustsBodyWidth placement="bottom-start">
       <template #control="{toggle, show, hide}">
-        <InputGroup
-          :compact="compact"
-          afterClass="fd-input-group__addon--button"
-        >
-          <Input
-            :value="timeValue"
-            :compact="compact"
-            :placeholder="placeholder"
-          />
-          <Button
-            @click="toggle"
-            styling="light"
-            slot="after"
-            icon="fob-watch"
-          />
-        </InputGroup>
+        <fd-input-group :compact="compact">
+          <template #input>
+            <fd-input
+              :value="timeValue"
+              :compact="compact"
+              :placeholder="placeholder"
+            />
+          </template>
+          <template #after>
+            <fd-input-group-addon>
+              <fd-input-group-button
+                @click="toggle"
+                styling="light"
+                icon="fob-watch"
+              />
+            </fd-input-group-addon>
+          </template>
+        </fd-input-group>
       </template>
-      <template #default>
-        <TimeItem
-          :value="timeValue"
-          :showMeridian="showMeridian"
-          @timeItemUpdate="updateTimeItem"
-        />
-      </template>
-    </FdPopover>
+      <fd-time-item
+        :value="timeValue"
+        :showMeridian="showMeridian"
+        @timeItemUpdate="updateTimeItem"
+      />
+    </fd-popover>
   </div>
 </template>
 
 <script>
 import FdPopover from "./../Popover/Popover.vue";
-import { InputGroup } from "./../Form";
-import Input from "./../Form/Controls/Input.vue";
-import { Button } from "./../Button";
-import TimeItem from "./TimeItem.vue";
+import FdInputGroup from "./../InputGroup/InputGroup.vue";
+import FdInputGroupButton from "./../InputGroup/InputGroupButton.vue";
+import FdInputGroupAddon from "./../InputGroup/InputGroupAddon.vue";
+import FdInput from "./../Form/Controls/Input.vue";
+import FdTimeItem from "./TimeItem.vue";
 
 export default {
   name: "FdTimePicker",
-  components: { FdPopover, Input, InputGroup, Button, TimeItem },
+  components: {
+    FdPopover,
+    FdInput,
+    FdInputGroup,
+    FdInputGroupButton,
+    FdInputGroupAddon,
+    FdTimeItem
+  },
   props: {
     id: String, // FIXME
     placeholder: String,

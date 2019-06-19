@@ -1,7 +1,6 @@
 <template>
   <input
     type="checkbox"
-    class="fd-form__control"
     :id="inputId"
     :class="inputClasses"
     :disabled="disabled ? '' : null"

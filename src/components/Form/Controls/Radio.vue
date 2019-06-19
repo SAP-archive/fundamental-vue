@@ -1,7 +1,6 @@
 <template>
   <input
     type="radio"
-    class="fd-form__control"
     :class="inputClasses"
     :id="inputId"
     :disabled="disabled ? '' : null"

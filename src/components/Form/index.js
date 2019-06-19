@@ -7,7 +7,6 @@ import Legend from "./Legend.vue";
 import FieldSet from "./FieldSet.vue";
 import Form from "./Form.vue";
 import Input from "./Controls/Input.vue";
-import InputGroup from "./Controls/InputGroup.vue";
 import Select from "./Controls/Select.vue";
 import TextArea from "./Controls/TextArea.vue";
 import Toggle from "./Controls/Toggle.vue";
@@ -19,7 +18,6 @@ import { pluginify } from "./../../util";
 export default pluginify(
   Form,
   Input,
-  InputGroup,
   Select,
   TextArea,
   Toggle,
@@ -36,7 +34,6 @@ export default pluginify(
 export {
   Form,
   Input,
-  InputGroup,
   Select,
   TextArea,
   Toggle,

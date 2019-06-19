@@ -14,8 +14,7 @@
   />
   <input
     v-else
-    class="fd-input fd-form__control"
-    :class="inputClasses"
+    :class="inputClasses_"
     :id="inputId"
     :readonly="readonly ? '' : null"
     :disabled="disabled ? '' : null"
@@ -55,6 +54,14 @@ export default {
     return {
       focused: false
     };
+  },
+  computed: {
+    inputClasses_() {
+      return {
+        ...this.inputClasses,
+        "fd-input": !this.plain
+      };
+    }
   },
   props: {
     placeholder: $default(""),
