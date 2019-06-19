@@ -1,4 +1,5 @@
 import { $enum, $default } from "./Helper/prop";
+import { Compactable } from "./../../../mixins";
 
 // The InputMixin can be used by input controls in order to gain a useful default set
 // of props, injections and computed properties.
@@ -6,12 +7,15 @@ export default {
   inject: {
     itemId: { default: null }
   },
+  mixins: [Compactable],
   props: {
     state: $enum("valid", "invalid", "warning"),
     required: $default(false),
-    compact: $default(false),
     disabled: $default(false),
-    readonly: $default(false)
+    readonly: $default(false),
+    // If true, certain classes like fd-input and fd-form__control
+    // are not added to the input-element.
+    plain: $default(false)
   },
   computed: {
     inputStateClasses() {
@@ -20,6 +24,7 @@ export default {
     },
     inputClasses() {
       return {
+        "fd-form__control": !this.plain,
         "fd-input--compact": this.compact,
         ...this.inputStateClasses,
         "is-required": this.required

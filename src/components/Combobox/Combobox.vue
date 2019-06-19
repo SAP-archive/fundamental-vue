@@ -20,7 +20,7 @@
     </template>
 
     <template #after="{ toggleCompletions }">
-      <FdButton
+      <FdInputGroupButton
         @click="toggleCompletions"
         :compact="compact"
         icon="navigation-down-arrow"
@@ -43,10 +43,10 @@
 <script>
 import { Uid } from "./../../mixins";
 import FdInput from "./../Form/Controls/Input.vue";
-import FdButton from "./../Button/Button.vue";
 import FdComboboxBase from "./../ComboboxBase/ComboboxBase.vue";
 import FdMenu from "./../Menu/Menu.vue";
 import FdMenuList from "./../Menu/MenuList.vue";
+import FdInputGroupButton from "./../InputGroup/InputGroupButton.vue";
 
 export default {
   name: "FdCombobox",
@@ -63,9 +63,9 @@ export default {
   components: {
     FdMenu,
     FdMenuList,
-    FdButton,
     FdComboboxBase,
-    FdInput
+    FdInput,
+    FdInputGroupButton
   },
   props: {
     value: { type: String, default: null },

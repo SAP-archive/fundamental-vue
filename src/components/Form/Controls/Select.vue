@@ -1,6 +1,5 @@
 <template>
   <select
-    class="fd-form__control"
     :class="inputClasses"
     :id="inputId"
     :readonly="readonly ? '' : null"

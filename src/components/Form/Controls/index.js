@@ -1,5 +1,4 @@
 export { default as Input } from "./Input.vue";
-export { default as InputGroup } from "./InputGroup.vue";
 export { default as Select } from "./Select.vue";
 export { default as TextArea } from "./TextArea.vue";
 export { default as Toggle } from "./Toggle.vue";

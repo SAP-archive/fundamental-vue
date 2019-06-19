@@ -1,16 +1,16 @@
 <template>
   <div class="fd-search-input">
-    <FdComboboxBase
+    <fd-combobox-base
       ref="combobox"
       :popoverClass="popoverClass"
       :ignoredElements="ignoredElements"
     >
       <template #input>
-        <FdInput
+        <fd-input
+          ref="input"
           :value="currentPredicate"
           :placeholder="placeholder"
           :compact="compact"
-          ref="input"
           @update="setCurrentPredicateAndShowCompletions"
           @change="$emit('change', $event)"
           @focus="showCompletions"
@@ -26,7 +26,7 @@
 
       <template #after>
         <slot name="search-button">
-          <FdButton
+          <fd-input-group-button
             @click="toggleCompletions"
             :compact="compact"
             icon="search"
@@ -36,36 +36,34 @@
       </template>
 
       <template #default>
-        <FdMenu ref="menu">
-          <FdCompletionList
+        <fd-menu ref="menu">
+          <fd-completion-list
             :completions="completionsMatchingPredicate"
             :predicate="currentPredicate"
           >
             <template #no-results>
               <slot name="no-results">
-                <FdMenuItem>No Results</FdMenuItem>
+                <fd-menu-item>No Results</fd-menu-item>
               </slot>
             </template>
             <template #item="completion">
-              <FdMenuItem @click="selectCompletion(completion.value)">
-                <FdMatchingCompletion
+              <fd-menu-item @click="selectCompletion(completion.value)">
+                <fd-matching-completion
                   :selected="isValueSelected(completion.value)"
                   v-bind="completion"
                 />
-              </FdMenuItem>
+              </fd-menu-item>
             </template>
-          </FdCompletionList>
-        </FdMenu>
+          </fd-completion-list>
+        </fd-menu>
       </template>
-    </FdComboboxBase>
+    </fd-combobox-base>
   </div>
 </template>
 
 <script>
-// @ts-check
-
 import { Uid } from "./../../mixins";
-import FdButton from "./../Button/Button.vue";
+import FdInputGroupButton from "./../InputGroup/InputGroupButton.vue";
 import FdMenu from "./../Menu/Menu.vue";
 import FdMenuItem from "./../Menu/MenuItem.vue";
 import FdCompletionList from "./CompletionList.vue";
@@ -89,7 +87,7 @@ export default {
     FdMenu,
     FdMenuItem,
     FdComboboxBase,
-    FdButton,
+    FdInputGroupButton,
     FdInput
   },
   props: {

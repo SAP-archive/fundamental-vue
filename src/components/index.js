@@ -13,10 +13,12 @@ import Counter from "./Counter";
 import Dropdown from "./Dropdown";
 import DropdownControl from "./DropdownControl";
 import Form from "./Form";
+import FormLabel from "./FormLabel";
 import Icon from "./Icon";
 import Identifier from "./Identifier";
 import Image from "./Image";
 import InlineHelp from "./InlineHelp";
+import InputGroup from "./InputGroup";
 import Label from "./Label";
 import Layout from "./Layout";
 import Link from "./Link";
@@ -61,9 +63,11 @@ const plugin = {
       Dropdown,
       DropdownControl,
       Form,
+      FormLabel,
       Icon,
       Identifier,
       Image,
+      InputGroup,
       InlineHelp,
       Label,
       Layout,
