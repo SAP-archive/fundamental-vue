@@ -40,6 +40,26 @@ describe("FdInput", () => {
     expect(input.element.value).toBe("is cool");
   });
 
+  it("change event is emitted only once per actual change when wrapped with another component", async () => {
+    const localVue = createLocalVue();
+    const wrapper = mount(
+      {
+        components: { FdInput },
+        template: `<fd-input @change="$emit('change')" v-model="value" />`,
+        data: () => ({ value: "sap" })
+      },
+      { localVue }
+    );
+    await localVue.nextTick();
+    const input = wrapper.find("input");
+
+    input.element.value = "walldorf";
+    input.trigger("change");
+
+    const changeEvents = wrapper.emitted("change");
+    expect(changeEvents).toHaveLength(1);
+  });
+
   it("supports v-model", async () => {
     const localVue = createLocalVue();
     const wrapper = mount(

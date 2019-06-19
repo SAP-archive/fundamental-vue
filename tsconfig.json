@@ -27,7 +27,8 @@
     ]
   },
   "include": [
-    "src/**/*.js",
+    "src/docs/**/*.vue",
+    "src/**/*.vue",
     "src/**/*.vue",
     "src/__tests__/**/*.test.js"
   ],

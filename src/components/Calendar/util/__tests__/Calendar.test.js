@@ -1,4 +1,5 @@
-import { weekFromDate, monthFromDate, sameDay } from "./..";
+import { weekFromDate, monthFromDate } from "./..";
+import sameDay from "./../../../../util/date/same-day";
 
 const sameDays = (lhs, rhs) => {
   return (

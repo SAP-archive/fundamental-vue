@@ -1,14 +1,14 @@
 <title>Calendar in a Popover</title>
-<docs>Calendars work best when displayed in a popover. You can use `FdPopover` for that.</docs>
+<docs>Calendars work best when displayed in a popover. You can use `fd-popover` for that.</docs>
 <template>
   <div v-fd-padding:large>
-    <FdPopover withArrow>
+    <fd-popover withArrow>
       <template #control="{toggle}">
-        <FdButton @click="toggle">Pick Date</FdButton>
+        <fd-button @click="toggle">Pick Date</fd-button>
       </template>
       <div v-fd-padding:tiny>
-        <FdCalendar />
+        <fd-calendar />
       </div>
-    </FdPopover>
+    </fd-popover>
   </div>
 </template>

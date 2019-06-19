@@ -108,6 +108,24 @@
     ]
   },
   {
+    "id": "./Date Input/index.ts",
+    "status": "stable",
+    "slug": "date-input",
+    "key": "./date-input/index.ts",
+    "title": "Date Input",
+    "icon": "calendar",
+    "related": []
+  },
+  {
+    "id": "./Date Picker/index.ts",
+    "status": "stable",
+    "slug": "date-picker",
+    "key": "./date-picker/index.ts",
+    "title": "Date Picker",
+    "icon": "action",
+    "related": []
+  },
+  {
     "id": "./Design System Utils/index.ts",
     "status": "stable",
     "slug": "design-system-utils",

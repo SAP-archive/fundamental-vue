@@ -3,7 +3,7 @@
 <tip>The example below let's you go three month into the future and past by using the previous and next buttons in the header. By using the year and month picker the user can still go to months/years that are not reachable with previous and next buttons.</tip>
 <template>
   <div>
-    <FdCalendar :hasNext="hasNext" :hasPrevious="hasPrevious" />
+    <fd-calendar :has-next="hasNext" :has-previous="hasPrevious" />
   </div>
 </template>
 

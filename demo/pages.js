@@ -4,5 +4,7 @@ export const pages = [
   "modal-default",
   "menu-popover-default",
   "menu-selection",
-  "virtualized-list"
+  "virtualized-list",
+  "date-picker-default",
+  "calendar-playground"
 ];

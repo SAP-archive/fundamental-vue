@@ -1,10 +1,14 @@
 <title>Calendar with custom Names</title>
-<tip>You can customize the names (day of week and month of year)  displayed in the calendar by using the props `dayNames` and `monthNames`. This is also how you would implement i18n.</tip>
+
+<tip>
+You can customize the names (day of week and month of year)  displayed in the calendar by using the props `dayNames` and `monthNames`. This is also how you would implement i18n.
+</tip>
+
 <template>
   <div>
-    <FdCalendar
-      :dayNames="['1', '2', '3', '4', '5', '6', '7']"
-      :monthNames="[
+    <fd-calendar
+      :day-names="['1', '2', '3', '4', '5', '6', '7']"
+      :month-names="[
         '1️⃣',
         '2️⃣',
         '3️⃣',

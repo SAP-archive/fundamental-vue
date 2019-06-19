@@ -31,6 +31,7 @@
         :blockedDate="blockedDate"
         :isPresent="isPresent"
         :selectionContainsDate="selectionContains"
+        :mode="mode"
         @select="didClickDate"
       />
       <YearPicker
@@ -47,13 +48,12 @@
 </template>
 
 <script>
-import {
-  PresentDateMixin,
-  DisplayedDateMixin,
-  DateSelectionMixin
-} from "./mixins";
+import { NormalizedDate } from "./../../util/date/normalized-date";
+import sameDay from "./../../util/date/same-day";
+import { DisplayedDateMixin } from "./mixins";
 import CalendarHeader from "./CalendarHeader.vue";
 import { DayPicker, MonthPicker, YearPicker } from "./Pickers";
+import Mode from "./../../util/date/mode";
 
 const PickerType = {
   year: "year",
@@ -66,13 +66,36 @@ const dateWithYearsFromNow = numberOfYears => {
   return date;
 };
 
+const createToday = () => new Date(Date.now());
+
 export default {
-  mixins: [PresentDateMixin, DisplayedDateMixin, DateSelectionMixin],
+  mixins: [DisplayedDateMixin],
   name: "FdCalendar",
   components: { DayPicker, MonthPicker, YearPicker, CalendarHeader },
+  watch: {
+    value: {
+      deep: true,
+      immediate: true,
+      handler(value) {
+        this.normalizedDate.from = value.from;
+        this.normalizedDate.to = value.to;
+      }
+    }
+  },
   props: {
-    // Ugly type castings... :(
-    headerVisible: { type: Boolean, default: true },
+    ...Mode.prop,
+    today: {
+      type: Date,
+      default: createToday
+    },
+    value: {
+      type: Object,
+      default: () => ({ from: null, to: null })
+    },
+    headerVisible: {
+      type: Boolean,
+      default: true
+    },
     maxDate: {
       type: Date,
       default: () => dateWithYearsFromNow(10)
@@ -99,6 +122,18 @@ export default {
     }
   },
   computed: {
+    normalizedDate_() {
+      return NormalizedDate.from(this.normalizedDate);
+    },
+    dateSelectionNeedsReset() {
+      return this.normalizedDate_.isComplete;
+    },
+    selectionStart() {
+      return this.normalizedDate_.start;
+    },
+    selectionEnd() {
+      return this.normalizedDate_.end;
+    },
     yearPickerYears() {
       return Array.from({ length: 12 }).map(
         (_, index) => this.displayedYear + (index - 6)
@@ -124,10 +159,54 @@ export default {
   },
   data() {
     return {
+      normalizedDate: NormalizedDate.from(this.value).asFromToValue(),
       currentPicker: null
     };
   },
   methods: {
+    isPresent(date) {
+      return sameDay(this.today, date);
+    },
+    selectionContains(date) {
+      return this.normalizedDate_.contains(date);
+    },
+    selectionContainsYear(year) {
+      return this.normalizedDate_.containsYear(year);
+    },
+    selectionContainsMonth(month) {
+      return this.normalizedDate_.containsMonth(month);
+    },
+    resetSelection() {
+      this.normalizedDate.from = null;
+      this.normalizedDate.to = null;
+      this.$emit("input", this.normalizedDate_.asFromToValue());
+    },
+    emitCurrentSelection() {
+      this.$emit("input", this.normalizedDate_.asFromToValue());
+    },
+
+    selectDate(date) {
+      if (this.mode === Mode.single) {
+        this.normalizedDate.from = date;
+        this.normalizedDate.to = null;
+        this.emitCurrentSelection();
+        return;
+      }
+
+      // From here on we are only handling range-selections
+      if (this.dateSelectionNeedsReset) {
+        this.resetSelection();
+      }
+
+      const from = this.normalizedDate.from;
+      if (from == null) {
+        this.normalizedDate.from = date;
+        this.emitCurrentSelection();
+        return;
+      }
+      this.normalizedDate.to = date;
+      this.emitCurrentSelection();
+    },
     previousButtonEnabled() {
       const range = this.currentRange;
       return this.hasPrevious(range) && this.minDateValidator(range);
@@ -150,11 +229,15 @@ export default {
     },
     displayNextMonth() {
       const copy = new Date(this.displayedDate);
+      // fixes: https://github.com/SAP/fundamental-vue/issues/324
+      copy.setDate(1);
       copy.setMonth(this.displayedDate.getMonth() + 1);
       this.displayedDate = copy;
     },
     displayPreviousMonth() {
       const copy = new Date(this.displayedDate);
+      // fixes: https://github.com/SAP/fundamental-vue/issues/324
+      copy.setDate(1);
       copy.setMonth(this.displayedDate.getMonth() - 1);
       this.displayedDate = copy;
     },
