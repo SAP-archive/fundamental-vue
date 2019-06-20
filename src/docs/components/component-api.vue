@@ -15,17 +15,19 @@ export default {
   computed: {
     componentDocProps() {
       const json = this.jsonContent;
-      const { props = [] } = json;
+      const { name, props = [], events = [], slots = [] } = json;
       const documentedProps = props.map(prop => ({
         ...prop,
         type: prop.type || null,
         defaultValue: prop.default
       }));
+      const description = json.componentDesc.default;
       return {
-        name: json.name,
+        name,
+        description,
         documentedProps,
-        documentedEvents: json.events || [],
-        documentedSlots: json.slots || []
+        documentedEvents: events,
+        documentedSlots: slots
       };
     },
     jsonContent() {

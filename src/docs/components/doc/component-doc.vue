@@ -1,6 +1,7 @@
 <template>
   <div>
     <component-name :name="name" />
+    <div v-if="description.length > 0">{{ formattedDescription }}</div>
     <div
       class="component-doc__name"
       v-fd-type:5
@@ -46,6 +47,11 @@ import ComponentName from "./component-name.vue";
 
 export default {
   components: { ComponentName, EventDoc, PropDoc, SlotDoc },
+  computed: {
+    formattedDescription() {
+      return this.description.join("<br />");
+    }
+  },
   methods: {
     keyForProp(prop) {
       return `documented-component-${this.name}-prop-${prop.name}`;
@@ -59,6 +65,7 @@ export default {
   },
   props: {
     name: { type: String },
+    description: { type: Array, default: () => [] },
     documentedProps: { type: Array, default: () => [] },
     documentedSlots: { type: Array, default: () => [] },
     documentedEvents: { type: Array, default: () => [] }

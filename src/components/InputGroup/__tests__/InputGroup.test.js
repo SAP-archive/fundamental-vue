@@ -1,23 +1,26 @@
 import { mount } from "@vue/test-utils";
-import InputGroup from "../InputGroup.vue";
-import Input from "../Input.vue";
+import FdInputGroup from "../InputGroup.vue";
+import FdInputGroupAddon from "../InputGroupAddon.vue";
+import FdInput from "../../Form/Controls/Input.vue";
 
 describe("InputGroup", () => {
   const before = "$";
   const after = "€";
 
-  const wrapper = mount(InputGroup, {
-    propsData: {
-      before,
-      after
-    },
-    slots: {
-      default: {
-        render(h) {
-          return h(Input);
-        }
-      }
-    }
+  const wrapper = mount({
+    components: { FdInputGroup, FdInputGroupAddon, FdInput },
+    template: `
+    <fd-input-group>
+      <template #before>
+        <fd-input-group-addon>$</fd-input-group-addon>
+      </template>
+      <template #after>
+        <fd-input-group-addon>€</fd-input-group-addon>
+      </template>
+      <template #input>
+        <fd-input />
+      </template>
+    </fd-input-group>`
   });
 
   it("renders correctly", () => {
@@ -34,14 +37,14 @@ describe("InputGroup", () => {
   });
 
   describe("Compact Style", () => {
-    const wrapper = mount(InputGroup, {
+    const wrapper = mount(FdInputGroup, {
       propsData: {
         compact: true
       },
       slots: {
         default: {
           render(h) {
-            return h(Input);
+            return h(FdInput);
           }
         }
       }

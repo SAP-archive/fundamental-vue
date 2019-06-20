@@ -1,7 +1,4 @@
 <title>Compact Mode</title>
-<docs>
-  bla
-</docs>
 <template>
   <fd-form-item>
     <fd-form-label>Compact Input Group:</fd-form-label>

@@ -32,7 +32,7 @@ global.document.createRange = () => ({
 const VUE_WARN_TOKEN = "[Vue warn]";
 const VUE_ERROR_TOKEN = "[Vue error]";
 
-const _console__error = console.error; // eslint-disable-line no-console
+const _console__error = console.log; // eslint-disable-line no-console
 
 // eslint-disable-next-line no-console
 console.error = (msg, ...params) => {
@@ -40,7 +40,7 @@ console.error = (msg, ...params) => {
 
   if (msg.indexOf(VUE_WARN_TOKEN) > -1 || msg.indexOf(VUE_ERROR_TOKEN) > -1) {
     throw Error(
-      "Detected a warning/error from Vue. This will fail the test that caused it. The causing error was logged above."
+      "Detected a warning/error from Vue. This will fail the test that caused it. The causing error was logged above and right here: "
     );
   }
 };

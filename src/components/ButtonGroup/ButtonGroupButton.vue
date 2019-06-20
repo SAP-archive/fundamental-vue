@@ -4,7 +4,7 @@
     v-on="$listeners"
     :aria-pressed="String(pressed)"
     @click="toggle"
-    :compact="compact"
+    :compact="finalCompact"
     ><slot />
   </FdButton>
 </template>

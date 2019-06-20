@@ -25,7 +25,7 @@ export default {
     inputClasses() {
       return {
         "fd-form__control": !this.plain,
-        "fd-input--compact": this.compact,
+        "fd-input--compact": this.finalCompact,
         ...this.inputStateClasses,
         "is-required": this.required
       };

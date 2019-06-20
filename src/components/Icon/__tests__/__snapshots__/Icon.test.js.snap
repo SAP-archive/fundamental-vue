@@ -3,5 +3,6 @@
 exports[`Icon Test Scripts Renders correctly 1`] = `
 <span
   class="sap-icon--cart sap-icon--s"
+  role="presentation"
 />
 `;
