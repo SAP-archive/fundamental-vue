@@ -37,9 +37,7 @@ export default {
   components: { FdAddonBeforeProvider, FdAddonAfterProvider },
   props: {
     before: { type: String, default: null },
-    after: { type: String, default: null },
-    afterClass: { type: String, default: null },
-    compact: { type: Boolean, default: false }
+    after: { type: String, default: null }
   },
   computed: {
     hasBefore() {
@@ -53,7 +51,7 @@ export default {
       return [
         "fd-input-group__addon",
         "fd-input-group__addon--after",
-        this.compact ? "fd-input-group--compact" : "",
+        this.finalCompact ? "fd-input-group--compact" : "",
         ...(afterClass != null ? [afterClass] : [])
       ];
     },

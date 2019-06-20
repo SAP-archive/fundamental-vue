@@ -1,13 +1,23 @@
 export default {
   inject: {
-    compactableContainer: { default: { compact: false } }
+    $_FdCompactMixin: {
+      default: null
+    }
   },
+
+  props: {
+    compact: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   computed: {
-    enclosedByCompactContainer() {
-      return this.compactableContainer.compact;
-    },
-    compact() {
-      return this.enclosedByCompactContainer;
+    finalCompact() {
+      return (
+        this.compact ||
+        (this.$_FdCompactMixin && this.$_FdCompactMixin.data.value)
+      );
     }
   }
 };

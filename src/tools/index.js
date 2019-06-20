@@ -62,6 +62,7 @@ const fixedSlot = (slot, otherSlots) => {
 
 /**
  * For context see fixedParserResult below.
+ * @see https://github.com/vuese/vuese/commit/a3fb19b194fefc78ada69e7fdd3a9dc3dac1b39c
  * @param {import("@vuese/parser").SlotResult[]} slots
  * @returns {import("@vuese/parser").SlotResult[]}
  */
@@ -126,6 +127,16 @@ if (!fs.existsSync(outputDir)) {
 }
 rimraf.sync(outputDir + "/*");
 
+const _writeMarkdown = ({ filename, outputDir, result }) => {
+  const destination = Path.format({
+    dir: outputDir,
+    name: filename,
+    ext: ".md"
+  });
+  const render = new Render(result);
+  const markdown = render.renderMarkdown() || {};
+  fs.writeFileSync(destination, markdown.content || "");
+};
 const writeApi = ({ path, result }) => {
   /** @type {string} */
   const componentName = result.name || "";
@@ -135,11 +146,10 @@ const writeApi = ({ path, result }) => {
   const filename = `${componentName || Path.parse(path).name}.json`;
   const source = JSON.stringify(result, null, 2);
   const dest = Path.resolve(outputDir, filename);
-  const destmd = Path.resolve(outputDir, filename + ".md");
-  const r = new Render(result);
-  const markdownRes = r.renderMarkdown() || {};
   fs.writeFileSync(dest, source);
-  fs.writeFileSync(destmd, markdownRes.content || "");
+  if (process.env.FD_GENERATE_MD_API === "true") {
+    _writeMarkdown({ filename, outputDir, result });
+  }
 };
 
 results.forEach(writeApi);

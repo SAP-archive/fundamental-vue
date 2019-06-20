@@ -3,6 +3,7 @@
 </template>
 
 <script>
+// Use this in before-/after-slots within fd-input-groups.
 export default {
   name: "FdInputGroupAddon",
   inject: {
