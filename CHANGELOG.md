@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.15.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.14.0...v0.15.0-rc.0) (2019-06-21)
+
+
+### Features
+
+* improved fd-input-group and added fd-form-label, fd-input-group-search (…) ([c50283b](https://github.com/SAP/fundamental-vue/commit/c50283b))
+* improved input-group ([93f872f](https://github.com/SAP/fundamental-vue/commit/93f872f))
+
+
+
 ## [0.14.0](https://github.com/SAP/fundamental-vue/compare/v0.14.0-rc.5...v0.14.0) (2019-06-21)
 
 
