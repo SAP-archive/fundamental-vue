@@ -115,7 +115,7 @@ export default {
         return;
       }
       const isNeeded =
-        this.afterSlotVisible && totalItemCount > this.items.length;
+        this.afterSlotVisible && totalItemCount > this.items_.length;
       if (!isNeeded) {
         return;
       }
