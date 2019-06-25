@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.15.0-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.15.0-rc.0...v0.15.0-rc.1) (2019-06-25)
+
+
+### Features
+
+* added the ability to mutate fd-virtualized-list’s items. ([4e7b7f1](https://github.com/SAP/fundamental-vue/commit/4e7b7f1))
+
+
+
 ## [0.15.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.14.0...v0.15.0-rc.0) (2019-06-21)
 
 
