@@ -6,6 +6,7 @@
     :items="items"
     :load-more-items="loadMoreItems"
     style="height: 400px;"
+    key-field="id"
   >
     <template #item="{ item, index }">
       <div style="padding: 20px;">{{ item.title }}[{{ index }}]</div>
@@ -16,24 +17,24 @@
 <script>
 import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
 
+const createItem = maxIndex => ({
+  title: `Item at Index ${maxIndex}`,
+  id: `${maxIndex}`
+});
+
+const createItems = (maxIndex, count) => {
+  const indices = Array.from({ length: count }).map(
+    (_, index) => index + maxIndex
+  );
+  return indices.map(index => createItem(index));
+};
+
 export default {
   methods: {
     loadMoreItems(done) {
       setTimeout(() => {
-        done([
-          { title: "Item A" },
-          { title: "Item B" },
-          { title: "Item C" },
-          { title: "Item D" },
-          { title: "Item E" },
-          { title: "Item F" },
-          { title: "Item G" },
-          { title: "Item H" },
-          { title: "Item I" },
-          { title: "Item J" },
-          { title: "Item K" },
-          { title: "Item L" }
-        ]);
+        this.items.push(...createItems(this.items.length, 20));
+        done();
       }, 2000);
     }
   },

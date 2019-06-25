@@ -10,6 +10,7 @@
       :total-item-count="1000"
       :load-more-items="loadMoreItems"
       style="height: 400px;"
+      key-field="id"
     >
     <template #loading>
       <div data-cy-loading-indicator>Loading Indicator</div>
@@ -28,6 +29,7 @@ import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
 
 const createItem = index => ({
   index,
+  id: `${index}`,
   title: `item ${index}`
 });
 
@@ -39,15 +41,18 @@ const createItems = (startIndex, count) => {
 
 export default {
   methods: {
+    startToLoadMoreItems() {
+      this.$refs.list.startToLoadMoreItems();
+    },
     reset() {
-      const list = this.$refs.list;
       this.items = [];
-      list.startToLoadMoreItems();
     },
     loadMoreItems(done) {
       const that = this;
       setTimeout(() => {
-        done(createItems(that.items.length, 5));
+        const { items } = this;
+        items.push(...createItems(items.length, 5));
+        done();
       }, 2000);
     }
   },

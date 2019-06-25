@@ -1,13 +1,13 @@
 <template>
   <component
-    key-field="fd__id"
+    :key-field="keyField"
     style="height: 100%;"
     :is="dynamicScrollerComponent"
     :min-item-size="minItemSize"
-    :items="normalizedItems"
-    @scroll.native="handleOnScroll"
+    :items="items"
   >
     <template v-slot:after>
+      <!-- this div needs a certain min-height in order for v-observe-visibility to work. -->
       <div
         style="height: 10px;"
         ref="after"
@@ -40,22 +40,17 @@
 
 <script>
 import FdSpinner from "./../Spinner/Spinner.vue";
-import { shortUuid } from "./../../lib";
-
-const _normalizedItem = item => {
-  return {
-    fd__id: shortUuid(),
-    ...item
-  };
-};
-
-const _normalizedItems = items => items.map(_normalizedItem);
 
 export default {
   name: "FdVirtualizedList",
   components: { FdSpinner },
   props: {
-    // If set, FdVirtualizedList automatically requests more items. Assume that your list has space for 30 items to be displayed at the same time and after loading the initial batch there is still space left. If totalItemCount is set FdVirtualList automatically requests more items if there are more to fetch. This is repeated, until there is no space left. Of course the user can still load more items by scrolling to the bottom.
+    // Name of property that uniquely identifies an item.
+    keyField: {
+      type: String,
+      required: true
+    },
+    // By default fd-virtualized-list will automatically requests more items if the use has scrolled down to the bottom of the list. Assume that your list has space for 30 items to be displayed at the same time and after loading the initial batch there is still space left. If total-item-count is set to a value greater than 30 or to null fd-virtualized-list automatically requests more items. This is repeated, until there is no space left or the total item count specified is reached. Of course the user can still load more items by scrolling to the bottom.
     totalItemCount: {
       type: Number,
       default: null
@@ -72,22 +67,31 @@ export default {
       type: [Object, Function, String],
       default: "DynamicScrollerItem"
     },
-    // Items to be rendered by the virtualized list.
+    // Items to be rendered by the virtualized list. Each item must have a unique identifier. You can specify the name of the identifying property by using the key-field-prop.
     items: { type: Array, default: () => [] },
     // Function to be called when the list needs more items from you. This function is called with a callback parameter that you MUST call at some point with additional items.
     loadMoreItems: { type: Function, default: null }
   },
   computed: {
-    normalizedItems() {
-      return _normalizedItems(this.items_);
-    },
     isLoading() {
       return this.state === "loading";
+    },
+    selectedItem() {
+      const { selectedId, items } = this;
+      if (selectedId == null) {
+        return;
+      }
+      const index = items.findIndex(item => {
+        return this.idForItem(item) === selectedId;
+      });
+      return index < 0 ? undefined : items[index];
     }
   },
   watch: {
-    items(newItems) {
-      this.items_ = newItems;
+    selectedItem(selectedItem) {
+      // Triggers when the selected item changes.
+      // @arg the selected item or null
+      this.$emit("update:selectedItem", selectedItem);
     }
   },
   mounted() {
@@ -102,6 +106,9 @@ export default {
     });
   },
   methods: {
+    idForItem(item) {
+      return item[this.keyField];
+    },
     afterVisibilityChanged(isVisible) {
       this.afterSlotVisible = isVisible;
       if (isVisible) {
@@ -109,13 +116,14 @@ export default {
       }
     },
     loadMoreItemsIfNeeded() {
-      const { totalItemCount, isLoading } = this;
-      const loadingIsPossible = totalItemCount != null && !isLoading;
+      const { totalItemCount, isLoading, items, afterSlotVisible } = this;
+      const loadingIsPossible = !isLoading;
       if (!loadingIsPossible) {
         return;
       }
-      const isNeeded =
-        this.afterSlotVisible && totalItemCount > this.items_.length;
+      const moreItemsAvailable =
+        totalItemCount == null ? true : totalItemCount > items.length;
+      const isNeeded = afterSlotVisible && moreItemsAvailable;
       if (!isNeeded) {
         return;
       }
@@ -131,33 +139,19 @@ export default {
         this.loadMoreItems(this.acceptNewItems);
       }
     },
-    acceptNewItems(newItems) {
-      this.items_ = [...this.items_, ...newItems];
+    acceptNewItems() {
       this.state = "default";
-      this.$forceUpdate();
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         this.loadMoreItemsIfNeeded();
-      });
-    },
-    /** @param {Event} event */
-    handleOnScroll(event) {
-      const {
-        target: { scrollTop, clientHeight, scrollHeight }
-      } = event;
-      if (scrollTop + clientHeight >= scrollHeight) {
-        if (this.state === "loading") {
-          return;
-        }
-        this.startToLoadMoreItems(event);
-      }
+      }, 100);
     },
     selectItem(item) {
-      this.selectedId = item.fd__id;
-      this.$emit("input", item);
+      this.selectedId = this.idForItem(item);
     },
     rowClasses(item) {
+      const selected = this.idForItem(item) === this.selectedId;
       return {
-        "list-item--selected": item.fd__id === this.selectedId
+        "list-item--selected": selected
       };
     }
   },
@@ -165,8 +159,7 @@ export default {
     return {
       afterSlotVisible: false,
       state: "default",
-      selectedId: null,
-      items_: this.items
+      selectedId: null
     };
   }
 };
