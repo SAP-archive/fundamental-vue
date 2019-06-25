@@ -2,15 +2,19 @@
 
 <template>
   <div>
-    <fd-input placeholder="query" v-model="query" />
-    <fd-button @click="applyQuery">Go</fd-button>
+    <fd-input placeholder="Enter Search Query…" v-model="query" />
+    <fd-button styling="emphasized" icon="search" @click="applyQuery"
+      >Search</fd-button
+    >
+    <fd-button @click="reset">Reset</fd-button>
+
     <fd-virtualized-list
-      ref="list"
+      key-field="id"
+      style="height: 400px;"
       :min-item-size="30"
       :items="items"
       :load-more-items="loadMoreItems"
       :total-item-count="totalItemCount"
-      style="height: 400px;"
       :size-dependencies="['item.title']"
     >
       <template #item="{ item, index }">
@@ -26,7 +30,7 @@ import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
 class MockBackend {
   constructor() {
     // Generate sample items:
-    // { title: 01234567… Item, index: $index }
+    // { title: 01234567… Item, id: "$index" }
     const itemCount = 1000;
     const maxPrefixLength = 11;
     const makePrefix = index => {
@@ -37,10 +41,10 @@ class MockBackend {
     };
     const makeTitle = index => `${makePrefix(index)} Item`;
     this.items = Array.from({ length: itemCount }).map((_, _index) => ({
-      index: _index,
+      id: `${_index}`,
       title: makeTitle(_index + 1)
     }));
-    this.items = [{ title: "HelloWorld", index: 0 }, ...this.items];
+    this.items = [{ title: "HelloWorld", id: "-1" }, ...this.items];
   }
 
   delay() {
@@ -79,25 +83,30 @@ export default {
   },
   methods: {
     applyQuery() {
-      this.reset();
-    },
-    reset() {
-      const list = this.$refs.list;
       this.totalItemCount = null;
       this.page = null;
       this.items = [];
-      list.startToLoadMoreItems();
     },
-    loadMoreItems(done) {
+    reset() {
+      this.totalItemCount = null;
+      this.page = null;
+      this.items = [];
+      this.query = "";
+    },
+    async loadMoreItems(done) {
       const page = this.page == null ? 0 : this.page + 1;
       const { itemsPerPage, query } = this;
-      const that = this;
-      this.$backend.getItems({ itemsPerPage, page, query }).then(response => {
-        const { items, _meta } = response;
-        that.totalItemCount = _meta.totalItemCount;
-        that.page = _meta.page;
-        done(items);
+      // const that = this;
+      const response = await this.$backend.getItems({
+        itemsPerPage,
+        page,
+        query
       });
+      const { _meta, items } = response;
+      this.totalItemCount = _meta.totalItemCount;
+      this.page = _meta.page;
+      this.items.push(...items);
+      done();
     }
   },
   data() {

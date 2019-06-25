@@ -2,9 +2,10 @@
 
 <template>
   <div>
-    <fd-button @click="reset">reset</fd-button>
+    <fd-button @click="items = []">reset</fd-button>
     <fd-virtualized-list
       ref="list"
+      key-field="id"
       :min-item-size="30"
       :items="items"
       :load-more-items="loadMoreItems"
@@ -20,29 +21,25 @@
 <script>
 import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
 
+const createItem = maxIndex => ({
+  title: `Item at Index ${maxIndex}`,
+  id: `${maxIndex}`
+});
+
+const createItems = (maxIndex, count) => {
+  const indices = Array.from({ length: count }).map(
+    (_, index) => index + maxIndex
+  );
+  return indices.map(index => createItem(index));
+};
+
 export default {
   methods: {
-    reset() {
-      const list = this.$refs.list;
-      this.items = [];
-      list.startToLoadMoreItems();
-    },
     loadMoreItems(done) {
       setTimeout(() => {
-        done([
-          { title: "Item A" },
-          { title: "Item B" },
-          { title: "Item C" },
-          { title: "Item D" },
-          { title: "Item E" },
-          { title: "Item F" },
-          { title: "Item G" },
-          { title: "Item H" },
-          { title: "Item I" },
-          { title: "Item J" },
-          { title: "Item K" },
-          { title: "Item L" }
-        ]);
+        const { items } = this;
+        items.push(...createItems(items.length, 3));
+        done();
       }, 2000);
     }
   },
