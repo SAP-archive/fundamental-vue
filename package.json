@@ -70,7 +70,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.2.2",
-    "execa": "^1.0.0",
+    "execa": "^2.0.1",
     "fundamental-styles": "^0.1.0",
     "gh-pages": "^2.0.1",
     "github-assistant": "^0.3.0",
