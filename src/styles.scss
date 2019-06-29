@@ -3,6 +3,10 @@
 
 // Animated show/close-modal transitions.
 @import "./components/Modal/modal";
+// Support for transparent tiles
+@import "./components/Tile/tile";
+// Support for hover + selection
+@import "./components/VirtualizedList/virtualized-list";
 
 // Importing this file is optional. At the moment there is not a lot there but
 // more things will be added as time goes on.

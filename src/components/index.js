@@ -46,6 +46,10 @@ import SplitButtonAction from "./SplitButtonAction";
 import Table from "./Table";
 import Tabs from "./Tabs";
 import Tile from "./Tile";
+import TileActions from "./TileActions";
+import TileMedia from "./TileMedia";
+import TileContent from "./TileContent";
+import TileTitle from "./TileTitle";
 import TileGrid from "./TileGrid";
 import TimePicker from "./TimePicker";
 import Token from "./Token";
@@ -102,6 +106,10 @@ const plugin = {
       Table,
       Tabs,
       Tile,
+      TileActions,
+      TileMedia,
+      TileTitle,
+      TileContent,
       TileGrid,
       TimePicker,
       Token,

@@ -38,7 +38,3 @@ Of course you can also manually show or close the modal by simply calling the co
     </FdButton>
   </div>
 </template>
-
-<style lang="scss">
-@import "./../../../styles";
-</style>

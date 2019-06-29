@@ -1,188 +1,162 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TileGrid 2 Columns renders correctly 1`] = `
+exports[`TileGrid renders correctly with col=2 1`] = `
 <div
   class="fd-tile-grid fd-tile-grid--2col"
 >
-  <div>
+  <div
+    aria-disabled="false"
+    class="fd-tile"
+  >
     <div
-      class="fd-tile"
+      class="fd-tile__content"
     >
-      <!---->
-       
-      <div
-        class="fd-tile__content"
+      <h3
+        class="fd-tile__title"
       >
-        <!---->
-         
-        <p>
-          Lorem ipsum
-        </p>
-      </div>
-       
-      <!---->
+        Tile 1
+      </h3>
     </div>
+  </div>
+   
+  <div
+    aria-disabled="false"
+    class="fd-tile"
+  >
     <div
-      class="fd-tile"
+      class="fd-tile__content"
     >
-      <!---->
-       
-      <div
-        class="fd-tile__content"
+      <h3
+        class="fd-tile__title"
       >
-        <!---->
-         
-        <p>
-          Lorem ipsum
-        </p>
-      </div>
-       
-      <!---->
+        Tile 2
+      </h3>
     </div>
+  </div>
+   
+  <div
+    aria-disabled="false"
+    class="fd-tile"
+  >
     <div
-      class="fd-tile"
+      class="fd-tile__content"
     >
-      <!---->
-       
-      <div
-        class="fd-tile__content"
+      <h3
+        class="fd-tile__title"
       >
-        <!---->
-         
-        <p>
-          Lorem ipsum
-        </p>
-      </div>
-       
-      <!---->
+        Tile 3
+      </h3>
     </div>
+  </div>
+   
+  <div
+    aria-disabled="false"
+    class="fd-tile"
+  >
     <div
-      class="fd-tile"
+      class="fd-tile__content"
     >
-      <!---->
-       
-      <div
-        class="fd-tile__content"
+      <h3
+        class="fd-tile__title"
       >
-        <!---->
-         
-        <p>
-          Lorem ipsum
-        </p>
-      </div>
-       
-      <!---->
+        Tile 4
+      </h3>
     </div>
+  </div>
+   
+  <div
+    aria-disabled="false"
+    class="fd-tile"
+  >
     <div
-      class="fd-tile"
+      class="fd-tile__content"
     >
-      <!---->
-       
-      <div
-        class="fd-tile__content"
+      <h3
+        class="fd-tile__title"
       >
-        <!---->
-         
-        <p>
-          Lorem ipsum
-        </p>
-      </div>
-       
-      <!---->
+        Tile 5
+      </h3>
     </div>
   </div>
 </div>
 `;
 
-exports[`TileGrid 6 Columns renders correctly 1`] = `
+exports[`TileGrid renders correctly with col=6 1`] = `
 <div
-  class="fd-tile-grid fd-tile-grid--6col"
+  class="fd-tile-grid fd-tile-grid--2col"
 >
-  <div>
+  <div
+    aria-disabled="false"
+    class="fd-tile"
+  >
     <div
-      class="fd-tile"
+      class="fd-tile__content"
     >
-      <!---->
-       
-      <div
-        class="fd-tile__content"
+      <h3
+        class="fd-tile__title"
       >
-        <!---->
-         
-        <p>
-          Lorem ipsum
-        </p>
-      </div>
-       
-      <!---->
+        Tile 1
+      </h3>
     </div>
+  </div>
+   
+  <div
+    aria-disabled="false"
+    class="fd-tile"
+  >
     <div
-      class="fd-tile"
+      class="fd-tile__content"
     >
-      <!---->
-       
-      <div
-        class="fd-tile__content"
+      <h3
+        class="fd-tile__title"
       >
-        <!---->
-         
-        <p>
-          Lorem ipsum
-        </p>
-      </div>
-       
-      <!---->
+        Tile 2
+      </h3>
     </div>
+  </div>
+   
+  <div
+    aria-disabled="false"
+    class="fd-tile"
+  >
     <div
-      class="fd-tile"
+      class="fd-tile__content"
     >
-      <!---->
-       
-      <div
-        class="fd-tile__content"
+      <h3
+        class="fd-tile__title"
       >
-        <!---->
-         
-        <p>
-          Lorem ipsum
-        </p>
-      </div>
-       
-      <!---->
+        Tile 3
+      </h3>
     </div>
+  </div>
+   
+  <div
+    aria-disabled="false"
+    class="fd-tile"
+  >
     <div
-      class="fd-tile"
+      class="fd-tile__content"
     >
-      <!---->
-       
-      <div
-        class="fd-tile__content"
+      <h3
+        class="fd-tile__title"
       >
-        <!---->
-         
-        <p>
-          Lorem ipsum
-        </p>
-      </div>
-       
-      <!---->
+        Tile 4
+      </h3>
     </div>
+  </div>
+   
+  <div
+    aria-disabled="false"
+    class="fd-tile"
+  >
     <div
-      class="fd-tile"
+      class="fd-tile__content"
     >
-      <!---->
-       
-      <div
-        class="fd-tile__content"
+      <h3
+        class="fd-tile__title"
       >
-        <!---->
-         
-        <p>
-          Lorem ipsum
-        </p>
-      </div>
-       
-      <!---->
+        Tile 5
+      </h3>
     </div>
   </div>
 </div>

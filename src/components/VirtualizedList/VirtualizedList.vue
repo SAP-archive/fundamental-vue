@@ -1,7 +1,8 @@
 <template>
   <component
-    :key-field="keyField"
     style="height: 100%;"
+    class="fdv-virtualized-list"
+    :key-field="keyField"
     :is="dynamicScrollerComponent"
     :min-item-size="minItemSize"
     :items="items"
@@ -28,9 +29,10 @@
         :item="item"
         :active="active"
         :data-index="index"
+        :data-fdv-virtualized-item-selected="String(itemIsSelected(item))"
         :data-active="active"
         :class="rowClasses(item)"
-        :size-dependencies="[item.title, item.subtitle]"
+        :size-dependencies="sizeDependencies"
       >
         <slot name="item" v-bind="{ item, index, active }"></slot>
       </component>
@@ -45,6 +47,11 @@ export default {
   name: "FdVirtualizedList",
   components: { FdSpinner },
   props: {
+    // this prop is passed – as it – to `vue-virtual-scroller`. For details please refer to `vue-virtual-scroller` documentation. To sum this prop up: Specify reactive values that can affect the size of the rendered item. This prop will be observed by `vue-virtual-scroller`.
+    sizeDependencies: {
+      type: [Array, Object],
+      default: null
+    },
     // Name of property that uniquely identifies an item.
     keyField: {
       type: String,
@@ -106,6 +113,9 @@ export default {
     });
   },
   methods: {
+    itemIsSelected(item) {
+      return this.idForItem(item) === this.selectedId;
+    },
     idForItem(item) {
       return item[this.keyField];
     },
@@ -149,9 +159,10 @@ export default {
       this.selectedId = this.idForItem(item);
     },
     rowClasses(item) {
-      const selected = this.idForItem(item) === this.selectedId;
+      const selected = this.itemIsSelected(item); //this.idForItem(item) === this.selectedId;
       return {
-        "list-item--selected": selected
+        "fdv-virtualized-list-item": true,
+        "fd-has-background-color-background-selected": selected
       };
     }
   },
@@ -165,11 +176,6 @@ export default {
 };
 </script>
 
-<style>
-.vue-recycle-scroller__item-view.hover {
-  background-color: var(--fd-color-background-hover);
-}
-.list-item--selected {
-  background-color: var(--fd-color-background-selected);
-}
+<style lang="scss">
+@import "./virtualized-list";
 </style>

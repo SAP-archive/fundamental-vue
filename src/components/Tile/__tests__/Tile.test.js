@@ -1,130 +1,41 @@
-import { mount } from "@vue/test-utils";
-import Tile from "../Tile.vue";
-import Identifier from "@/components/Identifier";
+import { mount, createLocalVue } from "@vue/test-utils";
+import FundamentalVue from "./../../../index";
 
 describe("Tile", () => {
-  const title = "Title";
-  const description = "Description";
-
-  const wrapper = mount(Tile, {
-    propsData: {
-      title,
-      description
-    }
+  let wrapper;
+  beforeEach(() => {
+    const localVue = createLocalVue();
+    localVue.use(FundamentalVue);
+    wrapper = mount(
+      {
+        data() {
+          return {
+            disabled: false,
+            isButton: false
+          };
+        },
+        template: `
+      <fd-tile :is-button="isButton" :disabled="disabled">
+        <fd-tile-content>
+          <fd-tile-title>Title</fd-tile-title>
+          <p>Description</p>
+        </fd-tile-content>
+      </fd-tile>`
+      },
+      { localVue }
+    );
   });
 
   it("renders correctly", () => {
-    expect(wrapper.element).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot("default tile");
   });
 
-  it("renders correct props", () => {
-    expect(wrapper.find(".fd-tile__title").text()).toEqual(title);
-    expect(wrapper.find(".fd-tile__content p").text()).toEqual(description);
+  it("renders correctly when disabled", () => {
+    expect(wrapper.element).toMatchSnapshot("renders disabled correctly");
   });
 
-  describe("With Background Color", () => {
-    const backgroundColor = "accent-2";
-    const wrapper = mount(Tile, {
-      propsData: {
-        title,
-        description,
-        backgroundColor
-      }
-    });
-
-    it("renders correctly", () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-
-    it("renders correct background color", () => {
-      expect(
-        wrapper.classes(`fd-has-background-color-${backgroundColor}`)
-      ).toBe(true);
-    });
-  });
-
-  describe("As Button", () => {
-    const wrapper = mount(Tile, {
-      propsData: {
-        title,
-        description,
-        isButton: true
-      }
-    });
-
-    it("renders correctly", () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-
-    it("has role as a button", () => {
-      expect(wrapper.attributes("role")).toEqual("button");
-    });
-  });
-
-  describe("Disabled", () => {
-    const wrapper = mount(Tile, {
-      propsData: {
-        title,
-        description,
-        disabled: true
-      }
-    });
-
-    it("renders correctly", () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-
-    it("is disabled", () => {
-      expect(wrapper.attributes("aria-disabled")).toEqual("true");
-    });
-  });
-
-  describe("With Slot Media", () => {
-    const wrapper = mount(Tile, {
-      propsData: {
-        title,
-        description
-      },
-      slots: {
-        media: {
-          render(h) {
-            return h(Identifier);
-          }
-        }
-      }
-    });
-
-    it("renders correctly", () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-
-    it("has media slot", () => {
-      expect(wrapper.contains(".fd-tile__media")).toBe(true);
-    });
-  });
-
-  describe("Row Col Span", () => {
-    const rowSpan = 3;
-    const colSpan = 5;
-
-    const wrapper = mount(Tile, {
-      propsData: {
-        title,
-        description,
-        rowSpan,
-        colSpan
-      }
-    });
-
-    it("renders correctly", () => {
-      expect(wrapper.element).toMatchSnapshot();
-    });
-
-    it("renders correct row & col span", () => {
-      expect(wrapper.contains(`.fd-has-grid-row-span-${rowSpan}`)).toBe(true);
-      expect(wrapper.contains(`.fd-has-grid-column-span-${colSpan}`)).toBe(
-        true
-      );
-    });
+  it("renders correctly as button", () => {
+    wrapper.vm.isButton = true;
+    expect(wrapper.element).toMatchSnapshot("button tile");
   });
 });

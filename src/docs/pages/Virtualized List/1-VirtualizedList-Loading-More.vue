@@ -43,7 +43,11 @@ The example below loads new items for ever and ever. You will never reach the en
     key-field="id"
   >
     <template #item="{ item, index }">
-      <div style="padding: 20px;">{{ item.title }}[{{ index }}]</div>
+      <fd-tile transparent is-button>
+        <fd-tile-content>
+          <fd-tile-title>#{{ index }} {{ item.title }}</fd-tile-title>
+        </fd-tile-content>
+      </fd-tile>
     </template>
   </fd-virtualized-list>
 </template>

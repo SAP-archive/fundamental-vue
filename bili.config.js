@@ -15,8 +15,8 @@ module.exports = {
     commonjs: true
   },
   output: {
-    // Virtualized List needs CSS but we want to include it.
-    extractCSS: false
+    // This will generate a single css file for all the custom styles we need in Fundamental Vue.
+    extractCSS: true
   },
   runtimeHelpers: true,
   globals: {

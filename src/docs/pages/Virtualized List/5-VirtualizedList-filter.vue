@@ -2,11 +2,19 @@
 
 <template>
   <div>
-    <fd-input placeholder="Enter Search Query…" v-model="query" />
-    <fd-button styling="emphasized" icon="search" @click="applyQuery"
-      >Search</fd-button
-    >
-    <fd-button @click="reset">Reset</fd-button>
+    <fd-input-group-search>
+      <template #input>
+        <input
+          @change="applyQuery"
+          type="search"
+          v-model="query"
+          placeholder="Enter Search Query and press Enter…"
+        />
+      </template>
+      <template #clear>
+        <fd-input-group-clear-button @click="reset" />
+      </template>
+    </fd-input-group-search>
 
     <fd-virtualized-list
       key-field="id"
@@ -18,15 +26,17 @@
       :size-dependencies="['item.title']"
     >
       <template #item="{ item, index }">
-        <div style="width: 100%; padding: 20px;">{{ item.title }}</div>
+        <fd-tile transparent is-button>
+          <fd-tile-content>
+            <fd-tile-title>#{{ index }} {{ item.title }}</fd-tile-title>
+          </fd-tile-content>
+        </fd-tile>
       </template>
     </fd-virtualized-list>
   </div>
 </template>
 
 <script>
-import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
-
 class MockBackend {
   constructor() {
     // Generate sample items:
