@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.15.0-rc.5](https://github.com/SAP/fundamental-vue/compare/v0.15.0-rc.4...v0.15.0-rc.5) (2019-06-29)
+
+
+### Features
+
+* added context menu and context button components ([1aaf128](https://github.com/SAP/fundamental-vue/commit/1aaf128))
+
+
+
 ## [0.15.0-rc.4](https://github.com/SAP/fundamental-vue/compare/v0.15.0-rc.3...v0.15.0-rc.4) (2019-06-29)
 
 
