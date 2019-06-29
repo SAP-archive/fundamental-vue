@@ -1,5 +1,19 @@
 {
   "components": {
+    "FdContextMenu": {
+      "slots": {},
+      "props": {},
+      "events": {},
+      "mixins": [],
+      "componentName": "FdContextMenu"
+    },
+    "FdContextButton": {
+      "slots": {},
+      "props": {},
+      "events": {},
+      "mixins": [],
+      "componentName": "FdContextButton"
+    },
     "FdVirtualizedList": {
       "slots": {},
       "props": {},
