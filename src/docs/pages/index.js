@@ -1,5 +1,5 @@
-import pagesJson from "./pages.json";
-export const pages = pagesJson;
+import slugify from "./../util/slugify";
+import deslugify from "./../util/deslugify";
 
 const examplesContext = require.context("./", true, /\.vue$/);
 const examplesCodeContext = require.context(
@@ -7,6 +7,52 @@ const examplesCodeContext = require.context(
   true,
   /\.vue$/
 );
+
+class Page {
+  constructor({ key, slug, relatedComponents }) {
+    this.slug = slug;
+    this.key = key;
+    this.title = deslugify(slug);
+    this.relatedComponents = relatedComponents;
+  }
+}
+
+export const getPages = () => {
+  /** @param {string} key */
+  const slugFromKey = key => {
+    let withoutPrefix = key;
+    if (key.startsWith("./")) {
+      withoutPrefix = key.substring(2);
+    }
+    const indexModuleIndex = withoutPrefix.indexOf("/index.js");
+    if (indexModuleIndex >= 0) {
+      withoutPrefix = withoutPrefix.substring(0, indexModuleIndex);
+    }
+    // we are calling slugify because atm the directory name is
+    // not yet slugified.
+    return slugify(withoutPrefix);
+  };
+  const context = require.context("./", true, /index.js$/);
+  // eg.: "./Action Bar/index.js"
+  /** @type {string[]} */
+  const keys = context.keys().filter(key => key !== "./index.js");
+  const pages = [];
+
+  keys.forEach(key => {
+    const pageModule = context(key);
+    const defaultExport = pageModule.default;
+    if (pageModule == null) {
+      // eslint-disable-next-line no-console
+      console.warn(`page ${key} has no default export.`);
+      return;
+    }
+    const { relatedComponents = [] } = defaultExport;
+    const slug = slugFromKey(key);
+    pages.push(new Page({ key, slug, relatedComponents }));
+  });
+
+  return pages;
+};
 
 export const getExamples = collectionName => {
   // Contains stringe like: ./Button/group.vue

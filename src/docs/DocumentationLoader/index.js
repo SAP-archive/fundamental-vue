@@ -1,6 +1,4 @@
-import allPages from "./../pages/pages.json";
-import { getExamples } from "./../pages";
-import { frameworkDocumentation } from "./../api";
+import { getExamples, getPages } from "./../pages";
 import { log } from "./../core";
 
 export class Example {
@@ -25,15 +23,6 @@ export class Example {
   }
 }
 
-class Page {
-  constructor({ slug, title, related, icon }) {
-    this.slug = slug;
-    this.title = title;
-    this.related = related;
-    this.icon = icon;
-  }
-}
-
 export default class DocumentationLoader {
   static install(VueCtor) {
     log("Installing DocumentationLoader Plugin…");
@@ -41,7 +30,7 @@ export default class DocumentationLoader {
   }
 
   constructor() {
-    this.pages = allPages.map(page => new Page(page));
+    this.pages = getPages();
   }
 
   exampleForId(id) {
@@ -66,20 +55,6 @@ export default class DocumentationLoader {
       return [];
     }
     return getExamples(page.title).map(example => new Example(example));
-  }
-
-  relatedComponentDocumentation({ related }) {
-    const { components } = frameworkDocumentation;
-    return related.map(componentName => {
-      return components[componentName];
-    });
-  }
-  relatedComponentDocumentationForPageWithSlug(slug) {
-    const page = this.pageForSlug(slug);
-    if (page == null) {
-      return [];
-    }
-    return this.relatedComponentDocumentation(page);
   }
 
   pageForSlug(slug) {

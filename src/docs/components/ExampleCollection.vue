@@ -1,5 +1,27 @@
 <template>
   <div>
+    <div v-fd-margin:large.bottom>
+      <h2
+        style="color: #555555; line-height: 45px; border-bottom: 1px solid #eeeeee;"
+        v-fd-font-weight:light
+        v-fd-type:5
+      >
+        {{ page.title }}
+      </h2>
+      <div v-if="relatedComponentNames.length > 0">
+        <p>Related Components:</p>
+        <ul>
+          <li
+            class="example-collection__related-component-list-item"
+            v-for="name in relatedComponentNames"
+            :key="name"
+          >
+            <component-api-link :component-name="name" />
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <component-example
       v-for="example in examples"
       :key="keyForExample(example)"
@@ -12,27 +34,14 @@
       :condensed="example.condensed"
       :fullscreenOnly="example.fullscreenOnly"
     />
-    <div v-if="documentedComponents.length > 0">
-      <component-reference
-        v-fd-margin:large.bottom
-        :componentDocumentation="documentedComponent"
-        v-for="documentedComponent in documentedComponents"
-        :key="keyForComponentDocumentation(documentedComponent)"
-      />
-    </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      relatedComponents: []
-    };
-  },
   methods: {
-    keyForExample(example) {
-      return `example-${example.code}-${example.id}`;
+    keyForExample({ id }) {
+      return `example-${id}`;
     },
     keyForComponentDocumentation(documentation) {
       return `api-${documentation.componentName}`;
@@ -40,20 +49,40 @@ export default {
   },
 
   computed: {
+    relatedComponentNames() {
+      return this.docLoader.pageForSlug(this.slug).relatedComponents;
+    },
+    slug() {
+      return this.route.params.slug;
+    },
+    page() {
+      return this.docLoader.pageForSlug(this.slug);
+    },
+    docLoader() {
+      return this.$docLoader;
+    },
     examples() {
-      const { slug } = this.route.params;
-      return this.$docLoader.examplesForPageWithSlug(slug);
+      const { slug, docLoader } = this;
+      return docLoader.examplesForPageWithSlug(slug);
     },
     route() {
       return this.$route;
-    },
-    documentedComponents() {
-      const { slug } = this.route.params;
-      const documentation = this.$docLoader.relatedComponentDocumentationForPageWithSlug(
-        slug
-      );
-      return documentation;
     }
   }
 };
 </script>
+
+<style>
+.example-collection__related-components-title {
+  font-weight: heavy;
+}
+
+.example-collection__related-component-list-item {
+  display: inline;
+}
+.example-collection__related-component-list-item:not(:first-child):before {
+  content: "–";
+  margin-left: 5px;
+  margin-right: 5px;
+}
+</style>

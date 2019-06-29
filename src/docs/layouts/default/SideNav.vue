@@ -2,12 +2,11 @@
   <FdSideNav class="side-nav" mode="router">
     <fd-side-nav-list :items="staticPages">
       <template #item="item">
-        <fd-side-nav-item :item="item">
+        <fd-side-nav-item>
           <fd-side-nav-link
             data-side-nav-link
             class="side-nav-item__link"
             as-router-link
-            :item="item"
             :to="item.to"
           >
             {{ item.name }}
@@ -15,23 +14,20 @@
         </fd-side-nav-item>
       </template>
     </fd-side-nav-list>
-    <FdSideNavGroup>
-      <fd-side-nav-list :items="examplePages">
-        <template #item="item">
-          <fd-side-nav-item :item="item">
-            <fd-side-nav-link
-              data-side-nav-link
-              class="side-nav-item__link"
-              as-router-link
-              :item="item"
-              :to="item.to"
-            >
-              {{ item.name }}
-            </fd-side-nav-link>
-          </fd-side-nav-item>
-        </template>
-      </fd-side-nav-list>
-    </FdSideNavGroup>
+    <fd-side-nav-list :items="examplePages">
+      <template #item="item">
+        <fd-side-nav-item>
+          <fd-side-nav-link
+            data-side-nav-link
+            class="side-nav-item__link"
+            as-router-link
+            :to="item.to"
+          >
+            {{ item.name }}
+          </fd-side-nav-link>
+        </fd-side-nav-item>
+      </template>
+    </fd-side-nav-list>
   </FdSideNav>
 </template>
 
@@ -44,7 +40,6 @@ export default {
         return {
           id: page.slug,
           name: page.title,
-          icon: page.icon,
           to: {
             name: "example",
             params: { slug: page.slug }
@@ -84,6 +79,7 @@ export default {
   max-width: 250px;
   min-width: 250px;
   padding-top: 30px;
+  padding-bottom: 100px; /* so that users can scroll beyond the last item */
   box-shadow: inset 0 -20px 10px #cccccc;
 }
 </style>

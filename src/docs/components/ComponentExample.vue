@@ -1,6 +1,6 @@
 <template>
   <div class="component-example">
-    <h1 v-fd-font-weight:light v-fd-type:4 class="example-title">
+    <h3 v-fd-font-weight:light v-fd-type:4 class="example-title">
       {{ title }}
       <FdButton
         compact
@@ -10,7 +10,7 @@
         icon="popup-window"
         @click="showExampleStandalone"
       />
-    </h1>
+    </h3>
 
     <div v-if="docs !== ''" class="docs rendered-markdown" v-html="docs" />
     <FdPanel condensed condensedFooter>
@@ -119,7 +119,7 @@ export default {
   padding: 0px
   margin-bottom: 40px
   .example-title
-    color: #555555
+    color: #888888
   .example__show_code
     color: #aaaaaa
     cursor: pointer
