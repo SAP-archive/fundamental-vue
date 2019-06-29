@@ -8,6 +8,8 @@ import Button from "./Button";
 import ButtonGroup from "./ButtonGroup";
 import Calendar from "./Calendar";
 import Combobox from "./Combobox";
+import ContextMenu from "./ContextMenu";
+import ContextButton from "./ContextButton";
 import ComboboxMenu from "./ComboboxMenu";
 import Counter from "./Counter";
 import DatePicker from "./DatePicker";
@@ -64,6 +66,8 @@ const plugin = {
       Combobox,
       ComboboxMenu,
       Counter,
+      ContextMenu,
+      ContextButton,
       DatePicker,
       DatePickerCalendar,
       DatePickerInput,
