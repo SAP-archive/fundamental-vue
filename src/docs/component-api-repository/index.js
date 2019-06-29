@@ -2,7 +2,7 @@
 import slugify from "./../util/slugify";
 
 class ComponentApiRepository {
-  // a key looks like: './FdAlert.json'
+  // a key looks like: './fd-alert.json'
   constructor(keys) {
     this.keys = keys;
   }
@@ -25,12 +25,13 @@ class ComponentApiRepository {
 
   /** @param {string} key */
   routeForKey(key) {
+    const path = this.slugifiedComponentName(key);
     return {
       props: {
         componentKey: key
       },
-      name: `component-api.${slugify(key)}`,
-      path: this.slugifiedComponentName(key)
+      name: `component-api.${path}`,
+      path
     };
   }
 }

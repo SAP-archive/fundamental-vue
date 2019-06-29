@@ -35,6 +35,7 @@ export default {
       default: false
     }
   },
+  inheritAttrs: false,
   inject: ["fdItemProvider", "sideNavStore"],
   computed: {
     item() {

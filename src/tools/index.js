@@ -4,8 +4,13 @@ const { Render } = require("@vuese/markdown-render");
 const klawSync = require("klaw-sync");
 const Path = require("path");
 const fs = require("fs");
-
 const isSFCFile = item => Path.parse(item.path).ext === ".vue";
+
+const kebabCased = str =>
+  str
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .replace(/[\s_]+/g, "-")
+    .toLowerCase();
 
 /**
  * For context see below.
@@ -39,7 +44,14 @@ const mergedSlot = (lhsSlot, rhsSlot) => {
       : rhsBindings;
   // The default seems to be 'false' – so if lhsScoped is true we take that. Otherwise we simply use rhsScoped
   const scoped = lhsScoped === true ? true : rhsScoped;
-  return { scoped, name, describe, backerDesc, bindings };
+  return {
+    target: lhsSlot.target,
+    scoped,
+    name,
+    describe,
+    backerDesc,
+    bindings
+  };
 };
 
 /**
@@ -135,15 +147,16 @@ const _writeMarkdown = ({ filename, outputDir, result }) => {
   });
   const render = new Render(result);
   const markdown = render.renderMarkdown() || {};
+  // @ts-ignore
   fs.writeFileSync(destination, markdown.content || "");
 };
-const writeApi = ({ path, result }) => {
+const writeApi = ({ result }) => {
   /** @type {string} */
   const componentName = result.name || "";
   if (!componentName.toLowerCase().startsWith("fd")) {
     return;
   }
-  const filename = `${componentName || Path.parse(path).name}.json`;
+  const filename = `${kebabCased(componentName)}.json`;
   const source = JSON.stringify(result, null, 2);
   const dest = Path.resolve(outputDir, filename);
   fs.writeFileSync(dest, source);

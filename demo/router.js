@@ -8,8 +8,6 @@ const routePages = pages.map(page => {
   };
 });
 
-console.log(routePages)
-
 export default new VueRouter({
   mode: "history",
   routes: [
