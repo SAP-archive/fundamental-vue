@@ -23,11 +23,11 @@
       :min-item-size="20"
     >
       <template #item="{ item, index }">
-        <fd-tile
-          style="background-color: transparent;"
-          is-button
-          :title="item.displayableComponentName"
-        ></fd-tile>
+        <fd-tile style="background-color: transparent;" is-button>
+          <fd-tile-content>
+            <fd-tile-title>{{ item.displayableComponentName }}</fd-tile-title>
+          </fd-tile-content>
+        </fd-tile>
       </template>
     </fd-virtualized-list>
   </div>

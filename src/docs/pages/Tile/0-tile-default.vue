@@ -1,0 +1,10 @@
+<title>Simple Tile</title>
+
+<template>
+  <fd-tile>
+    <fd-tile-content>
+      <fd-tile-title>Tile Title</fd-tile-title>
+      <p>Tile Description</p>
+    </fd-tile-content>
+  </fd-tile>
+</template>

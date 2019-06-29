@@ -12,15 +12,17 @@
       style="height: 400px;"
     >
       <template #item="{ item, index }">
-        <div style="padding: 20px;">{{ item.title }}[{{ index }}]</div>
+        <fd-tile transparent is-button>
+          <fd-tile-content>
+            <fd-tile-title>#{{ index }} {{ item.title }}</fd-tile-title>
+          </fd-tile-content>
+        </fd-tile>
       </template>
     </fd-virtualized-list>
   </div>
 </template>
 
 <script>
-import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
-
 const createItem = maxIndex => ({
   title: `Item at Index ${maxIndex}`,
   id: `${maxIndex}`

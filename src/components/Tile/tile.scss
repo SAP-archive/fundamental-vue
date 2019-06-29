@@ -1,0 +1,7 @@
+.fdv-tile--transparent {
+  // Used to disable the background.
+  // This is highly useful when used inside an fd-virtualized-list:
+  // fd-virtualized-list is managing the selection already.
+  // The selection is not visible for non-transparent tiles.
+  background: transparent !important;
+}

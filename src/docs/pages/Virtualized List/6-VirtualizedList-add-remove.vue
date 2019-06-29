@@ -25,17 +25,17 @@ Clicking on `[Remove Item]` will remove the currently selected item from the lis
       style="height: 400px;"
     >
       <template #item="{ item, index }">
-        <div style="width: 100%; padding: 20px;">
-          Index {{ index }} – {{ item.title }}
-        </div>
+        <fd-tile transparent is-button>
+          <fd-tile-content>
+            <fd-tile-title>#{{ index }} {{ item.title }}</fd-tile-title>
+          </fd-tile-content>
+        </fd-tile>
       </template>
     </fd-virtualized-list>
   </div>
 </template>
 
 <script>
-import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
-
 const createItem = maxIndex => ({
   title: `Item at Index ${maxIndex}`,
   id: `${maxIndex}`

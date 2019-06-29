@@ -11,7 +11,7 @@
   },
   "debug.node.autoAttach": "on",
   "eslint.alwaysShowStatus": true,
-  "eslint.enable": false,
+  "eslint.enable": true,
   "eslint.packageManager": "yarn",
   "jest.debugMode": true,
   "jest.pathToConfig": "jest.config.js",

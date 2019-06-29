@@ -1,0 +1,6 @@
+@import "./../../../node_modules/fundamental-styles/scss/functions";
+@import "./../../../node_modules/fundamental-styles/scss/mixins";
+
+.fdv-virtualized-list .hover .fdv-virtualized-list-item {
+  background-color: fd-color-state("hover", "background");
+}
