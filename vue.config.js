@@ -1,103 +1,99 @@
-/* eslint-disable no-console */
+/* eslint-env node */
 // @ts-check
-
-const Process = require("process");
+// This require-statement has to be high up – otherwise you will get strange errors.
+const MarkdownItHighlight = require("./src/docs/_node/markdown/highlight");
+const grayMatter = require("gray-matter");
 const Path = require("path");
-const isE2e = process.env.FD_E2E === "true";
+const CreatePrerenderConfig = require("./vue-config/vue-spa.config");
 
-const { env } = Process;
+const MarkdownItPlugins = require("./src/docs/_node/markdown-plugins").all;
 
-const useSPA = env.FDV_SPA === "true";
-const VueSPAConfig = require("./vue-config/vue-spa.config");
+const baseUrl = process.env.BASE_URL;
 
-const configureWebpack = useSPA ? VueSPAConfig.configureWebpack : {};
+const FDD_PRERENDER = process.env.FDD_PRERENDER;
+const isInPrerendering = FDD_PRERENDER === "true";
+let prerenderConfig = {};
+if (isInPrerendering) {
+  prerenderConfig = CreatePrerenderConfig(baseUrl);
+}
+const outputDir = isInPrerendering ? { outputDir: prerenderConfig.outputDir } : {};
 
-const publicPath = isE2e
-  ? "/"
-  : process.env.NODE_ENV === "production" && process.argv[4] !== "--NETLIFY"
-  ? "/fundamental-vue/"
-  : "/";
+const configureWebpack = isInPrerendering ? prerenderConfig.configureWebpack : {};
 
-console.log("🌈  ", { publicPath });
+const publicPath = baseUrl;
+
+// eslint-disable-next-line no-console
+console.log("🌈  ", { FDD_PRERENDER, baseUrl, publicPath });
 
 module.exports = {
   publicPath,
-  configureWebpack,
+  ...outputDir,
+  configureWebpack: {
+    ...configureWebpack
+  },
   chainWebpack: config => {
-    if (useSPA) {
-      VueSPAConfig.chainWebpack(config);
+    if (isInPrerendering) {
+      prerenderConfig.chainWebpack(config);
     }
+
+    config.plugin("define").tap(definitions => {
+      definitions[0]["process.env"]["FDD_PRERENDER"] = JSON.stringify(FDD_PRERENDER);
+      return definitions;
+    });
+
+    config.module
+      .rule("vue")
+      .use("vue-loader")
+      .loader("vue-loader")
+      .tap(() => {
+        return {
+          compilerOptions: {
+            whitespace: "condense"
+          }
+        };
+      });
+    config.module
+      .rule("md")
+      .test(/\.md/)
+      .use("vue-loader")
+      .loader("vue-loader")
+      .options({
+        compilerOptions: {
+          whitespace: "condense"
+        }
+      })
+      .end()
+      .use("vue-markdown-loader")
+      .loader("vue-markdown-loader/lib/markdown-compiler")
+      .options({
+        preventExtract: true,
+        use: MarkdownItPlugins,
+        raw: true,
+        wrapper: "div",
+        highlight: MarkdownItHighlight,
+        preprocess(_parser, source) {
+          const result = grayMatter(source);
+          const relatedComponents = result.data.fdRelatedComponents || [];
+          const renderRelatedComponents = () => {
+            if (relatedComponents.length === 0) {
+              return "";
+            }
+            const wrapped = relatedComponents.map(c => `'${c}'`);
+            const relCompAttrs = `[${wrapped.join(", ")}]`;
+            const rendered = `\n\n<d-related-components-section :component-names="${relCompAttrs}">\n</ d-related-components-section>\n\n`;
+            return rendered;
+          };
+          let md = "";
+          md += result.content;
+          md += renderRelatedComponents();
+          return md;
+        }
+      });
 
     config.resolveLoader.modules
       .add("node_modules")
       .add(Path.resolve(__dirname, "loaders"))
       .end();
-
-    config.module
-      .rule("md")
-      .test(/\.md$/)
-      .use("html-loader")
-      .loader("html-loader")
-      .end();
-
-    config.module
-      .rule("md")
-      .use("markdown-loader")
-      .loader("markdown-loader")
-      .options({
-        highlight(code) {
-          return require("highlight.js").highlightAuto(code).value;
-        }
-      })
-      .end();
-
-    config.module
-      .rule("handle-title-tags")
-      .resourceQuery(/blockType=title/)
-      .use("block-loader")
-      .loader("block-loader")
-      .options({ optionName: "__title" });
-
-    config.module
-      .rule("handle-docs-tags")
-      .resourceQuery(/blockType=docs/)
-      .use("block-loader")
-      .loader("block-loader")
-      .options({ optionName: "__docs" });
-
-    config.module
-      .rule("handle-docs-tags")
-      .use("markdown-loader")
-      .loader("markdown-loader");
-
-    config.module
-      .rule("handle-tip-tags")
-      .resourceQuery(/blockType=tip/)
-      .use("block-loader")
-      .loader("block-loader")
-      .options({ optionName: "__tip" });
-
-    config.module
-      .rule("handle-tip-tags")
-      .use("markdown-loader")
-      .loader("markdown-loader");
-
-    config.module
-      .rule()
-      .resourceQuery(/blockType=condensed/)
-      .use("block-loader")
-      .loader("block-loader")
-      .options({ optionName: "__condensed" })
-      .end();
-
-    config.module
-      .rule()
-      .resourceQuery(/blockType=fullscreen-only/)
-      .use("block-loader")
-      .loader("block-loader")
-      .options({ optionName: "__fullscreenOnly" })
-      .end();
   },
-
   lintOnSave: false
 };

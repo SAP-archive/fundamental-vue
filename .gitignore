@@ -84,7 +84,6 @@ node_modules/
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
 #!.vscode/tasks.json
 #!.vscode/launch.json
 #!.vscode/extensions.json
@@ -98,3 +97,4 @@ node_modules
 tests/e2e/videos/*.mp4
 /api
 /tests/e2e/screenshots
+/.vscode/settings.json

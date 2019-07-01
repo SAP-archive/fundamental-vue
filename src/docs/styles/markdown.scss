@@ -1,0 +1,56 @@
+@import "markdown-vars";
+
+@mixin fdd-code {
+  border-radius: 4px;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  color: #476582;
+  font-weight: 400;
+  font-size: 0.9 * $md-font-size;
+  background-color: rgba(27, 31, 35, 0.05);
+}
+
+.fdd-md {
+  @for $i from 1 through 6 {
+    &--h#{$i} {
+      $scale-factor: 1 + ((6 - ($i - 1)) / 6);
+      font-size: $scale-factor * $md-font-size;
+      font-weight: 200;
+      color: rgb(110, 110, 110);
+      @if $i > 1 {
+        margin-top: 20px;
+      }
+      margin-bottom: 20px;
+    }
+  }
+  &--ol, &--ul {
+    font-size: $md-font-size;
+  }
+  &--li {
+    margin-left: 1rem;
+    margin-top: 8px;
+    font-size: $md-font-size;
+    line-height: $md-line-height;
+  }
+  &--blockquote {
+    font-size: 1rem;
+    color: #999;
+    border-left: .2rem solid #dfe2e5;
+    margin: 1rem 0;
+    padding: .25rem 0 .25rem 1rem;
+    > p {
+      margin: 0;
+    }
+  }
+  &--p {
+    font-size: $md-font-size;
+    line-height: $md-line-height;
+    margin-top: 1.5 * $md-font-size;
+    margin-bottom: 1.5 * $md-font-size;
+    code {
+      @include fdd-code;
+    }
+  }
+}

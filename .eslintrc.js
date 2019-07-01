@@ -1,7 +1,8 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    browser: true,
+    es6: true
   },
   rules: {
     "max-len": "off",
@@ -20,6 +21,7 @@ module.exports = {
         jest: true
       }
     }
+
   ],
 
   extends: ["plugin:vue/essential", "@vue/prettier"]

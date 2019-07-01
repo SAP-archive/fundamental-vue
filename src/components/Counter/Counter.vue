@@ -5,6 +5,7 @@
 <script>
 const counterTypeValues = ["info", "notification"];
 
+// Component to display counts
 export default {
   name: "FdCounter",
   props: {

@@ -6,5 +6,5 @@
 #    that is where we will look for package.json/.nvmrc/etc not repo root!
 
 [build]
-  publish = "dist"
+  publish = "docs/dist"
   command = "yarn build:docs:netlify"

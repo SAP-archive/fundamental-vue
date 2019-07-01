@@ -27,6 +27,8 @@
     ]
   },
   "include": [
+    "*.js",
+    "vue-config/*.js",
     "src/docs/**/*.vue",
     "src/**/*.vue",
     "src/**/*.vue",

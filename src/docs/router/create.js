@@ -1,24 +1,26 @@
 // @ts-check
 import Router from "vue-router";
-import { ExampleCollection, StaticContent, FullscreenDemo } from "./../components";
-import ComponentApiPage from "./../_pages/component-api-page.vue";
+// @ts-ignore
+import DComponentApi from "./../components/d-component-api.vue";
+// @ts-ignore
+import DExampleCollection from "./../components/d-example-collection.vue";
+// @ts-ignore
+import DExampleFullscreen from "./../components/d-example-fullscreen.vue";
 
-const createRouter = componentApiRepository => {
-  const keys = componentApiRepository.keys;
-  const componentApiRoutes = keys
-    .map(key => componentApiRepository.routeForKey(key))
-    .map(route => ({
-      ...route,
-      meta: {
-        // This disables to scroll to top feature.
-        // Scrolling in the api documentation is handled there.
-        scrollToTop: false
-      },
-      // @ts-ignore
-      component: () => import("./../components/d-component-api.vue")
-    }));
+// @ts-ignore
+import README_MD from "./../../../README.md";
+// @ts-ignore
+import NEW_COMPONENT_GUIDE_MD from "./../static-pages/NEW_COMPONENT/NEW_COMPONENT.md";
+
+// eslint-disable-next-line no-undef
+const baseUrl = process.env.BASE_URL;
+// eslint-disable-next-line no-undef
+const prerender = process.env.FDD_PRERENDER === "true";
+
+const createRouter = () => {
   return new Router({
-    mode: "hash",
+    base: baseUrl,
+    mode: prerender ? "history" : "hash",
     // Scroll the main component to the top.
     scrollBehavior(to) {
       const { meta = {} } = to;
@@ -40,40 +42,31 @@ const createRouter = componentApiRepository => {
       {
         path: "/",
         name: "home",
-        component: StaticContent,
-        meta: { layout: "Default" },
-        props: { html: require("./../static-pages/start.md") }
+        component: README_MD,
+        meta: { layout: "default" }
       },
       {
-        path: "/api",
         name: "api",
-        component: ComponentApiPage,
-        meta: {
-          // This disables to scroll to top feature.
-          // Scrolling in the api documentation is handled there.
-          scrollToTop: false
-        },
-        children: componentApiRoutes
+        path: "/api/:slug",
+        meta: { layout: "default" },
+        component: DComponentApi
       },
       {
         name: "guide-new-component",
         path: "/guide/new-component",
-        component: StaticContent,
-        props: {
-          html: require("./../static-pages/NEW_COMPONENT/NEW_COMPONENT.md")
-        }
+        component: NEW_COMPONENT_GUIDE_MD
       },
       {
-        path: "/example/:slug",
+        name: "examples",
+        path: "/examples/:slug",
+        meta: { layout: "default" },
+        component: DExampleCollection
+      },
+      {
         name: "example",
-        meta: { layout: "Default" },
-        component: ExampleCollection
-      },
-      {
-        path: "/demo/:id",
-        name: "example-demo",
-        meta: { layout: "Fullscreen" },
-        component: FullscreenDemo
+        path: "/example/:collection/:example",
+        meta: { layout: "fullscreen" },
+        component: DExampleFullscreen
       }
     ]
   });

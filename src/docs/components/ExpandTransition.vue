@@ -8,7 +8,7 @@
     @enter="enter"
     @before-enter="beforeEnter"
   >
-    <slot></slot>
+    <slot />
   </transition>
 </template>
 
