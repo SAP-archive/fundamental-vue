@@ -94,13 +94,6 @@ export default {
       return index < 0 ? undefined : items[index];
     }
   },
-  watch: {
-    selectedItem(selectedItem) {
-      // Triggers when the selected item changes.
-      // @arg the selected item or null
-      this.$emit("update:selectedItem", selectedItem);
-    }
-  },
   mounted() {
     if (this.items.length === 0) {
       this.startToLoadMoreItems();
@@ -157,6 +150,9 @@ export default {
     },
     selectItem(item) {
       this.selectedId = this.idForItem(item);
+      // Triggers when the selected item changes.
+      // @arg the selected item or null
+      this.$emit("update:selectedItem", this.selectedItem);
     },
     rowClasses(item) {
       const selected = this.itemIsSelected(item); //this.idForItem(item) === this.selectedId;

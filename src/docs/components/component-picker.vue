@@ -35,14 +35,6 @@
 
 <script>
 export default {
-  watch: {
-    selectedComponentItem: {
-      handler({ key } = { key: null }) {
-        this.$emit("input", key);
-      },
-      deep: true
-    }
-  },
   computed: {
     componentItems() {
       const keys = this.$componentApiRepository.keys;
@@ -69,23 +61,15 @@ export default {
       this.predicate = "";
       this.$refs.searchInput.focus();
     },
-    selectComponentItem(componentItem) {
-      if (componentItem == null) {
-        this.selectedComponentItem = {
-          id: null,
-          displayableComponentName: null
-        };
-      } else {
-        this.selectedComponentItem = componentItem;
-      }
+    selectComponentItem(item) {
+      const key = item == null ? null : item.key;
+      this.selectedComponentKey = key;
+      this.$emit("input", this.selectedComponentKey);
     }
   },
   data() {
     return {
-      selectedComponentItem: {
-        key: null,
-        displayableComponentName: null
-      },
+      selectedComponentKey: null,
       predicate: ""
     };
   }
