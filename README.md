@@ -30,7 +30,7 @@ Some prior knowledge of Vue is required for using this library.
 
 Paste the following snippet in your `<head>`-tag:
 
-```html
+```xml
 <link
     rel="stylesheet"
     href="https://unpkg.com/fiori-fundamentals@latest/dist/fiori-fundamentals.min.css"
@@ -41,7 +41,7 @@ Paste the following snippet in your `<head>`-tag:
 
 Then you can use Fundamental Vue like this:
 
-```html
+```xml
 <div id="app">
   <fd-popover v-fd-margin:large placement="bottom-start" with-arrow>
     <h1 v-fd-margin:large>
@@ -60,7 +60,7 @@ When using *Fundamental Vue* via a `<script>`-tag you don't have to install it m
 
 If you are targeting IE 11 you have to include the IE-compatible build of Fiori Fundamentals:
 
-```
+```xml
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@latest/dist/fiori-fundamentals-ie11.min.css">
 ```
 
@@ -74,7 +74,7 @@ To download and use this library, you first need to install the node package man
 
     NPM
 
-    ```
+    ```bash
     $ npm install --save fundamental-vue
     ```
 
@@ -82,11 +82,10 @@ To download and use this library, you first need to install the node package man
 
     In your project's `main.js`:
 
-    ```
-    // ...
+    ```js
     import FundamentalVue from 'fundamental-vue';
     Vue.use(FundamentalVue);
-    // ...
+    // …
     ```
 
     Fundamental Vue does not include the ['Fiori Fundamentals' library](https://github.com/SAP/fundamental) which is required for styling.
@@ -95,7 +94,7 @@ To download and use this library, you first need to install the node package man
 
     The quickest way to get Fiori Fundamentals styling for your components is to include the compiled and minified Fiori Fundamentals CSS library with the following CDN link in your public `index.html` file:
 
-    ```
+    ```xml
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/fiori-fundamentals@latest/dist/fiori-fundamentals.min.css">
     ```
 
@@ -103,13 +102,13 @@ To download and use this library, you first need to install the node package man
 
     To install the Fiori Fundamentals SASS/SCSS source:
 
-    ```
+    ```sh
     $ npm install --save fiori-fundamentals
     ```
 
     The following assumes the usage of a module bundler such as [webpack](https://webpack.js.org/). To compile Fiori Fundamentals SASS/SCSS to CSS, two additional packages are required for your bundling process - [sass-loader](https://github.com/webpack-contrib/sass-loader) and [node-sass](https://github.com/sass/node-sass). To install these packages as development dependencies:
 
-    ```
+    ```sh
     $ npm install sass-loader node-sass --save-dev
     ```
 
@@ -119,24 +118,21 @@ To download and use this library, you first need to install the node package man
 
     Add the following to the main SCSS file:
 
-    ```
+    ```scss
     // If you are targeting IE 11 uncomment the following line.
     // $fd-support-css-var-fallback: true;
-
-    $fd-icons-path : "../node_modules/fiori-fundamentals/scss/icons/"; // should be declared before the scss import
-
+    // should be declared before the scss import
+    $fd-icons-path : "../node_modules/fiori-fundamentals/scss/icons/";
     $fd-scss-font-path : "../node_modules/fiori-fundamentals/scss/fonts/";
-
     @import "../node_modules/fiori-fundamentals/scss/all.scss";
     ```
 
     Import the main SCSS file in your `App.js` style block to add Fiori Fundamentals styles to your project.
 
-    ```
+    ```scss
     <style lang='scss'>
-    ...
     @import "./scss/main.scss";
-    ...
+    // …
     </style>
     ```
 
@@ -144,12 +140,10 @@ To download and use this library, you first need to install the node package man
 
     To use a Fundamental Vue component, paste the desired code snippet from the Playground and configure it as necessary:
 
-    ```
-    ...
-    <FdAlert dismissible>
-          Happy building! 🚀
-    </FdAlert>
-    ...
+    ```xml
+    <fd-alert dismissible>
+        Happy building! 🚀
+    </fd-alert>
     ```
 
 ## Versioning

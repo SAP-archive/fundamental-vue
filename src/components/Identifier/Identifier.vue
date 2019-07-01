@@ -46,7 +46,7 @@ export default {
         return {};
       }
       return {
-        backgroundImage: `url(${this.url})`
+        backgroundImage: `url('${this.url}')`
       };
     }
   }

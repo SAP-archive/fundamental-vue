@@ -98,12 +98,18 @@ export default {
     };
   },
   props: {
+    // The date-value represented by this date picker
     value: {
+      // `{ from?: Date, to?: Date }`
       type: Object,
+      // `{ from: null, to: null }`
       default: createNullDate
     },
+    // Selection mode
     mode: {
+      // `single` / `range`
       type: String,
+      // `single` – only a single date can be selected
       default: "single"
     }
   }

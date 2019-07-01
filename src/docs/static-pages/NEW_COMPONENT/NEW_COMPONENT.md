@@ -6,7 +6,7 @@
 
 For the purpose of this guide, lets assume that you want to create a component called `Flower`. Create a folder that contains all of your files. For example:
 
-```
+```bash
 $ mkdir ui/src/components/Flower
 $ touch ui/src/components/Flower/index.ts
 $ touch ui/src/components/Flower/Flower.vue
@@ -18,7 +18,7 @@ $ touch ui/src/components/Flower/Util.ts
 
 **ui/src/components/Flower/Flower.vue**
 
-```
+```xml
 <template>
   <div :style="style">I am a flower</div>
 </template>
@@ -66,32 +66,32 @@ In order to make your component available to the public you have to document the
 
 In order to create a example for your new component create the necessary files:
 
-```shell
+```bash
 $ mkdir docs/src/pages/Flower
 $ touch docs/src/pages/Flower/0-default.vue
 $ touch docs/src/pages/Flower/index.ts
 ```
 
-Examples are implemented as single file components (in our case `docs/src/pages/Flower/0-default.vue`) because this is what most Vue developers are using. You can put anything you want in the vue-file: a `<template>`-block, a `<script>`-block and a `<style>`-block. 
+Examples are implemented as single file components (in our case `docs/src/pages/Flower/0-default.vue`) because this is what most Vue developers are using. You can put anything you want in the vue-file: a `<template>`-block, a `<script>`-block and a `<style>`-block.
 
-Fundamental Vue examples may contain additional documentation specific blocks. 
+Fundamental Vue examples may contain additional documentation specific blocks.
 
 **_baseline.json:**
  docs/src/api/_baseline.json
 
-Here you add the documentation that needs to be added for your component; like the possible slots, props, events, mixins etc. 
-  
+Here you add the documentation that needs to be added for your component; like the possible slots, props, events, mixins etc.
+
 **pages.json:**
  docs/src/pages/pages.json
 
-Here you add the page configuration in which the documentation will be shown; like the title that comes on the left section, the files that need to be read and stuff. 
+Here you add the page configuration in which the documentation will be shown; like the title that comes on the left section, the files that need to be read and stuff.
 
 Lets simply implement the most basic example possible:
 ### Simple Example
 
 **docs/src/pages/Flower/0-default.vue**
 
-```xhtml
+```xml
 <template>
   <FdFlower color="red" />
 </template>
@@ -109,7 +109,7 @@ As already mentioned in the paragraph above, you can improve your example by usi
 
 **docs/src/pages/Flower/0-default.vue**
 
-```xhtml
+```xml
 <title>Red Flower (Rose)</title>
 <docs>Roses are **red**, __Violets__ are ~blue~, Sugar is sweet, And so are you.</docs>
 <tip>Plant roses under trees for **best** results.</tip>
@@ -128,8 +128,7 @@ A good component should either be localized or localizable.
 Since there is no Fundamental Vue-wide localisation and internationalization concept (localized icons, right-to-left-support, …) you should at least create an issue for the component you implemented.
 
 ## Accessibility
-Having an accessible component directly means catering to a broader audience than otherwise. 
-It needs to be noted that each new component is expected to be accessible. 
+Having an accessible component directly means catering to a broader audience than otherwise.
+It needs to be noted that each new component is expected to be accessible.
 
-For details, please refer to: https://www.w3.org/TR/wai-aria-practices-1.1/
-
+For details, please refer to: [https://www.w3.org/TR/wai-aria-practices-1.1/](https://www.w3.org/TR/wai-aria-practices-1.1/)

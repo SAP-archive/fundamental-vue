@@ -1,3 +1,4 @@
+/* eslint-env node */
 // @ts-check
 
 // Thanks: https://gist.github.com/mathewbyrne/1280286
@@ -12,4 +13,5 @@ const slugify = text => {
     .replace(/^-+/, "") // Trim - from start of text
     .replace(/-+$/, ""); // Trim - from end of text
 };
+
 module.exports = slugify;

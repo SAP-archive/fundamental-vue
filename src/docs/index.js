@@ -1,46 +1,55 @@
+// @ts-check
+// @ts-ignore
 import Vue from "vue";
 import FundamentalVue from "./../index.js";
+import "./main.scss";
+import Layouts from "./layouts";
+// @ts-ignore
 import App from "./App.vue";
 import Router from "vue-router";
-import DocumentationLoader from "./DocumentationLoader";
 import VueVirtualScroller from "vue-virtual-scroller";
 import VueObserveVisibility from "vue-observe-visibility";
 import createRouter from "./router/create";
-import { registerComponents } from "./components";
-import "./main.scss";
-import ComponentApiRepository from "./component-api-repository";
-import DefaultLayout from "./layouts/DefaultLayout.vue";
-import FullscreenLayout from "./layouts/FullscreenLayout.vue";
+import DocumentationComponents from "./components";
 import "prismjs";
+import VueClipboard from "vue-clipboard2";
 
-const ComponentApiContext = require.context("./../../api/", true, /\.json$/);
+import Examples from "./content/examples";
+import MDPages from "./content/en_us";
+import getDocumentedComponents from "./get-documented-components";
+import DocumentedComponentsPlugin from "./get-documented-components/vue-plugin";
+import "prismjs/components/prism-typescript.min";
+import "prismjs/components/prism-javascript.min";
+import "prismjs/components/prism-markup.min";
+import "prismjs/components/prism-scss.min";
+import "prismjs/components/prism-css.min";
+import "prismjs/components/prism-bash.min";
 
-// Vue.config.productionTip = true;
-Vue.use(Router);
-Vue.use(FundamentalVue);
-Vue.use(VueVirtualScroller);
-Vue.use(VueObserveVisibility);
+/**
+ * @type {import("vue").VueConstructor}
+ */
+const _Vue = Vue;
 
-// Install Plugins
-Vue.use(DocumentationLoader);
+// eslint-disable-next-line no-undef
+_Vue.prototype.$withBase = relativePath => `${process.env.BASE_URL}${relativePath}`;
+_Vue.use(VueClipboard);
+_Vue.use(DocumentedComponentsPlugin, { documentedComponents: getDocumentedComponents() });
+_Vue.config.productionTip = true;
+_Vue.use(Examples);
+_Vue.use(MDPages);
+_Vue.use(Router);
+_Vue.use(FundamentalVue);
+_Vue.use(VueVirtualScroller);
+_Vue.use(VueObserveVisibility);
+_Vue.use(DocumentationComponents);
+_Vue.use(Layouts);
+const router = createRouter();
 
-// Register Layouts globally so that they are available by name
-Vue.component("DefaultLayout", DefaultLayout);
-Vue.component("FullscreenLayout", FullscreenLayout);
-
-Vue.prototype.$withBase = relativePath => `${process.env.BASE_URL}${relativePath}`;
-
-Vue.prototype.$componentApiRepository = new ComponentApiRepository(ComponentApiContext.keys());
-
-const router = createRouter(Vue.prototype.$componentApiRepository);
-
-registerComponents(Vue);
-
-const app = new Vue({
+new Vue({
   router,
+  el: "#app",
   render: h => h(App),
   mounted() {
     document.dispatchEvent(new Event("render-event"));
   }
 });
-app.$mount("#app");

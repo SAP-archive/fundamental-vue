@@ -14,6 +14,7 @@ const bind = (el, binding, { context: vm }) => {
   const { expression, name, modifiers, value: callback } = binding;
 
   if (typeof callback !== "function") {
+    // eslint-disable-next-line no-undef
     if (process.env.NODE_ENV !== "production") {
       warn(`v-${name}=${expression} expects a function value, got ${callback}`);
     }

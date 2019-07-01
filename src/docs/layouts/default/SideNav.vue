@@ -32,16 +32,18 @@
 </template>
 
 <script>
+import { getExamplePages } from "./../../content/en_us";
+
 export default {
   computed: {
     examplePages() {
-      const pages = this.$docLoader.pages;
+      const pages = getExamplePages();
       return pages.map(page => {
         return {
-          id: page.slug,
+          id: page.key,
           name: page.title,
           to: {
-            name: "example",
+            name: "examples",
             params: { slug: page.slug }
           }
         };
@@ -80,6 +82,6 @@ export default {
   min-width: 250px;
   padding-top: 30px;
   padding-bottom: 100px; /* so that users can scroll beyond the last item */
-  box-shadow: inset 0 -20px 10px #cccccc;
+  border-right: 1px solid #ebebeb;
 }
 </style>

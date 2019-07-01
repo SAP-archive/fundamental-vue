@@ -10,11 +10,13 @@ const directive = {
       }
       const modal = vm.$refs[arg];
       if (modal == null) {
+        // eslint-disable-next-line no-undef
         if (process.env.NODE_ENV === "development") {
           throw Error(`[v-modal] Unable to modal ${arg}`);
         }
         return;
       }
+      // eslint-disable-next-line no-undef
       if (process.env.NODE_ENV === "development") {
         if (Array.isArray(modal)) {
           throw Error(`[v-modal] Unable to modal ${arg}`);

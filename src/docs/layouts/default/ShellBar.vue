@@ -16,8 +16,8 @@
             <template #control="{toggle}">
               <fd-shell-bar-action-button icon="search" @click="toggle" />
             </template>
-            <template #default>
-              <d-component-picker @input="navigateToComponent" />
+            <template #default="{hide}">
+              <d-component-picker @select="hide" />
             </template>
           </fd-popover>
         </fd-shell-bar-action>
@@ -25,41 +25,6 @@
     </fd-shell-bar-group>
   </fd-shell-bar>
 </template>
-
-<script>
-import DComponentPicker from "./../../components/component-picker.vue";
-
-export default {
-  components: { DComponentPicker },
-  methods: {
-    navigateToComponent(key) {
-      this.selectedComponent = key;
-      if (key == null) {
-        return;
-      }
-      const route = this.$componentApiRepository.routeForKey(key);
-      this.$router.push(route);
-      this.$refs.popover.hide();
-    }
-  },
-  computed: {
-    sidenavVisible: {
-      get() {
-        return this.sidenavVisibleModel.length === 1 && this.sidenavVisibleModel[0] === true;
-      },
-      set(visible) {
-        this.sidenavVisibleModel = [visible];
-      }
-    }
-  },
-  data() {
-    return {
-      selectedComponentKey: null,
-      sidenavVisibleModel: [true]
-    };
-  }
-};
-</script>
 
 <style lang="scss">
 .fdd-shell-bar {

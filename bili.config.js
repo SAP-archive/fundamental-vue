@@ -1,4 +1,8 @@
+/* eslint-env node */
+
 const { version } = require("./package.json");
+const Path = require("path");
+const Process = require("process");
 
 /** @type {import('bili').Config} */
 module.exports = {
@@ -10,6 +14,10 @@ module.exports = {
  * LICENCE: Apache-2.0
  * https://github.com/SAP/fundamental-vue
 */`,
+  babel: {
+    configFile: Path.join(Process.cwd(), "bili-babel.config.js"),
+    babelrc: false
+  },
   plugins: {
     vue: true,
     commonjs: true
