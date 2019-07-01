@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.15.0-rc.6](https://github.com/SAP/fundamental-vue/compare/v0.15.0-rc.5...v0.15.0-rc.6) (2019-07-01)
+
+
+### Features
+
+* improved fd-tile and fd-virtualized-list ([2c5b07f](https://github.com/SAP/fundamental-vue/commit/2c5b07f))
+
+
+
 ## [0.15.0-rc.5](https://github.com/SAP/fundamental-vue/compare/v0.15.0-rc.4...v0.15.0-rc.5) (2019-06-29)
 
 
