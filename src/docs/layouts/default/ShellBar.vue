@@ -35,8 +35,11 @@ export default {
   components: { DComponentPicker },
   methods: {
     navigateToComponent(key) {
-      const route = this.$componentApiRepository.routeForKey(key);
       this.selectedComponent = key;
+      if (key == null) {
+        return;
+      }
+      const route = this.$componentApiRepository.routeForKey(key);
       this.$router.push(route);
       this.$refs.popover.hide();
     }
