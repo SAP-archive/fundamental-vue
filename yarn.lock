@@ -1456,9 +1456,9 @@
     serve-handler "^5.0.7"
 
 "@vuese/markdown-render@^2.2.9":
-  version "2.2.9"
-  resolved "https://registry.yarnpkg.com/@vuese/markdown-render/-/markdown-render-2.2.9.tgz#181ca30b8a201dca2cb77ac725d2165a05aa294a"
-  integrity sha512-e2Y5rZPeCRMwvQ/sC+9z3jJcrQ6ac93yS/WgVPI2VCXHE2oykC9lGCKJJsnHlVh6iJiq+Hq4dv3JEYwSizkl8Q==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@vuese/markdown-render/-/markdown-render-2.3.0.tgz#1f60fd45359c3f1295eb6b8b6b16d27d146b645b"
+  integrity sha512-cBBDHtwS3VIKWWnUfC02CBW0z97DnKWzBehtgvqTzO3AHbAZe7D8teDvXgCdjC68gLteUDOTOnnyRt7TdJOeXQ==
 
 "@vuese/parser@^2.1.8":
   version "2.1.8"
