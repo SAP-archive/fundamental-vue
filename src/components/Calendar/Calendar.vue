@@ -68,10 +68,16 @@ const dateWithYearsFromNow = numberOfYears => {
 
 const createToday = () => new Date(Date.now());
 
+// Calendar component – usualy not used on it's own but in combination with `fd-date-picker`.
 export default {
-  mixins: [DisplayedDateMixin],
   name: "FdCalendar",
-  components: { DayPicker, MonthPicker, YearPicker, CalendarHeader },
+  mixins: [DisplayedDateMixin],
+  components: {
+    DayPicker,
+    MonthPicker,
+    YearPicker,
+    CalendarHeader
+  },
   watch: {
     value: {
       deep: true,
@@ -84,32 +90,48 @@ export default {
   },
   props: {
     ...Mode.prop,
+    // Date value that represents today.
     today: {
       type: Date,
+      // `new Date(Date.now())` – today
       default: createToday
     },
+    // Normalized value that is currently selected.
     value: {
+      // `{ from: null, to: null }`
       type: Object,
+      // `{ from: null, to: null }` – the `null`-date.
       default: () => ({ from: null, to: null })
     },
+    // Whether or not the header is visible
     headerVisible: {
       type: Boolean,
       default: true
     },
+    // Maximum date handled by the calendar.
     maxDate: {
       type: Date,
+      // 10 years from today
       default: () => dateWithYearsFromNow(10)
     },
+    // Minimum date handled by the calendar.
     minDate: {
       type: Date,
+      // -10 years from today
       default: () => dateWithYearsFromNow(-10)
     },
+    // Allows you to disable specific dates
     disabledDate: {
+      // `disabledDate(date: Date): boolean` – return `true` for the corresponding date to disable it.
       type: Function,
+      // `() => false` – by default no date is disabled.
       default: () => false
     },
+    // Allows you to block specific dates
     blockedDate: {
+      // `blockedDate(date: Date): boolean` – return `true` for the corresponding date to block it.
       type: Function,
+      // `() => false` – by default no date is blocked.
       default: () => false
     },
     hasPrevious: {
@@ -184,7 +206,6 @@ export default {
     emitCurrentSelection() {
       this.$emit("input", this.normalizedDate_.asFromToValue());
     },
-
     selectDate(date) {
       if (this.mode === Mode.single) {
         this.normalizedDate.from = date;

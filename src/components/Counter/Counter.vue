@@ -1,26 +1,27 @@
 <template>
-  <span :class="classes" :ariaLabel="ariaLabel">{{ formattedValue }}</span>
+  <span class="fd-counter" :class="classes">{{ formattedValue }}</span>
 </template>
 
 <script>
-const typeMapping = {
-  info: "info",
-  notification: "notification"
-};
-
-const counterTypeValues = Object.keys(typeMapping);
+const counterTypeValues = ["info", "notification"];
 
 export default {
   name: "FdCounter",
   props: {
+    // Counter type
     type: {
+      // `info` / `notification`
       type: String,
+      // `info`
       default: "info",
-      acceptableValues: counterTypeValues,
       validator: value => counterTypeValues.indexOf(value) >= 0
     },
-    ariaLabel: String,
-    value: { type: Number, default: 0 }
+    // counter value
+    value: {
+      type: Number,
+      // `0`
+      default: 0
+    }
   },
   computed: {
     formattedValue() {
@@ -32,7 +33,6 @@ export default {
     },
     classes() {
       return {
-        "fd-counter": true,
         "fd-counter--notification": this.type === "notification"
       };
     }

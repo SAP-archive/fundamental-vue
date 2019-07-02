@@ -26,10 +26,13 @@
 </template>
 
 <script>
+// The Action Bar is located at the top of the page and is used for the following displaying a page title and actions.
 export default {
   name: "FdActionBar",
   props: {
-    title: { type: String, required: false },
+    // Custom title
+    title: String,
+    // Action bar description
     description: { type: String, default: null }
   },
   computed: {
