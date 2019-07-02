@@ -29,9 +29,11 @@
     </template>
 
     <template #default>
+      <!-- Custom `fd-menu` -->
       <slot name="menu">
         <FdMenu @select="selectItem">
           <FdMenuList>
+            <!-- Custom `fd-menu-item`s – can not me used together with the menu-slot -->
             <slot />
           </FdMenuList>
         </FdMenu>
@@ -48,6 +50,7 @@ import FdMenu from "./../Menu/Menu.vue";
 import FdMenuList from "./../Menu/MenuList.vue";
 import FdInputGroupButton from "./../InputGroup/InputGroupButton.vue";
 
+// A typical combobox component
 export default {
   name: "FdCombobox",
   mixins: [Uid],
@@ -68,10 +71,20 @@ export default {
     FdInputGroupButton
   },
   props: {
-    value: { type: String, default: null },
-    placeholder: { type: String, default: "" },
-    ariaLabel: { type: String, default: "Combobox" },
-    compact: { type: Boolean, default: false }
+    // Value
+    value: {
+      type: String,
+      // `null`
+      default: null
+    },
+    // Placeholder used by the input component
+    placeholder: {
+      type: String,
+      // `""`
+      default: ""
+    },
+    // Whether or not the combobox is compactable. A compactable combobox can become less tall on desktop if the view port is getting smaller.
+    compact: Boolean
   },
   computed: {
     comboboxBase() {
@@ -80,7 +93,8 @@ export default {
   },
   data() {
     return {
-      currentValue: this.value // string | number | null
+      // type: string | number | null
+      currentValue: this.value
     };
   },
   watch: {
@@ -92,12 +106,18 @@ export default {
     }
   },
   methods: {
+    // @vuese
+    // Shows the combobox menu
     show() {
       this.comboboxBase.show();
     },
+    // @vuese
+    // Hides the combobox menu
     hide() {
       this.comboboxBase.hide();
     },
+    // @vuese
+    // Toggles the combobox menu
     toggle() {
       this.comboboxBase.toggle();
     },
@@ -115,7 +135,11 @@ export default {
     },
     setCurrentValue(newValue) {
       this.currentValue = newValue;
+      // Trigged when the current value changes
+      // @arg the current value
       this.$emit("update", this.currentValue);
+      // Trigged when the current value changes
+      // @arg the current value
       this.$emit("update:value", this.currentValue);
     }
   }

@@ -26,7 +26,4 @@ describe("Counter", () => {
     expect(infoCounter.props().value).toBe(44);
     expect(notCounter.props().value).toBe(0);
   });
-  it("renders ariaLabel correctly", () => {
-    expect(infoCounter.props().ariaLabel).toBe("Counter");
-  });
 });

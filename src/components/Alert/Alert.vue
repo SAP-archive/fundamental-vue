@@ -17,6 +17,7 @@
 <script>
 import { Uid } from "./../../mixins";
 
+// Alerts provide messages within the application that are color-coded to emphasize the level of urgency. Supports `v-model`.
 export default {
   name: "FdAlert",
   model: {
@@ -29,20 +30,26 @@ export default {
       immediate: true,
       handler(visible) {
         this.currentVisible = visible;
+        // Fire when the visibility of the alert changed.
+        // @arg `true` if the alert becamse visible – otherwise `false`.
         this.$emit("visible", this.currentVisible);
       }
     }
   },
   props: {
+    // If `true`, a close button is rendered that closes the alert.
     dismissible: {
       type: Boolean,
       default: true
     },
+    // If `true` the alert is displayed.
     visible: {
       type: Boolean,
       default: true
     },
+    // Type of the alert.
     type: {
+      // `default` / `warning` / `error` / `information` / `success`
       type: String,
       default: "default",
       validator: value => {
@@ -55,8 +62,11 @@ export default {
     }
   },
   methods: {
+    // @vuese
+    // Used to manually dismiss the alert.
     dismiss() {
       this.currentVisible = false;
+      // Fired once the alert has been dismissed.
       this.$emit("dismiss");
     }
   },

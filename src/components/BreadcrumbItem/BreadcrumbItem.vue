@@ -6,6 +6,7 @@
       v-bind="attrs"
       v-on="$listeners"
     >
+      <!-- Anchor tag content -->
       <slot />
     </a>
   </li>
@@ -13,10 +14,11 @@
 
 <script>
 import { withTargetLocation } from "./../../mixins";
+// A breadcrumb item renders a single items and is used in combination with `fd-breadcrumb`. All attributes will be passed down to the anchor-tag that is rendered on your behalf.
 export default {
-  mixins: [withTargetLocation()],
   name: "FdBreadcrumbItem",
   inheritAttrs: false,
+  mixins: [withTargetLocation()],
   computed: {
     attrs() {
       return {
