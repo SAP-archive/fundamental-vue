@@ -1,12 +1,9 @@
 import { createLocalVue, mount } from "@vue/test-utils";
-import {
-  TableRow,
-  TableCell,
-  TableHeader,
-  TableHeaderCell
-} from "./../Components";
-import RowSelectionIndicator from "./../Components/RowSelectionIndicator.vue";
-import Table from "./../Table.vue";
+import FdTableRow from "./../Components/TableRow.vue";
+import FdTableCell from "./../Components/TableCell.vue";
+import FdTableHeader from "./../Components/TableHeader.vue";
+import FdTableHeaderCell from "./../Components/TableHeaderCell.vue";
+import FdTable from "./../table.vue";
 
 describe("Table", () => {
   describe("TableCell", () => {
@@ -15,15 +12,17 @@ describe("Table", () => {
       const localVue = createLocalVue();
       const ClassAttrWrapper = localVue.extend({
         name: "ClassAttrWrapper",
-        components: { Table, TableRow, TableCell },
+        components: { FdTable, FdTableRow, FdTableCell },
         template: `
-        <Table :items="items">
-          <template slot="row" slot-scope="{item}">
-            <TableRow>
-              <TableCell>{{item.id}}</TableCell>
-            </TableRow>
+        <fd-table :headers="['id']" :items="items">
+          <template #row="{ item }">
+            <fd-table-row>
+              <template #id>
+                <fd-table-cell>{{item.id}}</fd-table-cell>
+              </template>
+            </fd-table-row>
           </template>
-        </Table>
+        </fd-table>
         `,
         data: () => ({
           items: [
@@ -45,27 +44,33 @@ describe("Table", () => {
       }
     });
   });
+
   it("reacts to column changes", async () => {
     const localVue = createLocalVue();
     const ChangeColumnWrapper = localVue.extend({
       name: "ChangeColumnWrapper",
-      components: { Table, TableRow, TableCell, TableHeader, TableHeaderCell },
+      components: {
+        FdTable,
+        FdTableRow,
+        FdTableCell,
+        FdTableHeader,
+        FdTableHeaderCell
+      },
       template: `
-      <Table :headers="headers" :items="items">
-        <template slot='row' slot-scope='item'>
-          <TableRow>
-            <TableCell
-              v-for="header in headers"
-              :key="item.id + header.label"
-            >
-              {{header.label}}
-            </TableCell>
-          </TableRow>
+      <fd-table :headers="headers" :items="items">
+        <template #row="{ item }">
+          <fd-table-row>
+            <template v-for="header in headers" v-slot:[header]>
+              <fd-table-cell :key="item.id + header">
+                {{ header }}
+              </fd-table-cell>
+            </template>
+          </fd-table-row>
         </template>
-      </Table>
+      </fd-table>
       `,
       data: () => ({
-        headers: [{ label: "c1" }, { label: "c2" }],
+        headers: ["c1", "c2"],
         items: [
           { firstName: "Chris", lastName: "Kienle" },
           { firstName: "Andi", lastName: "Kienle" },
@@ -77,194 +82,63 @@ describe("Table", () => {
     const wrapper = mount(ChangeColumnWrapper, { localVue });
     await localVue.nextTick();
 
-    const headerCells = wrapper.findAll(TableHeaderCell);
+    const headerCells = wrapper.findAll(FdTableHeaderCell);
     expect(headerCells).toHaveLength(2);
     // Now we change the columns
-    wrapper.setData({
-      items: [{ id: "1" }],
-      headers: [
-        { label: "c1" },
-        { label: "c2" },
-        { label: "c3" },
-        { label: "c4" }
-      ]
-    });
+    wrapper.vm.headers = ["c1", "c2", "c3", "c4"];
+    // wrapper.vm.headers = ["c1", "c2", "c3", "c4"]
+    // ({
+    //   items: [{ id: "1" }],
+    //   headers:
+    // });
     await localVue.nextTick();
-    expect(wrapper.findAll(TableHeaderCell)).toHaveLength(4);
-  }),
-    it("injects item id into table rows", async () => {
-      const localVue = createLocalVue();
-      const InjectIdTableTest = localVue.extend({
-        name: "InjectIdTableTest",
-        components: { Table, TableRow, TableCell },
-        template: `
-      <Table :columns="columns" :items="items">
-        <template slot="row" slot-scope="{item}">
-          <TableRow>
-            <TableCell>{{item.id}}</TableCell>
-          </TableRow>
-        </template>
-      </Table>
-      `,
-        data: () => ({
-          columns: [],
-          items: [
-            { id: "1", firstName: "Chris", lastName: "Kienle" },
-            { id: "2", firstName: "Andi", lastName: "Kienle" },
-            { id: "3", firstName: "Sven", lastName: "Bacia" },
-            { id: "4", firstName: "Artur", lastName: "Raess" }
-          ]
-        })
-      });
-      const wrapper = mount(InjectIdTableTest);
-      await localVue.nextTick();
-
-      const rows = wrapper.findAll(TableRow);
-      const ids = rows.wrappers.map(row => row.vm.itemId);
-      expect(new Set(ids)).toEqual(new Set(["1", "2", "3", "4"]));
-    });
-
-  it("correctly disables checkboxes when switching from multiple selection to single selection with multiple rows selected", async () => {
-    const localVue = createLocalVue();
-    const TestComponent = localVue.extend({
-      components: { RowSelectionIndicator, Table, TableRow, TableCell },
-      template: `
-      <Table
-        :headers="headers"
-        :selectionMode="selectionMode"
-        :items="tableData"
-      >
-        <template slot="row" slot-scope="{selected, changeSelection, item}">
-          <TableRow>
-            <TableCell>
-              <RowSelectionIndicator
-                :value="item.id"
-                :selected="selected"
-                @change="changeSelection"
-              />
-            </TableCell>
-            <TableCell>{{item.firstName}}</TableCell>
-            <TableCell>{{item.lastName}}</TableCell>
-          </TableRow>
-        </template>
-      </Table>
-      `,
-      data: () => ({
-        selectionMode: "multiple",
-        headers: ["id", "firstName", "lastName"],
-        tableData: [
-          { id: "1", firstName: "Chris", lastName: "Kienle" },
-          { id: "2", firstName: "Andi", lastName: "Kienle" },
-          { id: "3", firstName: "Sven", lastName: "Bacia" },
-          { id: "4", firstName: "Artur", lastName: "Raess" }
-        ]
-      })
-    });
-    const wrapper = mount(TestComponent);
-    await localVue.nextTick();
-
-    const rows = wrapper.findAll("tbody tr");
-    rows.at(0).trigger("click");
-    rows.at(1).trigger("click");
-
-    await localVue.nextTick();
-    const selectedRows = wrapper.findAll('tr[aria-selected="true"]');
-
-    expect(selectedRows).toHaveLength(2);
-    const checkboxes = wrapper.findAll(RowSelectionIndicator);
-    const checkedCheckboxes = checkboxes.wrappers.filter(
-      checkbox => checkbox.vm.selected === true
-    );
-    expect(checkedCheckboxes).toHaveLength(2);
-    const selectedIdsEvents = wrapper.find(Table).emitted("update:selectedIds");
-    expect(selectedIdsEvents.length).toBeGreaterThan(0);
-    const selectedIds = selectedIdsEvents[selectedIdsEvents.length - 1][0];
-    expect(new Set(selectedIds)).toEqual(new Set(["1", "2"]));
-    wrapper.setData({ selectionMode: "single" });
-    wrapper.find(Table).setData({ selectionMode: "single" });
-    await localVue.nextTick();
-    const checkedCheckboxesAfterChange = checkboxes.wrappers.filter(
-      checkbox => checkbox.vm.selected === true
-    );
-    expect(checkedCheckboxesAfterChange).toHaveLength(1);
-  });
-
-  it("correctly checks checkboxes when selecting rows", async () => {
-    const localVue = createLocalVue();
-    const TestComponent = localVue.extend({
-      components: { RowSelectionIndicator, Table, TableRow, TableCell },
-      template: `
-      <Table :headers="headers" :selectedIds.sync="selectedIds" selectionMode="multiple" :items="tableData">
-      <template slot="row" slot-scope="{item, changeSelection, selected}">
-        <TableRow>
-          <TableCell>
-            <RowSelectionIndicator
-              :value="item.id"
-              :selected="selected"
-              @change="changeSelection"
-            />
-            </TableCell>
-            <TableCell>{{item.firstName}}</TableCell>
-            <TableCell>{{item.lastName}}</TableCell>
-          </TableRow>
-        </template>
-      </Table>
-      `,
-      data: () => ({
-        headers: ["firstName", "lastName"],
-        selectedIds: [],
-        tableData: [
-          { id: "1", firstName: "Chris", lastName: "Kienle" },
-          { id: "2", firstName: "Andi", lastName: "Kienle" },
-          { id: "3", firstName: "Sven", lastName: "Bacia" },
-          { id: "4", firstName: "Artur", lastName: "Raess" }
-        ]
-      })
-    });
-    const wrapper = mount(TestComponent, { localVue });
-    await localVue.nextTick();
-
-    const rows = wrapper.findAll("tbody tr");
-    rows.at(0).trigger("click");
-    rows.at(1).trigger("click");
-    await localVue.nextTick();
-    const selectedRows = wrapper.findAll('tr[aria-selected="true"]');
-    expect(selectedRows).toHaveLength(2);
-    const checkboxes = wrapper.findAll(RowSelectionIndicator);
-    const isChecked = indicator => indicator.element.checked === true;
-    const checkedCheckboxes = checkboxes.wrappers.filter(isChecked);
-    expect(checkedCheckboxes).toHaveLength(2);
-
-    const selectedIds = wrapper.vm.selectedIds;
-    expect(selectedIds).toHaveLength(2);
-    expect(new Set(selectedIds)).toEqual(new Set(["1", "2"]));
+    expect(wrapper.findAll(FdTableHeaderCell)).toHaveLength(4);
   });
 
   it("ensures single selection", async () => {
-    const data = [
-      { id: "1", firstName: "Chris", lastName: "Kienle", building: "WFD02" },
-      { id: "2", firstName: "Andi", lastName: "Kienle", building: "WFD03" },
-      { id: "3", firstName: "Sven", lastName: "Bacia", building: "WFD02" },
-      { id: "4", firstName: "Artur", lastName: "Raess", building: "WFD02" }
-    ];
     const localVue = createLocalVue();
     const wrapper = mount(
       {
-        components: { Table, TableRow, TableCell },
+        components: { FdTable, FdTableRow, FdTableCell },
         template: `
-      <Table :headers="headers" selectionMode="single" :items="tableData">
-        <template slot="row" slot-scope="{item}">
-          <TableRow>
-            <TableCell>{{item.firstName}}</TableCell>
-            <TableCell>{{item.lastName}}</TableCell>
-            <TableCell>{{item.building}}</TableCell>
-          </TableRow>
+      <fd-table :headers="headers" selection-mode="single" :items="tableData">
+        <template #row="{item, toggle}">
+          <fd-table-row @click="toggle">
+            <template #firstName><fd-table-cell>{{item.firstName}}</fd-table-cell></template>
+            <template #lastName>fd-table-cell>{{item.lastName}}</fd-table-cell></template>
+            <template #building>fd-table-cell>{{item.building}}</fd-table-cell></template>
+          </fd-table-row>
         </template>
-      </Table>
+      </fd-table>
       `,
         data: () => ({
           headers: ["firstName", "lastName", "building"],
-          tableData: [...data]
+          tableData: [
+            {
+              id: "1",
+              firstName: "Chris",
+              lastName: "Kienle",
+              building: "WFD02"
+            },
+            {
+              id: "2",
+              firstName: "Andi",
+              lastName: "Kienle",
+              building: "WFD03"
+            },
+            {
+              id: "3",
+              firstName: "Sven",
+              lastName: "Bacia",
+              building: "WFD02"
+            },
+            {
+              id: "4",
+              firstName: "Artur",
+              lastName: "Raess",
+              building: "WFD02"
+            }
+          ]
         })
       },
       { localVue }
@@ -273,6 +147,7 @@ describe("Table", () => {
 
     const rows = wrapper.findAll("tbody tr");
     rows.at(0).trigger("click");
+
     const selectedRows = () => {
       return wrapper.findAll('tr[aria-selected="true"]');
     };
@@ -291,17 +166,17 @@ describe("Table", () => {
     const localVue = createLocalVue();
     const wrapper = mount(
       {
-        components: { Table, TableRow, TableCell },
+        components: { FdTable, FdTableRow, FdTableCell },
         template: `
-      <Table selectionMode="multiple" :items="tableData">
-        <template slot="row" slot-scope="{item}">
-          <TableRow>
-            <TableCell>{{item.firstName}}</TableCell>
-            <TableCell>{{item.lastName}}</TableCell>
-            <TableCell>{{item.building}}</TableCell>
-          </TableRow>
+      <fd-table selection-mode="multiple" :items="tableData">
+        <template #row="{item, toggle}">
+          <fd-table-row @click="toggle">
+            <template #firstName><fd-table-cell>{{item.firstName}}</fd-table-cell></template>
+            <template #lastName>fd-table-cell>{{item.lastName}}</fd-table-cell></template>
+            <template #building>fd-table-cell>{{item.building}}</fd-table-cell></template>
+        </fd-table-row>
         </template>
-      </Table>
+      </fd-table>
       `,
         data: () => ({ tableData: [...data] })
       },
@@ -320,55 +195,22 @@ describe("Table", () => {
     expect(selectedRows()).toHaveLength(2);
   });
 
-  it("renders rows and columns when given data", async () => {
-    const data = [
-      { id: "1", firstName: "Chris", lastName: "Kienle", building: "WFD02" },
-      { id: "2", firstName: "Andi", lastName: "Kienle", building: "WFD03" },
-      { id: "3", firstName: "Sven", lastName: "Bacia", building: "WFD02" },
-      { id: "4", firstName: "Artur", lastName: "Raess", building: "WFD02" }
-    ];
-    const localVue = createLocalVue();
-    const wrapper = mount(
-      {
-        components: { Table, TableRow, TableCell },
-        template: `
-      <Table :items="tableData">
-        <template slot="row" slot-scope="{item}">
-          <TableRow>
-            <TableCell>{{item.firstName}}</TableCell>
-            <TableCell>{{item.lastName}}</TableCell>
-            <TableCell>{{item.building}}</TableCell>
-          </TableRow>
-        </template>
-      </Table>
-      `,
-        data: () => ({ tableData: [...data] })
-      },
-      { localVue }
-    );
-    await localVue.nextTick();
-    const rows = wrapper.findAll("tbody tr");
-    const cols = wrapper.findAll("tbody td");
-    expect(rows).toHaveLength(data.length);
-    expect(cols).toHaveLength(3 * data.length);
-  });
-
   it("renders no rows when data is empty", async () => {
     const localVue = createLocalVue();
     const wrapper = mount(
       {
-        components: { Table, TableRow, TableCell },
+        components: { FdTable, FdTableRow, FdTableCell },
         data: () => ({ tableData: [] }),
         template: `
-      <Table :items="tableData">
+      <fd-table :items="tableData">
         <template slot="row" slot-scope="{item}">
-          <TableRow>
-            <TableCell>{{item.firstName}}</TableCell>
-            <TableCell>{{item.lastName}}</TableCell>
-            <TableCell>{{item.building}}</TableCell>
-          </TableRow>
+          <fd-table-row>
+          <template #firstName><fd-table-cell>{{item.firstName}}</fd-table-cell></template>
+          <template #lastName>fd-table-cell>{{item.lastName}}</fd-table-cell></template>
+          <template #building>fd-table-cell>{{item.building}}</fd-table-cell></template>
+        </fd-table-row>
         </template>
-      </Table>
+      </fd-table>
       `
       },
       { localVue }

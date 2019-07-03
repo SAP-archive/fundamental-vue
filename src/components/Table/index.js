@@ -3,25 +3,26 @@ import TableCell from "./Components/TableCell.vue";
 import TableHeader from "./Components/TableHeader.vue";
 import TableHeaderCell from "./Components/TableHeaderCell.vue";
 import TableRow from "./Components/TableRow.vue";
-import RowSelectionIndicator from "./Components/RowSelectionIndicator.vue";
-
-import Table from "./Table.vue";
+import FdTableFixedWrapper from "./table-fixed-wrapper.vue";
+import FdTableFixed from "./table-fixed.vue";
+import FdTable from "./table.vue";
 import { pluginify } from "./../../util";
+
 export default pluginify(
-  Table,
+  FdTable,
   TableBody,
   TableCell,
   TableHeader,
   TableHeaderCell,
   TableRow,
-  RowSelectionIndicator
+  FdTableFixed,
+  FdTableFixedWrapper
 );
 export {
-  Table,
+  FdTable,
   TableBody,
   TableCell,
   TableHeader,
   TableHeaderCell,
-  TableRow,
-  RowSelectionIndicator
+  TableRow
 };

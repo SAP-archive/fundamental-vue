@@ -1,59 +1,51 @@
+<template>
+  <tr :aria-selected="String(selected_)" v-on="$listeners">
+    <template v-for="header in normalizedHeaders">
+      <fd-table-cell-fixed-provider
+        :fixed="header.columnFixed"
+        :key="header.id"
+      >
+        <slot :name="header.slotName" />
+      </fd-table-cell-fixed-provider>
+    </template>
+  </tr>
+</template>
+
 <script>
+import FdTableCellFixedProvider from "./fixed-provider.vue";
+
 export default {
   name: "FdTableRow",
+  components: { FdTableCellFixedProvider },
   inject: {
+    fdTableItemProvider: {
+      default: {
+        item: {},
+        selected: null
+      }
+    },
     table: { default: null }
   },
   props: {
-    itemId: {
-      type: String,
-      default: null
+    item: {
+      type: Object,
+      default: () => {}
     },
-    isSelected: {
+    selected: {
       type: Boolean,
       default: false
     }
   },
   computed: {
-    firstColumnFixed() {
-      const table = this.table;
-      return (table || false) && table.firstColumnFixed;
+    selected_() {
+      const { selected, fdTableItemProvider } = this;
+      return fdTableItemProvider.selected != null
+        ? fdTableItemProvider.selected
+        : selected;
+    },
+    normalizedHeaders() {
+      return this.table.normalizedHeaders;
     }
-  },
-  methods: {
-    handleClick() {
-      const table = this.table;
-      const { itemId } = this;
-      if (itemId == null || table == null) {
-        return false;
-      }
-      table.toggleSelectionForItem(itemId);
-    }
-  },
-  render(h) {
-    const cells = this.$slots.default || [];
-    cells.forEach((cell, index) => {
-      const options = cell.componentOptions;
-      if (options == null) {
-        return;
-      }
-      const fixed = index === 0 && this.firstColumnFixed;
-      const { propsData = {} } = options;
-      options.propsData = { ...propsData, fixed };
-    });
-    return h(
-      "tr",
-      {
-        on: {
-          ...this.$listeners,
-          "&click": this.handleClick // & = passive modifier
-        },
-        attrs: {
-          "aria-selected": this.isSelected
-        }
-      },
-      cells
-    );
   }
 };
 </script>

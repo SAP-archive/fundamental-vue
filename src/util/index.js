@@ -3,4 +3,4 @@ export const noop = () => {
 };
 export { default as objectValues } from "./objectValues";
 export { default as pluginify } from "./pluginify";
-export { default as withoutDuplicates } from "./withoutDuplicates";
+export { default as withoutDuplicates } from "./without-duplicates";

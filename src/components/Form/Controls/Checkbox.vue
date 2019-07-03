@@ -2,7 +2,7 @@
   <input
     :class="inputClasses"
     :disabled="disabled ? '' : null"
-    :checked="checked ? true : false"
+    :checked="checked"
     @change="updateInput"
     v-on="$listeners"
     :value="value"
@@ -45,14 +45,14 @@ export default {
   },
   computed: {
     checked() {
-      const { modelValue, value } = this;
+      const { modelValue, value, trueValue } = this;
       if (Array.isArray(modelValue)) {
         if (value == null) {
           throw Error("value cannot be null");
         }
         return modelValue.indexOf(value) >= 0;
       }
-      return modelValue === this.trueValue;
+      return modelValue === trueValue;
     }
   },
   methods: {
