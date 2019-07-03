@@ -1,12 +1,13 @@
 <template>
-  <th v-on="$listeners" :class="classes" :style="styles">
+  <th scope="col" v-on="$listeners" :class="classes" :style="styles">
     {{ label }}
     <slot />
   </th>
 </template>
 
 <script>
-import { isTextAlignment, TextAlignment, SortOrder } from "./../Util";
+import { SortOrder } from "./../utils/sort-order";
+import { TextAlignment, isTextAlignment } from "./../utils/text-alignment";
 
 export default {
   name: "FdTableHeaderCell",

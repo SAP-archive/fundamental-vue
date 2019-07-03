@@ -1,7 +1,7 @@
 <template>
   <div>
     <component-name :name="name" />
-    <div v-if="description.length > 0">{{ formattedDescription }}</div>
+    <d-markdown v-if="description.length > 0" :content="formattedDescription" />
     <div
       class="component-doc__name"
       v-fd-type:5
@@ -49,7 +49,7 @@ export default {
   components: { ComponentName, EventDoc, PropDoc, SlotDoc },
   computed: {
     formattedDescription() {
-      return this.description.join("<br />");
+      return this.description.join("\n");
     }
   },
   methods: {

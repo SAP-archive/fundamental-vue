@@ -26,7 +26,7 @@ You also have to install [vue-observe-visibility](https://github.com/Akryum/vue-
     <template #item="{ item, index }">
       <fd-tile is-button transparent>
         <fd-tile-content>
-          <fd-tile-title>#{{ index }} {{ item.title }}</fd-tile-title>
+          <fd-tile-title tag="p">#{{ index }} {{ item.title }}</fd-tile-title>
         </fd-tile-content>
       </fd-tile>
     </template>

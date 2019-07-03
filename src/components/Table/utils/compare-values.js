@@ -1,6 +1,6 @@
-import { isString } from "./../../../util/is";
+import { isString } from "../../../util/is";
 
-export const compareValues = (key, order) => {
+export default (key, order) => {
   return (a, b) => {
     if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
       // Property [key] does not exist on a and/or b.
