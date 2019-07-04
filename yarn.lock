@@ -1227,10 +1227,10 @@
     "@vue/babel-plugin-transform-vue-jsx" "^1.0.0"
     camelcase "^5.0.0"
 
-"@vue/cli-overlay@^3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-3.8.0.tgz#e4e8e2fa92b06fc282916df9c924f1dba50eeabb"
-  integrity sha512-4hY/+r9OwpMb7BPFnQGKftMC8CrfbV00REEFOij52+L4swQw+m879+5zX3Z0xHfPftw6JyaqJB0rmQ0ILI6Ovw==
+"@vue/cli-overlay@^3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-overlay/-/cli-overlay-3.9.0.tgz#11f513d1fa11b0135fb8ba8b88d228df0dc542e0"
+  integrity sha512-QfyvpJl2ChehBT2qzb5EvW921JxW94uFL3+lHa6VT42ImH8awrvkTGZmxTQWhHvATa7r0LKy7M7ZRMyo547esg==
 
 "@vue/cli-plugin-babel@^3.8.0":
   version "3.8.0"
@@ -1281,14 +1281,14 @@
     vue-jest "^3.0.4"
 
 "@vue/cli-service@^3.8.0":
-  version "3.8.4"
-  resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-3.8.4.tgz#fecf63c8e0a838e2468d2a79059e39f2cbb1fdc5"
-  integrity sha512-OWKTPZN+Wk3gpd8ar6DsQWlpIFPCIULZuVsHarJXjlXpIx3FOleXzaT2QiDB+tprbTRZMfsMMZMt5b0nvacY9Q==
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-3.9.0.tgz#e62b4489d90ba7bd5f4efc8edf1cde3676440578"
+  integrity sha512-fP66ro3+JF+/kNor2q75icesbQLTKVGQ21sGaeQqR1y601TzJwuey8NPswS8RlrEGnu6KcteKI62+nNVKW4lJw==
   dependencies:
     "@intervolga/optimize-cssnano-plugin" "^1.0.5"
     "@soda/friendly-errors-webpack-plugin" "^1.7.1"
-    "@vue/cli-overlay" "^3.8.0"
-    "@vue/cli-shared-utils" "^3.8.0"
+    "@vue/cli-overlay" "^3.9.0"
+    "@vue/cli-shared-utils" "^3.9.0"
     "@vue/component-compiler-utils" "^2.6.0"
     "@vue/preload-webpack-plugin" "^1.1.0"
     "@vue/web-component-wrapper" "^1.2.0"
@@ -1341,12 +1341,11 @@
     webpack-chain "^4.11.0"
     webpack-dev-server "^3.4.1"
     webpack-merge "^4.2.1"
-    yorkie "^2.0.0"
 
-"@vue/cli-shared-utils@^3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-3.8.0.tgz#e7e728164eb92bd9e205fcd08dae896ee79cba5a"
-  integrity sha512-wn1L8pmQnotfftHOYm0VeXs2+cQTySd73uhWXwyO6pT0ehjqlY5c2RTipClmFF3Q+YCYjwlNpsV650F3l1tV8w==
+"@vue/cli-shared-utils@^3.8.0", "@vue/cli-shared-utils@^3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-3.9.0.tgz#cb56a443bf763a873849a11d07e9e7638aa16cc2"
+  integrity sha512-wumeMZTz5aQ+1Y6uxTKegIsgOXEWT3hT8f9sW2mj5SwNDVyQ+AHZTgSynYExTUJg3dH81uKgFDUpPdAvGxzh8g==
   dependencies:
     "@hapi/joi" "^15.0.1"
     chalk "^2.4.1"
@@ -5413,19 +5412,6 @@ execa@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-0.7.0.tgz#944becd34cc41ee32a63a9faf27ad5a65fc59777"
   integrity sha1-lEvs00zEHuMqY6n68nrVpl/Fl3c=
-  dependencies:
-    cross-spawn "^5.0.1"
-    get-stream "^3.0.0"
-    is-stream "^1.1.0"
-    npm-run-path "^2.0.0"
-    p-finally "^1.0.0"
-    signal-exit "^3.0.0"
-    strip-eof "^1.0.0"
-
-execa@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-0.8.0.tgz#d8d76bbc1b55217ed190fd6dd49d3c774ecfc8da"
-  integrity sha1-2NdrvBtVIX7RkP1t1J08d07PyNo=
   dependencies:
     cross-spawn "^5.0.1"
     get-stream "^3.0.0"
@@ -9610,11 +9596,6 @@ normalize-package-data@^2.3.0, normalize-package-data@^2.3.2, normalize-package-
     resolve "^1.10.0"
     semver "2 || 3 || 4 || 5"
     validate-npm-package-license "^3.0.1"
-
-normalize-path@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-1.0.0.tgz#32d0e472f91ff345701c15a8311018d3b0a90379"
-  integrity sha1-MtDkcvkf80VwHBWoMRAY07CpA3k=
 
 normalize-path@^2.0.1, normalize-path@^2.1.1:
   version "2.1.1"
@@ -14248,16 +14229,6 @@ yauzl@2.4.1:
   integrity sha1-lSj0QtqxsihOWLQ3m7GU4i4MQAU=
   dependencies:
     fd-slicer "~1.0.1"
-
-yorkie@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/yorkie/-/yorkie-2.0.0.tgz#92411912d435214e12c51c2ae1093e54b6bb83d9"
-  integrity sha512-jcKpkthap6x63MB4TxwCyuIGkV0oYP/YRyuQU5UO0Yz/E/ZAu+653/uov+phdmO54n6BcvFRyyt0RRrWdN2mpw==
-  dependencies:
-    execa "^0.8.0"
-    is-ci "^1.0.10"
-    normalize-path "^1.0.0"
-    strip-indent "^2.0.0"
 
 zrender@4.0.7:
   version "4.0.7"
