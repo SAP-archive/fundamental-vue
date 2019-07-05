@@ -1161,10 +1161,10 @@
     lodash.kebabcase "^4.1.1"
     svg-tags "^1.0.0"
 
-"@vue/babel-preset-app@^3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@vue/babel-preset-app/-/babel-preset-app-3.8.0.tgz#c889627c6a30418b2fb89caccd9065c4acae0829"
-  integrity sha512-A2NBzIVdtNq52foc+P+yQ/7rSm2q2oPpn2FJVW4hFgaWVOL+HaOLCjWDEQyEeMbRZvyOVHMuom097u3p2H2Rfw==
+"@vue/babel-preset-app@^3.9.0":
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@vue/babel-preset-app/-/babel-preset-app-3.9.0.tgz#2dc32a40baf41ea4af8170dad177e2d2d109e899"
+  integrity sha512-5ypQMjY+EBt2v6sBGFXRILIrAcFF2kZEMKJKpG/1+DlkQlJ9a+Fhhri+TZpBOwuDUOwPOj8tghbVWAmbSJYnPw==
   dependencies:
     "@babel/helper-module-imports" "^7.0.0"
     "@babel/plugin-proposal-class-properties" "^7.0.0"
@@ -1233,13 +1233,13 @@
   integrity sha512-QfyvpJl2ChehBT2qzb5EvW921JxW94uFL3+lHa6VT42ImH8awrvkTGZmxTQWhHvATa7r0LKy7M7ZRMyo547esg==
 
 "@vue/cli-plugin-babel@^3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-3.8.0.tgz#a7ce6ef9c6680e7953c609d859451dd937c7284e"
-  integrity sha512-VLWvpgDM+HN2FZu1x+r9pisombDTK1k+RPNPeslnwjGjrUXmKNAamXL1ZIsPwsj6k6PpWPN4jetBIMqcBzBu6Q==
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-3.9.0.tgz#f73da1593463eaa3fea850604ed7846bf1a6761d"
+  integrity sha512-4aN6uzvxytJzhE1agsclezKrkVUvocRd9Y+wcJRd901Pi5/w1u6YUMybrq+Xeicm9wOqg5e2VDh6fdZvwJ4GUQ==
   dependencies:
     "@babel/core" "^7.0.0"
-    "@vue/babel-preset-app" "^3.8.0"
-    "@vue/cli-shared-utils" "^3.8.0"
+    "@vue/babel-preset-app" "^3.9.0"
+    "@vue/cli-shared-utils" "^3.9.0"
     babel-loader "^8.0.5"
     webpack ">=4 < 4.29"
 
@@ -5413,6 +5413,19 @@ execa@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-0.7.0.tgz#944becd34cc41ee32a63a9faf27ad5a65fc59777"
   integrity sha1-lEvs00zEHuMqY6n68nrVpl/Fl3c=
+  dependencies:
+    cross-spawn "^5.0.1"
+    get-stream "^3.0.0"
+    is-stream "^1.1.0"
+    npm-run-path "^2.0.0"
+    p-finally "^1.0.0"
+    signal-exit "^3.0.0"
+    strip-eof "^1.0.0"
+
+execa@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-0.8.0.tgz#d8d76bbc1b55217ed190fd6dd49d3c774ecfc8da"
+  integrity sha1-2NdrvBtVIX7RkP1t1J08d07PyNo=
   dependencies:
     cross-spawn "^5.0.1"
     get-stream "^3.0.0"
@@ -9597,6 +9610,11 @@ normalize-package-data@^2.3.0, normalize-package-data@^2.3.2, normalize-package-
     resolve "^1.10.0"
     semver "2 || 3 || 4 || 5"
     validate-npm-package-license "^3.0.1"
+
+normalize-path@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-1.0.0.tgz#32d0e472f91ff345701c15a8311018d3b0a90379"
+  integrity sha1-MtDkcvkf80VwHBWoMRAY07CpA3k=
 
 normalize-path@^2.0.1, normalize-path@^2.1.1:
   version "2.1.1"
@@ -14230,6 +14248,16 @@ yauzl@2.4.1:
   integrity sha1-lSj0QtqxsihOWLQ3m7GU4i4MQAU=
   dependencies:
     fd-slicer "~1.0.1"
+
+yorkie@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/yorkie/-/yorkie-2.0.0.tgz#92411912d435214e12c51c2ae1093e54b6bb83d9"
+  integrity sha512-jcKpkthap6x63MB4TxwCyuIGkV0oYP/YRyuQU5UO0Yz/E/ZAu+653/uov+phdmO54n6BcvFRyyt0RRrWdN2mpw==
+  dependencies:
+    execa "^0.8.0"
+    is-ci "^1.0.10"
+    normalize-path "^1.0.0"
+    strip-indent "^2.0.0"
 
 zrender@4.0.7:
   version "4.0.7"
