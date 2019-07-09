@@ -4,6 +4,8 @@ coverage
 # Ignore files generates by running `npm pack`
 fundamental-vue-*.tgz
 
+docs/api
+
 ### macOS ###
 # General
 .DS_Store

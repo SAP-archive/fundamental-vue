@@ -21,12 +21,13 @@
           </template>
         </fd-input-group>
       </template>
-
-      <fd-time-item
-        :value="timeValue"
-        :showMeridian="showMeridian"
-        @timeItemUpdate="updateTimeItem"
-      />
+      <template #default>
+        <fd-time-item
+          :value="timeValue"
+          :showMeridian="showMeridian"
+          @timeItemUpdate="updateTimeItem"
+        />
+      </template>
     </fd-popover>
   </div>
 </template>

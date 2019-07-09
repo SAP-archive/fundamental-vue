@@ -1,64 +1,68 @@
 <template>
-  <fd-portal :selector="portalSelector">
-    <fd-modal-overlay
-      :visible="overlayVisible"
-      @after-enter="visible = overlayVisible"
-    >
-      <transition name="fdv-modal" @after-leave="overlayVisible = visible">
-        <div
-          :key="name"
-          ref="modalEl"
-          class="fd-modal"
-          v-show="visible"
-          :data-fd-modal-identifier="name"
-          :aria-hidden="String(!visible)"
-          :tabindex="modalTabIndex"
-          :style="modalStyle"
-          @keydown.esc="handleEsc"
-          v-bind="$attrs"
-        >
-          <div class="fd-modal__content" role="document">
-            <div class="fd-modal__header">
-              <!-- Custom Title Content -->
-              <slot name="title" v-bind="this">
-                <h3 class="fd-modal__title">
-                  {{ title }}
-                </h3>
-              </slot>
-              <slot name="close" v-bind="this">
-                <FdButton
-                  class="fd-modal__close"
-                  styling="light"
-                  @click="close"
-                  aria-label="close"
-                />
-              </slot>
-            </div>
-
-            <!-- BODY -->
-
-            <div class="fd-modal__body">
-              <slot v-bind="this" />
-            </div>
-
-            <!-- FOOTER -->
-            <footer
-              class="fd-modal__footer"
-              v-if="$scopedSlots.footer != null || $scopedSlots.actions != null"
-            >
-              <slot name="footer" v-bind="this" />
-              <div
-                v-if="$scopedSlots.actions != null"
-                class="fd-modal__actions"
-              >
-                <slot name="actions" v-bind="this" />
+  <fd-client-only>
+    <fd-portal :selector="portalSelector">
+      <fd-modal-overlay
+        :visible="overlayVisible"
+        @after-enter="visible = overlayVisible"
+      >
+        <transition name="fdv-modal" @after-leave="overlayVisible = visible">
+          <div
+            :key="name"
+            ref="modalEl"
+            class="fd-modal"
+            v-show="visible"
+            :data-fd-modal-identifier="name"
+            :aria-hidden="String(!visible)"
+            :tabindex="modalTabIndex"
+            :style="modalStyle"
+            @keydown.esc="handleEsc"
+            v-bind="$attrs"
+          >
+            <div class="fd-modal__content" role="document">
+              <div class="fd-modal__header">
+                <!-- Custom Title Content -->
+                <slot name="title" v-bind="this">
+                  <h3 class="fd-modal__title">
+                    {{ title }}
+                  </h3>
+                </slot>
+                <slot name="close" v-bind="this">
+                  <FdButton
+                    class="fd-modal__close"
+                    styling="light"
+                    @click="close"
+                    aria-label="close"
+                  />
+                </slot>
               </div>
-            </footer>
+
+              <!-- BODY -->
+
+              <div class="fd-modal__body">
+                <slot v-bind="this" />
+              </div>
+
+              <!-- FOOTER -->
+              <footer
+                class="fd-modal__footer"
+                v-if="
+                  $scopedSlots.footer != null || $scopedSlots.actions != null
+                "
+              >
+                <slot name="footer" v-bind="this" />
+                <div
+                  v-if="$scopedSlots.actions != null"
+                  class="fd-modal__actions"
+                >
+                  <slot name="actions" v-bind="this" />
+                </div>
+              </footer>
+            </div>
           </div>
-        </div>
-      </transition>
-    </fd-modal-overlay>
-  </fd-portal>
+        </transition>
+      </fd-modal-overlay>
+    </fd-portal>
+  </fd-client-only>
 </template>
 
 <script>
@@ -67,12 +71,18 @@ import { FocusTrap } from "./../../mixins";
 import { Portal } from "@linusborg/vue-simple-portal";
 import FdModalOverlay from "./../ModalOverlay/ModalOverlay.vue";
 import FdButton from "./../Button";
+import FdClientOnly from "vue-client-only";
 
 export default {
   name: "FdModal",
   mixins: [FocusTrap],
   inheritAttrs: false,
-  components: { FdModalOverlay, FdButton, FdPortal: Portal },
+  components: {
+    FdModalOverlay,
+    FdButton,
+    FdPortal: Portal,
+    FdClientOnly
+  },
   props: {
     handleEscManually: {
       type: Boolean,
@@ -123,7 +133,7 @@ export default {
       this.$fdModal.close(this);
     }
   },
-  created() {
+  mounted() {
     this.$fdModal.registerModalVM(this);
   },
   beforeDestroy() {

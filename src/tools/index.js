@@ -1,10 +1,11 @@
 // @ts-check
 const { parser } = require("@vuese/parser");
-const { Render } = require("@vuese/markdown-render");
 const klawSync = require("klaw-sync");
 const Path = require("path");
 const fs = require("fs");
 const isSFCFile = item => Path.parse(item.path).ext === ".vue";
+
+const renderMarkdown = require("./render-markdown");
 
 const kebabCased = str =>
   str
@@ -133,7 +134,7 @@ const apiForFileAtPath = path => ({
 
 const rimraf = require("rimraf");
 const results = paths.map(apiForFileAtPath);
-const outputDir = Path.resolve("./api/");
+const outputDir = Path.resolve("./docs/api/");
 if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir);
 }
@@ -145,10 +146,9 @@ const _writeMarkdown = ({ filename, outputDir, result }) => {
     name: filename,
     ext: ".md"
   });
-  const render = new Render(result);
-  const markdown = render.renderMarkdown() || {};
+  const markdown = renderMarkdown(result) || {};
   // @ts-ignore
-  fs.writeFileSync(destination, markdown.content || "");
+  fs.writeFileSync(destination, markdown || "");
 };
 const writeApi = ({ result }) => {
   /** @type {string} */
@@ -156,13 +156,14 @@ const writeApi = ({ result }) => {
   if (!componentName.toLowerCase().startsWith("fd")) {
     return;
   }
-  const filename = `${kebabCased(componentName)}.json`;
-  const source = JSON.stringify(result, null, 2);
-  const dest = Path.resolve(outputDir, filename);
-  fs.writeFileSync(dest, source);
-  if (process.env.FD_GENERATE_MD_API === "true") {
-    _writeMarkdown({ filename, outputDir, result });
-  }
+  // const filename = `${kebabCased(componentName)}.json`;
+  // const source = JSON.stringify(result, null, 2);
+  // const dest = Path.resolve(outputDir, filename);
+  // fs.writeFileSync(dest, source);
+  // if (true || process.env.FD_GENERATE_MD_API === "true") {
+  const cleanComponentName = kebabCased(componentName).substring(3);
+  _writeMarkdown({ filename: cleanComponentName, outputDir, result });
+  // }
 };
 
 results.forEach(writeApi);

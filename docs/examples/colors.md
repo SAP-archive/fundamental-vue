@@ -1,0 +1,8 @@
+---
+fdRelatedComponents:
+---
+
+# Colors
+
+::: example all
+:::

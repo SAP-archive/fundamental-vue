@@ -3,7 +3,7 @@ import Directives from "./directives";
 import { normalizedPluginOptions } from "./util/PluginOptions";
 import { log } from "./core";
 
-const FD_AUTO_INSTALL_DISABLED_KEY = "__FD_AUTO_INSTALL_DISABLED_KEY__";
+// const FD_AUTO_INSTALL_DISABLED_KEY = "__FD_AUTO_INSTALL_DISABLED_KEY__";
 
 const install = (vue, options) => {
   const normalized = normalizedPluginOptions(options);
@@ -21,13 +21,13 @@ const install = (vue, options) => {
 };
 
 const installIfPossible = () => {
-  if (typeof window !== undefined && window.Vue) {
-    // Check if auto install was disabled
-    if (window[FD_AUTO_INSTALL_DISABLED_KEY] === true) {
-      return;
-    }
-    install(window.Vue);
-  }
+  // if (window != null && typeof window !== undefined && window.Vue) {
+  //   // Check if auto install was disabled
+  //   if (window[FD_AUTO_INSTALL_DISABLED_KEY] === true) {
+  //     return;
+  //   }
+  //   install(window.Vue);
+  // }
 };
 
 installIfPossible();

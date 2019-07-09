@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// The breadcrumb allows users to see the current page and navigation path to that page.
+// A breadcrumb allows users to see the current page and navigation path to that page.
 export default {
   name: "FdBreadcrumb"
 };

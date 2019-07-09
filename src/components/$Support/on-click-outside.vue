@@ -11,9 +11,11 @@ const CLICK_OUTSIDE_EVENT = "do";
 // You use this component in order to detect clicks outside of a component/element.
 // For example:
 //
+// ```
 // <fd-on-click-outside @do="handleClickOutside" :active="true" >
 //   hello world
 // </fd-on-click-outside>
+// ```
 //
 // This detects all clicks outside of fd-on-click-outside.
 // By default fd-on-click-outside is rendering it's default slot

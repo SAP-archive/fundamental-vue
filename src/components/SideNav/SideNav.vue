@@ -61,7 +61,7 @@ export default {
   },
   watch: {
     selectedId: {
-      immediate: true,
+      // immediate: true,
       handler(newId) {
         this.selectedId_ = newId;
       }
@@ -72,7 +72,7 @@ export default {
       sideNavStore: {
         toggleExpandedForItemWithId: this.toggleExpandedForItemWithId,
         expandedIds: [],
-        selectedId: this.selectedId_,
+        selectedId: this.selectedId,
         itemWithIdIsExpanded: this.itemWithIdIsExpanded,
         itemWithIdIsSelected: this.itemWithIdIsSelected
       }
