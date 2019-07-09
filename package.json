@@ -77,7 +77,7 @@
     "highlight.js": "^9.15.8",
     "html-loader": "^0.5.5",
     "klaw-sync": "^6.0.0",
-    "markdown-it": "^8.4.2",
+    "markdown-it": "^9.0.0",
     "markdown-it-vue": "^1.0.9",
     "markdown-loader": "^5.0.0",
     "pre-commit": "^1.2.2",
