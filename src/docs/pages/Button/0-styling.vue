@@ -1,14 +1,15 @@
 <title>Button Styling</title>
 
 <template>
-  <div>
-    <FdButton styling="emphasized">Emphasized Button</FdButton>
-    <FdButton>Regular Button</FdButton>
-    <FdButton styling="light">Light Button</FdButton>
+  <div class="fdd-button__styling">
+    <fd-button styling="emphasized">Emphasized Button</fd-button>
+    <fd-button>Regular Button</fd-button>
+    <fd-button styling="light">Light Button</fd-button>
   </div>
 </template>
-<style scoped>
-button {
+
+<style>
+.fdd-button__styling > button[class*="fd-button"] {
   margin-right: 10px;
 }
 </style>

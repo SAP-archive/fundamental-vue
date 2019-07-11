@@ -7,12 +7,3 @@
     <FdLabel type="error">Error</FdLabel>
   </div>
 </template>
-
-<style scoped>
-.labels {
-  text-align: center;
-}
-.labels > span {
-  margin-right: 10px;
-}
-</style>

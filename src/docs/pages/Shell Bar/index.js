@@ -1,6 +1,6 @@
 export default {
   relatedComponents: [
-    "fd-shell-bar-",
+    "fd-shell-bar",
     "fd-shell-bar-group",
     "fd-shell-bar-product",
     "fd-shell-bar-product-menu",

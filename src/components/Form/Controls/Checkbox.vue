@@ -1,18 +1,18 @@
 <template>
   <input
-    type="checkbox"
-    :id="inputId"
     :class="inputClasses"
     :disabled="disabled ? '' : null"
     :checked="checked ? true : false"
     @change="updateInput"
-    :value="value"
     v-on="$listeners"
-    v-bind="$attrs"
+    :value="value"
+    type="checkbox"
   />
 </template>
 
 <script>
+// v-bind="$attrs" -->
+// :id="inputId"
 import { isInputElement } from "./Helper";
 import { withoutDuplicates } from "./../../../util";
 import InputMixin from "./InputMixin";
@@ -21,7 +21,7 @@ import { $modelValueWithDefault, $valueWithDefault } from "./Helper/prop";
 export default {
   name: "FdCheckbox",
   mixins: [InputMixin],
-  inheritAttrs: false,
+  inheritAttrs: true,
   inject: {
     // We need the form item so that we can say tell the form item
     // to render the checked-style

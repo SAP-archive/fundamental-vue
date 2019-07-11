@@ -14,13 +14,6 @@
   </div>
 </template>
 
-<style scoped>
-.page {
-  margin-top: 100px;
-  margin-left: 100px;
-}
-</style>
-
 <script>
 export default {
   data() {

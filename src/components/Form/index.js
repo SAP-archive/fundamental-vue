@@ -1,7 +1,6 @@
 import FormItem from "./FormItem.vue";
 import FormLabel from "./FormLabel.vue";
 import FormMessage from "./FormMessage.vue";
-import FormSet from "./FormSet.vue";
 import FormGroup from "./FormGroup.vue";
 import Legend from "./Legend.vue";
 import FieldSet from "./FieldSet.vue";
@@ -14,6 +13,8 @@ import Checkbox from "./Controls/Checkbox.vue";
 import Radio from "./Controls/Radio.vue";
 import * as Controls from "./Controls";
 import { pluginify } from "./../../util";
+import FdFormItemRadio from "./items/form-item-radio.vue";
+import FdFormItemCheckbox from "./items/form-item-checkbox.vue";
 
 export default pluginify(
   Form,
@@ -26,10 +27,11 @@ export default pluginify(
   FormItem,
   FormLabel,
   FormMessage,
-  FormSet,
   FormGroup,
   Legend,
-  FieldSet
+  FieldSet,
+  FdFormItemRadio,
+  FdFormItemCheckbox
 );
 export {
   Form,
@@ -42,9 +44,10 @@ export {
   FormItem,
   FormLabel,
   FormMessage,
-  FormSet,
   FormGroup,
   Legend,
   FieldSet,
-  Controls
+  Controls,
+  FdFormItemRadio,
+  FdFormItemCheckbox
 };

@@ -2,7 +2,6 @@
   <input
     type="radio"
     :class="inputClasses"
-    :id="inputId"
     :disabled="disabled ? '' : null"
     :checked="checked ? true : false"
     :value="value"
@@ -13,6 +12,7 @@
 </template>
 
 <script>
+// :id="inputId"
 import InputMixin from "./InputMixin";
 import { $valueWithDefault, $modelValueWithDefault } from "./Helper/prop";
 

@@ -43,7 +43,7 @@ If you modify the `items`-array, make sure that the modification is done in a wa
 
     <h2>Creating an Entry</h2>
 
-    <FdFormSet>
+    <fd-field-set>
       <FdFormItem label="First Name">
         <FdInput
           v-model="newEntry.firstName"
@@ -75,7 +75,7 @@ If you modify the `items`-array, make sure that the modification is done in a wa
           </FdMenuItem>
         </FdCombobox>
       </FdFormItem>
-    </FdFormSet>
+    </fd-field-set>
     <FdButton @click="addCurrentEntry">Add Entry</FdButton>
   </div>
 </template>

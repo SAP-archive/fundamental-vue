@@ -2,14 +2,14 @@
 <tip>The compact size is only used on desktop and it is full size when used on a touch device.</tip>
 
 <template>
-  <div>
-    <FdButton>default or none</FdButton>
-    <FdButton compact>compact</FdButton>
+  <div class="fdd-button__sizes">
+    <fd-button>default or none</fd-button>
+    <fd-button compact>compact</fd-button>
   </div>
 </template>
 
-<style scoped>
-button {
+<style>
+.fdd-button__sizes > button[class*="fd-button"] {
   margin-right: 10px;
 }
 </style>

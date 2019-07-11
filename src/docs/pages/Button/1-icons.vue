@@ -1,29 +1,28 @@
 <title>Button with Icon</title>
 
 <template>
-  <div>
-    <FdButton styling="emphasized" icon="cart">Add to Cart</FdButton>
-    <FdButton icon="cart">Add to Cart</FdButton>
-    <FdButton styling="light" icon="cart">Add to Cart</FdButton>
+  <div class="fdd-button__icons">
+    <fd-button styling="emphasized" icon="cart">Add to Cart</fd-button>
+    <fd-button icon="cart">Add to Cart</fd-button>
+    <fd-button styling="light" icon="cart">Add to Cart</fd-button>
     <br /><br />
-    <FdButton type="positive" styling="emphasized" icon="accept"
-      >Approve</FdButton
+    <fd-button type="positive" styling="emphasized" icon="accept"
+      >Approve</fd-button
     >
-    <FdButton type="negative" styling="emphasized" icon="decline"
-      >Reject</FdButton
+    <fd-button type="negative" styling="emphasized" icon="decline"
+      >Reject</fd-button
     >
     <br /><br />
-    <FdButton type="standard" icon="filter" />
-    <FdButton icon="cart" />
-    <FdButton styling="light" icon="cart" />
+    <fd-button type="standard" icon="filter" />
+    <fd-button icon="cart" />
+    <fd-button styling="light" icon="cart" />
     <br /><br />
-    <FdButton styling="emphasized" type="positive" icon="accept" />
-    <FdButton styling="emphasized" type="negative" icon="decline" />
+    <fd-button styling="emphasized" type="positive" icon="accept" />
+    <fd-button styling="emphasized" type="negative" icon="decline" />
   </div>
 </template>
-
-<style scoped>
-button {
+<style>
+.fdd-button__icons > button[class*="fd-button"] {
   margin-right: 10px;
 }
 </style>

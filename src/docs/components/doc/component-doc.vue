@@ -73,7 +73,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .component-doc {
   font-size: 16px;
   line-height: 28px;

@@ -1,16 +1,14 @@
 <template>
   <div class="fd-input-group" :class="classes">
-    <fd-addon-before-provider>
-      <slot name="before">
-        {{ before }}
-      </slot>
-    </fd-addon-before-provider>
+    <fd-addon-provider-before>
+      <slot name="before" />
+    </fd-addon-provider-before>
     <slot name="before-input" />
     <slot name="input" />
     <slot name="after-input" />
-    <fd-addon-after-provider>
-      <slot name="after">{{ after }}</slot>
-    </fd-addon-after-provider>
+    <fd-addon-provider-after>
+      <slot name="after" />
+    </fd-addon-provider-after>
   </div>
 </template>
 
@@ -18,34 +16,29 @@
 import { CompactableContainer } from "./../../mixins";
 
 const CreateAddon = context => ({
+  name: `fd-addon-provider-${context}`,
   provide() {
     return {
       $_fdInputGroupAddonContext: context
     };
   },
-  render() {
-    return this.$scopedSlots.default();
+  render(h) {
+    const defaultSlot = this.$scopedSlots.default;
+    if (defaultSlot) {
+      return defaultSlot();
+    }
+    return h("");
   }
 });
-
-const FdAddonBeforeProvider = CreateAddon("before");
-const FdAddonAfterProvider = CreateAddon("after");
 
 export default {
   name: "FdInputGroup",
   mixins: [CompactableContainer],
-  components: { FdAddonBeforeProvider, FdAddonAfterProvider },
-  props: {
-    before: { type: String, default: null },
-    after: { type: String, default: null }
+  components: {
+    FdAddonProviderBefore: CreateAddon("before"),
+    FdAddonProviderAfter: CreateAddon("after")
   },
   computed: {
-    hasBefore() {
-      return this.before != null || this.$slots.before != null;
-    },
-    hasAfter() {
-      return this.after != null || this.$slots.after != null;
-    },
     afterClasses() {
       const afterClass = this.afterClass;
       return [

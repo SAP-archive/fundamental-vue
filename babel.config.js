@@ -12,13 +12,13 @@ if (process.env.VUE_CLI_BUILD_TARGET === "app") {
 
 const uiPresets = [
   [
-    '@vue/app',
+    "@vue/app",
     {
       useBuiltIns: false,
       polyfills: false,
-      corejs: 2,
-    },
-  ],
+      corejs: 2
+    }
+  ]
 ];
 
 const presets = mode === "prod" ? uiPresets : appPresets;

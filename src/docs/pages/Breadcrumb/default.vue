@@ -2,11 +2,11 @@
 
 <template>
   <div>
-    <FdBreadcrumb>
-      <FdBreadcrumbItem @click.prevent="handleClick">Home</FdBreadcrumbItem>
-      <FdBreadcrumbItem href="#helloworld">Products</FdBreadcrumbItem>
-      <FdBreadcrumbItem to="#chris">Butter Pretzel</FdBreadcrumbItem>
-    </FdBreadcrumb>
+    <fd-breadcrumb>
+      <fd-breadcrumb-item @click.prevent="handleClick">Home</fd-breadcrumb-item>
+      <fd-breadcrumb-item href="#helloworld">Products</fd-breadcrumb-item>
+      <fd-breadcrumb-item to="#chris">Butter Pretzel</fd-breadcrumb-item>
+    </fd-breadcrumb>
   </div>
 </template>
 <script>

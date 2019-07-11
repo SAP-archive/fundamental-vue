@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <FdFormSet>
+    <fd-field-set>
       <FdFormItem>
         <FdFormLabel>Default Select</FdFormLabel>
         <FdSelect>
@@ -11,8 +11,8 @@
           <option value="3">Sed bibendum sapien at posuere interdum</option>
         </FdSelect>
       </FdFormItem>
-    </FdFormSet>
-    <FdFormSet>
+    </fd-field-set>
+    <fd-field-set>
       <FdFormItem>
         <FdFormLabel>Disabled Select</FdFormLabel>
         <FdSelect disabled>
@@ -21,6 +21,6 @@
           <option value="3">Sed bibendum sapien at posuere interdum</option>
         </FdSelect>
       </FdFormItem>
-    </FdFormSet>
+    </fd-field-set>
   </div>
 </template>

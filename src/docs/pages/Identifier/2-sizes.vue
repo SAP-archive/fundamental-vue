@@ -15,108 +15,108 @@ Use the `size`-prop to specify the size you want.
 <title>Identifier Sizes</title>
 
 <template>
-  <div class="identifiers">
-    <FdIdentifier size="xxs" icon="money-bills" />
-    <FdIdentifier size="xs" icon="money-bills" />
-    <FdIdentifier size="s" icon="money-bills" />
-    <FdIdentifier size="m" icon="money-bills" />
-    <FdIdentifier size="l" icon="money-bills" />
-    <FdIdentifier size="xl" icon="money-bills" />
-    <FdIdentifier size="xxl" icon="money-bills" />
+  <div class="fdd-identifier--sizes">
+    <fd-identifier size="xxs" icon="money-bills" />
+    <fd-identifier size="xs" icon="money-bills" />
+    <fd-identifier size="s" icon="money-bills" />
+    <fd-identifier size="m" icon="money-bills" />
+    <fd-identifier size="l" icon="money-bills" />
+    <fd-identifier size="xl" icon="money-bills" />
+    <fd-identifier size="xxl" icon="money-bills" />
     <br />
     <br />
-    <FdIdentifier size="xxs" icon="money-bills" circle />
-    <FdIdentifier size="xs" icon="money-bills" circle />
-    <FdIdentifier size="s" icon="money-bills" circle />
-    <FdIdentifier size="m" icon="money-bills" circle />
-    <FdIdentifier size="l" icon="money-bills" circle />
-    <FdIdentifier size="xl" icon="money-bills" circle />
-    <FdIdentifier size="xxl" icon="money-bills" circle />
+    <fd-identifier size="xxs" icon="money-bills" circle />
+    <fd-identifier size="xs" icon="money-bills" circle />
+    <fd-identifier size="s" icon="money-bills" circle />
+    <fd-identifier size="m" icon="money-bills" circle />
+    <fd-identifier size="l" icon="money-bills" circle />
+    <fd-identifier size="xl" icon="money-bills" circle />
+    <fd-identifier size="xxl" icon="money-bills" circle />
     <br />
     <br />
-    <FdIdentifier size="xxs" circle>WW</FdIdentifier>
-    <FdIdentifier size="xs" circle>WW</FdIdentifier>
-    <FdIdentifier size="s" circle>WW</FdIdentifier>
-    <FdIdentifier size="m" circle>WW</FdIdentifier>
-    <FdIdentifier size="l" circle>WW</FdIdentifier>
-    <FdIdentifier size="xl" circle>WW</FdIdentifier>
-    <FdIdentifier size="xxl" circle>WW</FdIdentifier>
+    <fd-identifier size="xxs" circle>WW</fd-identifier>
+    <fd-identifier size="xs" circle>WW</fd-identifier>
+    <fd-identifier size="s" circle>WW</fd-identifier>
+    <fd-identifier size="m" circle>WW</fd-identifier>
+    <fd-identifier size="l" circle>WW</fd-identifier>
+    <fd-identifier size="xl" circle>WW</fd-identifier>
+    <fd-identifier size="xxl" circle>WW</fd-identifier>
     <br />
     <br />
-    <FdIdentifier
+    <fd-identifier
       size="xxs"
       thumbnail
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="xs"
       thumbnail
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="s"
       thumbnail
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="m"
       thumbnail
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="l"
       thumbnail
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="xl"
       thumbnail
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="xxl"
       thumbnail
       url="https://placeimg.com/400/400/nature"
     />
     <br />
     <br />
-    <FdIdentifier
+    <fd-identifier
       size="xxs"
       thumbnail
       circle
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="xs"
       thumbnail
       circle
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="s"
       thumbnail
       circle
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="m"
       thumbnail
       circle
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="l"
       thumbnail
       circle
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="xl"
       thumbnail
       circle
       url="https://placeimg.com/400/400/nature"
     />
-    <FdIdentifier
+    <fd-identifier
       size="xxl"
       thumbnail
       circle
@@ -124,27 +124,27 @@ Use the `size`-prop to specify the size you want.
     />
     <br />
     <br />
-    <FdIdentifier transparent size="xxs" icon="money-bills" />
-    <FdIdentifier transparent size="xs" icon="money-bills" />
-    <FdIdentifier transparent size="s" icon="money-bills" />
-    <FdIdentifier transparent size="m" icon="money-bills" />
-    <FdIdentifier transparent size="l" icon="money-bills" />
-    <FdIdentifier transparent size="xl" icon="money-bills" />
-    <FdIdentifier transparent size="xxl" icon="money-bills" />
+    <fd-identifier transparent size="xxs" icon="money-bills" />
+    <fd-identifier transparent size="xs" icon="money-bills" />
+    <fd-identifier transparent size="s" icon="money-bills" />
+    <fd-identifier transparent size="m" icon="money-bills" />
+    <fd-identifier transparent size="l" icon="money-bills" />
+    <fd-identifier transparent size="xl" icon="money-bills" />
+    <fd-identifier transparent size="xxl" icon="money-bills" />
     <br />
     <br />
-    <FdIdentifier transparent size="xxs">WW</FdIdentifier>
-    <FdIdentifier transparent size="xs">WW</FdIdentifier>
-    <FdIdentifier transparent size="s">WW</FdIdentifier>
-    <FdIdentifier transparent size="m">WW</FdIdentifier>
-    <FdIdentifier transparent size="l">WW</FdIdentifier>
-    <FdIdentifier transparent size="xl">WW</FdIdentifier>
-    <FdIdentifier transparent size="xxl">WW</FdIdentifier>
+    <fd-identifier transparent size="xxs">WW</fd-identifier>
+    <fd-identifier transparent size="xs">WW</fd-identifier>
+    <fd-identifier transparent size="s">WW</fd-identifier>
+    <fd-identifier transparent size="m">WW</fd-identifier>
+    <fd-identifier transparent size="l">WW</fd-identifier>
+    <fd-identifier transparent size="xl">WW</fd-identifier>
+    <fd-identifier transparent size="xxl">WW</fd-identifier>
   </div>
 </template>
 
-<style scoped>
-.identifiers > span {
+<style>
+.fdd-identifier--sizes > span {
   margin-right: 10px;
 }
 </style>

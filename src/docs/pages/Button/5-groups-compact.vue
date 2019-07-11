@@ -3,26 +3,26 @@
 
 <template>
   <div>
-    <FdButtonGroup
+    <fd-button-group
       v-model="activeButtons"
       selectionMode="multiple"
       aria-label="Favorite Color"
     >
-      <FdButtonGroupButton value="a">Red</FdButtonGroupButton>
-      <FdButtonGroupButton value="b">Green</FdButtonGroupButton>
-      <FdButtonGroupButton value="c">Blue</FdButtonGroupButton>
-    </FdButtonGroup>
+      <fd-button-group-button value="a">Red</fd-button-group-button>
+      <fd-button-group-button value="b">Green</fd-button-group-button>
+      <fd-button-group-button value="c">Blue</fd-button-group-button>
+    </fd-button-group>
     <br /><br />
-    <FdButtonGroup
+    <fd-button-group
       compact
       v-model="activeButtons"
       selectionMode="multiple"
       aria-label="Favorite Color"
     >
-      <FdButtonGroupButton value="a">Red</FdButtonGroupButton>
-      <FdButtonGroupButton value="b">Green</FdButtonGroupButton>
-      <FdButtonGroupButton value="c">Blue</FdButtonGroupButton>
-    </FdButtonGroup>
+      <fd-button-group-button value="a">Red</fd-button-group-button>
+      <fd-button-group-button value="b">Green</fd-button-group-button>
+      <fd-button-group-button value="c">Blue</fd-button-group-button>
+    </fd-button-group>
     <br /><br />
     Values of selected Buttons: {{ activeButtons }}
   </div>

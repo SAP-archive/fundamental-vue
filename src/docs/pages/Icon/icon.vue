@@ -2,11 +2,10 @@
 
 <template>
   <div>
-    <FdIcon name="cart" size="s" />
-    <FdIcon name="cart" />
-    <!-- default -->
-    <FdIcon name="cart" size="m" />
-    <FdIcon name="cart" size="l" />
-    <FdIcon name="cart" size="xl" />
+    <fd-icon name="cart" size="s" />
+    <fd-icon name="cart" /><!-- default -->
+    <fd-icon name="cart" size="m" />
+    <fd-icon name="cart" size="l" />
+    <fd-icon name="cart" size="xl" />
   </div>
 </template>

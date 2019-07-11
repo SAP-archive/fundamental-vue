@@ -9,14 +9,14 @@
       The following toggles will stay in sync and control the popover's
       visibilit.
     </p>
-    <FdFormSet>
+    <fd-field-set>
       <FdFormItem :label="String(isOn)">
         <FdToggle v-model="isOn" />
       </FdFormItem>
       <FdFormItem :label="String(isOn)">
         <FdToggle v-model="isOn" />
       </FdFormItem>
-    </FdFormSet>
+    </fd-field-set>
     <fd-popover ref="popover">
       <template #control>
         <fd-button @click="isOn = !isOn">Toggle</fd-button>

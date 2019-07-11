@@ -8,7 +8,7 @@
 export default {};
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .tip {
   color: darken(desaturate(#f2f7ff, 50%), 60%);
   border-left: 0.3rem solid darken(desaturate(#f2f7ff, 50%), 60%);

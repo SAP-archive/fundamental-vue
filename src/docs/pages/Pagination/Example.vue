@@ -1,10 +1,10 @@
-<title>Default MultiInput</title>
+<title>Pagination</title>
 <template>
   <div>
-    <h2>{{ initialPage }}</h2>
+    <strong>{{ initialPage }}</strong>
     <FdPagination
       :itemsTotal="101"
-      totalText="Dalmations"
+      totalText="Search Results"
       :initialPage.sync="initialPage"
     />
   </div>

@@ -2,18 +2,17 @@
   <textarea
     v-if="type === 'textarea'"
     :class="inputClasses"
-    :id="inputId"
     :readonly="readonly ? '' : null"
     :disabled="disabled ? '' : null"
     :placeholder="placeholder"
     :value="value"
     v-on="listeners"
     v-bind="$attrs"
+    :id="inputId"
   />
   <input
     v-else
     :class="inputClasses_"
-    :id="inputId"
     :readonly="readonly ? '' : null"
     :disabled="disabled ? '' : null"
     :type="type"
@@ -23,6 +22,7 @@
     @focus="handleFocus"
     v-on="listeners"
     v-bind="$attrs"
+    :id="inputId"
   />
 </template>
 

@@ -2,7 +2,7 @@
 <tip>`FdSelect` supports `v-model`.</tip>
 <template>
   <div>
-    <FdFormSet>
+    <fd-field-set>
       <FdFormItem label="Favorite Color">
         <FdSelect v-model="color">
           <option disabled>no color</option>
@@ -11,7 +11,7 @@
           <option value="yellow">Yellow</option>
         </FdSelect>
       </FdFormItem>
-    </FdFormSet>
+    </fd-field-set>
     <div style="margin-bottom: 20px;">
       <p>
         Selected Color: <code class="fd-has-font-weight-bold">{{ color }}</code>

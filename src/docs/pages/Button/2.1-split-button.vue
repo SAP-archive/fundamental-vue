@@ -11,7 +11,7 @@
 </tip>
 <template>
   <div>
-    <div class="preview">
+    <div class="fdv-d-button-split-button__preview">
       <fd-split-button
         :compact="compact"
         :state="state"
@@ -58,11 +58,11 @@
         <option value="disabled">disabled</option>
       </fd-select>
     </fd-form-item>
-    <fd-form-group inline>
-      <fd-form-item label="Compact">
-        <fd-checkbox v-model="compact" />
-      </fd-form-item>
-    </fd-form-group>
+    <fd-form-item>
+      <fd-form-label for="hrhr">
+        <fd-checkbox id="hrhr" v-model="compact" />Compact
+      </fd-form-label>
+    </fd-form-item>
   </div>
 </template>
 
@@ -92,8 +92,8 @@ export default {
 };
 </script>
 
-<style scoped>
-.preview {
+<style>
+.fdv-d-button-split-button__preview {
   display: flex;
   align-items: center;
   justify-content: center;
