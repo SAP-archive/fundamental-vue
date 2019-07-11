@@ -39,26 +39,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.favorite-fruit {
-  font-size: 20px;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #efefef;
-  padding-bottom: 10px;
-}
-.favorite-fruit-label {
-  margin-right: 10px;
-}
-
-.favorite-fruit-current {
-  font-weight: bold;
-  color: rgb(55, 160, 6);
-  background-color: #efefef;
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-radius: 5px;
-}
-</style>

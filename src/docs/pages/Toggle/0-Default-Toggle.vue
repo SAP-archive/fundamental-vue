@@ -4,7 +4,7 @@
 </docs>
 
 <template>
-  <FdFormSet>
+  <fd-field-set>
     <FdFormItem label="Default Toggle: on">
       <FdToggle on />
     </FdFormItem>
@@ -20,5 +20,5 @@
     <FdFormItem label="Disabled Toggle: off">
       <FdToggle disabled :on="false" />
     </FdFormItem>
-  </FdFormSet>
+  </fd-field-set>
 </template>

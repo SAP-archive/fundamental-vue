@@ -11,7 +11,7 @@ Use the `selectionMode`-prop to set the selection mode of your choice.
 
 <template>
   <div>
-    <FdFormSet>
+    <fd-field-set>
       <FdFieldSet>
         <FdLegend>Selection Mode</FdLegend>
         <FdFormGroup inline>
@@ -26,7 +26,7 @@ Use the `selectionMode`-prop to set the selection mode of your choice.
           </FdFormItem>
         </FdFormGroup>
       </FdFieldSet>
-    </FdFormSet>
+    </fd-field-set>
 
     <FdTable :headers="headers" :selectionMode="selectionMode" :items="items">
       <template slot="row" slot-scope="{ item, changeSelection, selected }">

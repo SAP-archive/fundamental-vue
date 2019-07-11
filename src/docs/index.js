@@ -11,10 +11,11 @@ import "./main.scss";
 import ComponentApiRepository from "./component-api-repository";
 import DefaultLayout from "./layouts/DefaultLayout.vue";
 import FullscreenLayout from "./layouts/FullscreenLayout.vue";
+import "prismjs";
 
 const ComponentApiContext = require.context("./../../api/", true, /\.json$/);
 
-Vue.config.productionTip = false;
+// Vue.config.productionTip = true;
 Vue.use(Router);
 Vue.use(FundamentalVue);
 Vue.use(VueVirtualScroller);
@@ -38,8 +39,11 @@ const router = createRouter(Vue.prototype.$componentApiRepository);
 
 registerComponents(Vue);
 
-new Vue({
+const app = new Vue({
   router,
-  el: "#app",
-  render: h => h(App)
+  render: h => h(App),
+  mounted() {
+    document.dispatchEvent(new Event("render-event"));
+  }
 });
+app.$mount("#app");

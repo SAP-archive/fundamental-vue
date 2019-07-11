@@ -22,6 +22,7 @@ const createRouter = componentApiRepository => {
       component: () => import("./../components/d-component-api.vue")
     }));
   return new Router({
+    mode: process.env.NODE_ENV === "production" ? "history" : "hash",
     // Scroll the main component to the top.
     scrollBehavior(to) {
       const { meta = {} } = to;

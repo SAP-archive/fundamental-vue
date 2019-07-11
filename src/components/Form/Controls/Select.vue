@@ -1,7 +1,6 @@
 <template>
   <select
     :class="inputClasses"
-    :id="inputId"
     :readonly="readonly ? '' : null"
     :disabled="disabled ? '' : null"
     :value="value"
@@ -14,6 +13,7 @@
 </template>
 
 <script>
+// :id="inputId"
 import InputMixin from "./InputMixin";
 import { $valueWithDefault } from "./Helper/prop";
 

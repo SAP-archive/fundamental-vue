@@ -1,5 +1,15 @@
+// @ts-check
+
+const Process = require("process");
 const Path = require("path");
 const isE2e = process.env.FD_E2E === "true";
+
+const { env } = Process;
+
+const useSPA = env.FDV_SPA === "true";
+const VueSPAConfig = require("./vue-config/vue-spa.config");
+
+const configureWebpack = useSPA ? VueSPAConfig.configureWebpack : {};
 
 const publicPath = isE2e
   ? "/"
@@ -9,8 +19,14 @@ const publicPath = isE2e
 
 module.exports = {
   publicPath,
-
+  configureWebpack,
   chainWebpack: config => {
+    // config.plugin("define").tap(args => [{ ...args[0], FDV_APP_ATTRS: "''" }]);
+
+    if (useSPA) {
+      VueSPAConfig.chainWebpack(config);
+    }
+
     config.resolveLoader.modules
       .add("node_modules")
       .add(Path.resolve(__dirname, "loaders"))

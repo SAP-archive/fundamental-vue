@@ -1,18 +1,19 @@
 <title>Size and Shape</title>
 
 <template>
-  <div class="images">
-    <FdImage size="s" url="https://placeimg.com/400/400/nature" />
-    <FdImage size="m" url="https://placeimg.com/400/400/nature" />
-    <FdImage size="l" url="https://placeimg.com/400/400/nature" />
+  <div class="fdd-image--default">
+    <fd-image size="s" :url="$withBase('images/img-small.jpeg')" />
+    <fd-image size="m" :url="$withBase('images/img-small.jpeg')" />
+    <fd-image size="l" :url="$withBase('images/img-small.jpeg')" />
     <br /><br />
-    <FdImage size="s" circle url="https://placeimg.com/400/400/nature" />
-    <FdImage size="m" circle url="https://placeimg.com/400/400/nature" />
-    <FdImage size="l" circle url="https://placeimg.com/400/400/nature" />
+    <fd-image size="s" circle :url="$withBase('images/img-small.jpeg')" />
+    <fd-image size="m" circle :url="$withBase('images/img-small.jpeg')" />
+    <fd-image size="l" circle :url="$withBase('images/img-small.jpeg')" />
   </div>
 </template>
-<style scoped>
-.images > span {
+
+<style>
+.fdd-image--default > span {
   margin-right: 10px;
 }
 </style>

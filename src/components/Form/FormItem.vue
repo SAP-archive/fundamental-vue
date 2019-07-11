@@ -1,11 +1,6 @@
 <template>
   <div class="fd-form__item" :class="classes">
-    <slot v-if="!hasLabel" />
-    <FormLabel v-if="hasLabel">
-      <slot v-if="check" />
-      {{ label }}
-    </FormLabel>
-    <slot v-if="!check && hasLabel" />
+    <slot />
     <slot name="message" />
   </div>
 </template>
@@ -21,7 +16,7 @@
 //    Normal Input:
 //  input(type=text; id=a; placeholder="Field placeholder text") .fd-form__control
 //  span .fd-form__message
-//    Som Text
+//    Some Text
 //
 // Radio/Check-Inputs: Renders Label, Radio Button (both in one block) and Some Text (new block)
 // Note: Input is now inside the label.
@@ -31,12 +26,10 @@
 //     Option 1
 
 import { Uid } from "./../../mixins";
-import FormLabel from "./FormLabel.vue";
 
 export default {
-  name: "FdFormItem",
   mixins: [Uid],
-  components: { FormLabel },
+  name: "FdFormItem",
   provide() {
     return {
       formItem: this,
@@ -47,8 +40,7 @@ export default {
     $formGroup: { from: "formGroup", default: null }
   },
   props: {
-    inline: { type: Boolean, default: null },
-    label: { type: String, default: null }
+    inline: { type: Boolean, default: false }
   },
   methods: {
     setCheck(check) {

@@ -8,12 +8,3 @@
     <FdStatus icon="message-error">Error</FdStatus>
   </div>
 </template>
-
-<style scoped>
-.status {
-  text-align: center;
-}
-.status > span {
-  margin-right: 50px;
-}
-</style>

@@ -1,5 +1,6 @@
 <template>
-  <label class="fd-form__label" v-bind="attributes">
+  <label class="fd-form__label" :aria-required="String(required)">
+    <slot name="control" />
     <slot />
     <template v-if="required"
       >*</template
@@ -10,26 +11,18 @@
 <script>
 export default {
   name: "FdFormLabel",
-  inject: {
-    itemId: { default: null }
-  },
-  computed: {
-    attributes() {
-      return {
-        for: this.for,
-        ariaRequired: this.required ? "true" : null,
-        ...this.$attrs
-      };
-    },
-    for() {
-      return this.itemId;
-    }
-  },
   props: {
+    inline: {
+      type: Boolean,
+      default: false
+    },
     required: {
       default: false,
       type: Boolean
     }
+  },
+  inject: {
+    itemId: { default: null }
   }
 };
 </script>

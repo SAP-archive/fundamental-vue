@@ -18,10 +18,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.tokens,
-* {
-  margin-right: 10px;
-}
-</style>

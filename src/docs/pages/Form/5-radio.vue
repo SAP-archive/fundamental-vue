@@ -1,21 +1,31 @@
 <title>Radio Buttons</title>
 <template>
   <div>
-    <FdFieldSet>
-      <FdLegend>Radio Buttons</FdLegend>
-      <FdFormGroup>
-        <FdFormItem label="Option One"><FdRadio value="1"/></FdFormItem>
-        <FdFormItem label="Option Two"><FdRadio value="2"/></FdFormItem>
-        <FdFormItem label="Option Three"><FdRadio value="3"/></FdFormItem>
-      </FdFormGroup>
-    </FdFieldSet>
-    <FdFieldSet>
-      <FdLegend>Inline Radio Buttons</FdLegend>
-      <FdFormGroup inline>
-        <FdFormItem label="Option One"><FdRadio value="1"/></FdFormItem>
-        <FdFormItem label="Option Two"><FdRadio value="2"/></FdFormItem>
-        <FdFormItem label="Option Three"><FdRadio value="3"/></FdFormItem>
-      </FdFormGroup>
-    </FdFieldSet>
+    <fd-field-set>
+      <fd-legend>Radio Buttons</fd-legend>
+      <fd-form-item-radio label="Option One">
+        <fd-radio value="1" />
+      </fd-form-item-radio>
+      <fd-form-item-radio label="Option Two">
+        <fd-radio value="2" />
+      </fd-form-item-radio>
+      <fd-form-item-radio label="Option Three">
+        <fd-radio value="3" />
+      </fd-form-item-radio>
+    </fd-field-set>
+    <fd-field-set>
+      <fd-legend>Inline Radio Buttons</fd-legend>
+      <fd-form-group inline>
+        <fd-form-item-radio label="Option One">
+          <fd-radio value="1" />
+        </fd-form-item-radio>
+        <fd-form-item-radio label="Option Two">
+          <fd-radio value="2" />
+        </fd-form-item-radio>
+        <fd-form-item-radio label="Option Three">
+          <fd-radio value="3" />
+        </fd-form-item-radio>
+      </fd-form-group>
+    </fd-field-set>
   </div>
 </template>

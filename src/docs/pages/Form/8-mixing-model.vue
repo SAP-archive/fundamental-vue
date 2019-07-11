@@ -3,7 +3,7 @@
 The example below is using `v-model` in order to bind similar component to the same data.
 </docs>
 <template>
-  <FdFormSet>
+  <fd-field-set>
     <FdFieldSet>
       <FdLegend>Favorite Color</FdLegend>
       <FdFormGroup>
@@ -45,7 +45,7 @@ The example below is using `v-model` in order to bind similar component to the s
         /></FdFormItem>
       </FdFormGroup>
     </FdFieldSet>
-  </FdFormSet>
+  </fd-field-set>
 </template>
 
 <script>

@@ -1,32 +1,49 @@
 <title>Default Badge</title>
 <template>
-  <div class="badges">
-    <FdBadge>Default</FdBadge>
-    <FdBadge type="success">Success</FdBadge>
-    <FdBadge type="warning">Warning</FdBadge>
-    <FdBadge type="error">Error</FdBadge>
+  <div class="badges" style="text-align: center;">
+    <fd-container flex>
+      <fd-col>
+        <fd-badge>Default</fd-badge>
+      </fd-col>
+      <fd-col>
+        <fd-badge type="success">Success</fd-badge>
+      </fd-col>
+      <fd-col>
+        <fd-badge type="warning">Warning</fd-badge>
+      </fd-col>
+      <fd-col>
+        <fd-badge type="error">Error</fd-badge>
+      </fd-col>
+    </fd-container>
 
-    <br /><br />
+    <fd-container flex>
+      <fd-col>
+        <fd-badge filled>Default</fd-badge>
+      </fd-col>
+      <fd-col>
+        <fd-badge filled type="success">Success</fd-badge>
+      </fd-col>
+      <fd-col>
+        <fd-badge filled type="warning">Warning</fd-badge>
+      </fd-col>
+      <fd-col>
+        <fd-badge filled type="error">Error</fd-badge>
+      </fd-col>
+    </fd-container>
 
-    <FdBadge filled>Default</FdBadge>
-    <FdBadge filled type="success">Success</FdBadge>
-    <FdBadge filled type="warning">Warning</FdBadge>
-    <FdBadge filled type="error">Error</FdBadge>
-
-    <br /><br />
-
-    <FdBadge pill>Default</FdBadge>
-    <FdBadge pill type="success">Success</FdBadge>
-    <FdBadge pill type="warning">Warning</FdBadge>
-    <FdBadge pill type="error">Error</FdBadge>
+    <fd-container flex>
+      <fd-col>
+        <fd-badge pill>Default</fd-badge>
+      </fd-col>
+      <fd-col>
+        <fd-badge pill type="success">Success</fd-badge>
+      </fd-col>
+      <fd-col>
+        <fd-badge pill type="warning">Warning</fd-badge>
+      </fd-col>
+      <fd-col>
+        <fd-badge pill type="error">Error</fd-badge>
+      </fd-col>
+    </fd-container>
   </div>
 </template>
-
-<style scoped>
-.badges {
-  text-align: center;
-}
-.badges > span {
-  margin-right: 10px;
-}
-</style>

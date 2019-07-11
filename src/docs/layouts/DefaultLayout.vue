@@ -1,5 +1,6 @@
 <template>
   <div
+    id="app"
     :class="sidebarClasses"
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"

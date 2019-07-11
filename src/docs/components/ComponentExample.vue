@@ -160,7 +160,7 @@ export default {
     margin-bottom: 12px
 
 .codeContainer
-  background-color: rgb(250, 250, 250)
+  background-color: white
   border-top: 1px solid #eeeeef
   padding: 10px
 </style>

@@ -20,7 +20,7 @@
     "lint": "vue-cli-service lint --no-fix --max-warnings 0 --max-errors 0 src",
     "bootstrap": "yarn install",
     "build:docs": "cross-env NODE_OPTIONS=--max_old_space_size=8192 node src/tools/index && NODE_ENV=production; NODE_OPTIONS=--max_old_space_size=8192 vue-cli-service build src/docs/index.js",
-    "build:docs:netlify": "yarn build:docs --NETLIFY",
+    "build:docs:netlify": "yarn generate-api && cross-env NODE_ENV=production FDV_SPA=true webpack --progress --hide-modules --NETLIFY",
     "build:ui:dev": "vue-cli-service build --target lib --report --name FundamentalVue src/index.js --mode development",
     "deploy:docs": "yarn build:docs  && gh-pages -d dist",
     "lint:dev": "vue-cli-service lint",
@@ -28,7 +28,9 @@
     "release": "./scripts/publish-release.sh",
     "release:create": "create-release",
     "std-version": "standard-version -m \"chore(release): version %s build ${TRAVIS_BUILD_NUMBER} [ci skip]\"",
-    "test:watch": "vue-cli-service test:unit --watch"
+    "test:watch": "vue-cli-service test:unit --watch",
+    "spadev": "cross-env NODE_ENV=development FDV_SPA=true webpack-dev-server --open --hot",
+    "spabuild": "cross-env NODE_ENV=production FDV_SPA=true webpack --progress --hide-modules"
   },
   "main": "dist/FundamentalVue.cjs.js",
   "module": "dist/FundamentalVue.esm.js",
@@ -48,11 +50,11 @@
     "popper.js": "^1.15.0"
   },
   "devDependencies": {
+    "prismjs": "^1.16.0",
     "@babel/cli": "^7.4.4",
     "@types/jest": "^24.0.13",
     "@types/webpack": "^4.4.34",
     "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-plugin-e2e-cypress": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",
     "@vue/cli-plugin-unit-jest": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
@@ -74,13 +76,14 @@
     "fundamental-styles": "^0.1.0",
     "gh-pages": "^2.0.1",
     "github-assistant": "^0.3.0",
-    "highlight.js": "^9.15.8",
+    "globby": "^10.0.1",
     "html-loader": "^0.5.5",
     "klaw-sync": "^6.0.0",
     "markdown-it": "^9.0.0",
     "markdown-it-vue": "^1.0.9",
     "markdown-loader": "^5.0.0",
     "pre-commit": "^1.2.2",
+    "prerender-spa-plugin": "^3.4.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.12.5",
     "rollup-plugin-commonjs": "^10.0.0",
@@ -92,7 +95,9 @@
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
     "vue-template-compiler": "^2.6.10",
-    "vue-virtual-scroller": "^1.0.0-rc.2"
+    "vue-virtual-scroller": "^1.0.0-rc.2",
+    "webpack-chain": "^6.0.0",
+    "webpack-cli": "^3.3.5"
   },
   "peerDependencies": {
     "fundamental-styles": "^0.1.0",

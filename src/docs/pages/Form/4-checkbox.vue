@@ -7,41 +7,32 @@ You can bind multiple checkboxes to a single array. For each checked control it'
 </docs>
 <template>
   <div>
-    <FdSection>
-      <FdFieldSet>
-        <FdLegend>Favorite Colors</FdLegend>
-        <FdFormGroup>
-          <FdFormItem label="Red">
-            <FdCheckbox value="red" v-model="favoriteColors" />
-          </FdFormItem>
-          <FdFormItem label="Green">
-            <FdCheckbox value="green" v-model="favoriteColors" />
-          </FdFormItem>
-          <FdFormItem label="Blue">
-            <FdCheckbox value="blue" v-model="favoriteColors" />
-          </FdFormItem>
-        </FdFormGroup>
-      </FdFieldSet>
-    </FdSection>
-    <FdSection>
-      <FdFieldSet>
-        <FdLegend>Favorite Colors (inline)</FdLegend>
-        <FdFormGroup inline>
-          <FdFormItem label="Red">
-            <FdCheckbox value="red" v-model="favoriteColors" />
-          </FdFormItem>
-          <FdFormItem label="Green">
-            <FdCheckbox value="green" v-model="favoriteColors" />
-          </FdFormItem>
-          <FdFormItem label="Blue">
-            <FdCheckbox value="blue" v-model="favoriteColors" />
-          </FdFormItem>
-        </FdFormGroup>
-      </FdFieldSet>
-    </FdSection>
-    <FdSection>
-      <strong>Favorite Colors: {{ favoriteColors }}</strong>
-    </FdSection>
+    <fd-field-set>
+      <fd-legend>Checkboxes</fd-legend>
+      <fd-form-item-checkbox label="Option One">
+        <fd-checkbox value="1" />
+      </fd-form-item-checkbox>
+      <fd-form-item-checkbox label="Option Two">
+        <fd-checkbox value="2" />
+      </fd-form-item-checkbox>
+      <fd-form-item-checkbox label="Option Three">
+        <fd-checkbox value="3" />
+      </fd-form-item-checkbox>
+    </fd-field-set>
+    <fd-field-set>
+      <fd-legend>Inline Checkboxes</fd-legend>
+      <fd-form-group inline>
+        <fd-form-item-checkbox label="Option One">
+          <fd-checkbox value="1" />
+        </fd-form-item-checkbox>
+        <fd-form-item-checkbox label="Option Two">
+          <fd-checkbox value="2" />
+        </fd-form-item-checkbox>
+        <fd-form-item-checkbox label="Option Three">
+          <fd-checkbox value="3" />
+        </fd-form-item-checkbox>
+      </fd-form-group>
+    </fd-field-set>
   </div>
 </template>
 

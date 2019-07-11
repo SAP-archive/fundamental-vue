@@ -1,24 +1,8 @@
 <title>Default Counter</title>
 <template>
   <div>
-    <FdCounter :value="counter" class="counterMargin"></FdCounter>
-    <FdCounter :value="counter2"></FdCounter>
+    <fd-counter :value="23" />
+    <br /><br />
+    <fd-counter :value="1234" />
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      counter: 23,
-      counter2: 1234
-    };
-  }
-};
-</script>
-
-<style scoped>
-.counterMargin {
-  margin-right: 10px;
-}
-</style>

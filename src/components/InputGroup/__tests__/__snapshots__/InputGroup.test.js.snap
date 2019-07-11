@@ -4,11 +4,9 @@ exports[`InputGroup Compact Style renders correctly 1`] = `
 <div
   class="fd-input-group fd-input-group--compact"
 >
-  
+  <!---->
       
-    
-      
-  
+  <!---->
 </div>
 `;
 

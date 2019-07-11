@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    <FdFormSet>
+    <fd-field-set>
       <FdFormItem label="First Name">
         <FdInput v-model="firstName" placeholder="First Name" />
       </FdFormItem>
@@ -13,7 +13,7 @@
       <FdFormItem label="First Name">
         <FdTextArea v-model="firstName" placeholder="First Name" />
       </FdFormItem>
-    </FdFormSet>
+    </fd-field-set>
     <FdButton @click="changeName">Set first name to 'Chris'</FdButton>
     <br /><br /><br /><br /><br />
     <p>

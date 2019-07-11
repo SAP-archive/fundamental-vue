@@ -76,7 +76,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .d-component-picker__search-input {
   padding-left: 10px;
   padding-top: 10px;

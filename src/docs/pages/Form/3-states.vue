@@ -1,7 +1,7 @@
 <title>Input States</title>
 
 <template>
-  <FdFormSet>
+  <fd-field-set>
     <FdFormItem label="Normal Input">
       <FdInput placeholder="Field placeholder text" />
       <FdFormMessage slot="message"
@@ -43,5 +43,5 @@
         value="Readonly Content"
       />
     </FdFormItem>
-  </FdFormSet>
+  </fd-field-set>
 </template>

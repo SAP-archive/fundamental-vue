@@ -32,7 +32,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .component-name {
   font-size: 26px;
   margin-top: 15px;

@@ -6,14 +6,14 @@
 
 <template>
   <div>
-    <FdFormSet style="height: 100px;">
+    <fd-field-set style="height: 100px;">
       <FdFormItem inline label="Number of Columns">
         <FdInput v-model="numberOfColumns" />
       </FdFormItem>
       <FdFormItem inline label="Number of Rows">
         <FdInput v-model="numberOfRows" />
       </FdFormItem>
-    </FdFormSet>
+    </fd-field-set>
 
     <FdTable
       :headers="headers"
