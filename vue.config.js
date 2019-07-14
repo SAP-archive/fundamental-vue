@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // @ts-check
 
 const Process = require("process");
@@ -17,12 +18,12 @@ const publicPath = isE2e
   ? "/fundamental-vue/"
   : "/";
 
+console.log("🌈  ", { publicPath });
+
 module.exports = {
   publicPath,
   configureWebpack,
   chainWebpack: config => {
-    // config.plugin("define").tap(args => [{ ...args[0], FDV_APP_ATTRS: "''" }]);
-
     if (useSPA) {
       VueSPAConfig.chainWebpack(config);
     }
