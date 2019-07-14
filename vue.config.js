@@ -3,7 +3,6 @@
 
 const Process = require("process");
 const Path = require("path");
-const isE2e = process.env.FD_E2E === "true";
 
 const { env } = Process;
 
@@ -11,12 +10,9 @@ const useSPA = env.FDV_SPA === "true";
 const VueSPAConfig = require("./vue-config/vue-spa.config");
 
 const configureWebpack = useSPA ? VueSPAConfig.configureWebpack : {};
+const basePath = process.env.FDV_BASE || "/";
 
-const publicPath = isE2e
-  ? "/"
-  : process.env.NODE_ENV === "production" && process.argv[4] !== "--NETLIFY"
-  ? "/fundamental-vue/"
-  : "/";
+const publicPath = basePath;
 
 console.log("🌈  ", { publicPath });
 
