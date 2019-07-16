@@ -32,8 +32,7 @@ export default {
   data() {
     return {
       displayedDate:
-        typeof this.defaultValue === "string" ||
-        typeof this.defaultValue === "number"
+        typeof this.defaultValue === "string" || typeof this.defaultValue === "number"
           ? new Date(this.defaultValue)
           : this.defaultValue
     };

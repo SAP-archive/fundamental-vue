@@ -9,9 +9,7 @@ Clicking on `[Remove Item]` will remove the currently selected item from the lis
 <template>
   <div>
     <fd-button @click="add">Add Item</fd-button>
-    <fd-button @click="remove" :state="canRemove ? 'normal' : 'disabled'"
-      >Remove Item</fd-button
-    >
+    <fd-button @click="remove" :state="canRemove ? 'normal' : 'disabled'">Remove Item</fd-button>
 
     <fd-virtualized-list
       @update:selectedItem="selectedItem = $event"
@@ -42,9 +40,7 @@ const createItem = maxIndex => ({
 });
 
 const createItems = (maxIndex, count) => {
-  const indices = Array.from({ length: count }).map(
-    (_, index) => index + maxIndex
-  );
+  const indices = Array.from({ length: count }).map((_, index) => index + maxIndex);
   return indices.map(index => createItem(index));
 };
 
@@ -61,9 +57,7 @@ export default {
       if (selectedItem == null) {
         items.unshift(createItem(items.length));
       } else {
-        const insertionIndex = items.findIndex(
-          ({ id }) => id === selectedItem.id
-        );
+        const insertionIndex = items.findIndex(({ id }) => id === selectedItem.id);
         items.splice(insertionIndex, 0, createItem(items.length));
       }
     },

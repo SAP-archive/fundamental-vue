@@ -1,8 +1,7 @@
 // @ts-check
 <script>
 // Thanks @LinusBorg
-const isBrowser =
-  typeof window !== "undefined" && typeof document !== undefined;
+const isBrowser = typeof window !== "undefined" && typeof document !== undefined;
 const getRootEl = () => document.documentElement;
 
 const CLICK_OUTSIDE_EVENT = "do";

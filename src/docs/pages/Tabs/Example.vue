@@ -20,9 +20,20 @@
       </FdTabItem>
     </FdTabs>
 
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <hr />
-    Active Tab: <b>{{ activeTab }}</b>
+    Active Tab:
+    <b>{{ activeTab }}</b>
   </div>
 </template>
 

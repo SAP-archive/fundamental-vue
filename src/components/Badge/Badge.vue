@@ -34,8 +34,7 @@ export default {
   },
   computed: {
     classes() {
-      const type =
-        this.type == null ? {} : { [`fd-badge--${this.type}`]: true };
+      const type = this.type == null ? {} : { [`fd-badge--${this.type}`]: true };
       return {
         "fd-badge": true,
         "fd-badge--filled": this.filled,

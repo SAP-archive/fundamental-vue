@@ -80,8 +80,8 @@ Using fixed columns is still experimental.
               </template>
             </fd-table-row>
           </template>
-        </fd-table></fd-table-fixed
-      >
+        </fd-table>
+      </fd-table-fixed>
     </fd-table-fixed-wrapper>
   </div>
 </template>

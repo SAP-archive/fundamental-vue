@@ -2,16 +2,7 @@ import { getExamples, getPages } from "./../pages";
 import { log } from "./../core";
 
 export class Example {
-  constructor({
-    id,
-    title,
-    code,
-    tip,
-    docs,
-    component,
-    condensed,
-    fullscreenOnly
-  }) {
+  constructor({ id, title, code, tip, docs, component, condensed, fullscreenOnly }) {
     this.id = id;
     this.title = title;
     this.code = code;

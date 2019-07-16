@@ -52,8 +52,7 @@ export default {
 code[class*="language-"],
 pre[class*="language-"] {
   color: #393a34;
-  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier,
-    monospace;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
   direction: ltr;
   text-align: left;
   white-space: pre;

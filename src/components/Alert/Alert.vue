@@ -53,11 +53,7 @@ export default {
       type: String,
       default: "default",
       validator: value => {
-        return (
-          ["default", "warning", "error", "information", "success"].indexOf(
-            value
-          ) >= 0
-        );
+        return ["default", "warning", "error", "information", "success"].indexOf(value) >= 0;
       }
     }
   },

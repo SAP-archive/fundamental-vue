@@ -8,8 +8,14 @@
       <fd-calendar mode="range" v-model="date" />
       <fd-calendar mode="range" v-model="date" />
     </div>
-    <p><strong>From:</strong> {{ date.from }}</p>
-    <p><strong>To:</strong> {{ date.to }}</p>
+    <p>
+      <strong>From:</strong>
+      {{ date.from }}
+    </p>
+    <p>
+      <strong>To:</strong>
+      {{ date.to }}
+    </p>
   </div>
 </template>
 

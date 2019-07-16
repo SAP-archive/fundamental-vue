@@ -39,9 +39,7 @@ describe("Identifier", () => {
       identifier.setProps({
         backgroundColor: "accent-1"
       });
-      expect(identifier.classes()).toContain(
-        "fd-has-background-color-accent-1"
-      );
+      expect(identifier.classes()).toContain("fd-has-background-color-accent-1");
     });
     describe("renders each possible size correctly ", () => {
       const sizes = ["xxs", "xs", "s", "m", "l", "xl", "xxl"];

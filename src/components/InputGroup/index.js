@@ -11,10 +11,4 @@ export default pluginify(
   InputGroupClearButton,
   InputGroupSearch
 );
-export {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupButton,
-  InputGroupClearButton,
-  InputGroupSearch
-};
+export { InputGroup, InputGroupAddon, InputGroupButton, InputGroupClearButton, InputGroupSearch };

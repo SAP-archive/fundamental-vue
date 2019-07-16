@@ -19,9 +19,7 @@ export default (defaultTo = null) => ({
       }
       const { to, $router } = this;
       if (to == null) {
-        warn(
-          "Tried to navigate to push location but no location was provided."
-        );
+        warn("Tried to navigate to push location but no location was provided.");
         return;
       }
       if ($router == null) {

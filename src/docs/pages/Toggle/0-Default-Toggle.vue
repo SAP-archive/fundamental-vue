@@ -1,24 +1,24 @@
 <title>Toggle</title>
 <docs>
-`FdFormItem` has an optional label. Use the `on`-prop to turn a toggle on (`:on=true`) or off (`:on=false`). Set `disabled`-flag to disable user interaction.
+`fd-form-item-toggle` has an optional label. Use the `on`-prop to turn a toggle on (`:on=true`) or off (`:on=false`). Set `disabled`-flag to disable user interaction.
 </docs>
 
 <template>
   <fd-field-set>
-    <FdFormItem label="Default Toggle: on">
-      <FdToggle on />
-    </FdFormItem>
+    <fd-form-item-toggle label="Default Toggle: on">
+      <fd-toggle on />
+    </fd-form-item-toggle>
 
-    <FdFormItem label="Default Toggle: off">
-      <FdToggle :on="false" />
-    </FdFormItem>
+    <fd-form-item-toggle label="Default Toggle: off">
+      <fd-toggle :on="false" />
+    </fd-form-item-toggle>
 
-    <FdFormItem label="Disabled Toggle: on">
-      <FdToggle disabled on />
-    </FdFormItem>
+    <fd-form-item-toggle label="Disabled Toggle: on">
+      <fd-toggle disabled on />
+    </fd-form-item-toggle>
 
-    <FdFormItem label="Disabled Toggle: off">
-      <FdToggle disabled :on="false" />
-    </FdFormItem>
+    <fd-form-item-toggle label="Disabled Toggle: off">
+      <fd-toggle disabled :on="false" />
+    </fd-form-item-toggle>
   </fd-field-set>
 </template>

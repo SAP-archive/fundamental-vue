@@ -54,9 +54,7 @@ describe("Split Button", () => {
     });
 
     test("click:auxiliary-event is not emitted when auxiliary-button is clicked", () => {
-      const auxiliaryButtonWrapper = disabledWrapper.find(
-        FdSplitButtonAuxiliary
-      );
+      const auxiliaryButtonWrapper = disabledWrapper.find(FdSplitButtonAuxiliary);
       expect(auxiliaryButtonWrapper.exists()).toBe(true);
       auxiliaryButtonWrapper.trigger("click");
       expect(disabledWrapper.emitted("click:auxiliary")).toBeUndefined();

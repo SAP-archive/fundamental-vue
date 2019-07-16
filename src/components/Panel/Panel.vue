@@ -72,9 +72,7 @@ export default {
     classes() {
       const staticClasses = [PANEL_CLASS];
       const { span } = this;
-      return span == null
-        ? staticClasses
-        : [...staticClasses, `fd-has-grid-column-span-${span}`];
+      return span == null ? staticClasses : [...staticClasses, `fd-has-grid-column-span-${span}`];
     },
     hasTitle() {
       return this.$slots.title != null || this.title != null;

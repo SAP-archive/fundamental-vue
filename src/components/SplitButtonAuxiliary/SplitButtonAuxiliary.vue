@@ -8,8 +8,9 @@
     :compact="compact"
     v-bind="$attrs"
     v-on="$listeners"
-    ><slot
-  /></fd-button>
+  >
+    <slot />
+  </fd-button>
 </template>
 
 <script>

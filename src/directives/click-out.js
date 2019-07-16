@@ -4,11 +4,7 @@ const HANDLER = "__fundamentalvue_clickout_handler__";
 
 /** @type {import("vue").DirectiveFunction} */
 const unbind = (el, { modifiers }) => {
-  document.documentElement.removeEventListener(
-    "click",
-    el[HANDLER],
-    modifiers.capture
-  );
+  document.documentElement.removeEventListener("click", el[HANDLER], modifiers.capture);
   delete el[HANDLER];
 };
 
@@ -29,10 +25,7 @@ const bind = (el, binding, { context: vm }) => {
 
   el[HANDLER] = ev => {
     const path = ev.path || (ev.composedPath ? ev.composedPath() : undefined);
-    if (
-      initialMacrotaskEnded &&
-      (path ? path.indexOf(el) < 0 : !el.contains(ev.target))
-    ) {
+    if (initialMacrotaskEnded && (path ? path.indexOf(el) < 0 : !el.contains(ev.target))) {
       if (modifiers.stop) {
         ev.stopPropagation();
       }
@@ -40,11 +33,7 @@ const bind = (el, binding, { context: vm }) => {
     }
   };
 
-  document.documentElement.addEventListener(
-    "click",
-    el[HANDLER],
-    modifiers.capture
-  );
+  document.documentElement.addEventListener("click", el[HANDLER], modifiers.capture);
 };
 
 export default {

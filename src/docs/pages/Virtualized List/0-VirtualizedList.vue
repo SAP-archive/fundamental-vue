@@ -17,12 +17,7 @@ You also have to install [vue-observe-visibility](https://github.com/Akryum/vue-
 
     import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
   -->
-  <fd-virtualized-list
-    style="height: 400px;"
-    :min-item-size="30"
-    :items="items"
-    key-field="id"
-  >
+  <fd-virtualized-list style="height: 400px;" :min-item-size="30" :items="items" key-field="id">
     <template #item="{ item, index }">
       <fd-tile is-button transparent>
         <fd-tile-content>

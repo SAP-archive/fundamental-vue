@@ -8,18 +8,10 @@ export { default as ShellBarProductMenu } from "./ShellBarProductMenu.vue";
 export { default as ShellBarActions } from "./ShellBarActions.vue";
 export { default as ShellBarAction } from "./ShellBarAction.vue";
 export { default as ShellBarUserMenu } from "./ShellBarUserMenu.vue";
-export {
-  default as ShellBarUserMenuControl
-} from "./ShellBarUserMenuControl.vue";
-export {
-  default as ShellBarProductSwitcher
-} from "./ShellBarProductSwitcher.vue";
-export {
-  default as ShellBarProductSwitcherItem
-} from "./ShellBarProductSwitcherItem.vue";
-export {
-  default as ShellBarProductSwitcherItemImg
-} from "./ShellBarProductSwitcherItemImg.vue";
+export { default as ShellBarUserMenuControl } from "./ShellBarUserMenuControl.vue";
+export { default as ShellBarProductSwitcher } from "./ShellBarProductSwitcher.vue";
+export { default as ShellBarProductSwitcherItem } from "./ShellBarProductSwitcherItem.vue";
+export { default as ShellBarProductSwitcherItemImg } from "./ShellBarProductSwitcherItemImg.vue";
 export {
   default as ShellBarProductSwitcherItemTitle
 } from "./ShellBarProductSwitcherItemTitle.vue";

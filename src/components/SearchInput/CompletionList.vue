@@ -32,8 +32,7 @@ export default {
       if (predicate == null) {
         return completions;
       }
-      const matchesPredicate = completion =>
-        completion.toLowerCase().startsWith(predicate);
+      const matchesPredicate = completion => completion.toLowerCase().startsWith(predicate);
       return completions.filter(matchesPredicate);
     }
   },

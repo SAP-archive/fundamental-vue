@@ -20,8 +20,7 @@ export default {
   },
   computed: {
     classes() {
-      const size =
-        this.size == null ? {} : { [`sap-icon--${this.size}`]: true };
+      const size = this.size == null ? {} : { [`sap-icon--${this.size}`]: true };
       return {
         [`sap-icon--${this.name}`]: true,
         ...size

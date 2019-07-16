@@ -24,9 +24,7 @@ describe("Time", () => {
 
   it("renders correct placeholder and aria-label", () => {
     expect(input.attributes("placeholder")).toBe(placeholder);
-    expect(wrapper.find(".fd-time__item").attributes("aria-label")).toBe(
-      ariaLabel
-    );
+    expect(wrapper.find(".fd-time__item").attributes("aria-label")).toBe(ariaLabel);
   });
 
   it("emits events and has correct inputValue and input element value", () => {

@@ -12,11 +12,7 @@ Include `aria-label` when there is no text equivalent for the identifier. This i
     <fd-identifier circle backgroundColor="accent-1" icon="washing-machine" />
     <fd-identifier aria-label="Christian Kienle">CK</fd-identifier>
     <fd-identifier thumbnail :url="$withBase('images/headshot-male.jpg')" />
-    <fd-identifier
-      circle
-      thumbnail
-      :url="$withBase('images/headshot-male.jpg')"
-    />
+    <fd-identifier circle thumbnail :url="$withBase('images/headshot-male.jpg')" />
   </div>
 </template>
 

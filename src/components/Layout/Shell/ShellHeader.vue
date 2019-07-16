@@ -12,9 +12,7 @@ export default {
   },
   computed: {
     classes() {
-      return ["fd-shell__header"].concat(
-        this.fixed ? ["fd-shell__header--fixed"] : []
-      );
+      return ["fd-shell__header"].concat(this.fixed ? ["fd-shell__header--fixed"] : []);
     }
   }
 };

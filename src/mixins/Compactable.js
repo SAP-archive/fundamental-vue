@@ -14,10 +14,7 @@ export default {
 
   computed: {
     finalCompact() {
-      return (
-        this.compact ||
-        (this.$_FdCompactMixin && this.$_FdCompactMixin.data.value)
-      );
+      return this.compact || (this.$_FdCompactMixin && this.$_FdCompactMixin.data.value);
     }
   }
 };

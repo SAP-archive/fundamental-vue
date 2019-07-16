@@ -1,10 +1,7 @@
 <template>
   <tr :aria-selected="String(selected_)" v-on="$listeners">
     <template v-for="header in normalizedHeaders">
-      <fd-table-cell-fixed-provider
-        :fixed="header.columnFixed"
-        :key="header.id"
-      >
+      <fd-table-cell-fixed-provider :fixed="header.columnFixed" :key="header.id">
         <slot :name="header.slotName" />
       </fd-table-cell-fixed-provider>
     </template>
@@ -39,9 +36,7 @@ export default {
   computed: {
     selected_() {
       const { selected, fdTableItemProvider } = this;
-      return fdTableItemProvider.selected != null
-        ? fdTableItemProvider.selected
-        : selected;
+      return fdTableItemProvider.selected != null ? fdTableItemProvider.selected : selected;
     },
     normalizedHeaders() {
       return this.table.normalizedHeaders;

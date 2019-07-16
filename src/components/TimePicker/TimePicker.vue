@@ -4,19 +4,11 @@
       <template #control="{toggle, show, hide}">
         <fd-input-group :compact="compact">
           <template #input>
-            <fd-input
-              :value="timeValue"
-              :compact="compact"
-              :placeholder="placeholder"
-            />
+            <fd-input :value="timeValue" :compact="compact" :placeholder="placeholder" />
           </template>
           <template #after>
             <fd-input-group-addon>
-              <fd-input-group-button
-                @click="toggle"
-                styling="light"
-                icon="fob-watch"
-              />
+              <fd-input-group-button @click="toggle" styling="light" icon="fob-watch" />
             </fd-input-group-addon>
           </template>
         </fd-input-group>

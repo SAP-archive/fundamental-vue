@@ -3,9 +3,7 @@
     <slot>
       <a :href="hrefForLink" @click.prevent="onClick">
         <ShellBarProductSwitcherItemImg :src="src" />
-        <ShellBarProductSwitcherItemTitle>{{
-          title
-        }}</ShellBarProductSwitcherItemTitle>
+        <ShellBarProductSwitcherItemTitle>{{ title }}</ShellBarProductSwitcherItemTitle>
       </a>
     </slot>
   </li>

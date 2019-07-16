@@ -1,7 +1,7 @@
 <template>
   <div>
-    <strong>{{ name }}</strong
-    ><fd-badge style="margin-left: 10px;" v-if="scoped" filled>scoped</fd-badge>
+    <strong>{{ name }}</strong>
+    <fd-badge style="margin-left: 10px;" v-if="scoped" filled>scoped</fd-badge>
     <template v-if="describe != null">
       <div class="slot__description" v-html="describe" />
     </template>

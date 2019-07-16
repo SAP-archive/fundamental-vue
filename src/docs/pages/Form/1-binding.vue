@@ -4,20 +4,25 @@
 <template>
   <div>
     <fd-field-set>
-      <FdFormItem label="First Name">
+      <fd-form-item label="First Name">
         <FdInput v-model="firstName" placeholder="First Name" />
-      </FdFormItem>
-      <FdFormItem label="First Name">
+      </fd-form-item>
+      <fd-form-item label="First Name">
         <FdInput v-model="firstName" placeholder="First Name" />
-      </FdFormItem>
-      <FdFormItem label="First Name">
+      </fd-form-item>
+      <fd-form-item label="First Name">
         <FdTextArea v-model="firstName" placeholder="First Name" />
-      </FdFormItem>
+      </fd-form-item>
     </fd-field-set>
     <FdButton @click="changeName">Set first name to 'Chris'</FdButton>
-    <br /><br /><br /><br /><br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <p>
-      Current First Name: <strong>{{ firstName }}</strong>
+      Current First Name:
+      <strong>{{ firstName }}</strong>
     </p>
   </div>
 </template>

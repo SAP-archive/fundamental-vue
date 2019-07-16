@@ -10,14 +10,11 @@ const Sizes = Object.keys(sizeMapping);
 const isSize = value => value === undefined || Sizes.indexOf(value) >= 0;
 
 // Helper
-const addClasses = (list, classes) =>
-  classes.forEach(cssClass => list.add(cssClass));
+const addClasses = (list, classes) => classes.forEach(cssClass => list.add(cssClass));
 
 // Actual Design System Utils
 const designClass = (prefix, size, side) =>
-  side == null
-    ? `fd-has-${prefix}-${size}`
-    : `fd-has-${prefix}-${side}-${size}`;
+  side == null ? `fd-has-${prefix}-${size}` : `fd-has-${prefix}-${side}-${size}`;
 const designClasses = (prefix, size, modifiers = {}) => {
   const { top, left, right, bottom } = modifiers;
   if (top == null && left == null && right == null && bottom == null) {
@@ -38,10 +35,8 @@ const designClasses = (prefix, size, modifiers = {}) => {
   }
   return classes;
 };
-export const paddingClasses = (size, modifiers = {}) =>
-  designClasses("padding", size, modifiers);
-const marginClasses = (size, modifiers = {}) =>
-  designClasses("margin", size, modifiers);
+export const paddingClasses = (size, modifiers = {}) => designClasses("padding", size, modifiers);
+const marginClasses = (size, modifiers = {}) => designClasses("margin", size, modifiers);
 
 /*
   Usage:

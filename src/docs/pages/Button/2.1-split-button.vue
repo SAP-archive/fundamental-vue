@@ -18,8 +18,9 @@
         :styling="styling_"
         :type="type_"
         :icon="icon_"
-        >{{ text }}</fd-split-button
       >
+        {{ text }}
+      </fd-split-button>
     </div>
     <fd-form-item label="Text">
       <fd-input v-model="text" placeholder="Enter Button Text" />
@@ -60,7 +61,8 @@
     </fd-form-item>
     <fd-form-item>
       <fd-form-label for="hrhr">
-        <fd-checkbox id="hrhr" v-model="compact" />Compact
+        <fd-checkbox id="hrhr" v-model="compact" />
+        Compact
       </fd-form-label>
     </fd-form-item>
   </div>

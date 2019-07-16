@@ -7,12 +7,9 @@ Use the `button`-slot in order to provide a custom `fd-context-button`.
 <template>
   <fd-context-menu>
     <template #button="{toggleContextMenu}">
-      <fd-context-button
-        styling="emphasized"
-        :icon="null"
-        @click="toggleContextMenu"
-        >More…</fd-context-button
-      >
+      <fd-context-button styling="emphasized" :icon="null" @click="toggleContextMenu">
+        More…
+      </fd-context-button>
     </template>
     <fd-menu-list>
       <fd-menu-item>New File</fd-menu-item>

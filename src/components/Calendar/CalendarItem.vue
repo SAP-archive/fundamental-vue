@@ -53,16 +53,13 @@ export default {
   computed: {
     classes() {
       const state = this.state;
-      const isFirstOrLast =
-        state === "selectedRangeFirst" || state === "selectedRangeLast";
+      const isFirstOrLast = state === "selectedRangeFirst" || state === "selectedRangeLast";
       const stateClasses = [
         ...(isFirstOrLast ? [calendarItemStateMapping.selected] : []),
         ...(state != null ? [calendarItemStateMapping[state]] : [])
       ];
       const modifier = this.modifier;
-      return stateClasses.concat(
-        modifier == null ? [] : calendarItemModifierMapping[modifier]
-      );
+      return stateClasses.concat(modifier == null ? [] : calendarItemModifierMapping[modifier]);
     }
   },
   render(h) {

@@ -14,9 +14,9 @@
         />
         <FdShellBarProduct>
           <FdShellBarProductMenu>
-            <template #title
-              >Very long Product Name</template
-            >
+            <template #title>
+              Very long Product Name
+            </template>
             <template #default>
               <FdMenuList>
                 <FdMenuItem @click="itemClicked('a')">
@@ -81,7 +81,10 @@
       </FdShellBarGroup>
     </FdShellBar>
 
-    <br /><br /><br /><br />
+    <br />
+    <br />
+    <br />
+    <br />
     <FdShellBar>
       <FdShellBarGroup position="start">
         <FdShellBarLogo
@@ -93,9 +96,9 @@
         />
         <FdShellBarProduct>
           <FdShellBarProductMenu>
-            <template #title
-              >Short</template
-            >
+            <template #title>
+              Short
+            </template>
             <template #default>
               <FdMenuList>
                 <FdMenuItem @click="itemClicked('a')">

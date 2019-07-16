@@ -25,16 +25,10 @@ describe("TimeAction", () => {
 
   it("renders correct button props", () => {
     expect(wrapper.find("button").text()).toBe(actionTitle);
-    expect(wrapper.find("button").classes(`sap-icon--${actionIcon}`)).toBe(
-      true
-    );
-    expect(wrapper.find("button").classes(`fd-button--${actionType}`)).toBe(
-      true
-    );
+    expect(wrapper.find("button").classes(`sap-icon--${actionIcon}`)).toBe(true);
+    expect(wrapper.find("button").classes(`fd-button--${actionType}`)).toBe(true);
     expect(wrapper.find("button").attributes("aria-label")).toBe(ariaLabel);
-    expect(wrapper.find("button").attributes("aria-controls")).toBe(
-      ariaControls
-    );
+    expect(wrapper.find("button").attributes("aria-controls")).toBe(ariaControls);
   });
 
   it("emitted click event", () => {

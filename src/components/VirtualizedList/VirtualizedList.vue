@@ -9,11 +9,7 @@
   >
     <template v-slot:after>
       <!-- this div needs a certain min-height in order for v-observe-visibility to work. -->
-      <div
-        style="height: 10px;"
-        ref="after"
-        v-observe-visibility="afterVisibilityChanged"
-      >
+      <div style="height: 10px;" ref="after" v-observe-visibility="afterVisibilityChanged">
         <template v-if="isLoading">
           <slot name="loading">
             <fd-spinner v-if="isLoading" />
@@ -124,8 +120,7 @@ export default {
       if (!loadingIsPossible) {
         return;
       }
-      const moreItemsAvailable =
-        totalItemCount == null ? true : totalItemCount > items.length;
+      const moreItemsAvailable = totalItemCount == null ? true : totalItemCount > items.length;
       const isNeeded = afterSlotVisible && moreItemsAvailable;
       if (!isNeeded) {
         return;

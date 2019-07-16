@@ -2,9 +2,11 @@
 <docs>
 Use `fd-table` in order to display data best visualized by rows and columns.
 
-<div class="tip" style="border-left: 0.5rem solid #ffa94a;">
-  <div class="tip-title">IMPORTANT</div>
-  <div class="tip-body">
+<d-tip></d-tip>
+
+<div class="fdd-tip">
+  <div class="fdd-tip__title">IMPORTANT</div>
+  <div class="fdd-tip__body">
     <p>In a previous release you didn't have to put <code>fd-table-row</code> in a <code>template</code>. Going forward you have to do so.</p>
   </div>
 </div>

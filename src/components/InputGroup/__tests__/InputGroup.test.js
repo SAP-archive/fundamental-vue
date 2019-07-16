@@ -29,9 +29,7 @@ describe("InputGroup", () => {
 
   it("renders before after correctly", () => {
     expect(wrapper.contains(".fd-input-group__addon--before")).toBe(true);
-    expect(wrapper.find(".fd-input-group__addon--before").text()).toEqual(
-      before
-    );
+    expect(wrapper.find(".fd-input-group__addon--before").text()).toEqual(before);
     expect(wrapper.contains(".fd-input-group__addon--after")).toBe(true);
     expect(wrapper.find(".fd-input-group__addon--after").text()).toEqual(after);
   });

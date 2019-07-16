@@ -18,9 +18,9 @@ describe("ProductTile", () => {
 
   it("renders correct props", () => {
     expect(wrapper.find(".fd-product-tile__title").text()).toEqual(title);
-    expect(
-      wrapper.find(".fd-product-tile__media").attributes("style")
-    ).toContain(`background-image: url(${url});`);
+    expect(wrapper.find(".fd-product-tile__media").attributes("style")).toContain(
+      `background-image: url(${url});`
+    );
   });
 
   describe("As Button", () => {

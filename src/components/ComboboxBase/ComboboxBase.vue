@@ -1,18 +1,10 @@
 <template>
-  <fd-popover
-    ref="popover"
-    body-size-mode="equal-trigger"
-    placement="bottom-start"
-  >
+  <fd-popover ref="popover" body-size-mode="equal-trigger" placement="bottom-start">
     <template #control="{ hide, show, toggle }">
       <div class="fd-combobox-control">
         <fd-input-group :compact="compact">
           <template #input>
-            <slot
-              name="input"
-              :hideCompletions="hide"
-              :showCompletions="show"
-            />
+            <slot name="input" :hideCompletions="hide" :showCompletions="show" />
           </template>
 
           <template #after>

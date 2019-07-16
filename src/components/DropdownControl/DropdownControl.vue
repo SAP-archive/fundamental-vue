@@ -1,7 +1,5 @@
 <template>
-  <fd-button class="fd-dropdown__control" v-on="$listeners" v-bind="$attrs"
-    ><slot
-  /></fd-button>
+  <fd-button class="fd-dropdown__control" v-on="$listeners" v-bind="$attrs"><slot /></fd-button>
 </template>
 
 <script>

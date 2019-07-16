@@ -13,11 +13,7 @@
 
     <fd-tile>
       <fd-tile-media>
-        <fd-identifier
-          thumbnail
-          circle
-          :url="$withBase('images/headshot-male.jpg')"
-        />
+        <fd-identifier thumbnail circle :url="$withBase('images/headshot-male.jpg')" />
       </fd-tile-media>
       <fd-tile-content>
         <fd-tile-title>Tile with Avatar</fd-tile-title>
@@ -26,11 +22,7 @@
 
     <fd-tile>
       <fd-tile-media>
-        <fd-identifier
-          size="m"
-          icon="money-bills"
-          background-color="accent-3"
-        />
+        <fd-identifier size="m" icon="money-bills" background-color="accent-3" />
       </fd-tile-media>
       <fd-tile-content>
         <fd-tile-title>Tile with Identifier</fd-tile-title>

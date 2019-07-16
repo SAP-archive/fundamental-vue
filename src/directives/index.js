@@ -1,12 +1,6 @@
 import bg from "./background-color";
 import icon from "./icon";
-import {
-  padding,
-  margin,
-  fontWeight,
-  fontFamily,
-  type
-} from "./design-system-utilities";
+import { padding, margin, fontWeight, fontFamily, type } from "./design-system-utilities";
 import clickOut from "./click-out";
 import modal from "./modal";
 

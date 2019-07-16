@@ -10,9 +10,9 @@
             <fd-input-group-button icon="globe" />
           </fd-input-group-addon>
         </template>
-        <template #input
-          ><fd-input placeholder="Enter Amount…"
-        /></template>
+        <template #input>
+          <fd-input placeholder="Enter Amount…" />
+        </template>
       </fd-input-group>
     </fd-form-item>
 
@@ -24,9 +24,9 @@
             <fd-input-group-button icon="globe" />
           </fd-input-group-addon>
         </template>
-        <template #input
-          ><fd-input placeholder="Enter Amount…"
-        /></template>
+        <template #input>
+          <fd-input placeholder="Enter Amount…" />
+        </template>
       </fd-input-group>
     </fd-form-item>
 
@@ -38,9 +38,9 @@
             <fd-input-group-button>Submit</fd-input-group-button>
           </fd-input-group-addon>
         </template>
-        <template #input
-          ><fd-input placeholder="Enter Amount…"
-        /></template>
+        <template #input>
+          <fd-input placeholder="Enter Amount…" />
+        </template>
       </fd-input-group>
     </fd-form-item>
 
@@ -52,9 +52,9 @@
             <fd-input-group-button>Submit</fd-input-group-button>
           </fd-input-group-addon>
         </template>
-        <template #input
-          ><fd-input placeholder="Enter Amount…"
-        /></template>
+        <template #input>
+          <fd-input placeholder="Enter Amount…" />
+        </template>
       </fd-input-group>
     </fd-form-item>
   </div>

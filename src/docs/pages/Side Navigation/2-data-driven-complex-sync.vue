@@ -4,9 +4,7 @@ The prop `selectedId` supports the `.sync`-modifier. This way you can bind the s
 </docs>
 <template>
   <div>
-    <p class="fd-has-text-align-center" v-fd-font-weight:bold>
-      selected id: {{ selectedId }}
-    </p>
+    <p class="fd-has-text-align-center" v-fd-font-weight:bold>selected id: {{ selectedId }}</p>
     <br />
     <fd-side-nav :selectedId.sync="selectedId">
       <fd-side-nav-list :items="items">
@@ -48,28 +46,16 @@ export default {
         { name: "Item A-1" },
         {
           name: "Item A-2",
-          children: [
-            { name: "Item A-2-1" },
-            { name: "Item A-2-2" },
-            { name: "Item A-2-3" }
-          ]
+          children: [{ name: "Item A-2-1" }, { name: "Item A-2-2" }, { name: "Item A-2-3" }]
         },
         {
           id: "A-3",
           name: "Item A-3",
-          children: [
-            { name: "Item A-3-1" },
-            { name: "Item A-3-2" },
-            { name: "Item A-3-3" }
-          ]
+          children: [{ name: "Item A-3-1" }, { name: "Item A-3-2" }, { name: "Item A-3-3" }]
         },
         {
           name: "Item A-4",
-          children: [
-            { name: "Item A-4-1" },
-            { name: "Item A-4-2" },
-            { name: "Item A-4-3" }
-          ]
+          children: [{ name: "Item A-4-1" }, { name: "Item A-4-2" }, { name: "Item A-4-3" }]
         },
         { name: "Item A-5" }
       ]

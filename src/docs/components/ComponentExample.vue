@@ -37,11 +37,7 @@
         </div>
       </div>
       <div slot="footer" class="footer">
-        <div
-          class="example__show_code"
-          role="button"
-          @click="toggleCodeVisibility"
-        >
+        <div class="example__show_code" role="button" @click="toggleCodeVisibility">
           <a href="#">
             <i :class="toggleCodeVisbilityIcon" />
             <span style="margin-left: 4px; line-height: 44px; font-size: 13px;">
@@ -78,10 +74,7 @@ export default {
   },
   computed: {
     toggleCodeVisbilityIcon() {
-      return [
-        `sap-icon--navigation-${this.codeVisible ? "up" : "down"}-arrow`,
-        "sap-icon--s"
-      ];
+      return [`sap-icon--navigation-${this.codeVisible ? "up" : "down"}-arrow`, "sap-icon--s"];
     },
     toggleCodeVisbilityTitle() {
       return this.codeVisible ? "Hide Code" : "Show Code";

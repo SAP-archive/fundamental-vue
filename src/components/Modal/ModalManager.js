@@ -93,9 +93,7 @@ export default class ModalManager {
 
   get topModal() {
     const { openModals } = this;
-    return openModals.length === 0
-      ? undefined
-      : openModals[openModals.length - 1];
+    return openModals.length === 0 ? undefined : openModals[openModals.length - 1];
   }
 
   // This is our 'public' method. We expose only one method for

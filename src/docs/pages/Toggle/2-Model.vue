@@ -6,16 +6,15 @@
 <template>
   <div>
     <p>
-      The following toggles will stay in sync and control the popover's
-      visibilit.
+      The following toggles will stay in sync and control the popover's visibilit.
     </p>
     <fd-field-set>
-      <FdFormItem :label="String(isOn)">
+      <fd-form-item-toggle :label="String(isOn)">
         <FdToggle v-model="isOn" />
-      </FdFormItem>
-      <FdFormItem :label="String(isOn)">
+      </fd-form-item-toggle>
+      <fd-form-item-toggle :label="String(isOn)">
         <FdToggle v-model="isOn" />
-      </FdFormItem>
+      </fd-form-item-toggle>
     </fd-field-set>
     <fd-popover ref="popover">
       <template #control>

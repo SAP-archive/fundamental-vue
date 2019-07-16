@@ -1,11 +1,6 @@
 <template>
   <li class="fd-breadcrumb__item">
-    <a
-      class="fd-breadcrumb__link"
-      @click="pushLocationIfPossible"
-      v-bind="attrs"
-      v-on="$listeners"
-    >
+    <a class="fd-breadcrumb__link" @click="pushLocationIfPossible" v-bind="attrs" v-on="$listeners">
       <!-- Anchor tag content -->
       <slot />
     </a>

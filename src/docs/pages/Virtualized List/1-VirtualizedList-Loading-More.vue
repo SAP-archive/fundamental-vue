@@ -61,9 +61,7 @@ const createItem = maxIndex => ({
 });
 
 const createItems = (maxIndex, count) => {
-  const indices = Array.from({ length: count }).map(
-    (_, index) => index + maxIndex
-  );
+  const indices = Array.from({ length: count }).map((_, index) => index + maxIndex);
   return indices.map(index => createItem(index));
 };
 

@@ -20,8 +20,7 @@ export default {
   },
   computed: {
     classes() {
-      const type =
-        this.type == null ? {} : { [`fd-label--${this.type}`]: true };
+      const type = this.type == null ? {} : { [`fd-label--${this.type}`]: true };
       return {
         "fd-label": true,
         ...type

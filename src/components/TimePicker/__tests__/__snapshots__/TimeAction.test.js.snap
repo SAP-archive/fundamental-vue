@@ -9,7 +9,9 @@ exports[`TimeAction renders correctly 1`] = `
     aria-label="Increase Hour"
     class="fd-button--compact fd-button--light fd-button--standard sap-icon--navigation-up-arrow"
   >
+    
     Action Title
+  
   </button>
 </div>
 `;

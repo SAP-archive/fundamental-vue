@@ -5,7 +5,8 @@
     <strong>Date Mode:</strong>
     <fd-date-input v-model="date" />
     <fd-date-input v-model="date" />
-    <br /><br />
+    <br />
+    <br />
     <strong>Range Mode:</strong>
     <fd-date-input mode="range" v-model="range" />
     <fd-date-input mode="range" v-model="range" />

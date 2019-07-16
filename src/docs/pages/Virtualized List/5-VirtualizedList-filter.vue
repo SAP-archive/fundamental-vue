@@ -69,9 +69,7 @@ class MockBackend {
   async getItems({ itemsPerPage = 5, page = 0, query = "" }) {
     await this.delay(); // simulate a delayed response
     const _items =
-      query.length < 1
-        ? this.items
-        : this.items.filter(item => item.title.includes(query));
+      query.length < 1 ? this.items : this.items.filter(item => item.title.includes(query));
     const maxIndex = _items.length;
     const startIndex = itemsPerPage * page;
     const endIndex = Math.min(maxIndex, startIndex + itemsPerPage);

@@ -133,9 +133,7 @@ export default {
       if (sortDescriptor == null) {
         return result;
       }
-      return result.sort(
-        compareValues(sortDescriptor.prop, sortDescriptor.order)
-      );
+      return result.sort(compareValues(sortDescriptor.prop, sortDescriptor.order));
     },
     normalizedHeaders() {
       return normalizedHeaders(this.headers, this.firstColumnFixed);
@@ -182,9 +180,7 @@ export default {
           if (action === SELECT_ACTION.select) {
             this.selectedIds_ = [id, ...this.selectedIds_];
           } else {
-            const newIds = [...this.selectedIds_].filter(
-              selectedId => selectedId !== id
-            );
+            const newIds = [...this.selectedIds_].filter(selectedId => selectedId !== id);
             this.selectedIds_ = newIds;
           }
           break;

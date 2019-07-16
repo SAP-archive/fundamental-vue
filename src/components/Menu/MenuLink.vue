@@ -5,8 +5,9 @@
     :class="classes"
     v-on="listeners"
     @click="click"
-    ><slot
-  /></a>
+  >
+    <slot />
+  </a>
 </template>
 
 <script>

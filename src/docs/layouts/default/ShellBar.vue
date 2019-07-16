@@ -12,12 +12,7 @@
     <fd-shell-bar-group position="end">
       <fd-shell-bar-actions>
         <fd-shell-bar-action>
-          <fd-popover
-            ref="popover"
-            with-arrow
-            :flips="false"
-            placement="bottom-end"
-          >
+          <fd-popover ref="popover" with-arrow :flips="false" placement="bottom-end">
             <template #control="{toggle}">
               <fd-shell-bar-action-button icon="search" @click="toggle" />
             </template>
@@ -50,10 +45,7 @@ export default {
   computed: {
     sidenavVisible: {
       get() {
-        return (
-          this.sidenavVisibleModel.length === 1 &&
-          this.sidenavVisibleModel[0] === true
-        );
+        return this.sidenavVisibleModel.length === 1 && this.sidenavVisibleModel[0] === true;
       },
       set(visible) {
         this.sidenavVisibleModel = [visible];

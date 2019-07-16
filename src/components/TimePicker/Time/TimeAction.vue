@@ -9,8 +9,9 @@
       :aria-label="ariaLabel"
       :aria-controls="ariaControls"
       @click="$emit('click')"
-      >{{ title }}</Button
     >
+      {{ title }}
+    </Button>
   </div>
 </template>
 

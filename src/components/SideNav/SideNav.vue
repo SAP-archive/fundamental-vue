@@ -47,16 +47,12 @@ export default {
       this.expandedIds = [...this.expandedIds, id];
     },
     collapseItemWithId(id) {
-      this.expandedIds = [
-        ...this.expandedIds.filter(expandedId => expandedId !== id)
-      ];
+      this.expandedIds = [...this.expandedIds.filter(expandedId => expandedId !== id)];
     },
     toggleExpandedForItemWithId(itemId) {
       const { expandedIds } = this;
       const needsToBeExpanded = expandedIds.indexOf(itemId) < 0;
-      needsToBeExpanded
-        ? this.expandItemWithId(itemId)
-        : this.collapseItemWithId(itemId);
+      needsToBeExpanded ? this.expandItemWithId(itemId) : this.collapseItemWithId(itemId);
     }
   },
   watch: {

@@ -1,9 +1,6 @@
 <template>
   <fd-portal :selector="portalSelector">
-    <fd-modal-overlay
-      :visible="overlayVisible"
-      @after-enter="visible = overlayVisible"
-    >
+    <fd-modal-overlay :visible="overlayVisible" @after-enter="visible = overlayVisible">
       <transition name="fdv-modal" @after-leave="overlayVisible = visible">
         <div
           :key="name"
@@ -47,10 +44,7 @@
               v-if="$scopedSlots.footer != null || $scopedSlots.actions != null"
             >
               <slot name="footer" v-bind="this" />
-              <div
-                v-if="$scopedSlots.actions != null"
-                class="fd-modal__actions"
-              >
+              <div v-if="$scopedSlots.actions != null" class="fd-modal__actions">
                 <slot name="actions" v-bind="this" />
               </div>
             </footer>

@@ -1,7 +1,7 @@
 <template>
   <div class="component-name" :id="id_">
-    <router-link class="component-name__anchor" :to="to">#</router-link
-    >{{ name }}
+    <router-link class="component-name__anchor" :to="to">#</router-link>
+    {{ name }}
   </div>
 </template>
 

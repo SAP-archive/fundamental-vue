@@ -38,8 +38,7 @@ export default {
       addClass(el, "collapse-transition");
       const style = window.getComputedStyle(el);
       el.dataset[dataKey("OldPaddingTop")] = style.paddingTop || undefined;
-      el.dataset[dataKey("OldPaddingBottom")] =
-        style.paddingBottom || undefined;
+      el.dataset[dataKey("OldPaddingBottom")] = style.paddingBottom || undefined;
       el.style.height = "";
       el.style.paddingTop = "";
       el.style.paddingBottom = "";
@@ -51,13 +50,11 @@ export default {
       if (el.scrollHeight !== 0) {
         el.style.height = el.scrollHeight + "px";
         el.style.paddingTop = el.dataset[dataKey("OldPaddingTop")] || null;
-        el.style.paddingBottom =
-          el.dataset[dataKey("OldPaddingBottom")] || null;
+        el.style.paddingBottom = el.dataset[dataKey("OldPaddingBottom")] || null;
       } else {
         el.style.height = "";
         el.style.paddingTop = el.dataset[dataKey("OldPaddingTop")] || null;
-        el.style.paddingBottom =
-          el.dataset[dataKey("OldPaddingBottom")] || null;
+        el.style.paddingBottom = el.dataset[dataKey("OldPaddingBottom")] || null;
       }
       el.style.overflow = "hidden";
     },
@@ -71,8 +68,7 @@ export default {
     beforeLeave(el) {
       const style = window.getComputedStyle(el);
       el.dataset[dataKey("OldPaddingTop")] = style.paddingTop || undefined;
-      el.dataset[dataKey("OldPaddingBottom")] =
-        style.paddingBottom || undefined;
+      el.dataset[dataKey("OldPaddingBottom")] = style.paddingBottom || undefined;
       el.dataset[dataKey("OldOverflow")] = style.overflow || undefined;
 
       el.style.height = el.scrollHeight + "px";
@@ -118,7 +114,6 @@ export default {
   height: 0;
 }
 .collapse-transition {
-  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
-    0.3s padding-bottom ease-in-out;
+  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;
 }
 </style>

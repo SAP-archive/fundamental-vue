@@ -22,7 +22,10 @@ Of course you can also manually show or close the modal by simply calling the co
       <template #default="{close}">
         <div>
           <p>Do you want to invite your friends to join the party?</p>
-          <p><FdLink @click="close">Nah…</FdLink> – maybe next time though.</p>
+          <p>
+            <FdLink @click="close">Nah…</FdLink>
+            – maybe next time though.
+          </p>
         </div>
       </template>
       <template #actions="{close}">

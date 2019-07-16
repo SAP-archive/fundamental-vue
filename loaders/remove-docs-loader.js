@@ -20,13 +20,7 @@ const contentWithoutBlock = (content, block) => {
 };
 
 module.exports = content => {
-  const blocksToRemove = [
-    "condensed",
-    "fullscreen-only",
-    "docs",
-    "title",
-    "tip"
-  ];
+  const blocksToRemove = ["condensed", "fullscreen-only", "docs", "title", "tip"];
   const result = blocksToRemove
     .reduce((prev, curr) => contentWithoutBlock(prev, curr), content)
     .trim();

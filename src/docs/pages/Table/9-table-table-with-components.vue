@@ -17,9 +17,7 @@ If a component you put inside an `fd-table-cell` subscribes to `@click`-events, 
       <fd-table-row @click="onRowClick(item)">
         <template #firstName>
           <fd-table-cell>
-            <fd-button @click.stop="onButtonClick">{{
-              item.firstName
-            }}</fd-button>
+            <fd-button @click.stop="onButtonClick">{{ item.firstName }}</fd-button>
           </fd-table-cell>
         </template>
 

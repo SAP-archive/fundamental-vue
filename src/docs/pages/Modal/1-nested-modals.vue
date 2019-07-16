@@ -11,11 +11,7 @@ You can nest modals just by calling `$fdModal.open(…)` multiple times.
     <fd-modal name="outer" title="Outer Modal">
       This is the first modal! Click the button below to open the second modal.
 
-      <fd-button
-        slot="actions"
-        @click="$fdModal.open('nested')"
-        styling="emphasized"
-      >
+      <fd-button slot="actions" @click="$fdModal.open('nested')" styling="emphasized">
         Open Nested Modal
       </fd-button>
     </fd-modal>

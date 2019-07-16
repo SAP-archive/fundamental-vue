@@ -7,10 +7,7 @@
 </docs>
 <template>
   <div style="display: flex;">
-    <FdTimePicker
-      :showMeridian="meridianTime.showMeridian"
-      :value="meridianTime.value"
-    />
+    <FdTimePicker :showMeridian="meridianTime.showMeridian" :value="meridianTime.value" />
   </div>
 </template>
 

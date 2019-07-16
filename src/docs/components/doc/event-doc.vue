@@ -4,12 +4,14 @@
     <ul class="event">
       <li>
         <p>
-          <strong>Sync:</strong> <code>{{ String(isSync) }}</code>
+          <strong>Sync:</strong>
+          <code>{{ String(isSync) }}</code>
         </p>
       </li>
       <li v-if="isSync">
         <p>
-          <strong>Sync Prop:</strong> <code>{{ syncProp }}</code>
+          <strong>Sync Prop:</strong>
+          <code>{{ syncProp }}</code>
         </p>
       </li>
       <li v-if="argumentsDesc.length">

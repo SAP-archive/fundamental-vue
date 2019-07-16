@@ -2,12 +2,7 @@
   <div class="d-component-picker">
     <fd-input-group-search class="d-component-picker__search-input">
       <template #input>
-        <input
-          ref="searchInput"
-          v-model="predicate"
-          type="search"
-          placeholder="Enter Component…"
-        />
+        <input ref="searchInput" v-model="predicate" type="search" placeholder="Enter Component…" />
       </template>
       <template #clear>
         <fd-input-group-clear-button @click="clearSearch" />
@@ -49,9 +44,7 @@ export default {
   },
   methods: {
     itemFromKey(key) {
-      const displayableComponentName = this.$componentApiRepository.displayableComponentName(
-        key
-      );
+      const displayableComponentName = this.$componentApiRepository.displayableComponentName(key);
       return {
         key,
         displayableComponentName

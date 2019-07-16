@@ -1,7 +1,7 @@
 <template>
-  <router-link :to="to"
-    ><slot>{{ componentName }}</slot></router-link
-  >
+  <router-link :to="to">
+    <slot>{{ componentName }}</slot>
+  </router-link>
 </template>
 
 <script>

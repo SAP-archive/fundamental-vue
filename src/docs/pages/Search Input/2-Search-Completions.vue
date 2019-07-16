@@ -11,21 +11,15 @@ Use the `popoverClass`- and `inputGroupClass`-props in order to apply custom CSS
 <template>
   <div>
     <p>
-      Predicate: <code>{{ predicate }}</code>
+      Predicate:
+      <code>{{ predicate }}</code>
     </p>
     <fd-search-input
       popoverClass="docs-search"
       class="docs-search"
       v-model="predicate"
       placeholder="Search"
-      :completions="[
-        'Apple',
-        'Peach',
-        'Banana',
-        'Chris',
-        'Vue is Cool',
-        'Test123'
-      ]"
+      :completions="['Apple', 'Peach', 'Banana', 'Chris', 'Vue is Cool', 'Test123']"
     />
   </div>
 </template>

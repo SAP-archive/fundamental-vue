@@ -1,10 +1,5 @@
 <template>
-  <div
-    :id="uid"
-    role="tabpanel"
-    class="fd-tabs__panel"
-    :aria-expanded="ariaExpanded"
-  >
+  <div :id="uid" role="tabpanel" class="fd-tabs__panel" :aria-expanded="ariaExpanded">
     <slot />
   </div>
 </template>

@@ -2,11 +2,7 @@ import slugify from "./../util/slugify";
 import deslugify from "./../util/deslugify";
 
 const examplesContext = require.context("./", true, /\.vue$/);
-const examplesCodeContext = require.context(
-  "!remove-docs-loader!./",
-  true,
-  /\.vue$/
-);
+const examplesCodeContext = require.context("!remove-docs-loader!./", true, /\.vue$/);
 
 class Page {
   constructor({ key, slug, relatedComponents }) {
@@ -68,8 +64,7 @@ export const getExamples = collectionName => {
   const result = matchingKeys.map(key => {
     const component = examplesContext(key).default;
     const titleFromComponent = component.__title;
-    const title =
-      typeof titleFromComponent === "string" ? titleFromComponent : "";
+    const title = typeof titleFromComponent === "string" ? titleFromComponent : "";
     const tip = component.__tip;
     const docs = component.__docs;
     const condensed = component.__condensed != null;
@@ -86,8 +81,6 @@ export const getExamples = collectionName => {
       fullscreenOnly
     };
   });
-  result.sort((lhs, rhs) =>
-    lhs.id.localeCompare(rhs.id, "en", { numeric: true })
-  );
+  result.sort((lhs, rhs) => lhs.id.localeCompare(rhs.id, "en", { numeric: true }));
   return result;
 };
