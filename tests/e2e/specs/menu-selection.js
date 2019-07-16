@@ -23,7 +23,9 @@ describe("combobox", () => {
       cy.get("@selected").should("have.text", "a-id-1");
       cy.get("@highlighted").should("have.text", "a-id-1");
 
-      cy.get("@item-a1").find("a").should("have.class", "is-selected");
+      cy.get("@item-a1")
+        .find("a")
+        .should("have.class", "is-selected");
     });
 
     it("can be highlighted from the outside", () => {

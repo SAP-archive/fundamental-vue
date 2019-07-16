@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <fd-button data-cy-reset @click="reset">reset</fd-button>
@@ -12,9 +11,9 @@
       style="height: 400px;"
       key-field="id"
     >
-    <template #loading>
-      <div data-cy-loading-indicator>Loading Indicator</div>
-    </template>
+      <template #loading>
+        <div data-cy-loading-indicator>Loading Indicator</div>
+      </template>
       <template #item="{ item, index }">
         <div data-cy-item style="height: 30px;">
           {{ item.title }}[{{ index }}]
@@ -50,7 +49,7 @@ export default {
     loadMoreItems(done) {
       const that = this;
       setTimeout(() => {
-        const { items } = this;
+        const { items } = that;
         items.push(...createItems(items.length, 5));
         done();
       }, 2000);
