@@ -1,6 +1,6 @@
 <template>
   <div class="fd-time-picker">
-    <fd-popover adjustsBodyWidth placement="bottom-start">
+    <fd-popover body-size-mode="equal-trigger" placement="bottom-start">
       <template #control="{toggle, show, hide}">
         <fd-input-group :compact="compact">
           <template #input>

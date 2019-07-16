@@ -95,15 +95,9 @@ pre[class*="language-"] {
   background-color: white;
 }
 
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-}
-
 /* Inline code */
 :not(pre) > code[class*="language-"] {
   padding: 0.2em;
-  padding-top: 1px;
-  padding-bottom: 1px;
   background-color: white;
   border: 0px solid white;
 }

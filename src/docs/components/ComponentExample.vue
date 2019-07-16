@@ -14,10 +14,9 @@
 
     <div v-if="docs !== ''" class="docs rendered-markdown" v-html="docs" />
     <FdPanel condensed condensedFooter>
-      <div v-if="tip" class="tip">
-        <div class="tip-title">TIP</div>
-        <div class="tip-body" v-html="tip" />
-      </div>
+      <d-tip title="TIP" :content="tip" v-if="tip">
+        {{ tip }}
+      </d-tip>
       <div class="component">
         <div
           v-if="fullscreenOnly"
@@ -33,13 +32,9 @@
             Show Demo
           </FdButton>
         </div>
-        <component
-          v-else
-          :class="
-            condensed ? 'component__condensed' : 'component__default-margin'
-          "
-          :is="component"
-        />
+        <div v-else class="component__default-margin">
+          <component :is="component" />
+        </div>
       </div>
       <div slot="footer" class="footer">
         <div
@@ -130,20 +125,6 @@ export default {
       outline: 0
       &:hover
         color: blue
-  .tip
-    background-color: red
-    border-left: 0.5rem solid #42b983
-    background-color: #f3f5f7
-    padding: 10px
-    border-bottom: 1px solid #ebebeb
-    .tip-title
-      font-weight: 600
-      font-size: 16px
-      line-height: 1.7
-      padding-left: 20px
-    .tip-body
-      font-size: 16px
-      padding: 20px
   .fullscreen-demo-button
     display: inline-block
     float: right
@@ -158,9 +139,8 @@ export default {
   .docs
     font-size: 1.2em
     margin-bottom: 12px
-
 .codeContainer
   background-color: white
   border-top: 1px solid #eeeeef
-  padding: 10px
+  padding: 30px
 </style>
