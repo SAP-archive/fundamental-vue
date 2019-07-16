@@ -1,9 +1,12 @@
 <template>
-  <fd-shell-bar>
+  <fd-shell-bar class="fdd-shell-bar">
     <fd-shell-bar-group position="start">
       <fd-shell-bar-logo style="display: flex;">
         <slot name="toggle" />
-        <span class="product-name">Fundamental Vue</span>
+        <span class="fdd-shell-bar__product-name">
+          <span class="fdd-shell-bar__product-name__main">Fundamental</span>
+          <span class="fdd-shell-bar__product-name__vue">Vue</span>
+        </span>
       </fd-shell-bar-logo>
     </fd-shell-bar-group>
     <fd-shell-bar-group position="end">
@@ -66,9 +69,18 @@ export default {
 };
 </script>
 
-<style>
-.product-name {
-  color: white !important;
-  font-weight: bold;
+<style lang="scss">
+.fdd-shell-bar {
+  &__product-name {
+    font-weight: bold;
+    font-size: 18px;
+    &__main {
+      color: white;
+      margin-right: 5px;
+    }
+    &__vue {
+      color: #42b883;
+    }
+  }
 }
 </style>
