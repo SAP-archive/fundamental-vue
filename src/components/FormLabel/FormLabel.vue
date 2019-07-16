@@ -1,8 +1,9 @@
 <template>
   <label class="fd-form__label" :aria-required="String(required)">
-    <slot /><template v-if="required"
-      ><slot name="required">*</slot></template
-    >
+    <slot />
+    <template v-if="required">
+      <slot name="required">*</slot>
+    </template>
   </label>
 </template>
 

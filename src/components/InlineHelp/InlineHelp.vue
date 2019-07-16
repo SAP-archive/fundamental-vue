@@ -28,16 +28,12 @@ export default {
     classes() {
       return {
         "fd-inline-help__content": true,
-        "fd-inline-help__content--bottom-left":
-          this.position === "left" && this.inline === false,
-        "fd-inline-help__content--bottom-right":
-          this.position === "right" && this.inline === false,
+        "fd-inline-help__content--bottom-left": this.position === "left" && this.inline === false,
+        "fd-inline-help__content--bottom-right": this.position === "right" && this.inline === false,
         "fd-inline-help__content--bottom-center":
           this.position === "center" && this.inline === false,
-        "fd-inline-help__content--left":
-          this.position === "left" && this.inline === true,
-        "fd-inline-help__content--right":
-          this.position === "right" && this.inline === true
+        "fd-inline-help__content--left": this.position === "left" && this.inline === true,
+        "fd-inline-help__content--right": this.position === "right" && this.inline === true
       };
     }
   }

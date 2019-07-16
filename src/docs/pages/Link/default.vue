@@ -26,18 +26,14 @@ is **equivialent** to
     <h3>Selected</h3>
     <p>
       Lorem ipsum
-      <FdLink href="#" selected @click="handleClick"
-        >dolor sit amet consectetur</FdLink
-      >
+      <FdLink href="#" selected @click="handleClick">dolor sit amet consectetur</FdLink>
       adipiscing elit.
     </p>
 
     <h3>Disabled</h3>
     <p>
       Lorem ipsum
-      <FdLink href="#" disabled @click="handleClick"
-        >dolor sit amet consectetur</FdLink
-      >
+      <FdLink href="#" disabled @click="handleClick">dolor sit amet consectetur</FdLink>
       adipiscing elit.
     </p>
   </div>

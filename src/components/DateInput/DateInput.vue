@@ -23,18 +23,11 @@ export default {
   computed: {
     displayedValue: {
       get() {
-        const {
-          mode,
-          normalizedDate,
-          dateFormatter,
-          dateRangeFormatter
-        } = this;
+        const { mode, normalizedDate, dateFormatter, dateRangeFormatter } = this;
         if (mode === "single") {
           return dateFormatter(NormalizedDate.from(normalizedDate).start);
         }
-        return dateRangeFormatter(
-          NormalizedDate.from(normalizedDate).asStartEndValue()
-        );
+        return dateRangeFormatter(NormalizedDate.from(normalizedDate).asStartEndValue());
       },
       set(newDateString) {
         const { mode, dateParser, dateRangeParser, normalizedDate } = this;
@@ -67,10 +60,7 @@ export default {
     emitCurrentValue() {
       // Emitted whenever the date or range has been confirmed by the user.
       // @arg An object with two keys: `from` and `to` – both can be either `null` or `Date`. In `single`-mode only `from` will be a `Date`.
-      this.$emit(
-        "input",
-        NormalizedDate.from(this.normalizedDate).asFromToValue()
-      );
+      this.$emit("input", NormalizedDate.from(this.normalizedDate).asFromToValue());
     },
     dateInputChanged(inputString) {
       this.displayedValue = inputString;

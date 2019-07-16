@@ -1,11 +1,7 @@
 <template>
   <ul class="fd-side-nav__list">
     <template>
-      <fd-side-nav-item-provider
-        v-for="item in normalizedItems"
-        :key="keyFor(item)"
-        :item="item"
-      >
+      <fd-side-nav-item-provider v-for="item in normalizedItems" :key="keyFor(item)" :item="item">
         <slot name="item" v-bind="item" />
       </fd-side-nav-item-provider>
     </template>

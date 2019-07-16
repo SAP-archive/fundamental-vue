@@ -39,11 +39,7 @@ export default {
         { name: "Item 2" },
         {
           name: "Item 3",
-          children: [
-            { name: "Item 3-1" },
-            { name: "Item 3-2" },
-            { name: "Item 3-3" }
-          ]
+          children: [{ name: "Item 3-1" }, { name: "Item 3-2" }, { name: "Item 3-3" }]
         },
         { name: "Item 4" },
         { name: "Item 5" }

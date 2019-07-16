@@ -30,11 +30,7 @@
 
     <div class="component-doc__aspect" v-if="documentedSlots.length > 0">
       <div class="component-doc__aspect-name">Slots</div>
-      <slot-doc
-        v-for="slot in documentedSlots"
-        :key="keyForSlot(slot)"
-        v-bind="slot"
-      />
+      <slot-doc v-for="slot in documentedSlots" :key="keyForSlot(slot)" v-bind="slot" />
     </div>
   </div>
 </template>

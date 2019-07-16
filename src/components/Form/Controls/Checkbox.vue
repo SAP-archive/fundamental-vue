@@ -7,12 +7,12 @@
     v-on="$listeners"
     :value="value"
     type="checkbox"
+    v-bind="$attrs"
+    :id="inputId"
   />
 </template>
 
 <script>
-// v-bind="$attrs" -->
-// :id="inputId"
 import { isInputElement } from "./Helper";
 import { withoutDuplicates } from "./../../../util";
 import InputMixin from "./InputMixin";
@@ -21,7 +21,7 @@ import { $modelValueWithDefault, $valueWithDefault } from "./Helper/prop";
 export default {
   name: "FdCheckbox",
   mixins: [InputMixin],
-  inheritAttrs: true,
+  // inheritAttrs: true,
   inject: {
     // We need the form item so that we can say tell the form item
     // to render the checked-style

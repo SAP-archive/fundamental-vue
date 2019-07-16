@@ -10,9 +10,7 @@ export default {
   },
   computed: {
     classes() {
-      return ["fd-shell__footer"].concat(
-        this.fixed ? ["fd-shell__footer--fixed"] : []
-      );
+      return ["fd-shell__footer"].concat(this.fixed ? ["fd-shell__footer--fixed"] : []);
     }
   }
 };

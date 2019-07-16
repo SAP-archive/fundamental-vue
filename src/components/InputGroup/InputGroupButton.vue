@@ -1,7 +1,5 @@
 <template>
-  <fd-button styling="light" v-bind="$attrs" v-on="$listeners"
-    ><slot
-  /></fd-button>
+  <fd-button styling="light" v-bind="$attrs" v-on="$listeners"><slot /></fd-button>
 </template>
 
 <script>

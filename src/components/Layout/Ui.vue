@@ -8,10 +8,7 @@
         <div v-if="$slots.sidebar" class="fd-app__sidebar">
           <slot name="sidebar" />
         </div>
-        <main
-          class="fd-app__main"
-          style="padding-top: 20px; background-color: white;"
-        >
+        <main class="fd-app__main" style="padding-top: 20px; background-color: white;">
           <slot />
         </main>
       </div>

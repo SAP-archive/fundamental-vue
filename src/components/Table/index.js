@@ -18,11 +18,4 @@ export default pluginify(
   FdTableFixed,
   FdTableFixedWrapper
 );
-export {
-  FdTable,
-  TableBody,
-  TableCell,
-  TableHeader,
-  TableHeaderCell,
-  TableRow
-};
+export { FdTable, TableBody, TableCell, TableHeader, TableHeaderCell, TableRow };

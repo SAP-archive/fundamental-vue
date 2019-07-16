@@ -15,9 +15,7 @@
         <div data-cy-loading-indicator>Loading Indicator</div>
       </template>
       <template #item="{ item, index }">
-        <div data-cy-item style="height: 30px;">
-          {{ item.title }}[{{ index }}]
-        </div>
+        <div data-cy-item style="height: 30px;">{{ item.title }}[{{ index }}]</div>
       </template>
     </fd-virtualized-list>
   </div>

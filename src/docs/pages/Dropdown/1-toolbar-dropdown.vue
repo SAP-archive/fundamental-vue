@@ -10,7 +10,8 @@
       </fd-menu-list>
     </fd-dropdown>
 
-    <br /><br />
+    <br />
+    <br />
 
     <fd-dropdown toolbar compact title="Select">
       <fd-menu-list>

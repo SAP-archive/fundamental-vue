@@ -13,13 +13,7 @@ export default {
   computed: {
     componentDocProps() {
       const json = this.jsonContent || {};
-      const {
-        name,
-        componentDesc = {},
-        props = [],
-        events = [],
-        slots = []
-      } = json;
+      const { name, componentDesc = {}, props = [], events = [], slots = [] } = json;
       const documentedProps = props.map(prop => ({
         ...prop,
         type: prop.type || null,

@@ -43,85 +43,22 @@ Use the `size`-prop to specify the size you want.
     <fd-identifier size="xxl" circle>WW</fd-identifier>
     <br />
     <br />
-    <fd-identifier
-      size="xxs"
-      thumbnail
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="xs"
-      thumbnail
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="s"
-      thumbnail
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="m"
-      thumbnail
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="l"
-      thumbnail
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="xl"
-      thumbnail
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="xxl"
-      thumbnail
-      url="https://placeimg.com/400/400/nature"
-    />
+    <fd-identifier size="xxs" thumbnail url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="xs" thumbnail url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="s" thumbnail url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="m" thumbnail url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="l" thumbnail url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="xl" thumbnail url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="xxl" thumbnail url="https://placeimg.com/400/400/nature" />
     <br />
     <br />
-    <fd-identifier
-      size="xxs"
-      thumbnail
-      circle
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="xs"
-      thumbnail
-      circle
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="s"
-      thumbnail
-      circle
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="m"
-      thumbnail
-      circle
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="l"
-      thumbnail
-      circle
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="xl"
-      thumbnail
-      circle
-      url="https://placeimg.com/400/400/nature"
-    />
-    <fd-identifier
-      size="xxl"
-      thumbnail
-      circle
-      url="https://placeimg.com/400/400/nature"
-    />
+    <fd-identifier size="xxs" thumbnail circle url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="xs" thumbnail circle url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="s" thumbnail circle url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="m" thumbnail circle url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="l" thumbnail circle url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="xl" thumbnail circle url="https://placeimg.com/400/400/nature" />
+    <fd-identifier size="xxl" thumbnail circle url="https://placeimg.com/400/400/nature" />
     <br />
     <br />
     <fd-identifier transparent size="xxs" icon="money-bills" />

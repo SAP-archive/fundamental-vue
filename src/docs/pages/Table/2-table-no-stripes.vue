@@ -4,11 +4,7 @@ You can use `striped` on `FdTable` in order enable alternating colored rows.
 </docs>
 
 <template>
-  <fd-table
-    striped
-    :headers="['firstName', 'lastName', 'building']"
-    :items="items"
-  >
+  <fd-table striped :headers="['firstName', 'lastName', 'building']" :items="items">
     <template #row="{ item }">
       <fd-table-row>
         <template #firstName>

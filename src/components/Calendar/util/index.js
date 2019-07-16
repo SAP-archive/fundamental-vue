@@ -1,9 +1,6 @@
 // @ts-check
 
-export const weekFromDate = (
-  date,
-  { firstDayOfWeek } = { firstDayOfWeek: 0 }
-) => {
+export const weekFromDate = (date, { firstDayOfWeek } = { firstDayOfWeek: 0 }) => {
   const startOfWeek = new Date(date.valueOf());
   startOfWeek.setDate(date.getDate() - date.getDay() + firstDayOfWeek);
 
@@ -21,10 +18,7 @@ export const weekFromDate = (
   return days;
 };
 
-export const monthFromDate = (
-  referenceDate,
-  options = { firstDayOfWeek: 0 }
-) => {
+export const monthFromDate = (referenceDate, options = { firstDayOfWeek: 0 }) => {
   const month = referenceDate.getMonth();
   const result = [];
   const firstDayOfMonth = new Date(referenceDate.getFullYear(), month, 1);

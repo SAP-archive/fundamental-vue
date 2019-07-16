@@ -5,11 +5,7 @@ You can use `borderless` on `FdTable` in order to disable the outer table border
 </docs>
 
 <template>
-  <fd-table
-    borderless
-    :headers="['firstName', 'lastName', 'building']"
-    :items="items"
-  >
+  <fd-table borderless :headers="['firstName', 'lastName', 'building']" :items="items">
     <template #row="{ item: { firstName, lastName, building } }">
       <fd-table-row>
         <template #firstName>

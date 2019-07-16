@@ -36,26 +36,20 @@ Make sure to set `aria-label` on the button group.
 </tip>
 <template>
   <div>
-    <fd-button-group
-      v-model="activeButtons"
-      selectionMode="multiple"
-      aria-label="Favorite Color"
-    >
+    <fd-button-group v-model="activeButtons" selectionMode="multiple" aria-label="Favorite Color">
       <fd-button-group-button value="a">Red</fd-button-group-button>
       <fd-button-group-button value="b">Green</fd-button-group-button>
       <fd-button-group-button value="c">Blue</fd-button-group-button>
     </fd-button-group>
-    <br /><br />
-    <fd-button-group
-      v-model="activeButtons"
-      selectionMode="multiple"
-      aria-label="Favorite Icon"
-    >
+    <br />
+    <br />
+    <fd-button-group v-model="activeButtons" selectionMode="multiple" aria-label="Favorite Icon">
       <fd-button-group-button icon="survey" value="a" />
       <fd-button-group-button icon="pool" value="b" />
       <fd-button-group-button icon="pie-chart" value="c" />
     </fd-button-group>
-    <br /><br />
+    <br />
+    <br />
 
     Values of selected Buttons: {{ activeButtons }}
   </div>

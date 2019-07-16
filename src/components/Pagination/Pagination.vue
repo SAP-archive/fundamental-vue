@@ -1,12 +1,11 @@
-// We are using v-for in the template below. // This is possible but requires
-that each element in the template // to be uniquely keyed. // see:
-https://forum.vuejs.org/t/v-for-on-templates/8359/2
+// We are using v-for in the template below. // This is possible but requires that each element in
+the template // to be uniquely keyed. // see: https://forum.vuejs.org/t/v-for-on-templates/8359/2
 
 <template>
   <div class="fd-pagination" @keydown="keyHandler">
-    <span v-if="displayTotal" class="fd-pagination__total"
-      >{{ itemsTotal }} {{ formattedTotalText }}</span
-    >
+    <span v-if="displayTotal" class="fd-pagination__total">
+      {{ itemsTotal }} {{ formattedTotalText }}
+    </span>
     <nav class="fd-pagination__nav">
       <a
         href="#"
@@ -23,8 +22,9 @@ https://forum.vuejs.org/t/v-for-on-templates/8359/2
           class="fd-pagination__link"
           :aria-selected="selectedPage === page.number + 1"
           @click.prevent="pageClicked"
-          >{{ page.number + 1 }}</a
         >
+          {{ page.number + 1 }}
+        </a>
         <span
           v-else
           :key="`page-more-${page.number}`"
@@ -57,9 +57,7 @@ export default {
   },
   computed: {
     pages() {
-      const numbers = Array.from({ length: this.numberOfPages }).map(
-        (_, index) => index
-      );
+      const numbers = Array.from({ length: this.numberOfPages }).map((_, index) => index);
       let notSuppressed = true;
       const pages = [];
       for (const number of numbers) {
@@ -131,11 +129,7 @@ export default {
         this.navigateToLast();
       } else if (key === "ArrowLeft" || key === "ArrowUp" || key === "PageUp") {
         this.navigateBack();
-      } else if (
-        key === "ArrowRight" ||
-        key === "ArrowDown" ||
-        key === "PageDown"
-      ) {
+      } else if (key === "ArrowRight" || key === "ArrowDown" || key === "PageDown") {
         this.navigateForward();
       }
     }

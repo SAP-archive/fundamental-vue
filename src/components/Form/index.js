@@ -15,6 +15,7 @@ import * as Controls from "./Controls";
 import { pluginify } from "./../../util";
 import FdFormItemRadio from "./items/form-item-radio.vue";
 import FdFormItemCheckbox from "./items/form-item-checkbox.vue";
+import FdFormItemToggle from "./items/form-item-toggle.vue";
 
 export default pluginify(
   Form,
@@ -31,7 +32,8 @@ export default pluginify(
   Legend,
   FieldSet,
   FdFormItemRadio,
-  FdFormItemCheckbox
+  FdFormItemCheckbox,
+  FdFormItemToggle
 );
 export {
   Form,
@@ -49,5 +51,6 @@ export {
   FieldSet,
   Controls,
   FdFormItemRadio,
-  FdFormItemCheckbox
+  FdFormItemCheckbox,
+  FdFormItemToggle
 };

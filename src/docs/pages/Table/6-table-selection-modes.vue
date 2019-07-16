@@ -25,17 +25,11 @@ Use the `selectionMode`-prop to set the selection mode of your choice.
       :selectionMode="selectionMode"
       :items="items"
     >
-      <template
-        #row="{ canSelect, selectedIds, item, toggle, selected, setSelected }"
-      >
+      <template #row="{ canSelect, selectedIds, item, toggle, selected, setSelected }">
         <fd-table-row>
           <template #index>
             <fd-table-cell>
-              <fd-checkbox
-                :disabled="!canSelect"
-                @update="setSelected"
-                :model-value="selected"
-              />
+              <fd-checkbox :disabled="!canSelect" @update="setSelected" :model-value="selected" />
             </fd-table-cell>
           </template>
 

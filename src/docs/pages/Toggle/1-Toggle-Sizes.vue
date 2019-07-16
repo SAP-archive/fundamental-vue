@@ -1,6 +1,6 @@
 <title>Toggle Sizes</title>
 <docs>
-`FdToggle` supports three different size classes:
+`fd-toggle` supports three different size classes:
 
 1. `xs`: renderes an extra small toggle
 2. `s`: renderes a small toggle
@@ -14,63 +14,63 @@ If you omit the size class, the toggle will be rendered with a default size.
     <FdFieldSet>
       <FdLegend>Extra Small Toggles</FdLegend>
       <FdFormGroup inline>
-        <FdFormItem label="on">
-          <FdToggle on size="xs" />
-        </FdFormItem>
+        <fd-form-item-toggle label="on">
+          <fd-toggle on size="xs" />
+        </fd-form-item-toggle>
 
-        <FdFormItem label="off">
-          <FdToggle size="xs" />
-        </FdFormItem>
+        <fd-form-item-toggle label="off">
+          <fd-toggle size="xs" />
+        </fd-form-item-toggle>
 
-        <FdFormItem label="on + disabled">
-          <FdToggle disabled on size="xs" />
-        </FdFormItem>
+        <fd-form-item-toggle label="on + disabled">
+          <fd-toggle disabled on size="xs" />
+        </fd-form-item-toggle>
 
-        <FdFormItem label="off + disabled">
-          <FdToggle disabled size="xs" />
-        </FdFormItem>
+        <fd-form-item-toggle label="off + disabled">
+          <fd-toggle disabled size="xs" />
+        </fd-form-item-toggle>
       </FdFormGroup>
     </FdFieldSet>
 
     <FdFieldSet>
       <FdLegend>Small Toggles</FdLegend>
       <FdFormGroup inline>
-        <FdFormItem label="on">
-          <FdToggle on size="s" />
-        </FdFormItem>
+        <fd-form-item-toggle label="on">
+          <fd-toggle on size="s" />
+        </fd-form-item-toggle>
 
-        <FdFormItem label="off">
-          <FdToggle size="s" />
-        </FdFormItem>
+        <fd-form-item-toggle label="off">
+          <fd-toggle size="s" />
+        </fd-form-item-toggle>
 
-        <FdFormItem label="on + disabled">
-          <FdToggle disabled on size="s" />
-        </FdFormItem>
+        <fd-form-item-toggle label="on + disabled">
+          <fd-toggle disabled on size="s" />
+        </fd-form-item-toggle>
 
-        <FdFormItem label="off + disabled">
-          <FdToggle disabled size="s" />
-        </FdFormItem>
+        <fd-form-item-toggle label="off + disabled">
+          <fd-toggle disabled size="s" />
+        </fd-form-item-toggle>
       </FdFormGroup>
     </FdFieldSet>
 
     <FdFieldSet>
       <FdLegend>Large Toggles</FdLegend>
       <FdFormGroup inline>
-        <FdFormItem label="on">
-          <FdToggle on size="l" />
-        </FdFormItem>
+        <fd-form-item-toggle label="on">
+          <fd-toggle on size="l" />
+        </fd-form-item-toggle>
 
-        <FdFormItem label="off">
-          <FdToggle size="l" />
-        </FdFormItem>
+        <fd-form-item-toggle label="off">
+          <fd-toggle size="l" />
+        </fd-form-item-toggle>
 
-        <FdFormItem label="on + disabled">
-          <FdToggle disabled on size="l" />
-        </FdFormItem>
+        <fd-form-item-toggle label="on + disabled">
+          <fd-toggle disabled on size="l" />
+        </fd-form-item-toggle>
 
-        <FdFormItem label="off + disabled">
-          <FdToggle disabled size="l" />
-        </FdFormItem>
+        <fd-form-item-toggle label="off + disabled">
+          <fd-toggle disabled size="l" />
+        </fd-form-item-toggle>
       </FdFormGroup>
     </FdFieldSet>
   </div>

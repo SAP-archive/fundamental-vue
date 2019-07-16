@@ -5,13 +5,16 @@
 <template>
   <div>
     <p>
-      Favorite Color: <span v-fd-font-weight:bold>{{ color }}</span>
+      Favorite Color:
+      <span v-fd-font-weight:bold>{{ color }}</span>
     </p>
     <p>
-      Favorite Dish: <span v-fd-font-weight:bold>{{ dish }}</span>
+      Favorite Dish:
+      <span v-fd-font-weight:bold>{{ dish }}</span>
     </p>
     <p>
-      highlightedId: <span v-fd-font-weight:bold>{{ highlightedId }}</span>
+      highlightedId:
+      <span v-fd-font-weight:bold>{{ highlightedId }}</span>
     </p>
     <fd-menu-popover @highlight="highlightedId = $event.uid">
       <template #control="{toggle}">

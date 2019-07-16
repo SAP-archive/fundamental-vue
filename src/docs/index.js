@@ -28,12 +28,9 @@ Vue.use(DocumentationLoader);
 Vue.component("DefaultLayout", DefaultLayout);
 Vue.component("FullscreenLayout", FullscreenLayout);
 
-Vue.prototype.$withBase = relativePath =>
-  `${process.env.BASE_URL}${relativePath}`;
+Vue.prototype.$withBase = relativePath => `${process.env.BASE_URL}${relativePath}`;
 
-Vue.prototype.$componentApiRepository = new ComponentApiRepository(
-  ComponentApiContext.keys()
-);
+Vue.prototype.$componentApiRepository = new ComponentApiRepository(ComponentApiContext.keys());
 
 const router = createRouter(Vue.prototype.$componentApiRepository);
 

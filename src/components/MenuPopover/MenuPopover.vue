@@ -10,11 +10,7 @@
       </div>
     </template>
     <template #default="bodyProps">
-      <fd-menu
-        ref="menu"
-        @select="handleMenuSelect"
-        @highlight="$emit('highlight', $event)"
-      >
+      <fd-menu ref="menu" @select="handleMenuSelect" @highlight="$emit('highlight', $event)">
         <slot v-bind="bodyProps" />
       </fd-menu>
     </template>

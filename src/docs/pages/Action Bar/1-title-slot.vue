@@ -3,12 +3,7 @@
 <template>
   <fd-action-bar title="Page Title" description="Action bar Description">
     <template #title>
-      <fd-identifier
-        size="s"
-        circle
-        thumbnail
-        url="/images/headshot-male.jpg"
-      />
+      <fd-identifier size="s" circle thumbnail url="/images/headshot-male.jpg" />
       <span>Matthew Spark</span>
     </template>
     <template #description>

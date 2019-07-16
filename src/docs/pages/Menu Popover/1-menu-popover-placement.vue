@@ -5,7 +5,8 @@
 <template>
   <div>
     <p>
-      Favorite Color: <span v-fd-font-weight:bold>{{ color }}</span>
+      Favorite Color:
+      <span v-fd-font-weight:bold>{{ color }}</span>
     </p>
     <fd-menu-popover with-arrow placement="right">
       <template #control="{toggle}">

@@ -9,7 +9,8 @@ Use the `v-fd-icon`-directive to attach icons to any element.
     <span v-fd-icon:settings />
     <span v-fd-icon:synchronize />
 
-    <br /><br />
+    <br />
+    <br />
     <p v-fd-font-weight:bold>Specify the size with modifiers:</p>
     <br />
 
@@ -18,7 +19,8 @@ Use the `v-fd-icon`-directive to attach icons to any element.
     <span v-fd-icon:compare.l />
     <span v-fd-icon:compare.xl />
 
-    <br /><br />
+    <br />
+    <br />
     <p v-fd-font-weight:bold>This also works with native buttons:</p>
     <br />
 

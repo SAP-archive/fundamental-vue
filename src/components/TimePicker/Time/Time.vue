@@ -1,20 +1,8 @@
 <template>
   <div class="fd-time__item" :aria-label="ariaLabel">
-    <TimeAction
-      icon="navigation-up-arrow"
-      type="standard"
-      @click="increaseValue"
-    />
-    <TimeInput
-      :value="sanitizeInputValue"
-      @update="timeUpdate"
-      :placeholder="placeholder"
-    />
-    <TimeAction
-      icon="navigation-down-arrow"
-      type="standard"
-      @click="decreaseValue"
-    />
+    <TimeAction icon="navigation-up-arrow" type="standard" @click="increaseValue" />
+    <TimeInput :value="sanitizeInputValue" @update="timeUpdate" :placeholder="placeholder" />
+    <TimeAction icon="navigation-down-arrow" type="standard" @click="decreaseValue" />
   </div>
 </template>
 
@@ -62,8 +50,7 @@ export default {
       } else if (this.type === "meridian") {
         const meridian = this.inputValue.toString().toLowerCase();
         value =
-          meridian === this.range[this.type].min ||
-          meridian === this.range[this.type].max
+          meridian === this.range[this.type].min || meridian === this.range[this.type].max
             ? meridian
             : "";
       } else {
@@ -105,9 +92,7 @@ export default {
         this.type === "minute" ||
         this.type === "second"
       ) {
-        value = !isNaN(Number(this.inputValue))
-          ? this.previousValue
-          : this.range[this.type].min;
+        value = !isNaN(Number(this.inputValue)) ? this.previousValue : this.range[this.type].min;
         isValInRange = this.checkValueRange(value, this.type);
         value = isValInRange ? value : this.range[this.type].min;
       } else if (this.type === "meridian") {
@@ -130,9 +115,7 @@ export default {
         this.type === "minute" ||
         this.type === "second"
       ) {
-        value = !isNaN(Number(this.inputValue))
-          ? this.nextValue
-          : this.range[this.type].min;
+        value = !isNaN(Number(this.inputValue)) ? this.nextValue : this.range[this.type].min;
       } else if (this.type === "meridian") {
         value =
           this.inputValue.toString().toLowerCase() === this.range[this.type].min
@@ -162,8 +145,7 @@ export default {
       } else if (this.type === "meridian") {
         const meridian = this.inputValue.toString().toLowerCase();
         value =
-          meridian === this.range[this.type].min ||
-          meridian === this.range[this.type].max
+          meridian === this.range[this.type].min || meridian === this.range[this.type].max
             ? meridian
             : "";
       } else {
@@ -175,8 +157,7 @@ export default {
     timeUpdate(newValue) {
       if (
         this.type === "meridian" &&
-        (newValue !== this.range[this.type].min &&
-          newValue !== this.range[this.type].max)
+        (newValue !== this.range[this.type].min && newValue !== this.range[this.type].max)
       ) {
         this.inputValue = "";
       } else {

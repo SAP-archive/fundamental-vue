@@ -1,10 +1,5 @@
 <template>
-  <div
-    id="app"
-    :class="sidebarClasses"
-    @touchstart="onTouchStart"
-    @touchend="onTouchEnd"
-  >
+  <div id="app" :class="sidebarClasses" @touchstart="onTouchStart" @touchend="onTouchEnd">
     <FdShellHeader fixed>
       <ShellBar>
         <FdButton
@@ -20,10 +15,7 @@
     <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
 
     <div class="sidebar">
-      <SideNav
-        @click.native="toggleSidebar(false)"
-        :selectedId.sync="activeNavItemId"
-      />
+      <SideNav @click.native="toggleSidebar(false)" :selectedId.sync="activeNavItemId" />
     </div>
     <div data-fd-main-content class="page">
       <div class="content">

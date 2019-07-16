@@ -28,12 +28,8 @@ describe("TimeItem", () => {
   });
 
   it("adds/subtracts hours correctly", () => {
-    const navUp = wrapper.find(
-      ".fd-time__item:nth-child(1) .sap-icon--navigation-up-arrow"
-    );
-    const navDown = wrapper.find(
-      ".fd-time__item:nth-child(1) .sap-icon--navigation-down-arrow"
-    );
+    const navUp = wrapper.find(".fd-time__item:nth-child(1) .sap-icon--navigation-up-arrow");
+    const navDown = wrapper.find(".fd-time__item:nth-child(1) .sap-icon--navigation-down-arrow");
 
     navUp.trigger("click");
     expect(wrapper.vm.$data.hour).toEqual("12");
@@ -49,12 +45,8 @@ describe("TimeItem", () => {
   });
 
   it("adds/subtracts minutes correctly", () => {
-    const navUp = wrapper.find(
-      ".fd-time__item:nth-child(2) .sap-icon--navigation-up-arrow"
-    );
-    const navDown = wrapper.find(
-      ".fd-time__item:nth-child(2) .sap-icon--navigation-down-arrow"
-    );
+    const navUp = wrapper.find(".fd-time__item:nth-child(2) .sap-icon--navigation-up-arrow");
+    const navDown = wrapper.find(".fd-time__item:nth-child(2) .sap-icon--navigation-down-arrow");
 
     navUp.trigger("click");
     expect(wrapper.vm.$data.minute).toEqual("06");
@@ -64,12 +56,8 @@ describe("TimeItem", () => {
   });
 
   it("adds/subtracts seconds correctly", () => {
-    const navUp = wrapper.find(
-      ".fd-time__item:nth-child(3) .sap-icon--navigation-up-arrow"
-    );
-    const navDown = wrapper.find(
-      ".fd-time__item:nth-child(3) .sap-icon--navigation-down-arrow"
-    );
+    const navUp = wrapper.find(".fd-time__item:nth-child(3) .sap-icon--navigation-up-arrow");
+    const navDown = wrapper.find(".fd-time__item:nth-child(3) .sap-icon--navigation-down-arrow");
 
     navUp.trigger("click");
     expect(wrapper.vm.$data.second).toEqual("59");
@@ -82,12 +70,8 @@ describe("TimeItem", () => {
   });
 
   it("flips meridian correctly", () => {
-    const navUp = wrapper.find(
-      ".fd-time__item:nth-child(4) .sap-icon--navigation-up-arrow"
-    );
-    const navDown = wrapper.find(
-      ".fd-time__item:nth-child(4) .sap-icon--navigation-down-arrow"
-    );
+    const navUp = wrapper.find(".fd-time__item:nth-child(4) .sap-icon--navigation-up-arrow");
+    const navDown = wrapper.find(".fd-time__item:nth-child(4) .sap-icon--navigation-down-arrow");
 
     navUp.trigger("click");
     expect(wrapper.vm.$data.meridian).toEqual("pm");

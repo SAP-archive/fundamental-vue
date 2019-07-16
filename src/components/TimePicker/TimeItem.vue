@@ -7,12 +7,7 @@
       placeholder="hh"
     />
 
-    <Time
-      type="minute"
-      :value="minute"
-      @timeUpdate="updateMinute"
-      placeholder="mm"
-    />
+    <Time type="minute" :value="minute" @timeUpdate="updateMinute" placeholder="mm" />
 
     <Time
       v-if="shouldRenderSeconds"
@@ -86,10 +81,7 @@ export default {
       this.validateTimeUnit("hour", hour, hourType);
     },
     updateMinute(minute) {
-      const minuteValue =
-        this.minute === "00" && minute === "-1"
-          ? this.range.minute.max
-          : minute;
+      const minuteValue = this.minute === "00" && minute === "-1" ? this.range.minute.max : minute;
       const updateParameters = {
         timeUnitType: "minute",
         value: minuteValue,
@@ -119,8 +111,7 @@ export default {
       if (
         Number(this[updateParameters.timeUnitType]) ===
           Number(this.range[updateParameters.timeType].min) &&
-        Number(updateParameters.value) ===
-          Number(this.range[updateParameters.timeType].max)
+        Number(updateParameters.value) === Number(this.range[updateParameters.timeType].max)
       ) {
         dividend = -1;
         remainder = Number(this.range[updateParameters.timeType].max);
@@ -128,8 +119,7 @@ export default {
       } else if (
         Number(this[updateParameters.timeUnitType]) ===
           Number(this.range[updateParameters.timeType].max) &&
-        Number(updateParameters.value) ===
-          Number(this.range[updateParameters.timeType].min)
+        Number(updateParameters.value) === Number(this.range[updateParameters.timeType].min)
       ) {
         dividend = 1;
         remainder = Number(this.range[updateParameters.timeType].min);
@@ -146,8 +136,7 @@ export default {
             Number(updateParameters.value) %
             (Number(this.range[updateParameters.timeType].max) + 1);
           dividend = Math.floor(
-            Number(updateParameters.value) /
-              (Number(this.range[updateParameters.timeType].max) + 1)
+            Number(updateParameters.value) / (Number(this.range[updateParameters.timeType].max) + 1)
           );
           this.validateTimeUnit(
             updateParameters.timeUnitType,
@@ -156,9 +145,7 @@ export default {
           );
         }
       }
-      const upperValue = (
-        Number(this[updateParameters.upperTimeUnitType]) + dividend
-      )
+      const upperValue = (Number(this[updateParameters.upperTimeUnitType]) + dividend)
         .toString()
         .padStart(2, "0");
       updateParameters.upperTimeUnitUpdateHandler(upperValue);

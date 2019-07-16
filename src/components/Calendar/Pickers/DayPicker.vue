@@ -3,21 +3,13 @@
     <table class="fd-calendar__table" role="grid">
       <thead class="fd-calendar__group">
         <tr class="fd-calendar__row">
-          <th
-            v-for="dayName in dayNames"
-            :key="dayName"
-            class="fd-calendar__column-header"
-          >
+          <th v-for="dayName in dayNames" :key="dayName" class="fd-calendar__column-header">
             <span class="fd-calendar__day-of-week">{{ dayName }}</span>
           </th>
         </tr>
       </thead>
       <tbody class="fd-calendar__group">
-        <tr
-          class="fd-calendar__row"
-          v-for="(week, index) in month"
-          :key="String('week-' + index)"
-        >
+        <tr class="fd-calendar__row" v-for="(week, index) in month" :key="String('week-' + index)">
           <CalendarItem
             v-for="date in week"
             :key="date.toString()"
@@ -79,8 +71,7 @@ export default {
         return "blocked";
       }
       const { selectionStart, selectionEnd } = this;
-      const isFirst =
-        selectionStart != null ? sameDay(date, selectionStart) : false;
+      const isFirst = selectionStart != null ? sameDay(date, selectionStart) : false;
       const isLast = selectionEnd != null ? sameDay(date, selectionEnd) : false;
       const isFirstAndLast = isFirst && (isLast || this.mode === Mode.single);
       if (isFirstAndLast) {

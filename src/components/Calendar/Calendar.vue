@@ -157,9 +157,7 @@ export default {
       return this.normalizedDate_.end;
     },
     yearPickerYears() {
-      return Array.from({ length: 12 }).map(
-        (_, index) => this.displayedYear + (index - 6)
-      );
+      return Array.from({ length: 12 }).map((_, index) => this.displayedYear + (index - 6));
     },
     currentRange() {
       const month = this.month;

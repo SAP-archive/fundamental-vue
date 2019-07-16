@@ -2,11 +2,7 @@
 <template>
   <div>
     <strong>{{ initialPage }}</strong>
-    <FdPagination
-      :itemsTotal="101"
-      totalText="Search Results"
-      :initialPage.sync="initialPage"
-    />
+    <FdPagination :itemsTotal="101" totalText="Search Results" :initialPage.sync="initialPage" />
   </div>
 </template>
 

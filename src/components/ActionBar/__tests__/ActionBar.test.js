@@ -24,9 +24,7 @@ describe("ActionBar", () => {
 
   it("renders correct props and slots", () => {
     expect(wrapper.find(".fd-action-bar__title").text()).toEqual(title);
-    expect(wrapper.find(".fd-action-bar__description").text()).toEqual(
-      description
-    );
+    expect(wrapper.find(".fd-action-bar__description").text()).toEqual(description);
     expect(wrapper.find(".fd-action-bar__back").text()).toEqual(back);
     expect(wrapper.find(".fd-action-bar__actions").text()).toEqual(actions);
   });
@@ -89,9 +87,7 @@ describe("ActionBar", () => {
     });
 
     it("renders title as slot", () => {
-      expect(wrapper.find(".fd-action-bar__description div").text()).toBe(
-        description
-      );
+      expect(wrapper.find(".fd-action-bar__description div").text()).toBe(description);
     });
   });
 });

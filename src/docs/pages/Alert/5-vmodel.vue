@@ -4,7 +4,8 @@
   <div>
     <FdButton @click="visible = !visible">Toggle Visibile</FdButton>
 
-    <br /><br />
+    <br />
+    <br />
 
     <FdAlert type="success" v-model="visible" dismissible>
       Success alert. Click on the close button.

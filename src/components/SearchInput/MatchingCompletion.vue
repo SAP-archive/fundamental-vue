@@ -1,9 +1,7 @@
 <template>
   <FdMenuLink :selected="selected" @click="$emit('click', $event)">
-    <strong v-if="matchingPrefix != null && matchingPrefix.length > 0">{{
-      matchingPrefix
-    }}</strong
-    >{{ remainingCompletion }}
+    <strong v-if="matchingPrefix != null && matchingPrefix.length > 0">{{ matchingPrefix }}</strong>
+    {{ remainingCompletion }}
   </FdMenuLink>
 </template>
 

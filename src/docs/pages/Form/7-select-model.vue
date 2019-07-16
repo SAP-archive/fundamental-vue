@@ -1,20 +1,21 @@
 <title>Select with `v-model`</title>
-<tip>`FdSelect` supports `v-model`.</tip>
+<tip>`fd-select` supports `v-model`.</tip>
 <template>
   <div>
     <fd-field-set>
-      <FdFormItem label="Favorite Color">
-        <FdSelect v-model="color">
+      <fd-form-item label="Favorite Color">
+        <fd-select v-model="color">
           <option disabled>no color</option>
           <option value="red">Red</option>
           <option value="green">Green</option>
           <option value="yellow">Yellow</option>
-        </FdSelect>
-      </FdFormItem>
+        </fd-select>
+      </fd-form-item>
     </fd-field-set>
     <div style="margin-bottom: 20px;">
       <p>
-        Selected Color: <code class="fd-has-font-weight-bold">{{ color }}</code>
+        Selected Color:
+        <code class="fd-has-font-weight-bold">{{ color }}</code>
       </p>
     </div>
     <FdButton @click="color = 'green'">Set Color to 'green'</FdButton>

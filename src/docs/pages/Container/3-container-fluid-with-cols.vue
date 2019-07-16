@@ -2,12 +2,7 @@
 <template>
   <div>
     Columns:
-    <fd-button
-      :disabled="addDiabled"
-      @click="cols++"
-      styling="light"
-      icon="sys-add"
-    ></fd-button>
+    <fd-button :disabled="addDiabled" @click="cols++" styling="light" icon="sys-add"></fd-button>
     <fd-button
       :disabled="removeDisabled"
       @click="cols--"
@@ -16,9 +11,7 @@
     ></fd-button>
     <br />
     <fd-container fluid>
-      <fd-col :span="1" v-for="col in cols" :key="`col-${col}`"
-        >{{ col }}. Column</fd-col
-      >
+      <fd-col :span="1" v-for="col in cols" :key="`col-${col}`">{{ col }}. Column</fd-col>
     </fd-container>
   </div>
 </template>

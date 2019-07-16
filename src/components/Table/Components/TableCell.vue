@@ -42,9 +42,7 @@ export default {
     },
     fixed_() {
       const { fixed, fdTableFixedProvider } = this;
-      return fdTableFixedProvider.fixed != null
-        ? fdTableFixedProvider.fixed
-        : fixed;
+      return fdTableFixedProvider.fixed != null ? fdTableFixedProvider.fixed : fixed;
     },
     style() {
       return this.fixed_

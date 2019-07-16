@@ -5,7 +5,8 @@
     <fd-image size="s" :url="$withBase('images/img-small.jpeg')" />
     <fd-image size="m" :url="$withBase('images/img-small.jpeg')" />
     <fd-image size="l" :url="$withBase('images/img-small.jpeg')" />
-    <br /><br />
+    <br />
+    <br />
     <fd-image size="s" circle :url="$withBase('images/img-small.jpeg')" />
     <fd-image size="m" circle :url="$withBase('images/img-small.jpeg')" />
     <fd-image size="l" circle :url="$withBase('images/img-small.jpeg')" />

@@ -9,11 +9,7 @@ Use the `menu`-slot in combination with `fd-combobox-menu` in order to provide a
       <span class="favorite-fruit-label">Selected Fruit:</span>
       <span class="favorite-fruit-current">{{ fruit || "none" }}</span>
     </div>
-    <fd-combobox
-      class="fruit-picker"
-      v-model="fruit"
-      placeholder="Pick your Fruit of the day"
-    >
+    <fd-combobox class="fruit-picker" v-model="fruit" placeholder="Pick your Fruit of the day">
       <fd-combobox-menu class="fruit-picker" v-slot="menu">
         <fd-menu-list>
           <fd-menu-item value="Apple">Apple</fd-menu-item>

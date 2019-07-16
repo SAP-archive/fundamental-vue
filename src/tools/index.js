@@ -32,16 +32,10 @@ const mergedSlot = (lhsSlot, rhsSlot) => {
     bindings: rhsBindings,
     scoped: rhsScoped
   } = rhsSlot;
-  const describe =
-    lhsDescribe.length >= rhsDescribe.length ? lhsDescribe : rhsDescribe;
-  const backerDesc =
-    lhsBackerDesc.length >= rhsBackerDesc.length
-      ? lhsBackerDesc
-      : rhsBackerDesc;
+  const describe = lhsDescribe.length >= rhsDescribe.length ? lhsDescribe : rhsDescribe;
+  const backerDesc = lhsBackerDesc.length >= rhsBackerDesc.length ? lhsBackerDesc : rhsBackerDesc;
   const bindings =
-    Object.keys(lhsBindings).length >= Object.keys(rhsBindings).length
-      ? lhsBindings
-      : rhsBindings;
+    Object.keys(lhsBindings).length >= Object.keys(rhsBindings).length ? lhsBindings : rhsBindings;
   // The default seems to be 'false' – so if lhsScoped is true we take that. Otherwise we simply use rhsScoped
   const scoped = lhsScoped === true ? true : rhsScoped;
   return {
@@ -89,8 +83,7 @@ const fixedParserSlots = slots => {
   // fixedButDuplicated now contains correct slots but duplicated still remain.
   const result = [];
   fixedButDuplicated.forEach(slot => {
-    const alreadyInResult =
-      result.findIndex(resultSlot => resultSlot.name === slot.name) >= 0;
+    const alreadyInResult = result.findIndex(resultSlot => resultSlot.name === slot.name) >= 0;
     if (alreadyInResult) {
       return;
     }

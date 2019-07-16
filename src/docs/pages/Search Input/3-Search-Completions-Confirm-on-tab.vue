@@ -7,7 +7,8 @@ Set `confirmOn` to `keyup.tab` in order to allow the user to select suggestions 
 <template>
   <div>
     <p>
-      Predicate: <code>{{ predicate }}</code>
+      Predicate:
+      <code>{{ predicate }}</code>
     </p>
     <fd-search-input
       popoverClass="docs-search"
@@ -15,14 +16,7 @@ Set `confirmOn` to `keyup.tab` in order to allow the user to select suggestions 
       v-model="predicate"
       placeholder="Search"
       confirmOn="keyup.tab"
-      :completions="[
-        'Apple',
-        'Peach',
-        'Banana',
-        'Chris',
-        'Vue is Cool',
-        'Test123'
-      ]"
+      :completions="['Apple', 'Peach', 'Banana', 'Chris', 'Vue is Cool', 'Test123']"
     />
   </div>
 </template>

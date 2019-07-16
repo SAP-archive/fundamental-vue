@@ -4,7 +4,8 @@
     <ul class="prop">
       <li>
         <p>
-          <strong>Type:</strong> <code>{{ type }}</code>
+          <strong>Type:</strong>
+          <code>{{ type }}</code>
         </p>
         <template v-if="hasTypeDescription">
           <div class="prop__description">
@@ -14,7 +15,8 @@
       </li>
       <li>
         <p>
-          <strong>Default:</strong> <code>{{ defaultValue_ }}</code>
+          <strong>Default:</strong>
+          <code>{{ defaultValue_ }}</code>
         </p>
       </li>
     </ul>

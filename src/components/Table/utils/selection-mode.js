@@ -4,5 +4,4 @@ export const SelectionMode = {
   none: "none"
 };
 export const SelectionModes = Object.keys(SelectionMode);
-export const SelectionModeValidator = value =>
-  SelectionModes.indexOf(value) >= 0;
+export const SelectionModeValidator = value => SelectionModes.indexOf(value) >= 0;

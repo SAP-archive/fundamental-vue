@@ -19,9 +19,7 @@ const directive = {
         if (Array.isArray(modal)) {
           throw Error(`[v-modal] Unable to modal ${arg}`);
         } else if ("nodeType" in modal) {
-          throw Error(
-            `[v-modal] modal named '${arg} does not seem to be an instance of FdModal.'`
-          );
+          throw Error(`[v-modal] modal named '${arg} does not seem to be an instance of FdModal.'`);
         }
       }
       // @ts-ignore

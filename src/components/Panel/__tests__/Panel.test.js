@@ -89,9 +89,7 @@ describe("Panel", () => {
     });
 
     it("renders title as slot", () => {
-      expect(wrapper.find(".fd-panel__description div").text()).toBe(
-        description
-      );
+      expect(wrapper.find(".fd-panel__description div").text()).toBe(description);
     });
   });
 });

@@ -17,9 +17,7 @@
       <template #row="{ item }">
         <fd-table-row :key="'row__item-id--' + item.id">
           <template v-for="header in headers" v-slot:[header]>
-            <fd-table-cell
-              :key="'row__item-id--' + item.id + '__for-header--' + header"
-            >
+            <fd-table-cell :key="'row__item-id--' + item.id + '__for-header--' + header">
               {{ header }}
             </fd-table-cell>
           </template>

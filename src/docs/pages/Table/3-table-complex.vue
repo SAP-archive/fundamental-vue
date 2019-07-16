@@ -57,9 +57,7 @@ If you modify the `items`-array, make sure that the modification is done in a wa
             </fd-table-cell>
           </template>
           <template #fullName>
-            <fd-table-cell>
-              {{ item.firstName }} {{ item.lastName }}
-            </fd-table-cell>
+            <fd-table-cell>{{ item.firstName }} {{ item.lastName }}</fd-table-cell>
           </template>
         </fd-table-row>
       </template>
@@ -69,16 +67,10 @@ If you modify the `items`-array, make sure that the modification is done in a wa
 
     <fd-field-set>
       <fd-form-item label="First Name">
-        <FdInput
-          v-model="newEntry.firstName"
-          placeholder="Enter something nice"
-        />
+        <FdInput v-model="newEntry.firstName" placeholder="Enter something nice" />
       </fd-form-item>
       <fd-form-item label="Last Name">
-        <FdInput
-          v-model="newEntry.lastName"
-          placeholder="Enter something nice"
-        />
+        <FdInput v-model="newEntry.lastName" placeholder="Enter something nice" />
       </fd-form-item>
       <fd-form-item label="Rating">
         <fd-combobox v-model="newEntry.rating">

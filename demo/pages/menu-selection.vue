@@ -13,35 +13,24 @@
       :selectedUid.sync="selectedUid"
     >
       <fd-menu-list>
-        <fd-menu-item data-cy-item-a-0 uid="a-id-0" value="a-value-0"
-          >a-title-0</fd-menu-item
-        >
-        <fd-menu-item data-cy-item-a-1 uid="a-id-1" value="a-value-1"
-          >a-title-1</fd-menu-item
-        >
-        <fd-menu-item data-cy-item-a-2 uid="a-id-2" value="a-value-2"
-          >a-title-2</fd-menu-item
-        >
+        <fd-menu-item data-cy-item-a-0 uid="a-id-0" value="a-value-0">a-title-0</fd-menu-item>
+        <fd-menu-item data-cy-item-a-1 uid="a-id-1" value="a-value-1">a-title-1</fd-menu-item>
+        <fd-menu-item data-cy-item-a-2 uid="a-id-2" value="a-value-2">a-title-2</fd-menu-item>
       </fd-menu-list>
     </fd-menu>
     <p>
-      highlightedUid: <span data-highlighted-uid>{{ highlightedUid }}</span>
+      highlightedUid:
+      <span data-highlighted-uid>{{ highlightedUid }}</span>
     </p>
     <p>
-      selectedUid: <span data-selected-uid>{{ selectedUid }}</span>
+      selectedUid:
+      <span data-selected-uid>{{ selectedUid }}</span>
     </p>
     <label>
       Highlight Uid:
-      <input
-        data-cy-uid-to-highlight
-        type="text"
-        v-model="uidToBeHighlighted"
-      />
+      <input data-cy-uid-to-highlight type="text" v-model="uidToBeHighlighted" />
     </label>
-    <button
-      data-cy-perform-highlight
-      @click="highlightedUid = uidToBeHighlighted"
-    >
+    <button data-cy-perform-highlight @click="highlightedUid = uidToBeHighlighted">
       Highlight
     </button>
   </div>

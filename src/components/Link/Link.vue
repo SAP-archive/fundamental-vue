@@ -1,11 +1,5 @@
 <template>
-  <a
-    v-on="$listeners"
-    @click.native="click"
-    :class="classes"
-    href="#"
-    :title="title"
-  >
+  <a v-on="$listeners" @click.native="click" :class="classes" href="#" :title="title">
     <slot>{{ title }}</slot>
   </a>
 </template>

@@ -2,9 +2,9 @@
   <label class="fd-form__label" :for="itemId" :aria-required="String(required)">
     <slot name="control" />
     <slot />
-    <template v-if="required"
-      >*</template
-    >
+    <template v-if="required">
+      *
+    </template>
   </label>
 </template>
 

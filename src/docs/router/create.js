@@ -1,10 +1,6 @@
 // @ts-check
 import Router from "vue-router";
-import {
-  ExampleCollection,
-  StaticContent,
-  FullscreenDemo
-} from "./../components";
+import { ExampleCollection, StaticContent, FullscreenDemo } from "./../components";
 import ComponentApiPage from "./../_pages/component-api-page.vue";
 
 const createRouter = componentApiRepository => {
@@ -32,9 +28,7 @@ const createRouter = componentApiRepository => {
       }
       return new Promise(resolve => {
         window.requestAnimationFrame(() => {
-          const main = window.document.querySelector(
-            "div[data-fd-main-content]"
-          );
+          const main = window.document.querySelector("div[data-fd-main-content]");
           if (main != null) {
             main.scrollIntoView(/* alignToTop */ true);
           }

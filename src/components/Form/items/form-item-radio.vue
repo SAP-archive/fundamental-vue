@@ -2,7 +2,8 @@
   <div class="fd-form__item fd-form__item--check" :class="classes">
     <fd-form-label :inline="inline_">
       <template #control>
-        <slot />{{ label }}
+        <slot />
+        {{ label }}
       </template>
     </fd-form-label>
   </div>
@@ -31,9 +32,7 @@ export default {
   },
   computed: {
     inline_() {
-      return this.formGroup.inline != null
-        ? this.formGroup.inline
-        : this.inline;
+      return this.formGroup.inline != null ? this.formGroup.inline : this.inline;
     },
     classes() {
       return {
