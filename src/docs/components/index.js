@@ -14,7 +14,7 @@ export { default as ExpandTransition } from "./ExpandTransition.vue";
 export { default as Tip } from "./Tip.vue";
 
 export const registerComponents = vue => {
-  vue.component("Tip", Tip);
+  vue.component("d-tip", Tip);
   vue.component("component-api-link", ComponentApiLink);
   vue.component("d-markdown", DMarkdown);
   vue.component("ExpandTransition", ExpandTransition);
