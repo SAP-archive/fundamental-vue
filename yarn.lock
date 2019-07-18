@@ -1446,11 +1446,11 @@
   integrity sha512-Xn/+vdm9CjuC9p3Ae+lTClNutrVhsXpzxvoTXXtoys6kVRX9FkueSUAqSWAyZntmVLlR4DosBV4pH8y5Z/HbUw==
 
 "@vuese/cli@^2.4.2":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@vuese/cli/-/cli-2.5.0.tgz#bf881d3d7ffd886ec50970d73bc9502eb024f94d"
-  integrity sha512-H1kSZygBLcdefAet9crkDaFDVfYUq606p8eeB9T9jVMWvsM+5uoHLNLltxqdlL4hEbFt8G5l9c3opJIY2/KxYw==
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@vuese/cli/-/cli-2.5.1.tgz#c1b93bf3da52ca2edb1e5528cd8b9630b7e87d1c"
+  integrity sha512-MW75qZVHfVx+FFYgn9YVONMNaOP6GQJGVfzPKRfiwrBBijzmO+5Rlhe2VYte41z1RexK0nipcMjBdYki4AIxHw==
   dependencies:
-    "@vuese/markdown-render" "^2.3.0"
+    "@vuese/markdown-render" "^2.3.1"
     "@vuese/parser" "^2.2.0"
     cac "^6.4.0"
     carlo "^0.9.10"
@@ -1466,10 +1466,10 @@
     sao "^0.22.17"
     serve-handler "^5.0.7"
 
-"@vuese/markdown-render@^2.2.9", "@vuese/markdown-render@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@vuese/markdown-render/-/markdown-render-2.3.0.tgz#1f60fd45359c3f1295eb6b8b6b16d27d146b645b"
-  integrity sha512-cBBDHtwS3VIKWWnUfC02CBW0z97DnKWzBehtgvqTzO3AHbAZe7D8teDvXgCdjC68gLteUDOTOnnyRt7TdJOeXQ==
+"@vuese/markdown-render@^2.2.9", "@vuese/markdown-render@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@vuese/markdown-render/-/markdown-render-2.3.1.tgz#21a931b9d1443c10ab5f7778ea1e3616941d8409"
+  integrity sha512-+aXcblX8+Tc45C4LbH8ZD+AeORtPcEtRGWnQgyr0fYdANZB5bUX+OUK0tCjAiV7wQLFJbjXJvJFlN7qVMvJGWA==
 
 "@vuese/parser@^2.1.8", "@vuese/parser@^2.2.0":
   version "2.2.0"
