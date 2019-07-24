@@ -1,6 +1,8 @@
 ---
 fdRelatedComponents:
   - fd-section
+  - fd-section-header
+  - fd-section-title
   - fd-panel
   - fd-panel-grid
 ---

@@ -26,5 +26,12 @@ Layout containers used to arrange content on a 12-column grid. Can be used insid
 
 ## Fluid with Cols
 
+This is a small playground which shows you how the fluid container behaves in different situations. Try adding/removing columns and the resize the window.
+
 <d-example name="3-container-fluid-with-cols">
+</d-example>
+
+## Centered & Shifted Content
+
+<d-example name="shifted-and-centered">
 </d-example>
