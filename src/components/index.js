@@ -11,6 +11,8 @@ import Combobox from "./Combobox";
 import ContextMenu from "./ContextMenu";
 import ContextButton from "./ContextButton";
 import ComboboxMenu from "./ComboboxMenu";
+import Container from "./container";
+import Col from "./col";
 import Counter from "./Counter";
 import DatePicker from "./DatePicker";
 import DatePickerInput from "./DatePickerInput";
@@ -36,6 +38,7 @@ import ModalOverlay from "./ModalOverlay";
 import Pagination from "./Pagination";
 import Panel from "./Panel";
 import Popover from "./Popover";
+import Section from "./section";
 import SearchInput from "./SearchInput";
 import SideNav from "./SideNav";
 import Spinner from "./Spinner";
@@ -68,6 +71,8 @@ const plugin = {
       ButtonGroup,
       Calendar,
       Combobox,
+      Container,
+      Col,
       ComboboxMenu,
       Counter,
       ContextMenu,
@@ -97,6 +102,7 @@ const plugin = {
       Panel,
       Popover,
       SearchInput,
+      Section,
       SideNav,
       Spinner,
       Status,

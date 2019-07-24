@@ -1,6 +1,6 @@
 <template>
   <div>
-    <fd-container style="width: 200px;" centered>
+    <fd-container v-fd-bg:neutral-2 style="width: 200px;" centered>
       Centered
     </fd-container>
   </div>
