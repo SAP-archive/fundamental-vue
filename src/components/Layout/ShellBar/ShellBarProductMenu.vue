@@ -3,7 +3,7 @@
     <fd-menu-popover
       :flips="false"
       :body-styles="{
-        overflowY: 'scroll',
+        overflowY: 'auto',
         maxHeight: 'calc(100vh - 65px)'
       }"
       discard-highlight
