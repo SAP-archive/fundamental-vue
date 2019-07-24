@@ -41,7 +41,7 @@ describe("FormItem", () => {
       expect(radio.isVisible()).toBe(true);
 
       radio.element.value = "helloWorld";
-      radio.trigger("input");
+      radio.trigger("change");
       await localVue.nextTick();
       expect(form.vm.checked).toBe("helloWorld");
     });

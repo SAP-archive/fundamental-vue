@@ -7,13 +7,13 @@
     @change="$emit('update', $event.target.value)"
     v-on="$listeners"
     v-bind="$attrs"
+    :id="inputId"
   >
     <slot />
   </select>
 </template>
 
 <script>
-// :id="inputId"
 import InputMixin from "./InputMixin";
 import { $valueWithDefault } from "./Helper/prop";
 
