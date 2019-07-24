@@ -7,7 +7,7 @@
       :value="value"
       :disabled="disabled"
       @update="$emit('update', $event)"
-    ></FdCheckbox>
+    />
     <span class="fd-toggle__switch" role="presentation" />
   </span>
 </template>

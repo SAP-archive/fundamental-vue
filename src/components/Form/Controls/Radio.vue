@@ -5,14 +5,14 @@
     :disabled="disabled ? '' : null"
     :checked="checked ? true : false"
     :value="value"
-    @input="$emit('update', $event.target.value, $event)"
+    @change="$emit('update', $event.target.value, $event)"
     v-on="$listeners"
     v-bind="$attrs"
+    :id="inputId"
   />
 </template>
 
 <script>
-// :id="inputId"
 import InputMixin from "./InputMixin";
 import { $valueWithDefault, $modelValueWithDefault } from "./Helper/prop";
 

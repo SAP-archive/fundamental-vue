@@ -18,16 +18,14 @@ export default {
     plain: $default(false)
   },
   computed: {
-    inputStateClasses() {
-      const { state } = this;
-      return { [`is-${state}`]: state != null };
-    },
     inputClasses() {
       return {
         "fd-form__control": !this.plain,
         "fd-input--compact": this.finalCompact,
-        ...this.inputStateClasses,
-        "is-required": this.required
+        "is-required": this.required,
+        "is-valid": this.state === "valid",
+        "is-invalid": this.state === "invalid",
+        "is-warning": this.state === "warning"
       };
     },
     inputId() {
