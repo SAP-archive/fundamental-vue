@@ -1,5 +1,5 @@
 import $Support from "./$Support";
-import ActionBar from "./ActionBar";
+import ActionBar from "./action-bar";
 import Alert from "./Alert";
 import Badge from "./Badge";
 import Breadcrumb from "./Breadcrumb";
