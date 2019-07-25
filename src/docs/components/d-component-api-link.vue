@@ -7,9 +7,8 @@
           class="fdd-component-api-link fd-has-font-family-code"
           :class="classes"
           :to="target.to"
+          >{{ target.componentName.displayableWithPrefix }}</router-link
         >
-          {{ target.componentName.displayableWithPrefix }}
-        </router-link>
       </slot>
     </template>
   </d-component-api-link-target>

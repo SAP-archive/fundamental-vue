@@ -18,7 +18,7 @@
       </div>
     </div>
     <expand-transition>
-      <div v-show="codeVisible"><d-code-view :sourcecode="code" /></div>
+      <div v-show="codeVisible"><d-code-view :sourcecode="code"/></div>
     </expand-transition>
   </div>
 </template>
