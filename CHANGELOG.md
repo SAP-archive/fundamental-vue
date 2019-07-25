@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.18.0-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.17.1-rc.0...v0.18.0-rc.0) (2019-07-25)
+
+
+### Features
+
+* improved action-bar component ([0e4e6c6](https://github.com/SAP/fundamental-vue/commit/0e4e6c6))
+
+
+
 ### [0.17.1-rc.0](https://github.com/SAP/fundamental-vue/compare/v0.17.0...v0.17.1-rc.0) (2019-07-25)
 
 
