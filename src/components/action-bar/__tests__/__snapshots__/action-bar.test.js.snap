@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionBar renders back-button-slot 1`] = `
+<div
+  class="fd-action-bar"
+>
+  <div
+    class="fd-action-bar__back"
+  >
+    <button
+      class="fd-button--light sap-icon--nav-back"
+    />
+  </div>
+   
+  <div
+    class="fd-action-bar__header"
+  >
+     
+  </div>
+   
+</div>
+`;
+
+exports[`ActionBar renders correctly in it's full glory 1`] = `
+<div
+  class="fd-action-bar"
+>
+  <div
+    class="fd-action-bar__back"
+  >
+    <button
+      class="fd-button--light sap-icon--nav-back"
+    />
+  </div>
+   
+  <div
+    class="fd-action-bar__header"
+  >
+    <h3
+      class="fd-action-bar__title"
+    >
+      Action Bar Title
+    </h3>
+     
+    <p
+      class="fd-action-bar__description"
+    >
+      Action Bar Description
+    </p>
+  </div>
+   
+  <div
+    class="fd-action-bar__actions"
+  >
+    <button
+      class="fd-button fd-button--positive sap-icon--accept"
+    >
+      Approve
+    </button>
+     
+    <button
+      class="fd-button fd-button--negative sap-icon--decline"
+    >
+      Reject
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ActionBar renders header-title-slot 1`] = `
+<div
+  class="fd-action-bar"
+>
+  <div
+    class="fd-action-bar__back"
+  />
+   
+  <div
+    class="fd-action-bar__header"
+  >
+    <h3
+      class="fd-action-bar__title"
+    >
+      Action Bar Title
+    </h3>
+     
+  </div>
+   
+</div>
+`;
