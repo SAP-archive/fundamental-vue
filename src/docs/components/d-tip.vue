@@ -1,6 +1,5 @@
 <template>
   <div class="fdd-tip">
-    <div class="fdd-tip__title">{{ title }}</div>
     <div class="fdd-tip__body"><slot /></div>
   </div>
 </template>

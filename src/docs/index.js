@@ -25,15 +25,14 @@ import "prismjs/components/prism-scss.min";
 import "prismjs/components/prism-css.min";
 import "prismjs/components/prism-bash.min";
 
-/**
- * @type {import("vue").VueConstructor}
- */
-const _Vue = Vue;
+const documentedComponents = getDocumentedComponents();
 
+/** @type {import("vue").VueConstructor} */
+const _Vue = Vue;
 // eslint-disable-next-line no-undef
 _Vue.prototype.$withBase = relativePath => `${process.env.BASE_URL}${relativePath}`;
 _Vue.use(VueClipboard);
-_Vue.use(DocumentedComponentsPlugin, { documentedComponents: getDocumentedComponents() });
+_Vue.use(DocumentedComponentsPlugin, { documentedComponents });
 _Vue.config.productionTip = true;
 _Vue.use(Examples);
 _Vue.use(MDPages);
