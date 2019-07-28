@@ -1,14 +1,16 @@
 <template>
   <div class="component-name" :id="id_">
     <router-link class="component-name__anchor" :to="to">#</router-link>
-    {{ name }}
+    <slot>
+      {{ name }}
+    </slot>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    name: { type: String }
+    name: { default: null, type: String }
   },
   computed: {
     to() {

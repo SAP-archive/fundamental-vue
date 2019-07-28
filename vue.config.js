@@ -1,12 +1,9 @@
-/* eslint-env node */
 // @ts-check
-// This require-statement has to be high up – otherwise you will get strange errors.
-const MarkdownItHighlight = require("./src/docs/_node/markdown/highlight");
-const grayMatter = require("gray-matter");
-const Path = require("path");
-const CreatePrerenderConfig = require("./vue-config/vue-spa.config");
+/* eslint-env node */
 
-const MarkdownItPlugins = require("./src/docs/_node/markdown-plugins").all;
+// This require-statement has to be high up – otherwise you will get strange errors.
+const CreatePrerenderConfig = require("./vue-config/vue-spa.config");
+const Path = require("path");
 
 const baseUrl = process.env.BASE_URL;
 
@@ -31,6 +28,9 @@ module.exports = {
   configureWebpack: {
     ...configureWebpack
   },
+  /**
+   * @param {import("webpack-chain")} config
+   */
   chainWebpack: config => {
     if (isInPrerendering) {
       prerenderConfig.chainWebpack(config);
@@ -43,6 +43,13 @@ module.exports = {
 
     config.module
       .rule("vue")
+      .use("fd-component-api-loader")
+      .loader("fd-component-api-loader")
+      .after("vue-loader")
+      .end();
+
+    config.module
+      .rule("vue")
       .use("vue-loader")
       .loader("vue-loader")
       .tap(() => {
@@ -52,6 +59,7 @@ module.exports = {
           }
         };
       });
+
     config.module
       .rule("md")
       .test(/\.md/)
@@ -63,32 +71,9 @@ module.exports = {
         }
       })
       .end()
-      .use("vue-markdown-loader")
-      .loader("vue-markdown-loader/lib/markdown-compiler")
-      .options({
-        preventExtract: true,
-        use: MarkdownItPlugins,
-        raw: true,
-        wrapper: "div",
-        highlight: MarkdownItHighlight,
-        preprocess(_parser, source) {
-          const result = grayMatter(source);
-          const relatedComponents = result.data.fdRelatedComponents || [];
-          const renderRelatedComponents = () => {
-            if (relatedComponents.length === 0) {
-              return "";
-            }
-            const wrapped = relatedComponents.map(c => `'${c}'`);
-            const relCompAttrs = `[${wrapped.join(", ")}]`;
-            const rendered = `\n\n<d-related-components-section :component-names="${relCompAttrs}">\n</ d-related-components-section>\n\n`;
-            return rendered;
-          };
-          let md = "";
-          md += result.content;
-          md += renderRelatedComponents();
-          return md;
-        }
-      });
+      .use("fd-markdown-loader")
+      .loader("fd-markdown-loader")
+      .end();
 
     config.resolveLoader.modules
       .add("node_modules")

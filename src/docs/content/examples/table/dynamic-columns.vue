@@ -1,4 +1,3 @@
-<title>Dynamic Columns</title>
 <template>
   <div>
     <fd-button @click="addColumn">add column</fd-button>

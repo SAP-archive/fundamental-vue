@@ -1,5 +1,3 @@
-<title>6-col grid</title>
-
 <template>
   <fd-tile-grid :col="6">
     <fd-tile>
