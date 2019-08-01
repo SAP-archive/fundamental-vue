@@ -35,6 +35,7 @@ import Menu from "./Menu";
 import MenuPopover from "./MenuPopover";
 import Modal from "./Modal";
 import ModalOverlay from "./ModalOverlay";
+import ObjectTree from "./objectTree";
 import Pagination from "./Pagination";
 import Panel from "./Panel";
 import Popover from "./Popover";
@@ -57,7 +58,6 @@ import TileGrid from "./TileGrid";
 import TimePicker from "./TimePicker";
 import Token from "./Token";
 import Tree from "./tree";
-
 import VirtualizedList from "./VirtualizedList";
 
 const plugin = {
@@ -100,6 +100,7 @@ const plugin = {
       MenuPopover,
       Modal,
       ModalOverlay,
+      ObjectTree,
       Pagination,
       Panel,
       Popover,
