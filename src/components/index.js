@@ -56,6 +56,8 @@ import TileTitle from "./TileTitle";
 import TileGrid from "./TileGrid";
 import TimePicker from "./TimePicker";
 import Token from "./Token";
+import Tree from "./tree";
+
 import VirtualizedList from "./VirtualizedList";
 
 const plugin = {
@@ -119,6 +121,7 @@ const plugin = {
       TileGrid,
       TimePicker,
       Token,
+      Tree,
       VirtualizedList
     ];
     plugins.forEach(plugin => vue.use(plugin, options));
