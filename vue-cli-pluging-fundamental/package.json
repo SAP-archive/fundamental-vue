@@ -1,0 +1,28 @@
+{
+  "name": "vue-cli-plugin-fundamental",
+  "version": "0.4.0",
+  "description": "Vue CLI plugin for Fundamental Vue",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:SAP/fundamental-vue.git"
+  },
+  "keywords": [
+    "fundamental",
+    "fiori",
+    "fundamental styles",
+    "sap",
+    "fundamental vue",
+    "fundamentals",
+    "cli"
+  ],
+  "author": "Christian Kienle",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SAP/fundamental-vuel/issues"
+  },
+  "homepage": "https://github.com/SAP/fundamental-vue",
+  "devDependencies": {
+    "eslint": "^5.16.0"
+  }
+}
