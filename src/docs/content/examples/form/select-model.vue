@@ -1,7 +1,8 @@
 <template>
   <div>
     <fd-field-set>
-      <fd-form-item label="Favorite Color">
+      <fd-form-item>
+        <fd-form-label>Favorite Color</fd-form-label>
         <fd-select v-model="color">
           <option disabled>no color</option>
           <option value="red">Red</option>

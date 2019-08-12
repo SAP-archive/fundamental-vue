@@ -40,7 +40,7 @@ export default {
     $formGroup: { from: "formGroup", default: null }
   },
   props: {
-    inline: { type: Boolean, default: false }
+    inline: { type: Boolean, default: null }
   },
   methods: {
     setCheck(check) {
