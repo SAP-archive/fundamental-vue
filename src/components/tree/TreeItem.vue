@@ -101,8 +101,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../../node_modules/fundamental-styles/scss/helpers.scss";
+
 .disabled-element {
-  color: var(--fd-color-action-disabled);
+  color: fd-color(neutral, 3);
 }
 
 .fd-tree__item-disabled {
