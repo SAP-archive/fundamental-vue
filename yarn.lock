@@ -1500,9 +1500,9 @@
   integrity sha512-TQbMSL2rDhyTAIYAKFkrf9jnnfB1Jup+QNLC43yXZS5TDJr5iidPdwS6tKmTPlHPjewatzhoL++3bC0RStw3Eg==
 
 "@vuese/parser@^2.1.8", "@vuese/parser@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@vuese/parser/-/parser-2.2.0.tgz#a2718a42cdc4f4944d488e433003d4614f69694d"
-  integrity sha512-ppB1HfEHYhMt0cEUCUkMslT7u7/QNjsdPR6rdi5wnC8hTYskuwfV3DPctXmmBGy+6yMjPTezR9iTF7+1sMPPAg==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@vuese/parser/-/parser-2.3.0.tgz#f2326a3f8708d421b3f1ccd3d8939c28e57993c2"
+  integrity sha512-1k/mVmqf/sfggJO6MGEBx7gX1IPO+rZu7BUTpbf1ENSNAtn06W38NR0xNdC8qG4a5mpd0P8tkjdTt19m3doFDg==
   dependencies:
     "@babel/generator" "^7.0.0"
     "@babel/parser" "7.2.3"
