@@ -94,7 +94,7 @@
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-vue": "^5.0.0",
-    "saber-markdown": "^0.0.9",
+    "saber-markdown": "^0.1.0",
     "sass-loader": "^7.1.0",
     "standard-version": "^7.0.0",
     "start-server-and-test": "^1.9.1",
