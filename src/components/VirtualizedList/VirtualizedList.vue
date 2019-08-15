@@ -1,5 +1,6 @@
 <template>
   <component
+    ref="vList"
     style="height: 100%;"
     class="fdv-virtualized-list"
     :key-field="keyField"
@@ -135,6 +136,7 @@ export default {
           event.stopPropagation();
         }
         this.loadMoreItems(this.acceptNewItems);
+        this.updateScroll();
       }
     },
     acceptNewItems() {
@@ -155,6 +157,9 @@ export default {
         "fdv-virtualized-list-item": true,
         "fd-has-background-color-background-selected": selected
       };
+    },
+    updateScroll() {
+      this.$refs["vList"].$el.scrollTop = this.$refs["vList"].$el.scrollTop - 5;
     }
   },
   data() {

@@ -4,3 +4,4 @@ export { default as withTargetLocation } from "./withTargetLocation";
 export { default as Compactable } from "./Compactable";
 export { default as CompactableContainer } from "./CompactableContainer";
 export { default as FocusTrap } from "./FocusTrap";
+export * from "./BreakpointsObserver";
