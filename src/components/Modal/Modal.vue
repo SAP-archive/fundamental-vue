@@ -5,7 +5,7 @@
         <div
           :key="name"
           ref="modalEl"
-          class="fd-modal"
+          class="fd-modal fd-modal--overrides"
           v-show="visible"
           :data-fd-modal-identifier="name"
           :aria-hidden="String(!visible)"
@@ -14,13 +14,11 @@
           @keydown.esc="handleEsc"
           v-bind="$attrs"
         >
-          <div class="fd-modal__content" role="document">
+          <div class="fd-modal__content fd-modal__content--overrides" role="document">
             <div class="fd-modal__header">
               <!-- Custom Title Content -->
               <slot name="title" v-bind="this">
-                <h3 class="fd-modal__title">
-                  {{ title }}
-                </h3>
+                <h3 class="fd-modal__title">{{ title }}</h3>
               </slot>
               <slot name="close" v-bind="this">
                 <FdButton
@@ -34,7 +32,7 @@
 
             <!-- BODY -->
 
-            <div class="fd-modal__body">
+            <div class="fd-modal__body fd-modal__body--overrides">
               <slot v-bind="this" />
             </div>
 
@@ -72,7 +70,11 @@ export default {
       type: Boolean,
       default: false
     },
-    modalStyle: { default: null },
+    modalStyle: {
+      default: () => ({
+        "max-width": "460px"
+      })
+    },
     title: { type: String, default: null },
     name: {
       type: String,

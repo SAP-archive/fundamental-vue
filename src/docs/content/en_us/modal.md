@@ -29,6 +29,11 @@ Of course you can also manually show or close the modal by simply calling the co
 <d-example name="default-modal">
 </d-example>
 
+## Fullscreen Modal
+The modal dimensions can be controlled through the width and height properties of the configuration object. These accept strings, so you may use whatever unit works best for your situation.
+<d-example name="fullscreen-modal">
+</d-example>
+
 ## Nested Modals
 
 You can nest modals just by calling `$fdModal.open(…)` multiple times.
