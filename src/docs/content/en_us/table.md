@@ -22,6 +22,7 @@ It is the responsibility of `fd-table` to render it's header. The header renders
 
 ```ts
 type Header = {
+  key: string;
   label: string;
   sortable?: boolean;
   sortBy?: string;
@@ -58,6 +59,26 @@ interface RowSlotProps<T=object> {
 ## Default Table
 
 <d-example name="default">
+</d-example>
+
+## Default Cell Content
+By default, the table will use the `header.key` value to render a cell's content. Which means, you don't need to write a template for every
+cell in a row in case the cell will just display a property's value. For example, if your headers are `['firstName', 'lastName']` then by default
+the 2 cells in each row will display the value of `item.firstName` and `item.lastName` respectively.
+
+It could be that you want the column's name to be different than the property's name, which you can still achieve by providing the `label` and `key` properties for that column's header definition.
+
+::: tip
+If no `key` was provided and no cell template was written, then the value of `label` will be used as the property's name. For example, if headers=`['Some Label']` then the default cell content will be the value of `item['Some Label']`.
+:::
+
+In the example below, you can see the same rows as the one before without the need to write any templates.
+
+::: tip
+In case you need to provide a custom cell content then you must wrap it in `fd-table-row` like in the other examples.
+:::
+
+<d-example name="default-no-cells">
 </d-example>
 
 ## Table without Border
