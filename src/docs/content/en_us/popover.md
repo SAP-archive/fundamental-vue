@@ -30,6 +30,29 @@ You can use those slot-props to customize all sorts of things. For example, show
 <d-example name="default-popover">
 </d-example>
 
+## Scrolling and Styling
+
+You can pass a styles object to the `body-styles` prop which will allow you to customize the popover's body. The styles object that is provided by default is the following:
+
+```js
+defaultBodyStyles: {
+  maxHeight: "300px",
+  overflowY: "auto"
+}
+```
+You can override these properties and add your custom styling.
+
+::: tip
+
+Try to avoid manipulating css properties that might interfere with those controlled by other props (e.g: width). 
+
+:::
+
+In the example below you can use the slider to control the `max-height` property of the popover's body.
+
+<d-example name="default-styles">
+</d-example>
+
 ## Placement Options
 
 Use the `placement`-prop to any of the following values: `bottom-start`, `bottom`, `bottom-end`, `left-start`, `left`, `left-end`, `right-start`, `right`, `right-end`, `top-start`, `top` and `top-end`.
