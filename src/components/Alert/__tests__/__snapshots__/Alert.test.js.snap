@@ -2,7 +2,7 @@
 
 exports[`Alert renders correctly 1`] = `
 <div
-  class="fd-alert fd-alert--warning"
+  class="fd-alert fd-alert--warning fd-alert--dismissible"
   id="warningAlert"
   name="fade"
   role="alert"
@@ -18,7 +18,7 @@ exports[`Alert renders correctly 1`] = `
 
 exports[`Alert renders correctly 2`] = `
 <div
-  class="fd-alert fd-alert--error fd-alert--dismissible"
+  class="fd-alert fd-alert--error"
   id="errorAlert"
   name="fade"
   role="alert"
