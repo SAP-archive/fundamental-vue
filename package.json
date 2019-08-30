@@ -1,6 +1,6 @@
 {
   "name": "fundamental-vue",
-  "version": "0.18.2-rc.5",
+  "version": "0.18.2-rc.6",
   "description": "SAP Fiori Fundamentals, implemented in Vue.js",
   "author": "SAP SE",
   "scripts": {
