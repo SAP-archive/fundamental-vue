@@ -35,6 +35,7 @@ import Menu from "./Menu";
 import MenuPopover from "./MenuPopover";
 import Modal from "./Modal";
 import ModalOverlay from "./ModalOverlay";
+import ObjectTree from "./objectTree";
 import Pagination from "./Pagination";
 import Panel from "./Panel";
 import Popover from "./Popover";
@@ -57,7 +58,6 @@ import TileGrid from "./TileGrid";
 import TimePicker from "./TimePicker";
 import Token from "./Token";
 import Tree from "./tree";
-
 import VirtualizedList from "./VirtualizedList";
 import Notifications from "./notifications";
 import { FdNotificationsManager } from "./notifications";
@@ -103,6 +103,7 @@ const plugin = {
       Modal,
       ModalOverlay,
       Notifications,
+      ObjectTree,
       Pagination,
       Panel,
       Popover,

@@ -1,3 +1,8 @@
+---
+fdRelatedComponents:
+  - fd-tree
+---
+
 # Tree
 
 You can use `fd-tree` to display data in a visual hierarchy. The data that is passed as an `items` array, is nested. Meaning that a node can have multiple child node. If that's the case, then it will be expandable. 
