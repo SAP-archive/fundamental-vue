@@ -20,7 +20,9 @@
             :selectedIds="computedSelectedIds"
             :selected="isSelected(item.id)"
             :canSelect="canSelect"
-          />
+          >
+            <fd-table-row></fd-table-row>
+          </slot>
         </fd-table-item-provider>
       </template>
     </fd-table-body>
@@ -36,6 +38,7 @@ import withoutDuplicates from "./../../util/without-duplicates";
 import FdTableBody from "./Components/TableBody.vue";
 import FdTableHeader from "./Components/TableHeader.vue";
 import FdTableItemProvider from "./Components/item-provider.vue";
+import FdTableRow from "./Components/TableRow.vue";
 
 const SELECT_ACTION = {
   deselect: "deselect",
@@ -46,6 +49,7 @@ const SELECT_ACTION = {
 export default {
   name: "FdTable",
   components: {
+    FdTableRow,
     FdTableBody,
     FdTableHeader,
     FdTableItemProvider

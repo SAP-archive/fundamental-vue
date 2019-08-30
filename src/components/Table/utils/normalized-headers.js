@@ -4,6 +4,7 @@ import { shortUuid } from "./../../../lib";
 export const normalizedHeader = (raw, columnFixed) => {
   const headerObject = typeof raw === "string" ? { id: raw, label: raw } : raw;
   const {
+    key,
     label,
     sortBy = null,
     sortable = false,
@@ -16,10 +17,11 @@ export const normalizedHeader = (raw, columnFixed) => {
     sortBy,
     sortable,
     label,
-    slotName: id,
     alignment,
     columnFixed,
-    renderHeader
+    slotName: id,
+    renderHeader,
+    key: key ? key : label
   };
 };
 
