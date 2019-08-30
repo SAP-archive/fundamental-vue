@@ -6,6 +6,7 @@
     :defaultBodyZIndex="defaultBodyZIndex"
     :portal-id="$fdDefaultPortalId"
     :body-class="fdBodyClass"
+    :body-styles="popoverBodyStyles"
     :placement="placement"
     :with-arrow="withArrow"
     :body-size-mode="bodySizeMode"
@@ -60,6 +61,14 @@ export default {
       return [...this.ignoredElements(), this.controlEl];
     }
   },
+  data() {
+    return {
+      defaultBodyStyles: {
+        maxHeight: "300px",
+        overflowY: "auto"
+      }
+    };
+  },
   computed: {
     kpop() {
       return this.$refs.kpop;
@@ -77,14 +86,15 @@ export default {
         result.push("fd-popover__popper--no-arrow");
       }
       return result.join(" ");
+    },
+    popoverBodyStyles() {
+      return { ...this.defaultBodyStyles, ...this.bodyStyles };
     }
   },
   props: {
-    // Default z-index that should be used for the popover body.
-    defaultBodyZIndex: {
-      type: Number,
-      // `1000`
-      default: 1000
+    adjustsBodyWidth: {
+      type: Boolean,
+      default: false
     },
     // Use a custom body size mode. For details please refer to the [K-Pop](https://christiankienle.github.io/k-pop/examples/#body-size-modes) documentation.
     bodySizeMode: {
@@ -94,9 +104,16 @@ export default {
       // `auto`
       default: BodySizeMode.defaultMode
     },
-    adjustsBodyWidth: {
-      type: Boolean,
-      default: false
+    // Custom styles object
+    bodyStyles: {
+      type: Object,
+      default: () => {}
+    },
+    // Default z-index that should be used for the popover body.
+    defaultBodyZIndex: {
+      type: Number,
+      // `1000`
+      default: 1000
     },
     // Customize elements that can be interacted with, without the popover being dismissed.
     ignoredElements: {
