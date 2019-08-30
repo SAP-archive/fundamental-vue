@@ -17,7 +17,7 @@ describe("Alert", () => {
     expect(warningAlert.element).toMatchSnapshot();
     expect(errorAlert.element).toMatchSnapshot();
     expect(warningAlert.classes("fd-alert--warning")).toBe(true);
-    expect(errorAlert.classes("fd-alert--dismissible")).toBe(true);
+    expect(errorAlert.classes("fd-alert--dismissible")).toBe(false);
   });
   it("renders default slot when passed", () => {
     const dummySlot = "Slot text";

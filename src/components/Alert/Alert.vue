@@ -69,7 +69,7 @@ export default {
   computed: {
     classes() {
       const type = this.type === "default" ? [] : [`fd-alert--${this.type}`];
-      const dismissible = this.dismissible ? [] : ["fd-alert--dismissible"];
+      const dismissible = this.dismissible ? ["fd-alert--dismissible"] : [];
       return ["fd-alert", ...type, ...dismissible];
     }
   },

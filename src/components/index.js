@@ -59,6 +59,8 @@ import TimePicker from "./TimePicker";
 import Token from "./Token";
 import Tree from "./tree";
 import VirtualizedList from "./VirtualizedList";
+import Notifications from "./notifications";
+import { FdNotificationsManager } from "./notifications";
 
 const plugin = {
   install(vue, options) {
@@ -100,6 +102,7 @@ const plugin = {
       MenuPopover,
       Modal,
       ModalOverlay,
+      Notifications,
       ObjectTree,
       Pagination,
       Panel,
@@ -126,6 +129,7 @@ const plugin = {
       VirtualizedList
     ];
     plugins.forEach(plugin => vue.use(plugin, options));
+    vue.use(FdNotificationsManager);
   }
 };
 export default plugin;
