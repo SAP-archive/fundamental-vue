@@ -95,7 +95,7 @@
     "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-vue": "^5.0.0",
     "saber-markdown": "^0.1.0",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^8.0.0",
     "standard-version": "^7.0.0",
     "start-server-and-test": "^1.9.1",
     "validate-element-name": "^2.1.1",
