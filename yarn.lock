@@ -1384,7 +1384,7 @@
     webpack-dev-server "^3.4.1"
     webpack-merge "^4.2.1"
 
-"@vue/cli-shared-utils@^3.10.0", "@vue/cli-shared-utils@^3.11.0", "@vue/cli-shared-utils@^3.9.0":
+"@vue/cli-shared-utils@^3.10.0", "@vue/cli-shared-utils@^3.11.0":
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-3.11.0.tgz#a3d6f809b0dfb367e626b71405f85dea0631310b"
   integrity sha512-D7pst/4v9H1DD66fLxlZOwRR09R03MV0ROdKxBHmh3FmnApCA/RiaolFA/8w+B3CnevYMlV3SJ5fOAgedbswbA==
@@ -1480,9 +1480,9 @@
     serve-handler "^5.0.7"
 
 "@vuese/markdown-render@^2.2.9", "@vuese/markdown-render@^2.3.1":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@vuese/markdown-render/-/markdown-render-2.4.0.tgz#3efa0e15c6178dc160192a3fb5550e5d54150e26"
-  integrity sha512-TQbMSL2rDhyTAIYAKFkrf9jnnfB1Jup+QNLC43yXZS5TDJr5iidPdwS6tKmTPlHPjewatzhoL++3bC0RStw3Eg==
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@vuese/markdown-render/-/markdown-render-2.5.0.tgz#4e2ca91b0b374b068fc9fab4ffdc4e61c6f10e92"
+  integrity sha512-ONA9BpGWFZ02La1WX0QoLVavLwKxFE311upZKm7BGL8wc10Lk313Qa4SgD6d8/5MXPO2G5NXP0FAuVjr+TId8g==
 
 "@vuese/parser@^2.1.8", "@vuese/parser@^2.2.0":
   version "2.4.0"
