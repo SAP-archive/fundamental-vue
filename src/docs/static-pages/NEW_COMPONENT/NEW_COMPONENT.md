@@ -2,6 +2,15 @@
 
 > This is a very brief guide which describes what you have to do in order to implement a new component for Fundamental Vue.
 
+::: tip
+
+You can now use the `new_component.js` script in the `scripts` folder. Just run `node scripts/new_component.js <componentName>` and it will create
+all the necessary files and make the imports. After executing it and building the doc you should see a section for your new component with some placeholder text. 
+
+**P.S:** please use the `lowerCamelCase` naming convention when passing the new component's name
+
+:::
+
 ## Creating the files for the actual Component
 
 For the purpose of this guide, lets assume that you want to create a component called `Flower`. Create a folder that contains all of your files. For example:

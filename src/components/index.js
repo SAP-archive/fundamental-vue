@@ -31,6 +31,7 @@ import Label from "./Label";
 import Layout from "./Layout";
 import Link from "./Link";
 import ListGroup from "./ListGroup";
+import MasterDetails from "./masterDetails";
 import Menu from "./Menu";
 import MenuPopover from "./MenuPopover";
 import Modal from "./Modal";
@@ -98,6 +99,7 @@ const plugin = {
       Layout,
       Link,
       ListGroup,
+      MasterDetails,
       Menu,
       MenuPopover,
       Modal,
