@@ -1384,7 +1384,7 @@
     webpack-dev-server "^3.4.1"
     webpack-merge "^4.2.1"
 
-"@vue/cli-shared-utils@^3.10.0", "@vue/cli-shared-utils@^3.11.0", "@vue/cli-shared-utils@^3.9.0":
+"@vue/cli-shared-utils@^3.10.0", "@vue/cli-shared-utils@^3.11.0":
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-3.11.0.tgz#a3d6f809b0dfb367e626b71405f85dea0631310b"
   integrity sha512-D7pst/4v9H1DD66fLxlZOwRR09R03MV0ROdKxBHmh3FmnApCA/RiaolFA/8w+B3CnevYMlV3SJ5fOAgedbswbA==
@@ -1480,9 +1480,9 @@
     serve-handler "^5.0.7"
 
 "@vuese/markdown-render@^2.2.9", "@vuese/markdown-render@^2.3.1":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@vuese/markdown-render/-/markdown-render-2.4.0.tgz#3efa0e15c6178dc160192a3fb5550e5d54150e26"
-  integrity sha512-TQbMSL2rDhyTAIYAKFkrf9jnnfB1Jup+QNLC43yXZS5TDJr5iidPdwS6tKmTPlHPjewatzhoL++3bC0RStw3Eg==
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/@vuese/markdown-render/-/markdown-render-2.5.3.tgz#e7124b7669cf2bc909552d73494b281d22c84327"
+  integrity sha512-fqTFqxrnpFALlEUuz2Ey2BtJM3LZB6J359HBSk1y5dIMkqgWF5TM8fR7QALVypd1vYxuIcqG1EVIeRXHKkfvHQ==
 
 "@vuese/parser@^2.1.8", "@vuese/parser@^2.2.0":
   version "2.4.0"
@@ -8972,6 +8972,11 @@ lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
+
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
 lodash.defaultsdeep@^4.6.1:
   version "4.6.1"
