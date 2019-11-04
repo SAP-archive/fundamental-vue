@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  name: "FdSection"
-};
+  name: 'FdSection'
+}
 </script>

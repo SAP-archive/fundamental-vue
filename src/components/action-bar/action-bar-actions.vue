@@ -8,6 +8,6 @@
 <script>
 // The actions area of an `fd-action-bar`. Add `fd-buttons` as children of the actions area in order to add actions to the enclosing action bar.
 export default {
-  name: "FdActionBarActions"
-};
+  name: 'FdActionBarActions'
+}
 </script>

@@ -4,6 +4,6 @@
 
 <script>
 export default {
-  name: "FdSectionHeader"
-};
+  name: 'FdSectionHeader'
+}
 </script>

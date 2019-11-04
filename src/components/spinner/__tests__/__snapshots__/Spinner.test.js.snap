@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner renders correctly 1`] = `
+<div
+  aria-hidden="false"
+  aria-label="Label"
+  class="fd-spinner"
+>
+  <div
+    class="fd-spinner__body"
+  />
+</div>
+`;

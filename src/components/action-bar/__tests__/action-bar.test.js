@@ -1,33 +1,33 @@
-import { createLocalVue, mount } from "@vue/test-utils";
-import FundamentalVue from "../../../index";
+import { createLocalVue, mount } from '@vue/test-utils'
+import FundamentalVue from '../../../index'
 
 const mountActionBar = template => {
-  const localVue = createLocalVue();
-  localVue.use(FundamentalVue);
-  return mount({ template }, { localVue });
-};
+  const localVue = createLocalVue()
+  localVue.use(FundamentalVue)
+  return mount({ template }, { localVue })
+}
 
-describe("ActionBar", () => {
-  it("renders back-button-slot", () => {
+describe('ActionBar', () => {
+  it('renders back-button-slot', () => {
     const wrapper = mountActionBar(`
     <fd-action-bar>
       <template #back-button>
         <fd-button styling="light" icon="nav-back" />
       </template>
     </fd-action-bar>
-  `);
-    expect(wrapper.element).toMatchSnapshot();
-  });
-  it("renders header-title-slot", () => {
+  `)
+    expect(wrapper.element).toMatchSnapshot()
+  })
+  it('renders header-title-slot', () => {
     const wrapper = mountActionBar(`
     <fd-action-bar>
       <template #header-title>
         <fd-action-bar-title>Action Bar Title</fd-action-bar-title>
       </template>
     </fd-action-bar>
-  `);
-    expect(wrapper.element).toMatchSnapshot();
-  });
+  `)
+    expect(wrapper.element).toMatchSnapshot()
+  })
   it("renders correctly in it's full glory", () => {
     const wrapper = mountActionBar(`
       <fd-action-bar>
@@ -53,7 +53,7 @@ describe("ActionBar", () => {
           </fd-action-bar-actions>
         </template>
       </fd-action-bar>
-    `);
-    expect(wrapper.element).toMatchSnapshot();
-  });
-});
+    `)
+    expect(wrapper.element).toMatchSnapshot()
+  })
+})

@@ -1,6 +1,6 @@
-import earlierDate from "./earlier-date";
-import laterDate from "./later-date";
-import createNullDate from "./create-null-date";
+import earlierDate from './earlier-date'
+import laterDate from './later-date'
+import createNullDate from './create-null-date'
 
 /**
  * @typedef {object} DateObject
@@ -10,110 +10,110 @@ import createNullDate from "./create-null-date";
 export class NormalizedDate {
   /** @param {DateObject=} rawDate */
   static from(rawDate) {
-    return new NormalizedDate(rawDate);
+    return new NormalizedDate(rawDate)
   }
 
   /** @param {DateObject=} raw */
   constructor(rawDate) {
-    this.raw = rawDate != null ? rawDate : createNullDate();
+    this.raw = rawDate != null ? rawDate : createNullDate()
   }
 
   asStartEndValue() {
     return {
       start: this.start,
       end: this.end
-    };
+    }
   }
 
   asFromToValue() {
     return {
       from: this.from,
       to: this.to
-    };
+    }
   }
 
   get from() {
-    return this.raw.from;
+    return this.raw.from
   }
 
   get to() {
-    return this.raw.to;
+    return this.raw.to
   }
 
   get isComplete() {
-    return this.from != null && this.to != null;
+    return this.from != null && this.to != null
   }
   get start() {
     if (this.to != null && this.from != null) {
-      return earlierDate(this.from, this.to);
+      return earlierDate(this.from, this.to)
     }
     if (this.to == null && this.from == null) {
-      return null;
+      return null
     }
     if (this.from != null) {
-      return this.from;
+      return this.from
     }
-    return null;
+    return null
   }
   get end() {
     if (this.to != null && this.from != null) {
-      return laterDate(this.from, this.to);
+      return laterDate(this.from, this.to)
     }
     if (this.to == null && this.from == null) {
-      return null;
+      return null
     }
     if (this.to != null) {
-      return this.to;
+      return this.to
     }
-    return null;
+    return null
   }
   contains(date) {
-    const { start, end } = this;
+    const { start, end } = this
     if (start == null || end == null) {
-      return false;
+      return false
     }
-    const startDate = start.getTime();
-    const endDate = end.getTime();
-    const time = date.getTime();
-    return time >= startDate && time <= endDate;
+    const startDate = start.getTime()
+    const endDate = end.getTime()
+    const time = date.getTime()
+    return time >= startDate && time <= endDate
   }
   containsYear(year) {
-    const { start, end } = this;
+    const { start, end } = this
     if (start == null && end == null) {
-      return false;
+      return false
     }
     if (start != null && end != null) {
-      return year >= start.getFullYear() && year <= end.getFullYear();
+      return year >= start.getFullYear() && year <= end.getFullYear()
     }
     if (start != null) {
-      return start.getFullYear() === year;
+      return start.getFullYear() === year
     }
     if (end != null) {
-      return end.getFullYear() === year;
+      return end.getFullYear() === year
     }
-    return false;
+    return false
   }
   containsMonth(month) {
-    const { start, end } = this;
+    const { start, end } = this
     if (start == null && end == null) {
-      return false;
+      return false
     }
     if (start != null && end != null) {
-      return month >= start.getMonth() && month <= end.getMonth();
+      return month >= start.getMonth() && month <= end.getMonth()
     }
     if (start != null) {
-      return start.getMonth() === month;
+      return start.getMonth() === month
     }
     if (end != null) {
-      return end.getMonth() === month;
+      return end.getMonth() === month
     }
-    return false;
+    return false
   }
 }
 
 /** @param {DateObject=} selection */
 const createNormalizedDate = selection => {
-  return NormalizedDate.from(selection);
-};
+  return NormalizedDate.from(selection)
+}
 
-export default createNormalizedDate;
+export default createNormalizedDate

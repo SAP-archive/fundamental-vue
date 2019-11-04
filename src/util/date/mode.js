@@ -1,9 +1,9 @@
 // @ts-check
-const single = "single";
-const range = "range";
-const all = [single, range];
-const validator = mode => all.indexOf(mode) >= 0;
-const defaultValue = single;
+const single = 'single'
+const range = 'range'
+const all = [single, range]
+const validator = mode => all.indexOf(mode) >= 0
+const defaultValue = single
 
 export default {
   all,
@@ -18,4 +18,4 @@ export default {
       default: defaultValue
     }
   }
-};
+}

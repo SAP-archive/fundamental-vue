@@ -1,7 +1,7 @@
 // @ts-check
 /* eslint-env node */
-"strict mode";
-const renderMarkdown = require("./render-markdown");
+'strict mode'
+const renderMarkdown = require('./render-markdown')
 
 /**
  * @typedef {import("./frontmatter")} Frontmatter
@@ -21,28 +21,28 @@ const renderMarkdown = require("./render-markdown");
  * @param {Options} options
  */
 const toVueComponent = ({ source, preprocessors }) => {
-  const { frontmatter } = renderMarkdown(source);
-  let markdownContent = frontmatter.markdownContent;
-  const serializedMixins = [];
+  const { frontmatter } = renderMarkdown(source)
+  let markdownContent = frontmatter.markdownContent
+  const serializedMixins = []
   preprocessors.forEach(preprocessor => {
-    const result = preprocessor(markdownContent, frontmatter);
-    markdownContent = result.processedSource;
+    const result = preprocessor(markdownContent, frontmatter)
+    markdownContent = result.processedSource
     if (result.serializedVueMixin != null) {
-      serializedMixins.push(result.serializedVueMixin);
+      serializedMixins.push(result.serializedVueMixin)
     }
-  });
-  const html = renderMarkdown(markdownContent).html;
+  })
+  const html = renderMarkdown(markdownContent).html
 
   let component = `<template><div>
   ${html}
   </div></template>
   <script>
   export default {
-    mixins: [${serializedMixins.join(", ")}]
+    mixins: [${serializedMixins.join(', ')}]
   }
   </script>
-  `;
-  return component;
-};
+  `
+  return component
+}
 
-module.exports = toVueComponent;
+module.exports = toVueComponent

@@ -15,84 +15,84 @@
 <script>
 // Use data('Key') when you want to create a dataset-key. By doing so you ensure to only get properly
 // namespaces keys.
-const dataKey = name => `fdExpandTransition${name}`;
+const dataKey = name => `fdExpandTransition${name}`
 
 const addClass = ({ classList }, className) => {
   if (classList.contains(className)) {
-    return;
+    return
   }
-  classList.add(className);
-};
+  classList.add(className)
+}
 
 const removeClass = ({ classList }, className) => {
   if (!classList.contains(className)) {
-    return;
+    return
   }
-  classList.remove(className);
-};
+  classList.remove(className)
+}
 
 export default {
-  name: "ExpandTransition",
+  name: 'ExpandTransition',
   methods: {
     beforeEnter(el) {
-      addClass(el, "collapse-transition");
-      const style = window.getComputedStyle(el);
-      el.dataset[dataKey("OldPaddingTop")] = style.paddingTop || undefined;
-      el.dataset[dataKey("OldPaddingBottom")] = style.paddingBottom || undefined;
-      el.style.height = "";
-      el.style.paddingTop = "";
-      el.style.paddingBottom = "";
+      addClass(el, 'collapse-transition')
+      const style = window.getComputedStyle(el)
+      el.dataset[dataKey('OldPaddingTop')] = style.paddingTop || undefined
+      el.dataset[dataKey('OldPaddingBottom')] = style.paddingBottom || undefined
+      el.style.height = ''
+      el.style.paddingTop = ''
+      el.style.paddingBottom = ''
     },
 
     enter(el) {
-      const style = window.getComputedStyle(el);
-      el.dataset[dataKey("OldOverflow")] = style.overflow || undefined;
+      const style = window.getComputedStyle(el)
+      el.dataset[dataKey('OldOverflow')] = style.overflow || undefined
       if (el.scrollHeight !== 0) {
-        el.style.height = el.scrollHeight + "px";
-        el.style.paddingTop = el.dataset[dataKey("OldPaddingTop")] || null;
-        el.style.paddingBottom = el.dataset[dataKey("OldPaddingBottom")] || null;
+        el.style.height = el.scrollHeight + 'px'
+        el.style.paddingTop = el.dataset[dataKey('OldPaddingTop')] || null
+        el.style.paddingBottom = el.dataset[dataKey('OldPaddingBottom')] || null
       } else {
-        el.style.height = "";
-        el.style.paddingTop = el.dataset[dataKey("OldPaddingTop")] || null;
-        el.style.paddingBottom = el.dataset[dataKey("OldPaddingBottom")] || null;
+        el.style.height = ''
+        el.style.paddingTop = el.dataset[dataKey('OldPaddingTop')] || null
+        el.style.paddingBottom = el.dataset[dataKey('OldPaddingBottom')] || null
       }
-      el.style.overflow = "hidden";
+      el.style.overflow = 'hidden'
     },
 
     afterEnter(el) {
-      removeClass(el, "collapse-transition");
-      el.style.height = "";
-      el.style.overflow = el.dataset[dataKey("OldOverflow")] || null;
+      removeClass(el, 'collapse-transition')
+      el.style.height = ''
+      el.style.overflow = el.dataset[dataKey('OldOverflow')] || null
     },
 
     beforeLeave(el) {
-      const style = window.getComputedStyle(el);
-      el.dataset[dataKey("OldPaddingTop")] = style.paddingTop || undefined;
-      el.dataset[dataKey("OldPaddingBottom")] = style.paddingBottom || undefined;
-      el.dataset[dataKey("OldOverflow")] = style.overflow || undefined;
+      const style = window.getComputedStyle(el)
+      el.dataset[dataKey('OldPaddingTop')] = style.paddingTop || undefined
+      el.dataset[dataKey('OldPaddingBottom')] = style.paddingBottom || undefined
+      el.dataset[dataKey('OldOverflow')] = style.overflow || undefined
 
-      el.style.height = el.scrollHeight + "px";
-      el.style.overflow = "hidden";
+      el.style.height = el.scrollHeight + 'px'
+      el.style.overflow = 'hidden'
     },
 
     leave(el) {
       if (el.scrollHeight !== 0) {
-        addClass(el, "collapse-transition");
-        el.style.height = "0";
-        el.style.paddingTop = "0";
-        el.style.paddingBottom = "0";
+        addClass(el, 'collapse-transition')
+        el.style.height = '0'
+        el.style.paddingTop = '0'
+        el.style.paddingBottom = '0'
       }
     },
 
     afterLeave(el) {
-      removeClass(el, "collapse-transition");
-      el.style.height = "";
-      el.style.overflow = el.dataset[dataKey("OldOverflow")] || null;
-      el.style.paddingTop = el.dataset[dataKey("OldPaddingTop")] || null;
-      el.style.paddingBottom = el.dataset[dataKey("OldPaddingBottom")] || null;
+      removeClass(el, 'collapse-transition')
+      el.style.height = ''
+      el.style.overflow = el.dataset[dataKey('OldOverflow')] || null
+      el.style.paddingTop = el.dataset[dataKey('OldPaddingTop')] || null
+      el.style.paddingBottom = el.dataset[dataKey('OldPaddingBottom')] || null
     }
   }
-};
+}
 </script>
 
 <style>

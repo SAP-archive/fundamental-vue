@@ -1,0 +1,80 @@
+:root {
+  --fdv-split-view-transition: 0.2s ease-in-out;
+}
+
+.fdv-split-view {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+.fdv-split-view__overlay {
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgb(0, 0, 0);
+  opacity: 0;
+  animation: fadeInFromNone 0.5s ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+    background-color: black;
+ }
+  1% {
+    display: block;
+    opacity: 0;
+    background-color: black;
+ }
+  100% {
+    display: block;
+    opacity: 0.2;
+    background-color: black;
+ }
+}
+
+/* height is set via JavaScript */
+.fdv-split-view__master {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+}
+.fdv-split-view__master--side-by-side {
+  z-index: 10;
+  transition: var(--fdv-split-view-transition);
+}
+.fdv-split-view__master--hidden {
+  z-index: 10;
+  transition: var(--fdv-split-view-transition);
+}
+.fdv-split-view__master--overlay {
+  z-index: 10;
+  transition: var(--fdv-split-view-transition);
+}
+.fdv-split-view__detail {
+  position: absolute;
+  top: 0px;
+  /* left: 50px; */
+  bottom: 0px;
+  /* height: 200x; */
+}
+.fdv-split-view__detail--side-by-side {
+  /* left: 50px; */
+  /* width: calc(100% - 50px); */
+  transition: var(--fdv-split-view-transition);
+}
+.fdv-split-view__detail--hidden {
+  /* left: 0px;
+  width: 100%; */
+  transition: var(--fdv-split-view-transition);
+}
+.fdv-split-view__detail--overlay {
+  /* left: 0px; */
+  /* width: 100%; */
+  transition: var(--fdv-split-view-transition);
+}

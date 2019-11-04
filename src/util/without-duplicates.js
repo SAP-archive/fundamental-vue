@@ -1,10 +1,10 @@
 export default values => {
-  const result = [];
+  const result = []
   values.forEach(value => {
     if (result.indexOf(value) >= 0) {
-      return;
+      return
     }
-    result.push(value);
-  });
-  return result;
-};
+    result.push(value)
+  })
+  return result
+}

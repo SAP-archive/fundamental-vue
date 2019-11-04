@@ -2,11 +2,13 @@
 // If you import this style sheet in your app you get:
 
 // Animated show/close-modal transitions.
-@import "./components/Modal/modal";
+@import "./components/modal/modal";
 // Support for transparent tiles
-@import "./components/Tile/tile";
+@import "./components/tile/tile";
 // Support for hover + selection
-@import "./components/VirtualizedList/virtualized-list";
+@import "./components/virtualized-list/virtualized-list";
+// Support for custom Split View Component
+@import "./components/split-view/split-view.css";
 
 // Importing this file is optional. At the moment there is not a lot there but
 // more things will be added as time goes on.

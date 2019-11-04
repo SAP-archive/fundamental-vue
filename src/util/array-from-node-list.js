@@ -5,5 +5,5 @@
  * @param {NodeList} nodeList
  * @returns {Node[]}
  */
-const arrayFromNodeList = nodeList => Array.prototype.slice.call(nodeList);
-export default arrayFromNodeList;
+const arrayFromNodeList = nodeList => Array.prototype.slice.call(nodeList)
+export default arrayFromNodeList

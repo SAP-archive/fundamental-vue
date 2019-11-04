@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`nested-link renders href 1`] = `
+<a
+  aria-expanded="false"
+  aria-haspopup="false"
+  class="fd-nested-list__link"
+  href="#hello"
+/>
+`;

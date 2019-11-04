@@ -1,17 +1,16 @@
 <script>
-import { routeConfigForComponentNamed } from "./../router/component-api-route";
-import ComponentName from "./../util/component-name";
+import ComponentName from './../util/component-name'
 
 export default {
   functional: true,
   render(h, ctx) {
-    const rawName = ctx.props.componentName;
+    const rawName = ctx.props.componentName
     if (rawName == null) {
-      return h(null);
+      return h(null)
     }
-    const componentName = typeof rawName === "string" ? ComponentName.from(rawName) : rawName;
-    const to = routeConfigForComponentNamed(componentName);
-    return ctx.scopedSlots.default({ to, componentName });
+    const componentName = typeof rawName === 'string' ? ComponentName.from(rawName) : rawName
+    const to = `/api/${componentName.slugified}`
+    return ctx.scopedSlots.default({ to, componentName })
   },
   props: {
     componentName: {
@@ -23,5 +22,5 @@ export default {
       type: [String, ComponentName]
     }
   }
-};
+}
 </script>

@@ -1,12 +1,12 @@
 /* eslint-env node */
 
 module.exports = {
-  plugins: ["cypress"],
   env: {
-    mocha: true,
-    "cypress/globals": true
+    'cypress/globals': true,
+    mocha: true
   },
+  plugins: ['cypress'],
   rules: {
-    strict: "off"
+    strict: 'off'
   }
-};
+}

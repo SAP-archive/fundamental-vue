@@ -1,23 +1,18 @@
 {
   "compilerOptions": {
     "noEmit": true,
-    "allowJs": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "target": "es5",
+    "target": "esnext",
     "module": "esnext",
-    "strict": false,
+    "strict": true,
     "jsx": "preserve",
-    "importHelpers": false,
+    "importHelpers": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "jest",
-      "node"
+      "webpack-env"
     ],
     "lib": [
       "esnext",
@@ -27,12 +22,11 @@
     ]
   },
   "include": [
-    "*.js",
-    "vue-config/*.js",
-    "src/docs/**/*.vue",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     "src/**/*.vue",
-    "src/**/*.vue",
-    "src/__tests__/**/*.test.js"
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
   ],
   "exclude": [
     "node_modules"

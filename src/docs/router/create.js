@@ -1,75 +1,124 @@
 // @ts-check
-import Router from "vue-router";
+import Router from 'vue-router'
 // @ts-ignore
-import DComponentApi from "./../components/d-component-api.vue";
-// @ts-ignore
-import DExampleCollection from "./../components/d-example-collection.vue";
-// @ts-ignore
-import DExampleFullscreen from "./../components/d-example-fullscreen.vue";
+import DComponentApi from './../components/d-component-api.vue'
+import getDocumentedComponents from './../get-documented-components'
 
-// @ts-ignore
-import README_MD from "./../../../README.md";
-// @ts-ignore
-import NEW_COMPONENT_GUIDE_MD from "./../static-pages/NEW_COMPONENT/NEW_COMPONENT.md";
+import { getExamplePages } from './../pages/pages'
+import { Examples } from './../pages'
 
 // eslint-disable-next-line no-undef
-const baseUrl = process.env.BASE_URL;
-// eslint-disable-next-line no-undef
-const prerender = process.env.FDD_PRERENDER === "true";
+const baseUrl = process.env.BASE_URL
+
+/**
+ * @param {import('./../lib/page').Page} page
+ * @return {import('vue-router').RouteConfig}
+ */
+function routeFromPage(page) {
+  const [, path] = page.parentDirs
+  return {
+    path,
+    component: async () => {
+      return (await page.component()).default
+    },
+    meta: {
+      id: page.key,
+      layout: 'default',
+      slug: page.parentDirs.join('/')
+    }
+  }
+}
+
+/**
+ * @param {import('./../lib/page').PageCollection} pageCollection
+ * @return {import('vue-router').RouteConfig}
+ */
+function routesFromPageCollection(pageCollection) {
+  const children = pageCollection.pages.map(routeFromPage)
+  const [collectionName] = pageCollection.parentDirs
+  const hasChildren = children.length > 0
+  const route = {
+    path: collectionName,
+    component: {
+      render(h) {
+        return h(pageCollection.component)
+      }
+    },
+    meta: {
+      layout: 'default',
+      slug: collectionName
+    }
+  }
+  if (hasChildren === true) {
+    route.children = children
+  }
+  return route
+}
 
 const createRouter = () => {
-  return new Router({
+  const exampleRoutes = getExamplePages().map(routesFromPageCollection)
+
+  const router = new Router({
     base: baseUrl,
-    mode: prerender ? "history" : "hash",
+    mode: 'hash',
     // Scroll the main component to the top.
     scrollBehavior(to) {
-      const { meta = {} } = to;
-      const { scrollToTop = true } = meta;
+      const { meta = {} } = to
+      const { scrollToTop = true } = meta
       if (scrollToTop == false) {
-        return;
+        return
       }
       return new Promise(resolve => {
         window.requestAnimationFrame(() => {
-          const main = window.document.querySelector("div[data-fd-main-content]");
+          const main = window.document.querySelector('div[data-fd-main-content]')
           if (main != null) {
-            main.scrollIntoView(/* alignToTop */ true);
+            setTimeout(() => {
+              // somehow setTimeout is needed – otherwise API docs won't scroll to top
+              main.scrollIntoView(/* alignToTop */ true)
+            })
           }
-          resolve();
-        });
-      });
+          resolve()
+        })
+      })
     },
     routes: [
       {
-        path: "/",
-        name: "home",
-        component: README_MD,
-        meta: { layout: "default" }
+        path: '/',
+        name: 'home',
+        // @ts-ignore
+        component: () => import('./../static-pages/plugin.md'),
+        meta: { layout: 'default' }
+      },
+      ...getDocumentedComponents().map(documentedComponent => documentedComponent.route),
+      {
+        name: 'plugin',
+        path: '/guide/plugin',
+        // @ts-ignore
+        component: () => import('./../static-pages/plugin.md')
       },
       {
-        name: "api",
-        path: "/api/:slug",
-        meta: { layout: "default" },
-        component: DComponentApi
+        name: 'guide-new-component',
+        path: '/guide/new-component',
+        // @ts-ignore
+        component: () => import('./../static-pages/NEW_COMPONENT/NEW_COMPONENT.md')
       },
       {
-        name: "guide-new-component",
-        path: "/guide/new-component",
-        component: NEW_COMPONENT_GUIDE_MD
+        path: '/examples',
+        component: {
+          render(h) {
+            return h('router-view')
+          }
+        },
+        children: [...exampleRoutes]
       },
-      {
-        name: "examples",
-        path: "/examples/:slug",
-        meta: { layout: "default" },
-        component: DExampleCollection
-      },
-      {
-        name: "example",
-        path: "/example/:collection/:example",
-        meta: { layout: "fullscreen" },
-        component: DExampleFullscreen
-      }
+      ...new Examples().routes()
     ]
-  });
-};
+  })
 
-export default createRouter;
+  return {
+    router,
+    exampleRoutes
+  }
+}
+
+export default createRouter

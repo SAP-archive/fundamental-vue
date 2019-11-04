@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreadcrumbItem renders correctly 1`] = `
+<li
+  class="fd-breadcrumb__item"
+  href="#item1"
+>
+  Item 1
+</li>
+`;

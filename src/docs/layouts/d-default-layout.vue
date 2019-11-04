@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="sidebarClasses" @touchstart="onTouchStart" @touchend="onTouchEnd">
+  <div id="app" @touchstart="onTouchStart" @touchend="onTouchEnd">
     <FdShellHeader fixed>
       <ShellBar>
         <FdButton
@@ -7,84 +7,109 @@
           :aria-pressed="isSidebarOpen"
           slot="toggle"
           type="standard"
+          v-show="toggleSidebarButtonVisible"
           class="shell-bar__sidenav-toggle"
           icon="menu2"
         />
       </ShellBar>
     </FdShellHeader>
-    <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
-
-    <div class="sidebar">
-      <SideNav @click.native="toggleSidebar(false)" :selectedId.sync="activeNavItemId" />
-    </div>
-    <div data-fd-main-content class="page">
-      <div class="content">
-        <router-view />
-      </div>
+    <div>
+      <FdSplitView height="calc(100vh)" :displayMode="displayMode">
+        <template #master>
+          <FdSplitViewMaster style="margin-top:48px;">
+            <SideNav @click.native="toggleSidebar(false)" :selectedId.sync="activeNavItemId" />
+          </FdSplitViewMaster>
+        </template>
+        <template #detail>
+          <FdSplitViewDetail data-fd-main-content style="padding-top:48px;">
+            <div class="page">
+              <div class="content">
+                <router-view />
+              </div>
+            </div>
+          </FdSplitViewDetail>
+        </template>
+      </FdSplitView>
     </div>
   </div>
 </template>
 
 <script>
-import ShellBar from "./default/ShellBar.vue";
-import SideNav from "./default/SideNav.vue";
+import Vue from 'vue'
+import ShellBar from './default/shell-bar.vue'
+import SideNav from './default/side-nav.vue'
+import { observeMediaQueries } from './../../main'
 
 export default {
   components: { ShellBar, SideNav },
+  mixins: [
+    observeMediaQueries(
+      {
+        compact: 'only screen and (max-width: 600px)'
+        // regular: '(min-width: 500px)'
+      },
+      { Vue }
+    )
+  ],
   methods: {
     toggleSidebar(to) {
-      this.isSidebarOpen = typeof to === "boolean" ? to : !this.isSidebarOpen;
+      this.isSidebarOpen = typeof to === 'boolean' ? to : !this.isSidebarOpen
     },
     onTouchStart({ changedTouches }) {
-      const [touch] = changedTouches;
+      const [touch] = changedTouches
       this.touchStart = {
         x: touch.clientX,
         y: touch.clientY
-      };
+      }
     },
     onTouchEnd(event) {
-      const { changedTouches } = event;
-      const [touch] = changedTouches;
-      const { clientX, clientY } = touch;
-      const { touchStart } = this;
-      const dx = clientX - touchStart.x;
-      const dy = clientY - touchStart.y;
+      const { changedTouches } = event
+      const [touch] = changedTouches
+      const { clientX, clientY } = touch
+      const { touchStart } = this
+      const dx = clientX - touchStart.x
+      const dy = clientY - touchStart.y
       if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 44) {
         if (dx > 0 && this.touchStart.x <= 80) {
-          this.toggleSidebar(true);
+          this.toggleSidebar(true)
         } else {
-          this.toggleSidebar(false);
+          this.toggleSidebar(false)
         }
       }
     }
   },
   computed: {
-    sidebarClasses() {
-      return {
-        "sidebar--open": this.isSidebarOpen
-      };
+    toggleSidebarButtonVisible() {
+      return this.displayMode !== 'side-by-side'
+    },
+    displayMode() {
+      const { $mq, isSidebarOpen } = this
+      if ($mq.compact === true) {
+        return isSidebarOpen ? 'overlay' : 'hidden'
+      }
+      return 'side-by-side'
     }
   },
   data() {
     return {
       isSidebarOpen: false,
-      activeNavItemId: "./Action Bar/index.ts"
-    };
+      activeNavItemId: './Action Bar/index.ts'
+    }
   }
-};
+}
 </script>
 <style lang="scss">
-@import "./../styles/mixins";
+@import './../styles/mixins';
 
 .shell-bar__sidenav-toggle {
-  margin-left: -10px;
+  margin-left: 10px;
   margin-right: 10px;
   color: #fff;
   border: none;
   background-color: rgb(53, 74, 95);
-  display: none;
+  display: inline-block;
 
-  &[aria-pressed="true"] {
+  &[aria-pressed='true'] {
     color: white;
     background-color: black;
     border: none;
@@ -93,96 +118,38 @@ export default {
   &:hover {
     background-color: black;
   }
-  @include for-compact-only {
-    display: inline-block;
-  }
-}
-
-.sidebar-mask {
-  position: fixed;
-  z-index: 9;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
-  background-color: rgb(0, 0, 0);
-  opacity: 0;
-  animation: fadeInFromNone 0.5s ease-out;
-  animation-fill-mode: forwards;
-}
-
-@keyframes fadeInFromNone {
-  0% {
-    display: none;
-    opacity: 0;
-    background-color: black;
-  }
-
-  1% {
-    display: block;
-    opacity: 0;
-    background-color: black;
-  }
-
-  100% {
-    display: block;
-    opacity: 0.2;
-    background-color: black;
-  }
-}
-
-$sidebar-width: 250px;
-
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: $sidebar-width;
-  background-color: #f1f1f1;
-  position: fixed;
-  top: 48px;
-  height: 100%;
-  overflow: auto;
-  z-index: 10;
-  transition: transform 0.33s ease;
-  border-right: 1px solid #efefef;
 }
 
 $insetSide: 20px;
 $insetSide-compact: 16px;
 .page {
-  padding-left: $sidebar-width;
-  padding-top: calc(44px);
-  top: 44px;
-  @include for-compact-only {
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: calc(44px + 16px);
-    width: 100%;
-  }
+  // padding-top: calc(44px);
+  // top: 44px;
+  padding-bottom: 200px; /** allow the user to scroll further down */
 }
 
 .content {
-  max-width: calc(740px);
-  margin: 0 auto;
+  // max-width: calc(740px);
+  // margin: 0 auto;
   padding: 2rem;
+  background-color: #fff;
 }
 
 .sidebar--open .sidebar {
-  transition: transform 0.2s ease;
+  // transition: transform 0.2s ease;
 }
 @include for-compact-only {
-  .content {
-    margin-left: 0;
-  }
-  .sidebar--open .sidebar {
-    transform: translateX(0);
-  }
-  .sidebar {
-    transform: translateX(-100%);
-  }
-  .sidebar--open .sidebar-mask {
-    display: block;
-  }
+  // .content {
+  //   margin-left: 0;
+  // }
+  // .sidebar--open .sidebar {
+  //   transform: translateX(0);
+  // }
+  // .sidebar {
+  //   transform: translateX(-100%);
+  // }
+  // .sidebar--open .sidebar-mask {
+  //   display: block;
+  // }
 }
 </style>

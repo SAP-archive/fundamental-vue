@@ -1,0 +1,27 @@
+$accentColor = #004E8E
+$logo-color = darken(#777777, 50%)
+$link-color = darken(#4299e1, 40%)
+$link-active =  darken($link-color, 30%)
+$borderColor = desaturate(lighten($accentColor, 75%), 100%)
+$horizontalLineColor = #efefef
+$textColor = black
+$headingsAccentColor = lighten($textColor, 40%)
+$leftBarWidth = 320px
+$leftBarPaddingX = 2rem
+$sideNavItemPadding = $leftBarPaddingX
+$leftBarPaddingY = 2rem
+
+$navHeight = 3.6rem
+$navItemLinkColor = darken(desaturate($accentColor, 50%), 50%)
+$navItemLinkUnderlineColor = $accentColor
+$navItemLinkUnderlineWidth = 2.5px
+$navItemLinkUnderlineDistance = 8px
+
+$code-inline-background-color = darken(#F7FAFC, 5%)
+$code-inline-color = darken(#6b85a3, 30%)
+
+// Syntax Highlighting:
+// The accent color of code samples
+$code-accent-color = #354a5f
+$code-highlighted-line-background = alpha(darken($code-accent-color, 80%), .4)
+$code-highlighted-line-shadow = inset 4px 0 0 0 saturation(lightness($code-accent-color, 70%), 90%)

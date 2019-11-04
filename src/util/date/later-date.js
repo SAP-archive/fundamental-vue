@@ -4,5 +4,5 @@
  * @param {Date} rhs
  * @returns {Date}
  */
-const laterDate = (lhs, rhs) => (lhs.getTime() < rhs.getTime() ? rhs : lhs);
-export default laterDate;
+const laterDate = (lhs, rhs) => (lhs.getTime() < rhs.getTime() ? rhs : lhs)
+export default laterDate

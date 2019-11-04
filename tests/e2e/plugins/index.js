@@ -1,55 +1,35 @@
 /* eslint-env node */
-
-// https://docs.cypress.io/guides/guides/plugins-guide.html
+const Path = require('path')
+const ansi = require('ansicolor')
 module.exports = (on, config) => {
-  // Dynamic configuration
-  // https://docs.cypress.io/guides/references/configuration.html
+  on(`task`, {
+    error(message) {
+      // eslint-disable-next-line no-console
+      console.error(ansi.red(message))
+      process.stdout.write(`\u0007`) // make some noise: `beep`
+      return null
+    }
+  })
   return Object.assign({}, config, {
-    // ===
-    // General
-    // https://docs.cypress.io/guides/references/configuration.html#Global
-    // ===
-    watchForFileChanges: true,
-    // ===
-    // Environment variables
-    // https://docs.cypress.io/guides/guides/environment-variables.html#Option-1-cypress-json
-    // ===
-    env: {},
-    // ===
-    // Viewport
-    // https://docs.cypress.io/guides/references/configuration.html#Viewport
-    // ===
-    viewportWidth: 1280,
-    viewportHeight: 720,
-    // ===
-    // Animations
-    // https://docs.cypress.io/guides/references/configuration.html#Animations
-    // ===
-    waitForAnimations: true,
     animationDistanceThreshold: 4,
-    // ===
-    // Timeouts
-    // https://docs.cypress.io/guides/references/configuration.html#Timeouts
-    // ===
     defaultCommandTimeout: 4000,
+    env: {},
     execTimeout: 60000,
+    fixturesFolder: 'tests/e2e/fixtures',
+    integrationFolder: './',
+    // integrationFolder: 'tests/e2e/specs',
     pageLoadTimeout: 60000,
     requestTimeout: 5000,
     responseTimeout: 30000,
-    // ===
-    // Main Directories
-    // https://docs.cypress.io/guides/references/configuration.html#Folders-Files
-    // ===
-    supportFile: "tests/e2e/support/index.js",
-    integrationFolder: "tests/e2e/specs",
-    fixturesFolder: "tests/e2e/fixtures",
-    // ===
-    // Videos & Screenshots
-    // https://docs.cypress.io/guides/core-concepts/screenshots-and-videos.html
-    // ===
-    videoUploadOnPasses: true,
+    screenshotsFolder: 'tests/e2e/screenshots',
+    supportFile: 'tests/e2e/support/index.js',
     videoCompression: 32,
-    videosFolder: "tests/e2e/videos",
-    screenshotsFolder: "tests/e2e/screenshots"
-  });
-};
+    videosFolder: 'tests/e2e/videos',
+    videoUploadOnPasses: true,
+    viewportHeight: 720,
+    viewportWidth: 1280,
+    testFiles: '**/__tests__/*.e2e.js',
+    waitForAnimations: true,
+    watchForFileChanges: true
+  })
+}

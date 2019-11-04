@@ -17,7 +17,7 @@ const componentName = process.argv[2];
 const force = process.argv.indexOf('-f') > -1 ? true : false
 
 /**
- * 
+ *
  * @param {String} path the path to the file to be created
  * @param {String} content the content to write to the file in case it didn't already exist
  */
@@ -40,9 +40,9 @@ function createDirIfMissing(path) {
 }
 
 /**
- * 
+ *
  * @param {String} str
- * transforms componentName to component-name 
+ * transforms componentName to component-name
  */
 function dasherize(str) {
     str = str.charAt(0).toLowerCase() + str.slice(1);
@@ -85,7 +85,7 @@ export default {
 // create index.js file to export the component and pluginify it
 createFileIfMissing(path.join(componentDir, 'index.js'), `
 import ${exportedName} from "./${exportedName}.vue";
-import { pluginify } from "./../../util";
+import pluginify from "./../../util/pluginify";
 
 export default pluginify(${exportedName});
 
