@@ -5,36 +5,36 @@
 </template>
 
 <script>
-import DComponentName from "./doc/component-name.vue";
-import ComponentName from "./../util/component-name";
+import DComponentName from './doc/component-name.vue'
+import ComponentName from './../util/component-name'
 
 export default {
   watch: {
     $route: {
       immediate: true,
       handler(newRoute) {
-        const { slug } = newRoute.params;
-        this.slug = slug;
+        const { slug } = newRoute.params
+        this.slug = slug
       }
     }
   },
   data() {
     return {
       slug: null
-    };
+    }
   },
   components: { DComponentName },
   computed: {
     renderedApiComponentName() {
-      return `fdd-${this.componentName.normalized}-api`;
+      return `fdd-${this.componentName.normalized}-api`
     },
     componentName() {
-      const { slug } = this;
+      const { slug } = this
       if (slug == null) {
-        return {};
+        return {}
       }
-      return ComponentName.from(slug);
+      return ComponentName.from(slug)
     }
   }
-};
+}
 </script>

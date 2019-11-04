@@ -1,1 +1,1 @@
-export default () => ({ from: null, to: null });
+export default () => ({ from: null, to: null })

@@ -2,16 +2,16 @@
 
 const presets = [
   [
-    "@vue/app",
+    '@vue/app',
     {
       useBuiltIns: false,
       polyfills: false,
-      corejs: 2
+      corejs: undefined
     }
   ]
-];
+]
 
 module.exports = {
   presets,
-  plugins: ["@babel/plugin-syntax-dynamic-import"]
-};
+  plugins: ['@babel/plugin-syntax-dynamic-import']
+}

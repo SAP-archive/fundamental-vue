@@ -1,5 +1,5 @@
 dist
-coverage
+.coverage
 
 # Ignore files generates by running `npm pack`
 fundamental-vue-*.tgz

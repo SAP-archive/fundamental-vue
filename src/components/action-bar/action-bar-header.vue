@@ -10,6 +10,6 @@
 <script>
 // The header of an `fd-action-bar`. Use `fd-action-bar-title` to add an title to the header.
 export default {
-  name: "FdActionBarHeader"
-};
+  name: 'FdActionBarHeader'
+}
 </script>

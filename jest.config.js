@@ -1,33 +1,33 @@
 //https://github.com/FezVrasta/popper.js/issues/478
-
-global.document = {};
+global.document = {}
 global.document.createRange = () => ({
   setStart: () => {},
   setEnd: () => {},
   commonAncestorContainer: {
-    nodeName: "BODY",
+    nodeName: 'BODY',
     ownerDocument: document
   }
-});
+})
 
 module.exports = {
-  modulePathIgnorePatterns: ["<rootDir>/dist"],
-  moduleFileExtensions: ["js", "jsx", "json", "vue"],
-  transform: {
-    "^.+\\.vue$": "vue-jest",
-    ".+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-    "^.+\\.jsx?$": "babel-jest"
-  },
-  transformIgnorePatterns: ["/node_modules/"],
-  moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1"
-  },
-  snapshotSerializers: ["jest-serializer-vue"],
-  testMatch: ["**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"],
-  testURL: "http://localhost/",
-  watchPlugins: ["jest-watch-typeahead/filename", "jest-watch-typeahead/testname"],
-  setupFiles: ["./jest.setup.js"],
-  collectCoverage: false,
-  collectCoverageFrom: ["src/**/*.{js,vue}", "!**/node_modules/**"],
-  coverageReporters: ["html", "json", "lcov", "clover"]
-};
+  preset: '@vue/cli-plugin-unit-jest',
+  testMatch: ['**/__tests__/**/*.test.js'],
+  modulePathIgnorePatterns: [
+    // dist has to be ignored because it contains our build artefacts which should not be tested.
+    '<rootDir>/dist',
+    // removing the following line causes errors – jest cannot find the correct components and gets confused.
+    '<rootDir>/vue-cli-plugin-fundamental'
+  ],
+  setupFiles: ['./jest.setup.js'],
+  coverageDirectory: '.coverage',
+  collectCoverageFrom: [
+    'src/**/*.{js,vue}',
+    // do not collect coverage from:
+    '!**/node_modules/**', // node_modules
+    '!src/docs/**', // docs
+    '!**/__tests__/**/*.test.js', // tests
+    '!**/__tests__/**/*.e2e.js', // end to end tests
+    '!**/__tests__/pages/*' // e2e test pages
+  ],
+  coverageReporters: ['html', 'json', 'lcov', 'clover']
+}

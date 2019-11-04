@@ -1,4 +1,4 @@
-import FdContainer from "./_container.vue";
-import { pluginify } from "./../../util";
-export default pluginify(FdContainer);
-export { default as Container } from "./_container.vue";
+import Container from './container.vue'
+import pluginify from './../../util/pluginify'
+export default pluginify(Container)
+export { default as Container } from './container.vue'

@@ -1,5 +1,10 @@
 <template>
-  <form action="https://codesandbox.io/api/v1/sandboxes/define?json" method="POST" target="_blank">
+  <form
+    action="https://codesandbox.io/api/v1/sandboxes/define?json"
+    method="POST"
+    target="_blank"
+    @submit.capture.prevent="submit"
+  >
     <input type="hidden" name="parameters" :value="parameters" />
     <d-toolbar-item type="submit" icon="play">Run</d-toolbar-item>
   </form>
@@ -8,58 +13,68 @@
 <script>
 /* eslint-env node */
 
-import { getParameters } from "codesandbox/lib/api/define";
-import DToolbarItem from "./../d-example/d-toolbar-item.vue";
+import { getParameters } from 'codesandbox/lib/api/define'
+import DToolbarItem from './../d-example/d-toolbar-item.vue'
 
-const getTemplatePackageJson = () => require("./_package.json");
-const templatePackageJson = getTemplatePackageJson();
+const getTemplatePackageJson = () => require('./_package.json')
+const templatePackageJson = getTemplatePackageJson()
 
-const ownPackage = require("./../../../../package.json");
-const FundamentalVueVersion = `^${ownPackage.version}`;
-templatePackageJson.dependencies["fundamental-vue"] = FundamentalVueVersion;
+const ownPackage = require('./../../../../package.json')
+const FundamentalVueVersion = `^${ownPackage.version}`
+templatePackageJson.dependencies['fundamental-vue'] = FundamentalVueVersion
 
 const getFundamentalStylesVersion = () => {
-  const rawVersion = ownPackage.peerDependencies["fundamental-styles"];
-  if (rawVersion.startsWith("^")) {
-    return rawVersion.substring(1);
+  const rawVersion = ownPackage.peerDependencies['fundamental-styles']
+  if (rawVersion.startsWith('^')) {
+    return rawVersion.substring(1)
   } else {
-    return rawVersion;
+    return rawVersion
   }
-};
-const FundamentalStylesVersion = getFundamentalStylesVersion();
+}
+const FundamentalStylesVersion = getFundamentalStylesVersion()
 
 export default {
   components: { DToolbarItem },
   props: {
-    code: {
-      type: String,
+    getCode: {
+      type: Function,
       required: true
     }
   },
+  data() {
+    return {
+      code: ''
+    }
+  },
+  methods: {
+    async submit() {
+      this.code = this.getCode()
+      this.$forceUpdate()
+      await this.$nextTick()
+      this.$el.submit()
+    }
+  },
   computed: {
-    exampleVueCode() {
-      return this.code;
-    },
     parameters() {
-      return getParameters(this.rawParameters);
+      return getParameters(this.rawParameters)
     },
     rawParameters() {
       return {
         files: {
-          "package.json": {
+          'package.json': {
             content: templatePackageJson
           },
-          "src/main.js": {
+          'src/main.js': {
             content: this.mainJs
           },
-          "src/example.vue": {
+          'src/example.vue': {
             content: this.code
           },
-          "public/index.html": {
+          'public/index.html': {
             content: this.indexHtml
           }
         }
-      };
+      }
     },
     mainJs() {
       return `import Vue from "vue";
@@ -70,7 +85,7 @@ Vue.use(FundamentalVue)
 new Vue({
   render: h => h(Example)
 }).$mount("#app");
-`;
+`
     },
     indexHtml() {
       return `<!DOCTYPE html>
@@ -79,7 +94,7 @@ new Vue({
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/fundamental-styles@${FundamentalStylesVersion}/dist/fundamental-styles.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/fundamental-styles@${FundamentalStylesVersion}/dist/fundamental-styles.css">
     <title>codesandbox</title>
   </head>
   <body>
@@ -89,8 +104,8 @@ new Vue({
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
-</html>`;
+</html>`
     }
   }
-};
+}
 </script>

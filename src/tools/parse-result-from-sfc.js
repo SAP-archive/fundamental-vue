@@ -1,6 +1,6 @@
 /* eslint-env node */
 // @ts-check
-const { parser } = require("@vuese/parser");
+const { parser } = require('@vuese/parser')
 
 /**
  * @param {string} str
@@ -8,9 +8,9 @@ const { parser } = require("@vuese/parser");
  */
 const kebabCased = str =>
   str
-    .replace(/([a-z])([A-Z])/g, "$1-$2")
-    .replace(/[\s_]+/g, "-")
-    .toLowerCase();
+    .replace(/([a-z])([A-Z])/g, '$1-$2')
+    .replace(/[\s_]+/g, '-')
+    .toLowerCase()
 
 /**
  * Two things happen here:
@@ -21,30 +21,30 @@ const kebabCased = str =>
  */
 const parseResultFromSfc = code => {
   try {
-    const result = parser(code);
-    const { name = "" } = result;
-    const slots = [];
+    const result = parser(code)
+    const { name = '' } = result
+    const slots = []
     for (const slotToAdd of result.slots || []) {
-      const index = slots.findIndex(slot => slot.name === slotToAdd.name);
+      const index = slots.findIndex(slot => slot.name === slotToAdd.name)
       if (index < 0) {
-        slots.push(slotToAdd);
+        slots.push(slotToAdd)
       } else {
-        const existingSlot = slots[index];
-        if (existingSlot.target === "template") {
-          continue;
+        const existingSlot = slots[index]
+        if (existingSlot.target === 'template') {
+          continue
         }
-        slots.splice(index, 1, slotToAdd);
+        slots.splice(index, 1, slotToAdd)
       }
     }
     return {
       ...result,
       slots,
       name: kebabCased(name)
-    };
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error("Failed to parse code: %s", code);
-    return {};
+    console.error('Failed to parse code: %s', code)
+    return {}
   }
-};
-module.exports = parseResultFromSfc;
+}
+module.exports = parseResultFromSfc

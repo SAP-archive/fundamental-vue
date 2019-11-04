@@ -15,23 +15,23 @@ export default {
   computed: {
     to() {
       return {
-        name: "api",
+        name: 'api',
         query: {
           component: this.name
         },
         meta: {
           scrollToTop: false
         }
-      };
+      }
     },
     id_() {
-      return `component-${this.name}`;
+      return `component-${this.name}`
     },
     href_() {
-      return `#${this.id_}`;
+      return `#${this.id_}`
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

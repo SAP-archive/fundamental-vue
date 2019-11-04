@@ -1,26 +1,26 @@
 // @ts-check
 /* eslint-env node */
-"use strict";
+'use strict'
 
 class Md {
-  constructor(text = "") {
-    this.text = text;
+  constructor(text = '') {
+    this.text = text
   }
   /**
    * @param {number} level
    * @param {string} title
    */
   h(level, title) {
-    this.text += `${"#".repeat(level)} ${title}`;
-    return this;
+    this.text += `${'#'.repeat(level)} ${title}`
+    return this
   }
   nl() {
-    this.text += "\n";
-    return this;
+    this.text += '\n'
+    return this
   }
   strong(text) {
-    this.text += `**${text}**`;
-    return this;
+    this.text += `**${text}**`
+    return this
   }
   /**
    * @param {string[] | string | null} text
@@ -29,23 +29,23 @@ class Md {
   code(text, { defaultValue } = { defaultValue: null }) {
     if (text == null) {
       if (defaultValue != null) {
-        return this._code(defaultValue);
+        return this._code(defaultValue)
       }
-      return this;
+      return this
     }
     if (Array.isArray(text)) {
-      return this.raw(text.map(text_ => `\`${text_}\``).join(" | "));
+      return this.raw(text.map(text_ => `\`${text_}\``).join(' | '))
     }
-    return this._code(text);
+    return this._code(text)
   }
   /** @param {string} text */
   _code(text) {
-    this.text += `\`${text}\``;
-    return this;
+    this.text += `\`${text}\``
+    return this
   }
   raw(raw) {
-    this.text += raw;
-    return this;
+    this.text += raw
+    return this
   }
   /**
    * @param {string[] | null} lines
@@ -53,20 +53,20 @@ class Md {
    */
   lines(lines, { wrap } = { wrap: false }) {
     if (lines == null) {
-      return this;
+      return this
     }
     if (lines.length > 0 && wrap) {
-      this.nl();
+      this.nl()
     }
     lines.forEach(line => {
-      this.raw(line).nl();
-    });
+      this.raw(line).nl()
+    })
 
     if (lines.length > 0 && wrap) {
-      this.nl();
+      this.nl()
     }
-    return this;
+    return this
   }
 }
 
-module.exports = Md;
+module.exports = Md

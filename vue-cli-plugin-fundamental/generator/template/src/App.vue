@@ -9,16 +9,16 @@
       <!-- inline style needed to work around a bug -->
       <fd-app-navigation style="min-width: 250px;" orientation="vertical">
         <fd-side-nav>
-          <fd-side-nav-list :items="navigationItems">
+          <fd-nested-list>
             <template #item="item">
-              <fd-side-nav-item>
-                <fd-side-nav-link as-router-link :to="item.to">
-                  <fd-side-nav-icon :icon="item.icon" />
+              <fd-nested-list-item>
+                <fd-nested-list-link :to="item.to">
+                  <fd-nested-list-icon :icon="item.icon" />
                   {{ item.name }}
-                </fd-side-nav-link>
-              </fd-side-nav-item>
+                </fd-nested-list-link>
+              </fd-nested-list-item>
             </template>
-          </fd-side-nav-list>
+          </fd-nested-list>
         </fd-side-nav>
       </fd-app-navigation>
       <fd-app-main>
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  <% if(options.fullLayout) { %>import ShellBar from "@/components/ShellBar.vue";<% }%> 
+  <% if(options.fullLayout) { %>import ShellBar from "@/components/ShellBar.vue";<% }%>
 export default {
   name: "App",
   <% if(options.fullLayout) { %> components: { ShellBar },

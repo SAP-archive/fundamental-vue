@@ -1,0 +1,209 @@
+@require './_config.stylus'
+
+:root
+  --color-code-blue-100: lighten(#287BFF, 40%)
+  --color-code-red #ffa8a8
+  --color-code-red-100 #ff5874
+  --color-code-teal #24ffc2
+  --color-code-gray #aaaaaa
+
+$minpressCodeBorderRadius = 8px
+
+code[class*="language-"]::-webkit-scrollbar
+  display none
+  padding 0
+  margin 0
+
+pre[class*="language-"]::-webkit-scrollbar
+  display none
+
+pre[class*="language-"]
+  code[class*="language-"]
+    display block
+    color var(--color-code-blue-100)
+    -webkit-font-smoothing auto
+
+code[class*="language-"],
+pre[class*="language-"]
+  -moz-tab-size 4
+  -ms-hyphens none
+  -o-tab-size 4
+  -webkit-hyphens none
+  background transparent
+  color white
+  color white
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight 400 !important
+  hyphens none
+  line-height 1.5
+  overflow auto
+  scrollbar-width: none
+  tab-size 4
+  text-align left
+  white-space pre
+  word-break normal
+  word-spacing normal
+  word-wrap normal
+
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection,
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection
+  text-shadow none
+  background #4373c2
+
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection,
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection
+  text-shadow none
+  background #4373c2
+
+@media print {
+  code[class*='language-'],
+  pre[class*='language-'] {
+    text-shadow: none;
+  }
+}
+
+.minipress-highlight
+  max-height 250px
+  overflow auto
+  position relative
+  margin 0 0;
+  color: white
+  background-color darken($code-accent-color, 0%)
+  border-radius $minpressCodeBorderRadius
+.minipress-highlight:before
+  background rgba(201, 167, 255, 0.2)
+  color var(--text-color)
+  border-radius 0 0 $minpressCodeBorderRadius $minpressCodeBorderRadius
+  top 0
+  padding 0 5px
+
+.code-line
+  &.highlighted
+    background $code-highlighted-line-background
+    box-shadow $code-highlighted-line-shadow
+
+  /*
+  IMPORTANT:
+  ==========
+  If you add 'white-space pre' to the following classes
+  the you will break the linge highlighing.
+  */
+.minipress-highlight-mask,
+.minipress-highlight-code
+  line-height 1.5
+  background-color transparent !important
+  text-shadow none !important
+  box-shadow none !important
+  margin 0 !important
+  padding-top 0.2rem !important
+  padding-bottom 0.2rem !important
+  padding-left 0.5rem !important
+  padding-right 0.5rem !important
+  font-family: Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace !important;
+
+.minipress-highlight-mask
+  position absolute
+  top 0
+  bottom 0
+  left 0
+  right 0
+  color transparent !important
+  padding-left 0 !important
+  padding-right 0 !important
+
+.minipress-highlight-code
+  position relative
+  font-size 0 !important
+  font-family: Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace !important;
+
+.minipress-highlight-code code,
+.minipress-highlight-mask
+  font-size 0.875rem
+
+.minipress-highlight-line-numbers
+  pointer-events none
+  font-size 100%
+  float left
+  letter-spacing -1px
+  border-right 1px solid #999
+  user-select none
+  text-align right
+  padding-right 0.8rem
+  margin-right .8rem
+  counter-reset linenumber
+  & > span
+    counter-increment linenumber
+    display block
+    &:before
+      content counter(linenumber)
+      color #999
+      display block
+.token.cdata,
+.token.comment,
+.token.prolog
+  color var(--color-code-gray)
+  font-style italic
+
+.token
+  &.punctuation
+    color rgb(147, 221, 253);
+  &.deleted
+    color rgba(239, 83, 80, 0.56)
+    font-style italic
+  &.boolean
+    color var(--color-code-red-100)
+  &.number
+    color var(--color-code-red)
+  &.italic
+    font-style italic
+
+.namespace
+  color #b2ccd6
+
+.token.property,
+.token.symbol
+  color #80cbc4
+
+.token.keyword,
+.token.operator,
+.token.tag
+  color lighten(rgb(255, 131, 131), 30%)
+
+.token.builtin,
+.token.char,
+.token.constant,
+.token.function
+  color #B7DBFF
+
+.token.doctype,
+.token.selector
+  color #c792ea
+
+.token.attr-name,
+.token.inserted
+  color #8af
+
+.language-css .token.string,
+.style .token.string,
+.token.entity,
+.token.string,
+.token.url
+  color lighten(#00c58e, 30%)
+
+.token.atrule,
+.token.attr-value,
+.token.class-name
+  color rgb(181, 244, 165)
+
+.token.important,
+.token.regex,
+.token.variable
+  color #d6deeb
+
+.token.bold
+  color var(--color-code-red)
+  font-weight 900

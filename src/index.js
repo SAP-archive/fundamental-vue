@@ -1,2 +1,3 @@
-import FundamentalVue from "./main";
-export default FundamentalVue;
+// @ts-check
+import FundamentalVue from './main'
+export default FundamentalVue

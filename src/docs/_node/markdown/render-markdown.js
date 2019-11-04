@@ -1,11 +1,10 @@
 // @ts-check
 /* eslint-env node */
-"strict mode";
+'strict mode'
 
-const SaberMarkdown = require("saber-markdown");
-const getFrontMatter = require("./get-front-matter");
-const highlight = require("./highlight");
-const MarkdownPlugins = require("./../markdown-plugins");
+const SaberMarkdown = require('saber-markdown')
+const getFrontMatter = require('./get-front-matter')
+const MarkdownPlugins = require('./../markdown-plugins')
 
 /**
  * @typedef {import("./frontmatter")} Frontmatter
@@ -20,20 +19,19 @@ const MarkdownPlugins = require("./../markdown-plugins");
 /** @type {import("saber-markdown")} */
 const md = new SaberMarkdown({
   typographer: true,
-  preset: "default",
+  preset: 'default',
   breaks: false,
-  html: true,
-  highlight
-});
-MarkdownPlugins.all.forEach(plugin => md.use(plugin));
+  html: true
+})
+MarkdownPlugins.all.forEach(plugin => md.use(plugin))
 
 /**
  * @param {string} source
  * @returns {{html: string, frontmatter: Frontmatter}}
  */
 const renderMarkdown = source => {
-  const frontmatter = getFrontMatter(source);
-  const html = md.render(frontmatter.markdownContent);
-  return { html, frontmatter };
-};
-module.exports = renderMarkdown;
+  const frontmatter = getFrontMatter(source)
+  const html = md.render(frontmatter.markdownContent)
+  return { html, frontmatter }
+}
+module.exports = renderMarkdown

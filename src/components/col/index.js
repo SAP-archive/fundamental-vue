@@ -1,4 +1,4 @@
-import FdCol from "./_col.vue";
-import { pluginify } from "./../../util";
-export default pluginify(FdCol);
-export { default as Col } from "./_col.vue";
+import Col from './col.vue'
+import pluginify from './../../util/pluginify'
+export default pluginify(Col)
+export { default as Col } from './col.vue'

@@ -8,9 +8,9 @@ module.exports = {
     "max-len": "off",
     "no-console": "error",
     "no-debugger": "error",
-    "getter-return": ["error", { allowImplicit: true }]
+    "getter-return": ["error", { allowImplicit: true }],
+    "sort-imports": ["error", { ignoreDeclarationSort: true }]
   },
-  extends: ["plugin:vue/essential", "@vue/prettier"],
   parserOptions: {
     parser: "babel-eslint"
   },
@@ -23,6 +23,5 @@ module.exports = {
     }
 
   ],
-
   extends: ["plugin:vue/essential", "@vue/prettier"]
 };

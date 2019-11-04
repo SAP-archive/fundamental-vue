@@ -1,13 +1,15 @@
 <template>
   <div class="fdd-component-picker">
-    <fd-input-group-search class="fdd-component-picker__search-input">
+    <fd-input-group class="fdd-component-picker__search-input">
       <template #input>
-        <input ref="searchInput" v-model="predicate" type="search" placeholder="Enter Component…" />
+        <FdInputGroupInput
+          ref="searchInput"
+          v-model="predicate"
+          type="search"
+          placeholder="Enter Component…"
+        />
       </template>
-      <template #clear>
-        <fd-input-group-clear-button @click="clearSearch" />
-      </template>
-    </fd-input-group-search>
+    </fd-input-group>
 
     <fd-virtualized-list
       @update:selectedItem="selectComponentItem"
@@ -40,39 +42,39 @@
 export default {
   computed: {
     items() {
-      const documentedComponents = this.$documentedComponents;
+      const documentedComponents = this.$documentedComponents
       return documentedComponents.map(documentedComponent => ({
         componentName: documentedComponent.componentName,
         route: documentedComponent.route,
         key: documentedComponent.key,
         displayableComponentName: documentedComponent.componentName.displayable
-      }));
+      }))
     },
     matchingItems() {
-      const { predicate } = this;
+      const { predicate } = this
       return this.items.filter(({ displayableComponentName }) =>
         displayableComponentName.toLowerCase().includes(predicate.toLowerCase())
-      );
+      )
     }
   },
   methods: {
     clearSearch() {
-      this.predicate = "";
-      this.$refs.searchInput.focus();
+      this.predicate = ''
+      this.$refs.searchInput.focus()
     },
     selectComponentItem(item) {
       // const key = item == null ? null : item.key;
       // this.selectedComponentKey = key;
-      this.$emit("select", item);
+      this.$emit('select', item)
     }
   },
   data() {
     return {
       selectedComponentKey: null,
-      predicate: ""
-    };
+      predicate: ''
+    }
   }
-};
+}
 </script>
 
 <style lang="scss">

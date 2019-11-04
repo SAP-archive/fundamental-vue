@@ -1,0 +1,25 @@
+make-container($baseColor, $textColor = darken($baseColor, 80%), $bgColor = lighten($baseColor, 70%))
+  background-color $bgColor
+  border-radius 4px 4px
+  border-left 8px solid $baseColor
+  color $textColor
+  margin 2rem 0
+  padding 15px 30px 15px 15px
+
+  & > :first-child
+    margin-top 0
+
+  & > :last-child
+    margin-bottom 0
+
+  &__title
+    color darken($textColor, 20%)
+    font-size 1.2rem
+    font-weight 600
+    margin-bottom -.9rem
+  p, ul
+    margin-top 1rem
+
+  code
+    background-color darken($bgColor, 7%)
+    color darken($textColor, 10%)

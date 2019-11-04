@@ -9,38 +9,38 @@
 //
 // It happened several times that some unhandled promise rejections
 // were not caught.
-if (typeof process.env.FD_LISTENING_TO_UNHANDLED_REJECTION === "undefined") {
-  process.on("unhandledRejection", unhandledRejectionWarning => {
-    throw unhandledRejectionWarning;
-  });
+if (typeof process.env.FD_LISTENING_TO_UNHANDLED_REJECTION === 'undefined') {
+  process.on('unhandledRejection', unhandledRejectionWarning => {
+    throw unhandledRejectionWarning
+  })
   // Avoid memory leak by adding too many listeners
-  process.env.FD_LISTENING_TO_UNHANDLED_REJECTION = "YES";
+  process.env.FD_LISTENING_TO_UNHANDLED_REJECTION = 'YES'
 }
 
 //https://github.com/FezVrasta/popper.js/issues/478
 
-global.document = {};
+global.document = {}
 global.document.createRange = () => ({
   setStart: () => {},
   setEnd: () => {},
   commonAncestorContainer: {
-    nodeName: "BODY",
+    nodeName: 'BODY',
     ownerDocument: document
   }
-});
+})
 
-const VUE_WARN_TOKEN = "[Vue warn]";
-const VUE_ERROR_TOKEN = "[Vue error]";
+const VUE_WARN_TOKEN = '[Vue warn]'
+const VUE_ERROR_TOKEN = '[Vue error]'
 
-const _console__error = console.log; // eslint-disable-line no-console
+const _console__error = console.log // eslint-disable-line no-console
 
 // eslint-disable-next-line no-console
 console.error = (msg, ...params) => {
-  _console__error(msg, params);
+  _console__error(msg, params)
 
   if (msg.indexOf(VUE_WARN_TOKEN) > -1 || msg.indexOf(VUE_ERROR_TOKEN) > -1) {
     throw Error(
-      "Detected a warning/error from Vue. This will fail the test that caused it. The causing error was logged above and right here: "
-    );
+      'Detected a warning/error from Vue. This will fail the test that caused it. The causing error was logged above and right here: '
+    )
   }
-};
+}

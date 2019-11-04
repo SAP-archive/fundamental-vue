@@ -1,4 +1,4 @@
 module.exports = {
-  include: "src/**/*.vue",
-  exclude: "src/docs/**"
-};
+  include: 'src/**/*.vue',
+  exclude: 'src/docs/**'
+}

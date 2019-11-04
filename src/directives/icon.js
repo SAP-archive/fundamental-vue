@@ -1,24 +1,25 @@
-import { iconClasses } from "./../lib";
+import iconClassNames from './../lib/icon-class-names'
 
 const sizeFrom = ({ s, m, l, xl }) => {
   if (s != null) {
-    return "s";
+    return 's'
   }
   if (m != null) {
-    return "m";
+    return 'm'
   }
   if (l != null) {
-    return "l";
+    return 'l'
   }
   if (xl != null) {
-    return "xl";
+    return 'xl'
   }
-};
+}
+
 export default ({ classList }, { value, arg, modifiers }) => {
-  const classes = iconClasses(arg || value, sizeFrom(modifiers));
+  const classes = iconClassNames(arg || value, sizeFrom(modifiers))
   classes.forEach(iconClass => {
     if (!classList.contains(iconClass)) {
-      classList.add(iconClass);
+      classList.add(iconClass)
     }
-  });
-};
+  })
+}

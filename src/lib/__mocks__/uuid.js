@@ -2,6 +2,6 @@
 
 module.exports = {
   shortUuid() {
-    return "0";
+    return '0'
   }
-};
+}

@@ -2,16 +2,18 @@
 
 // @ts-check
 
-const MarkdownItComponentLinkPluin = require("./markdown-it-plugin-component-api-link");
-const MarkdownItPluginTip = require("./markdown-it-plugin-tip");
-const MarkdownItPluginMakeStyleable = require("./markdown-it-plugin-make-styleable");
-const MarkdownItPluginSlot = require("./markdown-it-plugin-slot");
+const MarkdownItComponentLinkPluin = require('./component-api-link')
+const MarkdownItPluginTip = require('./tip')
+const MarkdownItPluginMakeStyleable = require('./make-styleable')
+const MarkdownItPluginHighlight = require('./highlight')
+const MarkdownItPluginLink = require('./link')
 
 module.exports = {
   all: [
-    MarkdownItPluginSlot,
     MarkdownItComponentLinkPluin,
     MarkdownItPluginTip,
-    MarkdownItPluginMakeStyleable
+    MarkdownItPluginMakeStyleable,
+    MarkdownItPluginHighlight,
+    MarkdownItPluginLink
   ]
-};
+}
