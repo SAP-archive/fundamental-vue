@@ -8981,6 +8981,11 @@ lodash.camelcase@^4.3.0:
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
+
 lodash.defaultsdeep@^4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.1.tgz#512e9bd721d272d94e3d3a63653fa17516741ca6"
@@ -12296,9 +12301,9 @@ rxjs@^6.4.0:
     tslib "^1.9.0"
 
 saber-markdown@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/saber-markdown/-/saber-markdown-0.1.0.tgz#97daf5e7d48f67e7cb60f3f7335c16082474b18b"
-  integrity sha512-qI02wHTH4LUXiX6guP5o5E2u08OQUjxNHBETAK5J4PxRvudQPgUzGcaEbGeg1WEI+WbpvOBLd/rZviZWCXNEDA==
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/saber-markdown/-/saber-markdown-0.1.6.tgz#49aa91c98b1772607bb42fe9438ede1d2e05735a"
+  integrity sha512-ilJvG0yC/9bqN1Mfv+GblJGV9sZsMFtWl7x8Lrxrx9Jx5IgY6z2rAe0e2YblyuoOCrIircWXrh2qT7dd97lHXA==
 
 safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
