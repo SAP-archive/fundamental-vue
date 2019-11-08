@@ -217,6 +217,18 @@ export default {
     }
   },
   watch: {
+    // We observe the completions that currently match the predicate and if there are any matches
+    // and the input element is focused we show the completion list.
+    // TODO: Add tests
+    // TODO: Make activeElement and "isFocusedAndHasMatchingCompletions" reactive and
+    //       bind the visibility of the completions list to isFocusedAndHasMatchingCompletions
+    completionsMatchingPredicate(completionsMatchingPredicate) {
+      if (completionsMatchingPredicate != null && completionsMatchingPredicate.length > 0) {
+        if (document.activeElement === this.$refs.input.$el) {
+          this.showCompletions();
+        }
+      }
+    },
     predicate: {
       immediate: true,
       handler(newValue) {
