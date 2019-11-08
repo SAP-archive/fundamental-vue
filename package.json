@@ -50,7 +50,7 @@
     "@types/jest": "^24.0.13",
     "@types/webpack": "^4.4.34",
     "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^4.0.5",
     "@vue/cli-plugin-unit-jest": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
     "@vue/component-compiler": "^4.0.0",
