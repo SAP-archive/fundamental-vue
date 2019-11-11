@@ -74,7 +74,7 @@
     "eslint-plugin-cypress": "^2.6.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.2.2",
-    "fundamental-styles": "^0.1.0",
+    "fundamental-styles": "0.1.0",
     "gh-pages": "^2.0.1",
     "github-assistant": "^0.3.0",
     "globby": "^10.0.1",
@@ -110,7 +110,7 @@
     "yarn": "^1.17.3"
   },
   "peerDependencies": {
-    "fundamental-styles": "^0.1.0",
+    "fundamental-styles": "0.1.0",
     "vue": "^2.6.10"
   },
   "bugs": {
