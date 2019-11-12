@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.18.2-rc.11](https://github.com/SAP/fundamental-vue/compare/v0.18.2-rc.10...v0.18.2-rc.11) (2019-11-12)
+
+
+### Bug Fixes
+
+* dynamic completions ([f54364c](https://github.com/SAP/fundamental-vue/commit/f54364c))
+
 ### [0.18.2-rc.10](https://github.com/SAP/fundamental-vue/compare/v0.18.2-rc.9...v0.18.2-rc.10) (2019-11-07)
 
 ### [0.18.2-rc.9](https://github.com/SAP/fundamental-vue/compare/v0.18.2-rc.8...v0.18.2-rc.9) (2019-11-07)
