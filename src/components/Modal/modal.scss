@@ -12,25 +12,23 @@
 // Default modal transition
 .fdv-modal-enter {
   opacity: 0;
-  transform: scale3d(1, 1, 1) translate3d(0, -400px, 0);
 }
 
 .fdv-modal-enter-to {
-  transform: scale3d(1, 1, 1);
+  opacity: 1;
 }
 
 .fdv-modal-enter-active,
 .fdv-modal-leave-active {
-  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  opacity: 0;
 }
 
 .fdv-modal-leave {
-  transform: scale3d(1, 1, 1);
+  opacity: 1;
 }
 
 .fdv-modal-leave-to {
   opacity: 0;
-  transform: scale3d(1, 1, 1) translate3d(0, -400px, 0);
 }
 
 .fd-modal__content--overrides {
