@@ -24,6 +24,7 @@ import "prismjs/components/prism-markup.min";
 import "prismjs/components/prism-scss.min";
 import "prismjs/components/prism-css.min";
 import "prismjs/components/prism-bash.min";
+import "./../components/masterDetails/master-details.styles.scss";
 
 const documentedComponents = getDocumentedComponents();
 

@@ -6154,7 +6154,7 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-fundamental-styles@^0.1.0:
+fundamental-styles@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/fundamental-styles/-/fundamental-styles-0.1.0.tgz#6e73945112e9639a6e366a6efbf5c1bab0aa1e94"
   integrity sha512-nLC2ZMTmxhq4kvP4hypQkx7CnUlXfjYfE7KQJrX6D6zLpb1zAuIuwuEv/D2FEqDkir4T9/nYnYg+agW6T8Mt7Q==
