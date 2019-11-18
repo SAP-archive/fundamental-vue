@@ -4556,9 +4556,9 @@ d3-zoom@1:
     d3-transition "1"
 
 d3@^5.9.7:
-  version "5.9.7"
-  resolved "https://registry.yarnpkg.com/d3/-/d3-5.9.7.tgz#f3835648a172b438e89ed57eb6c525bdabdcd7dc"
-  integrity sha512-jENytrmdXtGPw7HuSK2S4gxRM1eUGjKvWQkQ6ct4yK+DB8SG3VcnVrwesfnsv8rIcxMUg18TafT4Q8mOZUMP4Q==
+  version "5.14.1"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-5.14.1.tgz#42e2a5728f8043ccbe67a82d5b09365c4db768b4"
+  integrity sha512-x5VpyP/IS8DP8zePZtcoXmILmM3+YeF4mbvhH6bHICQPPuPYgfcxuGsZZBTh8+e2w9L/5myX76IVxWcPdizNxg==
   dependencies:
     d3-array "1"
     d3-axis "1"
