@@ -1030,9 +1030,9 @@
     string-width "^2.0.0"
 
 "@toycode/markdown-it-class@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@toycode/markdown-it-class/-/markdown-it-class-1.1.0.tgz#564c8d5ae4f069711349091c9e139509c330dc89"
-  integrity sha512-uGYq+hYSRYKrfQI9s+3Vxifz2M5T39qbwdVlOktqmWls1CouYYPbcjEpZBDd+/gg9vhEPpFUJy+3jaHx2G1U0w==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@toycode/markdown-it-class/-/markdown-it-class-1.2.1.tgz#414698bd765f7cf9981d71e413b485c110b18ddc"
+  integrity sha512-A7GliH5kU6XYqhMuhRK4rpf6kvK6fqFpEE8A+YKdoCJ745NUo0Li7diWJqAhGCftXRlAtbJr/YOCWnLycfuwsg==
 
 "@types/anymatch@*":
   version "1.3.1"
