@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Image from '../Image.vue'
+import Image from '../image.vue'
 
 describe('Image', () => {
   it('renders correctly', () => {

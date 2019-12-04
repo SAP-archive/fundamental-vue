@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import FdRadio from './../Radio.vue'
+import FdRadio from './../radio.vue'
 
 describe('Radiobutton', () => {
   it('can be disabled', async () => {

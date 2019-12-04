@@ -111,9 +111,6 @@
     "webpack": "^4.41.2",
     "yarn": "^1.19.2"
   },
-  "engines": {
-    "node": ">=12.12.0"
-  },
   "peerDependencies": {
     "fundamental-styles": "0.4.0-rc.20",
     "vue": "^2.6.10"

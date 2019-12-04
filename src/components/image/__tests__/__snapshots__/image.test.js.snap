@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image renders correct sizes 1`] = `
+<span
+  class="fd-image--l"
+/>
+`;
+
+exports[`Image renders correct sizes 2`] = `
+<span
+  class="fd-image--m"
+/>
+`;
+
+exports[`Image renders correct sizes 3`] = `
+<span
+  class="fd-image--s"
+/>
+`;
+
+exports[`Image renders correctly 1`] = `
+<span
+  class="fd-image--l fd-image--circle"
+  style="background-image: url(https://vuejs.org/images/logo.png);"
+/>
+`;

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeInput renders correctly 1`] = `
+<input
+  aria-label="Time"
+  class="fd-input fd-time__input"
+  maxlength="2"
+  placeholder="Enter value"
+/>
+`;

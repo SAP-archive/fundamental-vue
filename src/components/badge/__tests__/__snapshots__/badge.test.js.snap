@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge renders correctly 1`] = `
+<span
+  class="fd-badge fd-badge--filled fd-badge--pill fd-badge--success"
+  id="successBadge"
+/>
+`;
+
+exports[`Badge renders correctly 2`] = `
+<span
+  class="fd-badge fd-badge--error"
+/>
+`;

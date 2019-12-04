@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { Identifier } from '@/components/Identifier'
+import Identifier from './../identifier.vue'
 
 describe('Identifier', () => {
   it('renders background image', () => {
