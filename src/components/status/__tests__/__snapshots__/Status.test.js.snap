@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Status test scripts Renders correctly 1`] = `
-<span
-  class="fd-status-label fd-status-label--success fd-status-label--available"
-/>
-`;
