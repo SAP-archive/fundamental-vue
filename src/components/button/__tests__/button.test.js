@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Button from '../Button.vue'
+import Button from '../button.vue'
 
 describe('Button', () => {
   // There was a bug that causes <FdButton compact> to render <FdButton compact="compact">

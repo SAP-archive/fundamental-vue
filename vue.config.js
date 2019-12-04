@@ -24,15 +24,15 @@ module.exports = {
       .loader(require.resolve('./loaders/fd-src-loader'))
       .after('vue-loader')
 
-    config
-      .plugin('webpack-analyzer')
-      .use(BundleAnalyzerPlugin, [
-        {
-          analyzerPort: 10001,
-          openAnalyzer: false
-        }
-      ])
-      .end()
+    // config
+    //   .plugin('webpack-analyzer')
+    //   .use(BundleAnalyzerPlugin, [
+    //     {
+    //       analyzerPort: 10001,
+    //       openAnalyzer: false
+    //     }
+    //   ])
+    //   .end()
     config.module
       .rule('vue')
       .use('fd-component-api-loader')
@@ -74,3 +74,4 @@ module.exports = {
   },
   lintOnSave: false
 }
+module.exports.parallel = false

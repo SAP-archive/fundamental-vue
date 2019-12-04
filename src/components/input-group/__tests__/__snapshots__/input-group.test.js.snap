@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputGroup renders correctly 1`] = `
+<div
+  class="fd-input-group"
+>
+  <span
+    class="fd-input-group__addon"
+  >
+    $
+  </span>
+    
+  <input
+    class="fd-input fd-input-group__input"
+  />
+    
+  <span
+    class="fd-input-group__addon"
+  >
+    €
+  </span>
+</div>
+`;

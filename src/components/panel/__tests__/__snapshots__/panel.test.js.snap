@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Panel Description as slot renders correctly 1`] = `
+<div
+  class="fd-panel"
+>
+  <div
+    class="fd-panel__header"
+  >
+    <div
+      class="fd-panel__head"
+    >
+      <!---->
+       
+      <p
+        class="fd-panel__description"
+      >
+        <div>
+          Panel Description (slot)
+        </div>
+      </p>
+    </div>
+     
+    <!---->
+  </div>
+   
+  <!---->
+   
+  <!---->
+   
+  <!---->
+</div>
+`;
+
+exports[`Panel Title as slot renders correctly 1`] = `
+<div
+  class="fd-panel"
+>
+  <div
+    class="fd-panel__header"
+  >
+    <div
+      class="fd-panel__head"
+    >
+      <h1
+        class="fd-panel__title"
+      >
+        <div>
+          Panel Title (slot)
+        </div>
+      </h1>
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+   
+  <!---->
+   
+  <!---->
+   
+  <!---->
+</div>
+`;
+
+exports[`Panel renders correctly 1`] = `
+<div
+  class="fd-panel"
+>
+  <div
+    class="fd-panel__header"
+  >
+    <div
+      class="fd-panel__head"
+    >
+      <h1
+        class="fd-panel__title"
+      >
+        
+          Panel Title
+        
+      </h1>
+       
+      <p
+        class="fd-panel__description"
+      >
+        
+          Panel description
+        
+      </p>
+    </div>
+     
+    <div
+      class="fd-panel__actions"
+    >
+      <p>
+        Actions
+      </p>
+    </div>
+  </div>
+   
+  <div
+    class="fd-panel__filters"
+  >
+    <p>
+      Filters
+    </p>
+  </div>
+   
+  <div
+    class="fd-panel__body"
+  >
+    <p>
+      Body
+    </p>
+  </div>
+   
+  <div
+    class="fd-panel__footer"
+  >
+    <p>
+      Footer
+    </p>
+  </div>
+</div>
+`;

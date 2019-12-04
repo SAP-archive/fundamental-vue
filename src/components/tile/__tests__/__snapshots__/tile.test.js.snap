@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tile renders correctly as button: button tile 1`] = `
+<div
+  aria-disabled="false"
+  class="fd-tile"
+  role="button"
+>
+  <div
+    class="fd-tile__content"
+  >
+    <h3
+      class="fd-tile__title"
+    >
+      Title
+    </h3>
+     
+    <p>
+      Description
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Tile renders correctly when disabled: renders disabled correctly 1`] = `
+<div
+  aria-disabled="false"
+  class="fd-tile"
+>
+  <div
+    class="fd-tile__content"
+  >
+    <h3
+      class="fd-tile__title"
+    >
+      Title
+    </h3>
+     
+    <p>
+      Description
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Tile renders correctly: default tile 1`] = `
+<div
+  aria-disabled="false"
+  class="fd-tile"
+>
+  <div
+    class="fd-tile__content"
+  >
+    <h3
+      class="fd-tile__title"
+    >
+      Title
+    </h3>
+     
+    <p>
+      Description
+    </p>
+  </div>
+</div>
+`;

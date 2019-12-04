@@ -1,5 +1,5 @@
 import { createLocalVue, mount } from '@vue/test-utils'
-import FdSelect from './../Select.vue'
+import FdSelect from './../select.vue'
 
 describe('Select', () => {
   it('supports v-model', async () => {
