@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Label renders correctly 1`] = `
-<span
-  class="fd-label fd-label--warning"
->
-  Label
-</span>
-`;
