@@ -48,6 +48,7 @@ module.exports = {
       .after("vue-loader")
       .end();
 
+
     config.module
       .rule("vue")
       .use("vue-loader")
