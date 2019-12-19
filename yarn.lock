@@ -5762,10 +5762,10 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-fundamental-styles@0.4.0-rc.28:
-  version "0.4.0-rc.28"
-  resolved "https://registry.yarnpkg.com/fundamental-styles/-/fundamental-styles-0.4.0-rc.28.tgz#1375c108784e220551fd2b9e8569d2daa24a63e0"
-  integrity sha512-hA3ty5HXcPdZkGOffgfpY67/bGnBP5cQLu4CVJr/uVEbytQl5p13xtc4NeG7t6hbdceN7g+Z265uWSXZvw8mdQ==
+fundamental-styles@0.4.0-rc.35:
+  version "0.4.0-rc.35"
+  resolved "https://registry.yarnpkg.com/fundamental-styles/-/fundamental-styles-0.4.0-rc.35.tgz#38e0966abb85ca5ddcb21ddf81753031ae435fa4"
+  integrity sha512-8xnbgfntvuIgbhO+/4UgPptR5HdkZpCTRH58qcOyU5AQlUnPQ153m9R0Lvpoy1/rIfRzUW+rVTxJ2USQVeY9cQ==
   dependencies:
     "@sap-theming/theming-base-content" "^11.1.10"
 
