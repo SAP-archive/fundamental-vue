@@ -13,14 +13,14 @@
       />
     </template>
     <template #after="{ toggleCompletions }">
-      <fd-input-group-addon-button>
+      <FdInputGroupAddonButton :compact="compact">
         <FdInputGroupButton
           @mousedown="preventIfInputHasFocus"
           @mouseup="toggleCompletions"
           :compact="compact"
           icon="navigation-down-arrow"
         />
-      </fd-input-group-addon-button>
+      </FdInputGroupAddonButton>
     </template>
 
     <template #default>
