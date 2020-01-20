@@ -1,7 +1,7 @@
 <template>
   <div class="fd-calendar__years" aria-hidden="{false}">
     <CalendarGrid :numberOfColumns="4" :items="years">
-      <template #item="{item: year, index}">
+      <template #item="{ item: year }">
         <CalendarItem
           :key="String(year)"
           tag="li"

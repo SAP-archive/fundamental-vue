@@ -11,7 +11,6 @@
       @month="toggleMonthPicker"
       @year="toggleYearPicker"
     />
-
     <div class="fd-calendar__content">
       <MonthPicker
         v-if="currentPicker == 'month'"
@@ -50,10 +49,26 @@
 <script>
 import { NormalizedDate } from './../../util/date/normalized-date'
 import sameDay from './../../util/date/same-day'
-import { DisplayedDateMixin } from './mixins'
 import CalendarHeader from './calendar-header.vue'
 import { DayPicker, MonthPicker, YearPicker } from './pickers'
 import Mode from './../../util/date/mode'
+import { monthFromDate } from './util'
+
+const defaultDayNames = ['Su', 'M', 'Tu', 'W', 'Th', 'F', 'S']
+const defaultMonthNames = [
+  'Jan.',
+  'Feb.',
+  'Mar.',
+  'Apr.',
+  'May',
+  'Jun.',
+  'Jul',
+  'Aug.',
+  'Sep.',
+  'Oct.',
+  'Nov.',
+  'Dec.'
+]
 
 const PickerType = {
   year: 'year',
@@ -71,7 +86,6 @@ const createToday = () => new Date(Date.now())
 // Calendar component – usualy not used on it's own but in combination with `fd-date-picker`.
 export default {
   name: 'FdCalendar',
-  mixins: [DisplayedDateMixin],
   components: {
     DayPicker,
     MonthPicker,
@@ -89,6 +103,16 @@ export default {
     }
   },
   props: {
+    defaultValue: {
+      type: [Date, String, Number],
+      default: Date.now()
+    },
+    firstDayOfWeek: { type: Number, default: 0 },
+    dayNames: { type: Array, default: () => defaultDayNames },
+    monthNames: {
+      type: Array,
+      default: () => defaultMonthNames
+    },
     ...Mode.prop,
     // Date value that represents today.
     today: {
@@ -144,6 +168,34 @@ export default {
     }
   },
   computed: {
+    month() {
+      const date = this.displayedDate
+      return monthFromDate(date, { firstDayOfWeek: this.firstDayOfWeek })
+    },
+    adjustedDayNames() {
+      return this.dayNames.concat(this.dayNames).slice(this.firstDayOfWeek, this.firstDayOfWeek + 7)
+    },
+    displayedYear: {
+      get() {
+        return this.displayedDate.getFullYear()
+      },
+      set(year) {
+        const copy = new Date(this.displayedDate)
+        copy.setFullYear(year)
+        this.displayedDate = copy
+      }
+    },
+    displayedMonth: {
+      set(month) {
+        const copy = new Date(this.displayedDate)
+        copy.setMonth(month)
+        this.displayedDate = copy
+      },
+      get() {
+        const date = this.displayedDate
+        return date.getMonth()
+      }
+    },
     normalizedDate_() {
       return NormalizedDate.from(this.normalizedDate)
     },
@@ -179,6 +231,10 @@ export default {
   },
   data() {
     return {
+      displayedDate:
+        typeof this.defaultValue === 'string' || typeof this.defaultValue === 'number'
+          ? new Date(this.defaultValue)
+          : this.defaultValue,
       normalizedDate: NormalizedDate.from(this.value).asFromToValue(),
       currentPicker: null
     }

@@ -19,13 +19,13 @@
       </div>
     </template>
     <template #default="popProps">
-      <fd-on-click-outside
+      <FdOnClickOutside
         :ignoredElements="ignoredElements_"
         @do="handleClickOutside"
         :active="popProps.visible"
       >
         <slot v-bind="popProps" />
-      </fd-on-click-outside>
+      </FdOnClickOutside>
     </template>
   </k-pop>
 </template>

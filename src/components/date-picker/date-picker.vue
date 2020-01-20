@@ -5,6 +5,7 @@
       body-style=""
       body-size-mode="at-least-trigger"
       placement="bottom-end"
+      :ignoredElements="ignoredElements"
     >
       <template #control="{ toggle }">
         <fd-input-group>
@@ -22,7 +23,7 @@
       </template>
       <template #default>
         <slot name="calendar">
-          <fd-date-picker-calendar />
+          <fd-date-picker-calendar ref="calendar" />
         </slot>
       </template>
     </fd-popover>
@@ -30,12 +31,13 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import FdDatePickerInput from './../date-picker-input/date-picker-input.vue'
 import FdPopover from './../popover/popover.vue'
 import FdDatePickerCalendar from './../date-picker-calendar/date-picker-calendar.vue'
 import FdInputGroup from './../input-group/input-group.vue'
 import FdInputGroupButton from './../input-group/button.vue'
-import Vue from 'vue'
+import FdInputGroupAddonButton from './../input-group/addon-button.vue'
 import createNormalizedDate from './../../util/date/normalized-date'
 import createNullDate from './../../util/date/create-null-date'
 
@@ -45,6 +47,7 @@ export default {
     FdDatePickerInput,
     FdDatePickerCalendar,
     FdInputGroup,
+    FdInputGroupAddonButton,
     FdInputGroupButton,
     FdPopover
   },
@@ -75,6 +78,9 @@ export default {
     }
   },
   methods: {
+    ignoredElements() {
+      return [this.$refs.calendar.$el]
+    },
     setValue(value) {
       this.state.value.from = value.from
       this.state.value.to = value.to
@@ -101,7 +107,20 @@ export default {
       // `{ from?: Date, to?: Date }`
       type: Object,
       // `{ from: null, to: null }`
-      default: createNullDate
+      default: createNullDate,
+      validator(value) {
+        if (value == null) {
+          return false
+        }
+        if (typeof value !== 'object') {
+          return false
+        }
+        const { from, to } = value
+        if (from === undefined || to === undefined) {
+          return false
+        }
+        return true
+      }
     },
     // Selection mode
     mode: {
