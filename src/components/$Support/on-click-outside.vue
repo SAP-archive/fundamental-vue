@@ -49,11 +49,23 @@ export default {
         return
       }
 
-      // We now have to check the ignored elements
       const ignoredElements = this.ignoredElements()
+      // `event` bubbles up the tree. `path` contains all elements that will receive the event if we do not stop the event. `path` starts with the deepest element and ends with ...body, html, document, window.
+      const path = event.path || (event.composedPath ? event.composedPath() : undefined)
+      if (path != null) {
+        if (path.indexOf(targetNode) < 0) {
+          return
+        }
+      }
+      // We now have to check the ignored elements
       for (const ignoredElement of ignoredElements) {
         if (ignoredElement.contains(targetNode)) {
           return
+        }
+        for (const pathComponent of path) {
+          if (pathComponent === ignoredElement) {
+            return
+          }
         }
       }
       this.$emit(CLICK_OUTSIDE_EVENT, event)

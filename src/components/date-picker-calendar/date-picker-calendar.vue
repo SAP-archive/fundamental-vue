@@ -1,5 +1,5 @@
 <template>
-  <fd-calendar :mode="mode" :value="value" @input="takeValueFromCalendar"></fd-calendar>
+  <FdCalendar :mode="mode" :value="value" @input="takeValueFromCalendar" />
 </template>
 
 <script>

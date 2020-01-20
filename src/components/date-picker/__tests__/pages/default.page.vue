@@ -1,14 +1,19 @@
 <template>
   <div style="padding: 100px;">
-    <p data-ci-value>{{ value || 'none' }}</p>
-    <fd-date-picker v-model="value" />
+    <p data-cy="value">{{ value || 'none' }}</p>
+    <fd-date-picker v-model="value" data-cy="picker" />
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return { value: null }
+    return {
+      value: {
+        from: null,
+        to: null
+      }
+    }
   }
 }
 </script>
