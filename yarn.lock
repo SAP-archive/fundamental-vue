@@ -1398,13 +1398,14 @@
     eslint-plugin-cypress "^2.7.0"
 
 "@vue/cli-plugin-eslint@^4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-4.1.1.tgz#ad09b71f94dc7518a6c83debacd39e34f6d5a71e"
-  integrity sha512-7bb5idaWcXREaxVYmQ9NK31gy26Qms6cQ9ENovXQurFpsSd29+Fmqc/EkAhHhWn82gModvypIoJyOhKt21jxKg==
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-4.2.2.tgz#ea0ecfc3f816102f61df3050d82f23909aa3df1b"
+  integrity sha512-C6Foeq+XjsAMy+F9XTXGUtCKBgTJXGRjqUdmehU5J4i84erSIRulOahqjHr6J6IslJcDAmBekF8xXhMzX839NA==
   dependencies:
-    "@vue/cli-shared-utils" "^4.1.1"
+    "@vue/cli-shared-utils" "^4.2.2"
     eslint-loader "^2.1.2"
     globby "^9.2.0"
+    inquirer "^6.3.1"
     webpack "^4.0.0"
     yorkie "^2.0.0"
 
@@ -1505,23 +1506,23 @@
     webpack-dev-server "^3.9.0"
     webpack-merge "^4.2.2"
 
-"@vue/cli-shared-utils@^4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.1.1.tgz#79e26b56fda185fda00e5787a8f4aac56757b123"
-  integrity sha512-nsxNW8Sy9y2yx/r9DqgZoYg/DoygvASIQl0XXG+imQUDWEXKmD6UZA6y5ANfStCljzZ/wd7WgWP+txmjy6exOw==
+"@vue/cli-shared-utils@^4.1.1", "@vue/cli-shared-utils@^4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.2.2.tgz#953fec34115cb12d0820012a9d7400f8c27d6660"
+  integrity sha512-EK5wcxgjadqUpSzfh6Bnxd46Zx+SAaHusygqV11UZKHr4EObc/SjCpq7c7drmFkBjRqmVvrHs4jRnJJo5VgCgQ==
   dependencies:
     "@hapi/joi" "^15.0.1"
-    chalk "^2.4.1"
+    chalk "^2.4.2"
     execa "^1.0.0"
     launch-editor "^2.2.1"
     lru-cache "^5.1.1"
     node-ipc "^9.1.1"
     open "^6.3.0"
     ora "^3.4.0"
+    read-pkg "^5.1.1"
     request "^2.87.0"
     request-promise-native "^1.0.8"
     semver "^6.1.0"
-    string.prototype.padstart "^3.0.0"
     strip-ansi "^6.0.0"
 
 "@vue/component-compiler-utils@^3.0.0", "@vue/component-compiler-utils@^3.0.2", "@vue/component-compiler-utils@^3.1.0":
@@ -6740,7 +6741,7 @@ ini@^1.3.2, ini@^1.3.3, ini@^1.3.4, ini@^1.3.5, ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
   integrity sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw==
 
-inquirer@^6.2.2:
+inquirer@^6.2.2, inquirer@^6.3.1:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-6.5.2.tgz#ad50942375d036d327ff528c08bd5fab089928ca"
   integrity sha512-cntlB5ghuB0iuO65Ovoi8ogLHiWGs/5yNrtUcKjFhSSiVeAIVpD7koaSU9RM8mpXw5YDi9RdYXGQMaOURB7ycQ==
@@ -12072,15 +12073,6 @@ string.prototype.padend@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/string.prototype.padend/-/string.prototype.padend-3.0.0.tgz#f3aaef7c1719f170c5eab1c32bf780d96e21f2f0"
   integrity sha1-86rvfBcZ8XDF6rHDK/eA2W4h8vA=
-  dependencies:
-    define-properties "^1.1.2"
-    es-abstract "^1.4.3"
-    function-bind "^1.0.2"
-
-string.prototype.padstart@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/string.prototype.padstart/-/string.prototype.padstart-3.0.0.tgz#5bcfad39f4649bb2d031292e19bcf0b510d4b242"
-  integrity sha1-W8+tOfRkm7LQMSkuGbzwtRDUskI=
   dependencies:
     define-properties "^1.1.2"
     es-abstract "^1.4.3"
