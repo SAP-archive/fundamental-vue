@@ -1,7 +1,7 @@
 <template>
-  <span class="fd-list__item" :class="classes" :aria-selected="String(selected)">
+  <li class="fd-list__item" :class="classes" :aria-selected="String(selected)" role="option">
     <slot />
-  </span>
+  </li>
 </template>
 
 <script>
