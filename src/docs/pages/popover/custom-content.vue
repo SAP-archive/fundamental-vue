@@ -4,7 +4,7 @@
       <fd-button @click="toggle">Custom Content</fd-button>
     </template>
 
-    <template #default="{hide}">
+    <template #default>
       <div v-fd-padding:large style="text-align:center;">
         <div v-fd-type:6>Hello World</div>
         <hr />

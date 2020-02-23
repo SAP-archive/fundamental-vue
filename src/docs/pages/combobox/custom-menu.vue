@@ -5,13 +5,15 @@
       <span class="favorite-fruit-current">{{ fruit || 'none' }}</span>
     </div>
     <fd-combobox class="fruit-picker" v-model="fruit" placeholder="Pick your Fruit of the day">
-      <fd-combobox-menu class="fruit-picker" v-slot="menu">
-        <fd-menu-list>
-          <FdMenuItem value="Apple">Apple</FdMenuItem>
-          <FdMenuItem value="Banana">Banana</FdMenuItem>
-          <FdMenuItem value="Cherry">Cherry</FdMenuItem>
-        </fd-menu-list>
-      </fd-combobox-menu>
+      <template #menu>
+        <fd-combobox-menu class="fruit-picker">
+          <fd-menu-list>
+            <FdMenuItem value="Apple">Apple</FdMenuItem>
+            <FdMenuItem value="Banana">Banana</FdMenuItem>
+            <FdMenuItem value="Cherry">Cherry</FdMenuItem>
+          </fd-menu-list>
+        </fd-combobox-menu>
+      </template>
     </fd-combobox>
   </div>
 </template>

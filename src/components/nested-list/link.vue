@@ -83,7 +83,7 @@ export default {
             }
           }
 
-    const nativeOn = {
+    const on = {
       ...this.$listeners,
       ...(asAnchor ? anchorOn : anchorOn)
     }
@@ -91,7 +91,7 @@ export default {
     const data = {
       attrs,
       props,
-      nativeOn,
+      on,
       class: [
         'fd-nested-list__link',
         this.selected || expanded ? 'is-selected' : '',

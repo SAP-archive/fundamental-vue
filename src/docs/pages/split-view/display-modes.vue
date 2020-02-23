@@ -33,7 +33,7 @@
             :items="[selectedItem]"
             keyField="id"
           >
-            <template #item="{ item, index }">
+            <template #item="{ item }">
               <div style="height: 1000px;">{{ item }}</div>
             </template>
           </FdVirtualizedList>

@@ -1,17 +1,17 @@
 <template>
-  <transition name="fade">
-    <div class="fd-alert" :class="classes" :id="uid" v-show="currentVisible" role="alert">
-      <button
-        v-if="dismissible"
-        class="fd-alert__close"
-        :aria-controls="uid"
-        aria-label="Close"
-        @click="dismiss"
-      />
-      <!-- Content of the alert. -->
-      <slot />
-    </div>
-  </transition>
+  <!-- <transition name="fade"> -->
+  <div class="fd-alert" :class="classes" :id="uid" v-show="currentVisible" role="alert">
+    <button
+      v-if="dismissible"
+      class="fd-alert__close"
+      :aria-controls="uid"
+      aria-label="Close"
+      @click="dismiss"
+    />
+    <!-- Content of the alert. -->
+    <slot />
+  </div>
+  <!-- </transition> -->
 </template>
 
 <script>

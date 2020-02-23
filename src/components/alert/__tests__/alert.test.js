@@ -1,9 +1,9 @@
-import { mount } from '@vue/test-utils'
+import { TransitionGroupStub, TransitionStub, mount } from '@vue/test-utils'
 import { Alert } from '../'
 
 describe('Alert', () => {
-  test('renders correctly', () => {
-    const warningAlert = mount(Alert, {
+  it('renders correctly', async () => {
+    const warningAlert = await mount(Alert, {
       propsData: {
         type: 'warning',
         dismissible: true,
@@ -11,7 +11,7 @@ describe('Alert', () => {
         uid: 'alert'
       }
     })
-    const errorAlert = mount(Alert, {
+    const errorAlert = await mount(Alert, {
       propsData: { type: 'error', dismissible: false, id: 'errorAlert' }
     })
     expect(warningAlert.element).toMatchSnapshot()
@@ -28,16 +28,25 @@ describe('Alert', () => {
     })
     expect(wrapper.text()).toMatch(dummySlot)
   })
-  it('click on close hides the alert', () => {
-    const alert = mount(Alert, {
-      propsData: {
-        dismissible: true
+  it('click on close hides the alert', async () => {
+    const alert = mount(
+      Alert,
+      {
+        propsData: {
+          dismissible: true
+        }
+      },
+      {
+        stubs: {
+          transition: TransitionStub,
+          'transition-group': TransitionGroupStub
+        }
       }
-    })
+    )
     expect(alert.isVisible()).toBe(true)
     const closeButton = alert.find('button')
-    expect(closeButton.isVisible()).toBe(true)
-    closeButton.trigger('click')
-    expect(closeButton.isVisible()).toBe(false)
+    expect(alert.isVisible()).toBe(true)
+    await closeButton.trigger('click')
+    expect(alert.isVisible()).toBe(false)
   })
 })

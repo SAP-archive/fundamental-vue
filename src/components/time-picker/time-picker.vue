@@ -1,7 +1,7 @@
 <template>
   <div>
     <fd-popover body-size-mode="equal-trigger" placement="bottom-start">
-      <template #control="{toggle, show, hide}">
+      <template #control="{ toggle }">
         <fd-input-group :compact="compact">
           <template #input>
             <FdInputGroupInput

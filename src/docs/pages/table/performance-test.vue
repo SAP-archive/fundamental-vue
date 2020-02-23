@@ -11,7 +11,7 @@
     <fd-table-fixed-wrapper style="width: 100%;">
       <fd-table-fixed>
         <fd-table :headers="headers" firstColumnFixed :items="items">
-          <template #row="{ item, selected }">
+          <template #row="{ item }">
             <fd-table-row>
               <template v-for="colName in colNames" v-slot:[colName]>
                 <fd-table-cell :key="colName">

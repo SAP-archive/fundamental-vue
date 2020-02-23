@@ -34,31 +34,31 @@ describe('Pagination', () => {
     expect(rightArrow.attributes('aria-disabled')).toBeUndefined()
   })
 
-  it('toggle between page 1 and 2 using arrows', () => {
+  it('toggle between page 1 and 2 using arrows', async () => {
     // pageOne is at index 1 because there is left arrow at index 0
     const pageTwo = links.at(2)
     expect(pageOne.attributes('aria-selected')).toBe('true')
     expect(pageTwo.attributes('aria-selected')).toBeUndefined()
-    rightArrow.trigger('click')
+    await rightArrow.trigger('click')
     expect(pageOne.attributes('aria-selected')).toBeUndefined()
     expect(pageTwo.attributes('aria-selected')).toBe('true')
-    leftArrow.trigger('click')
+    await leftArrow.trigger('click')
     expect(pageOne.attributes('aria-selected')).toBe('true')
     expect(pageTwo.attributes('aria-selected')).toBeUndefined()
   })
 
-  it('move to last page by clicking on it and right arrow is disabled', () => {
+  it('move to last page by clicking on it and right arrow is disabled', async () => {
     expect(lastPage.attributes('aria-selected')).toBeUndefined()
-    lastPage.trigger('click')
+    await lastPage.trigger('click')
     expect(lastPage.attributes('aria-selected')).toBe('true')
     expect(rightArrow.attributes('aria-disabled')).toBe('true')
   })
 
-  it('click right arrow twice and ... appears at the correct place', () => {
+  it('click right arrow twice and ... appears at the correct place', async () => {
     // reset to pageOne
-    pageOne.trigger('click')
-    rightArrow.trigger('click')
-    rightArrow.trigger('click')
+    await pageOne.trigger('click')
+    await rightArrow.trigger('click')
+    await rightArrow.trigger('click')
     const newLinks = pagination.findAll('a')
     // [1,2,3,4,...,11] + 2 arrows
     expect(newLinks).toHaveLength(7)
