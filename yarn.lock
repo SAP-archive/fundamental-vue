@@ -1698,10 +1698,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@sap-theming/theming-base-content@^11.1.10":
-  version "11.1.15"
-  resolved "https://registry.yarnpkg.com/@sap-theming/theming-base-content/-/theming-base-content-11.1.15.tgz#b3b37042374e3a8edea73378d8c7a8bd4e16815e"
-  integrity sha512-ndJmLE3CnelEfCo4Ni5XuvM9Ejh5DfFgarYmXkcS1vr+KrZNIcgaijZWFAdB2DKs6jHwln2cYm2ULmjjlhdkcQ==
+"@sap-theming/theming-base-content@~11.1.17":
+  version "11.1.17"
+  resolved "https://registry.yarnpkg.com/@sap-theming/theming-base-content/-/theming-base-content-11.1.17.tgz#861ad3375c63f3694970b767a29199da5af06fe2"
+  integrity sha512-GZi24sPE05OBktiR9hnWUHnvkipQ0Waen4Me3cuJZl3Ha6ZknH9ibyYgtAPwbLIIxSF3nvLNQdyu0dE0YtZ6Rw==
 
 "@soda/friendly-errors-webpack-plugin@^1.7.1":
   version "1.7.1"
@@ -4446,12 +4446,7 @@ core-js@^2.4.0, core-js@^2.6.5:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.10.tgz#8a5b8391f8cc7013da703411ce5b585706300d7f"
   integrity sha512-I39t74+4t+zau64EN1fE5v2W31Adtc/REhzWN+gWRRXg6WH5qAsZm62DHpQ1+Yhe4047T55jvzz7MUqF/dBBlA==
 
-core-js@^3.4.3:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.4.tgz#440a83536b458114b9cb2ac1580ba377dc470647"
-  integrity sha512-4paDGScNgZP2IXXilaffL9X7968RuvwlkK3xWtZRVqgd8SYNiVKRJvkFd1aqqEuPfN7E68ZHEp9hDj6lHj4Hyw==
-
-core-js@^3.6.4:
+core-js@^3.4.3, core-js@^3.6.4:
   version "3.6.4"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.4.tgz#440a83536b458114b9cb2ac1580ba377dc470647"
   integrity sha512-4paDGScNgZP2IXXilaffL9X7968RuvwlkK3xWtZRVqgd8SYNiVKRJvkFd1aqqEuPfN7E68ZHEp9hDj6lHj4Hyw==
@@ -6464,12 +6459,12 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-fundamental-styles@0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/fundamental-styles/-/fundamental-styles-0.4.0.tgz#ac58d50a928f375c83ec4d20ed73da4f7f5e15bc"
-  integrity sha512-GGsCwpYYdwkPBjM1PnVQwFPOatdxxbvlzcJQha40vqmbRg+d1Owo5fdiT+GxHXbe8jDDZVAmM6dlKxhNr07apA==
+fundamental-styles@0.7.0-rc.2:
+  version "0.7.0-rc.2"
+  resolved "https://registry.yarnpkg.com/fundamental-styles/-/fundamental-styles-0.7.0-rc.2.tgz#8c27e776f39bb2292f4dacc73327251f10bc9828"
+  integrity sha512-Sq8klWKKLyIiUy6UsxNbmpGR58ElUHEdra23WrxfZ7CdPuoaO0cgDXyTbUH2MaLzdsG7aATvQgai1+maPzRdMg==
   dependencies:
-    "@sap-theming/theming-base-content" "^11.1.10"
+    "@sap-theming/theming-base-content" "~11.1.17"
 
 gauge@~2.7.3:
   version "2.7.4"
