@@ -40,6 +40,7 @@ import Link from './link'
 import List from './list'
 import SplitView from './split-view'
 import Menu from './menu'
+import MessageStrip from './message-strip'
 import MenuPopover from './menu-popover'
 import Modal from './modal'
 import ModalOverlay from './modal-overlay'
@@ -129,6 +130,7 @@ const plugin = {
       List,
       SplitView,
       Menu,
+      MessageStrip,
       MenuPopover,
       Modal,
       ModalOverlay,
