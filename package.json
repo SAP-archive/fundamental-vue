@@ -4,6 +4,8 @@
   "description": "SAP Fiori Fundamentals, implemented in Vue.js",
   "author": "SAP SE",
   "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "test:e2e": "start-server-and-test 'serve:demo' http://localhost:10000 'cross-env FD_E2E=true vue-cli-service test:e2e --url http://localhost:10000'",
     "test:e2e:dev": "start-server-and-test 'serve:demo:dev' http://localhost:10000 'cross-env FD_E2E=true vue-cli-service test:e2e --mode development --url http://localhost:10000'",
     "build": "rimraf -r dist && cross-env NODE_ENV=production yarn build:bili && cross-env NODE_ENV=production yarn build:src",
@@ -44,6 +46,16 @@
     "popper.js": "^1.16.0"
   },
   "devDependencies": {
+    "babel-preset-vue": "^2.0.2",
+    "babel-loader": "^8.0.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "@storybook/core": "^5.3.13",
+    "regenerator-runtime": "^0.13.3",
+    "@storybook/addon-actions": "^5.3.13",
+    "@storybook/addon-links": "^5.3.13",
+    "@storybook/addons": "^5.3.13",
+    "@storybook/vue": "^5.3.13",
     "@vue/cli-plugin-babel": "^4.2.2",
     "@vue/cli-plugin-eslint": "^4.2.2",
     "@vue/cli-service": "^4.2.2",
