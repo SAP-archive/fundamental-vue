@@ -17,7 +17,7 @@ describe('MenuLink', () => {
     ).toMatchSnapshot()
   })
 
-  it('can be disabled', () => {
+  it('can be disabled', async () => {
     const wrapper = mount({
       provide() {
         return {
@@ -40,6 +40,7 @@ describe('MenuLink', () => {
     const clicks = link.emitted('click')
     expect(clicks.length).toBe(1)
     wrapper.vm.disabled = true
+    await wrapper.vm.$nextTick()
     expect(wrapper.element).toMatchSnapshot()
     wrapper.find('a').trigger('click')
     expect(clicks.length).toBe(1)

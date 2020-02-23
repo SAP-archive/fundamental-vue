@@ -146,7 +146,7 @@ describe('Table', () => {
     await localVue.nextTick()
 
     const rows = wrapper.findAll('tbody tr')
-    rows.at(0).trigger('click')
+    await rows.at(0).trigger('click')
 
     const selectedRows = () => {
       return wrapper.findAll('tr[aria-selected="true"]')
@@ -164,7 +164,7 @@ describe('Table', () => {
       { id: '4', firstName: 'Artur', lastName: 'Raess', building: 'WFD02' }
     ]
     const localVue = createLocalVue()
-    const wrapper = mount(
+    const wrapper = await mount(
       {
         components: { FdTable, FdTableRow, FdTableCell },
         template: `
@@ -182,11 +182,10 @@ describe('Table', () => {
       },
       { localVue }
     )
-    await localVue.nextTick()
 
     const rows = wrapper.findAll('tbody tr')
-    rows.at(0).trigger('click')
-    rows.at(1).trigger('click')
+    await rows.at(0).trigger('click')
+    await rows.at(1).trigger('click')
 
     await localVue.nextTick()
     const selectedRows = () => {
@@ -197,7 +196,7 @@ describe('Table', () => {
 
   it('renders no rows when data is empty', async () => {
     const localVue = createLocalVue()
-    const wrapper = mount(
+    const wrapper = await mount(
       {
         components: { FdTable, FdTableRow, FdTableCell },
         data: () => ({ tableData: [] }),

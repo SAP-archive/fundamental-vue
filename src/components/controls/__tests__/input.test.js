@@ -36,7 +36,7 @@ describe('TextInput', () => {
     )
     await localVue.nextTick()
     const input = wrapper.find('input')
-    wrapper.setData({ value: 'is cool' })
+    await wrapper.setData({ value: 'is cool' })
     expect(input.element.value).toBe('is cool')
   })
 

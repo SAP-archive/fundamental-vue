@@ -70,7 +70,7 @@ describe('Toggle', () => {
     })
   })
 
-  it('supports v-model', () => {
+  it('supports v-model', async () => {
     const localVue = createLocalVue()
     const Wrapper = localVue.extend({
       components: { Toggle },
@@ -83,9 +83,9 @@ describe('Toggle', () => {
     })
     const toggle = mount(Wrapper, { localVue })
     expect(toggle.vm.on).toBe(false)
-    toggle.setData({ on: true })
+    await toggle.setData({ on: true })
     expect(toggle.vm.on).toBe(true)
-    toggle.find('input').trigger('click')
+    await toggle.find('input').trigger('click')
     expect(toggle.vm.on).toBe(false)
   })
 })

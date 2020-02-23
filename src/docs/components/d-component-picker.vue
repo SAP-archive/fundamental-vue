@@ -19,7 +19,7 @@
       style="height: 300px;"
       :min-item-size="20"
     >
-      <template #item="{ item, index }">
+      <template #item="{ item }">
         <d-component-api-link :component-name="item.componentName">
           <template #default="{to}">
             <router-link tag="div" :to="to" @click="selectComponentItem(item)">
