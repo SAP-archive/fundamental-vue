@@ -1,9 +1,9 @@
 <template functional>
   <FdFormItem v-bind="data.attrs">
-    <FdFormLabel type="radio">
-      <slot />
+    <slot />
+    <FdRadioLabel :for="props.id">
       {{ props.label }}
-    </FdFormLabel>
+    </FdRadioLabel>
     <template #message>
       <slot name="message" />
     </template>
@@ -11,17 +11,18 @@
 </template>
 
 <script>
-import FdFormLabel from './../form-label/form-label.vue'
+import FdRadioLabel from './../radio-label/radio-label.vue'
 import FdFormItem from './../form-item/form-item.vue'
 
 export default {
   functional: true,
   name: 'FdFormItemRadio',
   components: {
-    FdFormLabel,
+    FdRadioLabel,
     FdFormItem
   },
   props: {
+    id: String,
     label: {
       type: String,
       required: true
