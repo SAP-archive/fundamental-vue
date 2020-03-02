@@ -1,9 +1,9 @@
 <template functional>
   <FdFormItem v-bind="data.attrs">
-    <FdFormLabel type="check">
-      <slot />
+    <slot />
+    <FdCheckboxLabel :for="props.id">
       {{ props.label }}
-    </FdFormLabel>
+    </FdCheckboxLabel>
     <template #message>
       <slot name="message" />
     </template>
@@ -11,17 +11,18 @@
 </template>
 
 <script>
-import FdFormLabel from './../form-label/form-label.vue'
+import FdCheckboxLabel from './../checkbox-label/checkbox-label.vue'
 import FdFormItem from './../form-item/form-item.vue'
 
 export default {
   functional: true,
   name: 'FdFormItemCheckbox',
   components: {
-    FdFormLabel,
+    FdCheckboxLabel,
     FdFormItem
   },
   props: {
+    id: String,
     label: {
       type: String,
       required: true

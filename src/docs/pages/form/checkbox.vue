@@ -3,16 +3,26 @@
     <FdFieldset>
       <FdFieldsetLegend>Favorite Colors</FdFieldsetLegend>
 
-      <FdFormItemCheckbox label="red">
-        <FdCheckbox compact value="red" v-model="favoriteColors" />
+      <FdFormItemCheckbox id="examples-form-checkbox-red" label="red">
+        <FdCheckbox id="examples-form-checkbox-red" compact value="red" v-model="favoriteColors" />
       </FdFormItemCheckbox>
 
-      <FdFormItemCheckbox label="Green">
-        <FdCheckbox compact value="green" v-model="favoriteColors" />
+      <FdFormItemCheckbox id="examples-form-checkbox-green" label="Green">
+        <FdCheckbox
+          id="examples-form-checkbox-green"
+          compact
+          value="green"
+          v-model="favoriteColors"
+        />
       </FdFormItemCheckbox>
 
-      <FdFormItemCheckbox label="Yellow">
-        <FdCheckbox compact value="yellow" v-model="favoriteColors" />
+      <FdFormItemCheckbox id="examples-form-checkbox-yellow" label="Yellow">
+        <FdCheckbox
+          id="examples-form-checkbox-yellow"
+          compact
+          value="yellow"
+          v-model="favoriteColors"
+        />
       </FdFormItemCheckbox>
     </FdFieldset>
 

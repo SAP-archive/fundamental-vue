@@ -13,6 +13,7 @@ import ComboboxMenu from './combobox-menu'
 import Container from './container'
 import Col from './col'
 import Controls from './controls'
+import CheckboxLabel from './checkbox-label'
 import Counter from './counter'
 import DatePicker from './date-picker'
 import DatePickerInput from './date-picker-input'
@@ -48,6 +49,7 @@ import NestedList from './nested-list'
 import Pagination from './pagination'
 import Panel from './panel'
 import Popover from './popover'
+import RadioLabel from './radio-label'
 import Section from './section'
 import SearchInput from './search-input'
 import SideNav from './side-nav'
@@ -98,6 +100,7 @@ const plugin = {
       Container,
       Col,
       Controls,
+      CheckboxLabel,
       ComboboxMenu,
       Counter,
       ContextMenu,
@@ -129,6 +132,7 @@ const plugin = {
       Link,
       List,
       SplitView,
+      RadioLabel,
       Menu,
       MessageStrip,
       MenuPopover,
