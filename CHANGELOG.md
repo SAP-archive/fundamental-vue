@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.18.4-rc.3](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.2...v0.18.4-rc.3) (2020-03-04)
+
+
+### Features
+
+* improved list + new styles version ([0e17e28](https://github.com/SAP/fundamental-vue/commit/0e17e28f8d90e03c0fa92c393ad0ba85678befd9))
+* message strip component ([6c7f947](https://github.com/SAP/fundamental-vue/commit/6c7f9472b35b637dbce33d948057d949af89276d))
+
+
+### Bug Fixes
+
+* fixed form item issues for checkbox and radio (non-inline variants only) ([faae3de](https://github.com/SAP/fundamental-vue/commit/faae3de6b0a9d0e7de4de11521dd212ab5e6cc95))
+
 ### [0.18.4-rc.2](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.1...v0.18.4-rc.2) (2019-12-05)
 
 ### [0.18.4-rc.1](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.0...v0.18.4-rc.1) (2019-12-05)
