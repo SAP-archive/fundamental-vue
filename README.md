@@ -127,7 +127,7 @@ To download and use this library, you first need to install the node package man
     @import "../node_modules/fiori-fundamentals/scss/all.scss";
     ```
 
-    Import the main SCSS file in your `App.js` style block to add Fiori Fundamentals styles to your project.
+    Import the main SCSS file in your `App.vue` style block to add Fiori Fundamentals styles to your project.
 
     ```scss
     <style lang='scss'>
