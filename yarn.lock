@@ -13643,7 +13643,7 @@ rollup-pluginutils@^2.0.1, rollup-pluginutils@^2.3.1, rollup-pluginutils@^2.3.3,
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^1.1.2, rollup@^1.31.1:
+rollup@^1.1.2:
   version "1.32.1"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.32.1.tgz#4480e52d9d9e2ae4b46ba0d9ddeaf3163940f9c4"
   integrity sha512-/2HA0Ec70TvQnXdzynFffkjA6XN+1e2pEv/uKS5Ulca40g2L7KuOE3riasHoNVHOsFD5KKZgDsMk1CP3Tw9s+A==
@@ -13651,6 +13651,13 @@ rollup@^1.1.2, rollup@^1.31.1:
     "@types/estree" "*"
     "@types/node" "*"
     acorn "^7.1.0"
+
+rollup@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.12.0.tgz#12d49d1db23020f75184da725d064d3db5245678"
+  integrity sha512-vKwc/xFkZGM9DRai3Eztpr/4g0yYDgNKVq8tLXhq/aSLbR+/EVL6rTjEW9bgWgeYEIKoN66/5w2Bjv1gzyHR/w==
+  optionalDependencies:
+    fsevents "~2.1.2"
 
 rsvp@^4.8.4:
   version "4.8.5"
