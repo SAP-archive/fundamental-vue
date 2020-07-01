@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.18.4-rc.24](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.23...v0.18.4-rc.24) (2020-07-01)
+
 ### [0.18.4-rc.23](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.22...v0.18.4-rc.23) (2020-06-08)
 
 ### [0.18.4-rc.22](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.21...v0.18.4-rc.22) (2020-06-06)
