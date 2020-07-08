@@ -94,7 +94,7 @@
     "github-assistant": "^0.3.0",
     "globby": "^11.0.0",
     "gray-matter": "^4.0.2",
-    "html-loader": "^0.5.5",
+    "html-loader": "^1.1.0",
     "loader-utils": "^1.4.0",
     "markdown-it-container": "^2.0.0",
     "postcss": "^7.0.27",
