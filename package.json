@@ -107,7 +107,7 @@
     "rollup-plugin-vue": "^5.1.6",
     "rollup": "^2.21.0",
     "saber-markdown": "^0.1.6",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^9.0.2",
     "standard-version": "^8.0.1",
     "start-server-and-test": "^1.10.6",
     "stylus-loader": "^3.0.2",
