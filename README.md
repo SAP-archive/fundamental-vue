@@ -172,11 +172,6 @@ If you want to contribute, please check the [Developer Guide](https://github.com
 
 Check out [this guide](./NEW_COMPONENT/NEW_COMPONENT.md) on building a new component for the library and creating the necessary documentation for your new component.
 
-## License
-
-Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
-This file is licensed under the Apache Software License, v. 2 except as noted otherwise in the [LICENSE file](https://github.com/SAP/fundamental-vue/blob/master/LICENSE.txt)
-
 ## Similar Projects
 
 -   [Angular implementation of SAP Fiori Fundamentals](https://github.com/SAP/fundamental-ngx)
