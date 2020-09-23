@@ -1,5 +1,7 @@
 # Fundamental Vue
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/fundamental-vue)](https://api.reuse.software/info/github.com/SAP/fundamental-vue)
+
 [![npm version](https://badge.fury.io/js/fundamental-vue.svg)](//www.npmjs.com/package/fundamental-vue)
 [![Minified Size](https://badgen.net/bundlephobia/min/fundamental-vue)](https://bundlephobia.com/result?p=fundamental-vue)
 [![Minzipped Size](https://badgen.net/bundlephobia/minzip/fundamental-vue)](https://bundlephobia.com/result?p=fundamental-vue)
