@@ -1,13 +1,12 @@
 # Fundamental Vue
 
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP/fundamental-vue)](https://api.reuse.software/info/github.com/SAP/fundamental-vue)
-
 [![npm version](https://badge.fury.io/js/fundamental-vue.svg)](//www.npmjs.com/package/fundamental-vue)
 [![Minified Size](https://badgen.net/bundlephobia/min/fundamental-vue)](https://bundlephobia.com/result?p=fundamental-vue)
 [![Minzipped Size](https://badgen.net/bundlephobia/minzip/fundamental-vue)](https://bundlephobia.com/result?p=fundamental-vue)
 [![Build Status](https://travis-ci.org/SAP/fundamental-vue.svg?branch=develop)](https://travis-ci.org/SAP/fundamental-vue)
 [![Coverage Status](https://coveralls.io/repos/github/SAP/fundamental-vue/badge.svg?branch=develop)](https://coveralls.io/github/SAP/fundamental-vue?branch=master)
 [![Slack](https://img.shields.io/badge/slack-ui--fundamentals-blue.svg?logo=slack)](https://ui-fundamentals.slack.com)
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/fundamental-vue)](https://api.reuse.software/info/github.com/SAP/fundamental-vue)
 
 ## Description
 
