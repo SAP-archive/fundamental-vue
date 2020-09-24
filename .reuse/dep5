@@ -27,3 +27,7 @@ Disclaimer: The code in this project may include calls to APIs (“API Calls”)
 Files: **
 Copyright: 2018-2020 SAP SE or an SAP affiliate company and Fundamental Library contributors
 License: Apache-2.0
+
+Files: src/directives/click-out.js
+Copyright: 2015 Denis Karabaza
+License: MIT
