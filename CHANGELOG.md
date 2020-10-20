@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.18.4-rc.51](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.50...v0.18.4-rc.51) (2020-09-30)
+
+### [0.18.4-rc.50](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.49...v0.18.4-rc.50) (2020-09-24)
+
+### [0.18.4-rc.49](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.48...v0.18.4-rc.49) (2020-09-24)
+
+### [0.18.4-rc.48](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.47...v0.18.4-rc.48) (2020-09-24)
+
+### [0.18.4-rc.47](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.46...v0.18.4-rc.47) (2020-09-24)
+
+### [0.18.4-rc.46](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.45...v0.18.4-rc.46) (2020-09-24)
+
+### [0.18.4-rc.45](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.44...v0.18.4-rc.45) (2020-09-24)
+
+### [0.18.4-rc.44](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.43...v0.18.4-rc.44) (2020-09-16)
+
 ### [0.18.4-rc.43](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.42...v0.18.4-rc.43) (2020-09-11)
 
 ### [0.18.4-rc.42](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.41...v0.18.4-rc.42) (2020-09-08)

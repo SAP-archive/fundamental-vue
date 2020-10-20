@@ -1,4 +1,4 @@
-  Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Fundamental Library
 Upstream-Contact: fundamental@sap.com
 Source: https://github.com/SAP/fundamental-vue
@@ -25,9 +25,9 @@ Disclaimer: The code in this project may include calls to APIs (“API Calls”)
  parties the right to use of access any SAP External Product, through API Calls.
 
 Files: **
-Copyright:  2018-2020 SAP SE or an SAP affiliate company and Fundamental Library contributors
+Copyright: 2018-2020 SAP SE or an SAP affiliate company and Fundamental Library contributors
 License: Apache-2.0
 
-Files: <file-taken-from-other-lib>
-Copyright: <Copyright>
-License: <License name>
+Files: src/directives/click-out.js
+Copyright: 2015 Denis Karabaza
+License: MIT
