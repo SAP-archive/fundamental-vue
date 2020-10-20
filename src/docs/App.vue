@@ -1,5 +1,6 @@
 <script>
 import Vue from 'vue'
+
 // This is our main component.
 // It simply looks up the layout to render and does exactly that.
 export default {

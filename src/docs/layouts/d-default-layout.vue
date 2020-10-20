@@ -17,6 +17,7 @@
       <FdSplitView height="calc(100vh)" :displayMode="displayMode">
         <template #master>
           <FdSplitViewMaster style="margin-top:48px;">
+            <StorybookButton />
             <SideNav @click.native="toggleSidebar(false)" :selectedId.sync="activeNavItemId" />
           </FdSplitViewMaster>
         </template>
@@ -39,9 +40,10 @@ import Vue from 'vue'
 import ShellBar from './default/shell-bar.vue'
 import SideNav from './default/side-nav.vue'
 import { observeMediaQueries } from './../../main'
+import StorybookButton from '../components/storybook-button.vue'
 
 export default {
-  components: { ShellBar, SideNav },
+  components: { ShellBar, SideNav, StorybookButton, },
   mixins: [
     observeMediaQueries(
       {
