@@ -4,7 +4,6 @@ const stories = storiesFor('virtualized-list')
 
 export default { title: 'virtualized-list' }
 
-
 export const defaultList = stories('virtualized-list-default')
 export const filtered = stories('virtualized-list-filter')
 export const initialLoad = stories('virtualized-list-initial-load')

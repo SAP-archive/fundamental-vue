@@ -43,7 +43,7 @@ import { observeMediaQueries } from './../../main'
 import StorybookButton from '../components/storybook-button.vue'
 
 export default {
-  components: { ShellBar, SideNav, StorybookButton, },
+  components: { ShellBar, SideNav, StorybookButton },
   mixins: [
     observeMediaQueries(
       {
