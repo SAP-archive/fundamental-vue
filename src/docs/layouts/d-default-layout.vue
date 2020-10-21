@@ -125,33 +125,11 @@ export default {
 $insetSide: 20px;
 $insetSide-compact: 16px;
 .page {
-  // padding-top: calc(44px);
-  // top: 44px;
   padding-bottom: 200px; /** allow the user to scroll further down */
 }
 
 .content {
-  // max-width: calc(740px);
-  // margin: 0 auto;
   padding: 2rem;
   background-color: #fff;
-}
-
-.sidebar--open .sidebar {
-  // transition: transform 0.2s ease;
-}
-@include for-compact-only {
-  // .content {
-  //   margin-left: 0;
-  // }
-  // .sidebar--open .sidebar {
-  //   transform: translateX(0);
-  // }
-  // .sidebar {
-  //   transform: translateX(-100%);
-  // }
-  // .sidebar--open .sidebar-mask {
-  //   display: block;
-  // }
 }
 </style>

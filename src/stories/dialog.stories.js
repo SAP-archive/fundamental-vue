@@ -1,9 +1,9 @@
 import storiesFor from '../util/stories-for'
 
-const stories = storiesFor('modal')
+const stories = storiesFor('dialog')
 
-export default { title: 'modal' }
+export default { title: 'Dialog' }
 
-export const defaultModal = stories('default')
+export const defaultDialog = stories('default')
 export const fullscreen = stories('fullscreen-modal')
 export const nested = stories('nested-modals')

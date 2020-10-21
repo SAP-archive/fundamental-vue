@@ -1,4 +1,5 @@
 import log from './../core/log'
+import dumpObject from './../core/dump-object'
 import normalizedPluginOptions from './plugin-options'
 
 const getComponentName = component => {
@@ -20,9 +21,12 @@ export default (...dependencies) => {
     dependencies.forEach(component => {
       const componentName = getComponentName(component)
       if (componentName == null) {
-        throw Error(`
-            Unable to determine component name. Component: ${component}. Did you forget to add a 'name' attribute?
-                `)
+        const message = `Unable to determine component name. Component: ${component}. Did you forget to add a 'name' attribute?`
+        // Just logging component will print [object object] most of the time which is not useful.
+        dumpObject(component)
+        throw Error(
+          `${message} – the component in question was also logged and you should see it above this message in the logs.`
+        )
       }
       if (registerComponent === true) {
         log(`Register component ${componentName}`)

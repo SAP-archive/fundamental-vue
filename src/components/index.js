@@ -43,7 +43,7 @@ import SplitView from './split-view'
 import Menu from './menu'
 import MessageStrip from './message-strip'
 import MenuPopover from './menu-popover'
-import Modal from './modal'
+import Dialog from './dialog'
 import ModalOverlay from './modal-overlay'
 import NestedList from './nested-list'
 import Pagination from './pagination'
@@ -136,7 +136,7 @@ const plugin = {
       Menu,
       MessageStrip,
       MenuPopover,
-      Modal,
+      Dialog,
       ModalOverlay,
       Notification,
       Notify,

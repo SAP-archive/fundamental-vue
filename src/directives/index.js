@@ -16,5 +16,6 @@ export default {
     Vue.directive('fd-font-family', fontFamily)
     Vue.directive('fd-click-out', clickOut)
     Vue.directive('fd-open-modal', modal)
+    Vue.directive('fd-open-dialog', modal)
   }
 }

@@ -1,4 +1,4 @@
-const PORTAL_DATA_ATTRIBUTE = 'data-fd-vue-modal-portal'
+const PORTAL_DATA_ATTRIBUTE = 'data-fd-vue-dialog-portal'
 
 export default modalName => {
   const portal = document.createElement('DIV')

@@ -1,6 +1,6 @@
 <template>
   <transition name="fdv-overlay" @after-enter="$emit('after-enter')">
-    <div v-show="visible" class="fd-ui__overlay fd-overlay fd-overlay--modal">
+    <div v-show="visible" class="fd-dialog fd-dialog--active">
       <slot />
     </div>
   </transition>

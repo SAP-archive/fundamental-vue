@@ -1,4 +1,4 @@
-const CONTAINER_DATA_ATTRIBUTE = 'data-fd-vue-modals-container'
+const CONTAINER_DATA_ATTRIBUTE = 'data-fd-vue-dialogs-container'
 const CONTAINER_SELECTOR = `[${CONTAINER_DATA_ATTRIBUTE}]`
 
 export default () => {
