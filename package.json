@@ -15,7 +15,7 @@
     "serve:demo:dev": "cross-env FD_E2E=true vue-cli-service serve tests/e2e/app/index.js --port 10000 --mode development",
     "serve": "rimraf node_modules/.cache && cross-env NODE_ENV=development BASE_URL='/' vue-cli-service serve src/docs/index.js",
     "generate-api": "node src/tools",
-    "test": "jest --clearCache && cross-env BASE_URL='/' vue-cli-service test:unit --no-collect-coverage",
+    "test": "cross-env BASE_URL='/' vue-cli-service test:unit --no-collect-coverage --runInBand",
     "test:coverage": "jest --clearCache && cross-env BASE_URL='/' vue-cli-service test:unit --collect-coverage",
     "test:watch": "jest --clearCache && cross-env BASE_URL='/' vue-cli-service test:unit --watch",
     "lint": "vue-cli-service lint --no-fix --max-warnings 0 --max-errors 0 src loaders tests",

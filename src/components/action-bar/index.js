@@ -1,10 +1,10 @@
 import pluginify from './../../util/pluginify'
 
 import ActionBar from './action-bar.vue'
-import ActionBarTitle from './title.vue'
-import ActionBarHeader from './header.vue'
-import ActionBarActions from './actions.vue'
-import ActionBarBack from './back.vue'
+import ActionBarTitle from './header/title.vue'
+import ActionBarHeader from './header/index.vue'
+import ActionBarActions from './header/actions.vue'
+import ActionBarBack from './header/back.vue'
 import ActionBarDescription from './description.vue'
 
 export default pluginify(
