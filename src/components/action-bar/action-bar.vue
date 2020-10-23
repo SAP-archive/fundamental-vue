@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import FdActionBarHeader from './action-bar-header.vue'
-import FdActionBarBack from './action-bar-back.vue'
+import FdActionBarHeader from './header.vue'
+import FdActionBarBack from './back.vue'
 
 // The Action Bar is located at the top of the page and is used for the following displaying a page title and actions.
 export default {
