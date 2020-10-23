@@ -1,8 +1,8 @@
 // Fundamental Vue Supporting Stylesheets
 // If you import this style sheet in your app you get:
 
-// Animated show/close-modal transitions.
-@import "./components/modal/modal";
+// Animated show/close-dialog transitions.
+@import "./components/dialog/dialog";
 // Support for transparent tiles
 @import "./components/tile/tile";
 // Support for hover + selection

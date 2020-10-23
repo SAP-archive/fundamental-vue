@@ -4,7 +4,7 @@
   "description": "SAP Fiori Fundamentals, implemented in Vue.js",
   "author": "SAP SE",
   "scripts": {
-    "storybook": "start-storybook --static-dir ./public -p 6006",
+    "storybook": "start-storybook --no-open --static-dir ./public -p 6006",
     "build-storybook": "build-storybook --static-dir ./public --output-dir ./docs/dist/storybook",
     "test:e2e": "start-server-and-test 'serve:demo' http://localhost:10000 'cross-env FD_E2E=true vue-cli-service test:e2e --url http://localhost:10000'",
     "test:e2e:dev": "start-server-and-test 'serve:demo:dev' http://localhost:10000 'cross-env FD_E2E=true vue-cli-service test:e2e --mode development --url http://localhost:10000'",
