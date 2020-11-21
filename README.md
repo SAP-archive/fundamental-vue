@@ -8,6 +8,10 @@
 [![Slack](https://img.shields.io/badge/slack-ui--fundamentals-blue.svg?logo=slack)](https://ui-fundamentals.slack.com)
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/fundamental-vue)](https://api.reuse.software/info/github.com/SAP/fundamental-vue)
 
+<a href="https://www.netlify.com">
+    <img src="https://www.netlify.com/img/global/badges/netlify-light.svg" alt="Deploys by Netlify" />
+  </a>
+
 ## Description
 
 The `fundamental-vue` library is a set of [Vue.js](https://vuejs.org/) components built using [Fundamental Library Styles](https://sap.github.io/fundamental-styles/).
