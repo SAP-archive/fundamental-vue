@@ -74,7 +74,7 @@
     "babel-jest": "^26.1.0",
     "babel-loader": "^8.0.6",
     "babel-preset-vue": "^2.0.2",
-    "bili": "^4.8.1",
+    "bili": "^5.0.5",
     "codesandbox": "^2.1.10",
     "core-js": "^3.4.3",
     "cross-env": "^7.0.0",
