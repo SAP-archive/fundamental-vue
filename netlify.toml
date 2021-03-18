@@ -7,6 +7,6 @@
 
 [build]
   ignore = 'git log -1 --pretty=%B | grep dependabot'
-  environment = { NODE_VERSION = "12.18.4" }
+  environment = { NODE_VERSION = "15.11.0" }
   publish = "docs/dist"
   command = "yarn build:docs:netlify"
