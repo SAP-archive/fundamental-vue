@@ -1,0 +1,19 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "10:00"
+    timezone: Etc/UCT
+  reviewers:
+  - droshev
+  ignore:
+  - dependency-name: webpack-bundle-analyzer
+    versions:
+    - 4.3.0
+    - 4.4.0
+  - dependency-name: focus-trap
+    versions:
+    - 6.2.3
+    - 6.3.0
