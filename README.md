@@ -33,7 +33,8 @@ Some prior knowledge of Vue is required for using this library.
 
 ## Fundamental Vue in 5 Minutes or less
 
-A minimal working Fundamental Vue app can look like this: Paste the following snippet in your `<head>`-tag:
+A minimal working Fundamental Vue app can look like following. 
+You can just copy that in to a single html file and then open it in a browser.
 
 ```html
 <!DOCTYPE html>
