@@ -33,32 +33,40 @@ Some prior knowledge of Vue is required for using this library.
 
 ## Fundamental Vue in 5 Minutes or less
 
-Paste the following snippet in your `<head>`-tag:
+A minimal working Fundamental Vue app can look like following. 
+You can just copy that in to a single html file and then open it in a browser.
 
-```xml
-<link
-    rel="stylesheet"
-    href="https://unpkg.com/fiori-fundamentals@latest/dist/fiori-fundamentals.min.css"
-/>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/fundamental-vue@latest/dist/FundamentalVue.umd.js"></script>
-```
+```html
+<!DOCTYPE html>
+<html>
 
-Then you can use Fundamental Vue like this:
+<head>
+    <!-- Import fiori-fundamentals stylesheet, vue.js and FundamentalVue -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/fiori-fundamentals@latest/dist/fiori-fundamentals.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/fundamental-vue@latest/dist/FundamentalVue.umd.js"></script>
+</head>
 
-```xml
-<div id="app">
-  <fd-popover v-fd-margin:large placement="bottom-start" with-arrow>
-    <h1 v-fd-margin:large>
-      🚀 Hello Fundamental Vue 🚀
-    </h1>
-    <template #control="{toggle}">
-      <fd-button @click="toggle">Show Popover</fd-button>
-    </template>
-  </fd-popover>
-</div>
+<body>
+    <!-- Create Vue app with a single fundamental vue popover element -->
+    <div id="app">
+        <fd-popover v-fd-margin:large placement="bottom-start" with-arrow>
+            <h1 v-fd-margin:large>
+                🚀 Hello Fundamental Vue 🚀
+            </h1>
+            <template #control="{toggle}">
+                <fd-button @click="toggle">Show Popover</fd-button>
+            </template>
+        </fd-popover>
+    </div>
+    <script>new Vue({ el: '#app' })</script>
+</body>
 
-<script>new Vue({ el: '#app' })</script>
+</html>
+
 ```
 
 When using *Fundamental Vue* via a `<script>`-tag you don't have to install it manually by calling `Vue.use(FundamentalVue)`. This is done for you automatically. You can disable the automatic installation by setting `window.__FD_AUTO_INSTALL_DISABLED_KEY__` to true early on.
