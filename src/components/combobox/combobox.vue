@@ -8,7 +8,7 @@
         :compact="compact"
         @blur="handleBlur"
         @focus="showCompletions"
-        @update="setCurrentValue"
+        @update="handleUpdate"
         @keyup.esc="hideCompletions"
       />
     </template>
@@ -157,6 +157,10 @@ export default {
     },
     setCurrentLabel(newLabel) {
       this.currentLabel = newLabel
+    },
+    handleUpdate(newValue) {
+      this.setCurrentValue(newValue);
+      this.setCurrentLabel(null) // reset the current label as a new value is being set
     }
   }
 }
