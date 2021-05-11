@@ -3,7 +3,7 @@
     <template #input="{showCompletions, hideCompletions}">
       <FdInputGroupInput
         ref="input"
-        :value="currentValue"
+        :value="displayValue"
         :placeholder="placeholder"
         :compact="compact"
         @blur="handleBlur"
@@ -86,12 +86,17 @@ export default {
   computed: {
     comboboxBase() {
       return this.$refs.comboboxBase
+    },
+    displayValue() {
+      return this.currentLabel ?? this.currentValue
     }
   },
   data() {
     return {
       // type: string | number | null
-      currentValue: this.value
+      currentValue: this.value,
+      // type: string | number | null
+      currentLabel: null
     }
   },
   watch: {
@@ -135,6 +140,7 @@ export default {
     },
     selectItem(item) {
       this.setCurrentValue(item.value)
+      this.setCurrentLabel(item.label)
       this.$refs.comboboxBase.hide()
     },
     ignoredElements() {
@@ -148,6 +154,9 @@ export default {
       // Trigged when the current value changes
       // @arg the current value
       this.$emit('update:value', this.currentValue)
+    },
+    setCurrentLabel(newLabel) {
+      this.currentLabel = newLabel
     }
   }
 }
