@@ -159,7 +159,7 @@ export default {
       this.currentLabel = newLabel
     },
     handleUpdate(newValue) {
-      this.setCurrentValue(newValue);
+      this.setCurrentValue(newValue)
       this.setCurrentLabel(null) // reset the current label as a new value is being set
     }
   }
