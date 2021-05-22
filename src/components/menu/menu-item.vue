@@ -44,7 +44,8 @@ export default {
   },
   props: {
     selected: { type: Boolean, default: false },
-    value: { default: null, type: [String, Number] }
+    value: { default: null, type: [String, Number] },
+    label: { default: null, type: [String, Number] }
   },
   computed: {
     canHaveAddon() {

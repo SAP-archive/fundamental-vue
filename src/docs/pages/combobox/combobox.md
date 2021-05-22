@@ -22,6 +22,17 @@ All `fd-menu-item`s need an associated `value` – otherwise `v-model` will not 
 <d-example name="sizes">
 </d-example>
 
+## Combobox Labels
+
+::: tip
+
+You can optionally supply a `label` value to `fd-menu-item` and it will be displayed instead of `value`. 
+But it will keep the `v-model` value as the `value` field.
+
+:::
+<d-example name="labels">
+</d-example>
+
 ## Custom Menu
 
 ::: tip

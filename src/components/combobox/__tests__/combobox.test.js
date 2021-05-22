@@ -48,4 +48,39 @@ describe('Combobox', () => {
     expect(item.text()).toBe('1') // ensure that we have selected the correct item
     expect(wrapper.vm.value).toBe('1')
   })
+
+  it('Combobox items with labels', async () => {
+    const wrapper = mount({
+      components: { FdCombobox, FdMenuItem, FdMenuLink },
+      template: `
+      <FdCombobox ref="combobox" v-model="value">
+        <FdMenuItem ref="menuItem1" value="1" label="A">
+          <FdMenuLink>1</FdMenuLink>
+        </FdMenuItem>
+        <FdMenuItem value="2" label="B">
+          <FdMenuLink>2</FdMenuLink>
+        </FdMenuItem>
+        <FdMenuItem value="3" label="C">
+          <FdMenuLink>3</FdMenuLink>
+        </FdMenuItem>
+        <FdMenuItem value="4" label="D">
+          <FdMenuLink>4</FdMenuLink>
+        </FdMenuItem>
+      </FdCombobox>
+      `,
+      data() {
+        return {
+          value: 'abc'
+        }
+      }
+    })
+    await wrapper.vm.$nextTick()
+    const item = wrapper.find({ ref: 'menuItem1' })
+    item.find('a').trigger('click')
+    expect(item.text()).toBe('1') // ensure that we have selected the correct item
+    expect(wrapper.vm.value).toBe('1')
+
+    const combobox = wrapper.find({ ref: 'combobox' })
+    expect(combobox.vm.displayValue).toBe('A') // ensure that the value being displayed is the label
+  })
 })
