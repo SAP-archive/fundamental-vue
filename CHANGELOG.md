@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.18.4-rc.62](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.61...v0.18.4-rc.62) (2021-05-22)
+
+
+### Bug Fixes
+
+*  Display label instead of value on combobox when label is present ([#817](https://github.com/SAP/fundamental-vue/issues/817)) ([3cce3e6](https://github.com/SAP/fundamental-vue/commit/3cce3e6567eecd0bc4faca6c83bbf79fa253beaf))
+
 ### [0.18.4-rc.61](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.60...v0.18.4-rc.61) (2021-05-10)
 
 ### [0.18.4-rc.60](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.59...v0.18.4-rc.60) (2021-05-07)
