@@ -14,6 +14,8 @@ script:
   - yarn build
 jobs:
   include:
+  - stage: Lint commit message
+    script: commitlint-travis
   - stage: Lint and Test
     script: yarn lint && yarn test
   - stage: Pre-release
