@@ -1,4 +1,6 @@
 
+### [0.18.4-rc.65](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.64...v0.18.4-rc.65) (2021-06-13)
+
 ### [0.18.4-rc.64](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.63...v0.18.4-rc.64) (2021-06-08)
 
 ## [0.18.4-rc.63](https://github.com/SAP/fundamental-vue/compare/v0.18.4-rc.62...v0.18.4-rc.63) (2021-06-04)
