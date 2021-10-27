@@ -86,7 +86,7 @@ export default {
       };
 
       if (opts.timeout || !opts.permanent) {
-        notification.timeout = config.timeout || config.defaultTimeout;
+        notification.timeout = opts.timeout || config.defaultTimeout;
         notification.timer = setTimeout(() => {
           this.destroyNotification(notification);
         }, notification.timeout);
